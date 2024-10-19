@@ -180,7 +180,7 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Open: //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":
-                            VehicleDispatchBoard vehicleDispatchBoard = new();
+                            VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();
                             break;

@@ -91,6 +91,29 @@ namespace ControlEx {
         }
 
         /// <summary>
+        /// 今日の日付をセット
+        /// </summary>
+        public void SetToday() {
+            this.Value = DateTime.Today;
+        }
+
+        /// <summary>
+        /// 日付を取得
+        /// </summary>
+        /// <returns>日付＋0:00:00時</returns>
+        public DateTime GetDate() {
+            return this.Value.Date;
+        }
+
+        /// <summary>
+        /// Valueを取得
+        /// </summary>
+        /// <returns></returns>
+        public DateTime GetValue() {
+            return this.Value;
+        }
+
+        /// <summary>
         /// CultureFlag
         /// true:和暦 false:西暦
         /// </summary>

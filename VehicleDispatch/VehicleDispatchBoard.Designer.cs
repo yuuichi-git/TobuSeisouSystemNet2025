@@ -27,6 +27,7 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExTop = new ControlEx.PanelEx();
+            this.ButtonExUpdate = new ControlEx.ButtonEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
             this.PanelExLeft = new ControlEx.PanelEx();
@@ -38,9 +39,9 @@
             // TableLayoutPanelExBase
             // 
             this.TableLayoutPanelExBase.ColumnCount = 3;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
+            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
+            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
             this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
             this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
@@ -51,10 +52,9 @@
             this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
             this.TableLayoutPanelExBase.RowCount = 4;
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
@@ -80,19 +80,32 @@
             // PanelExTop
             // 
             this.TableLayoutPanelExBase.SetColumnSpan(this.PanelExTop, 3);
+            this.PanelExTop.Controls.Add(this.ButtonExUpdate);
             this.PanelExTop.Controls.Add(this.labelEx1);
             this.PanelExTop.Controls.Add(this.DateTimePickerExOperationDate);
             this.PanelExTop.Dock = DockStyle.Fill;
             this.PanelExTop.Location = new Point(0, 24);
             this.PanelExTop.Margin = new Padding(0);
             this.PanelExTop.Name = "PanelExTop";
-            this.PanelExTop.Size = new Size(1904, 36);
+            this.PanelExTop.Size = new Size(1904, 32);
             this.PanelExTop.TabIndex = 2;
+            // 
+            // ButtonExUpdate
+            // 
+            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            this.ButtonExUpdate.Location = new Point(1668, 0);
+            this.ButtonExUpdate.Name = "ButtonExUpdate";
+            this.ButtonExUpdate.Size = new Size(184, 32);
+            this.ButtonExUpdate.TabIndex = 2;
+            this.ButtonExUpdate.Text = "最　新　化";
+            this.ButtonExUpdate.UseVisualStyleBackColor = true;
+            this.ButtonExUpdate.Click += this.ButtonEx_Click;
             // 
             // labelEx1
             // 
             this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(52, 12);
+            this.labelEx1.Location = new Point(48, 8);
             this.labelEx1.Name = "labelEx1";
             this.labelEx1.Size = new Size(43, 15);
             this.labelEx1.TabIndex = 1;
@@ -103,7 +116,7 @@
             this.DateTimePickerExOperationDate.CultureFlag = false;
             this.DateTimePickerExOperationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.DateTimePickerExOperationDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExOperationDate.Location = new Point(100, 8);
+            this.DateTimePickerExOperationDate.Location = new Point(96, 4);
             this.DateTimePickerExOperationDate.Name = "DateTimePickerExOperationDate";
             this.DateTimePickerExOperationDate.Size = new Size(184, 23);
             this.DateTimePickerExOperationDate.TabIndex = 0;
@@ -112,19 +125,19 @@
             // PanelExLeft
             // 
             this.PanelExLeft.Dock = DockStyle.Fill;
-            this.PanelExLeft.Location = new Point(0, 60);
+            this.PanelExLeft.Location = new Point(0, 56);
             this.PanelExLeft.Margin = new Padding(0);
             this.PanelExLeft.Name = "PanelExLeft";
-            this.PanelExLeft.Size = new Size(30, 957);
+            this.PanelExLeft.Size = new Size(52, 961);
             this.PanelExLeft.TabIndex = 3;
             // 
             // PanelExRight
             // 
             this.PanelExRight.Dock = DockStyle.Fill;
-            this.PanelExRight.Location = new Point(1874, 60);
+            this.PanelExRight.Location = new Point(1852, 56);
             this.PanelExRight.Margin = new Padding(0);
             this.PanelExRight.Name = "PanelExRight";
-            this.PanelExRight.Size = new Size(30, 957);
+            this.PanelExRight.Size = new Size(52, 961);
             this.PanelExRight.TabIndex = 4;
             // 
             // VehicleDispatchBoard
@@ -153,5 +166,6 @@
         private ControlEx.LabelEx labelEx1;
         private ControlEx.PanelEx PanelExLeft;
         private ControlEx.PanelEx PanelExRight;
+        private ControlEx.ButtonEx ButtonExUpdate;
     }
 }
