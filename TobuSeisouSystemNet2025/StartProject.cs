@@ -37,11 +37,13 @@ namespace TobuSeisouSystemNet2025 {
             /*
              * MenuStrip
              */
-            List<string> listString = ["ToolStripMenuItemFile"
-                                     , "ToolStripMenuItemExit"
-                                     , "ToolStripMenuItemDataBase"
-                                     , "ToolStripMenuItemDataBaseLocal"
-                                     , "ToolStripMenuItemHelp"];
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemDataBase",
+                "ToolStripMenuItemDataBaseLocal",
+                "ToolStripMenuItemHelp"
+            };
             MenuStripEx1.ChangeEnable(listString);
 
             LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
