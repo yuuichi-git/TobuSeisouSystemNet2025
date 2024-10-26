@@ -37,14 +37,6 @@ namespace ControlEx {
             this.Name = "CarLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
-            /*
-             * Event
-             */
-            this.MouseClick += CarLabel_MouseClick;
-            this.MouseDoubleClick += CarLabel_MouseDoubleClick;
-            this.MouseEnter += CarLabel_MouseEnter;
-            this.MouseLeave += CarLabel_MouseLeave;
-            this.MouseMove += CarLabel_MouseMove;
         }
 
         /// <summary>
@@ -88,31 +80,19 @@ namespace ControlEx {
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }
 
-        /*
-         * Event
-         */
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CarLabel_MouseClick(object sender, MouseEventArgs e) {
+        protected override void OnMouseDown(MouseEventArgs e) {
+
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CarLabel_MouseDoubleClick(object sender, MouseEventArgs e) {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CarLabel_MouseEnter(object sender, EventArgs e) {
+        protected override void OnMouseEnter(EventArgs e) {
             CursorEnterFlag = true;
             Refresh();
         }
@@ -120,9 +100,8 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CarLabel_MouseLeave(object sender, EventArgs e) {
+        protected override void OnMouseLeave(EventArgs e) {
             CursorEnterFlag = false;
             Refresh();
         }
@@ -130,9 +109,16 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CarLabel_MouseMove(object sender, MouseEventArgs e) {
+        protected override void OnMouseMove(MouseEventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseUp(MouseEventArgs e) {
 
         }
 

@@ -53,14 +53,6 @@ namespace ControlEx {
             this.Name = "SetLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
-            /*
-             * Event
-             */
-            this.MouseClick += SetLabel_MouseClick;
-            this.MouseDoubleClick += SetLabel_MouseDoubleClick;
-            this.MouseEnter += SetLabel_MouseEnter;
-            this.MouseLeave += SetLabel_MouseLeave;
-            this.MouseMove += SetLabel_MouseMove;
         }
 
         /// <summary>
@@ -133,31 +125,19 @@ namespace ControlEx {
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }
 
-        /*
-         * Event
-         */
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetLabel_MouseClick(object sender, MouseEventArgs e) {
+        protected override void OnMouseDown(MouseEventArgs e) {
+
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetLabel_MouseDoubleClick(object sender, MouseEventArgs e) {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SetLabel_MouseEnter(object sender, EventArgs e) {
+        protected override void OnMouseEnter(EventArgs e) {
             CursorEnterFlag = true;
             Refresh();
         }
@@ -165,9 +145,8 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetLabel_MouseLeave(object sender, EventArgs e) {
+        protected override void OnMouseLeave(EventArgs e) {
             CursorEnterFlag = false;
             Refresh();
         }
@@ -175,9 +154,16 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetLabel_MouseMove(object sender, MouseEventArgs e) {
+        protected override void OnMouseMove(MouseEventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseUp(MouseEventArgs e) {
 
         }
 

@@ -37,12 +37,30 @@ namespace ControlEx {
             this.Margin = new Padding(0);
             this.Name = "SetControl";
             this.Padding = new Padding(0);
-            this.Size = new Size((int)_cellWidth * _columnCount, (int)_cellHeight * _rowCount);
             /*
              * Column作成
              */
-            this.ColumnCount = _columnCount;
-            this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+            switch (VehicleDispatchDetailVo.PurposeFlag) {
+                case true: // ２列
+                    // Size
+                    this.Size = new Size((int)_cellWidth * _columnCount * 2, (int)_cellHeight * _rowCount);
+                    /*
+                     * Column作成
+                     */
+                    this.ColumnCount = _columnCount + 1;
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+                    break;
+                case false: // １列
+                    // Size
+                    this.Size = new Size((int)_cellWidth * _columnCount, (int)_cellHeight * _rowCount);
+                    /*
+                     * Column作成
+                     */
+                    this.ColumnCount = _columnCount;
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+                    break;
+            }
             /*
              * Row作成
              */
@@ -54,11 +72,11 @@ namespace ControlEx {
             /*
              * Event作成
              */
-            this.MouseDown += SetControl_MouseDown;
-            this.MouseEnter += SetControl_MouseEnter;
-            this.MouseLeave += SetControl_MouseLeave;
-            this.MouseMove += SetControl_MouseMove;
-            this.MouseUp += SetControl_MouseUp;
+            //this.MouseDown += SetControl_MouseDown;
+            //this.MouseEnter += SetControl_MouseEnter;
+            //this.MouseLeave += SetControl_MouseLeave;
+            //this.MouseMove += SetControl_MouseMove;
+            //this.MouseUp += SetControl_MouseUp;
         }
 
         /// <summary>
@@ -130,55 +148,50 @@ namespace ControlEx {
         /*
          * Eventを渡す
          */
-        public event MouseEventHandler Event_SetControl_MouseDown = delegate { };
-        public event EventHandler Event_SetControl_MouseEnter = delegate { };
-        public event EventHandler Event_SetControl_MouseLeave = delegate { };
-        public event MouseEventHandler Event_SetControl_MouseMove = delegate { };
-        public event MouseEventHandler Event_SetControl_MouseUp = delegate { };
+        public event MouseEventHandler Event_SetControl_OnMouseDown = delegate { };
+        public event EventHandler Event_SetControl_OnMouseEnter = delegate { };
+        public event EventHandler Event_SetControl_OnMouseLeave = delegate { };
+        public event MouseEventHandler Event_SetControl_OnMouseMove = delegate { };
+        public event MouseEventHandler Event_SetControl_OnMouseUp = delegate { };
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetControl_MouseDown(object sender, MouseEventArgs e) {
-            Event_SetControl_MouseDown.Invoke(sender, e);
+        protected override void OnMouseDown(MouseEventArgs e) {
+            Event_SetControl_OnMouseDown.Invoke(this, e);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetControl_MouseEnter(object sender, EventArgs e) {
-            Event_SetControl_MouseEnter.Invoke(sender, e);
+        protected override void OnMouseEnter(EventArgs e) {
+            Event_SetControl_OnMouseEnter.Invoke(this, e);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetControl_MouseLeave(object sender, EventArgs e) {
-            Event_SetControl_MouseLeave.Invoke(sender, e);
+        protected override void OnMouseLeave(EventArgs e) {
+            Event_SetControl_OnMouseLeave.Invoke(this, e);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetControl_MouseMove(object sender, MouseEventArgs e) {
-            Event_SetControl_MouseMove.Invoke(sender, e);
+        protected override void OnMouseMove(MouseEventArgs e) {
+            Event_SetControl_OnMouseMove.Invoke(this, e);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetControl_MouseUp(object sender, MouseEventArgs e) {
-            Event_SetControl_MouseUp.Invoke(sender, e);
+        protected override void OnMouseUp(MouseEventArgs e) {
+            Event_SetControl_OnMouseUp.Invoke(this, e);
         }
 
         /*

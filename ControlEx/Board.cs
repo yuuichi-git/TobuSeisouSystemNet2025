@@ -1,6 +1,8 @@
 ﻿/*
  * 2024-10-09
  */
+using System.Windows.Forms;
+
 using Vo;
 
 namespace ControlEx {
@@ -91,17 +93,18 @@ namespace ControlEx {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
-            setControl.AddStaffLabel(listStaffMasterVo);
+            //setControl.AddStaffLabel(listStaffMasterVo);
             /*
              * Event
              */
-            setControl.Event_SetControl_MouseDown += Board_MouseDown;
-            setControl.Event_SetControl_MouseEnter += Board_MouseEnter;
-            setControl.Event_SetControl_MouseLeave += Board_MouseLeave;
-            setControl.Event_SetControl_MouseMove += Board_MouseMove;
-            setControl.Event_SetControl_MouseUp += Board_MouseUp;
+            setControl.Event_SetControl_OnMouseDown += Board_MouseDown;
+            setControl.Event_SetControl_OnMouseEnter += Board_MouseEnter;
+            setControl.Event_SetControl_OnMouseLeave += Board_MouseLeave;
+            setControl.Event_SetControl_OnMouseMove += Board_MouseMove;
+            setControl.Event_SetControl_OnMouseUp += Board_MouseUp;
 
             this.Controls.Add(setControl, GetCellPoint(cellNumber).X, GetCellPoint(cellNumber).Y);
+            this.SetColumnSpan(setControl, vehicleDispatchDetailVo.PurposeFlag ? 2 : 1);
         }
 
         /// <summary>

@@ -114,10 +114,6 @@ namespace VehicleDispatch {
                                                      _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
                                                      null);
-
-                            } else {
-                                _board.AddSetControl(_cellNumber, null, null, null, null);
-
                             }
                             _cellNumber++;
                         }
