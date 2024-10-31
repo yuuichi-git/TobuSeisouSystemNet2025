@@ -77,7 +77,7 @@ namespace ControlEx {
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             // メモ
             if (MemoFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageMemo), 0, 0, Width, Height);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
             // 代車
             if (ProxyFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
