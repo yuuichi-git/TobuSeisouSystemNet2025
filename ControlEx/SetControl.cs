@@ -4,7 +4,16 @@
 using Vo;
 
 namespace ControlEx {
+
     public partial class SetControl : TableLayoutPanel {
+        private SetControl _thisLabel;
+        private SetLabel _deployedSetLabel;
+        private CarLabel _deployedCarLabel;
+        private StaffLabel _deployedStaffLabel0;
+        private StaffLabel _deployedStaffLabel1;
+        private StaffLabel _deployedStaffLabel2;
+        private StaffLabel _deployedStaffLabel3;
+
         /*
          * Vo
          */
@@ -69,14 +78,8 @@ namespace ControlEx {
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
-            /*
-             * Event作成
-             */
-            //this.MouseDown += SetControl_MouseDown;
-            //this.MouseEnter += SetControl_MouseEnter;
-            //this.MouseLeave += SetControl_MouseLeave;
-            //this.MouseMove += SetControl_MouseMove;
-            //this.MouseUp += SetControl_MouseUp;
+            // 自分自身の参照を退避
+            ThisLabel = this;
         }
 
         /// <summary>
@@ -114,11 +117,13 @@ namespace ControlEx {
             setLabel.FaxTransmissionFlag = (setMasterVo.ContactMethod == 11 || setMasterVo.ContactMethod == 13);
             setLabel.LastRollCallFlag = VehicleDispatchDetailVo.LastRollCallFlag;
             setLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
-            setLabel.SetMemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
+            setLabel.MemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
             setLabel.ShiftCode = VehicleDispatchDetailVo.ShiftCode;
             setLabel.StandByFlag = VehicleDispatchDetailVo.StandByFlag;
             setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
             this.Controls.Add(setLabel, 0, 0);
+            // 参照を退避
+            DeployedSetLabel = setLabel;
         }
 
         /// <summary>
@@ -130,19 +135,68 @@ namespace ControlEx {
             if (carMasterVo is null)
                 return;
             CarLabel carLabel = new(carMasterVo);
-
+            carLabel.MemoFlag = VehicleDispatchDetailVo.CarMemoFlag;
+            carLabel.ClassificationCode = VehicleDispatchDetailVo.ClassificationCode;
+            carLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
+            carLabel.ProxyFlag = VehicleDispatchDetailVo.CarProxyFlag;
             this.Controls.Add(carLabel, 0, 1);
+            // 参照を退避
+            DeployedCarLabel = carLabel;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="cellNumber"></param>
         /// <param name="listStaffMasterVo"></param>
-        public void AddStaffLabel(List<StaffMasterVo> listStaffMasterVo) {
+        public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo) {
             if (listStaffMasterVo is null)
                 return;
+            switch (VehicleDispatchDetailVo.PurposeFlag) {
+                case false: // １列
+                    DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    DeployedStaffLabel1 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    break;
+                case true: // ２列
+                    DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    DeployedStaffLabel1 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    DeployedStaffLabel2 = this.AddStaffLabel(2, listStaffMasterVo[2]);
+                    DeployedStaffLabel3 = this.AddStaffLabel(3, listStaffMasterVo[3]);
+                    break;
+            }
+        }
 
+        /// <summary>
+        /// SetControlの指定したCellにStaffLabelを作成
+        /// </summary>
+        /// <param name="number">0～3</param>
+        /// <param name="staffMasterVo"></param>
+        /// <returns></returns>
+        private StaffLabel AddStaffLabel(int number, StaffMasterVo staffMasterVo) {
+            if (staffMasterVo is not null) {
+                StaffLabel staffLabel = new(staffMasterVo);
+                switch (number) {
+                    case 0:
+                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag1;
+                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag1;
+                        break;
+                    case 1:
+                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag2;
+                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag2;
+                        break;
+                    case 2:
+                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag3;
+                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag3;
+                        break;
+                    case 3:
+                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag4;
+                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag4;
+                        break;
+                }
+                this.Controls.Add(staffLabel, number % 2, number / 2 + 2);
+                return staffLabel;
+            } else {
+                return null;
+            }
         }
 
         /*
@@ -197,9 +251,61 @@ namespace ControlEx {
         /*
          * プロパティー
          */
+        /// <summary>
+        /// 自分自身の参照を保持
+        /// </summary>
+        public SetControl ThisLabel {
+            get => this._thisLabel;
+            set => this._thisLabel = value;
+        }
+        /// <summary>
+        /// VehicleDispatchDetailVoを格納
+        /// </summary>
         public VehicleDispatchDetailVo VehicleDispatchDetailVo {
             get => this._vehicleDispatchDetailVo;
             set => this._vehicleDispatchDetailVo = value;
+        }
+        /// <summary>
+        /// 配置されているSetLabelの参照を保持
+        /// </summary>
+        public SetLabel DeployedSetLabel {
+            get => this._deployedSetLabel;
+            set => this._deployedSetLabel = value;
+        }
+        /// <summary>
+        /// 配置されているCarLabelの参照を保持
+        /// </summary>
+        public CarLabel DeployedCarLabel {
+            get => this._deployedCarLabel;
+            set => this._deployedCarLabel = value;
+        }
+        /// <summary>
+        /// 配置されているStaffLabel 0の参照を保持
+        /// </summary>
+        public StaffLabel DeployedStaffLabel0 {
+            get => this._deployedStaffLabel0;
+            set => this._deployedStaffLabel0 = value;
+        }
+        /// <summary>
+        /// 配置されているStaffLabel 1の参照を保持
+        /// </summary>
+        public StaffLabel DeployedStaffLabel1 {
+            get => this._deployedStaffLabel1;
+            set => this._deployedStaffLabel1 = value;
+        }
+        /// <summary>
+        /// 配置されているStaffLabel 2の参照を保持
+        /// </summary>
+        public StaffLabel DeployedStaffLabel2 {
+            get => this._deployedStaffLabel2;
+            set => this._deployedStaffLabel2 = value;
+        }
+        /// <summary>
+        /// 配置されているStaffLabel 3の参照を保持
+        /// </summary>
+        public StaffLabel DeployedStaffLabel3 {
+            get => this._deployedStaffLabel3;
+            set => this._deployedStaffLabel3 = value;
         }
     }
 }

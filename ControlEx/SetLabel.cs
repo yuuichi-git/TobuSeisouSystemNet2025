@@ -7,6 +7,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class SetLabel : Label {
+        private SetLabel _thisLabel;
         private bool _addWorkerFlag = false;
         private int _classificationCode = 0;
         private bool contactInfomationFlag = false;
@@ -14,7 +15,8 @@ namespace ControlEx {
         private bool faxTransmissionFlag = false;
         private bool _lastRollCallFlag = false;
         private int _managedSpaceCode = 0;
-        private bool _setMemoFlag = false;
+        private string _memo = string.Empty;
+        private bool _memoFlag = false;
         private int _shiftCode = 0;
         private bool _standByFlag = false;
         private bool _telCallingFlag = false;
@@ -53,6 +55,8 @@ namespace ControlEx {
             this.Name = "SetLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
+            // 自分自身の参照を退避
+            _thisLabel = this;
         }
 
         /// <summary>
@@ -64,43 +68,42 @@ namespace ControlEx {
             // 背景画像
             switch (ClassificationCode) {
                 case 10:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageY), 0, 0, _panelWidth, _panelHeight);
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageY), 0, 0, Width, Height);
                     break;
                 case 11:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageK), 0, 0, _panelWidth, _panelHeight);
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageK), 0, 0, Width, Height);
                     break;
                 default:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImage), 0, 0, _panelWidth, _panelHeight);
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImage), 0, 0, Width, Height);
                     break;
             }
             // 三郷車庫
             if (ManagedSpaceCode == 2)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
             // FAX送信
             if (FaxTransmissionFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelFax), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
             // 電話連絡
             if (TelCallingFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelTel), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
             // カーソル関係
             if (CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             // メモ
-            if (SetMemoFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageMemo), 0, 0, _panelWidth, _panelHeight);
+            if (MemoFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
             // 帰庫点呼
             if (LastRollCallFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageTenko), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageTenko), 0, 0, Width, Height);
             /*
              * 文字(配車先)を描画
              */
+            Font fontSetLabel = new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
+            Rectangle rectangle = new(0, 0, Width, Height);
             StringFormat stringFormat = new();
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.Alignment = StringAlignment.Center;
-            pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", AddWorkerFlag ? "(作付)" : "  "),
-                                                 new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel),
-                                                 new SolidBrush(Color.Black),
-                                                 new Rectangle(0, 0, (int)_panelWidth, (int)_panelHeight), stringFormat);
+            pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
             // 番手コード
             switch (ShiftCode) {
                 case 1:
@@ -171,6 +174,20 @@ namespace ControlEx {
          * プロパティ
          */
         /// <summary>
+        /// 自分自身の参照を保持
+        /// </summary>
+        public SetLabel ThisLabel {
+            get => this._thisLabel;
+            set => this._thisLabel = value;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public SetMasterVo SetMasterVo {
+            get => this._setMasterVo;
+            set => this._setMasterVo = value;
+        }
+        /// <summary>
         /// true:作業員付き false:作業員なし
         /// </summary>
         public bool AddWorkerFlag {
@@ -221,18 +238,18 @@ namespace ControlEx {
             set => this._managedSpaceCode = value;
         }
         /// <summary>
-        /// 
+        /// メモ
         /// </summary>
-        public SetMasterVo SetMasterVo {
-            get => this._setMasterVo;
-            set => this._setMasterVo = value;
+        public string Memo {
+            get => this._memo;
+            set => this._memo = value;
         }
         /// <summary>
         /// true:メモが存在する false:メモが存在しない
         /// </summary>
-        public bool SetMemoFlag {
-            get => this._setMemoFlag;
-            set => this._setMemoFlag = value;
+        public bool MemoFlag {
+            get => this._memoFlag;
+            set => this._memoFlag = value;
         }
         /// <summary>
         /// 0:指定なし 1:早番 2:遅番
@@ -256,5 +273,6 @@ namespace ControlEx {
             get => this._telCallingFlag;
             set => this._telCallingFlag = value;
         }
+
     }
 }

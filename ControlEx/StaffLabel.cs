@@ -1,11 +1,17 @@
 ﻿/*
  * 2024-10-14
  */
+using ControlEx.Properties;
+
 using Vo;
 
 namespace ControlEx {
     public partial class StaffLabel : Label {
+        private StaffLabel _thisLabel;
         private bool _cursorEnterFlag = false;
+        private string _memo = string.Empty;
+        private bool _memoFlag = false;
+        private bool _proxyFlag = false;
         /*
          * Vo
          */
@@ -37,6 +43,8 @@ namespace ControlEx {
             this.Name = "StaffLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
+            // 自分自身の参照を退避
+            _thisLabel = this;
         }
 
         /// <summary>
@@ -48,12 +56,25 @@ namespace ControlEx {
             /*
              * 背景画像
              */
-            pe.Graphics.DrawImage(ByteArrayToImage(Properties.Resources.CarLabelImage), 0, 0, _panelWidth, _panelHeight);
+            pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
             /*
              * カーソル関係
              */
             if (CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Properties.Resources.Filter), 0, 0, _panelWidth, _panelHeight);
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+            // 代番
+            if (ProxyFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            /*
+             * 氏名を描画
+             */
+            Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
+            Rectangle rectangle = new(0, 0, Width, Height);
+            StringFormat stringFormat = new();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+            stringFormat.LineAlignment = StringAlignment.Center;
+            pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
         }
 
         /// <summary>
@@ -112,6 +133,13 @@ namespace ControlEx {
          * プロパティ
          */
         /// <summary>
+        /// 自分自身の参照を保持
+        /// </summary>
+        public StaffLabel ThisLabel {
+            get => this._thisLabel;
+            set => this._thisLabel = value;
+        }
+        /// <summary>
         /// StaffMasterVo
         /// </summary>
         public StaffMasterVo StaffMasterVo {
@@ -125,6 +153,27 @@ namespace ControlEx {
             get => this._cursorEnterFlag;
             set => this._cursorEnterFlag = value;
         }
-        
+        /// <summary>
+        /// メモ
+        /// </summary>
+        public string Memo {
+            get => this._memo;
+            set => this._memo = value;
+        }
+        /// <summary>
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool MemoFlag {
+            get => this._memoFlag;
+            set => this._memoFlag = value;
+        }
+        /// <summary>
+        /// true:代番 false:本番
+        /// </summary>
+        public bool ProxyFlag {
+            get => this._proxyFlag;
+            set => this._proxyFlag = value;
+        }
+
     }
 }

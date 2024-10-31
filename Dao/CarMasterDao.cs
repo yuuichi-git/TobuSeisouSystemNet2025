@@ -17,6 +17,10 @@ namespace Dao {
          */
         private readonly ConnectionVo _connectionVo;
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="connectionVo"></param>
         public CarMasterDao(ConnectionVo connectionVo) {
             /*
              * Vo

@@ -73,6 +73,46 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] CarLabelImageK {
+            get {
+                object obj = ResourceManager.GetObject("CarLabelImageK", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] CarLabelImageMemo {
+            get {
+                object obj = ResourceManager.GetObject("CarLabelImageMemo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] CarLabelImageY {
+            get {
+                object obj = ResourceManager.GetObject("CarLabelImageY", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] Fax {
+            get {
+                object obj = ResourceManager.GetObject("Fax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
@@ -93,9 +133,9 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelFax {
+        internal static byte[] Proxy {
             get {
-                object obj = ResourceManager.GetObject("SetLabelFax", resourceCulture);
+                object obj = ResourceManager.GetObject("Proxy", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -153,9 +193,9 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelTel {
+        internal static byte[] StaffLabelImage {
             get {
-                object obj = ResourceManager.GetObject("SetLabelTel", resourceCulture);
+                object obj = ResourceManager.GetObject("StaffLabelImage", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -163,9 +203,39 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImage {
+        internal static byte[] StaffLabelImageMemo {
             get {
-                object obj = ResourceManager.GetObject("StaffLabelImage", resourceCulture);
+                object obj = ResourceManager.GetObject("StaffLabelImageMemo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] StaffLabelImageTel {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImageTel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] StaffLabelImageTenko {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImageTenko", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] Tel {
+            get {
+                object obj = ResourceManager.GetObject("Tel", resourceCulture);
                 return ((byte[])(obj));
             }
         }

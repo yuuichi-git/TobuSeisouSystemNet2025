@@ -127,28 +127,34 @@
   <data name="StaffLabelImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StaffLabelImage.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SetLabelImageMemo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SetLabelImageMemo.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SetLabelImageTenko" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SetLabelImageTenko.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="SetLabelImageY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetLabelImageY.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SetLabelImageK" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetLabelImageK.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SetLabelFax" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SetLabelFax.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SetLabelTel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SetLabelTel.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Filter.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Misato" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Misato.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CarLabelImageY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CarLabelImageY.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CarLabelImageK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CarLabelImageK.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Proxy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Proxy.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Fax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fax.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Tel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tel.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Memo.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

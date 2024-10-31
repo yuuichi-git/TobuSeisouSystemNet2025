@@ -93,7 +93,7 @@ namespace ControlEx {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
-            //setControl.AddStaffLabel(listStaffMasterVo);
+            setControl.AddStaffLabels(listStaffMasterVo);
             /*
              * Event
              */

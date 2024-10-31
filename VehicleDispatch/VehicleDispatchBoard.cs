@@ -14,6 +14,7 @@ namespace VehicleDispatch {
          */
         private SetMasterDao _setMasterDao;
         private CarMasterDao _carMasterDao;
+        private StaffMasterDao _staffMasterDao;
         private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
@@ -21,6 +22,7 @@ namespace VehicleDispatch {
         private ConnectionVo _connectionVo;
         private List<SetMasterVo> _listSetMasterVo;
         private List<CarMasterVo> _listCarMasterVo;
+        private List<StaffMasterVo> _listStaffMasterVo;
 
         private Board _board;
 
@@ -33,6 +35,7 @@ namespace VehicleDispatch {
              */
             _setMasterDao = new(connectionVo);
             _carMasterDao = new(connectionVo);
+            _staffMasterDao = new(connectionVo);
             _vehicleDispatchDetailDao = new(connectionVo);
             /*
              * Vo
@@ -40,6 +43,7 @@ namespace VehicleDispatch {
             _connectionVo = connectionVo;
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllHCarMaster();
+            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster();
             /*
              * InitializeControl
              */
@@ -113,7 +117,7 @@ namespace VehicleDispatch {
                                 _board.AddSetControl(_cellNumber, vehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
-                                                     null);
+                                                     ConvertStaffMasterVo(vehicleDispatchDetailVo));
                             }
                             _cellNumber++;
                         }
@@ -123,18 +127,34 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// 
+        /// ConvertStaffMasterVo
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
         /// <returns></returns>
         private List<StaffMasterVo> ConvertStaffMasterVo(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             List<StaffMasterVo> listStaffMasterVo = new();
-
-            StaffMasterVo staffMasterVo = new();
-
-
-
+            listStaffMasterVo.Add(GetStaffMasterVo(vehicleDispatchDetailVo.StaffCode1));
+            listStaffMasterVo.Add(GetStaffMasterVo(vehicleDispatchDetailVo.StaffCode2));
+            listStaffMasterVo.Add(GetStaffMasterVo(vehicleDispatchDetailVo.StaffCode3));
+            listStaffMasterVo.Add(GetStaffMasterVo(vehicleDispatchDetailVo.StaffCode4));
             return listStaffMasterVo;
         }
+
+        /// <summary>
+        /// GetStaffMasterVo
+        /// </summary>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        private StaffMasterVo GetStaffMasterVo(int staffCode) {
+            StaffMasterVo staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
+            if (staffMasterVo is not null) {
+                // 検索で見つかったVoを返す
+                return staffMasterVo;
+            } else {
+                // StaffCodeがゼロ(存在しない)を返す
+                return null;
+            }
+        }
+
     }
 }
