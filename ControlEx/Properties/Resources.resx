@@ -160,4 +160,13 @@
   <data name="StaffLabelImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StaffLabelImage.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="StaffLabelImageTenko" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StaffLabelImageTenko.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StaffLabelImageSagyouin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StaffLabelImageSagyouin.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Operation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Operation.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

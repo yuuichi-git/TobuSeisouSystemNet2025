@@ -118,6 +118,7 @@ namespace ControlEx {
             setLabel.LastRollCallFlag = VehicleDispatchDetailVo.LastRollCallFlag;
             setLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
             setLabel.MemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
+            setLabel.OperationFlag = VehicleDispatchDetailVo.OperationFlag;
             setLabel.ShiftCode = VehicleDispatchDetailVo.ShiftCode;
             setLabel.StandByFlag = VehicleDispatchDetailVo.StandByFlag;
             setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
@@ -129,7 +130,6 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="cellNumber"></param>
         /// <param name="carMasterVo"></param>
         public void AddCarLabel(CarMasterVo carMasterVo) {
             if (carMasterVo is null)
@@ -176,26 +176,56 @@ namespace ControlEx {
                 StaffLabel staffLabel = new(staffMasterVo);
                 switch (number) {
                     case 0:
+                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo1;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag1;
+                        staffLabel.OccupationCode = GetOccupationCode(0);
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag1;
+                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag1;
                         break;
                     case 1:
+                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo2;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag2;
+                        staffLabel.OccupationCode = GetOccupationCode(1);
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag2;
+                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag2;
                         break;
                     case 2:
+                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo3;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag3;
+                        staffLabel.OccupationCode = GetOccupationCode(2);
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag3;
+                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag3;
                         break;
                     case 3:
+                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo4;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag4;
+                        staffLabel.OccupationCode = GetOccupationCode(3);
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag4;
+                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag4;
                         break;
                 }
-                this.Controls.Add(staffLabel, number % 2, number / 2 + 2);
+                this.Controls.Add(staffLabel, number <= 1 ? 0 : 1, number % 2 == 0 ? 2 : 3);
                 return staffLabel;
             } else {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// 条件によって”作”をつけるかどうかを決定する
+        /// </summary>
+        /// <param name="number">0～3</param>
+        /// <returns></returns>
+        private int GetOccupationCode(int number) {
+            switch (VehicleDispatchDetailVo.ClassificationCode) {
+                case 10 or 11 or 12:
+                    if (number == 0) {
+                        return 10;
+                    } else {
+                        return 11;
+                    }
+                default:
+                    return VehicleDispatchDetailVo.ClassificationCode;
             }
         }
 

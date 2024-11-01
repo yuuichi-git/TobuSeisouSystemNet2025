@@ -55,7 +55,9 @@ namespace ControlEx {
         /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
-            // 背景画像
+            /*
+             * 背景画像
+             */
             switch (ClassificationCode) {
                 case 10:
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageY), 0, 0, Width, Height);
@@ -70,9 +72,7 @@ namespace ControlEx {
             // 三郷車庫
             if (ManagedSpaceCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
-            /*
-             * カーソル関係
-             */
+            // カーソル関係
             if (CursorEnterFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             // メモ
@@ -104,7 +104,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
-        public Image ByteArrayToImage(byte[] arrayByte) {
+        private Image ByteArrayToImage(byte[] arrayByte) {
             ImageConverter imageConverter = new();
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }

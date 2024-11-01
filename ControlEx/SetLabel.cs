@@ -17,6 +17,7 @@ namespace ControlEx {
         private int _managedSpaceCode = 0;
         private string _memo = string.Empty;
         private bool _memoFlag = false;
+        private bool _operationFlag;
         private int _shiftCode = 0;
         private bool _standByFlag = false;
         private bool _telCallingFlag = false;
@@ -65,7 +66,9 @@ namespace ControlEx {
         /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
-            // 背景画像
+            /*
+             * 背景画像
+             */
             switch (ClassificationCode) {
                 case 10:
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageY), 0, 0, Width, Height);
@@ -77,6 +80,9 @@ namespace ControlEx {
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImage), 0, 0, Width, Height);
                     break;
             }
+            // 稼働
+            if (!OperationFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Operation), 0, 0, Width, Height);
             // 三郷車庫
             if (ManagedSpaceCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
@@ -123,7 +129,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
-        public Image ByteArrayToImage(byte[] arrayByte) {
+        private Image ByteArrayToImage(byte[] arrayByte) {
             ImageConverter imageConverter = new();
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }
@@ -250,6 +256,14 @@ namespace ControlEx {
         public bool MemoFlag {
             get => this._memoFlag;
             set => this._memoFlag = value;
+        }
+        /// <summary>
+        /// 稼働フラグ
+        /// true:稼働 false:休車
+        /// </summary>
+        public bool OperationFlag {
+            get => this._operationFlag;
+            set => this._operationFlag = value;
         }
         /// <summary>
         /// 0:指定なし 1:早番 2:遅番

@@ -11,7 +11,9 @@ namespace ControlEx {
         private bool _cursorEnterFlag = false;
         private string _memo = string.Empty;
         private bool _memoFlag = false;
+        private int _occupationCode = 99;
         private bool _proxyFlag = false;
+        private bool _rollCallFlag = false;
         /*
          * Vo
          */
@@ -57,14 +59,21 @@ namespace ControlEx {
              * 背景画像
              */
             pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
-            /*
-             * カーソル関係
-             */
+            // カーソル関係
             if (CursorEnterFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
-            // 代番
+            // メモ
+            if (MemoFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
+            // 代車
             if (ProxyFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            // 職種
+            if (OccupationCode == 11)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSagyouin), 0, 0, Width, Height);
+            // 出庫点呼
+            if (!RollCallFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
             /*
              * 氏名を描画
              */
@@ -82,7 +91,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
-        public Image ByteArrayToImage(byte[] arrayByte) {
+        private Image ByteArrayToImage(byte[] arrayByte) {
             ImageConverter imageConverter = new();
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }
@@ -154,7 +163,7 @@ namespace ControlEx {
             set => this._cursorEnterFlag = value;
         }
         /// <summary>
-        /// メモ
+        /// メモ本体
         /// </summary>
         public string Memo {
             get => this._memo;
@@ -168,12 +177,27 @@ namespace ControlEx {
             set => this._memoFlag = value;
         }
         /// <summary>
+        /// 職種
+        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// </summary>
+        public int OccupationCode {
+            get => this._occupationCode;
+            set => this._occupationCode = value;
+        }
+        /// <summary>
         /// true:代番 false:本番
         /// </summary>
         public bool ProxyFlag {
             get => this._proxyFlag;
             set => this._proxyFlag = value;
         }
-
+        /// <summary>
+        /// true:点呼実施済 false:点呼未実施
+        /// </summary>
+        public bool RollCallFlag {
+            get => this._rollCallFlag;
+            set => this._rollCallFlag = value;
+        }
+        
     }
 }
