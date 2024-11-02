@@ -7,6 +7,19 @@ using Vo;
 
 namespace ControlEx {
     public partial class CarLabel : Label {
+        /*
+         * Eventを渡す
+         */
+        public event EventHandler CarLabel_ContextMenuStrip_Opened = delegate { };
+        public event EventHandler CarLabel_ToolStripMenuItem_Click = delegate { };
+        public event MouseEventHandler CarLabel_OnMouseClick = delegate { };
+        public event MouseEventHandler CarLabel_OnMouseDoubleClick = delegate { };
+        public event MouseEventHandler CarLabel_OnMouseDown = delegate { };
+        public event EventHandler CarLabel_OnMouseEnter = delegate { };
+        public event EventHandler CarLabel_OnMouseLeave = delegate { };
+        public event MouseEventHandler CarLabel_OnMouseMove = delegate { };
+        public event MouseEventHandler CarLabel_OnMouseUp = delegate { };
+
         private CarLabel _thisLabel;
         private int _classificationCode = 0;
         private bool _cursorEnterFlag = false;
@@ -23,6 +36,8 @@ namespace ControlEx {
          */
         private const float _panelWidth = 70;
         private const float _panelHeight = 116;
+        // ToolTip
+        private ToolTip _toolTip = new();
 
         /// <summary>
         /// Constractor
@@ -47,6 +62,104 @@ namespace ControlEx {
             this.Width = (int)_panelWidth;
             // 自分自身の参照を退避
             _thisLabel = this;
+            // ContextMenuStripを初期化
+            this.CreateContextMenuStrip();
+            /*
+             * ToolTip初期化
+             */
+            _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
+            _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
+            _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
+        }
+
+        /// <summary>
+        /// CreateContextMenuStrip
+        /// </summary>
+        private void CreateContextMenuStrip() {
+            ContextMenuStrip contextMenuStrip = new();
+            contextMenuStrip.Name = "ContextMenuStripHCarLabel";
+            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            this.ContextMenuStrip = contextMenuStrip;
+            /*
+             * 車両台帳を表示する
+             */
+            ToolStripMenuItem toolStripMenuItem00 = new("車両台帳を表示");
+            toolStripMenuItem00.Name = "ToolStripMenuItemCarVerification";
+            toolStripMenuItem00.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem00);
+            /*
+             * スペーサー
+             */
+            contextMenuStrip.Items.Add(new ToolStripSeparator());
+            /*
+             * 車庫地コード
+             */
+            ToolStripMenuItem toolStripMenuItem01 = new("出庫地"); // 親アイテム
+            toolStripMenuItem01.Name = "ToolStripMenuItemCarWarehouse";
+            ToolStripMenuItem toolStripMenuItem01_0 = new("本社から出庫"); // 子アイテム１
+            toolStripMenuItem01_0.Name = "ToolStripMenuItemCarWarehouseAdachi";
+            toolStripMenuItem01_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem01.DropDownItems.Add(toolStripMenuItem01_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem01);
+
+            ToolStripMenuItem toolStripMenuItem01_1 = new("三郷から出庫"); // 子アイテム２
+            toolStripMenuItem01_1.Name = "ToolStripMenuItemCarWarehouseMisato";
+            toolStripMenuItem01_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem01.DropDownItems.Add(toolStripMenuItem01_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem01);
+            /*
+             * 代番処理
+             */
+            ToolStripMenuItem toolStripMenuItem02 = new("代車処理"); // 親アイテム
+            toolStripMenuItem02.Name = "ToolStripMenuItemCarProxy";
+            ToolStripMenuItem toolStripMenuItem02_0 = new("代車として記録する"); // 子アイテム１
+            toolStripMenuItem02_0.Name = "ToolStripMenuItemCarProxyTrue";
+            toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem02);
+
+            ToolStripMenuItem toolStripMenuItem02_1 = new("代車を解除する"); // 子アイテム２
+            toolStripMenuItem02_1.Name = "ToolStripMenuItemCarProxyFalse";
+            toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem02);
+            /*
+             * メモを作成・編集する
+             */
+            ToolStripMenuItem toolStripMenuItem03 = new("メモを作成・編集する");
+            toolStripMenuItem03.Name = "ToolStripMenuItemCarMemo";
+            toolStripMenuItem03.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem03);
+            /*
+             * プロパティ
+             */
+            ToolStripMenuItem toolStripMenuItem04 = new("プロパティ");
+            toolStripMenuItem04.Name = "ToolStripMenuItemCarProperty";
+            toolStripMenuItem04.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem04);
+        }
+
+        /*
+         * Event処理
+         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            //
+            CarLabel_ContextMenuStrip_Opened.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            //
+            CarLabel_ToolStripMenuItem_Click.Invoke(sender, e);
         }
 
         /// <summary>
@@ -113,8 +226,38 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseDown(MouseEventArgs e) {
+        protected override void OnMouseClick(MouseEventArgs e) {
+            /*
+             * Shiftの検出
+             */
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                // 点呼処理を実行するために親へ渡す
+                CarLabel_OnMouseClick.Invoke(this, e);
+            } else {
+                /*
+                 * Momoを表示
+                 */
+                if (this.MemoFlag)
+                    _toolTip.Show(this.Memo, this, 4, 4);
+            }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseDoubleClick(MouseEventArgs e) {
+            //
+            CarLabel_OnMouseDoubleClick.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseDown(MouseEventArgs e) {
+            //
+            CarLabel_OnMouseDown.Invoke(this, e);
         }
 
         /// <summary>
@@ -124,6 +267,8 @@ namespace ControlEx {
         protected override void OnMouseEnter(EventArgs e) {
             CursorEnterFlag = true;
             Refresh();
+            //
+            CarLabel_OnMouseEnter.Invoke(this, e);
         }
 
         /// <summary>
@@ -131,8 +276,15 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseLeave(EventArgs e) {
+            // ToolTipを消す
+            _toolTip.Hide(this);
+            /*
+             * 
+             */
             CursorEnterFlag = false;
             Refresh();
+            //
+            CarLabel_OnMouseLeave.Invoke(this, e);
         }
 
         /// <summary>
@@ -140,7 +292,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e) {
-
+            //
+            CarLabel_OnMouseMove.Invoke(this, e);
         }
 
         /// <summary>
@@ -148,7 +301,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e) {
-
+            //
+            CarLabel_OnMouseUp.Invoke(this, e);
         }
 
         /*

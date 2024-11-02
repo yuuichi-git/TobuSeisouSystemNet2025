@@ -49,7 +49,7 @@ namespace VehicleDispatch {
              */
             InitializeComponent();
             DateTimePickerExOperationDate.SetToday();
-            AddBoard();
+            this.AddBoard();
         }
 
         /// <summary>
@@ -57,6 +57,13 @@ namespace VehicleDispatch {
         /// </summary>
         private void AddBoard() {
             _board = new();
+            /*
+             * Eventを登録
+             */
+            _board.Board_ContextMenuStrip_Opened += ContextMenuStripEx_Opened;
+            _board.Board_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            _board.Board_OnMouseClick += OnMouseClick;
+            _board.Board_OnMouseDoubleClick += OnMouseDoubleClick;
             TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
 
@@ -75,24 +82,6 @@ namespace VehicleDispatch {
                     }
                     break;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-
         }
 
         /// <summary>
@@ -156,5 +145,59 @@ namespace VehicleDispatch {
             }
         }
 
+        /*
+         * Event処理
+         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            switch (sender) {
+                case SetLabel:
+                    break;
+                case CarLabel:
+                    break;
+                case StaffLabel:
+                    MessageBox.Show("出庫点呼記録を実装する");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseDoubleClick(object sender, MouseEventArgs e) {
+            switch (sender) {
+                case SetLabel:
+                    MessageBox.Show("帰庫点呼記録を実装する");
+                    break;
+                case CarLabel:
+                    break;
+                case StaffLabel:
+                    break;
+            }
+        }
     }
 }

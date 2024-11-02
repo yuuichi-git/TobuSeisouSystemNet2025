@@ -6,6 +6,19 @@ using Vo;
 namespace ControlEx {
 
     public partial class SetControl : TableLayoutPanel {
+        /*
+         * Eventを渡す
+         */
+        public event EventHandler SetControl_ContextMenuStrip_Opened = delegate { };
+        public event EventHandler SetControl_ToolStripMenuItem_Click = delegate { };
+        public event MouseEventHandler SetControl_OnMouseClick = delegate { };
+        public event MouseEventHandler SetControl_OnMouseDoubleClick = delegate { };
+        public event MouseEventHandler SetControl_OnMouseDown = delegate { };
+        public event EventHandler SetControl_OnMouseEnter = delegate { };
+        public event EventHandler SetControl_OnMouseLeave = delegate { };
+        public event MouseEventHandler SetControl_OnMouseMove = delegate { };
+        public event MouseEventHandler SetControl_OnMouseUp = delegate { };
+
         private SetControl _thisLabel;
         private SetLabel _deployedSetLabel;
         private CarLabel _deployedCarLabel;
@@ -117,11 +130,17 @@ namespace ControlEx {
             setLabel.FaxTransmissionFlag = (setMasterVo.ContactMethod == 11 || setMasterVo.ContactMethod == 13);
             setLabel.LastRollCallFlag = VehicleDispatchDetailVo.LastRollCallFlag;
             setLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
+            setLabel.Memo = VehicleDispatchDetailVo.SetMemo;
             setLabel.MemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
             setLabel.OperationFlag = VehicleDispatchDetailVo.OperationFlag;
             setLabel.ShiftCode = VehicleDispatchDetailVo.ShiftCode;
             setLabel.StandByFlag = VehicleDispatchDetailVo.StandByFlag;
             setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
+            // Eventを登録
+            setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+            setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            setLabel.SetLabel_OnMouseClick += OnMouseClick;
+            setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
             this.Controls.Add(setLabel, 0, 0);
             // 参照を退避
             DeployedSetLabel = setLabel;
@@ -135,10 +154,16 @@ namespace ControlEx {
             if (carMasterVo is null)
                 return;
             CarLabel carLabel = new(carMasterVo);
+            carLabel.Memo = VehicleDispatchDetailVo.CarMemo;
             carLabel.MemoFlag = VehicleDispatchDetailVo.CarMemoFlag;
             carLabel.ClassificationCode = VehicleDispatchDetailVo.ClassificationCode;
             carLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
             carLabel.ProxyFlag = VehicleDispatchDetailVo.CarProxyFlag;
+            // Eventを登録
+            carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+            carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            carLabel.CarLabel_OnMouseClick += OnMouseClick;
+            carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
             this.Controls.Add(carLabel, 0, 1);
             // 参照を退避
             DeployedCarLabel = carLabel;
@@ -204,6 +229,11 @@ namespace ControlEx {
                         staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag4;
                         break;
                 }
+                // Eventを登録
+                staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+                staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+                staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
+                staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
                 this.Controls.Add(staffLabel, number <= 1 ? 0 : 1, number % 2 == 0 ? 2 : 3);
                 return staffLabel;
             } else {
@@ -230,20 +260,55 @@ namespace ControlEx {
         }
 
         /*
-         * Eventを渡す
+         * Event処理
          */
-        public event MouseEventHandler Event_SetControl_OnMouseDown = delegate { };
-        public event EventHandler Event_SetControl_OnMouseEnter = delegate { };
-        public event EventHandler Event_SetControl_OnMouseLeave = delegate { };
-        public event MouseEventHandler Event_SetControl_OnMouseMove = delegate { };
-        public event MouseEventHandler Event_SetControl_OnMouseUp = delegate { };
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            //
+            SetControl_ContextMenuStrip_Opened.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// SetLabel/CarLabel/StaffLabelからのイベントを集約
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            //
+            SetControl_ToolStripMenuItem_Click.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// SetLabel/CarLabel/StaffLabel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            //
+            SetControl_OnMouseClick.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseDoubleClick(object sender, MouseEventArgs e) {
+            //
+            SetControl_OnMouseDoubleClick.Invoke(sender, e);
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            Event_SetControl_OnMouseDown.Invoke(this, e);
+            //
+            SetControl_OnMouseDown.Invoke(this, e);
         }
 
         /// <summary>
@@ -251,7 +316,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseEnter(EventArgs e) {
-            Event_SetControl_OnMouseEnter.Invoke(this, e);
+            //
+            SetControl_OnMouseEnter.Invoke(this, e);
         }
 
         /// <summary>
@@ -259,7 +325,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseLeave(EventArgs e) {
-            Event_SetControl_OnMouseLeave.Invoke(this, e);
+            //
+            SetControl_OnMouseLeave.Invoke(this, e);
         }
 
         /// <summary>
@@ -267,7 +334,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e) {
-            Event_SetControl_OnMouseMove.Invoke(this, e);
+            //
+            SetControl_OnMouseMove.Invoke(this, e);
         }
 
         /// <summary>
@@ -275,7 +343,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e) {
-            Event_SetControl_OnMouseUp.Invoke(this, e);
+            //
+            SetControl_OnMouseUp.Invoke(this, e);
         }
 
         /*

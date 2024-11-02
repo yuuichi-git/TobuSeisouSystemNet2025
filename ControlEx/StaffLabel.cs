@@ -7,6 +7,19 @@ using Vo;
 
 namespace ControlEx {
     public partial class StaffLabel : Label {
+        /*
+         * Eventを渡す
+         */
+        public event EventHandler StaffLabel_ContextMenuStrip_Opened = delegate { };
+        public event EventHandler StaffLabel_ToolStripMenuItem_Click = delegate { };
+        public event MouseEventHandler StaffLabel_OnMouseClick = delegate { };
+        public event MouseEventHandler StaffLabel_OnMouseDoubleClick = delegate { };
+        public event MouseEventHandler StaffLabel_OnMouseDown = delegate { };
+        public event EventHandler StaffLabel_OnMouseEnter = delegate { };
+        public event EventHandler StaffLabel_OnMouseLeave = delegate { };
+        public event MouseEventHandler StaffLabel_OnMouseMove = delegate { };
+        public event MouseEventHandler StaffLabel_OnMouseUp = delegate { };
+
         private StaffLabel _thisLabel;
         private bool _cursorEnterFlag = false;
         private string _memo = string.Empty;
@@ -23,6 +36,8 @@ namespace ControlEx {
          */
         private const float _panelWidth = 70;
         private const float _panelHeight = 116;
+        // ToolTip
+        private ToolTip _toolTip = new();
 
         /// <summary>
         /// Constractor
@@ -47,6 +62,130 @@ namespace ControlEx {
             this.Width = (int)_panelWidth;
             // 自分自身の参照を退避
             _thisLabel = this;
+            // ContextMenuStripを初期化
+            this.CreateContextMenuStrip();
+            /*
+             * ToolTip初期化
+             */
+            _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
+            _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
+            _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
+        }
+
+        /// <summary>
+        /// CreateContextMenuStrip
+        /// </summary>
+        private void CreateContextMenuStrip() {
+            ContextMenuStrip contextMenuStrip = new();
+            contextMenuStrip.Name = "ContextMenuStripHStaffLabel";
+            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            this.ContextMenuStrip = contextMenuStrip;
+            /*
+             * 従事者台帳を表示する
+             */
+            ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
+            toolStripMenuItem00.Name = "ToolStripMenuItemStaffDetail";
+            toolStripMenuItem00.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem00);
+            /*
+             * 従事者免許証を表示する
+             */
+            ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
+            toolStripMenuItem01.Name = "ToolStripMenuItemStaffLicense";
+            toolStripMenuItem01.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem01);
+            /*
+             * スペーサー
+             */
+            contextMenuStrip.Items.Add(new ToolStripSeparator());
+            /*
+             * 代番処理
+             */
+            ToolStripMenuItem toolStripMenuItem02 = new("代番処理"); // 親アイテム
+            toolStripMenuItem02.Name = "ToolStripMenuItemStaffProxy";
+
+            ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する"); // 子アイテム１
+            toolStripMenuItem02_0.Name = "ToolStripMenuItemStaffProxyTrue";
+            toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem02);
+
+            ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する"); // 子アイテム２
+            toolStripMenuItem02_1.Name = "ToolStripMenuItemStaffProxyFalse";
+            toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem02);
+            /*
+             * 料金設定
+             */
+            ToolStripMenuItem toolStripMenuItem03 = new("職種設定"); // 親アイテム
+            toolStripMenuItem03.Name = "ToolStripMenuItemStaffOccupation";
+
+            ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)"); // 子アイテム１
+            toolStripMenuItem03_0.Name = "ToolStripMenuItemStaffOccupation10";
+            toolStripMenuItem03_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem03);
+
+            ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする"); // 子アイテム２
+            toolStripMenuItem03_1.Name = "ToolStripMenuItemStaffOccupation11";
+            toolStripMenuItem03_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem03);
+            /*
+             * 電話連絡・出勤確認
+             */
+            ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)"); // 親アイテム
+            toolStripMenuItem04.Name = "ToolStripMenuItemStaffTelephoneMark";
+
+            ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済"); // 子アイテム１
+            toolStripMenuItem04_0.Name = "ToolStripMenuItemTelephoneMarkTrue";
+            toolStripMenuItem04_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem04);
+
+            ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認"); // 子アイテム２
+            toolStripMenuItem04_1.Name = "ToolStripMenuItemStaffTelephoneMarkFalse";
+            toolStripMenuItem04_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem04);
+            /*
+             * メモを作成・編集する
+             */
+            ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する");
+            toolStripMenuItem05.Name = "ToolStripMenuItemStaffMemo";
+            toolStripMenuItem05.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem05);
+            /*
+             * プロパティ
+             */
+            ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
+            toolStripMenuItem07.Name = "ToolStripMenuItemStaffProperty";
+            toolStripMenuItem07.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem07);
+        }
+
+        /*
+         * Event処理
+         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            //
+            StaffLabel_ContextMenuStrip_Opened.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            //
+            StaffLabel_ToolStripMenuItem_Click.Invoke(this, e);
         }
 
         /// <summary>
@@ -100,8 +239,38 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseDown(MouseEventArgs e) {
+        protected override void OnMouseClick(MouseEventArgs e) {
+            /*
+             * Shiftの検出
+             */
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                // 点呼処理を実行するために親へ渡す
+                StaffLabel_OnMouseClick.Invoke(this, e);
+            } else {
+                /*
+                 * Momoを表示
+                 */
+                if (this.MemoFlag)
+                    _toolTip.Show(this.Memo, this, 4, 4);
+            }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseDoubleClick(MouseEventArgs e) {
+            //
+            StaffLabel_OnMouseDoubleClick.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseDown(MouseEventArgs e) {
+            //
+            StaffLabel_OnMouseDown.Invoke(this, e);
         }
 
         /// <summary>
@@ -109,8 +278,13 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseEnter(EventArgs e) {
+            /*
+             * 
+             */
             CursorEnterFlag = true;
             Refresh();
+            //
+            StaffLabel_OnMouseEnter.Invoke(this, e);
         }
 
         /// <summary>
@@ -118,8 +292,15 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseLeave(EventArgs e) {
+            // ToolTipを消す
+            _toolTip.Hide(this);
+            /*
+             * 
+             */
             CursorEnterFlag = false;
             Refresh();
+            //
+            StaffLabel_OnMouseLeave.Invoke(this, e);
         }
 
         /// <summary>
@@ -127,7 +308,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e) {
-
+            //
+            StaffLabel_OnMouseMove.Invoke(this, e);
         }
 
         /// <summary>
@@ -135,7 +317,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e) {
-
+            //
+            StaffLabel_OnMouseUp.Invoke(this, e);
         }
 
         /*
@@ -196,8 +379,11 @@ namespace ControlEx {
         /// </summary>
         public bool RollCallFlag {
             get => this._rollCallFlag;
-            set => this._rollCallFlag = value;
+            set {
+                this._rollCallFlag = value;
+                Refresh();
+            }
         }
-        
+
     }
 }

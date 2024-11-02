@@ -1,12 +1,22 @@
 ﻿/*
  * 2024-10-09
  */
-using System.Windows.Forms;
-
 using Vo;
 
 namespace ControlEx {
     public partial class Board : TableLayoutPanel {
+        /*
+         * Eventを渡す
+         */
+        public event EventHandler Board_ContextMenuStrip_Opened = delegate { };
+        public event EventHandler Board_ToolStripMenuItem_Click = delegate { };
+        public event MouseEventHandler Board_OnMouseClick = delegate { };
+        public event MouseEventHandler Board_OnMouseDoubleClick = delegate { };
+        public event MouseEventHandler Board_OnMouseDown = delegate { };
+        public event EventHandler Board_OnMouseEnter = delegate { };
+        public event EventHandler Board_OnMouseLeave = delegate { };
+        public event MouseEventHandler Board_OnMouseMove = delegate { };
+        public event MouseEventHandler Board_OnMouseUp = delegate { };
         /*
          * Cellのサイズ
          */
@@ -97,11 +107,15 @@ namespace ControlEx {
             /*
              * Event
              */
-            setControl.Event_SetControl_OnMouseDown += Board_MouseDown;
-            setControl.Event_SetControl_OnMouseEnter += Board_MouseEnter;
-            setControl.Event_SetControl_OnMouseLeave += Board_MouseLeave;
-            setControl.Event_SetControl_OnMouseMove += Board_MouseMove;
-            setControl.Event_SetControl_OnMouseUp += Board_MouseUp;
+            setControl.SetControl_ContextMenuStrip_Opened += ContextMenuStripEx_Opened;
+            setControl.SetControl_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            setControl.SetControl_OnMouseClick += OnMouseClick;
+            setControl.SetControl_OnMouseDoubleClick += OnMouseDoubleClick;
+            setControl.SetControl_OnMouseDown += OnMouseDown;
+            setControl.SetControl_OnMouseEnter += OnMouseEnter;
+            setControl.SetControl_OnMouseLeave += OnMouseLeave;
+            setControl.SetControl_OnMouseMove += OnMouseMove;
+            setControl.SetControl_OnMouseUp += OnMouseUp;
 
             this.Controls.Add(setControl, GetCellPoint(cellNumber).X, GetCellPoint(cellNumber).Y);
             this.SetColumnSpan(setControl, vehicleDispatchDetailVo.PurposeFlag ? 2 : 1);
@@ -128,12 +142,55 @@ namespace ControlEx {
             return new Point(cellNumber % _columnNumber, cellNumber / _columnNumber * 2 + 1);
         }
 
+        /*
+         * Event処理
+         */
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Board_MouseDown(object sender, MouseEventArgs e) {
+        private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
+            //
+            Board_ContextMenuStrip_Opened.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            //
+            Board_ToolStripMenuItem_Click.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            //
+            Board_OnMouseClick.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseDoubleClick(object sender, MouseEventArgs e) {
+            //
+            Board_OnMouseDoubleClick.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseDown(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 this._oldMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
                 this.Cursor = Cursors.Hand;
@@ -145,7 +202,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Board_MouseEnter(object sender, EventArgs e) {
+        private void OnMouseEnter(object sender, EventArgs e) {
 
         }
 
@@ -154,7 +211,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Board_MouseLeave(object sender, EventArgs e) {
+        private void OnMouseLeave(object sender, EventArgs e) {
 
         }
 
@@ -163,7 +220,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Board_MouseMove(object sender, MouseEventArgs e) {
+        private void OnMouseMove(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 Point _newMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
                 int x = this._oldAutoScrollPosition.X + (_newMousePoint.X - this._oldMousePoint.X);
@@ -177,7 +234,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Board_MouseUp(object sender, MouseEventArgs e) {
+        private void OnMouseUp(object sender, MouseEventArgs e) {
             this._oldAutoScrollPosition = this.AutoScrollPosition;
             this.Cursor = Cursors.Default;
         }
