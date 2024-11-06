@@ -77,6 +77,7 @@ namespace ControlEx {
                 case Keys.Control | Keys.A:
                     CultureFlag = false;
                     this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
+                    this.Value = DateTime.Now.Date;
                     this.Refresh();
                     break;
                 /*
@@ -85,6 +86,7 @@ namespace ControlEx {
                 case Keys.Control | Keys.J:
                     CultureFlag = true;
                     this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
+                    this.Value = DateTime.Now.Date;
                     this.Refresh();
                     break;
             }
@@ -95,6 +97,41 @@ namespace ControlEx {
         /// </summary>
         public void SetToday() {
             this.Value = DateTime.Today;
+            this.Refresh();
+        }
+
+        /// <summary>
+        /// クリアする
+        /// </summary>
+        public void SetClear() {
+            this.CustomFormat = " ";
+            this.Refresh();
+        }
+
+        /// <summary>
+        /// 西暦で表示
+        /// </summary>
+        /// <param name="dateTime"></param>
+        public void SetValue(DateTime dateTime) {
+            this.Value = dateTime;
+            this.Refresh();
+        }
+
+        /// <summary>
+        /// 和暦で設定
+        /// 1900-01-01の場合はブランクを表示
+        /// </summary>
+        /// <param name="dateTime"></param>
+        public void SetValueJp(DateTime dateTime) {
+            if (dateTime.Date != _defaultDateTime.Date) {
+                this.CustomFormat = dateTime.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
+                this.Value = dateTime;
+                this.Refresh();
+            } else {
+                this.CustomFormat = " ";
+                this.Value = _defaultDateTime;
+                this.Refresh();
+            }
         }
 
         /// <summary>

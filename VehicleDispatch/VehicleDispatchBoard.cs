@@ -178,7 +178,23 @@ namespace VehicleDispatch {
                 case CarLabel:
                     break;
                 case StaffLabel:
-                    MessageBox.Show("出庫点呼記録を実装する");
+                    /*
+                     * 出庫時点呼
+                     */
+                    if (((StaffLabel)sender).RollCallFlag) {
+                        DialogResult dialogResult = MessageBox.Show("出庫点呼を未実施に戻しますか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        switch (dialogResult) {
+                            case DialogResult.OK:
+                                ((StaffLabel)sender).RollCallFlag = false;
+                                break;
+                            case DialogResult.Cancel:
+                                ((StaffLabel)sender).RollCallFlag = true;
+                                break;
+
+                        }
+                    } else {
+                        ((StaffLabel)sender).RollCallFlag = true;
+                    }
                     break;
             }
         }
@@ -198,6 +214,14 @@ namespace VehicleDispatch {
                 case StaffLabel:
                     break;
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VehicleDispatchBoard_FormClosing(object sender, FormClosingEventArgs e) {
+
         }
     }
 }

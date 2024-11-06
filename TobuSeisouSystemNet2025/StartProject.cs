@@ -7,6 +7,8 @@ using Common;
 
 using ControlEx;
 
+using EmploymentAgreement;
+
 using VehicleDispatch;
 
 using Vo;
@@ -75,9 +77,11 @@ namespace TobuSeisouSystemNet2025 {
             switch (new Network().GetConnectLocation()) {
                 case "システム管理": // TabPage[0]
                     break;
-                case "本社": // TabPage[1]
+                case "事務": // TabPage[1]
                     break;
-                case "三郷": // TabPage[2]
+                case "本社": // TabPage[2]
+                    break;
+                case "三郷": // TabPage[3]
                     break;
                 case "２丁目事務所": // TabPage[]
                     break;
@@ -181,10 +185,15 @@ namespace TobuSeisouSystemNet2025 {
             switch (_connectionVo.Connection.State) {
                 case ConnectionState.Open: //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
-                        case "VehicleDispatchBoard":
+                        case "VehicleDispatchBoard": // 配車表
                             VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();
+                            break;
+                        case "EmploymentAgreementList": // 契約書・誓約書等
+                            EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
+                            employmentAgreementList.Show();
                             break;
                     }
                     break;

@@ -43,14 +43,18 @@
             this.labelEx1 = new ControlEx.LabelEx();
             this.TabControlExConnect = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
+            this.TabPageOffice = new TabPage();
             this.TabPageAdachi = new TabPage();
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
+            this.labelEx6 = new ControlEx.LabelEx();
+            this.labelEx7 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
             this.TabControlExConnect.SuspendLayout();
+            this.TabPageOffice.SuspendLayout();
             this.TabPageAdachi.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,7 +195,7 @@
             // 
             // ButtonExConnect
             // 
-            this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             this.ButtonExConnect.Location = new Point(568, 44);
             this.ButtonExConnect.Name = "ButtonExConnect";
             this.ButtonExConnect.Size = new Size(144, 36);
@@ -253,6 +257,7 @@
             // TabControlExConnect
             // 
             this.TabControlExConnect.Controls.Add(this.TabPageSystem);
+            this.TabControlExConnect.Controls.Add(this.TabPageOffice);
             this.TabControlExConnect.Controls.Add(this.TabPageAdachi);
             this.TabControlExConnect.Controls.Add(this.TabPageMisato);
             this.TabControlExConnect.Location = new Point(8, 164);
@@ -271,6 +276,17 @@
             this.TabPageSystem.TabIndex = 0;
             this.TabPageSystem.Text = "システム管理";
             this.TabPageSystem.UseVisualStyleBackColor = true;
+            // 
+            // TabPageOffice
+            // 
+            this.TabPageOffice.Controls.Add(this.labelEx6);
+            this.TabPageOffice.Controls.Add(this.labelEx7);
+            this.TabPageOffice.Location = new Point(4, 24);
+            this.TabPageOffice.Name = "TabPageOffice";
+            this.TabPageOffice.Size = new Size(752, 464);
+            this.TabPageOffice.TabIndex = 3;
+            this.TabPageOffice.Text = "事務";
+            this.TabPageOffice.UseVisualStyleBackColor = true;
             // 
             // TabPageAdachi
             // 
@@ -317,6 +333,30 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
+            // labelEx6
+            // 
+            this.labelEx6.ForeColor = Color.DimGray;
+            this.labelEx6.Location = new Point(12, 32);
+            this.labelEx6.Name = "labelEx6";
+            this.labelEx6.Size = new Size(344, 20);
+            this.labelEx6.TabIndex = 15;
+            this.labelEx6.Text = "　契約書等の更新時期の管理をします";
+            this.labelEx6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx7
+            // 
+            this.labelEx7.ForeColor = Color.Black;
+            this.labelEx7.Location = new Point(12, 12);
+            this.labelEx7.Name = "labelEx7";
+            this.labelEx7.Size = new Size(344, 20);
+            this.labelEx7.TabIndex = 14;
+            this.labelEx7.Tag = "EmploymentAgreementList";
+            this.labelEx7.Text = "雇用契約(契約書・誓約書等)";
+            this.labelEx7.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx7.Click += this.Label_Click;
+            this.labelEx7.MouseEnter += this.Label_MouseEnter;
+            this.labelEx7.MouseLeave += this.Label_MouseLeave;
+            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -335,6 +375,7 @@
             this.PanelExLeft.ResumeLayout(false);
             this.PanelExRight.ResumeLayout(false);
             this.TabControlExConnect.ResumeLayout(false);
+            this.TabPageOffice.ResumeLayout(false);
             this.TabPageAdachi.ResumeLayout(false);
             this.ResumeLayout(false);
         }
@@ -365,5 +406,8 @@
         private ControlEx.LabelEx LabelExLocation;
         private ControlEx.LabelEx labelEx4;
         private ControlEx.LabelEx labelEx5;
+        private TabPage TabPageOffice;
+        private ControlEx.LabelEx labelEx6;
+        private ControlEx.LabelEx labelEx7;
     }
 }

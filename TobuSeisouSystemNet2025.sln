@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleDispatch", "VehicleDispatch\VehicleDispatch.csproj", "{4259E8CC-8657-4FCB-8418-8770CAB40B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dao", "Dao\Dao.csproj", "{94AA08A5-4F5F-48CD-98B0-20D2E06C773B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dao", "Dao\Dao.csproj", "{94AA08A5-4F5F-48CD-98B0-20D2E06C773B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmploymentAgreement", "EmploymentAgreement\EmploymentAgreement.csproj", "{E9576347-224B-472B-976A-94E36DAB395E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{94AA08A5-4F5F-48CD-98B0-20D2E06C773B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AA08A5-4F5F-48CD-98B0-20D2E06C773B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AA08A5-4F5F-48CD-98B0-20D2E06C773B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9576347-224B-472B-976A-94E36DAB395E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9576347-224B-472B-976A-94E36DAB395E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9576347-224B-472B-976A-94E36DAB395E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9576347-224B-472B-976A-94E36DAB395E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

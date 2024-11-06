@@ -3,6 +3,12 @@
  */
 namespace ControlEx {
     public partial class StatusStripEx : StatusStrip {
+        /*
+         * プロパティ
+         */
+        private ToolStripStatusLabel toolStripStatusLabel = new("Status：");
+        private ToolStripStatusLabel toolStripStatusLabelDetail = new("ToolStripStatusLabelDetail");
+
         /// <summary>
         /// コンストラクター
         /// </summary>
@@ -30,15 +36,31 @@ namespace ControlEx {
             /*
              * 
              */
-            ToolStripStatusLabel toolStripStatusLabel = new("Status：");
             toolStripStatusLabel.Name = "ToolStripStatusLabel";
             this.Items.Add(toolStripStatusLabel);
             /*
              * 
              */
-            ToolStripStatusLabel toolStripStatusLabelDetail = new("ToolStripStatusLabelDetail");
             toolStripStatusLabelDetail.Name = "ToolStripStatusLabelDetail";
             this.Items.Add(toolStripStatusLabelDetail);
+        }
+
+        /*
+         * アクセサー
+         */
+        /// <summary>
+        /// 
+        /// </summary>
+        public ToolStripStatusLabel ToolStripStatusLabel {
+            get => this.toolStripStatusLabel;
+            set => this.toolStripStatusLabel = value;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ToolStripStatusLabel ToolStripStatusLabelDetail {
+            get => this.toolStripStatusLabelDetail;
+            set => this.toolStripStatusLabelDetail = value;
         }
     }
 }

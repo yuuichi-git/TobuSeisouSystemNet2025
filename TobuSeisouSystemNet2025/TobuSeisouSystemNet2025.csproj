@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
     <ProjectReference Include="..\VehicleDispatch\VehicleDispatch.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
   </ItemGroup>

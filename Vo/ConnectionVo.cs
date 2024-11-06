@@ -26,7 +26,7 @@ namespace Vo {
         /// <returns>true:成功 false:失敗</returns>
         public bool Connect(bool localDbFlag) {
             switch (Environment.MachineName) {
-                case "LAPTOP-LI7NSQIT":
+                case "LAPTOP-5J3QGU8A":
                     if (!localDbFlag) {
                         _pingReply = _ping.Send("192.168.1.21");
                         if (_pingReply.Status == IPStatus.Success)
