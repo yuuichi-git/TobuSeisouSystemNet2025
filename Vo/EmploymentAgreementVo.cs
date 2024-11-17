@@ -1,26 +1,21 @@
 ﻿/*
- * 2024-11-05
+ * 2024-11-12
  */
 namespace Vo {
-    /// <summary>
-    /// 契約書マスター
-    /// </summary>
     public class EmploymentAgreementVo {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
-
-        private int _staffCode;
-        private int _contractExpirationPeriod;
-        private bool _experienceFlag;
-        private DateTime _experienceStartDate;
-        private DateTime _experienceEndDate;
-        private string _experienceMemo;
-        private byte[] _experiencePicture;
-        private List<ContractExpirationPartTimeJobVo> _listContractExpirationPartTimeJobVo;
-        private List<ContractExpirationLongJobVo> _listContractExpirationLongJobVo;
-        private List<ContractExpirationShortJobVo> _listContractExpirationShortJobVo;
-        private List<WrittenPledgeVo> _listWrittenPledgeVo;
-        private List<LossWrittenPledgeVo> _listLossWrittenPledgeVo;
-        private List<ContractExpirationNoticeVo> _listContractExpirationNoticeVo;
+        private DateTime _defaultDateTime = new(1900, 01, 01);
+        private int _staffCode; //従事者コード
+        private string _baseLocation; // 勤務地
+        private int _occupation; //雇用形態
+        private int _contractExpirationPeriod; //更新期間
+        private string _contractExpirationPeriodString; //更新期間
+        private string _payDetail; //給与区分
+        private int _pay; //給与
+        private int _travelCost; //交通費
+        private int _jobDescription; //従事すべき業務の内容
+        private string _workTime; //勤務時間
+        private string _breakTime; //休憩時間
+        private bool _checkFlag; //組合に押印提出中
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -29,23 +24,19 @@ namespace Vo {
         private DateTime _deleteYmdHms;
         private bool _deleteFlag;
 
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
         public EmploymentAgreementVo() {
             _staffCode = 0;
+            _baseLocation = string.Empty;
+            _occupation = 0;
             _contractExpirationPeriod = 0;
-            _experienceFlag = false;
-            _experienceStartDate = _defaultDateTime;
-            _experienceEndDate = _defaultDateTime;
-            _experienceMemo = string.Empty;
-            _experiencePicture = Array.Empty<byte>();
-            _listContractExpirationPartTimeJobVo = new();
-            _listContractExpirationLongJobVo = new();
-            _listContractExpirationShortJobVo = new();
-            _listWrittenPledgeVo = new();
-            _listLossWrittenPledgeVo = new();
-            _listContractExpirationNoticeVo = new();
+            _contractExpirationPeriodString = string.Empty;
+            _payDetail = string.Empty;
+            _pay = 0;
+            _travelCost = 0;
+            _jobDescription = 99;
+            _workTime = string.Empty;
+            _breakTime = string.Empty;
+            _checkFlag = false;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -59,121 +50,115 @@ namespace Vo {
         /// 従事者コード
         /// </summary>
         public int StaffCode {
-            get => _staffCode;
-            set => _staffCode = value;
+            get => this._staffCode;
+            set => this._staffCode = value;
         }
         /// <summary>
-        /// 契約期間
+        /// 勤務地
+        /// </summary>
+        public string BaseLocation {
+            get => this._baseLocation;
+            set => this._baseLocation = value;
+        }
+        /// <summary>
+        /// 雇用形態
+        /// </summary>
+        public int Occupation {
+            get => this._occupation;
+            set => this._occupation = value;
+        }
+        /// <summary>
+        /// 更新期間
         /// </summary>
         public int ContractExpirationPeriod {
-            get => _contractExpirationPeriod;
-            set => _contractExpirationPeriod = value;
+            get => this._contractExpirationPeriod;
+            set => this._contractExpirationPeriod = value;
         }
         /// <summary>
-        /// 体験入社フラグ
-        /// true:体験入社済 false:未登録
+        /// 契約期間文字
         /// </summary>
-        public bool ExperienceFlag {
-            get => _experienceFlag;
-            set => _experienceFlag = value;
+        public string ContractExpirationPeriodString {
+            get => this._contractExpirationPeriodString;
+            set => this._contractExpirationPeriodString = value;
         }
         /// <summary>
-        /// 体験入社開始日
+        /// 給与区分
         /// </summary>
-        public DateTime ExperienceStartDate {
-            get => _experienceStartDate;
-            set => _experienceStartDate = value;
+        public string PayDetail {
+            get => this._payDetail;
+            set => this._payDetail = value;
         }
         /// <summary>
-        /// 体験入社終了日
+        /// 給与
         /// </summary>
-        public DateTime ExperienceEndDate {
-            get => this._experienceEndDate;
-            set => this._experienceEndDate = value;
+        public int Pay {
+            get => this._pay;
+            set => this._pay = value;
         }
         /// <summary>
-        /// 体験入社メモ
+        /// 交通費
         /// </summary>
-        public string ExperienceMemo {
-            get => this._experienceMemo;
-            set => this._experienceMemo = value;
+        public int TravelCost {
+            get => this._travelCost;
+            set => this._travelCost = value;
         }
         /// <summary>
-        /// 体験入社画像
+        /// 従事すべき業務の内容
         /// </summary>
-        public byte[] ExperiencePicture {
-            get => this._experiencePicture;
-            set => this._experiencePicture = value;
+        public int JobDescription {
+            get => this._jobDescription;
+            set => this._jobDescription = value;
         }
         /// <summary>
-        /// アルバイト用リスト
+        /// 勤務時間
         /// </summary>
-        public List<ContractExpirationPartTimeJobVo> ListContractExpirationPartTimeJobVo {
-            get => this._listContractExpirationPartTimeJobVo;
-            set => this._listContractExpirationPartTimeJobVo = value;
+        public string WorkTime {
+            get => this._workTime;
+            set => this._workTime = value;
         }
         /// <summary>
-        /// 長期雇用リスト
+        /// 休憩時間
         /// </summary>
-        public List<ContractExpirationLongJobVo> ListContractExpirationLongJobVo {
-            get => this._listContractExpirationLongJobVo;
-            set => this._listContractExpirationLongJobVo = value;
+        public string BreakTime {
+            get => this._breakTime;
+            set => this._breakTime = value;
         }
         /// <summary>
-        /// 短期雇用リスト
+        /// 組合に押印提出中
+        /// true:提出中
+        /// false:未提出
         /// </summary>
-        public List<ContractExpirationShortJobVo> ListContractExpirationShortJobVo {
-            get => this._listContractExpirationShortJobVo;
-            set => this._listContractExpirationShortJobVo = value;
-        }
-        /// <summary>
-        /// 誓約書
-        /// </summary>
-        public List<WrittenPledgeVo> ListWrittenPledgeVo {
-            get => this._listWrittenPledgeVo;
-            set => this._listWrittenPledgeVo = value;
-        }
-        /// <summary>
-        /// 失墜行為
-        /// </summary>
-        public List<LossWrittenPledgeVo> ListLossWrittenPledgeVo {
-            get => this._listLossWrittenPledgeVo;
-            set => this._listLossWrittenPledgeVo = value;
-        }
-        /// <summary>
-        /// 契約満了通知
-        /// </summary>
-        public List<ContractExpirationNoticeVo> ListContractExpirationNoticeVo {
-            get => this._listContractExpirationNoticeVo;
-            set => this._listContractExpirationNoticeVo = value;
+        public bool CheckFlag {
+            get => this._checkFlag;
+            set => this._checkFlag = value;
         }
         public string InsertPcName {
-            get => _insertPcName;
-            set => _insertPcName = value;
+            get => this._insertPcName;
+            set => this._insertPcName = value;
         }
         public DateTime InsertYmdHms {
-            get => _insertYmdHms;
-            set => _insertYmdHms = value;
+            get => this._insertYmdHms;
+            set => this._insertYmdHms = value;
         }
         public string UpdatePcName {
-            get => _updatePcName;
-            set => _updatePcName = value;
+            get => this._updatePcName;
+            set => this._updatePcName = value;
         }
         public DateTime UpdateYmdHms {
-            get => _updateYmdHms;
-            set => _updateYmdHms = value;
+            get => this._updateYmdHms;
+            set => this._updateYmdHms = value;
         }
         public string DeletePcName {
-            get => _deletePcName;
-            set => _deletePcName = value;
+            get => this._deletePcName;
+            set => this._deletePcName = value;
         }
         public DateTime DeleteYmdHms {
-            get => _deleteYmdHms;
-            set => _deleteYmdHms = value;
+            get => this._deleteYmdHms;
+            set => this._deleteYmdHms = value;
         }
         public bool DeleteFlag {
-            get => _deleteFlag;
-            set => _deleteFlag = value;
+            get => this._deleteFlag;
+            set => this._deleteFlag = value;
         }
         
     }

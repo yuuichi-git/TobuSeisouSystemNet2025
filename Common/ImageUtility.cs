@@ -2,7 +2,7 @@
  * 2024-10-12
  */
 namespace Common {
-    public class Image {
+    public class ImageUtility {
         /// <summary>
         /// バイト配列をImageオブジェクトに変換
         /// </summary>

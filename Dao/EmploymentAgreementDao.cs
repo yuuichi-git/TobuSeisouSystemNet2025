@@ -1,7 +1,6 @@
 ﻿/*
- * 2024-11-05
+ * 2024-11-12
  */
-using System.Data;
 using System.Data.SqlClient;
 
 using Common;
@@ -10,36 +9,14 @@ using Vo;
 
 namespace Dao {
     public class EmploymentAgreementDao {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DefaultValue _defaultValue = new();
-        /*
-         * Dao
-         */
-        private ContractExpirationPartTimeJobDao _contractExpirationPartTimeJobDao;
-        private ContractExpirationLongJobDao _contractExpirationLongJobDao;
-        private ContractExpirationShortJobDao _contractExpirationShortJobDao;
-        private WrittenPledgeDao _writtenPledgeDao;
-        private LossWrittenPledgeDao _lossWrittenPledgeDao;
-        private ContractExpirationNoticeDao _contractExpirationNoticeDao;
         /*
          * Vo
          */
-        private readonly ConnectionVo _connectionVo;
+        private ConnectionVo _connectionVo;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="connectionVo"></param>
         public EmploymentAgreementDao(ConnectionVo connectionVo) {
-            /*
-             * Dao
-             */
-            _contractExpirationPartTimeJobDao = new(connectionVo);
-            _contractExpirationLongJobDao = new(connectionVo);
-            _contractExpirationShortJobDao = new(connectionVo);
-            _writtenPledgeDao = new(connectionVo);
-            _lossWrittenPledgeDao = new(connectionVo);
-            _contractExpirationNoticeDao = new(connectionVo);
             /*
              * Vo
              */
@@ -47,36 +24,44 @@ namespace Dao {
         }
 
         /// <summary>
-        /// レコードの存在チェック
+        /// true:該当レコードあり 
+        /// false:該当レコードなし
         /// </summary>
         /// <param name="staffCode"></param>
-        /// <returns>true:あり false:なし</returns>
-        public bool CheckRecord(int staffCode) {
+        /// <returns></returns>
+        public bool ExistenceEmploymentAgreement(int staffCode) {
+            int count;
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_EmploymentAgreement " +
-                                     "WHERE  StaffCode = " + staffCode + "";
+                                     "WHERE StaffCode = " + staffCode;
             try {
-                return (int)sqlCommand.ExecuteScalar() > 0 ? true : false;
+                count = (int)sqlCommand.ExecuteScalar();
             } catch {
                 throw;
             }
+            return count != 0 ? true : false;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public EmploymentAgreementVo SelectOneEmploymentAgreement(int staffCode) {
-            EmploymentAgreementVo employmentAgreement = null;
+        public List<EmploymentAgreementVo> SelectAllEmploymentAgreement() {
+            List<EmploymentAgreementVo> listEmploymentAgreementVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
+                                            "BaseLocation," +
+                                            "Occupation," +
                                             "ContractExpirationPeriod," +
-                                            "ExperienceFlag," +
-                                            "ExperienceStartDate," +
-                                            "ExperienceEndDate," +
-                                            "ExperienceMemo," +
-                                            "ExperiencePicture," +
+                                            "ContractExpirationPeriodString," +
+                                            "PayDetail," +
+                                            "Pay," +
+                                            "TravelCost," +
+                                            "JobDescription," +
+                                            "WorkTime," +
+                                            "BreakTime," +
+                                            "CheckFlag," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -84,50 +69,72 @@ namespace Dao {
                                             "DeletePcName," +
                                             "DeleteYmdHms," +
                                             "DeleteFlag " +
-                                     "FROM H_EmploymentAgreement " +
-                                     "WHERE StaffCode = '" + staffCode + "'";
+                                     "FROM H_EmploymentAgreement";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
-                    employmentAgreement = new();
-                    employmentAgreement.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
-                    employmentAgreement.ContractExpirationPeriod = _defaultValue.GetDefaultValue<int>(sqlDataReader["ContractExpirationPeriod"]);
-                    employmentAgreement.ExperienceFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ExperienceFlag"]);
-                    employmentAgreement.ExperienceStartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ExperienceStartDate"]);
-                    employmentAgreement.ExperienceEndDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ExperienceEndDate"]);
-                    employmentAgreement.ExperienceMemo = _defaultValue.GetDefaultValue<string>(sqlDataReader["ExperienceMemo"]);
-                    employmentAgreement.ExperiencePicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["ExperiencePicture"]);
-                    employmentAgreement.ListContractExpirationPartTimeJobVo = _contractExpirationPartTimeJobDao.SelectOneContractExpirationPartTimeJob(staffCode);
-                    employmentAgreement.ListContractExpirationLongJobVo = _contractExpirationLongJobDao.SelectOneContractExpirationLongJob(staffCode);
-                    employmentAgreement.ListContractExpirationShortJobVo = _contractExpirationShortJobDao.SelectOneContractExpirationShortJob(staffCode);
-                    employmentAgreement.ListWrittenPledgeVo = _writtenPledgeDao.SelectOneWrittenPledge(staffCode);
-                    employmentAgreement.ListLossWrittenPledgeVo = _lossWrittenPledgeDao.SelectOneLossWrittenPledge(staffCode);
-                    employmentAgreement.ListContractExpirationNoticeVo = _contractExpirationNoticeDao.SelectOneContractExpirationNotice(staffCode);
-                    employmentAgreement.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
-                    employmentAgreement.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
-                    employmentAgreement.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
-                    employmentAgreement.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
-                    employmentAgreement.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
-                    employmentAgreement.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
-                    employmentAgreement.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    EmploymentAgreementVo employmentAgreementVo = new();
+                    employmentAgreementVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    employmentAgreementVo.BaseLocation = _defaultValue.GetDefaultValue<string>(sqlDataReader["BaseLocation"]);
+                    employmentAgreementVo.Occupation = _defaultValue.GetDefaultValue<int>(sqlDataReader["Occupation"]);
+                    employmentAgreementVo.ContractExpirationPeriod = _defaultValue.GetDefaultValue<int>(sqlDataReader["ContractExpirationPeriod"]);
+                    employmentAgreementVo.ContractExpirationPeriodString = _defaultValue.GetDefaultValue<string>(sqlDataReader["ContractExpirationPeriodString"]);
+                    employmentAgreementVo.PayDetail = _defaultValue.GetDefaultValue<string>(sqlDataReader["PayDetail"]);
+                    employmentAgreementVo.Pay = _defaultValue.GetDefaultValue<int>(sqlDataReader["Pay"]);
+                    employmentAgreementVo.TravelCost = _defaultValue.GetDefaultValue<int>(sqlDataReader["TravelCost"]);
+                    employmentAgreementVo.JobDescription = _defaultValue.GetDefaultValue<int>(sqlDataReader["JobDescription"]);
+                    employmentAgreementVo.WorkTime = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkTime"]);
+                    employmentAgreementVo.BreakTime = _defaultValue.GetDefaultValue<string>(sqlDataReader["BreakTime"]);
+                    employmentAgreementVo.CheckFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CheckFlag"]);
+                    employmentAgreementVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    employmentAgreementVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    employmentAgreementVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    employmentAgreementVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    employmentAgreementVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    employmentAgreementVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    employmentAgreementVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    listEmploymentAgreementVo.Add(employmentAgreementVo);
                 }
             }
-            return employmentAgreement;
+            return listEmploymentAgreementVo;
         }
 
         /// <summary>
-        /// 
+        /// 給与区分
+        /// </summary>
+        /// <returns></returns>
+        public List<string> SelectGroupPayDetail() {
+            List<string> listGroupPayDetail = new();
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT PayDetail " +
+                                     "FROM H_EmploymentAgreement " +
+                                     "GROUP BY PayDetail";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    string payDetail = _defaultValue.GetDefaultValue<string>(sqlDataReader["PayDetail"]);
+                    listGroupPayDetail.Add(payDetail);
+                }
+            }
+            return listGroupPayDetail;
+        }
+
+        /// <summary>
+        /// InsertOneEmploymentAgreement
         /// </summary>
         /// <param name="employmentAgreementVo"></param>
-        /// <returns></returns>
         public int InsertOneEmploymentAgreement(EmploymentAgreementVo employmentAgreementVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_EmploymentAgreement(StaffCode," +
+                                                                       "BaseLocation," +
+                                                                       "Occupation," +
                                                                        "ContractExpirationPeriod," +
-                                                                       "ExperienceFlag," +
-                                                                       "ExperienceStartDate," +
-                                                                       "ExperienceEndDate," +
-                                                                       "ExperienceMemo," +
-                                                                       "ExperiencePicture," +
+                                                                       "ContractExpirationPeriodString," +
+                                                                       "PayDetail," +
+                                                                       "Pay," +
+                                                                       "TravelCost," +
+                                                                       "JobDescription," +
+                                                                       "WorkTime," +
+                                                                       "BreakTime," +
+                                                                       "CheckFlag," +
                                                                        "InsertPcName," +
                                                                        "InsertYmdHms," +
                                                                        "UpdatePcName," +
@@ -135,23 +142,26 @@ namespace Dao {
                                                                        "DeletePcName," +
                                                                        "DeleteYmdHms," +
                                                                        "DeleteFlag) " +
-                                     "VALUES ('" + employmentAgreementVo.StaffCode + "'," +
-                                              "" + employmentAgreementVo.ContractExpirationPeriod + "," +
-                                             "'" + employmentAgreementVo.ExperienceFlag + "'," +
-                                             "'" + employmentAgreementVo.ExperienceStartDate + "'," +
-                                             "'" + employmentAgreementVo.ExperienceEndDate + "'," +
-                                             "'" + employmentAgreementVo.ExperienceMemo + "'," +
-                                             "@picture," +
-                                             "'" + employmentAgreementVo.InsertPcName + "'," +
-                                             "'" + employmentAgreementVo.InsertYmdHms + "'," +
-                                             "'" + employmentAgreementVo.UpdatePcName + "'," +
-                                             "'" + _defaultDateTime + "'," +
-                                             "'" + string.Empty + "'," +
-                                             "'" + _defaultDateTime + "'," +
-                                             "'" + string.Empty + "'" +
+                                     "VALUES (" + employmentAgreementVo.StaffCode + "," +
+                                            "'" + employmentAgreementVo.BaseLocation + "'," +
+                                             "" + employmentAgreementVo.Occupation + "," +
+                                             "" + employmentAgreementVo.ContractExpirationPeriod + "," +
+                                            "'" + employmentAgreementVo.ContractExpirationPeriodString + "'," +
+                                            "'" + employmentAgreementVo.PayDetail + "'," +
+                                             "" + employmentAgreementVo.Pay + "," +
+                                             "" + employmentAgreementVo.TravelCost + "," +
+                                             "" + employmentAgreementVo.JobDescription + "," +
+                                            "'" + employmentAgreementVo.WorkTime + "'," +
+                                            "'" + employmentAgreementVo.BreakTime + "'," +
+                                            "'" + employmentAgreementVo.CheckFlag + "'," +
+                                            "'" + Environment.MachineName + "'," +
+                                            "'" + DateTime.Now + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                             "'false'" +
                                              ");";
-            if (employmentAgreementVo.ExperiencePicture is not null)
-                sqlCommand.Parameters.Add("@picture", SqlDbType.Image, employmentAgreementVo.ExperiencePicture.Length).Value = employmentAgreementVo.ExperiencePicture;
             try {
                 return sqlCommand.ExecuteNonQuery();
             } catch {
@@ -163,19 +173,31 @@ namespace Dao {
         /// 
         /// </summary>
         /// <param name="employmentAgreementVo"></param>
-        public void UpdateOneEmploymentAgreement(EmploymentAgreementVo employmentAgreementVo) {
+        /// <returns></returns>
+        public int UpdateOneEmploymentAgreement(EmploymentAgreementVo employmentAgreementVo) {
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_EmploymentAgreement " +
                                      "SET StaffCode = " + employmentAgreementVo.StaffCode + "," +
+                                         "BaseLocation = '" + employmentAgreementVo.BaseLocation + "'," +
+                                         "Occupation = " + employmentAgreementVo.Occupation + "," +
                                          "ContractExpirationPeriod = " + employmentAgreementVo.ContractExpirationPeriod + "," +
-                                         "UpdatePcName = '" + employmentAgreementVo.UpdatePcName + "'," +
-                                         "UpdateYmdHms = '" + employmentAgreementVo.UpdateYmdHms + "' " +
+                                         "ContractExpirationPeriodString = '" + employmentAgreementVo.ContractExpirationPeriodString + "'," +
+                                         "PayDetail = '" + employmentAgreementVo.PayDetail + "'," +
+                                         "Pay = " + employmentAgreementVo.Pay + "," +
+                                         "TravelCost = " + employmentAgreementVo.TravelCost + "," +
+                                         "JobDescription = " + employmentAgreementVo.JobDescription + "," +
+                                         "WorkTime = '" + employmentAgreementVo.WorkTime + "'," +
+                                         "BreakTime = '" + employmentAgreementVo.BreakTime + "'," +
+                                         "CheckFlag = '" + employmentAgreementVo.CheckFlag + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + employmentAgreementVo.StaffCode;
             try {
-                sqlCommand.ExecuteNonQuery();
+                return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
             }
         }
+
     }
 }

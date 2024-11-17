@@ -1,16 +1,13 @@
 ﻿/*
- * 2024-11-05
+ * 2024-11-12
  */
 namespace Vo {
-    /// <summary>
-    /// 契約満了通知管理テーブル
-    /// </summary>
-    public class ContractExpirationNoticeVo {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
-
+    public class ContractExpirationVo {
+        private DateTime _defaultDateTime = new(1900, 01, 01);
+        private int _code;
         private int _staffCode;
-        private DateTime _contractExpirationStartDate;
-        private DateTime _contractExpirationEndDate;
+        private DateTime _startDate;
+        private DateTime _endDate;
         private string _memo;
         private byte[] _picture;
         private string _insertPcName;
@@ -21,13 +18,11 @@ namespace Vo {
         private DateTime _deleteYmdHms;
         private bool _deleteFlag;
 
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public ContractExpirationNoticeVo() {
+        public ContractExpirationVo() {
+            _code = 0;
             _staffCode = 0;
-            _contractExpirationStartDate = _defaultDateTime;
-            _contractExpirationEndDate = _defaultDateTime;
+            _startDate = _defaultDateTime;
+            _endDate = _defaultDateTime;
             _memo = string.Empty;
             _picture = Array.Empty<byte>();
             _insertPcName = string.Empty;
@@ -40,6 +35,20 @@ namespace Vo {
         }
 
         /// <summary>
+        /// 契約書識別コード
+        /// 20:継続アルバイト契約
+        /// 21:体験アルバイト契約
+        /// 10:長期雇用契約
+        /// 11:短期雇用契約
+        /// 30:誓約書
+        /// 40:失墜行為確認書
+        /// 50:満了一カ月前通知
+        /// </summary>
+        public int Code {
+            get => this._code;
+            set => this._code = value;
+        }
+        /// <summary>
         /// 従事者コード
         /// </summary>
         public int StaffCode {
@@ -49,16 +58,16 @@ namespace Vo {
         /// <summary>
         /// 契約開始日
         /// </summary>
-        public DateTime ContractExpirationStartDate {
-            get => this._contractExpirationStartDate;
-            set => this._contractExpirationStartDate = value;
+        public DateTime StartDate {
+            get => this._startDate;
+            set => this._startDate = value;
         }
         /// <summary>
         /// 契約終了日
         /// </summary>
-        public DateTime ContractExpirationEndDate {
-            get => this._contractExpirationEndDate;
-            set => this._contractExpirationEndDate = value;
+        public DateTime EndDate {
+            get => this._endDate;
+            set => this._endDate = value;
         }
         /// <summary>
         /// メモ

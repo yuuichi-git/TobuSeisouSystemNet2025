@@ -28,15 +28,23 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemExpiration = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationPartTimeJob = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationLongJob = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationShortJob = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.PanelEx();
-            this.checkBoxEx3 = new ControlEx.CheckBoxEx();
-            this.checkBoxEx2 = new ControlEx.CheckBoxEx();
-            this.checkBoxEx1 = new ControlEx.CheckBoxEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationPartTimer = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
+            this.ContextMenuStripEx1.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +87,7 @@
             // SpreadList
             // 
             this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            this.SpreadList.ContextMenuStrip = this.ContextMenuStripEx1;
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(3, 67);
@@ -87,11 +96,63 @@
             this.SpreadList.TabIndex = 2;
             this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
             // 
+            // ContextMenuStripEx1
+            // 
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice });
+            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            this.ContextMenuStripEx1.Size = new Size(181, 224);
+            // 
+            // ToolStripMenuItemExpiration
+            // 
+            this.ToolStripMenuItemExpiration.Name = "ToolStripMenuItemExpiration";
+            this.ToolStripMenuItemExpiration.Size = new Size(180, 22);
+            this.ToolStripMenuItemExpiration.Text = "体験入社契約書";
+            this.ToolStripMenuItemExpiration.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationPartTimeJob
+            // 
+            this.ToolStripMenuItemContractExpirationPartTimeJob.Name = "ToolStripMenuItemContractExpirationPartTimeJob";
+            this.ToolStripMenuItemContractExpirationPartTimeJob.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationPartTimeJob.Text = "継続アルバイト契約書";
+            this.ToolStripMenuItemContractExpirationPartTimeJob.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationLongJob
+            // 
+            this.ToolStripMenuItemContractExpirationLongJob.Name = "ToolStripMenuItemContractExpirationLongJob";
+            this.ToolStripMenuItemContractExpirationLongJob.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationLongJob.Text = "長期雇用契約書";
+            this.ToolStripMenuItemContractExpirationLongJob.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationShortJob
+            // 
+            this.ToolStripMenuItemContractExpirationShortJob.Name = "ToolStripMenuItemContractExpirationShortJob";
+            this.ToolStripMenuItemContractExpirationShortJob.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationShortJob.Text = "短期雇用契約書";
+            this.ToolStripMenuItemContractExpirationShortJob.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationWrittenPledge
+            // 
+            this.ToolStripMenuItemContractExpirationWrittenPledge.Name = "ToolStripMenuItemContractExpirationWrittenPledge";
+            this.ToolStripMenuItemContractExpirationWrittenPledge.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationWrittenPledge.Text = "誓約書";
+            this.ToolStripMenuItemContractExpirationWrittenPledge.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationLossWrittenPledge
+            // 
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Name = "ToolStripMenuItemContractExpirationLossWrittenPledge";
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Text = "失墜行為確認書";
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationNotice
+            // 
+            this.ToolStripMenuItemContractExpirationNotice.Name = "ToolStripMenuItemContractExpirationNotice";
+            this.ToolStripMenuItemContractExpirationNotice.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationNotice.Text = "契約満了通知";
+            this.ToolStripMenuItemContractExpirationNotice.Click += this.ToolStripMenuItem_Click;
+            // 
             // PanelExTop
             // 
-            this.PanelExTop.Controls.Add(this.checkBoxEx3);
-            this.PanelExTop.Controls.Add(this.checkBoxEx2);
-            this.PanelExTop.Controls.Add(this.checkBoxEx1);
             this.PanelExTop.Controls.Add(this.CheckBoxExRetirementFlag);
             this.PanelExTop.Controls.Add(this.ButtonExUpdate);
             this.PanelExTop.Dock = DockStyle.Fill;
@@ -99,36 +160,6 @@
             this.PanelExTop.Name = "PanelExTop";
             this.PanelExTop.Size = new Size(1898, 34);
             this.PanelExTop.TabIndex = 3;
-            // 
-            // checkBoxEx3
-            // 
-            this.checkBoxEx3.AutoSize = true;
-            this.checkBoxEx3.Location = new Point(200, 8);
-            this.checkBoxEx3.Name = "checkBoxEx3";
-            this.checkBoxEx3.Size = new Size(74, 19);
-            this.checkBoxEx3.TabIndex = 7;
-            this.checkBoxEx3.Text = "短期雇用";
-            this.checkBoxEx3.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxEx2
-            // 
-            this.checkBoxEx2.AutoSize = true;
-            this.checkBoxEx2.Location = new Point(112, 8);
-            this.checkBoxEx2.Name = "checkBoxEx2";
-            this.checkBoxEx2.Size = new Size(74, 19);
-            this.checkBoxEx2.TabIndex = 6;
-            this.checkBoxEx2.Text = "長期雇用";
-            this.checkBoxEx2.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxEx1
-            // 
-            this.checkBoxEx1.AutoSize = true;
-            this.checkBoxEx1.Location = new Point(28, 8);
-            this.checkBoxEx1.Name = "checkBoxEx1";
-            this.checkBoxEx1.Size = new Size(72, 19);
-            this.checkBoxEx1.TabIndex = 5;
-            this.checkBoxEx1.Text = "アルバイト";
-            this.checkBoxEx1.UseVisualStyleBackColor = true;
             // 
             // CheckBoxExRetirementFlag
             // 
@@ -152,6 +183,20 @@
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
             this.ButtonExUpdate.Click += this.ButtonEx_Click;
             // 
+            // ToolStripMenuItemContractExpirationPartTimeEmployee
+            // 
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Name = "ToolStripMenuItemContractExpirationPartTimeEmployee";
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Text = "嘱託雇用契約社員";
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemContractExpirationPartTimer
+            // 
+            this.ToolStripMenuItemContractExpirationPartTimer.Name = "ToolStripMenuItemContractExpirationPartTimer";
+            this.ToolStripMenuItemContractExpirationPartTimer.Size = new Size(180, 22);
+            this.ToolStripMenuItemContractExpirationPartTimer.Text = "パートタイマー";
+            this.ToolStripMenuItemContractExpirationPartTimer.Click += this.ToolStripMenuItem_Click;
+            // 
             // EmploymentAgreementList
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -165,6 +210,7 @@
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
+            this.ContextMenuStripEx1.ResumeLayout(false);
             this.PanelExTop.ResumeLayout(false);
             this.PanelExTop.PerformLayout();
             this.ResumeLayout(false);
@@ -179,9 +225,16 @@
         private ControlEx.PanelEx PanelExTop;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
-        private ControlEx.CheckBoxEx checkBoxEx3;
-        private ControlEx.CheckBoxEx checkBoxEx2;
-        private ControlEx.CheckBoxEx checkBoxEx1;
+        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private ToolStripMenuItem ToolStripMenuItemExpiration;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimeJob;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationShortJob;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationWrittenPledge;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationLossWrittenPledge;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationNotice;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimeEmployee;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimer;
     }
 }

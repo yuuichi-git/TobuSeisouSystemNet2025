@@ -5,6 +5,10 @@ namespace EmploymentAgreement {
     public partial class ShowPicture : Form {
         private byte[] _picture;
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="picture"></param>
         public ShowPicture(byte[] picture) {
             _picture = picture;
             /*
@@ -12,6 +16,11 @@ namespace EmploymentAgreement {
              */
             InitializeComponent();
             this.PictureBoxEx1.Image = Picture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(Picture) : null;
+            this.TopMost = true;
+        }
+
+        private void ShowPicture_SizeChanged(object sender, EventArgs e) {
+            this.Text = string.Concat("ShowPicture ", this.Size.Width, " - ", this.Size.Height);
         }
 
         /// <summary>

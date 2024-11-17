@@ -28,144 +28,145 @@
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
-            this.PanelExMiddle = new ControlEx.PanelEx();
-            this.BTNExExpirationPicture = new ControlEx.ButtonEx();
-            this.labelEx40 = new ControlEx.LabelEx();
-            this.NumericUpDownExContractExpirationPeriod = new ControlEx.NumericUpDownEx();
-            this.labelEx39 = new ControlEx.LabelEx();
-            this.labelEx38 = new ControlEx.LabelEx();
-            this.labelEx37 = new ControlEx.LabelEx();
-            this.labelEx36 = new ControlEx.LabelEx();
-            this.labelEx35 = new ControlEx.LabelEx();
             this.labelEx34 = new ControlEx.LabelEx();
-            this.labelEx33 = new ControlEx.LabelEx();
-            this.labelEx32 = new ControlEx.LabelEx();
-            this.labelEx31 = new ControlEx.LabelEx();
-            this.labelEx30 = new ControlEx.LabelEx();
-            this.labelEx29 = new ControlEx.LabelEx();
+            this.LabelExUnionCode = new ControlEx.LabelEx();
+            this.labelEx38 = new ControlEx.LabelEx();
+            this.LabelExDisplayName = new ControlEx.LabelEx();
+            this.labelEx37 = new ControlEx.LabelEx();
+            this.LabelExBelongs = new ControlEx.LabelEx();
+            this.labelEx36 = new ControlEx.LabelEx();
+            this.LabelExOccupation = new ControlEx.LabelEx();
+            this.labelEx35 = new ControlEx.LabelEx();
+            this.LabelExJobForm = new ControlEx.LabelEx();
+            this.PanelExMiddle = new ControlEx.PanelEx();
+            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
+            this.TextBoxExContractExpirationPeriod = new ControlEx.TextBoxEx();
+            this.labelEx3 = new ControlEx.LabelEx();
+            this.ComboBoxExPayDetail = new ControlEx.ComboBoxEx();
+            this.labelEx17 = new ControlEx.LabelEx();
+            this.ComboBoxExBelongs = new ControlEx.ComboBoxEx();
+            this.labelEx13 = new ControlEx.LabelEx();
+            this.ComboBoxExBreakTime = new ControlEx.ComboBoxEx();
+            this.labelEx9 = new ControlEx.LabelEx();
+            this.ComboBoxExWorkTime = new ControlEx.ComboBoxEx();
+            this.labelEx5 = new ControlEx.LabelEx();
+            this.ComboBoxExJobDescription = new ControlEx.ComboBoxEx();
+            this.NUDExTravelCost = new ControlEx.NumericUpDownEx();
+            this.labelEx4 = new ControlEx.LabelEx();
+            this.NUDExPay = new ControlEx.NumericUpDownEx();
+            this.labelEx2 = new ControlEx.LabelEx();
+            this.CheckBoxExCheckFlag = new ControlEx.CheckBoxEx();
+            this.GroupBoxExExpiration = new ControlEx.GroupBoxEx();
+            this.BTNExExpiration = new ControlEx.ButtonEx();
+            this.DTPExExpirationEndDate = new ControlEx.DateTimePickerEx();
+            this.BTNExExpirationPicture = new ControlEx.ButtonEx();
+            this.DTPExExpirationStartDate = new ControlEx.DateTimePickerEx();
+            this.labelEx1 = new ControlEx.LabelEx();
+            this.TextBoxExExpirationMemo = new ControlEx.TextBoxEx();
+            this.labelEx40 = new ControlEx.LabelEx();
+            this.NUDExContractExpirationPeriod = new ControlEx.NumericUpDownEx();
+            this.labelEx39 = new ControlEx.LabelEx();
             this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
             this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
             this.groupBoxEx6 = new ControlEx.GroupBoxEx();
-            this.BTNExContractExpirationNoticePicture2 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationNoticePicture1 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationNotice = new ControlEx.ButtonEx();
-            this.labelEx25 = new ControlEx.LabelEx();
             this.DTPExContractExpirationNoticeStartDate = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationNoticeEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx26 = new ControlEx.LabelEx();
-            this.DTPExContractExpirationNoticeMemo = new ControlEx.TextBoxEx();
-            this.DTPExContractExpirationNoticeMemo2 = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationNoticeMemo = new ControlEx.TextBoxEx();
             this.DTPExContractExpirationNoticeStartDate1 = new ControlEx.DateTimePickerEx();
-            this.labelEx27 = new ControlEx.LabelEx();
             this.DTPExContractExpirationNoticeEndDate1 = new ControlEx.DateTimePickerEx();
-            this.DTPExContractExpirationNoticeEndDate2 = new ControlEx.DateTimePickerEx();
             this.labelEx28 = new ControlEx.LabelEx();
-            this.DTPExContractExpirationNoticeStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExContractExpirationNoticeMemo1 = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationNoticeMemo1 = new ControlEx.TextBoxEx();
             this.groupBoxEx5 = new ControlEx.GroupBoxEx();
-            this.BTNExLossWrittenPledgePicture2 = new ControlEx.ButtonEx();
-            this.BTNExLossWrittenPledgePicture1 = new ControlEx.ButtonEx();
-            this.BTNExLossWrittenPledge = new ControlEx.ButtonEx();
-            this.labelEx21 = new ControlEx.LabelEx();
-            this.DTPExLossWrittenPledgeStartDate = new ControlEx.DateTimePickerEx();
-            this.DTPExLossWrittenPledgeEndDate = new ControlEx.DateTimePickerEx();
+            this.BTNExContractExpirationLossWrittenPledgePicture1 = new ControlEx.ButtonEx();
+            this.BTNExContractExpirationLossWrittenPledge = new ControlEx.ButtonEx();
+            this.DTPExContractExpirationLossWrittenPledgeStartDate = new ControlEx.DateTimePickerEx();
+            this.DTPExContractExpirationLossWrittenPledgeEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx22 = new ControlEx.LabelEx();
-            this.DTPExLossWrittenPledgeMemo = new ControlEx.TextBoxEx();
-            this.DTPExLossWrittenPledgeMemo2 = new ControlEx.TextBoxEx();
-            this.DTPExLossWrittenPledgeStartDate1 = new ControlEx.DateTimePickerEx();
-            this.labelEx23 = new ControlEx.LabelEx();
-            this.DTPExLossWrittenPledgeEndDate1 = new ControlEx.DateTimePickerEx();
-            this.DTPExLossWrittenPledgeEndDate2 = new ControlEx.DateTimePickerEx();
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo = new ControlEx.TextBoxEx();
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1 = new ControlEx.DateTimePickerEx();
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1 = new ControlEx.DateTimePickerEx();
             this.labelEx24 = new ControlEx.LabelEx();
-            this.DTPExLossWrittenPledgeStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExLossWrittenPledgeMemo1 = new ControlEx.TextBoxEx();
-            this.groupBoxEx4 = new ControlEx.GroupBoxEx();
-            this.BTNExWrittenPledgePicture2 = new ControlEx.ButtonEx();
-            this.BTNExWrittenPledgePicture1 = new ControlEx.ButtonEx();
-            this.BTNExWrittenPledge = new ControlEx.ButtonEx();
-            this.labelEx17 = new ControlEx.LabelEx();
-            this.DTPExWrittenPledgeStartDate = new ControlEx.DateTimePickerEx();
-            this.DTPExWrittenPledgeEndDate = new ControlEx.DateTimePickerEx();
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1 = new ControlEx.TextBoxEx();
+            this.GroupBoxExContractExpirationWrittenPledge = new ControlEx.GroupBoxEx();
+            this.BTNExContractExpirationWrittenPledgePicture1 = new ControlEx.ButtonEx();
+            this.BTNExContractExpirationWrittenPledge = new ControlEx.ButtonEx();
+            this.DTPExContractExpirationWrittenPledgeStartDate = new ControlEx.DateTimePickerEx();
+            this.DTPExContractExpirationWrittenPledgeEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx18 = new ControlEx.LabelEx();
-            this.DTPExWrittenPledgeMemo = new ControlEx.TextBoxEx();
-            this.DTPExWrittenPledgeMemo2 = new ControlEx.TextBoxEx();
-            this.DTPExWrittenPledgeStartDate1 = new ControlEx.DateTimePickerEx();
-            this.labelEx19 = new ControlEx.LabelEx();
-            this.DTPExWrittenPledgeEndDate1 = new ControlEx.DateTimePickerEx();
-            this.DTPExWrittenPledgeEndDate2 = new ControlEx.DateTimePickerEx();
+            this.TextBoxExContractExpirationWrittenPledgeMemo = new ControlEx.TextBoxEx();
+            this.DTPExContractExpirationWrittenPledgeStartDate1 = new ControlEx.DateTimePickerEx();
+            this.DTPExContractExpirationWrittenPledgeEndDate1 = new ControlEx.DateTimePickerEx();
             this.labelEx20 = new ControlEx.LabelEx();
-            this.DTPExWrittenPledgeStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExWrittenPledgeMemo1 = new ControlEx.TextBoxEx();
-            this.groupBoxEx3 = new ControlEx.GroupBoxEx();
+            this.TextBoxExContractExpirationWrittenPledgeMemo1 = new ControlEx.TextBoxEx();
+            this.GroupBoxExContractExpirationShortJob = new ControlEx.GroupBoxEx();
             this.BTNExContractExpirationShortJobPicture2 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationShortJobPicture1 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationShortJob = new ControlEx.ButtonEx();
-            this.labelEx13 = new ControlEx.LabelEx();
             this.DTPExContractExpirationShortJobStartDate = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationShortJobEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx14 = new ControlEx.LabelEx();
-            this.DTPExContractExpirationShortJobMemo = new ControlEx.TextBoxEx();
-            this.DTPExContractExpirationShortJobMemo2 = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationShortJobMemo = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationShortJobMemo2 = new ControlEx.TextBoxEx();
             this.DTPExContractExpirationShortJobStartDate1 = new ControlEx.DateTimePickerEx();
             this.labelEx15 = new ControlEx.LabelEx();
             this.DTPExContractExpirationShortJobEndDate1 = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationShortJobEndDate2 = new ControlEx.DateTimePickerEx();
             this.labelEx16 = new ControlEx.LabelEx();
             this.DTPExContractExpirationShortJobStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExContractExpirationShortJobMemo1 = new ControlEx.TextBoxEx();
-            this.groupBoxEx2 = new ControlEx.GroupBoxEx();
+            this.TextBoxExContractExpirationShortJobMemo1 = new ControlEx.TextBoxEx();
+            this.GroupBoxExContractExpirationLongJob = new ControlEx.GroupBoxEx();
             this.BTNExContractExpirationLongJobPicture2 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationLongJobPicture1 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationLongJob = new ControlEx.ButtonEx();
-            this.labelEx9 = new ControlEx.LabelEx();
             this.DTPExContractExpirationLongJobStartDate = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationLongJobEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx10 = new ControlEx.LabelEx();
-            this.DTPExContractExpirationLongJobMemo = new ControlEx.TextBoxEx();
-            this.DTPExContractExpirationLongJobMemo2 = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationLongJobMemo = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationLongJobMemo2 = new ControlEx.TextBoxEx();
             this.DTPExContractExpirationLongJobStartDate1 = new ControlEx.DateTimePickerEx();
             this.labelEx11 = new ControlEx.LabelEx();
             this.DTPExContractExpirationLongJobEndDate1 = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationLongJobEndDate2 = new ControlEx.DateTimePickerEx();
             this.labelEx12 = new ControlEx.LabelEx();
             this.DTPExContractExpirationLongJobStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExContractExpirationLongJobMemo1 = new ControlEx.TextBoxEx();
-            this.groupBoxEx1 = new ControlEx.GroupBoxEx();
+            this.TextBoxExContractExpirationLongJobMemo1 = new ControlEx.TextBoxEx();
+            this.GroupBoxExContractExpirationPartTimeJob = new ControlEx.GroupBoxEx();
             this.BTNExContractExpirationPartTimeJobPicture2 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationPartTimeJobPicture1 = new ControlEx.ButtonEx();
             this.BTNExContractExpirationPartTimeJob = new ControlEx.ButtonEx();
-            this.labelEx5 = new ControlEx.LabelEx();
             this.DTPExContractExpirationPartTimeJobStartDate = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationPartTimeJobEndDate = new ControlEx.DateTimePickerEx();
             this.labelEx6 = new ControlEx.LabelEx();
-            this.DTPExContractExpirationPartTimeJobMemo = new ControlEx.TextBoxEx();
-            this.DTPExContractExpirationPartTimeJobMemo2 = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationPartTimeJobMemo = new ControlEx.TextBoxEx();
+            this.TextBoxExContractExpirationPartTimeJobMemo2 = new ControlEx.TextBoxEx();
             this.DTPExContractExpirationPartTimeJobStartDate1 = new ControlEx.DateTimePickerEx();
             this.labelEx8 = new ControlEx.LabelEx();
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1 = new ControlEx.DateTimePickerEx();
+            this.DTPExContractExpirationPartTimeJobEndDate1 = new ControlEx.DateTimePickerEx();
             this.DTPExContractExpirationPartTimeJobEndDate2 = new ControlEx.DateTimePickerEx();
             this.labelEx7 = new ControlEx.LabelEx();
             this.DTPExContractExpirationPartTimeJobStartDate2 = new ControlEx.DateTimePickerEx();
-            this.DTPExContractExpirationPartTimeJobMemo1 = new ControlEx.TextBoxEx();
-            this.TextBoxExExpirationMemo = new ControlEx.TextBoxEx();
-            this.labelEx2 = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExExpirationEndDate = new ControlEx.DateTimePickerEx();
-            this.DateTimePickerExExpirationStartDate = new ControlEx.DateTimePickerEx();
+            this.TextBoxExContractExpirationPartTimeJobMemo1 = new ControlEx.TextBoxEx();
+            this.labelEx19 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExContractExpirationPeriod).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExTravelCost).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExPay).BeginInit();
+            this.GroupBoxExExpiration.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExContractExpirationPeriod).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
             this.groupBoxEx6.SuspendLayout();
             this.groupBoxEx5.SuspendLayout();
-            this.groupBoxEx4.SuspendLayout();
-            this.groupBoxEx3.SuspendLayout();
-            this.groupBoxEx2.SuspendLayout();
-            this.groupBoxEx1.SuspendLayout();
+            this.GroupBoxExContractExpirationWrittenPledge.SuspendLayout();
+            this.GroupBoxExContractExpirationShortJob.SuspendLayout();
+            this.GroupBoxExContractExpirationLongJob.SuspendLayout();
+            this.GroupBoxExContractExpirationPartTimeJob.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -207,6 +208,16 @@
             // PanelExUp
             // 
             this.PanelExUp.Controls.Add(this.ButtonExUpdate);
+            this.PanelExUp.Controls.Add(this.labelEx34);
+            this.PanelExUp.Controls.Add(this.LabelExUnionCode);
+            this.PanelExUp.Controls.Add(this.labelEx38);
+            this.PanelExUp.Controls.Add(this.LabelExDisplayName);
+            this.PanelExUp.Controls.Add(this.labelEx37);
+            this.PanelExUp.Controls.Add(this.LabelExBelongs);
+            this.PanelExUp.Controls.Add(this.labelEx36);
+            this.PanelExUp.Controls.Add(this.LabelExOccupation);
+            this.PanelExUp.Controls.Add(this.labelEx35);
+            this.PanelExUp.Controls.Add(this.LabelExJobForm);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
@@ -216,7 +227,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.Size = new Size(184, 32);
@@ -225,177 +236,423 @@
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
             this.ButtonExUpdate.Click += this.ButtonEx_Click;
             // 
+            // labelEx34
+            // 
+            this.labelEx34.Location = new Point(12, 8);
+            this.labelEx34.Name = "labelEx34";
+            this.labelEx34.Size = new Size(64, 15);
+            this.labelEx34.TabIndex = 41;
+            this.labelEx34.Text = "組合№";
+            this.labelEx34.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LabelExUnionCode
+            // 
+            this.LabelExUnionCode.BackColor = Color.White;
+            this.LabelExUnionCode.BorderStyle = BorderStyle.Fixed3D;
+            this.LabelExUnionCode.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExUnionCode.Location = new Point(76, 4);
+            this.LabelExUnionCode.Name = "LabelExUnionCode";
+            this.LabelExUnionCode.Size = new Size(124, 24);
+            this.LabelExUnionCode.TabIndex = 40;
+            this.LabelExUnionCode.Text = "888";
+            this.LabelExUnionCode.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelEx38
+            // 
+            this.labelEx38.Location = new Point(208, 8);
+            this.labelEx38.Name = "labelEx38";
+            this.labelEx38.Size = new Size(64, 15);
+            this.labelEx38.TabIndex = 45;
+            this.labelEx38.Text = "氏名";
+            this.labelEx38.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LabelExDisplayName
+            // 
+            this.LabelExDisplayName.BackColor = Color.White;
+            this.LabelExDisplayName.BorderStyle = BorderStyle.Fixed3D;
+            this.LabelExDisplayName.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExDisplayName.Location = new Point(272, 4);
+            this.LabelExDisplayName.Name = "LabelExDisplayName";
+            this.LabelExDisplayName.Size = new Size(124, 24);
+            this.LabelExDisplayName.TabIndex = 36;
+            this.LabelExDisplayName.Text = "〇〇〇〇〇〇";
+            this.LabelExDisplayName.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelEx37
+            // 
+            this.labelEx37.Location = new Point(404, 8);
+            this.labelEx37.Name = "labelEx37";
+            this.labelEx37.Size = new Size(64, 15);
+            this.labelEx37.TabIndex = 44;
+            this.labelEx37.Text = "所属";
+            this.labelEx37.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LabelExBelongs
+            // 
+            this.LabelExBelongs.BackColor = Color.White;
+            this.LabelExBelongs.BorderStyle = BorderStyle.Fixed3D;
+            this.LabelExBelongs.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExBelongs.Location = new Point(468, 4);
+            this.LabelExBelongs.Name = "LabelExBelongs";
+            this.LabelExBelongs.Size = new Size(164, 24);
+            this.LabelExBelongs.TabIndex = 37;
+            this.LabelExBelongs.Text = "新運転";
+            this.LabelExBelongs.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelEx36
+            // 
+            this.labelEx36.Location = new Point(640, 8);
+            this.labelEx36.Name = "labelEx36";
+            this.labelEx36.Size = new Size(64, 15);
+            this.labelEx36.TabIndex = 43;
+            this.labelEx36.Text = "職種";
+            this.labelEx36.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LabelExOccupation
+            // 
+            this.LabelExOccupation.BackColor = Color.White;
+            this.LabelExOccupation.BorderStyle = BorderStyle.Fixed3D;
+            this.LabelExOccupation.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExOccupation.Location = new Point(704, 4);
+            this.LabelExOccupation.Name = "LabelExOccupation";
+            this.LabelExOccupation.Size = new Size(124, 24);
+            this.LabelExOccupation.TabIndex = 38;
+            this.LabelExOccupation.Text = "運転手";
+            this.LabelExOccupation.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelEx35
+            // 
+            this.labelEx35.Location = new Point(836, 8);
+            this.labelEx35.Name = "labelEx35";
+            this.labelEx35.Size = new Size(64, 15);
+            this.labelEx35.TabIndex = 42;
+            this.labelEx35.Text = "雇用形態";
+            this.labelEx35.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LabelExJobForm
+            // 
+            this.LabelExJobForm.BackColor = Color.White;
+            this.LabelExJobForm.BorderStyle = BorderStyle.Fixed3D;
+            this.LabelExJobForm.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExJobForm.Location = new Point(900, 4);
+            this.LabelExJobForm.Name = "LabelExJobForm";
+            this.LabelExJobForm.Size = new Size(124, 24);
+            this.LabelExJobForm.TabIndex = 39;
+            this.LabelExJobForm.Text = "長期雇用";
+            this.LabelExJobForm.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // PanelExMiddle
             // 
-            this.PanelExMiddle.Controls.Add(this.BTNExExpirationPicture);
+            this.PanelExMiddle.Controls.Add(this.labelEx19);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExBaseAddress);
+            this.PanelExMiddle.Controls.Add(this.TextBoxExContractExpirationPeriod);
+            this.PanelExMiddle.Controls.Add(this.labelEx3);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExPayDetail);
+            this.PanelExMiddle.Controls.Add(this.labelEx17);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExBelongs);
+            this.PanelExMiddle.Controls.Add(this.labelEx13);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExBreakTime);
+            this.PanelExMiddle.Controls.Add(this.labelEx9);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExWorkTime);
+            this.PanelExMiddle.Controls.Add(this.labelEx5);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExJobDescription);
+            this.PanelExMiddle.Controls.Add(this.NUDExTravelCost);
+            this.PanelExMiddle.Controls.Add(this.labelEx4);
+            this.PanelExMiddle.Controls.Add(this.NUDExPay);
+            this.PanelExMiddle.Controls.Add(this.labelEx2);
+            this.PanelExMiddle.Controls.Add(this.CheckBoxExCheckFlag);
+            this.PanelExMiddle.Controls.Add(this.GroupBoxExExpiration);
             this.PanelExMiddle.Controls.Add(this.labelEx40);
-            this.PanelExMiddle.Controls.Add(this.NumericUpDownExContractExpirationPeriod);
+            this.PanelExMiddle.Controls.Add(this.NUDExContractExpirationPeriod);
             this.PanelExMiddle.Controls.Add(this.labelEx39);
-            this.PanelExMiddle.Controls.Add(this.labelEx38);
-            this.PanelExMiddle.Controls.Add(this.labelEx37);
-            this.PanelExMiddle.Controls.Add(this.labelEx36);
-            this.PanelExMiddle.Controls.Add(this.labelEx35);
-            this.PanelExMiddle.Controls.Add(this.labelEx34);
-            this.PanelExMiddle.Controls.Add(this.labelEx33);
-            this.PanelExMiddle.Controls.Add(this.labelEx32);
-            this.PanelExMiddle.Controls.Add(this.labelEx31);
-            this.PanelExMiddle.Controls.Add(this.labelEx30);
-            this.PanelExMiddle.Controls.Add(this.labelEx29);
             this.PanelExMiddle.Controls.Add(this.PictureBoxEx1);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx6);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx5);
-            this.PanelExMiddle.Controls.Add(this.groupBoxEx4);
-            this.PanelExMiddle.Controls.Add(this.groupBoxEx3);
-            this.PanelExMiddle.Controls.Add(this.groupBoxEx2);
-            this.PanelExMiddle.Controls.Add(this.groupBoxEx1);
-            this.PanelExMiddle.Controls.Add(this.TextBoxExExpirationMemo);
-            this.PanelExMiddle.Controls.Add(this.labelEx2);
-            this.PanelExMiddle.Controls.Add(this.labelEx1);
-            this.PanelExMiddle.Controls.Add(this.DateTimePickerExExpirationEndDate);
-            this.PanelExMiddle.Controls.Add(this.DateTimePickerExExpirationStartDate);
+            this.PanelExMiddle.Controls.Add(this.GroupBoxExContractExpirationWrittenPledge);
+            this.PanelExMiddle.Controls.Add(this.GroupBoxExContractExpirationShortJob);
+            this.PanelExMiddle.Controls.Add(this.GroupBoxExContractExpirationLongJob);
+            this.PanelExMiddle.Controls.Add(this.GroupBoxExContractExpirationPartTimeJob);
             this.PanelExMiddle.Dock = DockStyle.Fill;
             this.PanelExMiddle.Location = new Point(3, 67);
             this.PanelExMiddle.Name = "PanelExMiddle";
             this.PanelExMiddle.Size = new Size(1898, 947);
             this.PanelExMiddle.TabIndex = 3;
             // 
+            // ComboBoxExBaseAddress
+            // 
+            this.ComboBoxExBaseAddress.FormattingEnabled = true;
+            this.ComboBoxExBaseAddress.Items.AddRange(new object[] { "東京都足立区西伊興１－６－２８", "東京都足立区谷在家２－１９－４　（東武リサイクルセンター）" });
+            this.ComboBoxExBaseAddress.Location = new Point(36, 48);
+            this.ComboBoxExBaseAddress.Name = "ComboBoxExBaseAddress";
+            this.ComboBoxExBaseAddress.Size = new Size(340, 23);
+            this.ComboBoxExBaseAddress.TabIndex = 0;
+            this.ComboBoxExBaseAddress.Text = "東京都足立区西伊興１－６－２８";
+            // 
+            // TextBoxExContractExpirationPeriod
+            // 
+            this.TextBoxExContractExpirationPeriod.Location = new Point(616, 48);
+            this.TextBoxExContractExpirationPeriod.Name = "TextBoxExContractExpirationPeriod";
+            this.TextBoxExContractExpirationPeriod.Size = new Size(232, 23);
+            this.TextBoxExContractExpirationPeriod.TabIndex = 3;
+            // 
+            // labelEx3
+            // 
+            this.labelEx3.Location = new Point(40, 84);
+            this.labelEx3.Name = "labelEx3";
+            this.labelEx3.Size = new Size(572, 15);
+            this.labelEx3.TabIndex = 67;
+            this.labelEx3.Text = "給与区分";
+            this.labelEx3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExPayDetail
+            // 
+            this.ComboBoxExPayDetail.FormattingEnabled = true;
+            this.ComboBoxExPayDetail.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExPayDetail.Location = new Point(36, 104);
+            this.ComboBoxExPayDetail.Name = "ComboBoxExPayDetail";
+            this.ComboBoxExPayDetail.Size = new Size(580, 23);
+            this.ComboBoxExPayDetail.TabIndex = 5;
+            // 
+            // labelEx17
+            // 
+            this.labelEx17.Location = new Point(384, 28);
+            this.labelEx17.Name = "labelEx17";
+            this.labelEx17.Size = new Size(120, 16);
+            this.labelEx17.TabIndex = 64;
+            this.labelEx17.Text = "雇用形態";
+            this.labelEx17.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExBelongs
+            // 
+            this.ComboBoxExBelongs.FormattingEnabled = true;
+            this.ComboBoxExBelongs.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExBelongs.Location = new Point(380, 48);
+            this.ComboBoxExBelongs.Name = "ComboBoxExBelongs";
+            this.ComboBoxExBelongs.Size = new Size(128, 23);
+            this.ComboBoxExBelongs.TabIndex = 1;
+            this.ComboBoxExBelongs.Text = "嘱託雇用契約社員";
+            // 
+            // labelEx13
+            // 
+            this.labelEx13.Location = new Point(576, 144);
+            this.labelEx13.Name = "labelEx13";
+            this.labelEx13.Size = new Size(208, 15);
+            this.labelEx13.TabIndex = 62;
+            this.labelEx13.Text = "休憩時間";
+            this.labelEx13.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExBreakTime
+            // 
+            this.ComboBoxExBreakTime.FormattingEnabled = true;
+            this.ComboBoxExBreakTime.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExBreakTime.Items.AddRange(new object[] { "正午より１時間", "なし" });
+            this.ComboBoxExBreakTime.Location = new Point(572, 164);
+            this.ComboBoxExBreakTime.Name = "ComboBoxExBreakTime";
+            this.ComboBoxExBreakTime.Size = new Size(216, 23);
+            this.ComboBoxExBreakTime.TabIndex = 10;
+            this.ComboBoxExBreakTime.Text = "正午より１時間";
+            // 
+            // labelEx9
+            // 
+            this.labelEx9.Location = new Point(356, 144);
+            this.labelEx9.Name = "labelEx9";
+            this.labelEx9.Size = new Size(208, 15);
+            this.labelEx9.TabIndex = 60;
+            this.labelEx9.Text = "勤務時間";
+            this.labelEx9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExWorkTime
+            // 
+            this.ComboBoxExWorkTime.FormattingEnabled = true;
+            this.ComboBoxExWorkTime.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１２時００分～１６時００分" });
+            this.ComboBoxExWorkTime.Location = new Point(352, 164);
+            this.ComboBoxExWorkTime.Name = "ComboBoxExWorkTime";
+            this.ComboBoxExWorkTime.Size = new Size(216, 23);
+            this.ComboBoxExWorkTime.TabIndex = 9;
+            this.ComboBoxExWorkTime.Text = "７時００分～１６時００分";
+            // 
+            // labelEx5
+            // 
+            this.labelEx5.Location = new Point(40, 144);
+            this.labelEx5.Name = "labelEx5";
+            this.labelEx5.Size = new Size(304, 15);
+            this.labelEx5.TabIndex = 58;
+            this.labelEx5.Text = "従事すべき業務の内容";
+            this.labelEx5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExJobDescription
+            // 
+            this.ComboBoxExJobDescription.FormattingEnabled = true;
+            this.ComboBoxExJobDescription.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExJobDescription.Location = new Point(36, 164);
+            this.ComboBoxExJobDescription.Name = "ComboBoxExJobDescription";
+            this.ComboBoxExJobDescription.Size = new Size(312, 23);
+            this.ComboBoxExJobDescription.TabIndex = 8;
+            // 
+            // NUDExTravelCost
+            // 
+            this.NUDExTravelCost.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NUDExTravelCost.ForeColor = Color.Black;
+            this.NUDExTravelCost.ImeMode = ImeMode.Off;
+            this.NUDExTravelCost.Increment = new decimal(new int[] { 100, 0, 0, 0 });
+            this.NUDExTravelCost.Location = new Point(772, 104);
+            this.NUDExTravelCost.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            this.NUDExTravelCost.Name = "NUDExTravelCost";
+            this.NUDExTravelCost.Size = new Size(68, 25);
+            this.NUDExTravelCost.TabIndex = 7;
+            this.NUDExTravelCost.TextAlign = HorizontalAlignment.Right;
+            this.NUDExTravelCost.ThousandsSeparator = true;
+            this.NUDExTravelCost.Value = new decimal(new int[] { 88888, 0, 0, 0 });
+            // 
+            // labelEx4
+            // 
+            this.labelEx4.Location = new Point(776, 84);
+            this.labelEx4.Name = "labelEx4";
+            this.labelEx4.Size = new Size(60, 15);
+            this.labelEx4.TabIndex = 55;
+            this.labelEx4.Text = "交通費";
+            this.labelEx4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // NUDExPay
+            // 
+            this.NUDExPay.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NUDExPay.ForeColor = Color.Black;
+            this.NUDExPay.ImeMode = ImeMode.Off;
+            this.NUDExPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
+            this.NUDExPay.Location = new Point(620, 104);
+            this.NUDExPay.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            this.NUDExPay.Name = "NUDExPay";
+            this.NUDExPay.Size = new Size(148, 25);
+            this.NUDExPay.TabIndex = 6;
+            this.NUDExPay.TextAlign = HorizontalAlignment.Right;
+            this.NUDExPay.ThousandsSeparator = true;
+            this.NUDExPay.Value = new decimal(new int[] { 888888, 0, 0, 0 });
+            // 
+            // labelEx2
+            // 
+            this.labelEx2.Location = new Point(624, 84);
+            this.labelEx2.Name = "labelEx2";
+            this.labelEx2.Size = new Size(140, 15);
+            this.labelEx2.TabIndex = 51;
+            this.labelEx2.Text = "時給・日給・基本給";
+            this.labelEx2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // CheckBoxExCheckFlag
+            // 
+            this.CheckBoxExCheckFlag.AutoSize = true;
+            this.CheckBoxExCheckFlag.ForeColor = Color.Red;
+            this.CheckBoxExCheckFlag.Location = new Point(860, 51);
+            this.CheckBoxExCheckFlag.Name = "CheckBoxExCheckFlag";
+            this.CheckBoxExCheckFlag.Size = new Size(107, 19);
+            this.CheckBoxExCheckFlag.TabIndex = 4;
+            this.CheckBoxExCheckFlag.Text = "各労供に提出中";
+            this.CheckBoxExCheckFlag.UseVisualStyleBackColor = true;
+            // 
+            // GroupBoxExExpiration
+            // 
+            this.GroupBoxExExpiration.Controls.Add(this.BTNExExpiration);
+            this.GroupBoxExExpiration.Controls.Add(this.DTPExExpirationEndDate);
+            this.GroupBoxExExpiration.Controls.Add(this.BTNExExpirationPicture);
+            this.GroupBoxExExpiration.Controls.Add(this.DTPExExpirationStartDate);
+            this.GroupBoxExExpiration.Controls.Add(this.labelEx1);
+            this.GroupBoxExExpiration.Controls.Add(this.TextBoxExExpirationMemo);
+            this.GroupBoxExExpiration.Location = new Point(12, 228);
+            this.GroupBoxExExpiration.Name = "GroupBoxExExpiration";
+            this.GroupBoxExExpiration.Size = new Size(1188, 80);
+            this.GroupBoxExExpiration.TabIndex = 11;
+            this.GroupBoxExExpiration.TabStop = false;
+            this.GroupBoxExExpiration.Text = "体験入社期間";
+            // 
+            // BTNExExpiration
+            // 
+            this.BTNExExpiration.Location = new Point(1088, 24);
+            this.BTNExExpiration.Name = "BTNExExpiration";
+            this.BTNExExpiration.Size = new Size(84, 22);
+            this.BTNExExpiration.TabIndex = 31;
+            this.BTNExExpiration.Text = "新規登録";
+            this.BTNExExpiration.UseVisualStyleBackColor = true;
+            this.BTNExExpiration.Click += this.ButtonEx_Click;
+            // 
+            // DTPExExpirationEndDate
+            // 
+            this.DTPExExpirationEndDate.CultureFlag = false;
+            this.DTPExExpirationEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExExpirationEndDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExExpirationEndDate.Location = new Point(392, 24);
+            this.DTPExExpirationEndDate.Name = "DTPExExpirationEndDate";
+            this.DTPExExpirationEndDate.Size = new Size(180, 23);
+            this.DTPExExpirationEndDate.TabIndex = 1;
+            this.DTPExExpirationEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
             // BTNExExpirationPicture
             // 
-            this.BTNExExpirationPicture.Location = new Point(1096, 124);
+            this.BTNExExpirationPicture.Location = new Point(1088, 48);
             this.BTNExExpirationPicture.Name = "BTNExExpirationPicture";
-            this.BTNExExpirationPicture.Size = new Size(22, 22);
+            this.BTNExExpirationPicture.Size = new Size(84, 22);
             this.BTNExExpirationPicture.TabIndex = 30;
-            this.BTNExExpirationPicture.Text = "P";
+            this.BTNExExpirationPicture.Text = "契約・誓約書";
             this.BTNExExpirationPicture.UseVisualStyleBackColor = true;
             this.BTNExExpirationPicture.Click += this.ButtonEx_Click;
             // 
+            // DTPExExpirationStartDate
+            // 
+            this.DTPExExpirationStartDate.CultureFlag = false;
+            this.DTPExExpirationStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExExpirationStartDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExExpirationStartDate.Location = new Point(188, 24);
+            this.DTPExExpirationStartDate.Name = "DTPExExpirationStartDate";
+            this.DTPExExpirationStartDate.Size = new Size(180, 23);
+            this.DTPExExpirationStartDate.TabIndex = 0;
+            this.DTPExExpirationStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // labelEx1
+            // 
+            this.labelEx1.AutoSize = true;
+            this.labelEx1.Location = new Point(372, 28);
+            this.labelEx1.Name = "labelEx1";
+            this.labelEx1.Size = new Size(19, 15);
+            this.labelEx1.TabIndex = 2;
+            this.labelEx1.Text = "～";
+            // 
+            // TextBoxExExpirationMemo
+            // 
+            this.TextBoxExExpirationMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExExpirationMemo.Location = new Point(588, 24);
+            this.TextBoxExExpirationMemo.Name = "TextBoxExExpirationMemo";
+            this.TextBoxExExpirationMemo.Size = new Size(496, 23);
+            this.TextBoxExExpirationMemo.TabIndex = 12;
+            // 
             // labelEx40
             // 
-            this.labelEx40.Location = new Point(96, 92);
+            this.labelEx40.Location = new Point(560, 52);
             this.labelEx40.Name = "labelEx40";
             this.labelEx40.Size = new Size(52, 15);
             this.labelEx40.TabIndex = 48;
             this.labelEx40.Text = "カ月契約";
             this.labelEx40.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // NumericUpDownExContractExpirationPeriod
+            // NUDExContractExpirationPeriod
             // 
-            this.NumericUpDownExContractExpirationPeriod.Location = new Point(24, 88);
-            this.NumericUpDownExContractExpirationPeriod.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
-            this.NumericUpDownExContractExpirationPeriod.Name = "NumericUpDownExContractExpirationPeriod";
-            this.NumericUpDownExContractExpirationPeriod.Size = new Size(68, 23);
-            this.NumericUpDownExContractExpirationPeriod.TabIndex = 47;
-            this.NumericUpDownExContractExpirationPeriod.TextAlign = HorizontalAlignment.Right;
-            this.NumericUpDownExContractExpirationPeriod.Value = new decimal(new int[] { 12, 0, 0, 0 });
+            this.NUDExContractExpirationPeriod.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NUDExContractExpirationPeriod.ForeColor = Color.Red;
+            this.NUDExContractExpirationPeriod.ImeMode = ImeMode.Off;
+            this.NUDExContractExpirationPeriod.Location = new Point(512, 48);
+            this.NUDExContractExpirationPeriod.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
+            this.NUDExContractExpirationPeriod.Name = "NUDExContractExpirationPeriod";
+            this.NUDExContractExpirationPeriod.Size = new Size(44, 25);
+            this.NUDExContractExpirationPeriod.TabIndex = 2;
+            this.NUDExContractExpirationPeriod.TextAlign = HorizontalAlignment.Right;
+            this.NUDExContractExpirationPeriod.Value = new decimal(new int[] { 12, 0, 0, 0 });
             // 
             // labelEx39
             // 
-            this.labelEx39.Location = new Point(28, 68);
+            this.labelEx39.Location = new Point(516, 28);
             this.labelEx39.Name = "labelEx39";
-            this.labelEx39.Size = new Size(120, 15);
+            this.labelEx39.Size = new Size(328, 16);
             this.labelEx39.TabIndex = 46;
             this.labelEx39.Text = "契約期間";
             this.labelEx39.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx38
-            // 
-            this.labelEx38.Location = new Point(156, 12);
-            this.labelEx38.Name = "labelEx38";
-            this.labelEx38.Size = new Size(120, 15);
-            this.labelEx38.TabIndex = 45;
-            this.labelEx38.Text = "氏名";
-            this.labelEx38.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx37
-            // 
-            this.labelEx37.Location = new Point(284, 12);
-            this.labelEx37.Name = "labelEx37";
-            this.labelEx37.Size = new Size(120, 15);
-            this.labelEx37.TabIndex = 44;
-            this.labelEx37.Text = "所属";
-            this.labelEx37.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx36
-            // 
-            this.labelEx36.Location = new Point(412, 12);
-            this.labelEx36.Name = "labelEx36";
-            this.labelEx36.Size = new Size(120, 15);
-            this.labelEx36.TabIndex = 43;
-            this.labelEx36.Text = "職種";
-            this.labelEx36.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx35
-            // 
-            this.labelEx35.Location = new Point(540, 12);
-            this.labelEx35.Name = "labelEx35";
-            this.labelEx35.Size = new Size(120, 15);
-            this.labelEx35.TabIndex = 42;
-            this.labelEx35.Text = "雇用形態";
-            this.labelEx35.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx34
-            // 
-            this.labelEx34.Location = new Point(28, 12);
-            this.labelEx34.Name = "labelEx34";
-            this.labelEx34.Size = new Size(120, 15);
-            this.labelEx34.TabIndex = 41;
-            this.labelEx34.Text = "組合№";
-            this.labelEx34.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx33
-            // 
-            this.labelEx33.BorderStyle = BorderStyle.Fixed3D;
-            this.labelEx33.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.labelEx33.Location = new Point(24, 32);
-            this.labelEx33.Name = "labelEx33";
-            this.labelEx33.Size = new Size(124, 24);
-            this.labelEx33.TabIndex = 40;
-            this.labelEx33.Text = "888";
-            this.labelEx33.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelEx32
-            // 
-            this.labelEx32.BorderStyle = BorderStyle.Fixed3D;
-            this.labelEx32.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.labelEx32.Location = new Point(536, 32);
-            this.labelEx32.Name = "labelEx32";
-            this.labelEx32.Size = new Size(124, 24);
-            this.labelEx32.TabIndex = 39;
-            this.labelEx32.Text = "長期雇用";
-            this.labelEx32.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelEx31
-            // 
-            this.labelEx31.BorderStyle = BorderStyle.Fixed3D;
-            this.labelEx31.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.labelEx31.Location = new Point(408, 32);
-            this.labelEx31.Name = "labelEx31";
-            this.labelEx31.Size = new Size(124, 24);
-            this.labelEx31.TabIndex = 38;
-            this.labelEx31.Text = "運転手";
-            this.labelEx31.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelEx30
-            // 
-            this.labelEx30.BorderStyle = BorderStyle.Fixed3D;
-            this.labelEx30.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.labelEx30.Location = new Point(280, 32);
-            this.labelEx30.Name = "labelEx30";
-            this.labelEx30.Size = new Size(124, 24);
-            this.labelEx30.TabIndex = 37;
-            this.labelEx30.Text = "新運転";
-            this.labelEx30.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelEx29
-            // 
-            this.labelEx29.BorderStyle = BorderStyle.Fixed3D;
-            this.labelEx29.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            this.labelEx29.Location = new Point(152, 32);
-            this.labelEx29.Name = "labelEx29";
-            this.labelEx29.Size = new Size(124, 24);
-            this.labelEx29.TabIndex = 36;
-            this.labelEx29.Text = "〇〇〇〇〇〇";
-            this.labelEx29.TextAlign = ContentAlignment.MiddleRight;
             // 
             // PictureBoxEx1
             // 
@@ -404,6 +661,7 @@
             this.PictureBoxEx1.Location = new Point(1232, 24);
             this.PictureBoxEx1.Name = "PictureBoxEx1";
             this.PictureBoxEx1.Size = new Size(640, 900);
+            this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
             this.PictureBoxEx1.TabIndex = 35;
             this.PictureBoxEx1.TabStop = false;
             // 
@@ -429,46 +687,30 @@
             // 
             // groupBoxEx6
             // 
-            this.groupBoxEx6.Controls.Add(this.BTNExContractExpirationNoticePicture2);
             this.groupBoxEx6.Controls.Add(this.BTNExContractExpirationNoticePicture1);
             this.groupBoxEx6.Controls.Add(this.BTNExContractExpirationNotice);
-            this.groupBoxEx6.Controls.Add(this.labelEx25);
             this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeStartDate);
             this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeEndDate);
             this.groupBoxEx6.Controls.Add(this.labelEx26);
-            this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeMemo);
-            this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeMemo2);
+            this.groupBoxEx6.Controls.Add(this.TextBoxExContractExpirationNoticeMemo);
             this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeStartDate1);
-            this.groupBoxEx6.Controls.Add(this.labelEx27);
             this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeEndDate1);
-            this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeEndDate2);
             this.groupBoxEx6.Controls.Add(this.labelEx28);
-            this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeStartDate2);
-            this.groupBoxEx6.Controls.Add(this.DTPExContractExpirationNoticeMemo1);
-            this.groupBoxEx6.Location = new Point(12, 740);
+            this.groupBoxEx6.Controls.Add(this.TextBoxExContractExpirationNoticeMemo1);
+            this.groupBoxEx6.Location = new Point(12, 844);
             this.groupBoxEx6.Name = "groupBoxEx6";
-            this.groupBoxEx6.Size = new Size(1188, 112);
-            this.groupBoxEx6.TabIndex = 34;
+            this.groupBoxEx6.Size = new Size(1188, 80);
+            this.groupBoxEx6.TabIndex = 17;
             this.groupBoxEx6.TabStop = false;
-            this.groupBoxEx6.Text = "groupBoxEx6";
-            // 
-            // BTNExContractExpirationNoticePicture2
-            // 
-            this.BTNExContractExpirationNoticePicture2.Location = new Point(1088, 76);
-            this.BTNExContractExpirationNoticePicture2.Name = "BTNExContractExpirationNoticePicture2";
-            this.BTNExContractExpirationNoticePicture2.Size = new Size(22, 22);
-            this.BTNExContractExpirationNoticePicture2.TabIndex = 60;
-            this.BTNExContractExpirationNoticePicture2.Text = "P";
-            this.BTNExContractExpirationNoticePicture2.UseVisualStyleBackColor = true;
-            this.BTNExContractExpirationNoticePicture2.Click += this.ButtonEx_Click;
+            this.groupBoxEx6.Text = "契約満了通知(事前通知書)";
             // 
             // BTNExContractExpirationNoticePicture1
             // 
             this.BTNExContractExpirationNoticePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationNoticePicture1.Name = "BTNExContractExpirationNoticePicture1";
-            this.BTNExContractExpirationNoticePicture1.Size = new Size(22, 22);
+            this.BTNExContractExpirationNoticePicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationNoticePicture1.TabIndex = 59;
-            this.BTNExContractExpirationNoticePicture1.Text = "P";
+            this.BTNExContractExpirationNoticePicture1.Text = "契約・誓約書";
             this.BTNExContractExpirationNoticePicture1.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationNoticePicture1.Click += this.ButtonEx_Click;
             // 
@@ -476,19 +718,11 @@
             // 
             this.BTNExContractExpirationNotice.Location = new Point(1088, 20);
             this.BTNExContractExpirationNotice.Name = "BTNExContractExpirationNotice";
-            this.BTNExContractExpirationNotice.Size = new Size(76, 22);
+            this.BTNExContractExpirationNotice.Size = new Size(84, 22);
             this.BTNExContractExpirationNotice.TabIndex = 29;
-            this.BTNExContractExpirationNotice.Text = "INSERT";
+            this.BTNExContractExpirationNotice.Text = "新規登録";
             this.BTNExContractExpirationNotice.UseVisualStyleBackColor = true;
-            // 
-            // labelEx25
-            // 
-            this.labelEx25.Location = new Point(8, 24);
-            this.labelEx25.Name = "labelEx25";
-            this.labelEx25.Size = new Size(176, 15);
-            this.labelEx25.TabIndex = 28;
-            this.labelEx25.Text = "契約満了通知(事前通知書)";
-            this.labelEx25.TextAlign = ContentAlignment.MiddleRight;
+            this.BTNExContractExpirationNotice.Click += this.ButtonEx_Click;
             // 
             // DTPExContractExpirationNoticeStartDate
             // 
@@ -521,22 +755,13 @@
             this.labelEx26.TabIndex = 10;
             this.labelEx26.Text = "～";
             // 
-            // DTPExContractExpirationNoticeMemo
+            // TextBoxExContractExpirationNoticeMemo
             // 
-            this.DTPExContractExpirationNoticeMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationNoticeMemo.Location = new Point(588, 20);
-            this.DTPExContractExpirationNoticeMemo.Name = "DTPExContractExpirationNoticeMemo";
-            this.DTPExContractExpirationNoticeMemo.Size = new Size(496, 23);
-            this.DTPExContractExpirationNoticeMemo.TabIndex = 14;
-            // 
-            // DTPExContractExpirationNoticeMemo2
-            // 
-            this.DTPExContractExpirationNoticeMemo2.Enabled = false;
-            this.DTPExContractExpirationNoticeMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationNoticeMemo2.Location = new Point(588, 76);
-            this.DTPExContractExpirationNoticeMemo2.Name = "DTPExContractExpirationNoticeMemo2";
-            this.DTPExContractExpirationNoticeMemo2.Size = new Size(496, 23);
-            this.DTPExContractExpirationNoticeMemo2.TabIndex = 22;
+            this.TextBoxExContractExpirationNoticeMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationNoticeMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationNoticeMemo.Name = "TextBoxExContractExpirationNoticeMemo";
+            this.TextBoxExContractExpirationNoticeMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationNoticeMemo.TabIndex = 14;
             // 
             // DTPExContractExpirationNoticeStartDate1
             // 
@@ -550,16 +775,6 @@
             this.DTPExContractExpirationNoticeStartDate1.TabIndex = 15;
             this.DTPExContractExpirationNoticeStartDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // labelEx27
-            // 
-            this.labelEx27.AutoSize = true;
-            this.labelEx27.Enabled = false;
-            this.labelEx27.Location = new Point(372, 80);
-            this.labelEx27.Name = "labelEx27";
-            this.labelEx27.Size = new Size(19, 15);
-            this.labelEx27.TabIndex = 21;
-            this.labelEx27.Text = "～";
-            // 
             // DTPExContractExpirationNoticeEndDate1
             // 
             this.DTPExContractExpirationNoticeEndDate1.CultureFlag = false;
@@ -572,18 +787,6 @@
             this.DTPExContractExpirationNoticeEndDate1.TabIndex = 16;
             this.DTPExContractExpirationNoticeEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExContractExpirationNoticeEndDate2
-            // 
-            this.DTPExContractExpirationNoticeEndDate2.CultureFlag = false;
-            this.DTPExContractExpirationNoticeEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExContractExpirationNoticeEndDate2.Enabled = false;
-            this.DTPExContractExpirationNoticeEndDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExContractExpirationNoticeEndDate2.Location = new Point(392, 76);
-            this.DTPExContractExpirationNoticeEndDate2.Name = "DTPExContractExpirationNoticeEndDate2";
-            this.DTPExContractExpirationNoticeEndDate2.Size = new Size(180, 23);
-            this.DTPExContractExpirationNoticeEndDate2.TabIndex = 20;
-            this.DTPExContractExpirationNoticeEndDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
             // labelEx28
             // 
             this.labelEx28.AutoSize = true;
@@ -594,111 +797,75 @@
             this.labelEx28.TabIndex = 17;
             this.labelEx28.Text = "～";
             // 
-            // DTPExContractExpirationNoticeStartDate2
+            // TextBoxExContractExpirationNoticeMemo1
             // 
-            this.DTPExContractExpirationNoticeStartDate2.CultureFlag = false;
-            this.DTPExContractExpirationNoticeStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExContractExpirationNoticeStartDate2.Enabled = false;
-            this.DTPExContractExpirationNoticeStartDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExContractExpirationNoticeStartDate2.Location = new Point(188, 76);
-            this.DTPExContractExpirationNoticeStartDate2.Name = "DTPExContractExpirationNoticeStartDate2";
-            this.DTPExContractExpirationNoticeStartDate2.Size = new Size(180, 23);
-            this.DTPExContractExpirationNoticeStartDate2.TabIndex = 19;
-            this.DTPExContractExpirationNoticeStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DTPExContractExpirationNoticeMemo1
-            // 
-            this.DTPExContractExpirationNoticeMemo1.Enabled = false;
-            this.DTPExContractExpirationNoticeMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationNoticeMemo1.Location = new Point(588, 48);
-            this.DTPExContractExpirationNoticeMemo1.Name = "DTPExContractExpirationNoticeMemo1";
-            this.DTPExContractExpirationNoticeMemo1.Size = new Size(496, 23);
-            this.DTPExContractExpirationNoticeMemo1.TabIndex = 18;
+            this.TextBoxExContractExpirationNoticeMemo1.Enabled = false;
+            this.TextBoxExContractExpirationNoticeMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationNoticeMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationNoticeMemo1.Name = "TextBoxExContractExpirationNoticeMemo1";
+            this.TextBoxExContractExpirationNoticeMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationNoticeMemo1.TabIndex = 18;
             // 
             // groupBoxEx5
             // 
-            this.groupBoxEx5.Controls.Add(this.BTNExLossWrittenPledgePicture2);
-            this.groupBoxEx5.Controls.Add(this.BTNExLossWrittenPledgePicture1);
-            this.groupBoxEx5.Controls.Add(this.BTNExLossWrittenPledge);
-            this.groupBoxEx5.Controls.Add(this.labelEx21);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeStartDate);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeEndDate);
+            this.groupBoxEx5.Controls.Add(this.BTNExContractExpirationLossWrittenPledgePicture1);
+            this.groupBoxEx5.Controls.Add(this.BTNExContractExpirationLossWrittenPledge);
+            this.groupBoxEx5.Controls.Add(this.DTPExContractExpirationLossWrittenPledgeStartDate);
+            this.groupBoxEx5.Controls.Add(this.DTPExContractExpirationLossWrittenPledgeEndDate);
             this.groupBoxEx5.Controls.Add(this.labelEx22);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeMemo);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeMemo2);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeStartDate1);
-            this.groupBoxEx5.Controls.Add(this.labelEx23);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeEndDate1);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeEndDate2);
+            this.groupBoxEx5.Controls.Add(this.TextBoxExContractExpirationLossWrittenPledgeMemo);
+            this.groupBoxEx5.Controls.Add(this.DTPExContractExpirationLossWrittenPledgeStartDate1);
+            this.groupBoxEx5.Controls.Add(this.DTPExContractExpirationLossWrittenPledgeEndDate1);
             this.groupBoxEx5.Controls.Add(this.labelEx24);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeStartDate2);
-            this.groupBoxEx5.Controls.Add(this.DTPExLossWrittenPledgeMemo1);
-            this.groupBoxEx5.Location = new Point(12, 624);
+            this.groupBoxEx5.Controls.Add(this.TextBoxExContractExpirationLossWrittenPledgeMemo1);
+            this.groupBoxEx5.Location = new Point(12, 756);
             this.groupBoxEx5.Name = "groupBoxEx5";
-            this.groupBoxEx5.Size = new Size(1188, 112);
-            this.groupBoxEx5.TabIndex = 33;
+            this.groupBoxEx5.Size = new Size(1188, 80);
+            this.groupBoxEx5.TabIndex = 16;
             this.groupBoxEx5.TabStop = false;
-            this.groupBoxEx5.Text = "groupBoxEx5";
+            this.groupBoxEx5.Text = "失墜行為書類期間";
             // 
-            // BTNExLossWrittenPledgePicture2
+            // BTNExContractExpirationLossWrittenPledgePicture1
             // 
-            this.BTNExLossWrittenPledgePicture2.Location = new Point(1088, 76);
-            this.BTNExLossWrittenPledgePicture2.Name = "BTNExLossWrittenPledgePicture2";
-            this.BTNExLossWrittenPledgePicture2.Size = new Size(22, 22);
-            this.BTNExLossWrittenPledgePicture2.TabIndex = 58;
-            this.BTNExLossWrittenPledgePicture2.Text = "P";
-            this.BTNExLossWrittenPledgePicture2.UseVisualStyleBackColor = true;
-            this.BTNExLossWrittenPledgePicture2.Click += this.ButtonEx_Click;
+            this.BTNExContractExpirationLossWrittenPledgePicture1.Location = new Point(1088, 48);
+            this.BTNExContractExpirationLossWrittenPledgePicture1.Name = "BTNExContractExpirationLossWrittenPledgePicture1";
+            this.BTNExContractExpirationLossWrittenPledgePicture1.Size = new Size(84, 22);
+            this.BTNExContractExpirationLossWrittenPledgePicture1.TabIndex = 57;
+            this.BTNExContractExpirationLossWrittenPledgePicture1.Text = "契約・誓約書";
+            this.BTNExContractExpirationLossWrittenPledgePicture1.UseVisualStyleBackColor = true;
+            this.BTNExContractExpirationLossWrittenPledgePicture1.Click += this.ButtonEx_Click;
             // 
-            // BTNExLossWrittenPledgePicture1
+            // BTNExContractExpirationLossWrittenPledge
             // 
-            this.BTNExLossWrittenPledgePicture1.Location = new Point(1088, 48);
-            this.BTNExLossWrittenPledgePicture1.Name = "BTNExLossWrittenPledgePicture1";
-            this.BTNExLossWrittenPledgePicture1.Size = new Size(22, 22);
-            this.BTNExLossWrittenPledgePicture1.TabIndex = 57;
-            this.BTNExLossWrittenPledgePicture1.Text = "P";
-            this.BTNExLossWrittenPledgePicture1.UseVisualStyleBackColor = true;
-            this.BTNExLossWrittenPledgePicture1.Click += this.ButtonEx_Click;
+            this.BTNExContractExpirationLossWrittenPledge.Location = new Point(1088, 20);
+            this.BTNExContractExpirationLossWrittenPledge.Name = "BTNExContractExpirationLossWrittenPledge";
+            this.BTNExContractExpirationLossWrittenPledge.Size = new Size(84, 22);
+            this.BTNExContractExpirationLossWrittenPledge.TabIndex = 29;
+            this.BTNExContractExpirationLossWrittenPledge.Text = "新規登録";
+            this.BTNExContractExpirationLossWrittenPledge.UseVisualStyleBackColor = true;
+            this.BTNExContractExpirationLossWrittenPledge.Click += this.ButtonEx_Click;
             // 
-            // BTNExLossWrittenPledge
+            // DTPExContractExpirationLossWrittenPledgeStartDate
             // 
-            this.BTNExLossWrittenPledge.Location = new Point(1088, 20);
-            this.BTNExLossWrittenPledge.Name = "BTNExLossWrittenPledge";
-            this.BTNExLossWrittenPledge.Size = new Size(76, 22);
-            this.BTNExLossWrittenPledge.TabIndex = 29;
-            this.BTNExLossWrittenPledge.Text = "INSERT";
-            this.BTNExLossWrittenPledge.UseVisualStyleBackColor = true;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.CultureFlag = false;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.Location = new Point(188, 20);
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.Name = "DTPExContractExpirationLossWrittenPledgeStartDate";
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.Size = new Size(180, 23);
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.TabIndex = 8;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // labelEx21
+            // DTPExContractExpirationLossWrittenPledgeEndDate
             // 
-            this.labelEx21.Location = new Point(8, 24);
-            this.labelEx21.Name = "labelEx21";
-            this.labelEx21.Size = new Size(176, 15);
-            this.labelEx21.TabIndex = 28;
-            this.labelEx21.Text = "失墜行為書類期間";
-            this.labelEx21.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // DTPExLossWrittenPledgeStartDate
-            // 
-            this.DTPExLossWrittenPledgeStartDate.CultureFlag = false;
-            this.DTPExLossWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeStartDate.Location = new Point(188, 20);
-            this.DTPExLossWrittenPledgeStartDate.Name = "DTPExLossWrittenPledgeStartDate";
-            this.DTPExLossWrittenPledgeStartDate.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeStartDate.TabIndex = 8;
-            this.DTPExLossWrittenPledgeStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DTPExLossWrittenPledgeEndDate
-            // 
-            this.DTPExLossWrittenPledgeEndDate.CultureFlag = false;
-            this.DTPExLossWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeEndDate.Location = new Point(392, 20);
-            this.DTPExLossWrittenPledgeEndDate.Name = "DTPExLossWrittenPledgeEndDate";
-            this.DTPExLossWrittenPledgeEndDate.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeEndDate.TabIndex = 9;
-            this.DTPExLossWrittenPledgeEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.CultureFlag = false;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.Location = new Point(392, 20);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.Name = "DTPExContractExpirationLossWrittenPledgeEndDate";
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.Size = new Size(180, 23);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.TabIndex = 9;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx22
             // 
@@ -709,68 +876,37 @@
             this.labelEx22.TabIndex = 10;
             this.labelEx22.Text = "～";
             // 
-            // DTPExLossWrittenPledgeMemo
+            // TextBoxExContractExpirationLossWrittenPledgeMemo
             // 
-            this.DTPExLossWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExLossWrittenPledgeMemo.Location = new Point(588, 20);
-            this.DTPExLossWrittenPledgeMemo.Name = "DTPExLossWrittenPledgeMemo";
-            this.DTPExLossWrittenPledgeMemo.Size = new Size(496, 23);
-            this.DTPExLossWrittenPledgeMemo.TabIndex = 14;
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo.Name = "TextBoxExContractExpirationLossWrittenPledgeMemo";
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo.TabIndex = 14;
             // 
-            // DTPExLossWrittenPledgeMemo2
+            // DTPExContractExpirationLossWrittenPledgeStartDate1
             // 
-            this.DTPExLossWrittenPledgeMemo2.Enabled = false;
-            this.DTPExLossWrittenPledgeMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExLossWrittenPledgeMemo2.Location = new Point(588, 76);
-            this.DTPExLossWrittenPledgeMemo2.Name = "DTPExLossWrittenPledgeMemo2";
-            this.DTPExLossWrittenPledgeMemo2.Size = new Size(496, 23);
-            this.DTPExLossWrittenPledgeMemo2.TabIndex = 22;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.CultureFlag = false;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Enabled = false;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Location = new Point(188, 48);
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Name = "DTPExContractExpirationLossWrittenPledgeStartDate1";
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Size = new Size(180, 23);
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.TabIndex = 15;
+            this.DTPExContractExpirationLossWrittenPledgeStartDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExLossWrittenPledgeStartDate1
+            // DTPExContractExpirationLossWrittenPledgeEndDate1
             // 
-            this.DTPExLossWrittenPledgeStartDate1.CultureFlag = false;
-            this.DTPExLossWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeStartDate1.Enabled = false;
-            this.DTPExLossWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeStartDate1.Location = new Point(188, 48);
-            this.DTPExLossWrittenPledgeStartDate1.Name = "DTPExLossWrittenPledgeStartDate1";
-            this.DTPExLossWrittenPledgeStartDate1.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeStartDate1.TabIndex = 15;
-            this.DTPExLossWrittenPledgeStartDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // labelEx23
-            // 
-            this.labelEx23.AutoSize = true;
-            this.labelEx23.Enabled = false;
-            this.labelEx23.Location = new Point(372, 80);
-            this.labelEx23.Name = "labelEx23";
-            this.labelEx23.Size = new Size(19, 15);
-            this.labelEx23.TabIndex = 21;
-            this.labelEx23.Text = "～";
-            // 
-            // DTPExLossWrittenPledgeEndDate1
-            // 
-            this.DTPExLossWrittenPledgeEndDate1.CultureFlag = false;
-            this.DTPExLossWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeEndDate1.Enabled = false;
-            this.DTPExLossWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeEndDate1.Location = new Point(392, 48);
-            this.DTPExLossWrittenPledgeEndDate1.Name = "DTPExLossWrittenPledgeEndDate1";
-            this.DTPExLossWrittenPledgeEndDate1.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeEndDate1.TabIndex = 16;
-            this.DTPExLossWrittenPledgeEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DTPExLossWrittenPledgeEndDate2
-            // 
-            this.DTPExLossWrittenPledgeEndDate2.CultureFlag = false;
-            this.DTPExLossWrittenPledgeEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeEndDate2.Enabled = false;
-            this.DTPExLossWrittenPledgeEndDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeEndDate2.Location = new Point(392, 76);
-            this.DTPExLossWrittenPledgeEndDate2.Name = "DTPExLossWrittenPledgeEndDate2";
-            this.DTPExLossWrittenPledgeEndDate2.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeEndDate2.TabIndex = 20;
-            this.DTPExLossWrittenPledgeEndDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.CultureFlag = false;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Enabled = false;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Location = new Point(392, 48);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Name = "DTPExContractExpirationLossWrittenPledgeEndDate1";
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Size = new Size(180, 23);
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.TabIndex = 16;
+            this.DTPExContractExpirationLossWrittenPledgeEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx24
             // 
@@ -782,111 +918,75 @@
             this.labelEx24.TabIndex = 17;
             this.labelEx24.Text = "～";
             // 
-            // DTPExLossWrittenPledgeStartDate2
+            // TextBoxExContractExpirationLossWrittenPledgeMemo1
             // 
-            this.DTPExLossWrittenPledgeStartDate2.CultureFlag = false;
-            this.DTPExLossWrittenPledgeStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExLossWrittenPledgeStartDate2.Enabled = false;
-            this.DTPExLossWrittenPledgeStartDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExLossWrittenPledgeStartDate2.Location = new Point(188, 76);
-            this.DTPExLossWrittenPledgeStartDate2.Name = "DTPExLossWrittenPledgeStartDate2";
-            this.DTPExLossWrittenPledgeStartDate2.Size = new Size(180, 23);
-            this.DTPExLossWrittenPledgeStartDate2.TabIndex = 19;
-            this.DTPExLossWrittenPledgeStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.Enabled = false;
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.Name = "TextBoxExContractExpirationLossWrittenPledgeMemo1";
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.TabIndex = 18;
             // 
-            // DTPExLossWrittenPledgeMemo1
+            // GroupBoxExContractExpirationWrittenPledge
             // 
-            this.DTPExLossWrittenPledgeMemo1.Enabled = false;
-            this.DTPExLossWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExLossWrittenPledgeMemo1.Location = new Point(588, 48);
-            this.DTPExLossWrittenPledgeMemo1.Name = "DTPExLossWrittenPledgeMemo1";
-            this.DTPExLossWrittenPledgeMemo1.Size = new Size(496, 23);
-            this.DTPExLossWrittenPledgeMemo1.TabIndex = 18;
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.BTNExContractExpirationWrittenPledgePicture1);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.BTNExContractExpirationWrittenPledge);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.DTPExContractExpirationWrittenPledgeStartDate);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.DTPExContractExpirationWrittenPledgeEndDate);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.labelEx18);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.TextBoxExContractExpirationWrittenPledgeMemo);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.DTPExContractExpirationWrittenPledgeStartDate1);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.DTPExContractExpirationWrittenPledgeEndDate1);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.labelEx20);
+            this.GroupBoxExContractExpirationWrittenPledge.Controls.Add(this.TextBoxExContractExpirationWrittenPledgeMemo1);
+            this.GroupBoxExContractExpirationWrittenPledge.Location = new Point(12, 668);
+            this.GroupBoxExContractExpirationWrittenPledge.Name = "GroupBoxExContractExpirationWrittenPledge";
+            this.GroupBoxExContractExpirationWrittenPledge.Size = new Size(1188, 80);
+            this.GroupBoxExContractExpirationWrittenPledge.TabIndex = 15;
+            this.GroupBoxExContractExpirationWrittenPledge.TabStop = false;
+            this.GroupBoxExContractExpirationWrittenPledge.Text = "誓約書期間";
             // 
-            // groupBoxEx4
+            // BTNExContractExpirationWrittenPledgePicture1
             // 
-            this.groupBoxEx4.Controls.Add(this.BTNExWrittenPledgePicture2);
-            this.groupBoxEx4.Controls.Add(this.BTNExWrittenPledgePicture1);
-            this.groupBoxEx4.Controls.Add(this.BTNExWrittenPledge);
-            this.groupBoxEx4.Controls.Add(this.labelEx17);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeStartDate);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeEndDate);
-            this.groupBoxEx4.Controls.Add(this.labelEx18);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeMemo);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeMemo2);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeStartDate1);
-            this.groupBoxEx4.Controls.Add(this.labelEx19);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeEndDate1);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeEndDate2);
-            this.groupBoxEx4.Controls.Add(this.labelEx20);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeStartDate2);
-            this.groupBoxEx4.Controls.Add(this.DTPExWrittenPledgeMemo1);
-            this.groupBoxEx4.Location = new Point(12, 508);
-            this.groupBoxEx4.Name = "groupBoxEx4";
-            this.groupBoxEx4.Size = new Size(1188, 112);
-            this.groupBoxEx4.TabIndex = 32;
-            this.groupBoxEx4.TabStop = false;
-            this.groupBoxEx4.Text = "groupBoxEx4";
+            this.BTNExContractExpirationWrittenPledgePicture1.Location = new Point(1088, 48);
+            this.BTNExContractExpirationWrittenPledgePicture1.Name = "BTNExContractExpirationWrittenPledgePicture1";
+            this.BTNExContractExpirationWrittenPledgePicture1.Size = new Size(84, 22);
+            this.BTNExContractExpirationWrittenPledgePicture1.TabIndex = 55;
+            this.BTNExContractExpirationWrittenPledgePicture1.Text = "契約・誓約書";
+            this.BTNExContractExpirationWrittenPledgePicture1.UseVisualStyleBackColor = true;
+            this.BTNExContractExpirationWrittenPledgePicture1.Click += this.ButtonEx_Click;
             // 
-            // BTNExWrittenPledgePicture2
+            // BTNExContractExpirationWrittenPledge
             // 
-            this.BTNExWrittenPledgePicture2.Location = new Point(1088, 76);
-            this.BTNExWrittenPledgePicture2.Name = "BTNExWrittenPledgePicture2";
-            this.BTNExWrittenPledgePicture2.Size = new Size(22, 22);
-            this.BTNExWrittenPledgePicture2.TabIndex = 56;
-            this.BTNExWrittenPledgePicture2.Text = "P";
-            this.BTNExWrittenPledgePicture2.UseVisualStyleBackColor = true;
-            this.BTNExWrittenPledgePicture2.Click += this.ButtonEx_Click;
+            this.BTNExContractExpirationWrittenPledge.Location = new Point(1088, 20);
+            this.BTNExContractExpirationWrittenPledge.Name = "BTNExContractExpirationWrittenPledge";
+            this.BTNExContractExpirationWrittenPledge.Size = new Size(84, 22);
+            this.BTNExContractExpirationWrittenPledge.TabIndex = 29;
+            this.BTNExContractExpirationWrittenPledge.Text = "新規登録";
+            this.BTNExContractExpirationWrittenPledge.UseVisualStyleBackColor = true;
+            this.BTNExContractExpirationWrittenPledge.Click += this.ButtonEx_Click;
             // 
-            // BTNExWrittenPledgePicture1
+            // DTPExContractExpirationWrittenPledgeStartDate
             // 
-            this.BTNExWrittenPledgePicture1.Location = new Point(1088, 48);
-            this.BTNExWrittenPledgePicture1.Name = "BTNExWrittenPledgePicture1";
-            this.BTNExWrittenPledgePicture1.Size = new Size(22, 22);
-            this.BTNExWrittenPledgePicture1.TabIndex = 55;
-            this.BTNExWrittenPledgePicture1.Text = "P";
-            this.BTNExWrittenPledgePicture1.UseVisualStyleBackColor = true;
-            this.BTNExWrittenPledgePicture1.Click += this.ButtonEx_Click;
+            this.DTPExContractExpirationWrittenPledgeStartDate.CultureFlag = false;
+            this.DTPExContractExpirationWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationWrittenPledgeStartDate.Location = new Point(188, 20);
+            this.DTPExContractExpirationWrittenPledgeStartDate.Name = "DTPExContractExpirationWrittenPledgeStartDate";
+            this.DTPExContractExpirationWrittenPledgeStartDate.Size = new Size(180, 23);
+            this.DTPExContractExpirationWrittenPledgeStartDate.TabIndex = 8;
+            this.DTPExContractExpirationWrittenPledgeStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // BTNExWrittenPledge
+            // DTPExContractExpirationWrittenPledgeEndDate
             // 
-            this.BTNExWrittenPledge.Location = new Point(1088, 20);
-            this.BTNExWrittenPledge.Name = "BTNExWrittenPledge";
-            this.BTNExWrittenPledge.Size = new Size(76, 22);
-            this.BTNExWrittenPledge.TabIndex = 29;
-            this.BTNExWrittenPledge.Text = "INSERT";
-            this.BTNExWrittenPledge.UseVisualStyleBackColor = true;
-            // 
-            // labelEx17
-            // 
-            this.labelEx17.Location = new Point(8, 24);
-            this.labelEx17.Name = "labelEx17";
-            this.labelEx17.Size = new Size(176, 15);
-            this.labelEx17.TabIndex = 28;
-            this.labelEx17.Text = "誓約書期間";
-            this.labelEx17.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // DTPExWrittenPledgeStartDate
-            // 
-            this.DTPExWrittenPledgeStartDate.CultureFlag = false;
-            this.DTPExWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeStartDate.Location = new Point(188, 20);
-            this.DTPExWrittenPledgeStartDate.Name = "DTPExWrittenPledgeStartDate";
-            this.DTPExWrittenPledgeStartDate.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeStartDate.TabIndex = 8;
-            this.DTPExWrittenPledgeStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DTPExWrittenPledgeEndDate
-            // 
-            this.DTPExWrittenPledgeEndDate.CultureFlag = false;
-            this.DTPExWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeEndDate.Location = new Point(392, 20);
-            this.DTPExWrittenPledgeEndDate.Name = "DTPExWrittenPledgeEndDate";
-            this.DTPExWrittenPledgeEndDate.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeEndDate.TabIndex = 9;
-            this.DTPExWrittenPledgeEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DTPExContractExpirationWrittenPledgeEndDate.CultureFlag = false;
+            this.DTPExContractExpirationWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationWrittenPledgeEndDate.Location = new Point(392, 20);
+            this.DTPExContractExpirationWrittenPledgeEndDate.Name = "DTPExContractExpirationWrittenPledgeEndDate";
+            this.DTPExContractExpirationWrittenPledgeEndDate.Size = new Size(180, 23);
+            this.DTPExContractExpirationWrittenPledgeEndDate.TabIndex = 9;
+            this.DTPExContractExpirationWrittenPledgeEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx18
             // 
@@ -897,68 +997,37 @@
             this.labelEx18.TabIndex = 10;
             this.labelEx18.Text = "～";
             // 
-            // DTPExWrittenPledgeMemo
+            // TextBoxExContractExpirationWrittenPledgeMemo
             // 
-            this.DTPExWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExWrittenPledgeMemo.Location = new Point(588, 20);
-            this.DTPExWrittenPledgeMemo.Name = "DTPExWrittenPledgeMemo";
-            this.DTPExWrittenPledgeMemo.Size = new Size(496, 23);
-            this.DTPExWrittenPledgeMemo.TabIndex = 14;
+            this.TextBoxExContractExpirationWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationWrittenPledgeMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationWrittenPledgeMemo.Name = "TextBoxExContractExpirationWrittenPledgeMemo";
+            this.TextBoxExContractExpirationWrittenPledgeMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationWrittenPledgeMemo.TabIndex = 14;
             // 
-            // DTPExWrittenPledgeMemo2
+            // DTPExContractExpirationWrittenPledgeStartDate1
             // 
-            this.DTPExWrittenPledgeMemo2.Enabled = false;
-            this.DTPExWrittenPledgeMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExWrittenPledgeMemo2.Location = new Point(588, 76);
-            this.DTPExWrittenPledgeMemo2.Name = "DTPExWrittenPledgeMemo2";
-            this.DTPExWrittenPledgeMemo2.Size = new Size(496, 23);
-            this.DTPExWrittenPledgeMemo2.TabIndex = 22;
+            this.DTPExContractExpirationWrittenPledgeStartDate1.CultureFlag = false;
+            this.DTPExContractExpirationWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Enabled = false;
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Location = new Point(188, 48);
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Name = "DTPExContractExpirationWrittenPledgeStartDate1";
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Size = new Size(180, 23);
+            this.DTPExContractExpirationWrittenPledgeStartDate1.TabIndex = 15;
+            this.DTPExContractExpirationWrittenPledgeStartDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExWrittenPledgeStartDate1
+            // DTPExContractExpirationWrittenPledgeEndDate1
             // 
-            this.DTPExWrittenPledgeStartDate1.CultureFlag = false;
-            this.DTPExWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeStartDate1.Enabled = false;
-            this.DTPExWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeStartDate1.Location = new Point(188, 48);
-            this.DTPExWrittenPledgeStartDate1.Name = "DTPExWrittenPledgeStartDate1";
-            this.DTPExWrittenPledgeStartDate1.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeStartDate1.TabIndex = 15;
-            this.DTPExWrittenPledgeStartDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // labelEx19
-            // 
-            this.labelEx19.AutoSize = true;
-            this.labelEx19.Enabled = false;
-            this.labelEx19.Location = new Point(372, 80);
-            this.labelEx19.Name = "labelEx19";
-            this.labelEx19.Size = new Size(19, 15);
-            this.labelEx19.TabIndex = 21;
-            this.labelEx19.Text = "～";
-            // 
-            // DTPExWrittenPledgeEndDate1
-            // 
-            this.DTPExWrittenPledgeEndDate1.CultureFlag = false;
-            this.DTPExWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeEndDate1.Enabled = false;
-            this.DTPExWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeEndDate1.Location = new Point(392, 48);
-            this.DTPExWrittenPledgeEndDate1.Name = "DTPExWrittenPledgeEndDate1";
-            this.DTPExWrittenPledgeEndDate1.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeEndDate1.TabIndex = 16;
-            this.DTPExWrittenPledgeEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DTPExWrittenPledgeEndDate2
-            // 
-            this.DTPExWrittenPledgeEndDate2.CultureFlag = false;
-            this.DTPExWrittenPledgeEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeEndDate2.Enabled = false;
-            this.DTPExWrittenPledgeEndDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeEndDate2.Location = new Point(392, 76);
-            this.DTPExWrittenPledgeEndDate2.Name = "DTPExWrittenPledgeEndDate2";
-            this.DTPExWrittenPledgeEndDate2.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeEndDate2.TabIndex = 20;
-            this.DTPExWrittenPledgeEndDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DTPExContractExpirationWrittenPledgeEndDate1.CultureFlag = false;
+            this.DTPExContractExpirationWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Enabled = false;
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Location = new Point(392, 48);
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Name = "DTPExContractExpirationWrittenPledgeEndDate1";
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Size = new Size(180, 23);
+            this.DTPExContractExpirationWrittenPledgeEndDate1.TabIndex = 16;
+            this.DTPExContractExpirationWrittenPledgeEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx20
             // 
@@ -970,59 +1039,46 @@
             this.labelEx20.TabIndex = 17;
             this.labelEx20.Text = "～";
             // 
-            // DTPExWrittenPledgeStartDate2
+            // TextBoxExContractExpirationWrittenPledgeMemo1
             // 
-            this.DTPExWrittenPledgeStartDate2.CultureFlag = false;
-            this.DTPExWrittenPledgeStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExWrittenPledgeStartDate2.Enabled = false;
-            this.DTPExWrittenPledgeStartDate2.Format = DateTimePickerFormat.Custom;
-            this.DTPExWrittenPledgeStartDate2.Location = new Point(188, 76);
-            this.DTPExWrittenPledgeStartDate2.Name = "DTPExWrittenPledgeStartDate2";
-            this.DTPExWrittenPledgeStartDate2.Size = new Size(180, 23);
-            this.DTPExWrittenPledgeStartDate2.TabIndex = 19;
-            this.DTPExWrittenPledgeStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.Enabled = false;
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.Name = "TextBoxExContractExpirationWrittenPledgeMemo1";
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationWrittenPledgeMemo1.TabIndex = 18;
             // 
-            // DTPExWrittenPledgeMemo1
+            // GroupBoxExContractExpirationShortJob
             // 
-            this.DTPExWrittenPledgeMemo1.Enabled = false;
-            this.DTPExWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExWrittenPledgeMemo1.Location = new Point(588, 48);
-            this.DTPExWrittenPledgeMemo1.Name = "DTPExWrittenPledgeMemo1";
-            this.DTPExWrittenPledgeMemo1.Size = new Size(496, 23);
-            this.DTPExWrittenPledgeMemo1.TabIndex = 18;
-            // 
-            // groupBoxEx3
-            // 
-            this.groupBoxEx3.Controls.Add(this.BTNExContractExpirationShortJobPicture2);
-            this.groupBoxEx3.Controls.Add(this.BTNExContractExpirationShortJobPicture1);
-            this.groupBoxEx3.Controls.Add(this.BTNExContractExpirationShortJob);
-            this.groupBoxEx3.Controls.Add(this.labelEx13);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobStartDate);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobEndDate);
-            this.groupBoxEx3.Controls.Add(this.labelEx14);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobMemo);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobMemo2);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobStartDate1);
-            this.groupBoxEx3.Controls.Add(this.labelEx15);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobEndDate1);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobEndDate2);
-            this.groupBoxEx3.Controls.Add(this.labelEx16);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobStartDate2);
-            this.groupBoxEx3.Controls.Add(this.DTPExContractExpirationShortJobMemo1);
-            this.groupBoxEx3.Location = new Point(12, 392);
-            this.groupBoxEx3.Name = "groupBoxEx3";
-            this.groupBoxEx3.Size = new Size(1188, 112);
-            this.groupBoxEx3.TabIndex = 31;
-            this.groupBoxEx3.TabStop = false;
-            this.groupBoxEx3.Text = "groupBoxEx3";
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.BTNExContractExpirationShortJobPicture2);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.BTNExContractExpirationShortJobPicture1);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.BTNExContractExpirationShortJob);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobStartDate);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobEndDate);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.labelEx14);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.TextBoxExContractExpirationShortJobMemo);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.TextBoxExContractExpirationShortJobMemo2);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobStartDate1);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.labelEx15);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobEndDate1);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobEndDate2);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.labelEx16);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.DTPExContractExpirationShortJobStartDate2);
+            this.GroupBoxExContractExpirationShortJob.Controls.Add(this.TextBoxExContractExpirationShortJobMemo1);
+            this.GroupBoxExContractExpirationShortJob.Location = new Point(12, 548);
+            this.GroupBoxExContractExpirationShortJob.Name = "GroupBoxExContractExpirationShortJob";
+            this.GroupBoxExContractExpirationShortJob.Size = new Size(1188, 108);
+            this.GroupBoxExContractExpirationShortJob.TabIndex = 14;
+            this.GroupBoxExContractExpirationShortJob.TabStop = false;
+            this.GroupBoxExContractExpirationShortJob.Text = "組合短期雇用期間";
             // 
             // BTNExContractExpirationShortJobPicture2
             // 
             this.BTNExContractExpirationShortJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationShortJobPicture2.Name = "BTNExContractExpirationShortJobPicture2";
-            this.BTNExContractExpirationShortJobPicture2.Size = new Size(22, 22);
+            this.BTNExContractExpirationShortJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJobPicture2.TabIndex = 54;
-            this.BTNExContractExpirationShortJobPicture2.Text = "P";
+            this.BTNExContractExpirationShortJobPicture2.Text = "契約・誓約書";
             this.BTNExContractExpirationShortJobPicture2.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationShortJobPicture2.Click += this.ButtonEx_Click;
             // 
@@ -1030,9 +1086,9 @@
             // 
             this.BTNExContractExpirationShortJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationShortJobPicture1.Name = "BTNExContractExpirationShortJobPicture1";
-            this.BTNExContractExpirationShortJobPicture1.Size = new Size(22, 22);
+            this.BTNExContractExpirationShortJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJobPicture1.TabIndex = 53;
-            this.BTNExContractExpirationShortJobPicture1.Text = "P";
+            this.BTNExContractExpirationShortJobPicture1.Text = "契約・誓約書";
             this.BTNExContractExpirationShortJobPicture1.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationShortJobPicture1.Click += this.ButtonEx_Click;
             // 
@@ -1040,19 +1096,11 @@
             // 
             this.BTNExContractExpirationShortJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationShortJob.Name = "BTNExContractExpirationShortJob";
-            this.BTNExContractExpirationShortJob.Size = new Size(76, 22);
+            this.BTNExContractExpirationShortJob.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJob.TabIndex = 29;
-            this.BTNExContractExpirationShortJob.Text = "INSERT";
+            this.BTNExContractExpirationShortJob.Text = "新規登録";
             this.BTNExContractExpirationShortJob.UseVisualStyleBackColor = true;
-            // 
-            // labelEx13
-            // 
-            this.labelEx13.Location = new Point(8, 24);
-            this.labelEx13.Name = "labelEx13";
-            this.labelEx13.Size = new Size(176, 15);
-            this.labelEx13.TabIndex = 28;
-            this.labelEx13.Text = "組合短期雇用期間";
-            this.labelEx13.TextAlign = ContentAlignment.MiddleRight;
+            this.BTNExContractExpirationShortJob.Click += this.ButtonEx_Click;
             // 
             // DTPExContractExpirationShortJobStartDate
             // 
@@ -1085,22 +1133,22 @@
             this.labelEx14.TabIndex = 10;
             this.labelEx14.Text = "～";
             // 
-            // DTPExContractExpirationShortJobMemo
+            // TextBoxExContractExpirationShortJobMemo
             // 
-            this.DTPExContractExpirationShortJobMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationShortJobMemo.Location = new Point(588, 20);
-            this.DTPExContractExpirationShortJobMemo.Name = "DTPExContractExpirationShortJobMemo";
-            this.DTPExContractExpirationShortJobMemo.Size = new Size(496, 23);
-            this.DTPExContractExpirationShortJobMemo.TabIndex = 14;
+            this.TextBoxExContractExpirationShortJobMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationShortJobMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationShortJobMemo.Name = "TextBoxExContractExpirationShortJobMemo";
+            this.TextBoxExContractExpirationShortJobMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationShortJobMemo.TabIndex = 14;
             // 
-            // DTPExContractExpirationShortJobMemo2
+            // TextBoxExContractExpirationShortJobMemo2
             // 
-            this.DTPExContractExpirationShortJobMemo2.Enabled = false;
-            this.DTPExContractExpirationShortJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationShortJobMemo2.Location = new Point(588, 76);
-            this.DTPExContractExpirationShortJobMemo2.Name = "DTPExContractExpirationShortJobMemo2";
-            this.DTPExContractExpirationShortJobMemo2.Size = new Size(496, 23);
-            this.DTPExContractExpirationShortJobMemo2.TabIndex = 22;
+            this.TextBoxExContractExpirationShortJobMemo2.Enabled = false;
+            this.TextBoxExContractExpirationShortJobMemo2.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationShortJobMemo2.Location = new Point(588, 76);
+            this.TextBoxExContractExpirationShortJobMemo2.Name = "TextBoxExContractExpirationShortJobMemo2";
+            this.TextBoxExContractExpirationShortJobMemo2.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationShortJobMemo2.TabIndex = 22;
             // 
             // DTPExContractExpirationShortJobStartDate1
             // 
@@ -1170,47 +1218,46 @@
             this.DTPExContractExpirationShortJobStartDate2.TabIndex = 19;
             this.DTPExContractExpirationShortJobStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExContractExpirationShortJobMemo1
+            // TextBoxExContractExpirationShortJobMemo1
             // 
-            this.DTPExContractExpirationShortJobMemo1.Enabled = false;
-            this.DTPExContractExpirationShortJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationShortJobMemo1.Location = new Point(588, 48);
-            this.DTPExContractExpirationShortJobMemo1.Name = "DTPExContractExpirationShortJobMemo1";
-            this.DTPExContractExpirationShortJobMemo1.Size = new Size(496, 23);
-            this.DTPExContractExpirationShortJobMemo1.TabIndex = 18;
+            this.TextBoxExContractExpirationShortJobMemo1.Enabled = false;
+            this.TextBoxExContractExpirationShortJobMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationShortJobMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationShortJobMemo1.Name = "TextBoxExContractExpirationShortJobMemo1";
+            this.TextBoxExContractExpirationShortJobMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationShortJobMemo1.TabIndex = 18;
             // 
-            // groupBoxEx2
+            // GroupBoxExContractExpirationLongJob
             // 
-            this.groupBoxEx2.Controls.Add(this.BTNExContractExpirationLongJobPicture2);
-            this.groupBoxEx2.Controls.Add(this.BTNExContractExpirationLongJobPicture1);
-            this.groupBoxEx2.Controls.Add(this.BTNExContractExpirationLongJob);
-            this.groupBoxEx2.Controls.Add(this.labelEx9);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobStartDate);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobEndDate);
-            this.groupBoxEx2.Controls.Add(this.labelEx10);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobMemo);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobMemo2);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobStartDate1);
-            this.groupBoxEx2.Controls.Add(this.labelEx11);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobEndDate1);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobEndDate2);
-            this.groupBoxEx2.Controls.Add(this.labelEx12);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobStartDate2);
-            this.groupBoxEx2.Controls.Add(this.DTPExContractExpirationLongJobMemo1);
-            this.groupBoxEx2.Location = new Point(12, 276);
-            this.groupBoxEx2.Name = "groupBoxEx2";
-            this.groupBoxEx2.Size = new Size(1188, 112);
-            this.groupBoxEx2.TabIndex = 30;
-            this.groupBoxEx2.TabStop = false;
-            this.groupBoxEx2.Text = "groupBoxEx2";
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.BTNExContractExpirationLongJobPicture2);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.BTNExContractExpirationLongJobPicture1);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.BTNExContractExpirationLongJob);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobStartDate);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobEndDate);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.labelEx10);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.TextBoxExContractExpirationLongJobMemo);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.TextBoxExContractExpirationLongJobMemo2);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobStartDate1);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.labelEx11);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobEndDate1);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobEndDate2);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.labelEx12);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.DTPExContractExpirationLongJobStartDate2);
+            this.GroupBoxExContractExpirationLongJob.Controls.Add(this.TextBoxExContractExpirationLongJobMemo1);
+            this.GroupBoxExContractExpirationLongJob.Location = new Point(12, 432);
+            this.GroupBoxExContractExpirationLongJob.Name = "GroupBoxExContractExpirationLongJob";
+            this.GroupBoxExContractExpirationLongJob.Size = new Size(1188, 108);
+            this.GroupBoxExContractExpirationLongJob.TabIndex = 13;
+            this.GroupBoxExContractExpirationLongJob.TabStop = false;
+            this.GroupBoxExContractExpirationLongJob.Text = "組合長期雇用期間";
             // 
             // BTNExContractExpirationLongJobPicture2
             // 
             this.BTNExContractExpirationLongJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationLongJobPicture2.Name = "BTNExContractExpirationLongJobPicture2";
-            this.BTNExContractExpirationLongJobPicture2.Size = new Size(22, 22);
+            this.BTNExContractExpirationLongJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJobPicture2.TabIndex = 52;
-            this.BTNExContractExpirationLongJobPicture2.Text = "P";
+            this.BTNExContractExpirationLongJobPicture2.Text = "契約・誓約書";
             this.BTNExContractExpirationLongJobPicture2.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationLongJobPicture2.Click += this.ButtonEx_Click;
             // 
@@ -1218,9 +1265,9 @@
             // 
             this.BTNExContractExpirationLongJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationLongJobPicture1.Name = "BTNExContractExpirationLongJobPicture1";
-            this.BTNExContractExpirationLongJobPicture1.Size = new Size(22, 22);
+            this.BTNExContractExpirationLongJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJobPicture1.TabIndex = 51;
-            this.BTNExContractExpirationLongJobPicture1.Text = "P";
+            this.BTNExContractExpirationLongJobPicture1.Text = "契約・誓約書";
             this.BTNExContractExpirationLongJobPicture1.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationLongJobPicture1.Click += this.ButtonEx_Click;
             // 
@@ -1228,19 +1275,11 @@
             // 
             this.BTNExContractExpirationLongJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationLongJob.Name = "BTNExContractExpirationLongJob";
-            this.BTNExContractExpirationLongJob.Size = new Size(76, 22);
+            this.BTNExContractExpirationLongJob.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJob.TabIndex = 29;
-            this.BTNExContractExpirationLongJob.Text = "INSERT";
+            this.BTNExContractExpirationLongJob.Text = "新規登録";
             this.BTNExContractExpirationLongJob.UseVisualStyleBackColor = true;
-            // 
-            // labelEx9
-            // 
-            this.labelEx9.Location = new Point(8, 24);
-            this.labelEx9.Name = "labelEx9";
-            this.labelEx9.Size = new Size(176, 15);
-            this.labelEx9.TabIndex = 28;
-            this.labelEx9.Text = "組合長期雇用期間";
-            this.labelEx9.TextAlign = ContentAlignment.MiddleRight;
+            this.BTNExContractExpirationLongJob.Click += this.ButtonEx_Click;
             // 
             // DTPExContractExpirationLongJobStartDate
             // 
@@ -1273,22 +1312,22 @@
             this.labelEx10.TabIndex = 10;
             this.labelEx10.Text = "～";
             // 
-            // DTPExContractExpirationLongJobMemo
+            // TextBoxExContractExpirationLongJobMemo
             // 
-            this.DTPExContractExpirationLongJobMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationLongJobMemo.Location = new Point(588, 20);
-            this.DTPExContractExpirationLongJobMemo.Name = "DTPExContractExpirationLongJobMemo";
-            this.DTPExContractExpirationLongJobMemo.Size = new Size(496, 23);
-            this.DTPExContractExpirationLongJobMemo.TabIndex = 14;
+            this.TextBoxExContractExpirationLongJobMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationLongJobMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationLongJobMemo.Name = "TextBoxExContractExpirationLongJobMemo";
+            this.TextBoxExContractExpirationLongJobMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationLongJobMemo.TabIndex = 14;
             // 
-            // DTPExContractExpirationLongJobMemo2
+            // TextBoxExContractExpirationLongJobMemo2
             // 
-            this.DTPExContractExpirationLongJobMemo2.Enabled = false;
-            this.DTPExContractExpirationLongJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationLongJobMemo2.Location = new Point(588, 76);
-            this.DTPExContractExpirationLongJobMemo2.Name = "DTPExContractExpirationLongJobMemo2";
-            this.DTPExContractExpirationLongJobMemo2.Size = new Size(496, 23);
-            this.DTPExContractExpirationLongJobMemo2.TabIndex = 22;
+            this.TextBoxExContractExpirationLongJobMemo2.Enabled = false;
+            this.TextBoxExContractExpirationLongJobMemo2.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationLongJobMemo2.Location = new Point(588, 76);
+            this.TextBoxExContractExpirationLongJobMemo2.Name = "TextBoxExContractExpirationLongJobMemo2";
+            this.TextBoxExContractExpirationLongJobMemo2.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationLongJobMemo2.TabIndex = 22;
             // 
             // DTPExContractExpirationLongJobStartDate1
             // 
@@ -1358,47 +1397,46 @@
             this.DTPExContractExpirationLongJobStartDate2.TabIndex = 19;
             this.DTPExContractExpirationLongJobStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExContractExpirationLongJobMemo1
+            // TextBoxExContractExpirationLongJobMemo1
             // 
-            this.DTPExContractExpirationLongJobMemo1.Enabled = false;
-            this.DTPExContractExpirationLongJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationLongJobMemo1.Location = new Point(588, 48);
-            this.DTPExContractExpirationLongJobMemo1.Name = "DTPExContractExpirationLongJobMemo1";
-            this.DTPExContractExpirationLongJobMemo1.Size = new Size(496, 23);
-            this.DTPExContractExpirationLongJobMemo1.TabIndex = 18;
+            this.TextBoxExContractExpirationLongJobMemo1.Enabled = false;
+            this.TextBoxExContractExpirationLongJobMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationLongJobMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationLongJobMemo1.Name = "TextBoxExContractExpirationLongJobMemo1";
+            this.TextBoxExContractExpirationLongJobMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationLongJobMemo1.TabIndex = 18;
             // 
-            // groupBoxEx1
+            // GroupBoxExContractExpirationPartTimeJob
             // 
-            this.groupBoxEx1.Controls.Add(this.BTNExContractExpirationPartTimeJobPicture2);
-            this.groupBoxEx1.Controls.Add(this.BTNExContractExpirationPartTimeJobPicture1);
-            this.groupBoxEx1.Controls.Add(this.BTNExContractExpirationPartTimeJob);
-            this.groupBoxEx1.Controls.Add(this.labelEx5);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobEndDate);
-            this.groupBoxEx1.Controls.Add(this.labelEx6);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobMemo);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobMemo2);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate1);
-            this.groupBoxEx1.Controls.Add(this.labelEx8);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExContractExpirationPartTimeJobEndDate1);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobEndDate2);
-            this.groupBoxEx1.Controls.Add(this.labelEx7);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate2);
-            this.groupBoxEx1.Controls.Add(this.DTPExContractExpirationPartTimeJobMemo1);
-            this.groupBoxEx1.Location = new Point(8, 160);
-            this.groupBoxEx1.Name = "groupBoxEx1";
-            this.groupBoxEx1.Size = new Size(1188, 112);
-            this.groupBoxEx1.TabIndex = 27;
-            this.groupBoxEx1.TabStop = false;
-            this.groupBoxEx1.Text = "groupBoxEx1";
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.BTNExContractExpirationPartTimeJobPicture2);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.BTNExContractExpirationPartTimeJobPicture1);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.BTNExContractExpirationPartTimeJob);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobEndDate);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.labelEx6);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.TextBoxExContractExpirationPartTimeJobMemo);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.TextBoxExContractExpirationPartTimeJobMemo2);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate1);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.labelEx8);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobEndDate1);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobEndDate2);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.labelEx7);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.DTPExContractExpirationPartTimeJobStartDate2);
+            this.GroupBoxExContractExpirationPartTimeJob.Controls.Add(this.TextBoxExContractExpirationPartTimeJobMemo1);
+            this.GroupBoxExContractExpirationPartTimeJob.Location = new Point(12, 316);
+            this.GroupBoxExContractExpirationPartTimeJob.Name = "GroupBoxExContractExpirationPartTimeJob";
+            this.GroupBoxExContractExpirationPartTimeJob.Size = new Size(1188, 108);
+            this.GroupBoxExContractExpirationPartTimeJob.TabIndex = 12;
+            this.GroupBoxExContractExpirationPartTimeJob.TabStop = false;
+            this.GroupBoxExContractExpirationPartTimeJob.Text = "長期アルバイト更新期間";
             // 
             // BTNExContractExpirationPartTimeJobPicture2
             // 
             this.BTNExContractExpirationPartTimeJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationPartTimeJobPicture2.Name = "BTNExContractExpirationPartTimeJobPicture2";
-            this.BTNExContractExpirationPartTimeJobPicture2.Size = new Size(22, 22);
+            this.BTNExContractExpirationPartTimeJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJobPicture2.TabIndex = 50;
-            this.BTNExContractExpirationPartTimeJobPicture2.Text = "P";
+            this.BTNExContractExpirationPartTimeJobPicture2.Text = "契約・誓約書";
             this.BTNExContractExpirationPartTimeJobPicture2.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationPartTimeJobPicture2.Click += this.ButtonEx_Click;
             // 
@@ -1406,9 +1444,9 @@
             // 
             this.BTNExContractExpirationPartTimeJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationPartTimeJobPicture1.Name = "BTNExContractExpirationPartTimeJobPicture1";
-            this.BTNExContractExpirationPartTimeJobPicture1.Size = new Size(22, 22);
+            this.BTNExContractExpirationPartTimeJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJobPicture1.TabIndex = 49;
-            this.BTNExContractExpirationPartTimeJobPicture1.Text = "P";
+            this.BTNExContractExpirationPartTimeJobPicture1.Text = "契約・誓約書";
             this.BTNExContractExpirationPartTimeJobPicture1.UseVisualStyleBackColor = true;
             this.BTNExContractExpirationPartTimeJobPicture1.Click += this.ButtonEx_Click;
             // 
@@ -1416,19 +1454,11 @@
             // 
             this.BTNExContractExpirationPartTimeJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationPartTimeJob.Name = "BTNExContractExpirationPartTimeJob";
-            this.BTNExContractExpirationPartTimeJob.Size = new Size(76, 22);
+            this.BTNExContractExpirationPartTimeJob.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJob.TabIndex = 29;
-            this.BTNExContractExpirationPartTimeJob.Text = "INSERT";
+            this.BTNExContractExpirationPartTimeJob.Text = "新規登録";
             this.BTNExContractExpirationPartTimeJob.UseVisualStyleBackColor = true;
-            // 
-            // labelEx5
-            // 
-            this.labelEx5.Location = new Point(8, 24);
-            this.labelEx5.Name = "labelEx5";
-            this.labelEx5.Size = new Size(176, 15);
-            this.labelEx5.TabIndex = 28;
-            this.labelEx5.Text = "長期アルバイト更新期間";
-            this.labelEx5.TextAlign = ContentAlignment.MiddleRight;
+            this.BTNExContractExpirationPartTimeJob.Click += this.ButtonEx_Click;
             // 
             // DTPExContractExpirationPartTimeJobStartDate
             // 
@@ -1461,22 +1491,22 @@
             this.labelEx6.TabIndex = 10;
             this.labelEx6.Text = "～";
             // 
-            // DTPExContractExpirationPartTimeJobMemo
+            // TextBoxExContractExpirationPartTimeJobMemo
             // 
-            this.DTPExContractExpirationPartTimeJobMemo.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationPartTimeJobMemo.Location = new Point(588, 20);
-            this.DTPExContractExpirationPartTimeJobMemo.Name = "DTPExContractExpirationPartTimeJobMemo";
-            this.DTPExContractExpirationPartTimeJobMemo.Size = new Size(496, 23);
-            this.DTPExContractExpirationPartTimeJobMemo.TabIndex = 14;
+            this.TextBoxExContractExpirationPartTimeJobMemo.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationPartTimeJobMemo.Location = new Point(588, 20);
+            this.TextBoxExContractExpirationPartTimeJobMemo.Name = "TextBoxExContractExpirationPartTimeJobMemo";
+            this.TextBoxExContractExpirationPartTimeJobMemo.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationPartTimeJobMemo.TabIndex = 14;
             // 
-            // DTPExContractExpirationPartTimeJobMemo2
+            // TextBoxExContractExpirationPartTimeJobMemo2
             // 
-            this.DTPExContractExpirationPartTimeJobMemo2.Enabled = false;
-            this.DTPExContractExpirationPartTimeJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationPartTimeJobMemo2.Location = new Point(588, 76);
-            this.DTPExContractExpirationPartTimeJobMemo2.Name = "DTPExContractExpirationPartTimeJobMemo2";
-            this.DTPExContractExpirationPartTimeJobMemo2.Size = new Size(496, 23);
-            this.DTPExContractExpirationPartTimeJobMemo2.TabIndex = 22;
+            this.TextBoxExContractExpirationPartTimeJobMemo2.Enabled = false;
+            this.TextBoxExContractExpirationPartTimeJobMemo2.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationPartTimeJobMemo2.Location = new Point(588, 76);
+            this.TextBoxExContractExpirationPartTimeJobMemo2.Name = "TextBoxExContractExpirationPartTimeJobMemo2";
+            this.TextBoxExContractExpirationPartTimeJobMemo2.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationPartTimeJobMemo2.TabIndex = 22;
             // 
             // DTPExContractExpirationPartTimeJobStartDate1
             // 
@@ -1500,17 +1530,17 @@
             this.labelEx8.TabIndex = 21;
             this.labelEx8.Text = "～";
             // 
-            // DTPExContractExContractExpirationPartTimeJobEndDate1
+            // DTPExContractExpirationPartTimeJobEndDate1
             // 
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.CultureFlag = false;
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Enabled = false;
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Format = DateTimePickerFormat.Custom;
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Location = new Point(392, 48);
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Name = "DTPExContractExContractExpirationPartTimeJobEndDate1";
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Size = new Size(180, 23);
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.TabIndex = 16;
-            this.DTPExContractExContractExpirationPartTimeJobEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DTPExContractExpirationPartTimeJobEndDate1.CultureFlag = false;
+            this.DTPExContractExpirationPartTimeJobEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DTPExContractExpirationPartTimeJobEndDate1.Enabled = false;
+            this.DTPExContractExpirationPartTimeJobEndDate1.Format = DateTimePickerFormat.Custom;
+            this.DTPExContractExpirationPartTimeJobEndDate1.Location = new Point(392, 48);
+            this.DTPExContractExpirationPartTimeJobEndDate1.Name = "DTPExContractExpirationPartTimeJobEndDate1";
+            this.DTPExContractExpirationPartTimeJobEndDate1.Size = new Size(180, 23);
+            this.DTPExContractExpirationPartTimeJobEndDate1.TabIndex = 16;
+            this.DTPExContractExpirationPartTimeJobEndDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // DTPExContractExpirationPartTimeJobEndDate2
             // 
@@ -1546,62 +1576,23 @@
             this.DTPExContractExpirationPartTimeJobStartDate2.TabIndex = 19;
             this.DTPExContractExpirationPartTimeJobStartDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // DTPExContractExpirationPartTimeJobMemo1
+            // TextBoxExContractExpirationPartTimeJobMemo1
             // 
-            this.DTPExContractExpirationPartTimeJobMemo1.Enabled = false;
-            this.DTPExContractExpirationPartTimeJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.DTPExContractExpirationPartTimeJobMemo1.Location = new Point(588, 48);
-            this.DTPExContractExpirationPartTimeJobMemo1.Name = "DTPExContractExpirationPartTimeJobMemo1";
-            this.DTPExContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
-            this.DTPExContractExpirationPartTimeJobMemo1.TabIndex = 18;
+            this.TextBoxExContractExpirationPartTimeJobMemo1.Enabled = false;
+            this.TextBoxExContractExpirationPartTimeJobMemo1.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExContractExpirationPartTimeJobMemo1.Location = new Point(588, 48);
+            this.TextBoxExContractExpirationPartTimeJobMemo1.Name = "TextBoxExContractExpirationPartTimeJobMemo1";
+            this.TextBoxExContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
+            this.TextBoxExContractExpirationPartTimeJobMemo1.TabIndex = 18;
             // 
-            // TextBoxExExpirationMemo
+            // labelEx19
             // 
-            this.TextBoxExExpirationMemo.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExExpirationMemo.Location = new Point(596, 124);
-            this.TextBoxExExpirationMemo.Name = "TextBoxExExpirationMemo";
-            this.TextBoxExExpirationMemo.Size = new Size(496, 23);
-            this.TextBoxExExpirationMemo.TabIndex = 12;
-            // 
-            // labelEx2
-            // 
-            this.labelEx2.Location = new Point(16, 128);
-            this.labelEx2.Name = "labelEx2";
-            this.labelEx2.Size = new Size(176, 15);
-            this.labelEx2.TabIndex = 3;
-            this.labelEx2.Text = "体験入社期間";
-            this.labelEx2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelEx1
-            // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(380, 128);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(19, 15);
-            this.labelEx1.TabIndex = 2;
-            this.labelEx1.Text = "～";
-            // 
-            // DateTimePickerExExpirationEndDate
-            // 
-            this.DateTimePickerExExpirationEndDate.CultureFlag = false;
-            this.DateTimePickerExExpirationEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExExpirationEndDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExExpirationEndDate.Location = new Point(400, 124);
-            this.DateTimePickerExExpirationEndDate.Name = "DateTimePickerExExpirationEndDate";
-            this.DateTimePickerExExpirationEndDate.Size = new Size(180, 23);
-            this.DateTimePickerExExpirationEndDate.TabIndex = 1;
-            this.DateTimePickerExExpirationEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // DateTimePickerExExpirationStartDate
-            // 
-            this.DateTimePickerExExpirationStartDate.CultureFlag = false;
-            this.DateTimePickerExExpirationStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExExpirationStartDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExExpirationStartDate.Location = new Point(196, 124);
-            this.DateTimePickerExExpirationStartDate.Name = "DateTimePickerExExpirationStartDate";
-            this.DateTimePickerExExpirationStartDate.Size = new Size(180, 23);
-            this.DateTimePickerExExpirationStartDate.TabIndex = 0;
-            this.DateTimePickerExExpirationStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.labelEx19.Location = new Point(40, 28);
+            this.labelEx19.Name = "labelEx19";
+            this.labelEx19.Size = new Size(332, 16);
+            this.labelEx19.TabIndex = 68;
+            this.labelEx19.Text = "契約勤務地";
+            this.labelEx19.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // EmploymentAgreementDetail
             // 
@@ -1618,21 +1609,25 @@
             this.PanelExUp.ResumeLayout(false);
             this.PanelExMiddle.ResumeLayout(false);
             this.PanelExMiddle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExContractExpirationPeriod).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExTravelCost).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExPay).EndInit();
+            this.GroupBoxExExpiration.ResumeLayout(false);
+            this.GroupBoxExExpiration.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NUDExContractExpirationPeriod).EndInit();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).EndInit();
             this.ContextMenuStripEx1.ResumeLayout(false);
             this.groupBoxEx6.ResumeLayout(false);
             this.groupBoxEx6.PerformLayout();
             this.groupBoxEx5.ResumeLayout(false);
             this.groupBoxEx5.PerformLayout();
-            this.groupBoxEx4.ResumeLayout(false);
-            this.groupBoxEx4.PerformLayout();
-            this.groupBoxEx3.ResumeLayout(false);
-            this.groupBoxEx3.PerformLayout();
-            this.groupBoxEx2.ResumeLayout(false);
-            this.groupBoxEx2.PerformLayout();
-            this.groupBoxEx1.ResumeLayout(false);
-            this.groupBoxEx1.PerformLayout();
+            this.GroupBoxExContractExpirationWrittenPledge.ResumeLayout(false);
+            this.GroupBoxExContractExpirationWrittenPledge.PerformLayout();
+            this.GroupBoxExContractExpirationShortJob.ResumeLayout(false);
+            this.GroupBoxExContractExpirationShortJob.PerformLayout();
+            this.GroupBoxExContractExpirationLongJob.ResumeLayout(false);
+            this.GroupBoxExContractExpirationLongJob.PerformLayout();
+            this.GroupBoxExContractExpirationPartTimeJob.ResumeLayout(false);
+            this.GroupBoxExContractExpirationPartTimeJob.PerformLayout();
             this.ResumeLayout(false);
         }
 
@@ -1645,106 +1640,87 @@
         private ControlEx.PanelEx PanelExMiddle;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExExpirationEndDate;
-        private ControlEx.DateTimePickerEx DateTimePickerExExpirationStartDate;
-        private ControlEx.LabelEx labelEx2;
+        private ControlEx.DateTimePickerEx DTPExExpirationEndDate;
+        private ControlEx.DateTimePickerEx DTPExExpirationStartDate;
         private ControlEx.LabelEx labelEx6;
         private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobEndDate;
         private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobStartDate;
-        private ControlEx.TextBoxEx DTPExContractExpirationPartTimeJobMemo;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationPartTimeJobMemo;
         private ControlEx.TextBoxEx TextBoxExExpirationMemo;
-        private ControlEx.TextBoxEx DTPExContractExpirationPartTimeJobMemo1;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationPartTimeJobMemo1;
         private ControlEx.LabelEx labelEx7;
-        private ControlEx.DateTimePickerEx DTPExContractExContractExpirationPartTimeJobEndDate1;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobEndDate1;
         private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobStartDate1;
-        private ControlEx.TextBoxEx DTPExContractExpirationPartTimeJobMemo2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationPartTimeJobMemo2;
         private ControlEx.LabelEx labelEx8;
         private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobEndDate2;
         private ControlEx.DateTimePickerEx DTPExContractExpirationPartTimeJobStartDate2;
-        private ControlEx.GroupBoxEx groupBoxEx1;
-        private ControlEx.LabelEx labelEx5;
+        private ControlEx.GroupBoxEx GroupBoxExContractExpirationPartTimeJob;
         private ControlEx.ButtonEx BTNExContractExpirationPartTimeJob;
         private ControlEx.GroupBoxEx groupBoxEx5;
-        private ControlEx.ButtonEx BTNExLossWrittenPledge;
-        private ControlEx.LabelEx labelEx21;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeStartDate;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeEndDate;
+        private ControlEx.ButtonEx BTNExContractExpirationLossWrittenPledge;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationLossWrittenPledgeStartDate;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationLossWrittenPledgeEndDate;
         private ControlEx.LabelEx labelEx22;
-        private ControlEx.TextBoxEx DTPExLossWrittenPledgeMemo;
-        private ControlEx.TextBoxEx DTPExLossWrittenPledgeMemo2;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeStartDate1;
-        private ControlEx.LabelEx labelEx23;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeEndDate1;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeEndDate2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationLossWrittenPledgeMemo;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationLossWrittenPledgeStartDate1;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationLossWrittenPledgeEndDate1;
         private ControlEx.LabelEx labelEx24;
-        private ControlEx.DateTimePickerEx DTPExLossWrittenPledgeStartDate2;
-        private ControlEx.TextBoxEx DTPExLossWrittenPledgeMemo1;
-        private ControlEx.GroupBoxEx groupBoxEx4;
-        private ControlEx.ButtonEx BTNExWrittenPledge;
-        private ControlEx.LabelEx labelEx17;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeStartDate;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeEndDate;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationLossWrittenPledgeMemo1;
+        private ControlEx.GroupBoxEx GroupBoxExContractExpirationWrittenPledge;
+        private ControlEx.ButtonEx BTNExContractExpirationWrittenPledge;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationWrittenPledgeStartDate;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationWrittenPledgeEndDate;
         private ControlEx.LabelEx labelEx18;
-        private ControlEx.TextBoxEx DTPExWrittenPledgeMemo;
-        private ControlEx.TextBoxEx DTPExWrittenPledgeMemo2;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeStartDate1;
-        private ControlEx.LabelEx labelEx19;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeEndDate1;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeEndDate2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationWrittenPledgeMemo;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationWrittenPledgeStartDate1;
+        private ControlEx.DateTimePickerEx DTPExContractExpirationWrittenPledgeEndDate1;
         private ControlEx.LabelEx labelEx20;
-        private ControlEx.DateTimePickerEx DTPExWrittenPledgeStartDate2;
-        private ControlEx.TextBoxEx DTPExWrittenPledgeMemo1;
-        private ControlEx.GroupBoxEx groupBoxEx3;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationWrittenPledgeMemo1;
+        private ControlEx.GroupBoxEx GroupBoxExContractExpirationShortJob;
         private ControlEx.ButtonEx BTNExContractExpirationShortJob;
-        private ControlEx.LabelEx labelEx13;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobStartDate;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobEndDate;
         private ControlEx.LabelEx labelEx14;
-        private ControlEx.TextBoxEx DTPExContractExpirationShortJobMemo;
-        private ControlEx.TextBoxEx DTPExContractExpirationShortJobMemo2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationShortJobMemo;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationShortJobMemo2;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobStartDate1;
         private ControlEx.LabelEx labelEx15;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobEndDate1;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobEndDate2;
         private ControlEx.LabelEx labelEx16;
         private ControlEx.DateTimePickerEx DTPExContractExpirationShortJobStartDate2;
-        private ControlEx.TextBoxEx DTPExContractExpirationShortJobMemo1;
-        private ControlEx.GroupBoxEx groupBoxEx2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationShortJobMemo1;
+        private ControlEx.GroupBoxEx GroupBoxExContractExpirationLongJob;
         private ControlEx.ButtonEx BTNExContractExpirationLongJob;
-        private ControlEx.LabelEx labelEx9;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobStartDate;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobEndDate;
         private ControlEx.LabelEx labelEx10;
-        private ControlEx.TextBoxEx DTPExContractExpirationLongJobMemo;
-        private ControlEx.TextBoxEx DTPExContractExpirationLongJobMemo2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationLongJobMemo;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationLongJobMemo2;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobStartDate1;
         private ControlEx.LabelEx labelEx11;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobEndDate1;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobEndDate2;
         private ControlEx.LabelEx labelEx12;
         private ControlEx.DateTimePickerEx DTPExContractExpirationLongJobStartDate2;
-        private ControlEx.TextBoxEx DTPExContractExpirationLongJobMemo1;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationLongJobMemo1;
         private ControlEx.GroupBoxEx groupBoxEx6;
         private ControlEx.ButtonEx BTNExContractExpirationNotice;
-        private ControlEx.LabelEx labelEx25;
         private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeStartDate;
         private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeEndDate;
         private ControlEx.LabelEx labelEx26;
-        private ControlEx.TextBoxEx DTPExContractExpirationNoticeMemo;
-        private ControlEx.TextBoxEx DTPExContractExpirationNoticeMemo2;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationNoticeMemo;
         private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeStartDate1;
-        private ControlEx.LabelEx labelEx27;
         private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeEndDate1;
-        private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeEndDate2;
         private ControlEx.LabelEx labelEx28;
-        private ControlEx.DateTimePickerEx DTPExContractExpirationNoticeStartDate2;
-        private ControlEx.TextBoxEx DTPExContractExpirationNoticeMemo1;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationNoticeMemo1;
         private ControlEx.PictureBoxEx PictureBoxEx1;
-        private ControlEx.LabelEx labelEx29;
-        private ControlEx.LabelEx labelEx30;
-        private ControlEx.LabelEx labelEx31;
-        private ControlEx.LabelEx labelEx32;
-        private ControlEx.LabelEx labelEx33;
+        private ControlEx.LabelEx LabelExDisplayName;
+        private ControlEx.LabelEx LabelExBelongs;
+        private ControlEx.LabelEx LabelExOccupation;
+        private ControlEx.LabelEx LabelExJobForm;
+        private ControlEx.LabelEx LabelExUnionCode;
         private ControlEx.LabelEx labelEx38;
         private ControlEx.LabelEx labelEx37;
         private ControlEx.LabelEx labelEx36;
@@ -1752,22 +1728,40 @@
         private ControlEx.LabelEx labelEx34;
         private ControlEx.LabelEx labelEx39;
         private ControlEx.LabelEx labelEx40;
-        private ControlEx.NumericUpDownEx NumericUpDownExContractExpirationPeriod;
+        private ControlEx.NumericUpDownEx NUDExContractExpirationPeriod;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemPictureClip;
         private ToolStripMenuItem ToolStripMenuItemPictureDelete;
         private ControlEx.ButtonEx BTNExExpirationPicture;
-        private ControlEx.ButtonEx BTNExContractExpirationNoticePicture2;
         private ControlEx.ButtonEx BTNExContractExpirationNoticePicture1;
-        private ControlEx.ButtonEx BTNExLossWrittenPledgePicture2;
-        private ControlEx.ButtonEx BTNExLossWrittenPledgePicture1;
-        private ControlEx.ButtonEx BTNExWrittenPledgePicture2;
-        private ControlEx.ButtonEx BTNExWrittenPledgePicture1;
+        private ControlEx.ButtonEx BTNExContractExpirationLossWrittenPledgePicture1;
+        private ControlEx.ButtonEx BTNExContractExpirationWrittenPledgePicture1;
         private ControlEx.ButtonEx BTNExContractExpirationShortJobPicture2;
         private ControlEx.ButtonEx BTNExContractExpirationShortJobPicture1;
         private ControlEx.ButtonEx BTNExContractExpirationLongJobPicture2;
         private ControlEx.ButtonEx BTNExContractExpirationLongJobPicture1;
         private ControlEx.ButtonEx BTNExContractExpirationPartTimeJobPicture2;
         private ControlEx.ButtonEx BTNExContractExpirationPartTimeJobPicture1;
+        private ControlEx.GroupBoxEx GroupBoxExExpiration;
+        private ControlEx.CheckBoxEx CheckBoxExCheckFlag;
+        private ControlEx.ButtonEx BTNExExpiration;
+        private ControlEx.NumericUpDownEx NUDExPay;
+        private ControlEx.LabelEx labelEx2;
+        private ControlEx.LabelEx labelEx13;
+        private ControlEx.ComboBoxEx ComboBoxExBreakTime;
+        private ControlEx.LabelEx labelEx9;
+        private ControlEx.ComboBoxEx ComboBoxExWorkTime;
+        private ControlEx.LabelEx labelEx5;
+        private ControlEx.ComboBoxEx ComboBoxExJobDescription;
+        private ControlEx.NumericUpDownEx NUDExTravelCost;
+        private ControlEx.LabelEx labelEx4;
+        private ControlEx.LabelEx labelEx17;
+        private ControlEx.ComboBoxEx ComboBoxExBelongs;
+        private ControlEx.ComboBoxEx ComboBoxExContractExpirationPeriod;
+        private ControlEx.LabelEx labelEx3;
+        private ControlEx.ComboBoxEx ComboBoxExPayDetail;
+        private ControlEx.TextBoxEx TextBoxExContractExpirationPeriod;
+        private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
+        private ControlEx.LabelEx labelEx19;
     }
 }

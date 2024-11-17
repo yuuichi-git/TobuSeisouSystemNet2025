@@ -32,7 +32,7 @@
             this.PictureBoxEx1.Dock = DockStyle.Fill;
             this.PictureBoxEx1.Location = new Point(0, 0);
             this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(801, 818);
+            this.PictureBoxEx1.Size = new Size(714, 1007);
             this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
             this.PictureBoxEx1.TabIndex = 0;
             this.PictureBoxEx1.TabStop = false;
@@ -41,7 +41,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(801, 818);
+            this.ClientSize = new Size(714, 1007);
             this.Controls.Add(this.PictureBoxEx1);
             this.Name = "ShowPicture";
             this.StartPosition = FormStartPosition.CenterScreen;
