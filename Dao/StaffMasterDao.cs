@@ -31,8 +31,12 @@ namespace Dao {
         /// Picture無
         /// DeleteFlag = False
         /// </summary>
+        /// <param name="sqlBelongs"></param>
+        /// <param name="sqlJobForm"></param>
+        /// <param name="sqlOccupation"></param>
+        /// <param name="sqlRetirementFlag">true:退職 false:在職 null:全て</param>
         /// <returns></returns>
-        public List<StaffMasterVo> SelectAllStaffMaster() {
+        public List<StaffMasterVo> SelectAllStaffMaster(int[]? sqlBelongs, int[]? sqlJobForm, int[]? sqlOccupation, bool? sqlRetirementFlag) {
             List<StaffMasterVo> listStaffMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
@@ -90,7 +94,11 @@ namespace Dao {
                                             "DeleteYmdHms," +
                                             "DeleteFlag " +
                                      "FROM H_StaffMaster " +
-                                     "WHERE DeleteFlag = 'false'";
+                                     "WHERE DeleteFlag = 'false'" +
+                                     CreateSqlBelongs(sqlBelongs) +
+                                     CreateSqlJobForm(sqlJobForm) +
+                                     CreateSqlOccupation(sqlOccupation) +
+                                     CreateSqlRetirementFlag(sqlRetirementFlag);
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     StaffMasterVo staffMasterVo = new();
@@ -152,6 +160,87 @@ namespace Dao {
                 }
             }
             return listStaffMasterVo;
+        }
+
+        /// <summary>
+        /// SQL Belongsを作成する
+        /// </summary>
+        /// <param name="sqlBelongs"></param>
+        /// <returns></returns>
+        private string CreateSqlBelongs(int[]? sqlBelongs) {
+            string sql = string.Empty;
+            if (sqlBelongs is not null) {
+                string codes = string.Empty;
+                int i = 0;
+                foreach (int code in sqlBelongs) {
+                    codes += string.Concat(code.ToString(), i < sqlBelongs.Length - 1 ? "," : "");
+                    i++;
+                }
+                sql = " AND Belongs IN (" + codes + ")";
+                return sql;
+            } else {
+                return sql;
+            }
+        }
+
+        /// <summary>
+        /// SQL JobFormを作成する
+        /// </summary>
+        /// <param name="sqlJobForm"></param>
+        /// <returns></returns>
+        private string CreateSqlJobForm(int[]? sqlJobForm) {
+            string sql = string.Empty;
+            if (sqlJobForm is not null) {
+                string codes = string.Empty;
+                int i = 0;
+                foreach (int code in sqlJobForm) {
+                    codes += string.Concat(code.ToString(), i < sqlJobForm.Length - 1 ? "," : "");
+                    i++;
+                }
+                sql = " AND JobForm IN (" + codes + ")";
+                return sql;
+            } else {
+                return sql;
+            }
+        }
+
+        /// <summary>
+        /// SQL Occupationを作成する
+        /// </summary>
+        /// <param name="sqlOccupation"></param>
+        /// <returns></returns>
+        private string CreateSqlOccupation(int[]? sqlOccupation) {
+            string sql = string.Empty;
+            if (sqlOccupation is not null) {
+                string codes = string.Empty;
+                int i = 0;
+                foreach (int code in sqlOccupation) {
+                    codes += string.Concat(code.ToString(), i < sqlOccupation.Length - 1 ? "," : "");
+                    i++;
+                }
+                sql = " AND Occupation IN (" + codes + ")";
+                return sql;
+            } else {
+                return sql;
+            }
+        }
+
+        /// <summary>
+        /// SQL RetirementFlagを作成する
+        /// </summary>
+        /// <param name="sqlRetirementFlag"></param>
+        /// <returns></returns>
+        private string CreateSqlRetirementFlag(bool? sqlRetirementFlag) {
+            string sql = string.Empty;
+            if (sqlRetirementFlag is not null) {
+                if (sqlRetirementFlag == false) {
+                    return " AND RetirementFlag = 'false'";
+                } else {
+                    return sql;
+                }
+            } else {
+                return sql;
+            }
         }
     }
 }

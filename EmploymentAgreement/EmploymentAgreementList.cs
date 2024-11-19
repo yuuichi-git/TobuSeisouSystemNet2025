@@ -174,6 +174,15 @@ namespace EmploymentAgreement {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            MenuStripEx1.ChangeEnable(listString);
             this.CheckBoxExRetirementFlag.Checked = false;
             this.InitializeSheetView(this.SheetViewList);
         }
@@ -189,7 +198,10 @@ namespace EmploymentAgreement {
                     try {
                         _listEmploymentAgreementVo = _employmentAgreementDao.SelectAllEmploymentAgreement();
                         _listContractExpirationVo = _contractExpirationDao.SelectAllContractExpiration();
-                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster());
+                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(new int[] { 12, 14, 15, 20, 21 },
+                                                                                   new int[] { 10, 99 },
+                                                                                   new int[] { 10, 11, 20, 99 },
+                                                                                   this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -203,14 +215,6 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listStaffMasterVo"></param>
         private void AddSheetViewList(List<StaffMasterVo> listStaffMasterVo) {
-            /*
-             * Filter
-             */
-            listStaffMasterVo = listStaffMasterVo.FindAll(x => x.Belongs == 12 || x.Belongs == 14 || x.Belongs == 15 || x.Belongs == 20 || x.Belongs == 21);
-            listStaffMasterVo = listStaffMasterVo.FindAll(x => x.JobForm == 10 || x.JobForm == 12 || x.JobForm == 99);
-            listStaffMasterVo = listStaffMasterVo.FindAll(x => x.Occupation == 10 || x.Occupation == 11 || x.Occupation == 20 || x.Occupation == 99);
-            if (!CheckBoxExRetirementFlag.Checked)
-                listStaffMasterVo = listStaffMasterVo.FindAll(x => x.RetirementFlag == false);
             /*
              * Sort
              */
@@ -240,6 +244,7 @@ namespace EmploymentAgreement {
                 SheetViewList.Cells[rowCount, _colBirthDate].Value = staffMasterVo.BirthDate;
                 SheetViewList.Cells[rowCount, _colAge].Value = _date.GetAge(staffMasterVo.BirthDate);
                 SheetViewList.Cells[rowCount, _colEmplomentDate].Value = staffMasterVo.EmploymentDate;
+                SheetViewList.Rows[rowCount].BackColor = Color.White;
                 /*
                  * EmploymentAgreementVo
                  */
@@ -404,8 +409,20 @@ namespace EmploymentAgreement {
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationLongJob": // 長期雇用契約
-
+                case "ToolStripMenuItemContractExpirationLongJob新産別": // 長期雇用契約（新産別)
+                    employmentAgreementPaper = new(_connectionVo, 10, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
+                    break;
+                case "ToolStripMenuItemContractExpirationLongJob自運労運転士": // 長期雇用契約（自運労運転士)
+                    employmentAgreementPaper = new(_connectionVo, 11, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
+                    break;
+                case "ToolStripMenuItemContractExpirationLongJob自運労作業員": // 長期雇用契約（自運労作業員)
+                    employmentAgreementPaper = new(_connectionVo, 12, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationShortJob": // 短期雇用契約
 

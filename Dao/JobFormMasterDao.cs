@@ -34,7 +34,7 @@ namespace Dao {
                                             "DeletePcName," +
                                             "DeleteYmdHms," +
                                             "DeleteFlag " +
-                                     "FROM H_BelongsMaster " +
+                                     "FROM H_JobFormMaster " +
                                      "ORDER BY Code ASC";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {

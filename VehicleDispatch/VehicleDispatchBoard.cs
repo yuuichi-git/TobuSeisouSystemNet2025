@@ -43,7 +43,7 @@ namespace VehicleDispatch {
             _connectionVo = connectionVo;
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllHCarMaster();
-            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster();
+            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
             /*
              * InitializeControl
              */

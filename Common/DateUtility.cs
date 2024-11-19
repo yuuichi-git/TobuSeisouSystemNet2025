@@ -1,11 +1,17 @@
 ﻿/*
  * 2023-11-08
  */
+using System.Globalization;
+
 namespace Common {
     public class DateUtility {
         private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
         private readonly DateTime _todayDate = DateTime.Today;
+        private readonly CultureInfo _cultureInfo = new("ja-JP");
 
+        public DateUtility() {
+            _cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
+        }
         /// <summary>
         /// 年齢を計算
         /// </summary>
@@ -95,6 +101,15 @@ namespace Common {
         /// <returns></returns>
         public string GetDateTimeNow() {
             return DateTime.Now.ToString("yyyy年MM月dd日(ddd)　HH時mm分ss秒");
+        }
+
+        /// <summary>
+        /// 和暦を返す
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public string GetDateTimeNowJp(DateTime dateTime) {
+            return dateTime.ToString("ggyy年MM月dd日", _cultureInfo);
         }
 
         /// <summary>

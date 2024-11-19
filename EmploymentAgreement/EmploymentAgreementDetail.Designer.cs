@@ -39,6 +39,7 @@
             this.labelEx35 = new ControlEx.LabelEx();
             this.LabelExJobForm = new ControlEx.LabelEx();
             this.PanelExMiddle = new ControlEx.PanelEx();
+            this.labelEx19 = new ControlEx.LabelEx();
             this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
             this.TextBoxExContractExpirationPeriod = new ControlEx.TextBoxEx();
             this.labelEx3 = new ControlEx.LabelEx();
@@ -151,7 +152,6 @@
             this.labelEx7 = new ControlEx.LabelEx();
             this.DTPExContractExpirationPartTimeJobStartDate2 = new ControlEx.DateTimePickerEx();
             this.TextBoxExContractExpirationPartTimeJobMemo1 = new ControlEx.TextBoxEx();
-            this.labelEx19 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
@@ -378,6 +378,15 @@
             this.PanelExMiddle.Size = new Size(1898, 947);
             this.PanelExMiddle.TabIndex = 3;
             // 
+            // labelEx19
+            // 
+            this.labelEx19.Location = new Point(40, 28);
+            this.labelEx19.Name = "labelEx19";
+            this.labelEx19.Size = new Size(332, 16);
+            this.labelEx19.TabIndex = 68;
+            this.labelEx19.Text = "契約勤務地";
+            this.labelEx19.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // ComboBoxExBaseAddress
             // 
             this.ComboBoxExBaseAddress.FormattingEnabled = true;
@@ -465,7 +474,7 @@
             // 
             this.ComboBoxExWorkTime.FormattingEnabled = true;
             this.ComboBoxExWorkTime.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１２時００分～１６時００分" });
+            this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１０時００分～１５時００分", "１２時００分～１６時００分" });
             this.ComboBoxExWorkTime.Location = new Point(352, 164);
             this.ComboBoxExWorkTime.Name = "ComboBoxExWorkTime";
             this.ComboBoxExWorkTime.Size = new Size(216, 23);
@@ -1584,15 +1593,6 @@
             this.TextBoxExContractExpirationPartTimeJobMemo1.Name = "TextBoxExContractExpirationPartTimeJobMemo1";
             this.TextBoxExContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
             this.TextBoxExContractExpirationPartTimeJobMemo1.TabIndex = 18;
-            // 
-            // labelEx19
-            // 
-            this.labelEx19.Location = new Point(40, 28);
-            this.labelEx19.Name = "labelEx19";
-            this.labelEx19.Size = new Size(332, 16);
-            this.labelEx19.TabIndex = 68;
-            this.labelEx19.Text = "契約勤務地";
-            this.labelEx19.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // EmploymentAgreementDetail
             // 

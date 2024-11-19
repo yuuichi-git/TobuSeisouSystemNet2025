@@ -77,6 +77,14 @@ namespace EmploymentAgreement {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
             this.InitializeControl();
             if (_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                 this.ButtonExUpdate.Text = "更　新";
@@ -88,7 +96,6 @@ namespace EmploymentAgreement {
                 this.PutControlHead();
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "この従事者の基本台帳が存在しません。台帳を作成してください。";
             }
-
         }
 
         /// <summary>
@@ -367,51 +374,54 @@ namespace EmploymentAgreement {
         /// 
         /// </summary>
         private void PutControlBody() {
-            this.ComboBoxExBaseAddress.Text = _employmentAgreementVo.BaseLocation;
-            this.ComboBoxExBelongs.SelectedValue = _staffMasterVo.Belongs;
-            this.NUDExContractExpirationPeriod.Value = _employmentAgreementVo.ContractExpirationPeriod;
+            this.ComboBoxExBaseAddress.Text = _employmentAgreementVo.BaseLocation; // 勤務地
+            this.ComboBoxExBelongs.SelectedValue = _staffMasterVo.Belongs; // 雇用形態
+            this.NUDExContractExpirationPeriod.Value = _employmentAgreementVo.ContractExpirationPeriod; // 契約期間
             /*
-             * 契約期間を計算
+             * 契約期間文字を計算
              */
             DateTime date = DateTime.Now;
             string time = string.Empty;
-            switch (_employmentAgreementVo.ContractExpirationPeriod) {
-                case 0:
-                    time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", date.Date.AddDays(6).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                case 1:
-                    time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                case 2:
-                    time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(1)).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                case 3:
-                    time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(2)).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                case 6:
-                    time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(5)).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                case 12:
-                    time = string.Concat(_dateUtility.GetFiscalYearStartDate(date).ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetFiscalYearEndDate(date).AddDays(-1).ToString("yyyy年MM月dd日"));
-                    this.TextBoxExContractExpirationPeriod.Text = time;
-                    break;
-                default:
-                    this.TextBoxExContractExpirationPeriod.Text = string.Empty;
-                    break;
-
+            if (_employmentAgreementVo.ContractExpirationPeriodString != string.Empty) {
+                this.TextBoxExContractExpirationPeriod.Text = _employmentAgreementVo.ContractExpirationPeriodString;
+            } else {
+                switch (_employmentAgreementVo.ContractExpirationPeriod) {
+                    case 0:
+                        time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", date.Date.AddDays(6).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    case 1:
+                        time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    case 2:
+                        time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(1)).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    case 3:
+                        time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(2)).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    case 6:
+                        time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(5)).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    case 12:
+                        time = string.Concat(_dateUtility.GetFiscalYearStartDate(date).ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetFiscalYearEndDate(date).AddDays(-1).ToString("yyyy年MM月dd日"));
+                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        break;
+                    default:
+                        this.TextBoxExContractExpirationPeriod.Text = string.Empty;
+                        break;
+                }
             }
-            this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag;
-            this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail;
-            this.NUDExPay.Value = _employmentAgreementVo.Pay;
-            this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost;
-            this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription;
-            this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime;
-            this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime;
+            this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag; // 各労共に提出中
+            this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail; // 給与区分
+            this.NUDExPay.Value = _employmentAgreementVo.Pay; // 給与単価
+            this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost; // 交通費
+            this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription; // 従事すべき業務内容
+            this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime; // 勤務時間
+            this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime; // 休憩時間
 
             this.PutExpiration(_listContractExpirationVo);
             this.PutContractExpirationPartTimeJob(_listContractExpirationVo);

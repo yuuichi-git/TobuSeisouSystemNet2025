@@ -28,12 +28,17 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
+            this.ComboBoxExPrinter = new ControlEx.ComboBoxEx();
+            this.labelEx2 = new ControlEx.LabelEx();
             this.ButtonExPrint = new ControlEx.ButtonEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView体験期間契約 = this.SpreadList.GetSheet(0);
             this.SheetViewアルバイト契約 = this.SpreadList.GetSheet(1);
             this.SheetView嘱託雇用契約社員 = this.SpreadList.GetSheet(2);
             this.SheetViewパートタイマー = this.SpreadList.GetSheet(3);
+            this.SheetView長期雇用契約新産別 = this.SpreadList.GetSheet(4);
+            this.SheetView長期雇用契約自運労運転士 = this.SpreadList.GetSheet(5);
+            this.SheetView長期雇用契約自運労作業員 = this.SpreadList.GetSheet(6);
             this.PanelExLeft = new ControlEx.PanelEx();
             this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
             this.LabelExCurrentAddress = new ControlEx.LabelEx();
@@ -88,12 +93,31 @@
             // PanelExUp
             // 
             this.TableLayoutPanelExBase.SetColumnSpan(this.PanelExUp, 2);
+            this.PanelExUp.Controls.Add(this.ComboBoxExPrinter);
+            this.PanelExUp.Controls.Add(this.labelEx2);
             this.PanelExUp.Controls.Add(this.ButtonExPrint);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
             this.PanelExUp.Size = new Size(1255, 34);
             this.PanelExUp.TabIndex = 2;
+            // 
+            // ComboBoxExPrinter
+            // 
+            this.ComboBoxExPrinter.FormattingEnabled = true;
+            this.ComboBoxExPrinter.Location = new Point(108, 4);
+            this.ComboBoxExPrinter.Name = "ComboBoxExPrinter";
+            this.ComboBoxExPrinter.Size = new Size(264, 23);
+            this.ComboBoxExPrinter.TabIndex = 7;
+            // 
+            // labelEx2
+            // 
+            this.labelEx2.AutoSize = true;
+            this.labelEx2.Location = new Point(16, 8);
+            this.labelEx2.Name = "labelEx2";
+            this.labelEx2.Size = new Size(86, 15);
+            this.labelEx2.TabIndex = 6;
+            this.labelEx2.Text = "出力先プリンター";
             // 
             // ButtonExPrint
             // 
@@ -109,7 +133,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, 体験期間契約, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, 長期雇用契約（自運労作業員) , Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(403, 67);
@@ -178,6 +202,7 @@
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
+            this.PanelExUp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
             this.PanelExLeft.ResumeLayout(false);
             this.PanelExLeft.PerformLayout();
@@ -198,9 +223,14 @@
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
         private ControlEx.ButtonEx ButtonExPrint;
+        private ControlEx.LabelEx labelEx2;
+        private ControlEx.ComboBoxEx ComboBoxExPrinter;
         private FarPoint.Win.Spread.SheetView SheetView体験期間契約;
         private FarPoint.Win.Spread.SheetView SheetViewアルバイト契約;
         private FarPoint.Win.Spread.SheetView SheetView嘱託雇用契約社員;
         private FarPoint.Win.Spread.SheetView SheetViewパートタイマー;
+        private FarPoint.Win.Spread.SheetView SheetView長期雇用契約新産別;
+        private FarPoint.Win.Spread.SheetView SheetView長期雇用契約自運労運転士;
+        private FarPoint.Win.Spread.SheetView SheetView長期雇用契約自運労作業員;
     }
 }
