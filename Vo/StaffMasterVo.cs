@@ -29,6 +29,7 @@ namespace Vo {
         private string _telephoneNumber;
         private string _cellphoneNumber;
         private byte[] _picture;
+        private byte[] _stampPicture;
         private string _bloodType;
         private DateTime _selectionDate;
         private DateTime _notSelectionDate;
@@ -97,6 +98,7 @@ namespace Vo {
             _telephoneNumber = string.Empty;
             _cellphoneNumber = string.Empty;
             _picture = Array.Empty<byte>();
+            _stampPicture = Array.Empty<byte>();
             _bloodType = string.Empty;
             _selectionDate = _defaultDateTime;
             _notSelectionDate = _defaultDateTime;
@@ -287,6 +289,13 @@ namespace Vo {
         public byte[] Picture {
             get => _picture;
             set => _picture = value;
+        }
+        /// <summary>
+        /// 印影
+        /// </summary>
+        public byte[] StampPicture {
+            get => this._stampPicture;
+            set => this._stampPicture = value;
         }
         /// <summary>
         /// 血液型
@@ -547,5 +556,6 @@ namespace Vo {
             get => _deleteFlag;
             set => _deleteFlag = value;
         }
+        
     }
 }

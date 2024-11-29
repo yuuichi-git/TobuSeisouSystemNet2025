@@ -7,6 +7,8 @@ using Common;
 
 using Dao;
 
+using FarPoint.Win;
+
 using Vo;
 
 namespace EmploymentAgreement {
@@ -23,6 +25,7 @@ namespace EmploymentAgreement {
          */
         private BelongsMasterDao _belongsMasterDao;
         private JobDescriptionMasterDao _jobDescriptionMasterDao;
+        private StaffMasterDao _staffMasterDao;
         /*
          * Vo
          */
@@ -41,17 +44,18 @@ namespace EmploymentAgreement {
         /// <param name="connectionVo"></param>
         /// <param name="staffMasterVo"></param>
         /// <param name="employmentAgreementVo"></param>
-        public EmploymentAgreementPaper(ConnectionVo connectionVo, int code, StaffMasterVo staffMasterVo, EmploymentAgreementVo employmentAgreementVo) {
+        public EmploymentAgreementPaper(ConnectionVo connectionVo, int code, int staffCode, EmploymentAgreementVo employmentAgreementVo) {
             /*
              * Dao
              */
             _belongsMasterDao = new(connectionVo);
             _jobDescriptionMasterDao = new(connectionVo);
+            _staffMasterDao = new(connectionVo);
             /*
              * Vo
              */
             _connectionVo = connectionVo;
-            _staffMasterVo = staffMasterVo;
+            _staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
             _employmentAgreementVo = employmentAgreementVo;
             /*
              * Dictionary
@@ -92,34 +96,34 @@ namespace EmploymentAgreement {
             /// 40:失墜行為確認書
             /// 50:満了一カ月前通知
             switch (code) {
-                case 10:
+                case 10: // 長期雇用契約（新産別）
                     this.SpreadList.ActiveSheetIndex = 4;
                     this.PutContractExpirationLongJob新産別();
                     break;
-                case 11:
+                case 11: // 長期雇用契約（自運労運転士）
                     this.SpreadList.ActiveSheetIndex = 5;
                     this.PutContractExpirationLongJob自運労運転士();
                     break;
-                case 12:
+                case 12: // 長期雇用契約（自運労作業員）
                     this.SpreadList.ActiveSheetIndex = 6;
                     this.PutContractExpirationLongJob自運労作業員();
                     break;
-                case 13:
+                case 13: // 短期雇用契約
 
                     break;
-                case 20:
+                case 20: // 継続アルバイト契約
                     this.SpreadList.ActiveSheetIndex = 1;
                     this.PutContractExpirationPartTimeJob();
                     break;
-                case 21:
+                case 21: // 体験アルバイト契約
                     this.SpreadList.ActiveSheetIndex = 0;
                     this.PutExpirationJob();
                     break;
-                case 22:
+                case 22: // 嘱託雇用契約社員
                     this.SpreadList.ActiveSheetIndex = 2;
                     this.PutContractExpirationPartTimeEmployee();
                     break;
-                case 23:
+                case 23: // パートタイマー
                     this.SpreadList.ActiveSheetIndex = 3;
                     this.PutContractExpirationPartTimer();
                     break;
@@ -127,10 +131,10 @@ namespace EmploymentAgreement {
                     this.SpreadList.ActiveSheetIndex = 7;
                     this.PutContractExpirationWrittenPledge();
                     break;
-                case 40:
+                case 40: // 失墜行為確認書
 
                     break;
-                case 50:
+                case 50: // 満了一カ月前通知
 
                     break;
 
@@ -165,6 +169,9 @@ namespace EmploymentAgreement {
             this.SheetView体験期間契約.Cells[28, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
             // 交通費
             this.SheetView体験期間契約.Cells[29, 30].Value = _employmentAgreementVo.TravelCost;
+
+            // 印影
+            this.SheetView体験期間契約.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -195,6 +202,9 @@ namespace EmploymentAgreement {
             this.SheetViewアルバイト契約.Cells[29, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
             // 交通費
             this.SheetViewアルバイト契約.Cells[30, 30].Value = _employmentAgreementVo.TravelCost;
+
+            // 印影
+            this.SheetViewアルバイト契約.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -225,6 +235,9 @@ namespace EmploymentAgreement {
             this.SheetView嘱託雇用契約社員.Cells[32, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
             // 交通費
             this.SheetView嘱託雇用契約社員.Cells[35, 30].Value = _employmentAgreementVo.TravelCost != 0 ? _employmentAgreementVo.TravelCost : "---";
+
+            // 印影
+            this.SheetView嘱託雇用契約社員.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -253,6 +266,9 @@ namespace EmploymentAgreement {
             this.SheetViewパートタイマー.Cells[28, 9].Text = _employmentAgreementVo.PayDetail;
             // 給料金額
             this.SheetViewパートタイマー.Cells[28, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
+
+            // 印影
+            this.SheetViewパートタイマー.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -265,6 +281,9 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約新産別.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
             this.SheetView長期雇用契約新産別.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+
+            // 印影
+            this.SheetView長期雇用契約新産別.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -277,6 +296,9 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約自運労運転士.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
             this.SheetView長期雇用契約自運労運転士.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+
+            // 印影
+            this.SheetView長期雇用契約自運労運転士.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -289,6 +311,9 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約自運労作業員.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
             this.SheetView長期雇用契約自運労作業員.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+
+            // 印影
+            this.SheetView長期雇用契約自運労作業員.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /// <summary>
@@ -299,6 +324,9 @@ namespace EmploymentAgreement {
             this.SheetView誓約書.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
             // 契約日
             this.SheetView誓約書.Cells[40, 17].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+
+            // 印影
+            this.SheetView誓約書.Cells[42, 30].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
         }
 
         /*

@@ -390,37 +390,37 @@ namespace EmploymentAgreement {
 
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExpiration": // 体験アルバイト契約 20
-                    employmentAgreementPaper = new(_connectionVo, 21, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 21, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationPartTimeJob": // 継続アルバイト契約 21
-                    employmentAgreementPaper = new(_connectionVo, 20, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 20, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationPartTimeEmployee": // 嘱託雇用契約社員 22
-                    employmentAgreementPaper = new(_connectionVo, 22, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 22, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationPartTimer": // パートタイマー 23
-                    employmentAgreementPaper = new(_connectionVo, 23, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 23, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationLongJob新産別": // 長期雇用契約（新産別)
-                    employmentAgreementPaper = new(_connectionVo, 10, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 10, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationLongJob自運労運転士": // 長期雇用契約（自運労運転士)
-                    employmentAgreementPaper = new(_connectionVo, 11, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 11, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationLongJob自運労作業員": // 長期雇用契約（自運労作業員)
-                    employmentAgreementPaper = new(_connectionVo, 12, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 12, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
@@ -428,7 +428,7 @@ namespace EmploymentAgreement {
 
                     break;
                 case "ToolStripMenuItemContractExpirationWrittenPledge": // 誓約書
-                    employmentAgreementPaper = new(_connectionVo, 30, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    employmentAgreementPaper = new(_connectionVo, 30, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
