@@ -1,6 +1,8 @@
 ﻿/*
  * 2024-10-14
  */
+using System.Diagnostics;
+
 using ControlEx.Properties;
 
 using Vo;
@@ -8,7 +10,7 @@ using Vo;
 namespace ControlEx {
     public partial class StaffLabel : Label {
         /*
-         * Eventを渡す
+         * デリゲート
          */
         public event EventHandler StaffLabel_ContextMenuStrip_Opened = delegate { };
         public event EventHandler StaffLabel_ToolStripMenuItem_Click = delegate { };
@@ -19,8 +21,10 @@ namespace ControlEx {
         public event EventHandler StaffLabel_OnMouseLeave = delegate { };
         public event MouseEventHandler StaffLabel_OnMouseMove = delegate { };
         public event MouseEventHandler StaffLabel_OnMouseUp = delegate { };
-
-        private StaffLabel _thisLabel;
+        /*
+         * プロパティ
+         */
+        private object _parentControl;
         private bool _cursorEnterFlag = false;
         private string _memo = string.Empty;
         private bool _memoFlag = false;
@@ -60,8 +64,6 @@ namespace ControlEx {
             this.Name = "StaffLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
-            // 自分自身の参照を退避
-            _thisLabel = this;
             // ContextMenuStripを初期化
             this.CreateContextMenuStrip();
             /*
@@ -150,9 +152,9 @@ namespace ControlEx {
             toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_1);
             contextMenuStrip.Items.Add(toolStripMenuItem04);
             /*
-             * メモを作成・編集する
+             * メモを作成・編集する("Ctrl + Click")
              */
-            ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する");
+            ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
             toolStripMenuItem05.Name = "ToolStripMenuItemStaffMemo";
             toolStripMenuItem05.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem05);
@@ -163,29 +165,6 @@ namespace ControlEx {
             toolStripMenuItem07.Name = "ToolStripMenuItemStaffProperty";
             toolStripMenuItem07.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem07);
-        }
-
-        /*
-         * Event処理
-         */
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            //
-            StaffLabel_ContextMenuStrip_Opened.Invoke(this, e);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            //
-            StaffLabel_ToolStripMenuItem_Click.Invoke(this, e);
         }
 
         /// <summary>
@@ -235,24 +214,38 @@ namespace ControlEx {
             return (Image)imageConverter.ConvertFrom(arrayByte);
         }
 
+        /*
+         * Event処理
+         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            Debug.WriteLine("StaffLabel ContextMenuStripOpened");
+
+            StaffLabel_ContextMenuStrip_Opened.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Debug.WriteLine("StaffLabel ToolStripMenuItemClick");
+
+            StaffLabel_ToolStripMenuItem_Click.Invoke(this, e);
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseClick(MouseEventArgs e) {
-            /*
-             * Shiftの検出
-             */
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
-                // 点呼処理を実行するために親へ渡す
-                StaffLabel_OnMouseClick.Invoke(this, e);
-            } else {
-                /*
-                 * Momoを表示
-                 */
-                if (this.MemoFlag)
-                    _toolTip.Show(this.Memo, this, 4, 4);
-            }
+            Debug.WriteLine("StaffLabel MouseClick");
+
         }
 
         /// <summary>
@@ -260,27 +253,33 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            //
-            StaffLabel_OnMouseDoubleClick.Invoke(this, e);
+            Debug.WriteLine("StaffLabel MouseDoubleClick");
+
         }
 
         /// <summary>
-        /// 
+        /// MouseDounが先に発火するのでMouseClickは使用不可
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            //
+            Debug.WriteLine("StaffLabel MouseDown");
+
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                StaffLabel_OnMouseClick.Invoke(this, e); // 点呼処理を実行するために親へ渡す
+            } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
+                if (this.MemoFlag) {
+                    _toolTip.Show(this.Memo, this, 4, 4);
+                    return;
+                }
+            }
             StaffLabel_OnMouseDown.Invoke(this, e);
         }
 
         /// <summary>
-        /// 
+        /// このクラス内だけで利用する
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseEnter(EventArgs e) {
-            /*
-             * 
-             */
             CursorEnterFlag = true;
             Refresh();
             //
@@ -288,7 +287,7 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// 
+        /// このクラス内だけで利用する
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseLeave(EventArgs e) {
@@ -317,6 +316,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e) {
+            Debug.WriteLine("StaffLabel MouseUp");
             //
             StaffLabel_OnMouseUp.Invoke(this, e);
         }
@@ -325,11 +325,11 @@ namespace ControlEx {
          * プロパティ
          */
         /// <summary>
-        /// 自分自身の参照を保持
+        /// 格納されているSetControlを退避
         /// </summary>
-        public StaffLabel ThisLabel {
-            get => this._thisLabel;
-            set => this._thisLabel = value;
+        public object ParentControl {
+            get => this._parentControl;
+            set => this._parentControl = value;
         }
         /// <summary>
         /// StaffMasterVo
@@ -384,6 +384,5 @@ namespace ControlEx {
                 Refresh();
             }
         }
-
     }
 }

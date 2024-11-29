@@ -109,7 +109,7 @@ namespace Common {
         /// <param name="dateTime"></param>
         /// <returns></returns>
         public string GetDateTimeNowJp(DateTime dateTime) {
-            return dateTime.ToString("ggyy年MM月dd日", _cultureInfo);
+            return dateTime.ToString("ggyy年M月d日", _cultureInfo);
         }
 
         /// <summary>

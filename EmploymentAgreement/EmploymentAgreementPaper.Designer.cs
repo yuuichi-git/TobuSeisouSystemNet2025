@@ -32,6 +32,11 @@
             this.labelEx2 = new ControlEx.LabelEx();
             this.ButtonExPrint = new ControlEx.ButtonEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.PanelExLeft = new ControlEx.PanelEx();
+            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
+            this.LabelExCurrentAddress = new ControlEx.LabelEx();
+            this.labelEx3 = new ControlEx.LabelEx();
+            this.labelEx1 = new ControlEx.LabelEx();
             this.SheetView体験期間契約 = this.SpreadList.GetSheet(0);
             this.SheetViewアルバイト契約 = this.SpreadList.GetSheet(1);
             this.SheetView嘱託雇用契約社員 = this.SpreadList.GetSheet(2);
@@ -39,11 +44,7 @@
             this.SheetView長期雇用契約新産別 = this.SpreadList.GetSheet(4);
             this.SheetView長期雇用契約自運労運転士 = this.SpreadList.GetSheet(5);
             this.SheetView長期雇用契約自運労作業員 = this.SpreadList.GetSheet(6);
-            this.PanelExLeft = new ControlEx.PanelEx();
-            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
-            this.LabelExCurrentAddress = new ControlEx.LabelEx();
-            this.labelEx3 = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.SheetView誓約書 = this.SpreadList.GetSheet(7);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -68,7 +69,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1261, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1296, 961);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
@@ -76,7 +77,7 @@
             this.TableLayoutPanelExBase.SetColumnSpan(this.MenuStripEx1, 2);
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1261, 24);
+            this.MenuStripEx1.Size = new Size(1296, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
@@ -86,7 +87,7 @@
             this.TableLayoutPanelExBase.SetColumnSpan(this.StatusStripEx1, 2);
             this.StatusStripEx1.Location = new Point(0, 939);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1261, 22);
+            this.StatusStripEx1.Size = new Size(1296, 22);
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -99,7 +100,7 @@
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1255, 34);
+            this.PanelExUp.Size = new Size(1290, 34);
             this.PanelExUp.TabIndex = 2;
             // 
             // ComboBoxExPrinter
@@ -107,7 +108,7 @@
             this.ComboBoxExPrinter.FormattingEnabled = true;
             this.ComboBoxExPrinter.Location = new Point(108, 4);
             this.ComboBoxExPrinter.Name = "ComboBoxExPrinter";
-            this.ComboBoxExPrinter.Size = new Size(264, 23);
+            this.ComboBoxExPrinter.Size = new Size(276, 23);
             this.ComboBoxExPrinter.TabIndex = 7;
             // 
             // labelEx2
@@ -123,7 +124,7 @@
             // 
             this.ButtonExPrint.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExPrint.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            this.ButtonExPrint.Location = new Point(1034, 0);
+            this.ButtonExPrint.Location = new Point(1069, 0);
             this.ButtonExPrint.Name = "ButtonExPrint";
             this.ButtonExPrint.Size = new Size(184, 32);
             this.ButtonExPrint.TabIndex = 5;
@@ -133,12 +134,12 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, 長期雇用契約（自運労作業員) , Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, 長期雇用契約（新産別), Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(403, 67);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(855, 867);
+            this.SpreadList.Size = new Size(890, 867);
             this.SpreadList.TabIndex = 3;
             // 
             // PanelExLeft
@@ -194,11 +195,12 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1261, 961);
+            this.ClientSize = new Size(1296, 961);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "EmploymentAgreementPaper";
             this.Text = "EmploymentAgreementPaper";
+            this.Load += this.EmploymentAgreementPaper_Load;
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
@@ -232,5 +234,6 @@
         private FarPoint.Win.Spread.SheetView SheetView長期雇用契約新産別;
         private FarPoint.Win.Spread.SheetView SheetView長期雇用契約自運労運転士;
         private FarPoint.Win.Spread.SheetView SheetView長期雇用契約自運労作業員;
+        private FarPoint.Win.Spread.SheetView SheetView誓約書;
     }
 }

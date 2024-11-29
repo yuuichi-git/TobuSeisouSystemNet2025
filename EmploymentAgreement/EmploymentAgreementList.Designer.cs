@@ -40,10 +40,10 @@
             this.ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.PanelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -251,8 +251,8 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationNotice;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimeEmployee;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimer;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労運転士;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

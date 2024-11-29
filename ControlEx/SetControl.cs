@@ -7,10 +7,13 @@ namespace ControlEx {
 
     public partial class SetControl : TableLayoutPanel {
         /*
-         * Eventを渡す
+         * デリゲート
          */
         public event EventHandler SetControl_ContextMenuStrip_Opened = delegate { };
         public event EventHandler SetControl_ToolStripMenuItem_Click = delegate { };
+        public event DragEventHandler SetControl_OnDragDrop = delegate { };
+        public event DragEventHandler SetControl_OnDragEnter = delegate { };
+        public event DragEventHandler SetControl_OnDragOver = delegate { };
         public event MouseEventHandler SetControl_OnMouseClick = delegate { };
         public event MouseEventHandler SetControl_OnMouseDoubleClick = delegate { };
         public event MouseEventHandler SetControl_OnMouseDown = delegate { };
@@ -19,13 +22,16 @@ namespace ControlEx {
         public event MouseEventHandler SetControl_OnMouseMove = delegate { };
         public event MouseEventHandler SetControl_OnMouseUp = delegate { };
 
-        private SetControl _thisLabel;
-        private SetLabel _deployedSetLabel;
-        private CarLabel _deployedCarLabel;
-        private StaffLabel _deployedStaffLabel0;
-        private StaffLabel _deployedStaffLabel1;
-        private StaffLabel _deployedStaffLabel2;
-        private StaffLabel _deployedStaffLabel3;
+        private int _cellNumber;
+        private SetLabel? _deployedSetLabel;
+        private CarLabel? _deployedCarLabel;
+        private StaffLabel? _deployedStaffLabel0;
+        private StaffLabel? _deployedStaffLabel1;
+        private StaffLabel? _deployedStaffLabel2;
+        private StaffLabel? _deployedStaffLabel3;
+
+        private object _dragParentControl;
+        private object _dragControl;
 
         /*
          * Vo
@@ -43,7 +49,7 @@ namespace ControlEx {
         private const int _rowCount = 4; // Rowの数
 
         /// <summary>
-        /// Constructor
+        /// コンストラクター
         /// </summary>
         public SetControl(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             /*
@@ -65,61 +71,43 @@ namespace ControlEx {
             switch (VehicleDispatchDetailVo.PurposeFlag) {
                 case true: // ２列
                     // Size
-                    this.Size = new Size((int)_cellWidth * _columnCount * 2, (int)_cellHeight * _rowCount);
+                    this.Size = new Size((int)CellWidth * _columnCount * 2, (int)CellHeight * _rowCount);
                     /*
                      * Column作成
                      */
                     this.ColumnCount = _columnCount + 1;
-                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
-                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
                     break;
                 case false: // １列
                     // Size
-                    this.Size = new Size((int)_cellWidth * _columnCount, (int)_cellHeight * _rowCount);
+                    this.Size = new Size((int)CellWidth * _columnCount, (int)CellHeight * _rowCount);
                     /*
                      * Column作成
                      */
                     this.ColumnCount = _columnCount;
-                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _cellWidth));
+                    this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
                     break;
             }
             /*
              * Row作成
              */
             this.RowCount = _rowCount;
-            this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
-            this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
-            this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
-            this.RowStyles.Add(new RowStyle(SizeType.Absolute, _cellHeight));
-            // 自分自身の参照を退避
-            ThisLabel = this;
-        }
-
-        /// <summary>
-        /// OnPaint
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnCellPaint(TableLayoutCellPaintEventArgs e) {
+            this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
+            this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
+            this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
+            this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
             /*
-             * Boderを描画する
+             * Event
              */
-            Rectangle rectangle = e.CellBounds;
-            rectangle.Inflate(-1, -1); // 枠のサイズを小さくする
-            ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted);
+            this.MouseDown += OnMouseDown; // 画面スクロールに使う
+            this.MouseMove += OnMouseMove; // 画面スクロールに使う
+            this.MouseUp += OnMouseUp; // 画面スクロールに使う
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="cellNumber"></param>
         /// <param name="setMasterVo"></param>
         public void AddSetLabel(SetMasterVo setMasterVo) {
             if (setMasterVo is null)
@@ -133,6 +121,7 @@ namespace ControlEx {
             setLabel.Memo = VehicleDispatchDetailVo.SetMemo;
             setLabel.MemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
             setLabel.OperationFlag = VehicleDispatchDetailVo.OperationFlag;
+            setLabel.ParentControl = this;
             setLabel.ShiftCode = VehicleDispatchDetailVo.ShiftCode;
             setLabel.StandByFlag = VehicleDispatchDetailVo.StandByFlag;
             setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
@@ -141,6 +130,9 @@ namespace ControlEx {
             setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             setLabel.SetLabel_OnMouseClick += OnMouseClick;
             setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+            setLabel.SetLabel_OnMouseDown += OnMouseDown;
+            setLabel.MouseMove += OnMouseMove;
+            setLabel.MouseUp += OnMouseUp;
             this.Controls.Add(setLabel, 0, 0);
             // 参照を退避
             DeployedSetLabel = setLabel;
@@ -158,12 +150,16 @@ namespace ControlEx {
             carLabel.MemoFlag = VehicleDispatchDetailVo.CarMemoFlag;
             carLabel.ClassificationCode = VehicleDispatchDetailVo.ClassificationCode;
             carLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
+            carLabel.ParentControl = this;
             carLabel.ProxyFlag = VehicleDispatchDetailVo.CarProxyFlag;
             // Eventを登録
             carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             carLabel.CarLabel_OnMouseClick += OnMouseClick;
             carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+            carLabel.CarLabel_OnMouseDown += OnMouseDown;
+            carLabel.MouseMove += OnMouseMove;
+            carLabel.MouseUp += OnMouseUp;
             this.Controls.Add(carLabel, 0, 1);
             // 参照を退避
             DeployedCarLabel = carLabel;
@@ -180,6 +176,8 @@ namespace ControlEx {
                 case false: // １列
                     DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
                     DeployedStaffLabel1 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    DeployedStaffLabel2 = null;
+                    DeployedStaffLabel3 = null;
                     break;
                 case true: // ２列
                     DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
@@ -204,6 +202,7 @@ namespace ControlEx {
                         staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo1;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag1;
                         staffLabel.OccupationCode = GetOccupationCode(0);
+                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag1;
                         staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag1;
                         break;
@@ -211,6 +210,7 @@ namespace ControlEx {
                         staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo2;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag2;
                         staffLabel.OccupationCode = GetOccupationCode(1);
+                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag2;
                         staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag2;
                         break;
@@ -218,6 +218,7 @@ namespace ControlEx {
                         staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo3;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag3;
                         staffLabel.OccupationCode = GetOccupationCode(2);
+                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag3;
                         staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag3;
                         break;
@@ -225,6 +226,7 @@ namespace ControlEx {
                         staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo4;
                         staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag4;
                         staffLabel.OccupationCode = GetOccupationCode(3);
+                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag4;
                         staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag4;
                         break;
@@ -234,6 +236,9 @@ namespace ControlEx {
                 staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
                 staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
                 staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+                staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
+                staffLabel.MouseMove += OnMouseMove;
+                staffLabel.MouseUp += OnMouseUp;
                 this.Controls.Add(staffLabel, number <= 1 ? 0 : 1, number % 2 == 0 ? 2 : 3);
                 return staffLabel;
             } else {
@@ -256,6 +261,34 @@ namespace ControlEx {
                     }
                 default:
                     return VehicleDispatchDetailVo.ClassificationCode;
+            }
+        }
+
+        /// <summary>
+        /// プロパティに配置されているobjectをセットする
+        /// _deployedSetLabel
+        /// _deployedCarLabel
+        /// _deployedStaffLabel0
+        /// _deployedStaffLabel1
+        /// _deployedStaffLabel2
+        /// _deployedStaffLabel3
+        /// </summary>
+        /// <param name="setControl">対象のSetControl</param>
+        private void SetControlRelocation(SetControl setControl) {
+            if (VehicleDispatchDetailVo.PurposeFlag) {
+                DeployedSetLabel = setControl.GetControlFromPosition(0, 0) is not null ? (SetLabel)setControl.GetControlFromPosition(0, 0) : null;
+                DeployedCarLabel = setControl.GetControlFromPosition(0, 1) is not null ? (CarLabel)setControl.GetControlFromPosition(0, 1) : null;
+                DeployedStaffLabel0 = setControl.GetControlFromPosition(0, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 2) : null;
+                DeployedStaffLabel1 = setControl.GetControlFromPosition(0, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 3) : null;
+                DeployedStaffLabel2 = setControl.GetControlFromPosition(1, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(1, 2) : null;
+                DeployedStaffLabel3 = setControl.GetControlFromPosition(1, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(1, 3) : null;
+            } else {
+                DeployedSetLabel = setControl.GetControlFromPosition(0, 0) is not null ? (SetLabel)setControl.GetControlFromPosition(0, 0) : null;
+                DeployedCarLabel = setControl.GetControlFromPosition(0, 1) is not null ? (CarLabel)setControl.GetControlFromPosition(0, 1) : null;
+                DeployedStaffLabel0 = setControl.GetControlFromPosition(0, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 2) : null;
+                DeployedStaffLabel1 = setControl.GetControlFromPosition(0, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 3) : null;
+                DeployedStaffLabel2 = null;
+                DeployedStaffLabel3 = null;
             }
         }
 
@@ -283,6 +316,94 @@ namespace ControlEx {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnCellPaint(TableLayoutCellPaintEventArgs e) {
+            /*
+             * Boderを描画する
+             */
+            Rectangle rectangle = e.CellBounds;
+            rectangle.Inflate(-1, -1); // 枠のサイズを小さくする
+            ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted);
+        }
+
+        /// <summary>
+        /// Drag・DropされたControlを退避する処理
+        /// </summary>
+        /// <param name="dragEventArgs"></param>
+        protected override void OnDragDrop(DragEventArgs e) {
+            /*
+             * DragされたControlとParentを格納
+             */
+            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+                DragControl = (SetLabel)e.Data.GetData(typeof(SetLabel));
+            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                DragControl = (CarLabel)e.Data.GetData(typeof(CarLabel));
+            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                DragControl = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+            }
+            switch (DragControl) {
+                case SetLabel setLabel:
+                    this.DragParentControl = setLabel.Parent;
+                    setLabel.ParentControl = this;
+                    break;
+                case CarLabel carLabel:
+                    this.DragParentControl = carLabel.Parent;
+                    carLabel.ParentControl = this;
+                    break;
+                case StaffLabel staffLabel:
+                    this.DragParentControl = staffLabel.Parent;
+                    staffLabel.ParentControl = this;
+                    break;
+                default:
+                    MessageBox.Show("コンテナを登録してください。");
+                    break;
+            }
+            // DragのSetControlRelocationをセット
+
+            // DropのSetControlRelocationをセット
+
+            //
+            SetControl_OnDragDrop.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
+        /// </summary>
+        /// <param name="dragEventArgs"></param>
+        protected override void OnDragEnter(DragEventArgs e) {
+            //
+            SetControl_OnDragEnter.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// ドラッグ アンド ドロップ操作中にマウス カーソルがコントロールの境界内を移動したときに発生します。
+        /// Copy  :データがドロップ先にコピーされようとしている状態
+        /// Move  :データがドロップ先に移動されようとしている状態
+        /// Scroll:データによってドロップ先でスクロールが開始されようとしている状態、あるいは現在スクロール中である状態
+        /// All   :上の3つを組み合わせたもの
+        /// Link  :データのリンクがドロップ先に作成されようとしている状態
+        /// None  :いかなるデータもドロップ先が受け付けようとしない状態
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnDragOver(DragEventArgs e) {
+            Point clientPoint = this.PointToClient(new Point(e.X, e.Y));
+            Point cellPoint = new(clientPoint.X / (int)CellWidth, clientPoint.Y / (int)CellHeight);
+            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+                e.Effect = (cellPoint.X == 0 && cellPoint.Y == 0 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                e.Effect = (cellPoint.X == 0 && cellPoint.Y == 1 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                e.Effect = ((cellPoint.Y == 2 || cellPoint.Y == 3) && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+            } else {
+                e.Effect = DragDropEffects.None;
+            }
+            // 処理を渡す
+            SetControl_OnDragOver.Invoke(this, e);
+        }
+
+        /// <summary>
         /// SetLabel/CarLabel/StaffLabel
         /// </summary>
         /// <param name="sender"></param>
@@ -303,12 +424,13 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// 
+        /// スクロールに使用
+        /// 配下にある各LabelのEventを受け入れ
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseDown(MouseEventArgs e) {
+        private void OnMouseDown(object sender, MouseEventArgs e) {
             //
-            SetControl_OnMouseDown.Invoke(this, e);
+            SetControl_OnMouseDown.Invoke(sender, e);
         }
 
         /// <summary>
@@ -330,32 +452,50 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// 
+        /// スクロールに使用
+        /// 配下にある各LabelのEventを受け入れ
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseMove(MouseEventArgs e) {
+        private void OnMouseMove(object sender, MouseEventArgs e) {
             //
-            SetControl_OnMouseMove.Invoke(this, e);
+            SetControl_OnMouseMove.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// スクロールに使用
+        /// 配下にある各LabelのEventを受け入れ
+        /// </summary>
+        /// <param name="e"></param>
+        private void OnMouseUp(object sender, MouseEventArgs e) {
+            //
+            SetControl_OnMouseUp.Invoke(sender, e);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseUp(MouseEventArgs e) {
-            //
-            SetControl_OnMouseUp.Invoke(this, e);
+        /// <param name="pe"></param>
+        protected override void OnPaint(PaintEventArgs pe) {
+            base.OnPaint(pe);
         }
 
         /*
          * プロパティー
          */
         /// <summary>
-        /// 自分自身の参照を保持
+        /// 
         /// </summary>
-        public SetControl ThisLabel {
-            get => this._thisLabel;
-            set => this._thisLabel = value;
+        public float CellWidth => _cellWidth;
+        /// <summary>
+        /// 
+        /// </summary>
+        public float CellHeight => _cellHeight;
+        /// <summary>
+        /// CellNumber
+        /// </summary>
+        public int CellNumber {
+            get => this._cellNumber;
+            set => this._cellNumber = value;
         }
         /// <summary>
         /// VehicleDispatchDetailVoを格納
@@ -367,45 +507,60 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているSetLabelの参照を保持
         /// </summary>
-        public SetLabel DeployedSetLabel {
+        public SetLabel? DeployedSetLabel {
             get => this._deployedSetLabel;
             set => this._deployedSetLabel = value;
         }
         /// <summary>
         /// 配置されているCarLabelの参照を保持
         /// </summary>
-        public CarLabel DeployedCarLabel {
+        public CarLabel? DeployedCarLabel {
             get => this._deployedCarLabel;
             set => this._deployedCarLabel = value;
         }
         /// <summary>
         /// 配置されているStaffLabel 0の参照を保持
         /// </summary>
-        public StaffLabel DeployedStaffLabel0 {
+        public StaffLabel? DeployedStaffLabel0 {
             get => this._deployedStaffLabel0;
             set => this._deployedStaffLabel0 = value;
         }
         /// <summary>
         /// 配置されているStaffLabel 1の参照を保持
         /// </summary>
-        public StaffLabel DeployedStaffLabel1 {
+        public StaffLabel? DeployedStaffLabel1 {
             get => this._deployedStaffLabel1;
             set => this._deployedStaffLabel1 = value;
         }
         /// <summary>
         /// 配置されているStaffLabel 2の参照を保持
         /// </summary>
-        public StaffLabel DeployedStaffLabel2 {
+        public StaffLabel? DeployedStaffLabel2 {
             get => this._deployedStaffLabel2;
             set => this._deployedStaffLabel2 = value;
         }
         /// <summary>
         /// 配置されているStaffLabel 3の参照を保持
         /// </summary>
-        public StaffLabel DeployedStaffLabel3 {
+        public StaffLabel? DeployedStaffLabel3 {
             get => this._deployedStaffLabel3;
             set => this._deployedStaffLabel3 = value;
         }
+        /// <summary>
+        /// Drag時のParentControlを格納
+        /// </summary>
+        public object DragParentControl {
+            get => this._dragParentControl;
+            set => this._dragParentControl = value;
+        }
+        /// <summary>
+        /// DragしたControlを格納
+        /// </summary>
+        public object DragControl {
+            get => this._dragControl;
+            set => this._dragControl = value;
+        }
+
     }
 }
 

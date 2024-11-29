@@ -1,6 +1,8 @@
 ﻿/*
  * 2024/10/03
  */
+using System.Diagnostics;
+
 using ControlEx;
 
 using Dao;
@@ -9,6 +11,10 @@ using Vo;
 
 namespace VehicleDispatch {
     public partial class VehicleDispatchBoard : Form {
+        /*
+         * プロパティ
+         */
+        private SetControl _dragParentSetControl;
         /*
          * Dao
          */
@@ -27,7 +33,7 @@ namespace VehicleDispatch {
         private Board _board;
 
         /// <summary>
-        /// Constructor
+        /// コンストラクター
         /// </summary>
         public VehicleDispatchBoard(ConnectionVo connectionVo) {
             /*
@@ -64,6 +70,16 @@ namespace VehicleDispatch {
             _board.Board_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             _board.Board_OnMouseClick += OnMouseClick;
             _board.Board_OnMouseDoubleClick += OnMouseDoubleClick;
+            _board.Board_OnMouseDown += OnMouseDown;
+            _board.Board_OnMouseEnter += OnMouseEnter;
+            _board.Board_OnMouseLeave += OnMouseLeave;
+            _board.Board_OnMouseMove += OnMouseMove;
+            _board.Board_OnMouseUp += OnMouseUp;
+
+            _board.Board_OnDragDrop += OnDragDrop;
+            _board.Board_OnDragEnter += OnDragEnter;
+            _board.Board_OnDragOver += OnDragOver;
+
             TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
 
@@ -145,6 +161,61 @@ namespace VehicleDispatch {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private class SetControVo {
+            SetLabel? _setLabel = null;
+            CarLabel? _carLabel = null;
+            StaffLabel? _staffLabel0 = null;
+            StaffLabel? _staffLabel1 = null;
+            StaffLabel? _staffLabel2 = null;
+            StaffLabel? _staffLabel3 = null;
+
+            public SetLabel? SetLabel {
+                get => this._setLabel;
+                set => this._setLabel = value;
+            }
+            public CarLabel? CarLabel {
+                get => this._carLabel;
+                set => this._carLabel = value;
+            }
+            public StaffLabel? StaffLabel0 {
+                get => this._staffLabel0;
+                set => this._staffLabel0 = value;
+            }
+            public StaffLabel? StaffLabel1 {
+                get => this._staffLabel1;
+                set => this._staffLabel1 = value;
+            }
+            public StaffLabel? StaffLabel2 {
+                get => this._staffLabel2;
+                set => this._staffLabel2 = value;
+            }
+            public StaffLabel? StaffLabel3 {
+                get => this._staffLabel3;
+                set => this._staffLabel3 = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VehicleDispatchBoard_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
+        }
+
         /*
          * Event処理
          */
@@ -163,6 +234,70 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
+
+        /// <summary>
+        /// ObjectがDropされると発生します。
+        /// </summary>
+        /// <param name="sender">DropされたSetControlが入っている</param>
+        /// <param name="e"></param>
+        private void OnDragDrop(object sender, DragEventArgs e) {
+            Debug.WriteLine("VehicleDispatchBoard DragDrop");
+
+            switch (((SetControl)sender).DragParentControl) {
+                case SetControl dragParentControl:
+                    /*
+                     * H_SetControl上のセルの位置を取得する
+                     */
+                    Point clientPoint = ((SetControl)sender).PointToClient(new Point(e.X, e.Y));
+                    Point cellPoint = new(clientPoint.X / (int)((SetControl)sender).CellWidth, clientPoint.Y / (int)((SetControl)sender).CellHeight);
+                    /*
+                     * Drop処理
+                     * Controlを追加する
+                     */
+                    switch (((SetControl)sender).DragControl) {
+                        case SetLabel setLabel:
+                            ((SetControl)sender).Controls.Add((SetLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            break;
+                        case CarLabel carLabel:
+                            ((SetControl)sender).Controls.Add((CarLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            break;
+                        case StaffLabel staffLabel:
+                            ((SetControl)sender).Controls.Add((StaffLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            break;
+                    }
+
+                    Debug.WriteLine(string.Concat(cellPoint.X, "  ", cellPoint.Y));
+                    Debug.WriteLine(string.Concat(dragParentControl.CellNumber, " → ", ((SetControl)sender).CellNumber, "の", cellPoint.X, ",", cellPoint.Y));
+                    break;
+                case StockBoxtPanel stockBoxPanel:
+                    MessageBox.Show("StockBoxtPanel");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
+        /// </summary>
+        /// <param name="sender">これを呼出したSetControlが入っている</param>
+        /// <param name="e"></param>
+        private void OnDragEnter(object sender, DragEventArgs e) {
+
+        }
+
+        /// <summary>
+        /// ドラッグ アンド ドロップ操作中にマウス カーソルがコントロールの境界内を移動したときに発生します。
+        /// Copy  :データがドロップ先にコピーされようとしている状態
+        /// Move  :データがドロップ先に移動されようとしている状態
+        /// Scroll:データによってドロップ先でスクロールが開始されようとしている状態、あるいは現在スクロール中である状態
+        /// All   :上の3つを組み合わせたもの
+        /// Link  :データのリンクがドロップ先に作成されようとしている状態
+        ///  None  :いかなるデータもドロップ先が受け付けようとしない状態
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDragOver(object sender, DragEventArgs e) {
 
         }
 
@@ -190,7 +325,6 @@ namespace VehicleDispatch {
                             case DialogResult.Cancel:
                                 ((StaffLabel)sender).RollCallFlag = true;
                                 break;
-
                         }
                     } else {
                         ((StaffLabel)sender).RollCallFlag = true;
@@ -215,13 +349,76 @@ namespace VehicleDispatch {
                     break;
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void VehicleDispatchBoard_FormClosing(object sender, FormClosingEventArgs e) {
+        private void OnMouseDown(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                switch (sender) {
+                    case SetLabel control:
+                        control.DoDragDrop(sender, DragDropEffects.Move);
+                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        break;
+                    case CarLabel control:
+                        control.DoDragDrop(sender, DragDropEffects.Move);
+                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        break;
+                    case StaffLabel control:
+                        control.DoDragDrop(sender, DragDropEffects.Move);
+                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        break;
+                }
+            }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseEnter(object sender, EventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseLeave(object sender, EventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseMove(object sender, MouseEventArgs e) {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseUp(object sender, MouseEventArgs e) {
+
+        }
+
+        /*
+         * プロパティ
+         */
+        /// <summary>
+        /// Drag Dropを開始した時のSetControlを格納する
+        /// </summary>
+        public SetControl DragParentSetControl {
+            get => this._dragParentSetControl;
+            set => this._dragParentSetControl = value;
         }
     }
 }

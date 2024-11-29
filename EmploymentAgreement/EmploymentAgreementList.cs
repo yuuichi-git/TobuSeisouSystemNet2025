@@ -200,7 +200,7 @@ namespace EmploymentAgreement {
                         _listContractExpirationVo = _contractExpirationDao.SelectAllContractExpiration();
                         this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(new int[] { 12, 14, 15, 20, 21 },
                                                                                    new int[] { 10, 99 },
-                                                                                   new int[] { 10, 11, 20, 99 },
+                                                                                   new int[] { 10, 11, 12, 13, 20, 99 },
                                                                                    this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -428,7 +428,9 @@ namespace EmploymentAgreement {
 
                     break;
                 case "ToolStripMenuItemContractExpirationWrittenPledge": // 誓約書
-
+                    employmentAgreementPaper = new(_connectionVo, 30, staffMasterVo, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
                     break;
                 case "ToolStripMenuItemContractExpirationLossWrittenPledge": // 失墜行為確認書
 

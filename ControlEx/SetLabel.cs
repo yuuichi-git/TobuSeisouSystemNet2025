@@ -1,6 +1,8 @@
 ﻿/*
  * 2024-10-12
  */
+using System.Diagnostics;
+
 using ControlEx.Properties;
 
 using Vo;
@@ -8,7 +10,7 @@ using Vo;
 namespace ControlEx {
     public partial class SetLabel : Label {
         /*
-         * Eventを渡す
+         * デリゲート
          */
         public event EventHandler SetLabel_ContextMenuStrip_Opened = delegate { };
         public event EventHandler SetLabel_ToolStripMenuItem_Click = delegate { };
@@ -19,8 +21,10 @@ namespace ControlEx {
         public event EventHandler SetLabel_OnMouseLeave = delegate { };
         public event MouseEventHandler SetLabel_OnMouseMove = delegate { };
         public event MouseEventHandler SetLabel_OnMouseUp = delegate { };
-
-        private SetLabel _thisLabel;
+        /*
+         * プロパティ
+         */
+        private object _parentControl;
         private bool _addWorkerFlag = false;
         private int _classificationCode = 0;
         private bool contactInfomationFlag = false;
@@ -71,8 +75,6 @@ namespace ControlEx {
             this.Name = "SetLabel";
             this.Padding = new(0);
             this.Width = (int)_panelWidth;
-            // 自分自身の参照を退避
-            _thisLabel = this;
             // ContextMenuStripを初期化
             this.CreateContextMenuStrip();
             /*
@@ -293,26 +295,41 @@ namespace ControlEx {
                     break;
             }
             // 稼働
-            if (!OperationFlag)
+            if (OperationFlag) {
+                // 三郷車庫
+                if (ManagedSpaceCode == 2)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
+                // FAX送信
+                if (FaxTransmissionFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
+                // 電話連絡
+                if (TelCallingFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
+                // カーソル関係
+                if (CursorEnterFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+                // メモ
+                if (MemoFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
+                // 帰庫点呼
+                if (LastRollCallFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageTenko), 0, 0, Width, Height);
+                // 番手コード
+                switch (ShiftCode) {
+                    case 1:
+                        pe.Graphics.DrawString("早番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
+                        break;
+                    case 2:
+                        pe.Graphics.DrawString("遅番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
+                        break;
+                }
+                // 待機フラグ
+                if (_standByFlag)
+                    pe.Graphics.DrawString("待機", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(37, 90));
+            } else {
+                // 休車
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Operation), 0, 0, Width, Height);
-            // 三郷車庫
-            if (ManagedSpaceCode == 2)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
-            // FAX送信
-            if (FaxTransmissionFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
-            // 電話連絡
-            if (TelCallingFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
-            // カーソル関係
-            if (CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
-            // メモ
-            if (MemoFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
-            // 帰庫点呼
-            if (LastRollCallFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageTenko), 0, 0, Width, Height);
+            }
             /*
              * 文字(配車先)を描画
              */
@@ -322,18 +339,6 @@ namespace ControlEx {
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.Alignment = StringAlignment.Center;
             pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
-            // 番手コード
-            switch (ShiftCode) {
-                case 1:
-                    pe.Graphics.DrawString("早番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
-                    break;
-                case 2:
-                    pe.Graphics.DrawString("遅番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
-                    break;
-            }
-            // 待機フラグ
-            if (_standByFlag)
-                pe.Graphics.DrawString("待機", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(37, 90));
         }
 
         /// <summary>
@@ -355,7 +360,8 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            //
+            Debug.WriteLine("SetLabel ContextMenuStripOpened");
+
             SetLabel_ContextMenuStrip_Opened.Invoke(sender, e);
         }
 
@@ -365,7 +371,8 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            //
+            Debug.WriteLine("SetLabel ToolStripMenuItemClick");
+
             SetLabel_ToolStripMenuItem_Click.Invoke(sender, e);
         }
 
@@ -374,19 +381,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseClick(MouseEventArgs e) {
-            /*
-             * Shiftの検出
-             */
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
-                // 点呼処理を実行するために親へ渡す
-                SetLabel_OnMouseClick.Invoke(this, e);
-            } else {
-                /*
-                 * Momoを表示
-                 */
-                if (this.MemoFlag)
-                    _toolTip.Show(this.Memo, this, 4, 4);
-            }
+            Debug.WriteLine("SetLabel MouseClick");
+
         }
 
         /// <summary>
@@ -394,16 +390,23 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            //
-            SetLabel_OnMouseDoubleClick.Invoke(this, e);
+            Debug.WriteLine("SetLabel MouseDoubleClick");
+
         }
 
         /// <summary>
-        /// 
+        /// MouseDounが先に発火するのでMouseClickは使用不可
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            //
+            Debug.WriteLine("SetLabel MouseDown");
+
+            if ((ModifierKeys & Keys.Control) == Keys.Control) {
+                if (this.MemoFlag) {
+                    _toolTip.Show(this.Memo, this, 4, 4);
+                    return;
+                }
+            }
             SetLabel_OnMouseDown.Invoke(this, e);
         }
 
@@ -425,12 +428,8 @@ namespace ControlEx {
         protected override void OnMouseLeave(EventArgs e) {
             // ToolTipを消す
             _toolTip.Hide(this);
-            /*
-             * 
-             */
             CursorEnterFlag = false;
             Refresh();
-            //
             SetLabel_OnMouseLeave.Invoke(this, e);
         }
 
@@ -439,8 +438,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e) {
-            //
-            SetLabel_OnMouseMove.Invoke(this, e);
+
         }
 
         /// <summary>
@@ -448,19 +446,18 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e) {
-            //
-            SetLabel_OnMouseUp.Invoke(this, e);
+
         }
 
         /*
          * プロパティ
          */
         /// <summary>
-        /// 自分自身の参照を保持
+        /// 格納されているSetControlを退避
         /// </summary>
-        public SetLabel ThisLabel {
-            get => this._thisLabel;
-            set => this._thisLabel = value;
+        public object ParentControl {
+            get => this._parentControl;
+            set => this._parentControl = value;
         }
         /// <summary>
         /// 

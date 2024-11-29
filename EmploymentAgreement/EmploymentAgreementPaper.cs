@@ -13,6 +13,7 @@ namespace EmploymentAgreement {
     public partial class EmploymentAgreementPaper : Form {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly PrintUtility _printUtility = new();
+        private readonly StampUtility _stampUtility = new();
         /*
          * インスタンス作成
          */
@@ -122,8 +123,9 @@ namespace EmploymentAgreement {
                     this.SpreadList.ActiveSheetIndex = 3;
                     this.PutContractExpirationPartTimer();
                     break;
-                case 30:
-
+                case 30: // 誓約書
+                    this.SpreadList.ActiveSheetIndex = 7;
+                    this.PutContractExpirationWrittenPledge();
                     break;
                 case 40:
 
@@ -257,6 +259,8 @@ namespace EmploymentAgreement {
         /// 継続就労契約書（新産別）
         /// </summary>
         private void PutContractExpirationLongJob新産別() {
+            // 氏名カナ
+            this.SheetView長期雇用契約新産別.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
             // 契約期間
             this.SheetView長期雇用契約新産別.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
@@ -267,6 +271,8 @@ namespace EmploymentAgreement {
         /// 継続就労契約書（自運労運転士）
         /// </summary>
         private void PutContractExpirationLongJob自運労運転士() {
+            // 氏名カナ
+            this.SheetView長期雇用契約自運労運転士.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
             // 契約期間
             this.SheetView長期雇用契約自運労運転士.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
@@ -277,10 +283,22 @@ namespace EmploymentAgreement {
         /// 継続就労契約書（自運労作業員）
         /// </summary>
         private void PutContractExpirationLongJob自運労作業員() {
+            // 氏名カナ
+            this.SheetView長期雇用契約自運労作業員.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
             // 契約期間
             this.SheetView長期雇用契約自運労作業員.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
             this.SheetView長期雇用契約自運労作業員.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+        }
+
+        /// <summary>
+        /// 誓約書
+        /// </summary>
+        private void PutContractExpirationWrittenPledge() {
+            // 氏名カナ
+            this.SheetView誓約書.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
+            // 契約日
+            this.SheetView誓約書.Cells[40, 17].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
         }
 
         /*
@@ -323,9 +341,18 @@ namespace EmploymentAgreement {
             e.HasMorePages = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxExBaseAddress_SelectedIndexChanged(object sender, EventArgs e) {
             // 【使用者】事業場所在地
             this.SpreadList.ActiveSheet.Cells[5, 6].Text = this.ComboBoxExBaseAddress.Text;
+        }
+
+        private void EmploymentAgreementPaper_Load(object sender, EventArgs e) {
+
         }
 
         /*

@@ -6,10 +6,13 @@ using Vo;
 namespace ControlEx {
     public partial class Board : TableLayoutPanel {
         /*
-         * Eventを渡す
+         * デリゲート
          */
         public event EventHandler Board_ContextMenuStrip_Opened = delegate { };
         public event EventHandler Board_ToolStripMenuItem_Click = delegate { };
+        public event DragEventHandler Board_OnDragDrop = delegate { };
+        public event DragEventHandler Board_OnDragEnter = delegate { };
+        public event DragEventHandler Board_OnDragOver = delegate { };
         public event MouseEventHandler Board_OnMouseClick = delegate { };
         public event MouseEventHandler Board_OnMouseDoubleClick = delegate { };
         public event MouseEventHandler Board_OnMouseDown = delegate { };
@@ -101,6 +104,7 @@ namespace ControlEx {
         /// <param name="listStaffMasterVo"></param>
         public void AddSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo) {
             SetControl setControl = new(vehicleDispatchDetailVo);
+            setControl.CellNumber = cellNumber;
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
             setControl.AddStaffLabels(listStaffMasterVo);
@@ -109,6 +113,9 @@ namespace ControlEx {
              */
             setControl.SetControl_ContextMenuStrip_Opened += ContextMenuStripEx_Opened;
             setControl.SetControl_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            setControl.SetControl_OnDragDrop += OnDragDrop;
+            setControl.SetControl_OnDragEnter += OnDragEnter;
+            setControl.SetControl_OnDragOver += OnDragOver;
             setControl.SetControl_OnMouseClick += OnMouseClick;
             setControl.SetControl_OnMouseDoubleClick += OnMouseDoubleClick;
             setControl.SetControl_OnMouseDown += OnMouseDown;
@@ -166,6 +173,36 @@ namespace ControlEx {
         }
 
         /// <summary>
+        /// SetControlから
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDragDrop(object sender, DragEventArgs e) {
+            //
+            Board_OnDragDrop.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// SetControlのみのEvent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDragEnter(object sender, DragEventArgs e) {
+            //
+            Board_OnDragEnter.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// SetControlから
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDragOver(object sender, DragEventArgs e) {
+            //
+            Board_OnDragOver.Invoke(sender, e);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -191,9 +228,26 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMouseDown(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
-                this._oldMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
-                this.Cursor = Cursors.Hand;
+            /*
+             * SetControl
+             * SetLabel
+             * CarLabel
+             * StaffLabel
+             */
+            switch (sender) {
+                // 画面スクロールの準備
+                case SetControl:
+                    if (e.Button == MouseButtons.Left) {
+                        this._oldMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
+                        this.Cursor = Cursors.Hand;
+                    }
+                    break;
+                // Dragの準備
+                case SetLabel:
+                case CarLabel:
+                case StaffLabel:
+                    Board_OnMouseDown.Invoke(sender, e);
+                    break;
             }
         }
 
@@ -221,11 +275,26 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMouseMove(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
-                Point _newMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
-                int x = this._oldAutoScrollPosition.X + (_newMousePoint.X - this._oldMousePoint.X);
-                int y = this._oldAutoScrollPosition.Y + (_newMousePoint.Y - this._oldMousePoint.Y);
-                this.AutoScrollPosition = new Point(-x, -y);
+            /*
+             * SetControl
+             * SetLabel
+             * CarLabel
+             * StaffLabel
+             */
+            switch (sender) {
+                case SetControl:
+                    if (e.Button == MouseButtons.Left) {
+                        Point _newMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
+                        int x = this._oldAutoScrollPosition.X + (_newMousePoint.X - this._oldMousePoint.X);
+                        int y = this._oldAutoScrollPosition.Y + (_newMousePoint.Y - this._oldMousePoint.Y);
+                        this.AutoScrollPosition = new Point(-x, -y);
+                    }
+                    break;
+                case SetLabel:
+                case CarLabel:
+                case StaffLabel:
+                    Board_OnMouseDown.Invoke(sender, e);
+                    break;
             }
         }
 
@@ -254,5 +323,13 @@ namespace ControlEx {
         /// ダミーを合わせた全Row数
         /// </summary>
         public int RowAllNumber => _rowAllNumber;
+        /// <summary>
+        /// Board Cell Width
+        /// </summary>
+        public float CellWidth => _cellWidth;
+        /// <summary>
+        /// Board Cell Height
+        /// </summary>
+        public float CellHeight => _cellHeight;
     }
 }
