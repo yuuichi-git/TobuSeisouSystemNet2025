@@ -7,19 +7,17 @@ using Common;
 
 using Dao;
 
-using FarPoint.Win;
-
 using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementPaper : Form {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
-        private readonly PrintUtility _printUtility = new();
-        private readonly StampUtility _stampUtility = new();
         /*
          * インスタンス作成
          */
         private readonly DateUtility _dateUtility = new();
+        private readonly PrintUtility _printUtility = new();
+        private readonly StampUtility _stampUtility = new();
         /*
          * Dao
          */
@@ -171,7 +169,7 @@ namespace EmploymentAgreement {
             this.SheetView体験期間契約.Cells[29, 30].Value = _employmentAgreementVo.TravelCost;
 
             // 印影
-            this.SheetView体験期間契約.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView体験期間契約.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -204,7 +202,7 @@ namespace EmploymentAgreement {
             this.SheetViewアルバイト契約.Cells[30, 30].Value = _employmentAgreementVo.TravelCost;
 
             // 印影
-            this.SheetViewアルバイト契約.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetViewアルバイト契約.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -237,7 +235,7 @@ namespace EmploymentAgreement {
             this.SheetView嘱託雇用契約社員.Cells[35, 30].Value = _employmentAgreementVo.TravelCost != 0 ? _employmentAgreementVo.TravelCost : "---";
 
             // 印影
-            this.SheetView嘱託雇用契約社員.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView嘱託雇用契約社員.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -268,7 +266,7 @@ namespace EmploymentAgreement {
             this.SheetViewパートタイマー.Cells[28, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
 
             // 印影
-            this.SheetViewパートタイマー.Cells[8, 33].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetViewパートタイマー.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -283,7 +281,7 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約新産別.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
 
             // 印影
-            this.SheetView長期雇用契約新産別.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView長期雇用契約新産別.Cells[45, 28].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -298,7 +296,7 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約自運労運転士.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
 
             // 印影
-            this.SheetView長期雇用契約自運労運転士.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView長期雇用契約自運労運転士.Cells[45, 28].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -313,7 +311,7 @@ namespace EmploymentAgreement {
             this.SheetView長期雇用契約自運労作業員.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
 
             // 印影
-            this.SheetView長期雇用契約自運労作業員.Cells[45, 28].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView長期雇用契約自運労作業員.Cells[45, 28].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>
@@ -326,7 +324,7 @@ namespace EmploymentAgreement {
             this.SheetView誓約書.Cells[40, 17].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
 
             // 印影
-            this.SheetView誓約書.Cells[42, 30].Value = _staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.StampPicture) : null;
+            this.SheetView誓約書.Cells[42, 30].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /*
