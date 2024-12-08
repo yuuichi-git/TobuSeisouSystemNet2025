@@ -10,6 +10,11 @@ namespace Common {
 
         }
 
+        /// <summary>
+        /// 印影を取得する
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <returns></returns>
         public Bitmap CreateStamp(byte[] picture) {
             int stampWidth = 46;
             int stampHeight = 46;

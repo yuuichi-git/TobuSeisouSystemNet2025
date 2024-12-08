@@ -1,6 +1,8 @@
 ﻿/*
  * 2024-10-10
  */
+using System.Diagnostics;
+
 using Vo;
 
 namespace ControlEx {
@@ -22,21 +24,82 @@ namespace ControlEx {
         public event MouseEventHandler SetControl_OnMouseMove = delegate { };
         public event MouseEventHandler SetControl_OnMouseUp = delegate { };
 
-        private int _cellNumber;
-        private SetLabel? _deployedSetLabel;
-        private CarLabel? _deployedCarLabel;
-        private StaffLabel? _deployedStaffLabel0;
-        private StaffLabel? _deployedStaffLabel1;
-        private StaffLabel? _deployedStaffLabel2;
-        private StaffLabel? _deployedStaffLabel3;
+        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+
+        private Control? _deployedSetLabel;
+        private Control? _deployedCarLabel;
+        private Control? _deployedStaffLabel1;
+        private Control? _deployedStaffLabel2;
+        private Control? _deployedStaffLabel3;
+        private Control? _deployedStaffLabel4;
 
         private object _dragParentControl;
         private object _dragControl;
 
         /*
-         * Vo
+         * 
+         * VehicleDispatchDetailVo
+         * 
          */
-        private VehicleDispatchDetailVo _vehicleDispatchDetailVo;
+        private int _cellNumber;
+        private DateTime _operationDate;
+        private bool _operationFlag;
+        private bool _vehicleDispatchFlag;
+        private bool _purposeFlag;
+        private int _setCode;
+        private int _managedSpaceCode;
+        private int _classificationCode;
+        private bool _lastRollCallFlag;
+        private DateTime _lastRollCallYmdHms;
+        private bool _setMemoFlag;
+        private string _setMemo;
+        private int _shiftCode;
+        private bool _standByFlag;
+        private bool _addWorkerFlag;
+        private bool _contactInfomationFlag;
+        private bool _faxTransmissionFlag;
+        private int _carCode;
+        private int _carGarageCode;
+        private bool _carProxyFlag;
+        private bool _carMemoFlag;
+        private string _carMemo;
+        private int _targetStaffNumber;
+        private int _staffCode1;
+        private int _staffOccupation1;
+        private bool _staffProxyFlag1;
+        private bool _staffRollCallFlag1;
+        private DateTime _staffRollCallYmdHms1;
+        private bool _staffMemoFlag1;
+        private string _staffMemo1;
+        private int _staffCode2;
+        private int _staffOccupation2;
+        private bool _staffProxyFlag2;
+        private bool _staffRollCallFlag2;
+        private DateTime _staffRollCallYmdHms2;
+        private bool _staffMemoFlag2;
+        private string _staffMemo2;
+        private int _staffCode3;
+        private int _staffOccupation3;
+        private bool _staffProxyFlag3;
+        private bool _staffRollCallFlag3;
+        private DateTime _staffRollCallYmdHms3;
+        private bool _staffMemoFlag3;
+        private string _staffMemo3;
+        private int _staffCode4;
+        private int _staffOccupation4;
+        private bool _staffProxyFlag4;
+        private bool _staffRollCallFlag4;
+        private DateTime _staffRollCallYmdHms4;
+        private bool _staffMemoFlag4;
+        private string _staffMemo4;
+        private string _insertPcName;
+        private DateTime _insertYmdHms;
+        private string _updatePcName;
+        private DateTime _updateYmdHms;
+        private string _deletePcName;
+        private DateTime _deleteYmdHms;
+        private bool _deleteFlag;
+
         /*
          * Cellのサイズ
          */
@@ -53,9 +116,9 @@ namespace ControlEx {
         /// </summary>
         public SetControl(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             /*
-             * Vo
+             * プロパティに値をセットする
              */
-            _vehicleDispatchDetailVo = vehicleDispatchDetailVo;
+            this.SetAllProperty(vehicleDispatchDetailVo);
             /*
              * InitializeControl
              */
@@ -68,7 +131,7 @@ namespace ControlEx {
             /*
              * Column作成
              */
-            switch (VehicleDispatchDetailVo.PurposeFlag) {
+            switch (this.PurposeFlag) {
                 case true: // ２列
                     // Size
                     this.Size = new Size((int)CellWidth * _columnCount * 2, (int)CellHeight * _rowCount);
@@ -97,12 +160,50 @@ namespace ControlEx {
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
+            // ContextMenuStripを初期化
+            this.CreateContextMenuStrip();
             /*
              * Event
              */
             this.MouseDown += OnMouseDown; // 画面スクロールに使う
             this.MouseMove += OnMouseMove; // 画面スクロールに使う
             this.MouseUp += OnMouseUp; // 画面スクロールに使う
+        }
+
+        /// <summary>
+        /// CreateContextMenuStrip
+        /// </summary>
+        private void CreateContextMenuStrip() {
+            ContextMenuStrip contextMenuStrip = new();
+            contextMenuStrip.Name = "ContextMenuStripSetControl";
+            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            this.ContextMenuStrip = contextMenuStrip;
+
+            ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
+            toolStripMenuItem00.Name = "ToolStripMenuItemCarVerification";
+            toolStripMenuItem00.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem00);
+            ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
+            toolStripMenuItem00_0.Name = "ToolStripMenuItemSetControlSingle";
+            toolStripMenuItem00_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_0);
+            contextMenuStrip.Items.Add(toolStripMenuItem00);
+            ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
+            toolStripMenuItem00_1.Name = "ToolStripMenuItemSetControlDouble";
+            toolStripMenuItem00_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_1);
+            contextMenuStrip.Items.Add(toolStripMenuItem00);
+            /*
+             * スペーサー
+             */
+            contextMenuStrip.Items.Add(new ToolStripSeparator());
+            /*
+             * プロパティ
+             */
+            ToolStripMenuItem toolStripMenuItem01 = new("プロパティ");
+            toolStripMenuItem01.Name = "ToolStripMenuItemSetControlProperty";
+            toolStripMenuItem01.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem01);
         }
 
         /// <summary>
@@ -113,17 +214,17 @@ namespace ControlEx {
             if (setMasterVo is null)
                 return;
             SetLabel setLabel = new(setMasterVo);
-            setLabel.AddWorkerFlag = VehicleDispatchDetailVo.AddWorkerFlag;
-            setLabel.ClassificationCode = VehicleDispatchDetailVo.ClassificationCode;
-            setLabel.FaxTransmissionFlag = (setMasterVo.ContactMethod == 11 || setMasterVo.ContactMethod == 13);
-            setLabel.LastRollCallFlag = VehicleDispatchDetailVo.LastRollCallFlag;
-            setLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
-            setLabel.Memo = VehicleDispatchDetailVo.SetMemo;
-            setLabel.MemoFlag = VehicleDispatchDetailVo.SetMemoFlag;
-            setLabel.OperationFlag = VehicleDispatchDetailVo.OperationFlag;
+            setLabel.AddWorkerFlag = this.AddWorkerFlag;
+            setLabel.ClassificationCode = this.ClassificationCode;
+            setLabel.FaxTransmissionFlag = setMasterVo.ContactMethod == 11 || setMasterVo.ContactMethod == 13;
+            setLabel.LastRollCallFlag = this.LastRollCallFlag;
+            setLabel.ManagedSpaceCode = this.ManagedSpaceCode;
+            setLabel.Memo = this.SetMemo;
+            setLabel.MemoFlag = this.SetMemoFlag;
+            setLabel.OperationFlag = this.OperationFlag;
             setLabel.ParentControl = this;
-            setLabel.ShiftCode = VehicleDispatchDetailVo.ShiftCode;
-            setLabel.StandByFlag = VehicleDispatchDetailVo.StandByFlag;
+            setLabel.ShiftCode = this.ShiftCode;
+            setLabel.StandByFlag = this.StandByFlag;
             setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
             // Eventを登録
             setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
@@ -146,12 +247,12 @@ namespace ControlEx {
             if (carMasterVo is null)
                 return;
             CarLabel carLabel = new(carMasterVo);
-            carLabel.Memo = VehicleDispatchDetailVo.CarMemo;
-            carLabel.MemoFlag = VehicleDispatchDetailVo.CarMemoFlag;
-            carLabel.ClassificationCode = VehicleDispatchDetailVo.ClassificationCode;
-            carLabel.ManagedSpaceCode = VehicleDispatchDetailVo.ManagedSpaceCode;
+            carLabel.Memo = this.CarMemo;
+            carLabel.MemoFlag = this.CarMemoFlag;
+            carLabel.ClassificationCode = this.ClassificationCode;
+            carLabel.CarGarageCode = this.ManagedSpaceCode;
             carLabel.ParentControl = this;
-            carLabel.ProxyFlag = VehicleDispatchDetailVo.CarProxyFlag;
+            carLabel.ProxyFlag = this.CarProxyFlag;
             // Eventを登録
             carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
@@ -172,18 +273,18 @@ namespace ControlEx {
         public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo) {
             if (listStaffMasterVo is null)
                 return;
-            switch (VehicleDispatchDetailVo.PurposeFlag) {
-                case false: // １列
-                    DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    DeployedStaffLabel1 = this.AddStaffLabel(1, listStaffMasterVo[1]);
-                    DeployedStaffLabel2 = null;
-                    DeployedStaffLabel3 = null;
-                    break;
+            switch (this.PurposeFlag) {
                 case true: // ２列
-                    DeployedStaffLabel0 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    DeployedStaffLabel1 = this.AddStaffLabel(1, listStaffMasterVo[1]);
-                    DeployedStaffLabel2 = this.AddStaffLabel(2, listStaffMasterVo[2]);
-                    DeployedStaffLabel3 = this.AddStaffLabel(3, listStaffMasterVo[3]);
+                    DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2]);
+                    DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3]);
+                    break;
+                case false: // １列
+                    DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    DeployedStaffLabel3 = null;
+                    DeployedStaffLabel4 = null;
                     break;
             }
         }
@@ -194,41 +295,41 @@ namespace ControlEx {
         /// <param name="number">0～3</param>
         /// <param name="staffMasterVo"></param>
         /// <returns></returns>
-        private StaffLabel AddStaffLabel(int number, StaffMasterVo staffMasterVo) {
+        private StaffLabel? AddStaffLabel(int number, StaffMasterVo staffMasterVo) {
             if (staffMasterVo is not null) {
                 StaffLabel staffLabel = new(staffMasterVo);
                 switch (number) {
                     case 0:
-                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo1;
-                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag1;
+                        staffLabel.Memo = this.StaffMemo1;
+                        staffLabel.MemoFlag = this.StaffMemoFlag1;
                         staffLabel.OccupationCode = GetOccupationCode(0);
                         staffLabel.ParentControl = this;
-                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag1;
-                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag1;
+                        staffLabel.ProxyFlag = this.StaffProxyFlag1;
+                        staffLabel.RollCallFlag = this.StaffRollCallFlag1;
                         break;
                     case 1:
-                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo2;
-                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag2;
+                        staffLabel.Memo = this.StaffMemo2;
+                        staffLabel.MemoFlag = this.StaffMemoFlag2;
                         staffLabel.OccupationCode = GetOccupationCode(1);
                         staffLabel.ParentControl = this;
-                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag2;
-                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag2;
+                        staffLabel.ProxyFlag = this.StaffProxyFlag2;
+                        staffLabel.RollCallFlag = this.StaffRollCallFlag2;
                         break;
                     case 2:
-                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo3;
-                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag3;
+                        staffLabel.Memo = this.StaffMemo3;
+                        staffLabel.MemoFlag = this.StaffMemoFlag3;
                         staffLabel.OccupationCode = GetOccupationCode(2);
                         staffLabel.ParentControl = this;
-                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag3;
-                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag3;
+                        staffLabel.ProxyFlag = this.StaffProxyFlag3;
+                        staffLabel.RollCallFlag = this.StaffRollCallFlag3;
                         break;
                     case 3:
-                        staffLabel.Memo = VehicleDispatchDetailVo.StaffMemo4;
-                        staffLabel.MemoFlag = VehicleDispatchDetailVo.StaffMemoFlag4;
+                        staffLabel.Memo = this.StaffMemo4;
+                        staffLabel.MemoFlag = this.StaffMemoFlag4;
                         staffLabel.OccupationCode = GetOccupationCode(3);
                         staffLabel.ParentControl = this;
-                        staffLabel.ProxyFlag = VehicleDispatchDetailVo.StaffProxyFlag4;
-                        staffLabel.RollCallFlag = VehicleDispatchDetailVo.StaffRollCallFlag4;
+                        staffLabel.ProxyFlag = this.StaffProxyFlag4;
+                        staffLabel.RollCallFlag = this.StaffRollCallFlag4;
                         break;
                 }
                 // Eventを登録
@@ -252,7 +353,7 @@ namespace ControlEx {
         /// <param name="number">0～3</param>
         /// <returns></returns>
         private int GetOccupationCode(int number) {
-            switch (VehicleDispatchDetailVo.ClassificationCode) {
+            switch (this.ClassificationCode) {
                 case 10 or 11 or 12:
                     if (number == 0) {
                         return 10;
@@ -260,36 +361,195 @@ namespace ControlEx {
                         return 11;
                     }
                 default:
-                    return VehicleDispatchDetailVo.ClassificationCode;
+                    return this.ClassificationCode;
             }
         }
 
         /// <summary>
         /// プロパティに配置されているobjectをセットする
-        /// _deployedSetLabel
-        /// _deployedCarLabel
-        /// _deployedStaffLabel0
-        /// _deployedStaffLabel1
-        /// _deployedStaffLabel2
-        /// _deployedStaffLabel3
         /// </summary>
         /// <param name="setControl">対象のSetControl</param>
-        private void SetControlRelocation(SetControl setControl) {
-            if (VehicleDispatchDetailVo.PurposeFlag) {
-                DeployedSetLabel = setControl.GetControlFromPosition(0, 0) is not null ? (SetLabel)setControl.GetControlFromPosition(0, 0) : null;
-                DeployedCarLabel = setControl.GetControlFromPosition(0, 1) is not null ? (CarLabel)setControl.GetControlFromPosition(0, 1) : null;
-                DeployedStaffLabel0 = setControl.GetControlFromPosition(0, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 2) : null;
-                DeployedStaffLabel1 = setControl.GetControlFromPosition(0, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 3) : null;
-                DeployedStaffLabel2 = setControl.GetControlFromPosition(1, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(1, 2) : null;
-                DeployedStaffLabel3 = setControl.GetControlFromPosition(1, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(1, 3) : null;
-            } else {
-                DeployedSetLabel = setControl.GetControlFromPosition(0, 0) is not null ? (SetLabel)setControl.GetControlFromPosition(0, 0) : null;
-                DeployedCarLabel = setControl.GetControlFromPosition(0, 1) is not null ? (CarLabel)setControl.GetControlFromPosition(0, 1) : null;
-                DeployedStaffLabel0 = setControl.GetControlFromPosition(0, 2) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 2) : null;
-                DeployedStaffLabel1 = setControl.GetControlFromPosition(0, 3) is not null ? (StaffLabel)setControl.GetControlFromPosition(0, 3) : null;
-                DeployedStaffLabel2 = null;
-                DeployedStaffLabel3 = null;
+        public void SetControlRelocation() {
+            this.CellNumber = this.CellNumber;
+            this.OperationDate = this.OperationDate;
+            this.OperationFlag = this.OperationFlag;
+            this.VehicleDispatchFlag = this.VehicleDispatchFlag;
+            this.PurposeFlag = this.PurposeFlag;
+            /*
+             * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
+             */
+            switch (this.PurposeFlag) {
+                case true:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = this.GetTableLayoutChildControl(1, 2);
+                    this.DeployedStaffLabel4 = this.GetTableLayoutChildControl(1, 3);
+                    break;
+                case false:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = this.GetTableLayoutChildControl(1, 2);
+                    this.DeployedStaffLabel4 = this.GetTableLayoutChildControl(1, 3);
+                    break;
             }
+            this.InsertPcName = Environment.MachineName;
+            this.InsertYmdHms = DateTime.Now;
+            this.UpdatePcName = Environment.MachineName;
+            this.UpdateYmdHms = DateTime.Now;
+            this.DeletePcName = Environment.MachineName;
+            this.DeleteYmdHms = DateTime.Now;
+            this.DeleteFlag = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private Control? GetTableLayoutChildControl(int row, int column) {
+            Control control = this.GetControlFromPosition(row, column);
+            if (control is not null) {
+                Debug.WriteLine(string.Concat(row, ",", column, "→", control.Name));
+            } else {
+                Debug.WriteLine(string.Concat(row, ",", column, "→", "null"));
+            }
+            return control;
+        }
+
+        /// <summary>
+        /// VehicleDispatchDetailVoを作成する
+        /// </summary>
+        public VehicleDispatchDetailVo GetVehicleDispatchDetailVo() {
+            VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
+            vehicleDispatchDetailVo.CellNumber = this.CellNumber;
+            vehicleDispatchDetailVo.OperationDate = this.OperationDate;
+            vehicleDispatchDetailVo.OperationFlag = this.OperationFlag;
+            vehicleDispatchDetailVo.VehicleDispatchFlag = this.VehicleDispatchFlag;
+            vehicleDispatchDetailVo.PurposeFlag = this.PurposeFlag;
+            vehicleDispatchDetailVo.SetCode = this.SetCode;
+            vehicleDispatchDetailVo.ManagedSpaceCode = this.ManagedSpaceCode;
+            vehicleDispatchDetailVo.ClassificationCode = this.ClassificationCode;
+            vehicleDispatchDetailVo.LastRollCallFlag = this.LastRollCallFlag;
+            vehicleDispatchDetailVo.LastRollCallYmdHms = this.LastRollCallYmdHms;
+            vehicleDispatchDetailVo.SetMemoFlag = this.SetMemoFlag;
+            vehicleDispatchDetailVo.SetMemo = this.SetMemo;
+            vehicleDispatchDetailVo.ShiftCode = this.ShiftCode;
+            vehicleDispatchDetailVo.StandByFlag = this.StandByFlag;
+            vehicleDispatchDetailVo.AddWorkerFlag = this.AddWorkerFlag;
+            vehicleDispatchDetailVo.ContactInfomationFlag = this.ContactInfomationFlag;
+            vehicleDispatchDetailVo.FaxTransmissionFlag = this.FaxTransmissionFlag;
+            vehicleDispatchDetailVo.CarCode = this.CarCode;
+            vehicleDispatchDetailVo.CarGarageCode = this.CarGarageCode;
+            vehicleDispatchDetailVo.CarProxyFlag = this.CarProxyFlag;
+            vehicleDispatchDetailVo.CarMemoFlag = this.CarMemoFlag;
+            vehicleDispatchDetailVo.CarMemo = this.CarMemo;
+            vehicleDispatchDetailVo.TargetStaffNumber = this.TargetStaffNumber;
+            vehicleDispatchDetailVo.StaffCode1 = this.StaffCode1;
+            vehicleDispatchDetailVo.StaffOccupation1 = this.StaffOccupation1;
+            vehicleDispatchDetailVo.StaffProxyFlag1 = this.StaffProxyFlag1;
+            vehicleDispatchDetailVo.StaffRollCallFlag1 = this.StaffRollCallFlag1;
+            vehicleDispatchDetailVo.StaffRollCallYmdHms1 = this.StaffRollCallYmdHms1;
+            vehicleDispatchDetailVo.StaffMemoFlag1 = this.StaffMemoFlag1;
+            vehicleDispatchDetailVo.StaffMemo1 = this.StaffMemo1;
+            vehicleDispatchDetailVo.StaffCode2 = this.StaffCode2;
+            vehicleDispatchDetailVo.StaffOccupation2 = this.StaffOccupation2;
+            vehicleDispatchDetailVo.StaffProxyFlag2 = this.StaffProxyFlag2;
+            vehicleDispatchDetailVo.StaffRollCallFlag2 = this.StaffRollCallFlag2;
+            vehicleDispatchDetailVo.StaffRollCallYmdHms2 = this.StaffRollCallYmdHms2;
+            vehicleDispatchDetailVo.StaffMemoFlag2 = this.StaffMemoFlag2;
+            vehicleDispatchDetailVo.StaffMemo2 = this.StaffMemo2;
+            vehicleDispatchDetailVo.StaffCode3 = this.StaffCode3;
+            vehicleDispatchDetailVo.StaffOccupation3 = this.StaffOccupation3;
+            vehicleDispatchDetailVo.StaffProxyFlag3 = this.StaffProxyFlag3;
+            vehicleDispatchDetailVo.StaffRollCallFlag3 = this.StaffRollCallFlag3;
+            vehicleDispatchDetailVo.StaffRollCallYmdHms3 = this.StaffRollCallYmdHms3;
+            vehicleDispatchDetailVo.StaffMemoFlag3 = this.StaffMemoFlag3;
+            vehicleDispatchDetailVo.StaffMemo3 = this.StaffMemo3;
+            vehicleDispatchDetailVo.StaffCode4 = this.StaffCode4;
+            vehicleDispatchDetailVo.StaffOccupation4 = this.StaffOccupation4;
+            vehicleDispatchDetailVo.StaffProxyFlag4 = this.StaffProxyFlag4;
+            vehicleDispatchDetailVo.StaffRollCallFlag4 = this.StaffRollCallFlag4;
+            vehicleDispatchDetailVo.StaffRollCallYmdHms4 = this.StaffRollCallYmdHms4;
+            vehicleDispatchDetailVo.StaffMemoFlag4 = this.StaffMemoFlag4;
+            vehicleDispatchDetailVo.StaffMemo4 = this.StaffMemo4;
+            vehicleDispatchDetailVo.InsertPcName = this.InsertPcName;
+            vehicleDispatchDetailVo.InsertYmdHms = this.InsertYmdHms;
+            vehicleDispatchDetailVo.UpdatePcName = this.UpdatePcName;
+            vehicleDispatchDetailVo.UpdateYmdHms = this.UpdateYmdHms;
+            vehicleDispatchDetailVo.DeletePcName = this.DeletePcName;
+            vehicleDispatchDetailVo.DeleteYmdHms = this.DeleteYmdHms;
+            vehicleDispatchDetailVo.DeleteFlag = this.DeleteFlag;
+            return vehicleDispatchDetailVo;
+        }
+
+        /// <summary>
+        /// VehicleDispatchDetailVoをプロパティにセットする
+        /// </summary>
+        /// <param name="vehicleDispatchDetailVo"></param>
+        public void SetAllProperty(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
+            this.CellNumber = vehicleDispatchDetailVo.CellNumber;
+            this.OperationDate = vehicleDispatchDetailVo.OperationDate;
+            this.OperationFlag = vehicleDispatchDetailVo.OperationFlag;
+            this.VehicleDispatchFlag = vehicleDispatchDetailVo.VehicleDispatchFlag;
+            this.PurposeFlag = vehicleDispatchDetailVo.PurposeFlag;
+            this.SetCode = vehicleDispatchDetailVo.SetCode;
+            this.ManagedSpaceCode = vehicleDispatchDetailVo.ManagedSpaceCode;
+            this.ClassificationCode = vehicleDispatchDetailVo.ClassificationCode;
+            this.LastRollCallFlag = vehicleDispatchDetailVo.LastRollCallFlag;
+            this.LastRollCallYmdHms = vehicleDispatchDetailVo.LastRollCallYmdHms;
+            this.SetMemoFlag = vehicleDispatchDetailVo.SetMemoFlag;
+            this.SetMemo = vehicleDispatchDetailVo.SetMemo;
+            this.ShiftCode = vehicleDispatchDetailVo.ShiftCode;
+            this.StandByFlag = vehicleDispatchDetailVo.StandByFlag;
+            this.AddWorkerFlag = vehicleDispatchDetailVo.AddWorkerFlag;
+            this.ContactInfomationFlag = vehicleDispatchDetailVo.ContactInfomationFlag;
+            this.FaxTransmissionFlag = vehicleDispatchDetailVo.FaxTransmissionFlag;
+            this.CarCode = vehicleDispatchDetailVo.CarCode;
+            this.CarGarageCode = vehicleDispatchDetailVo.CarGarageCode;
+            this.CarProxyFlag = vehicleDispatchDetailVo.CarProxyFlag;
+            this.CarMemoFlag = vehicleDispatchDetailVo.CarMemoFlag;
+            this.CarMemo = vehicleDispatchDetailVo.CarMemo;
+            this.TargetStaffNumber = vehicleDispatchDetailVo.TargetStaffNumber;
+            this.StaffCode1 = vehicleDispatchDetailVo.StaffCode1;
+            this.StaffOccupation1 = vehicleDispatchDetailVo.StaffOccupation1;
+            this.StaffProxyFlag1 = vehicleDispatchDetailVo.StaffProxyFlag1;
+            this.StaffRollCallFlag1 = vehicleDispatchDetailVo.StaffRollCallFlag1;
+            this.StaffRollCallYmdHms1 = vehicleDispatchDetailVo.StaffRollCallYmdHms1;
+            this.StaffMemoFlag1 = vehicleDispatchDetailVo.StaffMemoFlag1;
+            this.StaffMemo1 = vehicleDispatchDetailVo.StaffMemo1;
+            this.StaffCode2 = vehicleDispatchDetailVo.StaffCode2;
+            this.StaffOccupation2 = vehicleDispatchDetailVo.StaffOccupation2;
+            this.StaffProxyFlag2 = vehicleDispatchDetailVo.StaffProxyFlag2;
+            this.StaffRollCallFlag2 = vehicleDispatchDetailVo.StaffRollCallFlag2;
+            this.StaffRollCallYmdHms2 = vehicleDispatchDetailVo.StaffRollCallYmdHms2;
+            this.StaffMemoFlag2 = vehicleDispatchDetailVo.StaffMemoFlag2;
+            this.StaffMemo2 = vehicleDispatchDetailVo.StaffMemo2;
+            this.StaffCode3 = vehicleDispatchDetailVo.StaffCode3;
+            this.StaffOccupation3 = vehicleDispatchDetailVo.StaffOccupation3;
+            this.StaffProxyFlag3 = vehicleDispatchDetailVo.StaffProxyFlag3;
+            this.StaffRollCallFlag3 = vehicleDispatchDetailVo.StaffRollCallFlag3;
+            this.StaffRollCallYmdHms3 = vehicleDispatchDetailVo.StaffRollCallYmdHms3;
+            this.StaffMemoFlag3 = vehicleDispatchDetailVo.StaffMemoFlag3;
+            this.StaffMemo3 = vehicleDispatchDetailVo.StaffMemo3;
+            this.StaffCode4 = vehicleDispatchDetailVo.StaffCode4;
+            this.StaffOccupation4 = vehicleDispatchDetailVo.StaffOccupation4;
+            this.StaffProxyFlag4 = vehicleDispatchDetailVo.StaffProxyFlag4;
+            this.StaffRollCallFlag4 = vehicleDispatchDetailVo.StaffRollCallFlag4;
+            this.StaffRollCallYmdHms4 = vehicleDispatchDetailVo.StaffRollCallYmdHms4;
+            this.StaffMemoFlag4 = vehicleDispatchDetailVo.StaffMemoFlag4;
+            this.StaffMemo4 = vehicleDispatchDetailVo.StaffMemo4;
+            this.InsertPcName = vehicleDispatchDetailVo.InsertPcName;
+            this.InsertYmdHms = vehicleDispatchDetailVo.InsertYmdHms;
+            this.UpdatePcName = vehicleDispatchDetailVo.UpdatePcName;
+            this.UpdateYmdHms = vehicleDispatchDetailVo.UpdateYmdHms;
+            this.DeletePcName = vehicleDispatchDetailVo.DeletePcName;
+            this.DeleteYmdHms = vehicleDispatchDetailVo.DeleteYmdHms;
+            this.DeleteFlag = vehicleDispatchDetailVo.DeleteFlag;
         }
 
         /*
@@ -333,37 +593,21 @@ namespace ControlEx {
         /// </summary>
         /// <param name="dragEventArgs"></param>
         protected override void OnDragDrop(DragEventArgs e) {
-            /*
-             * DragされたControlとParentを格納
-             */
             if (e.Data.GetDataPresent(typeof(SetLabel))) {
-                DragControl = (SetLabel)e.Data.GetData(typeof(SetLabel));
-            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
-                DragControl = (CarLabel)e.Data.GetData(typeof(CarLabel));
-            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
-                DragControl = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+                this.DragControl = (SetLabel)e.Data.GetData(typeof(SetLabel));
+                this.DragParentControl = ((SetLabel)this.DragControl).Parent;
+                ((SetLabel)this.DragControl).ParentControl = this;
             }
-            switch (DragControl) {
-                case SetLabel setLabel:
-                    this.DragParentControl = setLabel.Parent;
-                    setLabel.ParentControl = this;
-                    break;
-                case CarLabel carLabel:
-                    this.DragParentControl = carLabel.Parent;
-                    carLabel.ParentControl = this;
-                    break;
-                case StaffLabel staffLabel:
-                    this.DragParentControl = staffLabel.Parent;
-                    staffLabel.ParentControl = this;
-                    break;
-                default:
-                    MessageBox.Show("コンテナを登録してください。");
-                    break;
+            if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                this.DragControl = (CarLabel)e.Data.GetData(typeof(CarLabel));
+                this.DragParentControl = ((CarLabel)this.DragControl).Parent;
+                ((CarLabel)this.DragControl).ParentControl = this;
             }
-            // DragのSetControlRelocationをセット
-
-            // DropのSetControlRelocationをセット
-
+            if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                this.DragControl = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+                this.DragParentControl = ((StaffLabel)this.DragControl).Parent;
+                ((StaffLabel)this.DragControl).ParentControl = this;
+            }
             //
             SetControl_OnDragDrop.Invoke(this, e);
         }
@@ -480,71 +724,212 @@ namespace ControlEx {
         }
 
         /*
+         * 
          * プロパティー
+         * 
          */
         /// <summary>
         /// 
         /// </summary>
         public float CellWidth => _cellWidth;
+
         /// <summary>
         /// 
         /// </summary>
         public float CellHeight => _cellHeight;
-        /// <summary>
-        /// CellNumber
-        /// </summary>
-        public int CellNumber {
-            get => this._cellNumber;
-            set => this._cellNumber = value;
-        }
-        /// <summary>
-        /// VehicleDispatchDetailVoを格納
-        /// </summary>
-        public VehicleDispatchDetailVo VehicleDispatchDetailVo {
-            get => this._vehicleDispatchDetailVo;
-            set => this._vehicleDispatchDetailVo = value;
-        }
+
         /// <summary>
         /// 配置されているSetLabelの参照を保持
         /// </summary>
-        public SetLabel? DeployedSetLabel {
+        public Control? DeployedSetLabel {
             get => this._deployedSetLabel;
-            set => this._deployedSetLabel = value;
+            set {
+                this._deployedSetLabel = value;
+                if (this.DeployedSetLabel is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.SetCode = ((SetLabel)this.DeployedSetLabel).SetMasterVo.SetCode;
+                            this.ManagedSpaceCode = ((SetLabel)this.DeployedSetLabel).ManagedSpaceCode;
+                            this.ClassificationCode = ((SetLabel)this.DeployedSetLabel).ClassificationCode;
+                            this.LastRollCallFlag = ((SetLabel)this.DeployedSetLabel).LastRollCallFlag;
+                            this.LastRollCallYmdHms = ((SetLabel)this.DeployedSetLabel).LastRollCallYmdHms;
+                            this.SetMemoFlag = ((SetLabel)this.DeployedSetLabel).MemoFlag;
+                            this.SetMemo = ((SetLabel)this.DeployedSetLabel).Memo;
+                            this.ShiftCode = ((SetLabel)this.DeployedSetLabel).ShiftCode;
+                            this.StandByFlag = ((SetLabel)this.DeployedSetLabel).StandByFlag;
+                            this.AddWorkerFlag = ((SetLabel)this.DeployedSetLabel).AddWorkerFlag;
+                            this.ContactInfomationFlag = ((SetLabel)this.DeployedSetLabel).ContactInfomationFlag;
+                            this.FaxTransmissionFlag = ((SetLabel)this.DeployedSetLabel).FaxTransmissionFlag;
+                            break;
+                    }
+                } else {
+                    this.SetCode = 0;
+                    this.ManagedSpaceCode = 0;
+                    this.ClassificationCode = 99;
+                    this.LastRollCallFlag = false;
+                    this.LastRollCallYmdHms = _defaultDateTime;
+                    this.SetMemoFlag = false;
+                    this.SetMemo = string.Empty;
+                    this.ShiftCode = 0;
+                    this.StandByFlag = false;
+                    this.AddWorkerFlag = false;
+                    this.ContactInfomationFlag = false;
+                    this.FaxTransmissionFlag = false;
+                }
+            }
         }
         /// <summary>
         /// 配置されているCarLabelの参照を保持
         /// </summary>
-        public CarLabel? DeployedCarLabel {
+        public Control? DeployedCarLabel {
             get => this._deployedCarLabel;
-            set => this._deployedCarLabel = value;
+            set {
+                this._deployedCarLabel = value;
+                if (this.DeployedCarLabel is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.CarCode = ((CarLabel)this.DeployedCarLabel).CarMasterVo.CarCode;
+                            this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).CarGarageCode;
+                            this.CarProxyFlag = ((CarLabel)this.DeployedCarLabel).ProxyFlag;
+                            this.CarMemoFlag = ((CarLabel)this.DeployedCarLabel).MemoFlag;
+                            this.CarMemo = ((CarLabel)this.DeployedCarLabel).Memo;
+                            break;
+                    }
+                } else {
+                    this.CarCode = 0;
+                    this.CarGarageCode = 0;
+                    this.CarProxyFlag = false;
+                    this.CarMemoFlag = false;
+                    this.CarMemo = string.Empty;
+                }
+            }
         }
-        /// <summary>
-        /// 配置されているStaffLabel 0の参照を保持
-        /// </summary>
-        public StaffLabel? DeployedStaffLabel0 {
-            get => this._deployedStaffLabel0;
-            set => this._deployedStaffLabel0 = value;
-        }
+
         /// <summary>
         /// 配置されているStaffLabel 1の参照を保持
         /// </summary>
-        public StaffLabel? DeployedStaffLabel1 {
+        public Control? DeployedStaffLabel1 {
             get => this._deployedStaffLabel1;
-            set => this._deployedStaffLabel1 = value;
+            set {
+                this._deployedStaffLabel1 = value;
+                if (this.DeployedStaffLabel1 is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.StaffCode1 = ((StaffLabel)this.DeployedStaffLabel1).StaffMasterVo.StaffCode;
+                            this.StaffOccupation1 = ((StaffLabel)this.DeployedStaffLabel1).OccupationCode;
+                            this.StaffProxyFlag1 = ((StaffLabel)this.DeployedStaffLabel1).ProxyFlag;
+                            this.StaffRollCallFlag1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallFlag;
+                            this.StaffRollCallYmdHms1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallYmdHms;
+                            this.StaffMemoFlag1 = ((StaffLabel)this.DeployedStaffLabel1).MemoFlag;
+                            this.StaffMemo1 = ((StaffLabel)this.DeployedStaffLabel1).Memo;
+                            break;
+                    }
+                } else {
+                    this.StaffCode1 = 0;
+                    this.StaffOccupation1 = 99;
+                    this.StaffProxyFlag1 = false;
+                    this.StaffRollCallFlag1 = false;
+                    this.StaffRollCallYmdHms1 = _defaultDateTime;
+                    this.StaffMemoFlag1 = false;
+                    this.StaffMemo1 = string.Empty;
+                }
+            }
         }
         /// <summary>
         /// 配置されているStaffLabel 2の参照を保持
         /// </summary>
-        public StaffLabel? DeployedStaffLabel2 {
+        public Control? DeployedStaffLabel2 {
             get => this._deployedStaffLabel2;
-            set => this._deployedStaffLabel2 = value;
+            set {
+                this._deployedStaffLabel2 = value;
+                if (this.DeployedStaffLabel2 is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.StaffCode2 = ((StaffLabel)this.DeployedStaffLabel2).StaffMasterVo.StaffCode;
+                            this.StaffOccupation2 = ((StaffLabel)this.DeployedStaffLabel2).OccupationCode;
+                            this.StaffProxyFlag2 = ((StaffLabel)this.DeployedStaffLabel2).ProxyFlag;
+                            this.StaffRollCallFlag2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallFlag;
+                            this.StaffRollCallYmdHms2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallYmdHms;
+                            this.StaffMemoFlag2 = ((StaffLabel)this.DeployedStaffLabel2).MemoFlag;
+                            this.StaffMemo2 = ((StaffLabel)this.DeployedStaffLabel2).Memo;
+                            break;
+                    }
+                } else {
+                    this.StaffCode2 = 0;
+                    this.StaffOccupation2 = 99;
+                    this.StaffProxyFlag2 = false;
+                    this.StaffRollCallFlag2 = false;
+                    this.StaffRollCallYmdHms2 = _defaultDateTime;
+                    this.StaffMemoFlag2 = false;
+                    this.StaffMemo2 = string.Empty;
+                }
+            }
         }
         /// <summary>
         /// 配置されているStaffLabel 3の参照を保持
         /// </summary>
-        public StaffLabel? DeployedStaffLabel3 {
+        public Control? DeployedStaffLabel3 {
             get => this._deployedStaffLabel3;
-            set => this._deployedStaffLabel3 = value;
+            set {
+                this._deployedStaffLabel3 = value;
+                if (this.DeployedStaffLabel3 is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.StaffCode3 = ((StaffLabel)this.DeployedStaffLabel3).StaffMasterVo.StaffCode;
+                            this.StaffOccupation3 = ((StaffLabel)this.DeployedStaffLabel3).OccupationCode;
+                            this.StaffProxyFlag3 = ((StaffLabel)this.DeployedStaffLabel3).ProxyFlag;
+                            this.StaffRollCallFlag3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallFlag;
+                            this.StaffRollCallYmdHms3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallYmdHms;
+                            this.StaffMemoFlag3 = ((StaffLabel)this.DeployedStaffLabel3).MemoFlag;
+                            this.StaffMemo3 = ((StaffLabel)this.DeployedStaffLabel3).Memo;
+                            break;
+                    }
+                } else {
+                    this.StaffCode3 = 0;
+                    this.StaffOccupation3 = 99;
+                    this.StaffProxyFlag3 = false;
+                    this.StaffRollCallFlag3 = false;
+                    this.StaffRollCallYmdHms3 = _defaultDateTime;
+                    this.StaffMemoFlag3 = false;
+                    this.StaffMemo3 = string.Empty;
+                }
+            }
+        }
+        /// <summary>
+        /// 配置されているStaffLabel 4の参照を保持
+        /// </summary>
+        public Control? DeployedStaffLabel4 {
+            get => this._deployedStaffLabel4;
+            set {
+                this._deployedStaffLabel4 = value;
+                if (this.DeployedStaffLabel4 is not null) {
+                    switch (this.DragParentControl) {
+                        case SetControl setControl:
+                        case StockBoxPanel stockBoxPanel:
+                            this.StaffCode4 = ((StaffLabel)this.DeployedStaffLabel4).StaffMasterVo.StaffCode;
+                            this.StaffOccupation4 = ((StaffLabel)this.DeployedStaffLabel4).OccupationCode;
+                            this.StaffProxyFlag4 = ((StaffLabel)this.DeployedStaffLabel4).ProxyFlag;
+                            this.StaffRollCallFlag4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallFlag;
+                            this.StaffRollCallYmdHms4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallYmdHms;
+                            this.StaffMemoFlag4 = ((StaffLabel)this.DeployedStaffLabel4).MemoFlag;
+                            this.StaffMemo4 = ((StaffLabel)this.DeployedStaffLabel4).Memo;
+                            break;
+                    }
+                } else {
+                    this.StaffCode4 = 0;
+                    this.StaffOccupation4 = 99;
+                    this.StaffProxyFlag4 = false;
+                    this.StaffRollCallFlag4 = false;
+                    this.StaffRollCallYmdHms4 = _defaultDateTime;
+                    this.StaffMemoFlag4 = false;
+                    this.StaffMemo4 = string.Empty;
+                }
+            }
         }
         /// <summary>
         /// Drag時のParentControlを格納
@@ -558,9 +943,434 @@ namespace ControlEx {
         /// </summary>
         public object DragControl {
             get => this._dragControl;
-            set => this._dragControl = value;
+            set {
+                this._dragControl = value;
+            }
         }
 
+        /*
+         * 
+         * VehicleDispatchDetailVo
+         * 
+         */
+        /// <summary>
+        /// 配車表№
+        /// 0～199の番号
+        /// </summary>
+        public int CellNumber {
+            get => _cellNumber;
+            set => _cellNumber = value;
+        }
+        /// <summary>
+        /// 稼働日
+        /// </summary>
+        public DateTime OperationDate {
+            get => _operationDate;
+            set => _operationDate = value;
+        }
+        /// <summary>
+        /// 稼働フラグ
+        /// true:稼働日 false:休車
+        /// </summary>
+        public bool OperationFlag {
+            get => _operationFlag;
+            set => _operationFlag = value;
+        }
+        /// <summary>
+        /// 配車フラグ
+        /// true:配車されている false:配車されていない
+        /// </summary>
+        public bool VehicleDispatchFlag {
+            get => _vehicleDispatchFlag;
+            set => _vehicleDispatchFlag = value;
+        }
+        /// <summary>
+        /// H_SetControlの形状
+        /// true:2列 false:1列
+        /// </summary>
+        public bool PurposeFlag {
+            get => _purposeFlag;
+            set => _purposeFlag = value;
+        }
+        /// <summary>
+        /// 配車先コード
+        /// </summary>
+        public int SetCode {
+            get => _setCode;
+            set => _setCode = value;
+        }
+        /// <summary>
+        /// 管理地
+        /// 0:該当なし 1:足立 2:三郷
+        /// </summary>
+        public int ManagedSpaceCode {
+            get => _managedSpaceCode;
+            set => _managedSpaceCode = value;
+        }
+        /// <summary>
+        /// 分類コード
+        /// 10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 50:一般 51:社用車 99:指定なし
+        /// </summary>
+        public int ClassificationCode {
+            get => _classificationCode;
+            set => _classificationCode = value;
+        }
+        /// <summary>
+        /// 帰庫点呼フラグ
+        /// true:帰庫点呼記録済 false:未点呼
+        /// </summary>
+        public bool LastRollCallFlag {
+            get => _lastRollCallFlag;
+            set => _lastRollCallFlag = value;
+        }
+        /// <summary>
+        /// 帰庫点呼日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms {
+            get => _lastRollCallYmdHms;
+            set => _lastRollCallYmdHms = value;
+        }
+        /// <summary>
+        /// メモフラグ
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool SetMemoFlag {
+            get => _setMemoFlag;
+            set => _setMemoFlag = value;
+        }
+        /// <summary>
+        /// メモ
+        /// </summary>
+        public string SetMemo {
+            get => _setMemo;
+            set => _setMemo = value;
+        }
+        /// <summary>
+        /// 番手コード
+        /// 0:指定なし 1:早番 2:遅番
+        /// </summary>
+        public int ShiftCode {
+            get => _shiftCode;
+            set => _shiftCode = value;
+        }
+        /// <summary>
+        /// 待機フラグ
+        /// true:待機 false:通常
+        /// </summary>
+        public bool StandByFlag {
+            get => _standByFlag;
+            set => _standByFlag = value;
+        }
+        /// <summary>
+        /// 作業員付きフラグ
+        /// true:作業員付き false:作業員なし
+        /// </summary>
+        public bool AddWorkerFlag {
+            get => _addWorkerFlag;
+            set => _addWorkerFlag = value;
+        }
+        /// <summary>
+        /// 連絡事項印フラグ
+        /// true:連絡事項あり false:連絡事項なし
+        /// </summary>
+        public bool ContactInfomationFlag {
+            get => _contactInfomationFlag;
+            set => _contactInfomationFlag = value;
+        }
+        /// <summary>
+        /// FAX送信フラグ
+        /// true:Fax送信 false:なし
+        /// </summary>
+        public bool FaxTransmissionFlag {
+            get => _faxTransmissionFlag;
+            set => _faxTransmissionFlag = value;
+        }
+        /// <summary>
+        /// 車両コード
+        /// </summary>
+        public int CarCode {
+            get => _carCode;
+            set => _carCode = value;
+        }
+        /// <summary>
+        /// 車庫地コード
+        /// 0:該当なし 1:本社 2:三郷
+        /// </summary>
+        public int CarGarageCode {
+            get => _carGarageCode;
+            set => _carGarageCode = value;
+        }
+        /// <summary>
+        /// 代車フラグ
+        /// true:代車 false:本番車
+        /// </summary>
+        public bool CarProxyFlag {
+            get => _carProxyFlag;
+            set => _carProxyFlag = value;
+        }
+        /// <summary>
+        /// メモフラグ
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool CarMemoFlag {
+            get => _carMemoFlag;
+            set => _carMemoFlag = value;
+        }
+        /// <summary>
+        /// メモ
+        /// </summary>
+        public string CarMemo {
+            get => _carMemo;
+            set => _carMemo = value;
+        }
+        /// <summary>
+        /// TargetStaffの番号
+        /// 0:運転手 1:作業員１ 2:作業員２ 3:作業員３
+        /// </summary>
+        public int TargetStaffNumber {
+            get => _targetStaffNumber;
+            set => _targetStaffNumber = value;
+        }
+        /// <summary>
+        /// 従事者コード1
+        /// </summary>
+        public int StaffCode1 {
+            get => _staffCode1;
+            set => _staffCode1 = value;
+        }
+        /// <summary>
+        /// 職種コード1
+        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// </summary>
+        public int StaffOccupation1 {
+            get => _staffOccupation1;
+            set => _staffOccupation1 = value;
+        }
+        /// <summary>
+        /// 代番フラグ1
+        /// true:代番 false:本番
+        /// </summary>
+        public bool StaffProxyFlag1 {
+            get => _staffProxyFlag1;
+            set => _staffProxyFlag1 = value;
+        }
+        /// <summary>
+        /// 点呼フラグ1
+        /// true:点呼実施 false:点呼未実施
+        /// </summary>
+        public bool StaffRollCallFlag1 {
+            get => _staffRollCallFlag1;
+            set => _staffRollCallFlag1 = value;
+        }
+        /// <summary>
+        /// 点呼日時1
+        /// </summary>
+        public DateTime StaffRollCallYmdHms1 {
+            get => _staffRollCallYmdHms1;
+            set => _staffRollCallYmdHms1 = value;
+        }
+        /// <summary>
+        /// メモフラグ1
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool StaffMemoFlag1 {
+            get => _staffMemoFlag1;
+            set => _staffMemoFlag1 = value;
+        }
+        /// <summary>
+        /// メモ1
+        /// </summary>
+        public string StaffMemo1 {
+            get => _staffMemo1;
+            set => _staffMemo1 = value;
+        }
+        /// <summary>
+        /// 従事者コード2
+        /// </summary>
+        public int StaffCode2 {
+            get => _staffCode2;
+            set => _staffCode2 = value;
+        }
+        /// <summary>
+        /// 職種コード2
+        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// </summary>
+        public int StaffOccupation2 {
+            get => _staffOccupation2;
+            set => _staffOccupation2 = value;
+        }
+        /// <summary>
+        /// 代番フラグ2
+        /// true:代番 false:本番
+        /// </summary>
+        public bool StaffProxyFlag2 {
+            get => _staffProxyFlag2;
+            set => _staffProxyFlag2 = value;
+        }
+        /// <summary>
+        /// 点呼フラグ2
+        /// true:点呼実施 false:点呼未実施
+        /// </summary>
+        public bool StaffRollCallFlag2 {
+            get => _staffRollCallFlag2;
+            set => _staffRollCallFlag2 = value;
+        }
+        /// <summary>
+        /// 点呼日時2
+        /// </summary>
+        public DateTime StaffRollCallYmdHms2 {
+            get => _staffRollCallYmdHms2;
+            set => _staffRollCallYmdHms2 = value;
+        }
+        /// <summary>
+        /// メモフラグ2
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool StaffMemoFlag2 {
+            get => _staffMemoFlag2;
+            set => _staffMemoFlag2 = value;
+        }
+        /// <summary>
+        /// メモ2
+        /// </summary>
+        public string StaffMemo2 {
+            get => _staffMemo2;
+            set => _staffMemo2 = value;
+        }
+        /// <summary>
+        /// 従事者コード3
+        /// </summary>
+        public int StaffCode3 {
+            get => _staffCode3;
+            set => _staffCode3 = value;
+        }
+        /// <summary>
+        /// 職種コード3
+        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// </summary>
+        public int StaffOccupation3 {
+            get => _staffOccupation3;
+            set => _staffOccupation3 = value;
+        }
+        /// <summary>
+        /// 代番フラグ3
+        /// true:代番 false:本番
+        /// </summary>
+        public bool StaffProxyFlag3 {
+            get => _staffProxyFlag3;
+            set => _staffProxyFlag3 = value;
+        }
+        /// <summary>
+        /// 点呼フラグ3
+        /// true:点呼実施 false:点呼未実施
+        /// </summary>
+        public bool StaffRollCallFlag3 {
+            get => _staffRollCallFlag3;
+            set => _staffRollCallFlag3 = value;
+        }
+        /// <summary>
+        /// 点呼日時3
+        /// </summary>
+        public DateTime StaffRollCallYmdHms3 {
+            get => _staffRollCallYmdHms3;
+            set => _staffRollCallYmdHms3 = value;
+        }
+        /// <summary>
+        /// メモフラグ3
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool StaffMemoFlag3 {
+            get => _staffMemoFlag3;
+            set => _staffMemoFlag3 = value;
+        }
+        /// <summary>
+        /// メモ3
+        /// </summary>
+        public string StaffMemo3 {
+            get => _staffMemo3;
+            set => _staffMemo3 = value;
+        }
+        /// <summary>
+        /// 従事者コード4
+        /// </summary>
+        public int StaffCode4 {
+            get => _staffCode4;
+            set => _staffCode4 = value;
+        }
+        /// <summary>
+        /// 職種コード4
+        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// </summary>
+        public int StaffOccupation4 {
+            get => _staffOccupation4;
+            set => _staffOccupation4 = value;
+        }
+        /// <summary>
+        /// 代番フラグ4
+        /// true:代番 false:本番
+        /// </summary>
+        public bool StaffProxyFlag4 {
+            get => _staffProxyFlag4;
+            set => _staffProxyFlag4 = value;
+        }
+        /// <summary>
+        /// 点呼フラグ4
+        /// true:点呼実施 false:点呼未実施
+        /// </summary>
+        public bool StaffRollCallFlag4 {
+            get => _staffRollCallFlag4;
+            set => _staffRollCallFlag4 = value;
+        }
+        /// <summary>
+        /// 点呼日時4
+        /// </summary>
+        public DateTime StaffRollCallYmdHms4 {
+            get => _staffRollCallYmdHms4;
+            set => _staffRollCallYmdHms4 = value;
+        }
+        /// <summary>
+        /// メモフラグ4
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool StaffMemoFlag4 {
+            get => _staffMemoFlag4;
+            set => _staffMemoFlag4 = value;
+        }
+        /// <summary>
+        /// メモ4
+        /// </summary>
+        public string StaffMemo4 {
+            get => _staffMemo4;
+            set => _staffMemo4 = value;
+        }
+        public string InsertPcName {
+            get => _insertPcName;
+            set => _insertPcName = value;
+        }
+        public DateTime InsertYmdHms {
+            get => _insertYmdHms;
+            set => _insertYmdHms = value;
+        }
+        public string UpdatePcName {
+            get => _updatePcName;
+            set => _updatePcName = value;
+        }
+        public DateTime UpdateYmdHms {
+            get => _updateYmdHms;
+            set => _updateYmdHms = value;
+        }
+        public string DeletePcName {
+            get => _deletePcName;
+            set => _deletePcName = value;
+        }
+        public DateTime DeleteYmdHms {
+            get => _deleteYmdHms;
+            set => _deleteYmdHms = value;
+        }
+        public bool DeleteFlag {
+            get => _deleteFlag;
+            set => _deleteFlag = value;
+        }
     }
 }
 

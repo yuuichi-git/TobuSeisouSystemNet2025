@@ -110,8 +110,10 @@ namespace EmploymentAgreement {
                         if (!_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                             _employmentAgreementDao.InsertOneEmploymentAgreement(this.SetEmploymentAgreementVo());
                             StatusStripEx1.ToolStripStatusLabelDetail.Text = "INSERTに成功しました。";
+                            this.Close();
                         } else {
                             _employmentAgreementDao.UpdateOneEmploymentAgreement(this.SetEmploymentAgreementVo());
+                            StatusStripEx1.ToolStripStatusLabelDetail.Text = "UPDATEに成功しました。";
                             this.Close();
                         }
                     } catch (Exception exception) {
@@ -418,6 +420,7 @@ namespace EmploymentAgreement {
             this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag; // 各労共に提出中
             this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail; // 給与区分
             this.NUDExPay.Value = _employmentAgreementVo.Pay; // 給与単価
+            this.ComboBoxExTravelCostDetail.Text = _employmentAgreementVo.TravelCostDetail; // 交通費区分
             this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost; // 交通費
             this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription; // 従事すべき業務内容
             this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime; // 勤務時間
@@ -600,6 +603,7 @@ namespace EmploymentAgreement {
             employmentAgreementVo.ContractExpirationPeriodString = this.TextBoxExContractExpirationPeriod.Text;
             employmentAgreementVo.PayDetail = this.ComboBoxExPayDetail.Text;
             employmentAgreementVo.Pay = (int)this.NUDExPay.Value;
+            employmentAgreementVo.TravelCostDetail = this.ComboBoxExTravelCostDetail.Text;
             employmentAgreementVo.TravelCost = (int)this.NUDExTravelCost.Value;
             employmentAgreementVo.JobDescription = int.Parse(this.ComboBoxExJobDescription.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
             employmentAgreementVo.WorkTime = this.ComboBoxExWorkTime.Text;
@@ -652,6 +656,7 @@ namespace EmploymentAgreement {
             this.CheckBoxExCheckFlag.Checked = false;
             this.InitializeComboBoxExPayDetail();
             this.NUDExPay.Value = 0;
+            this.ComboBoxExTravelCostDetail.SelectedIndex = 0;
             this.NUDExTravelCost.Value = 0;
             this.InitializeComboBoxExJobDescription();
             this.ComboBoxExWorkTime.Text = string.Empty;

@@ -165,6 +165,8 @@ namespace EmploymentAgreement {
             this.SheetView体験期間契約.Cells[28, 9].Text = _employmentAgreementVo.PayDetail;
             // 給料金額
             this.SheetView体験期間契約.Cells[28, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
+            // 交通費区分
+            this.SheetView体験期間契約.Cells[29, 9].Text = _employmentAgreementVo.TravelCostDetail;
             // 交通費
             this.SheetView体験期間契約.Cells[29, 30].Value = _employmentAgreementVo.TravelCost;
 
@@ -198,6 +200,8 @@ namespace EmploymentAgreement {
             this.SheetViewアルバイト契約.Cells[29, 9].Text = _employmentAgreementVo.PayDetail;
             // 給料金額
             this.SheetViewアルバイト契約.Cells[29, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
+            // 交通費区分
+            this.SheetViewアルバイト契約.Cells[30, 9].Text = _employmentAgreementVo.TravelCostDetail;
             // 交通費
             this.SheetViewアルバイト契約.Cells[30, 30].Value = _employmentAgreementVo.TravelCost;
 
@@ -231,6 +235,8 @@ namespace EmploymentAgreement {
             this.SheetView嘱託雇用契約社員.Cells[32, 9].Text = _employmentAgreementVo.PayDetail;
             // 給料金額
             this.SheetView嘱託雇用契約社員.Cells[32, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
+            // 交通費区分
+            this.SheetView嘱託雇用契約社員.Cells[35, 9].Text = _employmentAgreementVo.PayDetail;
             // 交通費
             this.SheetView嘱託雇用契約社員.Cells[35, 30].Value = _employmentAgreementVo.TravelCost != 0 ? _employmentAgreementVo.TravelCost : "---";
 

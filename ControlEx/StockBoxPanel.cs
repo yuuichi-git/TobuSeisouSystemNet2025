@@ -2,8 +2,8 @@
  * 2024-11-24
  */
 namespace ControlEx {
-    public partial class StockBoxtPanel : FlowLayoutPanel {
-        public StockBoxtPanel() {
+    public partial class StockBoxPanel : FlowLayoutPanel {
+        public StockBoxPanel() {
             InitializeComponent();
         }
 

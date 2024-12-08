@@ -9,4 +9,8 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+  </ItemGroup>
+
 </Project>

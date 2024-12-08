@@ -9,6 +9,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class CarLabel : Label {
+        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -27,7 +28,7 @@ namespace ControlEx {
         private object _parentControl;
         private int _classificationCode = 0;
         private bool _cursorEnterFlag = false;
-        private int _managedSpaceCode = 0;
+        private int _carGarageCode = 0;
         private string _memo = string.Empty;
         private bool _memoFlag = false;
         private bool _proxyFlag = false;
@@ -162,7 +163,7 @@ namespace ControlEx {
                     break;
             }
             // 三郷車庫
-            if (ManagedSpaceCode == 2)
+            if (CarGarageCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
             // カーソル関係
             if (CursorEnterFlag)
@@ -337,9 +338,9 @@ namespace ControlEx {
         /// <summary>
         /// 0:該当なし 1:足立 2:三郷
         /// </summary>
-        public int ManagedSpaceCode {
-            get => this._managedSpaceCode;
-            set => this._managedSpaceCode = value;
+        public int CarGarageCode {
+            get => this._carGarageCode;
+            set => this._carGarageCode = value;
         }
         /// <summary>
         /// メモ

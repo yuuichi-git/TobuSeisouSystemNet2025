@@ -14,7 +14,7 @@ namespace VehicleDispatch {
         /*
          * プロパティ
          */
-        private SetControl _dragParentSetControl;
+        private SetControl _dragParentControl;
         /*
          * Dao
          */
@@ -54,8 +54,9 @@ namespace VehicleDispatch {
              * InitializeControl
              */
             InitializeComponent();
-            DateTimePickerExOperationDate.SetToday();
+            this.DateTimePickerExOperationDate.SetToday();
             this.AddBoard();
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
         }
 
         /// <summary>
@@ -111,8 +112,8 @@ namespace VehicleDispatch {
              * 全てのCellを捜査してSetControlを追加する
              */
             int _cellNumber = 0; // 0～199
-            for (int y = 0; y < _board.RowAllNumber; y++) {
-                switch (y) {
+            for (int row = 0; row < _board.RowAllNumber; row++) {
+                switch (row) {
                     case 0 or 2 or 4 or 6: // DetailCell
                         break;
                     case 1 or 3 or 5 or 7: // SetControlCell
@@ -132,7 +133,7 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// ConvertStaffMasterVo
+        /// VehicleDispatchDetailVoをList<StaffMasterVo>に変換する
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
         /// <returns></returns>
@@ -150,7 +151,7 @@ namespace VehicleDispatch {
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
-        private StaffMasterVo GetStaffMasterVo(int staffCode) {
+        private StaffMasterVo? GetStaffMasterVo(int staffCode) {
             StaffMasterVo staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
             if (staffMasterVo is not null) {
                 // 検索で見つかったVoを返す
@@ -158,43 +159,6 @@ namespace VehicleDispatch {
             } else {
                 // StaffCodeがゼロ(存在しない)を返す
                 return null;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private class SetControVo {
-            SetLabel? _setLabel = null;
-            CarLabel? _carLabel = null;
-            StaffLabel? _staffLabel0 = null;
-            StaffLabel? _staffLabel1 = null;
-            StaffLabel? _staffLabel2 = null;
-            StaffLabel? _staffLabel3 = null;
-
-            public SetLabel? SetLabel {
-                get => this._setLabel;
-                set => this._setLabel = value;
-            }
-            public CarLabel? CarLabel {
-                get => this._carLabel;
-                set => this._carLabel = value;
-            }
-            public StaffLabel? StaffLabel0 {
-                get => this._staffLabel0;
-                set => this._staffLabel0 = value;
-            }
-            public StaffLabel? StaffLabel1 {
-                get => this._staffLabel1;
-                set => this._staffLabel1 = value;
-            }
-            public StaffLabel? StaffLabel2 {
-                get => this._staffLabel2;
-                set => this._staffLabel2 = value;
-            }
-            public StaffLabel? StaffLabel3 {
-                get => this._staffLabel3;
-                set => this._staffLabel3 = value;
             }
         }
 
@@ -225,7 +189,11 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
-
+            // SetControl
+            // SetLabel
+            // CarLabel
+            // StaffLabel
+            MessageBox.Show("ContextMenuStripEx_Opened");
         }
 
         /// <summary>
@@ -234,7 +202,11 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-
+            // SetControl
+            // SetLabel
+            // CarLabel
+            // StaffLabel
+            MessageBox.Show("ToolStripMenuItem_Click");
         }
 
         /// <summary>
@@ -243,8 +215,6 @@ namespace VehicleDispatch {
         /// <param name="sender">DropされたSetControlが入っている</param>
         /// <param name="e"></param>
         private void OnDragDrop(object sender, DragEventArgs e) {
-            Debug.WriteLine("VehicleDispatchBoard DragDrop");
-
             switch (((SetControl)sender).DragParentControl) {
                 case SetControl dragParentControl:
                     /*
@@ -258,20 +228,83 @@ namespace VehicleDispatch {
                      */
                     switch (((SetControl)sender).DragControl) {
                         case SetLabel setLabel:
-                            ((SetControl)sender).Controls.Add((SetLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            // SetLabelを移動する
+                            ((SetControl)sender).Controls.Add(setLabel, cellPoint.X, cellPoint.Y);
+                            /*
+                             * Dragデータの処理
+                             */
+                            try {
+                                dragParentControl.SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo()); // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            /*
+                             * Dropデータの処理
+                             */
+                            try {
+                                ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
                             break;
                         case CarLabel carLabel:
-                            ((SetControl)sender).Controls.Add((CarLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            // CarLabelを移動する
+                            ((SetControl)sender).Controls.Add(carLabel, cellPoint.X, cellPoint.Y);
+                            /*
+                             * Dragデータの処理
+                             */
+                            try {
+                                dragParentControl.SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo()); // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            /*
+                             * Dropデータの処理
+                             */
+                            try {
+                                ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
                             break;
                         case StaffLabel staffLabel:
-                            ((SetControl)sender).Controls.Add((StaffLabel)((SetControl)sender).DragControl, cellPoint.X, cellPoint.Y);
+                            // StaffLabelを移動する
+                            ((SetControl)sender).Controls.Add(staffLabel, cellPoint.X, cellPoint.Y);
+                            /*
+                             * Dragデータの処理
+                             */
+                            dragParentControl.SetControlRelocation(); // プロパティの再構築
+                            try {
+
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo()); // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            /*
+                             * Dropデータの処理
+                             */
+                            ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                            try {
+
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
                             break;
                     }
-
-                    Debug.WriteLine(string.Concat(cellPoint.X, "  ", cellPoint.Y));
                     Debug.WriteLine(string.Concat(dragParentControl.CellNumber, " → ", ((SetControl)sender).CellNumber, "の", cellPoint.X, ",", cellPoint.Y));
                     break;
-                case StockBoxtPanel stockBoxPanel:
+                case StockBoxPanel stockBoxPanel:
                     MessageBox.Show("StockBoxtPanel");
                     break;
             }
@@ -360,15 +393,15 @@ namespace VehicleDispatch {
                 switch (sender) {
                     case SetLabel control:
                         control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
                         break;
                     case CarLabel control:
                         control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
                         break;
                     case StaffLabel control:
                         control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentSetControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
                         break;
                 }
             }
@@ -416,9 +449,9 @@ namespace VehicleDispatch {
         /// <summary>
         /// Drag Dropを開始した時のSetControlを格納する
         /// </summary>
-        public SetControl DragParentSetControl {
-            get => this._dragParentSetControl;
-            set => this._dragParentSetControl = value;
+        public SetControl DragParentControl {
+            get => this._dragParentControl;
+            set => this._dragParentControl = value;
         }
     }
 }

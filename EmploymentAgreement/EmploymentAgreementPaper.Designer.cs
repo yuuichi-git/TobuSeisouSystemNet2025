@@ -32,6 +32,11 @@
             this.labelEx2 = new ControlEx.LabelEx();
             this.ButtonExPrint = new ControlEx.ButtonEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.PanelExLeft = new ControlEx.PanelEx();
+            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
+            this.LabelExCurrentAddress = new ControlEx.LabelEx();
+            this.labelEx3 = new ControlEx.LabelEx();
+            this.labelEx1 = new ControlEx.LabelEx();
             this.SheetView体験期間契約 = this.SpreadList.GetSheet(0);
             this.SheetViewアルバイト契約 = this.SpreadList.GetSheet(1);
             this.SheetView嘱託雇用契約社員 = this.SpreadList.GetSheet(2);
@@ -40,11 +45,6 @@
             this.SheetView長期雇用契約自運労運転士 = this.SpreadList.GetSheet(5);
             this.SheetView長期雇用契約自運労作業員 = this.SpreadList.GetSheet(6);
             this.SheetView誓約書 = this.SpreadList.GetSheet(7);
-            this.PanelExLeft = new ControlEx.PanelEx();
-            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
-            this.LabelExCurrentAddress = new ControlEx.LabelEx();
-            this.labelEx3 = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -134,7 +134,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, 誓約書, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, アルバイト契約, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(403, 67);

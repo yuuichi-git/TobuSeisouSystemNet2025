@@ -80,22 +80,6 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// OnPaint
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnCellPaint(TableLayoutCellPaintEventArgs e) {
-
-        }
-
-        /// <summary>
         /// SetControl追加(１個分のSetControlを処理)
         /// </summary>
         /// <param name="cellNumber"></param>
@@ -147,6 +131,61 @@ namespace ControlEx {
         /// <returns></returns>
         private Point GetCellPoint(int cellNumber) {
             return new Point(cellNumber % _columnNumber, cellNumber / _columnNumber * 2 + 1);
+        }
+
+        /// <summary>
+        /// Boardに配置されているLabelを走査する
+        /// </summary>
+        /// <returns></returns>
+        public List<SetMasterVo> GetAllSetLabel() {
+            List<SetMasterVo> listSetMasterVo = new();
+            foreach (SetControl setControl in this.Controls) {
+                SetLabel? setLabel = (SetLabel?)setControl.DeployedSetLabel;
+                if (setLabel is not null)
+                    listSetMasterVo.Add(setLabel.SetMasterVo);
+            }
+            return listSetMasterVo;
+        }
+
+        /// <summary>
+        /// Boardに配置されているLabelを走査する
+        /// </summary>
+        /// <returns></returns>
+        public List<CarMasterVo> GetAllCarLabel() {
+            List<CarMasterVo> listCarMasterVo = new();
+            foreach (SetControl setControl in this.Controls) {
+                CarLabel? carLabel = (CarLabel?)setControl.DeployedCarLabel;
+                if (carLabel is not null)
+                    listCarMasterVo.Add(carLabel.CarMasterVo);
+            }
+            return listCarMasterVo;
+        }
+
+        /// <summary>
+        /// Boardに配置されているLabelを走査する
+        /// </summary>
+        /// <returns></returns>
+        public List<StaffMasterVo> GetAllStaffLabel() {
+            List<StaffMasterVo> listStaffMasterVo = new();
+            foreach (SetControl setControl in this.Controls) {
+                // (運転手)
+                StaffLabel? staffLabel0 = (StaffLabel?)setControl.DeployedStaffLabel1;
+                if (staffLabel0 is not null)
+                    listStaffMasterVo.Add(staffLabel0.StaffMasterVo);
+                // (作業員1)
+                StaffLabel? staffLabel1 = (StaffLabel?)setControl.DeployedStaffLabel2;
+                if (staffLabel1 is not null)
+                    listStaffMasterVo.Add(staffLabel1.StaffMasterVo);
+                // (作業員2)
+                StaffLabel? staffLabel2 = (StaffLabel?)setControl.DeployedStaffLabel3;
+                if (staffLabel2 is not null)
+                    listStaffMasterVo.Add(staffLabel2.StaffMasterVo);
+                // (作業員3)
+                StaffLabel? staffLabel3 = (StaffLabel?)setControl.DeployedStaffLabel4;
+                if (staffLabel3 is not null)
+                    listStaffMasterVo.Add(staffLabel3.StaffMasterVo);
+            }
+            return listStaffMasterVo;
         }
 
         /*
@@ -306,6 +345,22 @@ namespace ControlEx {
         private void OnMouseUp(object sender, MouseEventArgs e) {
             this._oldAutoScrollPosition = this.AutoScrollPosition;
             this.Cursor = Cursors.Default;
+        }
+
+        /// <summary>
+        /// OnPaint
+        /// </summary>
+        /// <param name="pe"></param>
+        protected override void OnPaint(PaintEventArgs pe) {
+            base.OnPaint(pe);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnCellPaint(TableLayoutCellPaintEventArgs e) {
+
         }
 
         /*

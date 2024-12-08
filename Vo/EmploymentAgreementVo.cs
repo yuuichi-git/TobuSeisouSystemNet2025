@@ -11,6 +11,7 @@ namespace Vo {
         private string _contractExpirationPeriodString; //更新期間
         private string _payDetail; //給与区分
         private int _pay; //給与
+        private string _travelCostDetail; //交通費区分
         private int _travelCost; //交通費
         private int _jobDescription; //従事すべき業務の内容
         private string _workTime; //勤務時間
@@ -32,6 +33,7 @@ namespace Vo {
             _contractExpirationPeriodString = string.Empty;
             _payDetail = string.Empty;
             _pay = 0;
+            _travelCostDetail = string.Empty;
             _travelCost = 0;
             _jobDescription = 99;
             _workTime = string.Empty;
@@ -94,6 +96,13 @@ namespace Vo {
         public int Pay {
             get => this._pay;
             set => this._pay = value;
+        }
+        /// <summary>
+        /// 交通費区分
+        /// </summary>
+        public string TravelCostDetail {
+            get => this._travelCostDetail;
+            set => this._travelCostDetail = value;
         }
         /// <summary>
         /// 交通費
@@ -160,6 +169,5 @@ namespace Vo {
             get => this._deleteFlag;
             set => this._deleteFlag = value;
         }
-        
     }
 }

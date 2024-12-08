@@ -57,6 +57,7 @@ namespace Dao {
                                             "ContractExpirationPeriodString," +
                                             "PayDetail," +
                                             "Pay," +
+                                            "TravelCostDetail," +
                                             "TravelCost," +
                                             "JobDescription," +
                                             "WorkTime," +
@@ -80,6 +81,7 @@ namespace Dao {
                     employmentAgreementVo.ContractExpirationPeriodString = _defaultValue.GetDefaultValue<string>(sqlDataReader["ContractExpirationPeriodString"]);
                     employmentAgreementVo.PayDetail = _defaultValue.GetDefaultValue<string>(sqlDataReader["PayDetail"]);
                     employmentAgreementVo.Pay = _defaultValue.GetDefaultValue<int>(sqlDataReader["Pay"]);
+                    employmentAgreementVo.TravelCostDetail = _defaultValue.GetDefaultValue<string>(sqlDataReader["TravelCostDetail"]);
                     employmentAgreementVo.TravelCost = _defaultValue.GetDefaultValue<int>(sqlDataReader["TravelCost"]);
                     employmentAgreementVo.JobDescription = _defaultValue.GetDefaultValue<int>(sqlDataReader["JobDescription"]);
                     employmentAgreementVo.WorkTime = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkTime"]);
@@ -130,6 +132,7 @@ namespace Dao {
                                                                        "ContractExpirationPeriodString," +
                                                                        "PayDetail," +
                                                                        "Pay," +
+                                                                       "TravelCostDetail," +
                                                                        "TravelCost," +
                                                                        "JobDescription," +
                                                                        "WorkTime," +
@@ -149,6 +152,7 @@ namespace Dao {
                                             "'" + employmentAgreementVo.ContractExpirationPeriodString + "'," +
                                             "'" + employmentAgreementVo.PayDetail + "'," +
                                              "" + employmentAgreementVo.Pay + "," +
+                                            "'" + employmentAgreementVo.TravelCostDetail + "'," +
                                              "" + employmentAgreementVo.TravelCost + "," +
                                              "" + employmentAgreementVo.JobDescription + "," +
                                             "'" + employmentAgreementVo.WorkTime + "'," +
@@ -184,6 +188,7 @@ namespace Dao {
                                          "ContractExpirationPeriodString = '" + employmentAgreementVo.ContractExpirationPeriodString + "'," +
                                          "PayDetail = '" + employmentAgreementVo.PayDetail + "'," +
                                          "Pay = " + employmentAgreementVo.Pay + "," +
+                                         "TravelCostDetail = '" + employmentAgreementVo.TravelCostDetail + "'," +
                                          "TravelCost = " + employmentAgreementVo.TravelCost + "," +
                                          "JobDescription = " + employmentAgreementVo.JobDescription + "," +
                                          "WorkTime = '" + employmentAgreementVo.WorkTime + "'," +

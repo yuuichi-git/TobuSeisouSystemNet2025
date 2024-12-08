@@ -9,6 +9,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class SetLabel : Label {
+        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -27,10 +28,11 @@ namespace ControlEx {
         private object _parentControl;
         private bool _addWorkerFlag = false;
         private int _classificationCode = 0;
-        private bool contactInfomationFlag = false;
+        private bool _contactInfomationFlag = false;
         private bool _cursorEnterFlag = false;
-        private bool faxTransmissionFlag = false;
+        private bool _faxTransmissionFlag = false;
         private bool _lastRollCallFlag = false;
+        private DateTime _lastRollCallYmdHms = new DateTime(1900, 01, 01);
         private int _managedSpaceCode = 0;
         private string _memo = string.Empty;
         private bool _memoFlag = false;
@@ -491,23 +493,38 @@ namespace ControlEx {
         /// true:連絡事項あり false:連絡事項なし
         /// </summary>
         public bool ContactInfomationFlag {
-            get => this.contactInfomationFlag;
-            set => this.contactInfomationFlag = value;
+            get => this._contactInfomationFlag;
+            set => this._contactInfomationFlag = value;
         }
         /// <summary>
         /// 代車・代番連絡
         /// true:Fax送信 false:なし
         /// </summary>
         public bool FaxTransmissionFlag {
-            get => this.faxTransmissionFlag;
-            set => this.faxTransmissionFlag = value;
+            get => this._faxTransmissionFlag;
+            set => this._faxTransmissionFlag = value;
         }
         /// <summary>
         /// true:帰庫点呼記録済 false:未点呼
         /// </summary>
         public bool LastRollCallFlag {
             get => this._lastRollCallFlag;
-            set => this._lastRollCallFlag = value;
+            set {
+                this._lastRollCallFlag = value;
+                Refresh();
+                if (this._lastRollCallFlag) {
+                    this.LastRollCallYmdHms = _defaultDateTime;
+                } else {
+                    this.LastRollCallYmdHms = DateTime.Now;
+                }
+            }
+        }
+        /// <summary>
+        /// 帰庫点呼日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms {
+            get => this._lastRollCallYmdHms;
+            set => this._lastRollCallYmdHms = value;
         }
         /// <summary>
         /// 0:該当なし 1:足立 2:三郷
@@ -560,6 +577,5 @@ namespace ControlEx {
             get => this._telCallingFlag;
             set => this._telCallingFlag = value;
         }
-
     }
 }

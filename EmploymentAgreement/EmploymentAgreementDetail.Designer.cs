@@ -39,6 +39,8 @@
             this.labelEx35 = new ControlEx.LabelEx();
             this.LabelExJobForm = new ControlEx.LabelEx();
             this.PanelExMiddle = new ControlEx.PanelEx();
+            this.labelEx21 = new ControlEx.LabelEx();
+            this.ComboBoxExTravelCostDetail = new ControlEx.ComboBoxEx();
             this.labelEx19 = new ControlEx.LabelEx();
             this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
             this.TextBoxExContractExpirationPeriod = new ControlEx.TextBoxEx();
@@ -343,6 +345,8 @@
             // 
             // PanelExMiddle
             // 
+            this.PanelExMiddle.Controls.Add(this.labelEx21);
+            this.PanelExMiddle.Controls.Add(this.ComboBoxExTravelCostDetail);
             this.PanelExMiddle.Controls.Add(this.labelEx19);
             this.PanelExMiddle.Controls.Add(this.ComboBoxExBaseAddress);
             this.PanelExMiddle.Controls.Add(this.TextBoxExContractExpirationPeriod);
@@ -378,9 +382,28 @@
             this.PanelExMiddle.Size = new Size(1898, 947);
             this.PanelExMiddle.TabIndex = 3;
             // 
+            // labelEx21
+            // 
+            this.labelEx21.Location = new Point(40, 116);
+            this.labelEx21.Name = "labelEx21";
+            this.labelEx21.Size = new Size(572, 15);
+            this.labelEx21.TabIndex = 70;
+            this.labelEx21.Text = "交通費区分";
+            this.labelEx21.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ComboBoxExTravelCostDetail
+            // 
+            this.ComboBoxExTravelCostDetail.FormattingEnabled = true;
+            this.ComboBoxExTravelCostDetail.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExTravelCostDetail.Items.AddRange(new object[] { "通勤手当（１日）", "通勤手当（１か月）" });
+            this.ComboBoxExTravelCostDetail.Location = new Point(36, 136);
+            this.ComboBoxExTravelCostDetail.Name = "ComboBoxExTravelCostDetail";
+            this.ComboBoxExTravelCostDetail.Size = new Size(580, 23);
+            this.ComboBoxExTravelCostDetail.TabIndex = 69;
+            // 
             // labelEx19
             // 
-            this.labelEx19.Location = new Point(40, 28);
+            this.labelEx19.Location = new Point(40, 8);
             this.labelEx19.Name = "labelEx19";
             this.labelEx19.Size = new Size(332, 16);
             this.labelEx19.TabIndex = 68;
@@ -390,8 +413,8 @@
             // ComboBoxExBaseAddress
             // 
             this.ComboBoxExBaseAddress.FormattingEnabled = true;
-            this.ComboBoxExBaseAddress.Items.AddRange(new object[] { "東京都足立区西伊興１－６－２８", "東京都足立区谷在家２－１９－４　（東武リサイクルセンター）" });
-            this.ComboBoxExBaseAddress.Location = new Point(36, 48);
+            this.ComboBoxExBaseAddress.Items.AddRange(new object[] { "東京都足立区西伊興１－６－２８", "東京都足立区谷在家２－１９－４　（東武リサイクルセンター）", "東京都足立区綾瀬地区　各自転車駐車場" });
+            this.ComboBoxExBaseAddress.Location = new Point(36, 28);
             this.ComboBoxExBaseAddress.Name = "ComboBoxExBaseAddress";
             this.ComboBoxExBaseAddress.Size = new Size(340, 23);
             this.ComboBoxExBaseAddress.TabIndex = 0;
@@ -399,14 +422,14 @@
             // 
             // TextBoxExContractExpirationPeriod
             // 
-            this.TextBoxExContractExpirationPeriod.Location = new Point(616, 48);
+            this.TextBoxExContractExpirationPeriod.Location = new Point(616, 28);
             this.TextBoxExContractExpirationPeriod.Name = "TextBoxExContractExpirationPeriod";
             this.TextBoxExContractExpirationPeriod.Size = new Size(232, 23);
             this.TextBoxExContractExpirationPeriod.TabIndex = 3;
             // 
             // labelEx3
             // 
-            this.labelEx3.Location = new Point(40, 84);
+            this.labelEx3.Location = new Point(40, 60);
             this.labelEx3.Name = "labelEx3";
             this.labelEx3.Size = new Size(572, 15);
             this.labelEx3.TabIndex = 67;
@@ -417,14 +440,14 @@
             // 
             this.ComboBoxExPayDetail.FormattingEnabled = true;
             this.ComboBoxExPayDetail.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExPayDetail.Location = new Point(36, 104);
+            this.ComboBoxExPayDetail.Location = new Point(36, 80);
             this.ComboBoxExPayDetail.Name = "ComboBoxExPayDetail";
             this.ComboBoxExPayDetail.Size = new Size(580, 23);
             this.ComboBoxExPayDetail.TabIndex = 5;
             // 
             // labelEx17
             // 
-            this.labelEx17.Location = new Point(384, 28);
+            this.labelEx17.Location = new Point(384, 8);
             this.labelEx17.Name = "labelEx17";
             this.labelEx17.Size = new Size(120, 16);
             this.labelEx17.TabIndex = 64;
@@ -435,7 +458,7 @@
             // 
             this.ComboBoxExBelongs.FormattingEnabled = true;
             this.ComboBoxExBelongs.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExBelongs.Location = new Point(380, 48);
+            this.ComboBoxExBelongs.Location = new Point(380, 28);
             this.ComboBoxExBelongs.Name = "ComboBoxExBelongs";
             this.ComboBoxExBelongs.Size = new Size(128, 23);
             this.ComboBoxExBelongs.TabIndex = 1;
@@ -443,7 +466,7 @@
             // 
             // labelEx13
             // 
-            this.labelEx13.Location = new Point(576, 144);
+            this.labelEx13.Location = new Point(576, 172);
             this.labelEx13.Name = "labelEx13";
             this.labelEx13.Size = new Size(208, 15);
             this.labelEx13.TabIndex = 62;
@@ -454,8 +477,8 @@
             // 
             this.ComboBoxExBreakTime.FormattingEnabled = true;
             this.ComboBoxExBreakTime.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExBreakTime.Items.AddRange(new object[] { "正午より１時間", "なし" });
-            this.ComboBoxExBreakTime.Location = new Point(572, 164);
+            this.ComboBoxExBreakTime.Items.AddRange(new object[] { "正午より１時間", "シフト表による", "なし" });
+            this.ComboBoxExBreakTime.Location = new Point(572, 192);
             this.ComboBoxExBreakTime.Name = "ComboBoxExBreakTime";
             this.ComboBoxExBreakTime.Size = new Size(216, 23);
             this.ComboBoxExBreakTime.TabIndex = 10;
@@ -463,7 +486,7 @@
             // 
             // labelEx9
             // 
-            this.labelEx9.Location = new Point(356, 144);
+            this.labelEx9.Location = new Point(356, 172);
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(208, 15);
             this.labelEx9.TabIndex = 60;
@@ -474,8 +497,8 @@
             // 
             this.ComboBoxExWorkTime.FormattingEnabled = true;
             this.ComboBoxExWorkTime.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１０時００分～１５時００分", "１２時００分～１６時００分" });
-            this.ComboBoxExWorkTime.Location = new Point(352, 164);
+            this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１０時００分～１５時００分", "１２時００分～１６時００分", "シフト表による" });
+            this.ComboBoxExWorkTime.Location = new Point(352, 192);
             this.ComboBoxExWorkTime.Name = "ComboBoxExWorkTime";
             this.ComboBoxExWorkTime.Size = new Size(216, 23);
             this.ComboBoxExWorkTime.TabIndex = 9;
@@ -483,7 +506,7 @@
             // 
             // labelEx5
             // 
-            this.labelEx5.Location = new Point(40, 144);
+            this.labelEx5.Location = new Point(40, 172);
             this.labelEx5.Name = "labelEx5";
             this.labelEx5.Size = new Size(304, 15);
             this.labelEx5.TabIndex = 58;
@@ -494,7 +517,7 @@
             // 
             this.ComboBoxExJobDescription.FormattingEnabled = true;
             this.ComboBoxExJobDescription.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExJobDescription.Location = new Point(36, 164);
+            this.ComboBoxExJobDescription.Location = new Point(36, 192);
             this.ComboBoxExJobDescription.Name = "ComboBoxExJobDescription";
             this.ComboBoxExJobDescription.Size = new Size(312, 23);
             this.ComboBoxExJobDescription.TabIndex = 8;
@@ -505,10 +528,10 @@
             this.NUDExTravelCost.ForeColor = Color.Black;
             this.NUDExTravelCost.ImeMode = ImeMode.Off;
             this.NUDExTravelCost.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            this.NUDExTravelCost.Location = new Point(772, 104);
+            this.NUDExTravelCost.Location = new Point(620, 136);
             this.NUDExTravelCost.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             this.NUDExTravelCost.Name = "NUDExTravelCost";
-            this.NUDExTravelCost.Size = new Size(68, 25);
+            this.NUDExTravelCost.Size = new Size(148, 25);
             this.NUDExTravelCost.TabIndex = 7;
             this.NUDExTravelCost.TextAlign = HorizontalAlignment.Right;
             this.NUDExTravelCost.ThousandsSeparator = true;
@@ -516,9 +539,9 @@
             // 
             // labelEx4
             // 
-            this.labelEx4.Location = new Point(776, 84);
+            this.labelEx4.Location = new Point(624, 116);
             this.labelEx4.Name = "labelEx4";
-            this.labelEx4.Size = new Size(60, 15);
+            this.labelEx4.Size = new Size(140, 15);
             this.labelEx4.TabIndex = 55;
             this.labelEx4.Text = "交通費";
             this.labelEx4.TextAlign = ContentAlignment.MiddleCenter;
@@ -529,7 +552,7 @@
             this.NUDExPay.ForeColor = Color.Black;
             this.NUDExPay.ImeMode = ImeMode.Off;
             this.NUDExPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            this.NUDExPay.Location = new Point(620, 104);
+            this.NUDExPay.Location = new Point(620, 80);
             this.NUDExPay.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             this.NUDExPay.Name = "NUDExPay";
             this.NUDExPay.Size = new Size(148, 25);
@@ -540,7 +563,7 @@
             // 
             // labelEx2
             // 
-            this.labelEx2.Location = new Point(624, 84);
+            this.labelEx2.Location = new Point(624, 60);
             this.labelEx2.Name = "labelEx2";
             this.labelEx2.Size = new Size(140, 15);
             this.labelEx2.TabIndex = 51;
@@ -551,7 +574,7 @@
             // 
             this.CheckBoxExCheckFlag.AutoSize = true;
             this.CheckBoxExCheckFlag.ForeColor = Color.Red;
-            this.CheckBoxExCheckFlag.Location = new Point(860, 51);
+            this.CheckBoxExCheckFlag.Location = new Point(860, 31);
             this.CheckBoxExCheckFlag.Name = "CheckBoxExCheckFlag";
             this.CheckBoxExCheckFlag.Size = new Size(107, 19);
             this.CheckBoxExCheckFlag.TabIndex = 4;
@@ -634,7 +657,7 @@
             // 
             // labelEx40
             // 
-            this.labelEx40.Location = new Point(560, 52);
+            this.labelEx40.Location = new Point(560, 32);
             this.labelEx40.Name = "labelEx40";
             this.labelEx40.Size = new Size(52, 15);
             this.labelEx40.TabIndex = 48;
@@ -646,7 +669,7 @@
             this.NUDExContractExpirationPeriod.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             this.NUDExContractExpirationPeriod.ForeColor = Color.Red;
             this.NUDExContractExpirationPeriod.ImeMode = ImeMode.Off;
-            this.NUDExContractExpirationPeriod.Location = new Point(512, 48);
+            this.NUDExContractExpirationPeriod.Location = new Point(512, 28);
             this.NUDExContractExpirationPeriod.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
             this.NUDExContractExpirationPeriod.Name = "NUDExContractExpirationPeriod";
             this.NUDExContractExpirationPeriod.Size = new Size(44, 25);
@@ -656,7 +679,7 @@
             // 
             // labelEx39
             // 
-            this.labelEx39.Location = new Point(516, 28);
+            this.labelEx39.Location = new Point(516, 8);
             this.labelEx39.Name = "labelEx39";
             this.labelEx39.Size = new Size(328, 16);
             this.labelEx39.TabIndex = 46;
@@ -1763,5 +1786,7 @@
         private ControlEx.TextBoxEx TextBoxExContractExpirationPeriod;
         private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
         private ControlEx.LabelEx labelEx19;
+        private ControlEx.LabelEx labelEx21;
+        private ControlEx.ComboBoxEx ComboBoxExTravelCostDetail;
     }
 }

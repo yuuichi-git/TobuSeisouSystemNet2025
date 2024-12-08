@@ -9,12 +9,12 @@ using Vo;
 
 namespace Dao {
     public class VehicleDispatchDetailDao {
+        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DefaultValue _defaultValue = new();
         /*
          * Vo
          */
         private readonly ConnectionVo _connectionVo;
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
-        private readonly DefaultValue _defaultValue = new();
 
         /// <summary>
         /// コンストラクター
@@ -157,6 +157,335 @@ namespace Dao {
                 }
             }
             return listVehicleDispatchDetailVo;
+        }
+
+        /// <summary>
+        /// InsertOneVehicleDispatchDetail
+        /// </summary>
+        /// <param name="vehicleDispatchDetailVo"></param>
+        public int InsertOneVehicleDispatchDetail(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_VehicleDispatchDetail(CellNumber," +
+                                                                         "OperationDate," +
+                                                                         "OperationFlag," +
+                                                                         "VehicleDispatchFlag," +
+                                                                         "PurposeFlag," +
+                                                                         "SetCode," +
+                                                                         "ManagedSpaceCode," +
+                                                                         "ClassificationCode," +
+                                                                         "LastRollCallFlag," +
+                                                                         "LastRollCallYmdHms," +
+                                                                         "SetMemoFlag," +
+                                                                         "SetMemo," +
+                                                                         "ShiftCode," +
+                                                                         "StandByFlag," +
+                                                                         "AddWorkerFlag," +
+                                                                         "ContactInfomationFlag," +
+                                                                         "FaxTransmissionFlag," +
+                                                                         "CarCode," +
+                                                                         "CarGarageCode," +
+                                                                         "CarProxyFlag," +
+                                                                         "CarMemoFlag," +
+                                                                         "CarMemo," +
+                                                                         "StaffCode1," +
+                                                                         "StaffOccupation1," +
+                                                                         "StaffProxyFlag1," +
+                                                                         "StaffRollCallFlag1," +
+                                                                         "StaffRollCallYmdHms1," +
+                                                                         "StaffMemoFlag1," +
+                                                                         "StaffMemo1," +
+                                                                         "StaffCode2," +
+                                                                         "StaffOccupation2," +
+                                                                         "StaffProxyFlag2," +
+                                                                         "StaffRollCallFlag2," +
+                                                                         "StaffRollCallYmdHms2," +
+                                                                         "StaffMemoFlag2," +
+                                                                         "StaffMemo2," +
+                                                                         "StaffCode3," +
+                                                                         "StaffOccupation3," +
+                                                                         "StaffProxyFlag3," +
+                                                                         "StaffRollCallFlag3," +
+                                                                         "StaffRollCallYmdHms3," +
+                                                                         "StaffMemoFlag3," +
+                                                                         "StaffMemo3," +
+                                                                         "StaffCode4," +
+                                                                         "StaffOccupation4," +
+                                                                         "StaffProxyFlag4," +
+                                                                         "StaffRollCallFlag4," +
+                                                                         "StaffRollCallYmdHms4," +
+                                                                         "StaffMemoFlag4," +
+                                                                         "StaffMemo4," +
+                                                                         "InsertPcName," +
+                                                                         "InsertYmdHms," +
+                                                                         "UpdatePcName," +
+                                                                         "UpdateYmdHms," +
+                                                                         "DeletePcName," +
+                                                                         "DeleteYmdHms," +
+                                                                         "DeleteFlag) " +
+                                     "VALUES (" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CellNumber) + ", " +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.OperationDate) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.OperationFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.VehicleDispatchFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.PurposeFlag) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.SetCode) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ManagedSpaceCode) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ClassificationCode) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.LastRollCallFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.LastRollCallYmdHms) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.SetMemoFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.SetMemo) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ShiftCode) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StandByFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.AddWorkerFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.ContactInfomationFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.FaxTransmissionFlag) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CarCode) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CarGarageCode) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.CarProxyFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.CarMemoFlag) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.CarMemo) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode1) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation1) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag1) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag1) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms1) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag1) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo1) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode2) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation2) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag2) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag2) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms2) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag2) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo2) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode3) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation3) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag3) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag3) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms3) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag3) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo3) + "'," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode4) + "," +
+                                             "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation4) + "," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag4) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag4) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms4) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag4) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo4) + "'," +
+                                            "'" + Environment.MachineName + "'," +
+                                            "'" + DateTime.Now + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                            "'false')";
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// InsertVehicleDispatchDetail
+        /// </summary>
+        /// <param name="listVehicleDispatchDetailVo"></param>
+        public int InsertVehicleDispatchDetail(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+            int count = 1;
+            string sqlString = string.Empty;
+            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo) {
+                sqlString += "(" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CellNumber) + "," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.OperationDate) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.OperationFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.VehicleDispatchFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.PurposeFlag) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.SetCode) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ManagedSpaceCode) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ClassificationCode) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.LastRollCallFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.LastRollCallYmdHms) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.SetMemoFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.SetMemo) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.ShiftCode) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StandByFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.AddWorkerFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.ContactInfomationFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.FaxTransmissionFlag) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CarCode) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CarGarageCode) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.CarProxyFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.CarMemoFlag) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.CarMemo) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode1) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation1) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag1) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag1) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms1) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag1) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo1) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode2) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation2) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag2) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag2) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms2) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag2) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo2) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode3) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation3) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag3) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag3) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms3) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag3) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo3) + "'," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffCode4) + "," +
+                              "" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.StaffOccupation4) + "," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffProxyFlag4) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffRollCallFlag4) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.StaffRollCallYmdHms4) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.StaffMemoFlag4) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.StaffMemo4) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.InsertPcName) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.InsertYmdHms) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.UpdatePcName) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.UpdateYmdHms) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.DeletePcName) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.DeleteYmdHms) + "'," +
+                             "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.DeleteFlag) + "')";
+                if (count < listVehicleDispatchDetailVo.Count)
+                    sqlString += ",";
+                count++;
+            }
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_VehicleDispatchDetail(CellNumber," +
+                                                                         "OperationDate," +
+                                                                         "OperationFlag," +
+                                                                         "VehicleDispatchFlag," +
+                                                                         "PurposeFlag," +
+                                                                         "SetCode," +
+                                                                         "ManagedSpaceCode," +
+                                                                         "ClassificationCode," +
+                                                                         "LastRollCallFlag," +
+                                                                         "LastRollCallYmdHms," +
+                                                                         "SetMemoFlag," +
+                                                                         "SetMemo," +
+                                                                         "ShiftCode," +
+                                                                         "StandByFlag," +
+                                                                         "AddWorkerFlag," +
+                                                                         "ContactInfomationFlag," +
+                                                                         "FaxTransmissionFlag," +
+                                                                         "CarCode," +
+                                                                         "CarGarageCode," +
+                                                                         "CarProxyFlag," +
+                                                                         "CarMemoFlag," +
+                                                                         "CarMemo," +
+                                                                         "StaffCode1," +
+                                                                         "StaffOccupation1," +
+                                                                         "StaffProxyFlag1," +
+                                                                         "StaffRollCallFlag1," +
+                                                                         "StaffRollCallYmdHms1," +
+                                                                         "StaffMemoFlag1," +
+                                                                         "StaffMemo1," +
+                                                                         "StaffCode2," +
+                                                                         "StaffOccupation2," +
+                                                                         "StaffProxyFlag2," +
+                                                                         "StaffRollCallFlag2," +
+                                                                         "StaffRollCallYmdHms2," +
+                                                                         "StaffMemoFlag2," +
+                                                                         "StaffMemo2," +
+                                                                         "StaffCode3," +
+                                                                         "StaffOccupation3," +
+                                                                         "StaffProxyFlag3," +
+                                                                         "StaffRollCallFlag3," +
+                                                                         "StaffRollCallYmdHms3," +
+                                                                         "StaffMemoFlag3," +
+                                                                         "StaffMemo3," +
+                                                                         "StaffCode4," +
+                                                                         "StaffOccupation4," +
+                                                                         "StaffProxyFlag4," +
+                                                                         "StaffRollCallFlag4," +
+                                                                         "StaffRollCallYmdHms4," +
+                                                                         "StaffMemoFlag4," +
+                                                                         "StaffMemo4," +
+                                                                         "InsertPcName," +
+                                                                         "InsertYmdHms," +
+                                                                         "UpdatePcName," +
+                                                                         "UpdateYmdHms," +
+                                                                         "DeletePcName," +
+                                                                         "DeleteYmdHms," +
+                                                                         "DeleteFlag) " +
+                                     "VALUES " + sqlString;
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// UpdateOneVehicleDispatchDetail
+        /// </summary>
+        /// <param name="vehicleDispatchDetailVo"></param>
+        public int UpdateOneVehicleDispatchDetail(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
+                                     "Set CellNumber = " + vehicleDispatchDetailVo.CellNumber + "," +
+                                         "OperationDate = '" + vehicleDispatchDetailVo.OperationDate + "'," +
+                                         "OperationFlag = '" + vehicleDispatchDetailVo.OperationFlag + "'," +
+                                         "VehicleDispatchFlag = '" + vehicleDispatchDetailVo.VehicleDispatchFlag + "'," +
+                                         "PurposeFlag = '" + vehicleDispatchDetailVo.PurposeFlag + "'," +
+                                         "SetCode = " + vehicleDispatchDetailVo.SetCode + "," +
+                                         "ManagedSpaceCode = " + vehicleDispatchDetailVo.ManagedSpaceCode + "," +
+                                         "ClassificationCode = " + vehicleDispatchDetailVo.ClassificationCode + "," +
+                                         "LastRollCallFlag = '" + vehicleDispatchDetailVo.LastRollCallFlag + "'," +
+                                         "LastRollCallYmdHms = '" + vehicleDispatchDetailVo.LastRollCallYmdHms + "'," +
+                                         "SetMemoFlag = '" + vehicleDispatchDetailVo.SetMemoFlag + "'," +
+                                         "SetMemo = '" + vehicleDispatchDetailVo.SetMemo + "'," +
+                                         "ShiftCode = " + vehicleDispatchDetailVo.ShiftCode + "," +
+                                         "StandByFlag = '" + vehicleDispatchDetailVo.StandByFlag + "'," +
+                                         "AddWorkerFlag = '" + vehicleDispatchDetailVo.AddWorkerFlag + "'," +
+                                         "ContactInfomationFlag = '" + vehicleDispatchDetailVo.ContactInfomationFlag + "'," +
+                                         "FaxTransmissionFlag = '" + vehicleDispatchDetailVo.FaxTransmissionFlag + "'," +
+                                         "CarCode = " + vehicleDispatchDetailVo.CarCode + "," +
+                                         "CarGarageCode = " + vehicleDispatchDetailVo.CarGarageCode + "," +
+                                         "CarProxyFlag = '" + vehicleDispatchDetailVo.CarProxyFlag + "'," +
+                                         "CarMemoFlag = '" + vehicleDispatchDetailVo.CarMemoFlag + "'," +
+                                         "CarMemo = '" + vehicleDispatchDetailVo.CarMemo + "'," +
+                                         "StaffCode1 = " + vehicleDispatchDetailVo.StaffCode1 + "," +
+                                         "StaffOccupation1 = " + vehicleDispatchDetailVo.StaffOccupation1 + "," +
+                                         "StaffProxyFlag1 = '" + vehicleDispatchDetailVo.StaffProxyFlag1 + "'," +
+                                         "StaffRollCallFlag1 = '" + vehicleDispatchDetailVo.StaffRollCallFlag1 + "'," +
+                                         "StaffRollCallYmdHms1 = '" + vehicleDispatchDetailVo.StaffRollCallYmdHms1 + "'," +
+                                         "StaffMemoFlag1 = '" + vehicleDispatchDetailVo.StaffMemoFlag1 + "'," +
+                                         "StaffMemo1 = '" + vehicleDispatchDetailVo.StaffMemo1 + "'," +
+                                         "StaffCode2 = " + vehicleDispatchDetailVo.StaffCode2 + "," +
+                                         "StaffOccupation2 = " + vehicleDispatchDetailVo.StaffOccupation2 + "," +
+                                         "StaffProxyFlag2 = '" + vehicleDispatchDetailVo.StaffProxyFlag2 + "'," +
+                                         "StaffRollCallFlag2 = '" + vehicleDispatchDetailVo.StaffRollCallFlag2 + "'," +
+                                         "StaffRollCallYmdHms2 = '" + vehicleDispatchDetailVo.StaffRollCallYmdHms2 + "'," +
+                                         "StaffMemoFlag2 = '" + vehicleDispatchDetailVo.StaffMemoFlag2 + "'," +
+                                         "StaffMemo2 = '" + vehicleDispatchDetailVo.StaffMemo2 + "'," +
+                                         "StaffCode3 = " + vehicleDispatchDetailVo.StaffCode3 + "," +
+                                         "StaffOccupation3 = " + vehicleDispatchDetailVo.StaffOccupation3 + "," +
+                                         "StaffProxyFlag3 = '" + vehicleDispatchDetailVo.StaffProxyFlag3 + "'," +
+                                         "StaffRollCallFlag3 = '" + vehicleDispatchDetailVo.StaffRollCallFlag3 + "'," +
+                                         "StaffRollCallYmdHms3 = '" + vehicleDispatchDetailVo.StaffRollCallYmdHms3 + "'," +
+                                         "StaffMemoFlag3 = '" + vehicleDispatchDetailVo.StaffMemoFlag3 + "'," +
+                                         "StaffMemo3 = '" + vehicleDispatchDetailVo.StaffMemo3 + "'," +
+                                         "StaffCode4 = " + vehicleDispatchDetailVo.StaffCode4 + "," +
+                                         "StaffOccupation4 = " + vehicleDispatchDetailVo.StaffOccupation4 + "," +
+                                         "StaffProxyFlag4 = '" + vehicleDispatchDetailVo.StaffProxyFlag4 + "'," +
+                                         "StaffRollCallFlag4 = '" + vehicleDispatchDetailVo.StaffRollCallFlag4 + "'," +
+                                         "StaffRollCallYmdHms4 = '" + vehicleDispatchDetailVo.StaffRollCallYmdHms4 + "'," +
+                                         "StaffMemoFlag4 = '" + vehicleDispatchDetailVo.StaffMemoFlag4 + "'," +
+                                         "StaffMemo4 = '" + vehicleDispatchDetailVo.StaffMemo4 + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "WHERE CellNumber = " + vehicleDispatchDetailVo.CellNumber + " AND OperationDate = '" + vehicleDispatchDetailVo.OperationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
         }
     }
 }
