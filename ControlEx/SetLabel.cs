@@ -9,7 +9,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class SetLabel : Label {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -403,7 +403,9 @@ namespace ControlEx {
         protected override void OnMouseDown(MouseEventArgs e) {
             Debug.WriteLine("SetLabel MouseDown");
 
-            if ((ModifierKeys & Keys.Control) == Keys.Control) {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                SetLabel_OnMouseClick.Invoke(this, e); // 帰庫点呼処理を実行するために親へ渡す
+            } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
                 if (this.MemoFlag) {
                     _toolTip.Show(this.Memo, this, 4, 4);
                     return;

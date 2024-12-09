@@ -306,6 +306,7 @@ namespace ControlEx {
                         staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag1;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag1;
+                        staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms1;
                         break;
                     case 1:
                         staffLabel.Memo = this.StaffMemo2;
@@ -314,6 +315,7 @@ namespace ControlEx {
                         staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag2;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag2;
+                        staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms2;
                         break;
                     case 2:
                         staffLabel.Memo = this.StaffMemo3;
@@ -322,6 +324,7 @@ namespace ControlEx {
                         staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag3;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag3;
+                        staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms3;
                         break;
                     case 3:
                         staffLabel.Memo = this.StaffMemo4;
@@ -330,6 +333,7 @@ namespace ControlEx {
                         staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag4;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag4;
+                        staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms4;
                         break;
                 }
                 // Eventを登録
@@ -392,8 +396,8 @@ namespace ControlEx {
                     this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
                     this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
                     this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
-                    this.DeployedStaffLabel3 = this.GetTableLayoutChildControl(1, 2);
-                    this.DeployedStaffLabel4 = this.GetTableLayoutChildControl(1, 3);
+                    this.DeployedStaffLabel3 = null;
+                    this.DeployedStaffLabel4 = null;
                     break;
             }
             this.InsertPcName = Environment.MachineName;
@@ -746,23 +750,18 @@ namespace ControlEx {
             set {
                 this._deployedSetLabel = value;
                 if (this.DeployedSetLabel is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.SetCode = ((SetLabel)this.DeployedSetLabel).SetMasterVo.SetCode;
-                            this.ManagedSpaceCode = ((SetLabel)this.DeployedSetLabel).ManagedSpaceCode;
-                            this.ClassificationCode = ((SetLabel)this.DeployedSetLabel).ClassificationCode;
-                            this.LastRollCallFlag = ((SetLabel)this.DeployedSetLabel).LastRollCallFlag;
-                            this.LastRollCallYmdHms = ((SetLabel)this.DeployedSetLabel).LastRollCallYmdHms;
-                            this.SetMemoFlag = ((SetLabel)this.DeployedSetLabel).MemoFlag;
-                            this.SetMemo = ((SetLabel)this.DeployedSetLabel).Memo;
-                            this.ShiftCode = ((SetLabel)this.DeployedSetLabel).ShiftCode;
-                            this.StandByFlag = ((SetLabel)this.DeployedSetLabel).StandByFlag;
-                            this.AddWorkerFlag = ((SetLabel)this.DeployedSetLabel).AddWorkerFlag;
-                            this.ContactInfomationFlag = ((SetLabel)this.DeployedSetLabel).ContactInfomationFlag;
-                            this.FaxTransmissionFlag = ((SetLabel)this.DeployedSetLabel).FaxTransmissionFlag;
-                            break;
-                    }
+                    this.SetCode = ((SetLabel)this.DeployedSetLabel).SetMasterVo.SetCode;
+                    this.ManagedSpaceCode = ((SetLabel)this.DeployedSetLabel).ManagedSpaceCode;
+                    this.ClassificationCode = ((SetLabel)this.DeployedSetLabel).ClassificationCode;
+                    this.LastRollCallFlag = ((SetLabel)this.DeployedSetLabel).LastRollCallFlag;
+                    this.LastRollCallYmdHms = ((SetLabel)this.DeployedSetLabel).LastRollCallYmdHms;
+                    this.SetMemoFlag = ((SetLabel)this.DeployedSetLabel).MemoFlag;
+                    this.SetMemo = ((SetLabel)this.DeployedSetLabel).Memo;
+                    this.ShiftCode = ((SetLabel)this.DeployedSetLabel).ShiftCode;
+                    this.StandByFlag = ((SetLabel)this.DeployedSetLabel).StandByFlag;
+                    this.AddWorkerFlag = ((SetLabel)this.DeployedSetLabel).AddWorkerFlag;
+                    this.ContactInfomationFlag = ((SetLabel)this.DeployedSetLabel).ContactInfomationFlag;
+                    this.FaxTransmissionFlag = ((SetLabel)this.DeployedSetLabel).FaxTransmissionFlag;
                 } else {
                     this.SetCode = 0;
                     this.ManagedSpaceCode = 0;
@@ -787,16 +786,11 @@ namespace ControlEx {
             set {
                 this._deployedCarLabel = value;
                 if (this.DeployedCarLabel is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.CarCode = ((CarLabel)this.DeployedCarLabel).CarMasterVo.CarCode;
-                            this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).CarGarageCode;
-                            this.CarProxyFlag = ((CarLabel)this.DeployedCarLabel).ProxyFlag;
-                            this.CarMemoFlag = ((CarLabel)this.DeployedCarLabel).MemoFlag;
-                            this.CarMemo = ((CarLabel)this.DeployedCarLabel).Memo;
-                            break;
-                    }
+                    this.CarCode = ((CarLabel)this.DeployedCarLabel).CarMasterVo.CarCode;
+                    this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).CarGarageCode;
+                    this.CarProxyFlag = ((CarLabel)this.DeployedCarLabel).ProxyFlag;
+                    this.CarMemoFlag = ((CarLabel)this.DeployedCarLabel).MemoFlag;
+                    this.CarMemo = ((CarLabel)this.DeployedCarLabel).Memo;
                 } else {
                     this.CarCode = 0;
                     this.CarGarageCode = 0;
@@ -815,18 +809,13 @@ namespace ControlEx {
             set {
                 this._deployedStaffLabel1 = value;
                 if (this.DeployedStaffLabel1 is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.StaffCode1 = ((StaffLabel)this.DeployedStaffLabel1).StaffMasterVo.StaffCode;
-                            this.StaffOccupation1 = ((StaffLabel)this.DeployedStaffLabel1).OccupationCode;
-                            this.StaffProxyFlag1 = ((StaffLabel)this.DeployedStaffLabel1).ProxyFlag;
-                            this.StaffRollCallFlag1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallFlag;
-                            this.StaffRollCallYmdHms1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallYmdHms;
-                            this.StaffMemoFlag1 = ((StaffLabel)this.DeployedStaffLabel1).MemoFlag;
-                            this.StaffMemo1 = ((StaffLabel)this.DeployedStaffLabel1).Memo;
-                            break;
-                    }
+                    this.StaffCode1 = ((StaffLabel)this.DeployedStaffLabel1).StaffMasterVo.StaffCode;
+                    this.StaffOccupation1 = ((StaffLabel)this.DeployedStaffLabel1).OccupationCode;
+                    this.StaffProxyFlag1 = ((StaffLabel)this.DeployedStaffLabel1).ProxyFlag;
+                    this.StaffRollCallFlag1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallFlag;
+                    this.StaffRollCallYmdHms1 = ((StaffLabel)this.DeployedStaffLabel1).RollCallYmdHms;
+                    this.StaffMemoFlag1 = ((StaffLabel)this.DeployedStaffLabel1).MemoFlag;
+                    this.StaffMemo1 = ((StaffLabel)this.DeployedStaffLabel1).Memo;
                 } else {
                     this.StaffCode1 = 0;
                     this.StaffOccupation1 = 99;
@@ -846,18 +835,13 @@ namespace ControlEx {
             set {
                 this._deployedStaffLabel2 = value;
                 if (this.DeployedStaffLabel2 is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.StaffCode2 = ((StaffLabel)this.DeployedStaffLabel2).StaffMasterVo.StaffCode;
-                            this.StaffOccupation2 = ((StaffLabel)this.DeployedStaffLabel2).OccupationCode;
-                            this.StaffProxyFlag2 = ((StaffLabel)this.DeployedStaffLabel2).ProxyFlag;
-                            this.StaffRollCallFlag2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallFlag;
-                            this.StaffRollCallYmdHms2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallYmdHms;
-                            this.StaffMemoFlag2 = ((StaffLabel)this.DeployedStaffLabel2).MemoFlag;
-                            this.StaffMemo2 = ((StaffLabel)this.DeployedStaffLabel2).Memo;
-                            break;
-                    }
+                    this.StaffCode2 = ((StaffLabel)this.DeployedStaffLabel2).StaffMasterVo.StaffCode;
+                    this.StaffOccupation2 = ((StaffLabel)this.DeployedStaffLabel2).OccupationCode;
+                    this.StaffProxyFlag2 = ((StaffLabel)this.DeployedStaffLabel2).ProxyFlag;
+                    this.StaffRollCallFlag2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallFlag;
+                    this.StaffRollCallYmdHms2 = ((StaffLabel)this.DeployedStaffLabel2).RollCallYmdHms;
+                    this.StaffMemoFlag2 = ((StaffLabel)this.DeployedStaffLabel2).MemoFlag;
+                    this.StaffMemo2 = ((StaffLabel)this.DeployedStaffLabel2).Memo;
                 } else {
                     this.StaffCode2 = 0;
                     this.StaffOccupation2 = 99;
@@ -877,18 +861,13 @@ namespace ControlEx {
             set {
                 this._deployedStaffLabel3 = value;
                 if (this.DeployedStaffLabel3 is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.StaffCode3 = ((StaffLabel)this.DeployedStaffLabel3).StaffMasterVo.StaffCode;
-                            this.StaffOccupation3 = ((StaffLabel)this.DeployedStaffLabel3).OccupationCode;
-                            this.StaffProxyFlag3 = ((StaffLabel)this.DeployedStaffLabel3).ProxyFlag;
-                            this.StaffRollCallFlag3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallFlag;
-                            this.StaffRollCallYmdHms3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallYmdHms;
-                            this.StaffMemoFlag3 = ((StaffLabel)this.DeployedStaffLabel3).MemoFlag;
-                            this.StaffMemo3 = ((StaffLabel)this.DeployedStaffLabel3).Memo;
-                            break;
-                    }
+                    this.StaffCode3 = ((StaffLabel)this.DeployedStaffLabel3).StaffMasterVo.StaffCode;
+                    this.StaffOccupation3 = ((StaffLabel)this.DeployedStaffLabel3).OccupationCode;
+                    this.StaffProxyFlag3 = ((StaffLabel)this.DeployedStaffLabel3).ProxyFlag;
+                    this.StaffRollCallFlag3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallFlag;
+                    this.StaffRollCallYmdHms3 = ((StaffLabel)this.DeployedStaffLabel3).RollCallYmdHms;
+                    this.StaffMemoFlag3 = ((StaffLabel)this.DeployedStaffLabel3).MemoFlag;
+                    this.StaffMemo3 = ((StaffLabel)this.DeployedStaffLabel3).Memo;
                 } else {
                     this.StaffCode3 = 0;
                     this.StaffOccupation3 = 99;
@@ -908,18 +887,13 @@ namespace ControlEx {
             set {
                 this._deployedStaffLabel4 = value;
                 if (this.DeployedStaffLabel4 is not null) {
-                    switch (this.DragParentControl) {
-                        case SetControl setControl:
-                        case StockBoxPanel stockBoxPanel:
-                            this.StaffCode4 = ((StaffLabel)this.DeployedStaffLabel4).StaffMasterVo.StaffCode;
-                            this.StaffOccupation4 = ((StaffLabel)this.DeployedStaffLabel4).OccupationCode;
-                            this.StaffProxyFlag4 = ((StaffLabel)this.DeployedStaffLabel4).ProxyFlag;
-                            this.StaffRollCallFlag4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallFlag;
-                            this.StaffRollCallYmdHms4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallYmdHms;
-                            this.StaffMemoFlag4 = ((StaffLabel)this.DeployedStaffLabel4).MemoFlag;
-                            this.StaffMemo4 = ((StaffLabel)this.DeployedStaffLabel4).Memo;
-                            break;
-                    }
+                    this.StaffCode4 = ((StaffLabel)this.DeployedStaffLabel4).StaffMasterVo.StaffCode;
+                    this.StaffOccupation4 = ((StaffLabel)this.DeployedStaffLabel4).OccupationCode;
+                    this.StaffProxyFlag4 = ((StaffLabel)this.DeployedStaffLabel4).ProxyFlag;
+                    this.StaffRollCallFlag4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallFlag;
+                    this.StaffRollCallYmdHms4 = ((StaffLabel)this.DeployedStaffLabel4).RollCallYmdHms;
+                    this.StaffMemoFlag4 = ((StaffLabel)this.DeployedStaffLabel4).MemoFlag;
+                    this.StaffMemo4 = ((StaffLabel)this.DeployedStaffLabel4).Memo;
                 } else {
                     this.StaffCode4 = 0;
                     this.StaffOccupation4 = 99;

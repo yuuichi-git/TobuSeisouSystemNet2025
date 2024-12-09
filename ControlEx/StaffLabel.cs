@@ -9,7 +9,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class StaffLabel : Label {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -384,10 +384,10 @@ namespace ControlEx {
             set {
                 this._rollCallFlag = value;
                 Refresh();
-                if (this._rollCallFlag) {
-                    this.RollCallYmdHms = _defaultDateTime;
-                } else {
+                if (this.RollCallFlag) {
                     this.RollCallYmdHms = DateTime.Now;
+                } else {
+                    this.RollCallYmdHms = _defaultDateTime;
                 }
             }
         }
@@ -396,7 +396,9 @@ namespace ControlEx {
         /// </summary>
         public DateTime RollCallYmdHms {
             get => this._rollCallYmdHms;
-            set => this._rollCallYmdHms = value;
+            set {
+                this._rollCallYmdHms = value;
+            }
         }
     }
 }
