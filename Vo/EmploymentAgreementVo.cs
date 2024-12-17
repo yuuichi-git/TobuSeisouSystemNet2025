@@ -17,6 +17,8 @@ namespace Vo {
         private string _workTime; //勤務時間
         private string _breakTime; //休憩時間
         private bool _checkFlag; //組合に押印提出中
+        private bool _koyouFlag; // 雇用保険の適用
+        private bool _syakaiFlag; // 社会保険の適用
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -39,6 +41,8 @@ namespace Vo {
             _workTime = string.Empty;
             _breakTime = string.Empty;
             _checkFlag = false;
+            _koyouFlag = false;
+            _syakaiFlag = false;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -141,6 +145,24 @@ namespace Vo {
             get => this._checkFlag;
             set => this._checkFlag = value;
         }
+        /// <summary>
+        /// 雇用保険の適用
+        /// true:適用あり
+        /// false:適用なし
+        /// </summary>
+        public bool KoyouFlag {
+            get => this._koyouFlag;
+            set => this._koyouFlag = value;
+        }
+        /// <summary>
+        /// 社会保険の適用
+        /// true:適用あり
+        /// false:適用なし
+        /// </summary>
+        public bool SyakaiFlag {
+            get => this._syakaiFlag;
+            set => this._syakaiFlag = value;
+        }
         public string InsertPcName {
             get => this._insertPcName;
             set => this._insertPcName = value;
@@ -169,5 +191,6 @@ namespace Vo {
             get => this._deleteFlag;
             set => this._deleteFlag = value;
         }
+
     }
 }

@@ -63,6 +63,8 @@ namespace Dao {
                                             "WorkTime," +
                                             "BreakTime," +
                                             "CheckFlag," +
+                                            "KoyouFlag," +
+                                            "SyakaiFlag," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -87,6 +89,8 @@ namespace Dao {
                     employmentAgreementVo.WorkTime = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkTime"]);
                     employmentAgreementVo.BreakTime = _defaultValue.GetDefaultValue<string>(sqlDataReader["BreakTime"]);
                     employmentAgreementVo.CheckFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CheckFlag"]);
+                    employmentAgreementVo.KoyouFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["KoyouFlag"]);
+                    employmentAgreementVo.SyakaiFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["SyakaiFlag"]);
                     employmentAgreementVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     employmentAgreementVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     employmentAgreementVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -138,6 +142,8 @@ namespace Dao {
                                                                        "WorkTime," +
                                                                        "BreakTime," +
                                                                        "CheckFlag," +
+                                                                       "KoyouFlag," +
+                                                                       "SyakaiFlag," +
                                                                        "InsertPcName," +
                                                                        "InsertYmdHms," +
                                                                        "UpdatePcName," +
@@ -158,6 +164,8 @@ namespace Dao {
                                             "'" + employmentAgreementVo.WorkTime + "'," +
                                             "'" + employmentAgreementVo.BreakTime + "'," +
                                             "'" + employmentAgreementVo.CheckFlag + "'," +
+                                            "'" + employmentAgreementVo.KoyouFlag + "'," +
+                                            "'" + employmentAgreementVo.SyakaiFlag + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -194,6 +202,8 @@ namespace Dao {
                                          "WorkTime = '" + employmentAgreementVo.WorkTime + "'," +
                                          "BreakTime = '" + employmentAgreementVo.BreakTime + "'," +
                                          "CheckFlag = '" + employmentAgreementVo.CheckFlag + "'," +
+                                         "KoyouFlag = '" + employmentAgreementVo.KoyouFlag + "'," +
+                                         "SyakaiFlag = '" + employmentAgreementVo.SyakaiFlag + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + employmentAgreementVo.StaffCode;

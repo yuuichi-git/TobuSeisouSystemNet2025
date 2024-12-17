@@ -20,15 +20,33 @@ namespace StockBox {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * Form
+             */
+            this.Opacity = 0.9;
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            MenuStripEx1.ChangeEnable(listString);
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((ButtonEx)sender).Name) {
-                case "ButtonExUpdate":
+                case "":
                     try {
-                        AddControls(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(DateTimePickerExOperationDate.GetDate()));
+
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -36,6 +54,13 @@ namespace StockBox {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StockBoxs_FormClosing(object sender, FormClosingEventArgs e) {
 
+        }
     }
 }

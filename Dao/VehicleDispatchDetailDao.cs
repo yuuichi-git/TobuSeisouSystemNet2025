@@ -160,6 +160,24 @@ namespace Dao {
         }
 
         /// <summary>
+        /// 運転手の出庫点呼日時を取得
+        /// </summary>
+        /// <param name="cellNumber"></param>
+        /// <param name="operationDate"></param>
+        /// <returns>StaffRollCallYmdHms1</returns>
+        public DateTime GetStaffRollCallYmdHms1(int cellNumber, DateTime operationDate) {
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT StaffRollCallYmdHms1 " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                return (DateTime)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// InsertOneVehicleDispatchDetail
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
@@ -481,6 +499,48 @@ namespace Dao {
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE CellNumber = " + vehicleDispatchDetailVo.CellNumber + " AND OperationDate = '" + vehicleDispatchDetailVo.OperationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        public int UpdateOneLastRollCall(bool lastRollCallFlag, int cellNumber, LastRollCallVo lastRollCallVo) {
+            /*
+             * DB更新
+             */
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
+                                     "SET LastRollCallFlag = '" + lastRollCallFlag + "'," +
+                                         "LastRollCallYmdHms = '" + lastRollCallVo.LastRollCallYmdHms + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + lastRollCallVo.OperationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cellNumber"></param>
+        /// <param name="lastRollCallVo"></param>
+        /// <returns></returns>
+        public int DeleteOneLastRollCall(int cellNumber, LastRollCallVo lastRollCallVo) {
+            /*
+             * DB更新
+             */
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
+                                     "SET LastRollCallFlag = 'false'," +
+                                         "LastRollCallYmdHms = '" + _defaultDateTime + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + lastRollCallVo.OperationDate.ToString("yyyy-MM-dd") + "'";
             try {
                 return sqlCommand.ExecuteNonQuery();
             } catch {

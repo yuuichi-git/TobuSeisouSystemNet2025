@@ -7,6 +7,8 @@ using ControlEx.Properties;
 
 using Vo;
 
+using Timer = System.Windows.Forms.Timer;
+
 namespace ControlEx {
     public partial class StaffLabel : Label {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
@@ -27,12 +29,13 @@ namespace ControlEx {
          */
         private object _parentControl;
         private bool _cursorEnterFlag = false;
-        private string _memo = string.Empty;
-        private bool _memoFlag = false;
+
         private int _occupationCode = 99;
         private bool _proxyFlag = false;
         private bool _rollCallFlag = false;
         private DateTime _rollCallYmdHms = new DateTime(1900, 01, 01);
+        private bool _memoFlag = false;
+        private string _memo = string.Empty;
         /*
          * Vo
          */
@@ -44,6 +47,13 @@ namespace ControlEx {
         private const float _panelHeight = 116;
         // ToolTip
         private ToolTip _toolTip = new();
+        /*
+         * Timer
+         */
+        private Timer _timerControl = new();
+        bool _doubleClickFlag = false; // シングルとダブルクリックの判別用
+        private int _clickTime = 0;// クリック間の時間を保持
+        private int _doubleClickInterval = SystemInformation.DoubleClickTime;// ダブルクリックが有効な時間間隔(初期値500)
 
         /// <summary>
         /// Constractor
@@ -74,6 +84,8 @@ namespace ControlEx {
             _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
             _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
             _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
+            // Timer イベント登録
+            _timerControl.Tick += this._timer_Tick;
         }
 
         /// <summary>
@@ -178,10 +190,25 @@ namespace ControlEx {
             /*
              * 背景画像
              */
-            pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
-            // カーソル関係
-            if (CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+            switch (this.StaffMasterVo.Belongs) {
+                case 12:
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImagePartTime), 0, 0, Width, Height);
+                    break;
+                case 20:
+                case 21:
+                    switch (this.StaffMasterVo.JobForm) {
+                        case 10:
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
+                            break;
+                        case 11:
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageShortTime), 0, 0, Width, Height);
+                            break;
+                    }
+                    break;
+                default:
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
+                    break;
+            }
             // メモ
             if (MemoFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
@@ -194,6 +221,9 @@ namespace ControlEx {
             // 出庫点呼
             if (!RollCallFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
+            // カーソル関係
+            if (CursorEnterFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             /*
              * 氏名を描画
              */
@@ -224,10 +254,23 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void _timer_Tick(object sender, EventArgs e) {
+            _clickTime += _timerControl.Interval; // 計測時間を保存しておく
+            if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
+                _timerControl.Stop(); // タイマー停止
+                _doubleClickFlag = false; // DoubleClickFlagを初期化
+                _clickTime = 0; // 計測時間を初期化
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
             Debug.WriteLine("StaffLabel ContextMenuStripOpened");
 
-            StaffLabel_ContextMenuStrip_Opened.Invoke(this, e);
+            StaffLabel_ContextMenuStrip_Opened.Invoke(sender, e);
         }
 
         /// <summary>
@@ -238,43 +281,39 @@ namespace ControlEx {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             Debug.WriteLine("StaffLabel ToolStripMenuItemClick");
 
-            StaffLabel_ToolStripMenuItem_Click.Invoke(this, e);
+            StaffLabel_ToolStripMenuItem_Click.Invoke(sender, e);
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseClick(MouseEventArgs e) {
-            Debug.WriteLine("StaffLabel MouseClick");
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            Debug.WriteLine("StaffLabel MouseDoubleClick");
-
-        }
-
-        /// <summary>
-        /// MouseDounが先に発火するのでMouseClickは使用不可
         /// </summary>
         /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            Debug.WriteLine("StaffLabel MouseDown");
-
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
-                StaffLabel_OnMouseClick.Invoke(this, e); // 点呼処理を実行するために親へ渡す
-            } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
-                if (this.MemoFlag) {
-                    _toolTip.Show(this.Memo, this, 4, 4);
-                    return;
-                }
+            /*
+             * Click DoubleClickを判別
+             */
+            if (e.Clicks == 1) {
+                _timerControl.Start(); // タイマーをスタートする
+            } else {
+                if (_clickTime < _doubleClickInterval)
+                    _doubleClickFlag = true;
             }
-            StaffLabel_OnMouseDown.Invoke(this, e);
+
+            if (!_doubleClickFlag) {
+                if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                    StaffLabel_OnMouseClick.Invoke(this, e);
+                } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
+                    if (this.MemoFlag) {
+                        _toolTip.Show(this.Memo, this, 4, 4);
+                        return;
+                    }
+                }
+                // Down
+                StaffLabel_OnMouseDown.Invoke(this, e);
+            } else {
+                // DoubleClick
+                StaffLabel_OnMouseDoubleClick.Invoke(this, e);
+            }
         }
 
         /// <summary>
@@ -324,15 +363,10 @@ namespace ControlEx {
         }
 
         /*
+         * 
          * プロパティ
+         * 
          */
-        /// <summary>
-        /// 格納されているSetControlを退避
-        /// </summary>
-        public object ParentControl {
-            get => this._parentControl;
-            set => this._parentControl = value;
-        }
         /// <summary>
         /// StaffMasterVo
         /// </summary>
@@ -341,26 +375,20 @@ namespace ControlEx {
             set => this._staffMasterVo = value;
         }
         /// <summary>
+        /// 格納されているSetControlを退避
+        /// </summary>
+        public object ParentControl {
+            get => this._parentControl;
+            set => this._parentControl = value;
+        }
+        /// <summary>
         /// True:カーソルが乗っている False:カーソルが外れている
         /// </summary>
         public bool CursorEnterFlag {
             get => this._cursorEnterFlag;
             set => this._cursorEnterFlag = value;
         }
-        /// <summary>
-        /// メモ本体
-        /// </summary>
-        public string Memo {
-            get => this._memo;
-            set => this._memo = value;
-        }
-        /// <summary>
-        /// true:メモが存在する false:メモが存在しない
-        /// </summary>
-        public bool MemoFlag {
-            get => this._memoFlag;
-            set => this._memoFlag = value;
-        }
+
         /// <summary>
         /// 職種
         /// 10:運転手 11:作業員 20:事務職 99:指定なし
@@ -399,6 +427,20 @@ namespace ControlEx {
             set {
                 this._rollCallYmdHms = value;
             }
+        }
+        /// <summary>
+        /// true:メモが存在する false:メモが存在しない
+        /// </summary>
+        public bool MemoFlag {
+            get => this._memoFlag;
+            set => this._memoFlag = value;
+        }
+        /// <summary>
+        /// メモ本体
+        /// </summary>
+        public string Memo {
+            get => this._memo;
+            set => this._memo = value;
         }
     }
 }

@@ -7,6 +7,8 @@ using ControlEx.Properties;
 
 using Vo;
 
+using Timer = System.Windows.Forms.Timer;
+
 namespace ControlEx {
     public partial class CarLabel : Label {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
@@ -26,12 +28,13 @@ namespace ControlEx {
          * プロパティ
          */
         private object _parentControl;
-        private int _classificationCode = 0;
         private bool _cursorEnterFlag = false;
+        private int _classificationCode = 0;
+
         private int _carGarageCode = 0;
-        private string _memo = string.Empty;
-        private bool _memoFlag = false;
         private bool _proxyFlag = false;
+        private bool _memoFlag = false;
+        private string _memo = string.Empty;
         /*
          * Vo
          */
@@ -43,6 +46,13 @@ namespace ControlEx {
         private const float _panelHeight = 116;
         // ToolTip
         private ToolTip _toolTip = new();
+        /*
+         * Timer
+         */
+        private Timer _timerControl = new();
+        bool _doubleClickFlag = false; // シングルとダブルクリックの判別用
+        private int _clickTime = 0;// クリック間の時間を保持
+        private int _doubleClickInterval = SystemInformation.DoubleClickTime;// ダブルクリックが有効な時間間隔(初期値500)
 
         /// <summary>
         /// Constractor
@@ -73,6 +83,8 @@ namespace ControlEx {
             _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
             _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
             _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
+            // Timer イベント登録
+            _timerControl.Tick += this._timer_Tick;
         }
 
         /// <summary>
@@ -165,15 +177,15 @@ namespace ControlEx {
             // 三郷車庫
             if (CarGarageCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
-            // カーソル関係
-            if (CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             // メモ
             if (MemoFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
             // 代車
             if (ProxyFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            // カーソル関係
+            if (CursorEnterFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             /*
              * 文字(車両)を描画
              */
@@ -210,6 +222,19 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void _timer_Tick(object sender, EventArgs e) {
+            _clickTime += _timerControl.Interval; // 計測時間を保存しておく
+            if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
+                _timerControl.Stop(); // タイマー停止
+                _doubleClickFlag = false; // DoubleClickFlagを初期化
+                _clickTime = 0; // 計測時間を初期化
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
             Debug.WriteLine("CarLabel ContextMenuStripOpened");
 
@@ -231,34 +256,32 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseClick(MouseEventArgs e) {
-            Debug.WriteLine("CarLabel MouseClick");
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            Debug.WriteLine("CarLabel MouseDoubleClick");
-
-        }
-
-        /// <summary>
-        /// MouseDounが先に発火するのでMouseClickは使用不可
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            Debug.WriteLine("CarLabel MouseDown");
-
-            if ((ModifierKeys & Keys.Control) == Keys.Control) {
-                if (this.MemoFlag) {
-                    _toolTip.Show(this.Memo, this, 4, 4);
-                    return;
-                }
+            /*
+             * Click DoubleClickを判別
+             */
+            if (e.Clicks == 1) {
+                _timerControl.Start(); // タイマーをスタートする
+            } else {
+                if (_clickTime < _doubleClickInterval)
+                    _doubleClickFlag = true;
             }
-            CarLabel_OnMouseDown.Invoke(this, e);
+
+            if (!_doubleClickFlag) {
+                if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                    CarLabel_OnMouseClick.Invoke(this, e);
+                } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
+                    if (this.MemoFlag) {
+                        _toolTip.Show(this.Memo, this, 4, 4);
+                        return;
+                    }
+                }
+                // Down
+                CarLabel_OnMouseDown.Invoke(this, e);
+            } else {
+                // DoubleClick
+                CarLabel_OnMouseDoubleClick.Invoke(this, e);
+            }
         }
 
         /// <summary>
@@ -305,7 +328,9 @@ namespace ControlEx {
         }
 
         /*
+         * 
          * プロパティ
+         * 
          */
         /// <summary>
         /// 格納されているSetControlを退避
@@ -343,18 +368,18 @@ namespace ControlEx {
             set => this._carGarageCode = value;
         }
         /// <summary>
-        /// メモ
-        /// </summary>
-        public string Memo {
-            get => this._memo;
-            set => this._memo = value;
-        }
-        /// <summary>
         /// true:メモが存在する false:メモが存在しない
         /// </summary>
         public bool MemoFlag {
             get => this._memoFlag;
             set => this._memoFlag = value;
+        }
+        /// <summary>
+        /// メモ
+        /// </summary>
+        public string Memo {
+            get => this._memo;
+            set => this._memo = value;
         }
         /// <summary>
         /// true:代車 false:なし

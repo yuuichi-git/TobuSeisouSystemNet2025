@@ -31,9 +31,11 @@
             this.labelEx1 = new ControlEx.LabelEx();
             this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
             this.PanelExLeft = new ControlEx.PanelEx();
+            this.ButtonExStockBoxOpen = new ControlEx.ButtonEx();
             this.PanelExRight = new ControlEx.PanelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
+            this.PanelExLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -96,6 +98,7 @@
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             this.ButtonExUpdate.Location = new Point(1668, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
+            this.ButtonExUpdate.SetTextDirectionVertical = null;
             this.ButtonExUpdate.Size = new Size(184, 32);
             this.ButtonExUpdate.TabIndex = 2;
             this.ButtonExUpdate.Text = "最　新　化";
@@ -124,12 +127,23 @@
             // 
             // PanelExLeft
             // 
+            this.PanelExLeft.Controls.Add(this.ButtonExStockBoxOpen);
             this.PanelExLeft.Dock = DockStyle.Fill;
             this.PanelExLeft.Location = new Point(0, 56);
             this.PanelExLeft.Margin = new Padding(0);
             this.PanelExLeft.Name = "PanelExLeft";
             this.PanelExLeft.Size = new Size(52, 961);
             this.PanelExLeft.TabIndex = 3;
+            // 
+            // ButtonExStockBoxOpen
+            // 
+            this.ButtonExStockBoxOpen.Location = new Point(12, 8);
+            this.ButtonExStockBoxOpen.Name = "ButtonExStockBoxOpen";
+            this.ButtonExStockBoxOpen.SetTextDirectionVertical = null;
+            this.ButtonExStockBoxOpen.Size = new Size(32, 184);
+            this.ButtonExStockBoxOpen.TabIndex = 0;
+            this.ButtonExStockBoxOpen.UseVisualStyleBackColor = true;
+            this.ButtonExStockBoxOpen.Click += this.ButtonEx_Click;
             // 
             // PanelExRight
             // 
@@ -154,6 +168,7 @@
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExTop.ResumeLayout(false);
             this.PanelExTop.PerformLayout();
+            this.PanelExLeft.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -168,5 +183,6 @@
         private ControlEx.PanelEx PanelExLeft;
         private ControlEx.PanelEx PanelExRight;
         private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.ButtonEx ButtonExStockBoxOpen;
     }
 }

@@ -425,6 +425,8 @@ namespace EmploymentAgreement {
             this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription; // 従事すべき業務内容
             this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime; // 勤務時間
             this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime; // 休憩時間
+            this.CheckBoxExKOYOU.Checked = _employmentAgreementVo.KoyouFlag; // 雇用保険の有無
+            this.CheckBoxExSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag; // 社会保険の有無
 
             this.PutExpiration(_listContractExpirationVo);
             this.PutContractExpirationPartTimeJob(_listContractExpirationVo);
@@ -609,6 +611,8 @@ namespace EmploymentAgreement {
             employmentAgreementVo.WorkTime = this.ComboBoxExWorkTime.Text;
             employmentAgreementVo.BreakTime = this.ComboBoxExBreakTime.Text;
             employmentAgreementVo.CheckFlag = this.CheckBoxExCheckFlag.Checked;
+            employmentAgreementVo.KoyouFlag = this.CheckBoxExKOYOU.Checked;
+            employmentAgreementVo.SyakaiFlag = this.CheckBoxExSYAKAI.Checked;
             employmentAgreementVo.InsertPcName = Environment.MachineName;
             employmentAgreementVo.InsertYmdHms = DateTime.Now;
             employmentAgreementVo.UpdatePcName = Environment.MachineName;

@@ -154,6 +154,8 @@
             this.labelEx7 = new ControlEx.LabelEx();
             this.DTPExContractExpirationPartTimeJobStartDate2 = new ControlEx.DateTimePickerEx();
             this.TextBoxExContractExpirationPartTimeJobMemo1 = new ControlEx.TextBoxEx();
+            this.CheckBoxExKOYOU = new ControlEx.CheckBoxEx();
+            this.CheckBoxExSYAKAI = new ControlEx.CheckBoxEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
@@ -232,6 +234,7 @@
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
+            this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(184, 32);
             this.ButtonExUpdate.TabIndex = 4;
             this.ButtonExUpdate.Text = "更　新";
@@ -345,6 +348,8 @@
             // 
             // PanelExMiddle
             // 
+            this.PanelExMiddle.Controls.Add(this.CheckBoxExSYAKAI);
+            this.PanelExMiddle.Controls.Add(this.CheckBoxExKOYOU);
             this.PanelExMiddle.Controls.Add(this.labelEx21);
             this.PanelExMiddle.Controls.Add(this.ComboBoxExTravelCostDetail);
             this.PanelExMiddle.Controls.Add(this.labelEx19);
@@ -384,7 +389,7 @@
             // 
             // labelEx21
             // 
-            this.labelEx21.Location = new Point(40, 116);
+            this.labelEx21.Location = new Point(40, 100);
             this.labelEx21.Name = "labelEx21";
             this.labelEx21.Size = new Size(572, 15);
             this.labelEx21.TabIndex = 70;
@@ -396,14 +401,14 @@
             this.ComboBoxExTravelCostDetail.FormattingEnabled = true;
             this.ComboBoxExTravelCostDetail.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExTravelCostDetail.Items.AddRange(new object[] { "通勤手当（１日）", "通勤手当（１か月）" });
-            this.ComboBoxExTravelCostDetail.Location = new Point(36, 136);
+            this.ComboBoxExTravelCostDetail.Location = new Point(36, 116);
             this.ComboBoxExTravelCostDetail.Name = "ComboBoxExTravelCostDetail";
             this.ComboBoxExTravelCostDetail.Size = new Size(580, 23);
             this.ComboBoxExTravelCostDetail.TabIndex = 69;
             // 
             // labelEx19
             // 
-            this.labelEx19.Location = new Point(40, 8);
+            this.labelEx19.Location = new Point(40, 4);
             this.labelEx19.Name = "labelEx19";
             this.labelEx19.Size = new Size(332, 16);
             this.labelEx19.TabIndex = 68;
@@ -414,7 +419,7 @@
             // 
             this.ComboBoxExBaseAddress.FormattingEnabled = true;
             this.ComboBoxExBaseAddress.Items.AddRange(new object[] { "東京都足立区西伊興１－６－２８", "東京都足立区谷在家２－１９－４　（東武リサイクルセンター）", "東京都足立区綾瀬地区　各自転車駐車場" });
-            this.ComboBoxExBaseAddress.Location = new Point(36, 28);
+            this.ComboBoxExBaseAddress.Location = new Point(36, 20);
             this.ComboBoxExBaseAddress.Name = "ComboBoxExBaseAddress";
             this.ComboBoxExBaseAddress.Size = new Size(340, 23);
             this.ComboBoxExBaseAddress.TabIndex = 0;
@@ -422,14 +427,14 @@
             // 
             // TextBoxExContractExpirationPeriod
             // 
-            this.TextBoxExContractExpirationPeriod.Location = new Point(616, 28);
+            this.TextBoxExContractExpirationPeriod.Location = new Point(616, 20);
             this.TextBoxExContractExpirationPeriod.Name = "TextBoxExContractExpirationPeriod";
             this.TextBoxExContractExpirationPeriod.Size = new Size(232, 23);
             this.TextBoxExContractExpirationPeriod.TabIndex = 3;
             // 
             // labelEx3
             // 
-            this.labelEx3.Location = new Point(40, 60);
+            this.labelEx3.Location = new Point(40, 52);
             this.labelEx3.Name = "labelEx3";
             this.labelEx3.Size = new Size(572, 15);
             this.labelEx3.TabIndex = 67;
@@ -440,14 +445,14 @@
             // 
             this.ComboBoxExPayDetail.FormattingEnabled = true;
             this.ComboBoxExPayDetail.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExPayDetail.Location = new Point(36, 80);
+            this.ComboBoxExPayDetail.Location = new Point(36, 68);
             this.ComboBoxExPayDetail.Name = "ComboBoxExPayDetail";
             this.ComboBoxExPayDetail.Size = new Size(580, 23);
             this.ComboBoxExPayDetail.TabIndex = 5;
             // 
             // labelEx17
             // 
-            this.labelEx17.Location = new Point(384, 8);
+            this.labelEx17.Location = new Point(384, 4);
             this.labelEx17.Name = "labelEx17";
             this.labelEx17.Size = new Size(120, 16);
             this.labelEx17.TabIndex = 64;
@@ -458,7 +463,7 @@
             // 
             this.ComboBoxExBelongs.FormattingEnabled = true;
             this.ComboBoxExBelongs.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExBelongs.Location = new Point(380, 28);
+            this.ComboBoxExBelongs.Location = new Point(380, 20);
             this.ComboBoxExBelongs.Name = "ComboBoxExBelongs";
             this.ComboBoxExBelongs.Size = new Size(128, 23);
             this.ComboBoxExBelongs.TabIndex = 1;
@@ -466,7 +471,7 @@
             // 
             // labelEx13
             // 
-            this.labelEx13.Location = new Point(576, 172);
+            this.labelEx13.Location = new Point(576, 148);
             this.labelEx13.Name = "labelEx13";
             this.labelEx13.Size = new Size(208, 15);
             this.labelEx13.TabIndex = 62;
@@ -478,7 +483,7 @@
             this.ComboBoxExBreakTime.FormattingEnabled = true;
             this.ComboBoxExBreakTime.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExBreakTime.Items.AddRange(new object[] { "正午より１時間", "シフト表による", "なし" });
-            this.ComboBoxExBreakTime.Location = new Point(572, 192);
+            this.ComboBoxExBreakTime.Location = new Point(572, 164);
             this.ComboBoxExBreakTime.Name = "ComboBoxExBreakTime";
             this.ComboBoxExBreakTime.Size = new Size(216, 23);
             this.ComboBoxExBreakTime.TabIndex = 10;
@@ -486,7 +491,7 @@
             // 
             // labelEx9
             // 
-            this.labelEx9.Location = new Point(356, 172);
+            this.labelEx9.Location = new Point(356, 148);
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(208, 15);
             this.labelEx9.TabIndex = 60;
@@ -498,7 +503,7 @@
             this.ComboBoxExWorkTime.FormattingEnabled = true;
             this.ComboBoxExWorkTime.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExWorkTime.Items.AddRange(new object[] { "７時００分～１６時００分", "８時３０分～１６時３０分", "９時００分～１２時００分", "１０時００分～１５時００分", "１２時００分～１６時００分", "シフト表による" });
-            this.ComboBoxExWorkTime.Location = new Point(352, 192);
+            this.ComboBoxExWorkTime.Location = new Point(352, 164);
             this.ComboBoxExWorkTime.Name = "ComboBoxExWorkTime";
             this.ComboBoxExWorkTime.Size = new Size(216, 23);
             this.ComboBoxExWorkTime.TabIndex = 9;
@@ -506,7 +511,7 @@
             // 
             // labelEx5
             // 
-            this.labelEx5.Location = new Point(40, 172);
+            this.labelEx5.Location = new Point(40, 148);
             this.labelEx5.Name = "labelEx5";
             this.labelEx5.Size = new Size(304, 15);
             this.labelEx5.TabIndex = 58;
@@ -517,7 +522,7 @@
             // 
             this.ComboBoxExJobDescription.FormattingEnabled = true;
             this.ComboBoxExJobDescription.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExJobDescription.Location = new Point(36, 192);
+            this.ComboBoxExJobDescription.Location = new Point(36, 164);
             this.ComboBoxExJobDescription.Name = "ComboBoxExJobDescription";
             this.ComboBoxExJobDescription.Size = new Size(312, 23);
             this.ComboBoxExJobDescription.TabIndex = 8;
@@ -528,7 +533,7 @@
             this.NUDExTravelCost.ForeColor = Color.Black;
             this.NUDExTravelCost.ImeMode = ImeMode.Off;
             this.NUDExTravelCost.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            this.NUDExTravelCost.Location = new Point(620, 136);
+            this.NUDExTravelCost.Location = new Point(620, 116);
             this.NUDExTravelCost.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             this.NUDExTravelCost.Name = "NUDExTravelCost";
             this.NUDExTravelCost.Size = new Size(148, 25);
@@ -539,7 +544,7 @@
             // 
             // labelEx4
             // 
-            this.labelEx4.Location = new Point(624, 116);
+            this.labelEx4.Location = new Point(624, 100);
             this.labelEx4.Name = "labelEx4";
             this.labelEx4.Size = new Size(140, 15);
             this.labelEx4.TabIndex = 55;
@@ -552,7 +557,7 @@
             this.NUDExPay.ForeColor = Color.Black;
             this.NUDExPay.ImeMode = ImeMode.Off;
             this.NUDExPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            this.NUDExPay.Location = new Point(620, 80);
+            this.NUDExPay.Location = new Point(620, 68);
             this.NUDExPay.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             this.NUDExPay.Name = "NUDExPay";
             this.NUDExPay.Size = new Size(148, 25);
@@ -563,7 +568,7 @@
             // 
             // labelEx2
             // 
-            this.labelEx2.Location = new Point(624, 60);
+            this.labelEx2.Location = new Point(624, 52);
             this.labelEx2.Name = "labelEx2";
             this.labelEx2.Size = new Size(140, 15);
             this.labelEx2.TabIndex = 51;
@@ -574,7 +579,7 @@
             // 
             this.CheckBoxExCheckFlag.AutoSize = true;
             this.CheckBoxExCheckFlag.ForeColor = Color.Red;
-            this.CheckBoxExCheckFlag.Location = new Point(860, 31);
+            this.CheckBoxExCheckFlag.Location = new Point(860, 23);
             this.CheckBoxExCheckFlag.Name = "CheckBoxExCheckFlag";
             this.CheckBoxExCheckFlag.Size = new Size(107, 19);
             this.CheckBoxExCheckFlag.TabIndex = 4;
@@ -600,6 +605,7 @@
             // 
             this.BTNExExpiration.Location = new Point(1088, 24);
             this.BTNExExpiration.Name = "BTNExExpiration";
+            this.BTNExExpiration.SetTextDirectionVertical = "";
             this.BTNExExpiration.Size = new Size(84, 22);
             this.BTNExExpiration.TabIndex = 31;
             this.BTNExExpiration.Text = "新規登録";
@@ -621,6 +627,7 @@
             // 
             this.BTNExExpirationPicture.Location = new Point(1088, 48);
             this.BTNExExpirationPicture.Name = "BTNExExpirationPicture";
+            this.BTNExExpirationPicture.SetTextDirectionVertical = "";
             this.BTNExExpirationPicture.Size = new Size(84, 22);
             this.BTNExExpirationPicture.TabIndex = 30;
             this.BTNExExpirationPicture.Text = "契約・誓約書";
@@ -657,7 +664,7 @@
             // 
             // labelEx40
             // 
-            this.labelEx40.Location = new Point(560, 32);
+            this.labelEx40.Location = new Point(560, 24);
             this.labelEx40.Name = "labelEx40";
             this.labelEx40.Size = new Size(52, 15);
             this.labelEx40.TabIndex = 48;
@@ -669,7 +676,7 @@
             this.NUDExContractExpirationPeriod.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             this.NUDExContractExpirationPeriod.ForeColor = Color.Red;
             this.NUDExContractExpirationPeriod.ImeMode = ImeMode.Off;
-            this.NUDExContractExpirationPeriod.Location = new Point(512, 28);
+            this.NUDExContractExpirationPeriod.Location = new Point(512, 20);
             this.NUDExContractExpirationPeriod.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
             this.NUDExContractExpirationPeriod.Name = "NUDExContractExpirationPeriod";
             this.NUDExContractExpirationPeriod.Size = new Size(44, 25);
@@ -679,7 +686,7 @@
             // 
             // labelEx39
             // 
-            this.labelEx39.Location = new Point(516, 8);
+            this.labelEx39.Location = new Point(516, 4);
             this.labelEx39.Name = "labelEx39";
             this.labelEx39.Size = new Size(328, 16);
             this.labelEx39.TabIndex = 46;
@@ -740,6 +747,7 @@
             // 
             this.BTNExContractExpirationNoticePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationNoticePicture1.Name = "BTNExContractExpirationNoticePicture1";
+            this.BTNExContractExpirationNoticePicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationNoticePicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationNoticePicture1.TabIndex = 59;
             this.BTNExContractExpirationNoticePicture1.Text = "契約・誓約書";
@@ -750,6 +758,7 @@
             // 
             this.BTNExContractExpirationNotice.Location = new Point(1088, 20);
             this.BTNExContractExpirationNotice.Name = "BTNExContractExpirationNotice";
+            this.BTNExContractExpirationNotice.SetTextDirectionVertical = "";
             this.BTNExContractExpirationNotice.Size = new Size(84, 22);
             this.BTNExContractExpirationNotice.TabIndex = 29;
             this.BTNExContractExpirationNotice.Text = "新規登録";
@@ -861,6 +870,7 @@
             // 
             this.BTNExContractExpirationLossWrittenPledgePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationLossWrittenPledgePicture1.Name = "BTNExContractExpirationLossWrittenPledgePicture1";
+            this.BTNExContractExpirationLossWrittenPledgePicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationLossWrittenPledgePicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationLossWrittenPledgePicture1.TabIndex = 57;
             this.BTNExContractExpirationLossWrittenPledgePicture1.Text = "契約・誓約書";
@@ -871,6 +881,7 @@
             // 
             this.BTNExContractExpirationLossWrittenPledge.Location = new Point(1088, 20);
             this.BTNExContractExpirationLossWrittenPledge.Name = "BTNExContractExpirationLossWrittenPledge";
+            this.BTNExContractExpirationLossWrittenPledge.SetTextDirectionVertical = "";
             this.BTNExContractExpirationLossWrittenPledge.Size = new Size(84, 22);
             this.BTNExContractExpirationLossWrittenPledge.TabIndex = 29;
             this.BTNExContractExpirationLossWrittenPledge.Text = "新規登録";
@@ -982,6 +993,7 @@
             // 
             this.BTNExContractExpirationWrittenPledgePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationWrittenPledgePicture1.Name = "BTNExContractExpirationWrittenPledgePicture1";
+            this.BTNExContractExpirationWrittenPledgePicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationWrittenPledgePicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationWrittenPledgePicture1.TabIndex = 55;
             this.BTNExContractExpirationWrittenPledgePicture1.Text = "契約・誓約書";
@@ -992,6 +1004,7 @@
             // 
             this.BTNExContractExpirationWrittenPledge.Location = new Point(1088, 20);
             this.BTNExContractExpirationWrittenPledge.Name = "BTNExContractExpirationWrittenPledge";
+            this.BTNExContractExpirationWrittenPledge.SetTextDirectionVertical = "";
             this.BTNExContractExpirationWrittenPledge.Size = new Size(84, 22);
             this.BTNExContractExpirationWrittenPledge.TabIndex = 29;
             this.BTNExContractExpirationWrittenPledge.Text = "新規登録";
@@ -1108,6 +1121,7 @@
             // 
             this.BTNExContractExpirationShortJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationShortJobPicture2.Name = "BTNExContractExpirationShortJobPicture2";
+            this.BTNExContractExpirationShortJobPicture2.SetTextDirectionVertical = "";
             this.BTNExContractExpirationShortJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJobPicture2.TabIndex = 54;
             this.BTNExContractExpirationShortJobPicture2.Text = "契約・誓約書";
@@ -1118,6 +1132,7 @@
             // 
             this.BTNExContractExpirationShortJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationShortJobPicture1.Name = "BTNExContractExpirationShortJobPicture1";
+            this.BTNExContractExpirationShortJobPicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationShortJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJobPicture1.TabIndex = 53;
             this.BTNExContractExpirationShortJobPicture1.Text = "契約・誓約書";
@@ -1128,6 +1143,7 @@
             // 
             this.BTNExContractExpirationShortJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationShortJob.Name = "BTNExContractExpirationShortJob";
+            this.BTNExContractExpirationShortJob.SetTextDirectionVertical = "";
             this.BTNExContractExpirationShortJob.Size = new Size(84, 22);
             this.BTNExContractExpirationShortJob.TabIndex = 29;
             this.BTNExContractExpirationShortJob.Text = "新規登録";
@@ -1287,6 +1303,7 @@
             // 
             this.BTNExContractExpirationLongJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationLongJobPicture2.Name = "BTNExContractExpirationLongJobPicture2";
+            this.BTNExContractExpirationLongJobPicture2.SetTextDirectionVertical = "";
             this.BTNExContractExpirationLongJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJobPicture2.TabIndex = 52;
             this.BTNExContractExpirationLongJobPicture2.Text = "契約・誓約書";
@@ -1297,6 +1314,7 @@
             // 
             this.BTNExContractExpirationLongJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationLongJobPicture1.Name = "BTNExContractExpirationLongJobPicture1";
+            this.BTNExContractExpirationLongJobPicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationLongJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJobPicture1.TabIndex = 51;
             this.BTNExContractExpirationLongJobPicture1.Text = "契約・誓約書";
@@ -1307,6 +1325,7 @@
             // 
             this.BTNExContractExpirationLongJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationLongJob.Name = "BTNExContractExpirationLongJob";
+            this.BTNExContractExpirationLongJob.SetTextDirectionVertical = "";
             this.BTNExContractExpirationLongJob.Size = new Size(84, 22);
             this.BTNExContractExpirationLongJob.TabIndex = 29;
             this.BTNExContractExpirationLongJob.Text = "新規登録";
@@ -1466,6 +1485,7 @@
             // 
             this.BTNExContractExpirationPartTimeJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationPartTimeJobPicture2.Name = "BTNExContractExpirationPartTimeJobPicture2";
+            this.BTNExContractExpirationPartTimeJobPicture2.SetTextDirectionVertical = "";
             this.BTNExContractExpirationPartTimeJobPicture2.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJobPicture2.TabIndex = 50;
             this.BTNExContractExpirationPartTimeJobPicture2.Text = "契約・誓約書";
@@ -1476,6 +1496,7 @@
             // 
             this.BTNExContractExpirationPartTimeJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationPartTimeJobPicture1.Name = "BTNExContractExpirationPartTimeJobPicture1";
+            this.BTNExContractExpirationPartTimeJobPicture1.SetTextDirectionVertical = "";
             this.BTNExContractExpirationPartTimeJobPicture1.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJobPicture1.TabIndex = 49;
             this.BTNExContractExpirationPartTimeJobPicture1.Text = "契約・誓約書";
@@ -1486,6 +1507,7 @@
             // 
             this.BTNExContractExpirationPartTimeJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationPartTimeJob.Name = "BTNExContractExpirationPartTimeJob";
+            this.BTNExContractExpirationPartTimeJob.SetTextDirectionVertical = "";
             this.BTNExContractExpirationPartTimeJob.Size = new Size(84, 22);
             this.BTNExContractExpirationPartTimeJob.TabIndex = 29;
             this.BTNExContractExpirationPartTimeJob.Text = "新規登録";
@@ -1616,6 +1638,26 @@
             this.TextBoxExContractExpirationPartTimeJobMemo1.Name = "TextBoxExContractExpirationPartTimeJobMemo1";
             this.TextBoxExContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
             this.TextBoxExContractExpirationPartTimeJobMemo1.TabIndex = 18;
+            // 
+            // CheckBoxExKOYOU
+            // 
+            this.CheckBoxExKOYOU.AutoSize = true;
+            this.CheckBoxExKOYOU.Location = new Point(36, 196);
+            this.CheckBoxExKOYOU.Name = "CheckBoxExKOYOU";
+            this.CheckBoxExKOYOU.Size = new Size(108, 19);
+            this.CheckBoxExKOYOU.TabIndex = 71;
+            this.CheckBoxExKOYOU.Text = "雇用保険の適用";
+            this.CheckBoxExKOYOU.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxExSYAKAI
+            // 
+            this.CheckBoxExSYAKAI.AutoSize = true;
+            this.CheckBoxExSYAKAI.Location = new Point(160, 196);
+            this.CheckBoxExSYAKAI.Name = "CheckBoxExSYAKAI";
+            this.CheckBoxExSYAKAI.Size = new Size(108, 19);
+            this.CheckBoxExSYAKAI.TabIndex = 72;
+            this.CheckBoxExSYAKAI.Text = "社会保険の適用";
+            this.CheckBoxExSYAKAI.UseVisualStyleBackColor = true;
             // 
             // EmploymentAgreementDetail
             // 
@@ -1788,5 +1830,7 @@
         private ControlEx.LabelEx labelEx19;
         private ControlEx.LabelEx labelEx21;
         private ControlEx.ComboBoxEx ComboBoxExTravelCostDetail;
+        private ControlEx.CheckBoxEx CheckBoxExSYAKAI;
+        private ControlEx.CheckBoxEx CheckBoxExKOYOU;
     }
 }

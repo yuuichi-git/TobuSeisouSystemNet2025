@@ -169,7 +169,10 @@ namespace EmploymentAgreement {
             this.SheetView体験期間契約.Cells[29, 9].Text = _employmentAgreementVo.TravelCostDetail;
             // 交通費
             this.SheetView体験期間契約.Cells[29, 30].Value = _employmentAgreementVo.TravelCost;
-
+            // 雇用保険
+            this.SheetView体験期間契約.Cells[44, 19].Value = _employmentAgreementVo.KoyouFlag ? "有" : "無";
+            // 社会保険
+            this.SheetView体験期間契約.Cells[45, 19].Value = _employmentAgreementVo.SyakaiFlag ? "有" : "無";
             // 印影
             this.SheetView体験期間契約.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
@@ -204,7 +207,10 @@ namespace EmploymentAgreement {
             this.SheetViewアルバイト契約.Cells[30, 9].Text = _employmentAgreementVo.TravelCostDetail;
             // 交通費
             this.SheetViewアルバイト契約.Cells[30, 30].Value = _employmentAgreementVo.TravelCost;
-
+            // 雇用保険
+            this.SheetViewアルバイト契約.Cells[44, 19].Value = _employmentAgreementVo.KoyouFlag ? "有" : "無";
+            // 社会保険
+            this.SheetViewアルバイト契約.Cells[45, 19].Value = _employmentAgreementVo.SyakaiFlag ? "有" : "無";
             // 印影
             this.SheetViewアルバイト契約.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }

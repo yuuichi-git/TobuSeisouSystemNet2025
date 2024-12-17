@@ -214,18 +214,21 @@ namespace ControlEx {
             if (setMasterVo is null)
                 return;
             SetLabel setLabel = new(setMasterVo);
+            setLabel.ParentControl = this;
+
             setLabel.AddWorkerFlag = this.AddWorkerFlag;
             setLabel.ClassificationCode = this.ClassificationCode;
-            setLabel.FaxTransmissionFlag = setMasterVo.ContactMethod == 11 || setMasterVo.ContactMethod == 13;
+            setLabel.ContactInfomationFlag = this.ContactInfomationFlag;
             setLabel.LastRollCallFlag = this.LastRollCallFlag;
+            setLabel.LastRollCallYmdHms = this.LastRollCallYmdHms;
             setLabel.ManagedSpaceCode = this.ManagedSpaceCode;
             setLabel.Memo = this.SetMemo;
             setLabel.MemoFlag = this.SetMemoFlag;
             setLabel.OperationFlag = this.OperationFlag;
-            setLabel.ParentControl = this;
             setLabel.ShiftCode = this.ShiftCode;
             setLabel.StandByFlag = this.StandByFlag;
-            setLabel.TelCallingFlag = (setMasterVo.ContactMethod == 10 || setMasterVo.ContactMethod == 13);
+            setLabel.TelCallingFlag = false; // 電話連絡(2024-12-11の時点では、電話連絡確認機能は利用していない
+            setLabel.FaxTransmissionFlag = this.FaxTransmissionFlag;
             // Eventを登録
             setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
@@ -236,7 +239,7 @@ namespace ControlEx {
             setLabel.MouseUp += OnMouseUp;
             this.Controls.Add(setLabel, 0, 0);
             // 参照を退避
-            DeployedSetLabel = setLabel;
+            this.DeployedSetLabel = setLabel;
         }
 
         /// <summary>
@@ -247,11 +250,12 @@ namespace ControlEx {
             if (carMasterVo is null)
                 return;
             CarLabel carLabel = new(carMasterVo);
+            carLabel.ParentControl = this;
+
             carLabel.Memo = this.CarMemo;
             carLabel.MemoFlag = this.CarMemoFlag;
-            carLabel.ClassificationCode = this.ClassificationCode;
-            carLabel.CarGarageCode = this.ManagedSpaceCode;
-            carLabel.ParentControl = this;
+            carLabel.ClassificationCode = carMasterVo.ClassificationCode; // 車両登録がされているのでCarMasterVoのデータ
+            carLabel.CarGarageCode = this.CarGarageCode;
             carLabel.ProxyFlag = this.CarProxyFlag;
             // Eventを登録
             carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
@@ -263,7 +267,7 @@ namespace ControlEx {
             carLabel.MouseUp += OnMouseUp;
             this.Controls.Add(carLabel, 0, 1);
             // 参照を退避
-            DeployedCarLabel = carLabel;
+            this.DeployedCarLabel = carLabel;
         }
 
         /// <summary>
@@ -275,16 +279,16 @@ namespace ControlEx {
                 return;
             switch (this.PurposeFlag) {
                 case true: // ２列
-                    DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
-                    DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2]);
-                    DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3]);
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    this.DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2]);
+                    this.DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3]);
                     break;
                 case false: // １列
-                    DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
-                    DeployedStaffLabel3 = null;
-                    DeployedStaffLabel4 = null;
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    this.DeployedStaffLabel3 = null;
+                    this.DeployedStaffLabel4 = null;
                     break;
             }
         }
@@ -298,12 +302,12 @@ namespace ControlEx {
         private StaffLabel? AddStaffLabel(int number, StaffMasterVo staffMasterVo) {
             if (staffMasterVo is not null) {
                 StaffLabel staffLabel = new(staffMasterVo);
+                staffLabel.ParentControl = this;
                 switch (number) {
                     case 0:
                         staffLabel.Memo = this.StaffMemo1;
                         staffLabel.MemoFlag = this.StaffMemoFlag1;
                         staffLabel.OccupationCode = GetOccupationCode(0);
-                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag1;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag1;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms1;
@@ -312,7 +316,6 @@ namespace ControlEx {
                         staffLabel.Memo = this.StaffMemo2;
                         staffLabel.MemoFlag = this.StaffMemoFlag2;
                         staffLabel.OccupationCode = GetOccupationCode(1);
-                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag2;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag2;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms2;
@@ -321,7 +324,6 @@ namespace ControlEx {
                         staffLabel.Memo = this.StaffMemo3;
                         staffLabel.MemoFlag = this.StaffMemoFlag3;
                         staffLabel.OccupationCode = GetOccupationCode(2);
-                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag3;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag3;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms3;
@@ -330,7 +332,6 @@ namespace ControlEx {
                         staffLabel.Memo = this.StaffMemo4;
                         staffLabel.MemoFlag = this.StaffMemoFlag4;
                         staffLabel.OccupationCode = GetOccupationCode(3);
-                        staffLabel.ParentControl = this;
                         staffLabel.ProxyFlag = this.StaffProxyFlag4;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag4;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms4;
@@ -994,8 +995,11 @@ namespace ControlEx {
         /// true:帰庫点呼記録済 false:未点呼
         /// </summary>
         public bool LastRollCallFlag {
-            get => _lastRollCallFlag;
-            set => _lastRollCallFlag = value;
+            get => this._lastRollCallFlag;
+            set {
+                this._lastRollCallFlag = value;
+                Refresh();
+            }
         }
         /// <summary>
         /// 帰庫点呼日時

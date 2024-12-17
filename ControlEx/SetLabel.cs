@@ -7,6 +7,8 @@ using ControlEx.Properties;
 
 using Vo;
 
+using Timer = System.Windows.Forms.Timer;
+
 namespace ControlEx {
     public partial class SetLabel : Label {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
@@ -26,20 +28,21 @@ namespace ControlEx {
          * プロパティ
          */
         private object _parentControl;
-        private bool _addWorkerFlag = false;
-        private int _classificationCode = 0;
-        private bool _contactInfomationFlag = false;
         private bool _cursorEnterFlag = false;
-        private bool _faxTransmissionFlag = false;
+        private bool _operationFlag;
+
+        private int _managedSpaceCode = 0;
+        private int _classificationCode = 0;
         private bool _lastRollCallFlag = false;
         private DateTime _lastRollCallYmdHms = new DateTime(1900, 01, 01);
-        private int _managedSpaceCode = 0;
-        private string _memo = string.Empty;
         private bool _memoFlag = false;
-        private bool _operationFlag;
+        private string _memo = string.Empty;
         private int _shiftCode = 0;
         private bool _standByFlag = false;
+        private bool _addWorkerFlag = false;
+        private bool _contactInfomationFlag = false;
         private bool _telCallingFlag = false;
+        private bool _faxTransmissionFlag = false;
         /*
          * Vo
          */
@@ -55,9 +58,16 @@ namespace ControlEx {
         private readonly Font _drawFontSetLabel = new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
         // ToolTip
         private ToolTip _toolTip = new();
+        /*
+         * Timer
+         */
+        private Timer _timerControl = new();
+        bool _doubleClickFlag = false; // シングルとダブルクリックの判別用
+        private int _clickTime = 0;// クリック間の時間を保持
+        private int _doubleClickInterval = SystemInformation.DoubleClickTime;// ダブルクリックが有効な時間間隔(初期値500)
 
         /// <summary>
-        /// Constractor
+        /// コンストラクター
         /// </summary>
         /// <param name="setMasterVo"></param>
         public SetLabel(SetMasterVo setMasterVo) {
@@ -85,6 +95,8 @@ namespace ControlEx {
             _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
             _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
             _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
+            // Timer イベント登録
+            _timerControl.Tick += this._timer_Tick;
         }
 
         /// <summary>
@@ -119,12 +131,12 @@ namespace ControlEx {
             ToolStripMenuItem toolStripMenuItem02 = new("配車の状態"); // 親アイテム
             toolStripMenuItem02.Name = "ToolStripMenuItemSetOperation";
             ToolStripMenuItem toolStripMenuItem02_0 = new("配車する"); // 子アイテム１
-            toolStripMenuItem02_0.Name = "ToolStripMenuItemSetOperationAdachi";
+            toolStripMenuItem02_0.Name = "ToolStripMenuItemSetOperationTrue";
             toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
             ToolStripMenuItem toolStripMenuItem02_1 = new("休車する"); // 子アイテム２
-            toolStripMenuItem02_1.Name = "ToolStripMenuItemSetOperationMisato";
+            toolStripMenuItem02_1.Name = "ToolStripMenuItemSetOperationFalse";
             toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
@@ -285,7 +297,7 @@ namespace ControlEx {
             /*
              * 背景画像
              */
-            switch (ClassificationCode) {
+            switch (this.ClassificationCode) {
                 case 10:
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageY), 0, 0, Width, Height);
                     break;
@@ -299,25 +311,40 @@ namespace ControlEx {
             // 稼働
             if (OperationFlag) {
                 // 三郷車庫
-                if (ManagedSpaceCode == 2)
+                if (this.ManagedSpaceCode == 2)
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
-                // FAX送信
-                if (FaxTransmissionFlag)
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
-                // 電話連絡
-                if (TelCallingFlag)
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
-                // カーソル関係
-                if (CursorEnterFlag)
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+                // 電話連絡・FAX送信
+                switch (this.SetMasterVo.ContactMethod) {
+                    case 10:
+                        pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
+                        break;
+                    case 11:
+                        if (this.FaxTransmissionFlag) {
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.FaxRed), 0, 0, Width, Height);
+                        } else {
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
+                        }
+                        break;
+                    case 13:
+                        pe.Graphics.DrawImage(ByteArrayToImage(Resources.Tel), 0, 0, Width, Height);
+                        if (this.FaxTransmissionFlag) {
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.FaxRed), 0, 0, Width, Height);
+                        } else {
+                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.Fax), 0, 0, Width, Height);
+                        }
+                        break;
+                }
                 // メモ
-                if (MemoFlag)
+                if (this.MemoFlag)
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
                 // 帰庫点呼
-                if (LastRollCallFlag)
+                if (this.LastRollCallFlag)
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageTenko), 0, 0, Width, Height);
+                // 連絡事項
+                if (this.ContactInfomationFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.SetLabelImageContactInfomation), 0, 0, Width, Height);
                 // 番手コード
-                switch (ShiftCode) {
+                switch (this.ShiftCode) {
                     case 1:
                         pe.Graphics.DrawString("早番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
                         break;
@@ -326,11 +353,17 @@ namespace ControlEx {
                         break;
                 }
                 // 待機フラグ
-                if (_standByFlag)
+                if (this.StandByFlag)
                     pe.Graphics.DrawString("待機", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(37, 90));
+                // カーソル関係
+                if (CursorEnterFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             } else {
                 // 休車
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Operation), 0, 0, Width, Height);
+                // カーソル関係
+                if (this.CursorEnterFlag)
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             }
             /*
              * 文字(配車先)を描画
@@ -361,6 +394,19 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void _timer_Tick(object sender, EventArgs e) {
+            _clickTime += _timerControl.Interval; // 計測時間を保存しておく
+            if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
+                _timerControl.Stop(); // タイマー停止
+                _doubleClickFlag = false; // DoubleClickFlagを初期化
+                _clickTime = 0; // 計測時間を初期化
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
             Debug.WriteLine("SetLabel ContextMenuStripOpened");
 
@@ -372,7 +418,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ToolStripMenuItem_Click(object? sender, EventArgs e) {
             Debug.WriteLine("SetLabel ToolStripMenuItemClick");
 
             SetLabel_ToolStripMenuItem_Click.Invoke(sender, e);
@@ -382,36 +428,32 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseClick(MouseEventArgs e) {
-            Debug.WriteLine("SetLabel MouseClick");
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            Debug.WriteLine("SetLabel MouseDoubleClick");
-
-        }
-
-        /// <summary>
-        /// MouseDounが先に発火するのでMouseClickは使用不可
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e) {
-            Debug.WriteLine("SetLabel MouseDown");
-
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
-                SetLabel_OnMouseClick.Invoke(this, e); // 帰庫点呼処理を実行するために親へ渡す
-            } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
-                if (this.MemoFlag) {
-                    _toolTip.Show(this.Memo, this, 4, 4);
-                    return;
-                }
+            /*
+             * Click DoubleClickを判別
+             */
+            if (e.Clicks == 1) {
+                _timerControl.Start(); // タイマーをスタートする
+            } else {
+                if (_clickTime < _doubleClickInterval)
+                    _doubleClickFlag = true;
             }
-            SetLabel_OnMouseDown.Invoke(this, e);
+
+            if (!_doubleClickFlag) {
+                if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+                    SetLabel_OnMouseClick.Invoke(this, e);
+                } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
+                    if (this.MemoFlag) {
+                        _toolTip.Show(this.Memo, this, 4, 4);
+                        return;
+                    }
+                }
+                // Down
+                SetLabel_OnMouseDown.Invoke(this, e);
+            } else {
+                // DoubleClick
+                SetLabel_OnMouseDoubleClick.Invoke(this, e);
+            }
         }
 
         /// <summary>
@@ -454,15 +496,10 @@ namespace ControlEx {
         }
 
         /*
+         * 
          * プロパティ
+         * 
          */
-        /// <summary>
-        /// 格納されているSetControlを退避
-        /// </summary>
-        public object ParentControl {
-            get => this._parentControl;
-            set => this._parentControl = value;
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -471,11 +508,11 @@ namespace ControlEx {
             set => this._setMasterVo = value;
         }
         /// <summary>
-        /// true:作業員付き false:作業員なし
+        /// 格納されているSetControlを退避
         /// </summary>
-        public bool AddWorkerFlag {
-            get => this._addWorkerFlag;
-            set => this._addWorkerFlag = value;
+        public object ParentControl {
+            get => this._parentControl;
+            set => this._parentControl = value;
         }
         /// <summary>
         /// True:カーソルが乗っている False:カーソルが外れている
@@ -485,26 +522,37 @@ namespace ControlEx {
             set => this._cursorEnterFlag = value;
         }
         /// <summary>
+        /// 稼働フラグ
+        /// true:稼働 false:休車
+        /// </summary>
+        public bool OperationFlag {
+            get => this._operationFlag;
+            set {
+                this._operationFlag = value;
+                this.Refresh();
+                // SetControlのプロパティをセット
+                ((SetControl)this.ParentControl).OperationFlag = this.OperationFlag;
+            }
+        }
+        /// <summary>
+        /// 0:該当なし 1:足立 2:三郷
+        /// </summary>
+        public int ManagedSpaceCode {
+            get => this._managedSpaceCode;
+            set {
+                this._managedSpaceCode = value;
+                this.Refresh();
+            }
+        }
+        /// <summary>
         /// 10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 50:一般 51:社用車 99:指定なし
         /// </summary>
         public int ClassificationCode {
             get => this._classificationCode;
-            set => this._classificationCode = value;
-        }
-        /// <summary>
-        /// true:連絡事項あり false:連絡事項なし
-        /// </summary>
-        public bool ContactInfomationFlag {
-            get => this._contactInfomationFlag;
-            set => this._contactInfomationFlag = value;
-        }
-        /// <summary>
-        /// 代車・代番連絡
-        /// true:Fax送信 false:なし
-        /// </summary>
-        public bool FaxTransmissionFlag {
-            get => this._faxTransmissionFlag;
-            set => this._faxTransmissionFlag = value;
+            set {
+                this._classificationCode = value;
+                this.Refresh();
+            }
         }
         /// <summary>
         /// true:帰庫点呼記録済 false:未点呼
@@ -514,11 +562,6 @@ namespace ControlEx {
             set {
                 this._lastRollCallFlag = value;
                 Refresh();
-                if (this._lastRollCallFlag) {
-                    this.LastRollCallYmdHms = _defaultDateTime;
-                } else {
-                    this.LastRollCallYmdHms = DateTime.Now;
-                }
             }
         }
         /// <summary>
@@ -529,11 +572,11 @@ namespace ControlEx {
             set => this._lastRollCallYmdHms = value;
         }
         /// <summary>
-        /// 0:該当なし 1:足立 2:三郷
+        /// true:メモが存在する false:メモが存在しない
         /// </summary>
-        public int ManagedSpaceCode {
-            get => this._managedSpaceCode;
-            set => this._managedSpaceCode = value;
+        public bool MemoFlag {
+            get => this._memoFlag;
+            set => this._memoFlag = value;
         }
         /// <summary>
         /// メモ
@@ -543,33 +586,44 @@ namespace ControlEx {
             set => this._memo = value;
         }
         /// <summary>
-        /// true:メモが存在する false:メモが存在しない
-        /// </summary>
-        public bool MemoFlag {
-            get => this._memoFlag;
-            set => this._memoFlag = value;
-        }
-        /// <summary>
-        /// 稼働フラグ
-        /// true:稼働 false:休車
-        /// </summary>
-        public bool OperationFlag {
-            get => this._operationFlag;
-            set => this._operationFlag = value;
-        }
-        /// <summary>
         /// 0:指定なし 1:早番 2:遅番
         /// </summary>
         public int ShiftCode {
             get => this._shiftCode;
-            set => this._shiftCode = value;
+            set {
+                this._shiftCode = value;
+                this.Refresh();
+            }
         }
         /// <summary>
         /// true:待機 false:通常
         /// </summary>
         public bool StandByFlag {
             get => this._standByFlag;
-            set => this._standByFlag = value;
+            set {
+                this._standByFlag = value;
+                this.Refresh();
+            }
+        }
+        /// <summary>
+        /// true:作業員付き false:作業員なし
+        /// </summary>
+        public bool AddWorkerFlag {
+            get => this._addWorkerFlag;
+            set {
+                this._addWorkerFlag = value;
+                this.Refresh();
+            }
+        }
+        /// <summary>
+        /// true:連絡事項あり false:連絡事項なし
+        /// </summary>
+        public bool ContactInfomationFlag {
+            get => this._contactInfomationFlag;
+            set {
+                this._contactInfomationFlag = value;
+                this.Refresh();
+            }
         }
         /// <summary>
         /// 代車・代番連絡
@@ -577,7 +631,28 @@ namespace ControlEx {
         /// </summary>
         public bool TelCallingFlag {
             get => this._telCallingFlag;
-            set => this._telCallingFlag = value;
+            set {
+                this._telCallingFlag = value;
+                this.Refresh();
+            }
         }
+        /// <summary>
+        /// 代車・代番連絡
+        /// true:Fax送信 false:なし
+        /// </summary>
+        public bool FaxTransmissionFlag {
+            get => this._faxTransmissionFlag;
+            set {
+                this._faxTransmissionFlag = value;
+                this.Refresh();
+            }
+        }
+
+
+
+
+
+
+
     }
 }

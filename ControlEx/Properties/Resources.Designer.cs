@@ -103,6 +103,16 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] FaxRed {
+            get {
+                object obj = ResourceManager.GetObject("FaxRed", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
@@ -163,6 +173,16 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] SetLabelImageContactInfomation {
+            get {
+                object obj = ResourceManager.GetObject("SetLabelImageContactInfomation", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] SetLabelImageK {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImageK", resourceCulture);
@@ -203,9 +223,29 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] StaffLabelImagePartTime {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImagePartTime", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] StaffLabelImageSagyouin {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageSagyouin", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] StaffLabelImageShortTime {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImageShortTime", resourceCulture);
                 return ((byte[])(obj));
             }
         }
