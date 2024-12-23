@@ -640,6 +640,7 @@ namespace VehicleDispatch {
                     /*
                      * 帰庫点呼
                      */
+                    ((SetControl)setLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
                     LastRollCall lastRollCall = new(_connectionVo, (SetControl)setLabel.ParentControl);
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lastRollCall);
                     lastRollCall.ShowDialog(this);

@@ -4,6 +4,10 @@
 namespace ControlEx {
     public partial class MenuStripEx : MenuStrip {
         /*
+         * デリゲート
+         */
+        public event EventHandler Event_MenuStripEx_ToolStripMenuItem_Click = delegate { };
+        /*
          * ToolStripMenuItem
          */
         private ToolStripMenuItem toolStripMenuItemFile = new("ファイル");
@@ -19,6 +23,7 @@ namespace ControlEx {
         private ToolStripMenuItem toolStripMenuItemDataBaseLocal = new("ローカルデータベースへ接続する");
 
         private ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
+        private ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
 
         private ToolStripMenuItem toolStripMenuItemHelp = new("ヘルプ");
         /*
@@ -89,6 +94,10 @@ namespace ControlEx {
              */
             toolStripMenuItemPrint.Name = "ToolStripMenuItemPrint";
             this.Items.Add(toolStripMenuItemPrint);
+
+            toolStripMenuItemPrintA4.Name = "ToolStripMenuItemPrintA4";
+            toolStripMenuItemPrintA4.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintA4);
             /*
              * ヘルプ
              */
@@ -112,7 +121,6 @@ namespace ControlEx {
         /// <summary>
         /// ToolStripMenuItem_Clickを親へ渡す
         /// </summary>
-        public event EventHandler Event_MenuStripEx_ToolStripMenuItem_Click = delegate { };
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             Event_MenuStripEx_ToolStripMenuItem_Click.Invoke(sender, e);
         }

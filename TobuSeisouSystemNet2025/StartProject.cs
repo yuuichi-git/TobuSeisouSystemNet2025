@@ -9,6 +9,8 @@ using ControlEx;
 
 using EmploymentAgreement;
 
+using Staff;
+
 using VehicleDispatch;
 
 using Vo;
@@ -194,6 +196,11 @@ namespace TobuSeisouSystemNet2025 {
                             EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
                             employmentAgreementList.Show();
+                            break;
+                        case "StaffDestination":
+                            StaffDestination staffDestination = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffDestination);
+                            staffDestination.Show();
                             break;
                     }
                     break;

@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmploymentAgreement", "Empl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockBox", "StockBox\StockBox.csproj", "{E623FDD0-05DA-4B1B-9AF6-812D7C62251D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RollCall", "RollCall\RollCall.csproj", "{11A6FC6B-E124-4374-8A72-B72E7F30ACF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RollCall", "RollCall\RollCall.csproj", "{11A6FC6B-E124-4374-8A72-B72E7F30ACF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staff", "Staff\Staff.csproj", "{F9F902ED-07EB-4581-AA0F-2F45075DD495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{11A6FC6B-E124-4374-8A72-B72E7F30ACF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A6FC6B-E124-4374-8A72-B72E7F30ACF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A6FC6B-E124-4374-8A72-B72E7F30ACF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F902ED-07EB-4581-AA0F-2F45075DD495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F902ED-07EB-4581-AA0F-2F45075DD495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F902ED-07EB-4581-AA0F-2F45075DD495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F902ED-07EB-4581-AA0F-2F45075DD495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

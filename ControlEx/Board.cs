@@ -89,6 +89,7 @@ namespace ControlEx {
         public void AddSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo) {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.CellNumber = cellNumber;
+            setControl.NumberOfPeople = setMasterVo is not null ? setMasterVo.NumberOfPeople : 0;
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
             setControl.AddStaffLabels(listStaffMasterVo);

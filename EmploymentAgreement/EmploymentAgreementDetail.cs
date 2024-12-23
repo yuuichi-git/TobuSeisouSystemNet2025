@@ -335,7 +335,7 @@ namespace EmploymentAgreement {
                     }
                     break;
                 // 誓約書期間　画像１
-                case "BTNExWrittenPledgePicture1":
+                case "BTNExContractExpirationWrittenPledgePicture1":
                     if (this.BTNExContractExpirationWrittenPledgePicture1.Tag is not null) {
                         new ShowPicture((byte[])this.BTNExContractExpirationWrittenPledgePicture1.Tag).Show();
                     } else {
@@ -343,7 +343,7 @@ namespace EmploymentAgreement {
                     }
                     break;
                 // 失墜行為書類期間　画像１
-                case "BTNExLossWrittenPledgePicture1":
+                case "BTNExContractExpirationLossWrittenPledgePicture1":
                     if (this.BTNExContractExpirationLossWrittenPledgePicture1.Tag is not null) {
                         new ShowPicture((byte[])this.BTNExContractExpirationLossWrittenPledgePicture1.Tag).Show();
                     } else {

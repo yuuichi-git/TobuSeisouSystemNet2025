@@ -512,7 +512,9 @@ namespace Dao {
              */
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
-                                     "SET LastRollCallFlag = '" + lastRollCallFlag + "'," +
+                                     "SET StaffRollCallFlag1 = 'true'," +
+                                         "StaffRollCallYmdHms1 = '" + lastRollCallVo.FirstRollCallYmdHms + "'," +
+                                         "LastRollCallFlag = '" + lastRollCallFlag + "'," +
                                          "LastRollCallYmdHms = '" + lastRollCallVo.LastRollCallYmdHms + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +

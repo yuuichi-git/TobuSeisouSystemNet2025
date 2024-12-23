@@ -9,9 +9,13 @@ namespace Common {
         private readonly DateTime _todayDate = DateTime.Today;
         private readonly CultureInfo _cultureInfo = new("ja-JP");
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public DateUtility() {
             _cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
         }
+
         /// <summary>
         /// 年齢を計算
         /// </summary>

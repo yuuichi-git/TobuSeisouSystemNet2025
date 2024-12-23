@@ -31,6 +31,9 @@ namespace RollCall {
         /// <param name="connectionVo"></param>
         /// <param name="setControl"></param>
         public LastRollCall(ConnectionVo connectionVo, SetControl setControl) {
+            /*
+             * インスタンス
+             */
             _setControl = setControl;
             /*
              * Dao
@@ -177,9 +180,6 @@ namespace RollCall {
                     MessageBox.Show(exception.Message);
                 }
             }
-
-
-
             this.Close();
         }
 

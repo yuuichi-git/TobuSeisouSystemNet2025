@@ -110,7 +110,7 @@ namespace EmploymentAgreement {
         /*
          * インスタンス作成
          */
-        private readonly DateUtility _date = new();
+        private readonly DateUtility _dateUtility = new();
         private readonly Screen _screen;
         private readonly ScreenForm _screenForm = new();
         /*
@@ -242,7 +242,7 @@ namespace EmploymentAgreement {
                 SheetViewList.Cells[rowCount, _colDisplayName].Text = staffMasterVo.DisplayName;
                 SheetViewList.Cells[rowCount, _colNameKana].Text = staffMasterVo.NameKana;
                 SheetViewList.Cells[rowCount, _colBirthDate].Value = staffMasterVo.BirthDate;
-                SheetViewList.Cells[rowCount, _colAge].Value = _date.GetAge(staffMasterVo.BirthDate);
+                SheetViewList.Cells[rowCount, _colAge].Value = _dateUtility.GetAge(staffMasterVo.BirthDate);
                 SheetViewList.Cells[rowCount, _colEmplomentDate].Value = staffMasterVo.EmploymentDate;
                 SheetViewList.Rows[rowCount].BackColor = Color.White;
                 /*

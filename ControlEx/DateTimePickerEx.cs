@@ -28,7 +28,6 @@ namespace ControlEx {
             /*
              * Event
              */
-            this.KeyDown += DateTimePickerEx_KeyDown;
             this.ValueChanged += DateTimePickerEx_ValueChanged;
         }
 
@@ -57,38 +56,37 @@ namespace ControlEx {
             this.Refresh();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DateTimePickerEx_KeyDown(object sender, KeyEventArgs e) {
-            switch (e.KeyData) {
-                /*
-                 * クリア表示
-                 */
-                case Keys.Escape:
-                    this.CustomFormat = " ";
-                    this.Refresh();
-                    break;
-                /*
-                 * 西暦で表示
-                 */
-                case Keys.Control | Keys.A:
-                    CultureFlag = false;
-                    this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
-                    this.Value = DateTime.Now.Date;
-                    this.Refresh();
-                    break;
-                /*
-                 * 和暦で表示
-                 */
-                case Keys.Control | Keys.J:
-                    CultureFlag = true;
-                    this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
-                    this.Value = DateTime.Now.Date;
-                    this.Refresh();
-                    break;
+        protected override void OnKeyDown(KeyEventArgs e) {
+            /*
+             * 
+             */
+            if (e.KeyCode == Keys.Enter) {
+                SendKeys.Send("{TAB}");
+            }
+            /*
+             * 
+             */
+            if (e.KeyCode == Keys.Escape) {
+                this.CustomFormat = " ";
+                this.Refresh();
+            }
+            /*
+             * 
+             */
+            if (e.KeyCode == Keys.A && ModifierKeys == Keys.Control) {
+                CultureFlag = false;
+                this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
+                this.Value = DateTime.Now.Date;
+                this.Refresh();
+            }
+            /*
+             * 
+             */
+            if (e.KeyCode == Keys.J && ModifierKeys == Keys.Control) {
+                CultureFlag = true;
+                this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
+                this.Value = DateTime.Now.Date;
+                this.Refresh();
             }
         }
 

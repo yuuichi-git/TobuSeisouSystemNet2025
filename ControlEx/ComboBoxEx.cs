@@ -13,5 +13,13 @@ namespace ControlEx {
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
         }
+
+        protected override void OnKeyDown(KeyEventArgs e) {
+            switch (e.KeyCode) {
+                case Keys.Enter:
+                    SendKeys.Send("{TAB}");
+                    break;
+            }
+        }
     }
 }

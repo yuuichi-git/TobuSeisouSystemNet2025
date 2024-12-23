@@ -172,6 +172,7 @@
             this.CheckBoxExDelete.Name = "CheckBoxExDelete";
             this.CheckBoxExDelete.Size = new Size(107, 19);
             this.CheckBoxExDelete.TabIndex = 9;
+            this.CheckBoxExDelete.TabStop = false;
             this.CheckBoxExDelete.Text = "帰庫点呼を削除";
             this.CheckBoxExDelete.UseVisualStyleBackColor = true;
             // 
@@ -233,6 +234,7 @@
             this.NumericUpDownExFirstOdoMeter.Name = "NumericUpDownExFirstOdoMeter";
             this.NumericUpDownExFirstOdoMeter.Size = new Size(104, 23);
             this.NumericUpDownExFirstOdoMeter.TabIndex = 6;
+            this.NumericUpDownExFirstOdoMeter.TabStop = false;
             this.NumericUpDownExFirstOdoMeter.TextAlign = HorizontalAlignment.Right;
             // 
             // NumericUpDownExLastOdoMeter
@@ -243,6 +245,7 @@
             this.NumericUpDownExLastOdoMeter.Name = "NumericUpDownExLastOdoMeter";
             this.NumericUpDownExLastOdoMeter.Size = new Size(104, 23);
             this.NumericUpDownExLastOdoMeter.TabIndex = 7;
+            this.NumericUpDownExLastOdoMeter.TabStop = false;
             this.NumericUpDownExLastOdoMeter.TextAlign = HorizontalAlignment.Right;
             // 
             // NumericUpDownExOilAmount
@@ -253,6 +256,7 @@
             this.NumericUpDownExOilAmount.Name = "NumericUpDownExOilAmount";
             this.NumericUpDownExOilAmount.Size = new Size(104, 23);
             this.NumericUpDownExOilAmount.TabIndex = 8;
+            this.NumericUpDownExOilAmount.TabStop = false;
             this.NumericUpDownExOilAmount.TextAlign = HorizontalAlignment.Right;
             // 
             // LastRollCall

@@ -44,12 +44,14 @@
             this.TabControlExConnect = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
             this.TabPageOffice = new TabPage();
+            this.labelEx6 = new ControlEx.LabelEx();
+            this.labelEx7 = new ControlEx.LabelEx();
             this.TabPageAdachi = new TabPage();
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
-            this.labelEx6 = new ControlEx.LabelEx();
-            this.labelEx7 = new ControlEx.LabelEx();
+            this.labelEx8 = new ControlEx.LabelEx();
+            this.labelEx9 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
@@ -187,6 +189,7 @@
             this.ButtonExDisConnect.Enabled = false;
             this.ButtonExDisConnect.Location = new Point(568, 84);
             this.ButtonExDisConnect.Name = "ButtonExDisConnect";
+            this.ButtonExDisConnect.SetTextDirectionVertical = "";
             this.ButtonExDisConnect.Size = new Size(144, 24);
             this.ButtonExDisConnect.TabIndex = 9;
             this.ButtonExDisConnect.Text = "DisConnect";
@@ -198,6 +201,7 @@
             this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             this.ButtonExConnect.Location = new Point(568, 44);
             this.ButtonExConnect.Name = "ButtonExConnect";
+            this.ButtonExConnect.SetTextDirectionVertical = "";
             this.ButtonExConnect.Size = new Size(144, 36);
             this.ButtonExConnect.TabIndex = 8;
             this.ButtonExConnect.Text = "Connect";
@@ -279,6 +283,8 @@
             // 
             // TabPageOffice
             // 
+            this.TabPageOffice.Controls.Add(this.labelEx8);
+            this.TabPageOffice.Controls.Add(this.labelEx9);
             this.TabPageOffice.Controls.Add(this.labelEx6);
             this.TabPageOffice.Controls.Add(this.labelEx7);
             this.TabPageOffice.Location = new Point(4, 24);
@@ -287,6 +293,30 @@
             this.TabPageOffice.TabIndex = 3;
             this.TabPageOffice.Text = "事務";
             this.TabPageOffice.UseVisualStyleBackColor = true;
+            // 
+            // labelEx6
+            // 
+            this.labelEx6.ForeColor = Color.DimGray;
+            this.labelEx6.Location = new Point(12, 32);
+            this.labelEx6.Name = "labelEx6";
+            this.labelEx6.Size = new Size(344, 20);
+            this.labelEx6.TabIndex = 15;
+            this.labelEx6.Text = "　契約書等の更新時期の管理をします";
+            this.labelEx6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx7
+            // 
+            this.labelEx7.ForeColor = Color.Black;
+            this.labelEx7.Location = new Point(12, 12);
+            this.labelEx7.Name = "labelEx7";
+            this.labelEx7.Size = new Size(344, 20);
+            this.labelEx7.TabIndex = 14;
+            this.labelEx7.Tag = "EmploymentAgreementList";
+            this.labelEx7.Text = "雇用契約(契約書・誓約書等)";
+            this.labelEx7.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx7.Click += this.Label_Click;
+            this.labelEx7.MouseEnter += this.Label_MouseEnter;
+            this.labelEx7.MouseLeave += this.Label_MouseLeave;
             // 
             // TabPageAdachi
             // 
@@ -333,29 +363,29 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
-            // labelEx6
+            // labelEx8
             // 
-            this.labelEx6.ForeColor = Color.DimGray;
-            this.labelEx6.Location = new Point(12, 32);
-            this.labelEx6.Name = "labelEx6";
-            this.labelEx6.Size = new Size(344, 20);
-            this.labelEx6.TabIndex = 15;
-            this.labelEx6.Text = "　契約書等の更新時期の管理をします";
-            this.labelEx6.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx8.ForeColor = Color.DimGray;
+            this.labelEx8.Location = new Point(12, 80);
+            this.labelEx8.Name = "labelEx8";
+            this.labelEx8.Size = new Size(344, 20);
+            this.labelEx8.TabIndex = 17;
+            this.labelEx8.Text = "　配車先や朝電・無断等の情報を表示します";
+            this.labelEx8.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // labelEx7
+            // labelEx9
             // 
-            this.labelEx7.ForeColor = Color.Black;
-            this.labelEx7.Location = new Point(12, 12);
-            this.labelEx7.Name = "labelEx7";
-            this.labelEx7.Size = new Size(344, 20);
-            this.labelEx7.TabIndex = 14;
-            this.labelEx7.Tag = "EmploymentAgreementList";
-            this.labelEx7.Text = "雇用契約(契約書・誓約書等)";
-            this.labelEx7.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx7.Click += this.Label_Click;
-            this.labelEx7.MouseEnter += this.Label_MouseEnter;
-            this.labelEx7.MouseLeave += this.Label_MouseLeave;
+            this.labelEx9.ForeColor = Color.Black;
+            this.labelEx9.Location = new Point(12, 60);
+            this.labelEx9.Name = "labelEx9";
+            this.labelEx9.Size = new Size(344, 20);
+            this.labelEx9.TabIndex = 16;
+            this.labelEx9.Tag = "StaffDestination";
+            this.labelEx9.Text = "従事者勤務詳細";
+            this.labelEx9.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx9.Click += this.Label_Click;
+            this.labelEx9.MouseEnter += this.Label_MouseEnter;
+            this.labelEx9.MouseLeave += this.Label_MouseLeave;
             // 
             // StartProject
             // 
@@ -409,5 +439,7 @@
         private TabPage TabPageOffice;
         private ControlEx.LabelEx labelEx6;
         private ControlEx.LabelEx labelEx7;
+        private ControlEx.LabelEx labelEx8;
+        private ControlEx.LabelEx labelEx9;
     }
 }
