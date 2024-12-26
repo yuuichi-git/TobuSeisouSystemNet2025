@@ -40,10 +40,11 @@
             this.ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.PanelEx();
+            this.labelEx1 = new ControlEx.LabelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -183,6 +184,7 @@
             // 
             // PanelExTop
             // 
+            this.PanelExTop.Controls.Add(this.labelEx1);
             this.PanelExTop.Controls.Add(this.CheckBoxExRetirementFlag);
             this.PanelExTop.Controls.Add(this.ButtonExUpdate);
             this.PanelExTop.Dock = DockStyle.Fill;
@@ -190,6 +192,15 @@
             this.PanelExTop.Name = "PanelExTop";
             this.PanelExTop.Size = new Size(1898, 34);
             this.PanelExTop.TabIndex = 3;
+            // 
+            // labelEx1
+            // 
+            this.labelEx1.AutoSize = true;
+            this.labelEx1.Location = new Point(20, 8);
+            this.labelEx1.Name = "labelEx1";
+            this.labelEx1.Size = new Size(556, 15);
+            this.labelEx1.TabIndex = 5;
+            this.labelEx1.Text = "※入社日より起算して182日(半年)以内、長期契約ではない、職種が運転手/作業員の場合、労供加入を推奨する";
             // 
             // CheckBoxExRetirementFlag
             // 
@@ -207,6 +218,7 @@
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
+            this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(184, 32);
             this.ButtonExUpdate.TabIndex = 3;
             this.ButtonExUpdate.Text = "最　新　化";
@@ -254,5 +266,6 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労運転士;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private ControlEx.LabelEx labelEx1;
     }
 }

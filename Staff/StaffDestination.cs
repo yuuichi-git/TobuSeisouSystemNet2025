@@ -2,7 +2,6 @@
  * 2024-12-19
  */
 using System.Data;
-using System.Drawing.Printing;
 
 using Common;
 
@@ -160,17 +159,7 @@ namespace Staff {
                     this.Close();
                     break;
                 case "ToolStripMenuItemPrintA4":
-                    PrintDocument _printDocument = new();
-                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
-                    // 出力先プリンタを指定します。
-                    //printDocument.PrinterSettings.PrinterName = "(PrinterName)";
-                    // 印刷部数を指定します。
-                    _printDocument.PrinterSettings.Copies = 1;
-                    // 両面印刷に設定します。
-                    _printDocument.PrinterSettings.Duplex = Duplex.Vertical;
-                    // カラー印刷に設定します。
-                    _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
-                    _printDocument.Print();
+                    SpreadList.PrintSheet(SheetViewList);
                     break;
                 default:
                     MessageBox.Show("ToolStripMenuItem_Click");
@@ -178,9 +167,11 @@ namespace Staff {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetSheetView() {
-            StaffMasterVo staffMasterVo = new();
-            List<SheetViewVo> listSheetViewVo = new();
+            List<SheetViewVo> _listSheetViewVo = new();
             /*
              * ComboBoxExStaffNameが未選択ならCheckBoxでSQLを発行
              */
@@ -221,18 +212,17 @@ namespace Staff {
                     /*
                      * SQL発行
                      */
-                    listSheetViewVo = GetListSheetViewVo(_staffDestinationDao.SelectAllStaffDestinationVo(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
-                    listSheetViewVo = listSheetViewVo.Where(x => CreateList(this.GroupBoxExBelongs).Contains(x.StaffBelongs) &&
-                                                                 CreateList(this.GroupBoxExJobForm).Contains(x.StaffJobForm) &&
-                                                                 CreateList(this.GroupBoxExOccupation).Contains(x.StaffOccupation)).ToList();
+                    _listSheetViewVo = GetListSheetViewVo(_staffDestinationDao.SelectAllStaffDestinationVo(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
+                    _listSheetViewVo = _listSheetViewVo.Where(x => CreateList(this.GroupBoxExBelongs).Contains(x.StaffBelongs) &&
+                                                                   CreateList(this.GroupBoxExJobForm).Contains(x.StaffJobForm) &&
+                                                                   CreateList(this.GroupBoxExOccupation).Contains(x.StaffOccupation)).ToList();
                     break;
                 default: // 1名検索
                     /*
                      * SQL発行
                      */
-                    listSheetViewVo = GetListSheetViewVo(_staffDestinationDao.SelectAllStaffDestinationVo(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
-                    staffMasterVo = ((HComboBoxExSelectNameVo)ComboBoxExStaffName.SelectedItem).StaffMasterVo;
-                    listSheetViewVo = listSheetViewVo.FindAll(x => x.StaffCode == staffMasterVo.StaffCode);
+                    _listSheetViewVo = GetListSheetViewVo(_staffDestinationDao.SelectAllStaffDestinationVo(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
+                    _listSheetViewVo = _listSheetViewVo.FindAll(x => x.StaffCode == ((HComboBoxExSelectNameVo)ComboBoxExStaffName.SelectedItem).StaffMasterVo.StaffCode);
                     break;
             }
             /*
@@ -244,16 +234,16 @@ namespace Staff {
 
             if (SheetViewList.Rows.Count > 0)
                 SheetViewList.RemoveRows(0, SheetViewList.Rows.Count);
-            if (listSheetViewVo is not null) {
+            if (_listSheetViewVo is not null) {
                 /*
                  * 朝電・無断のみを抽出
                  */
                 if (CheckBoxExAbsence.Checked)
-                    listSheetViewVo = listSheetViewVo.FindAll(x => x.SetCode == 1312141 || x.SetCode == 1312140);
+                    _listSheetViewVo = _listSheetViewVo.FindAll(x => x.SetCode == 1312140 || x.SetCode == 1312141);
                 /*
                  * 変数定義
                  */
-                foreach (SheetViewVo sheetViewVo in listSheetViewVo.OrderBy(x => x.OperationDate)) {
+                foreach (SheetViewVo sheetViewVo in _listSheetViewVo.OrderBy(x => x.OperationDate)) {
                     SheetViewList.Rows.Add(rowCount, 1);
                     SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     SheetViewList.Rows[rowCount].Height = 20; // Rowの高さ
@@ -507,34 +497,6 @@ namespace Staff {
             if (((DateTimePickerEx)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
                 this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((DateTimePickerEx)sender).GetValue()));
             }
-        }
-
-        /// <summary>
-        /// printDocument_PrintPage
-        /// </summary>
-        private int curPageNumber = 0; // 現在のページ番号
-        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
-            if (curPageNumber == 0) {
-                // 印刷ページ（1ページ目）の描画を行う
-                Rectangle rectangle = new Rectangle(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-                // 使用するページ数を計算
-                //int cnt = SpreadStaffRegisterHead.GetOwnerPrintPageCount(e.Graphics, rectangle, 0);
-                // e.Graphicsへ出力
-                SpreadList.OwnerPrintDraw(e.Graphics, rectangle, 0, 1);
-                // 印刷継続を指定
-                e.HasMorePages = false;
-            } else {
-                //// 印刷ページ（2ページ目）の描画を行う
-                //Rectangle rectangle = new Rectangle(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-                //// 使用するページ数を計算
-                ////int cnt = SpreadStaffRegisterHead.GetOwnerPrintPageCount(e.Graphics, rectangle, 0);
-                //// e.Graphicsへ出力
-                //SpreadStaffRegisterTail.OwnerPrintDraw(e.Graphics, rectangle, 0, 1);
-                //// 印刷終了を指定
-                //e.HasMorePages = false;
-            }
-            //ページ番号を繰り上げる
-            curPageNumber++;
         }
 
         /// <summary>

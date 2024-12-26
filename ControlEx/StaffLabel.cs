@@ -395,14 +395,20 @@ namespace ControlEx {
         /// </summary>
         public int OccupationCode {
             get => this._occupationCode;
-            set => this._occupationCode = value;
+            set {
+                this._occupationCode = value;
+                Refresh();
+            }
         }
         /// <summary>
         /// true:代番 false:本番
         /// </summary>
         public bool ProxyFlag {
             get => this._proxyFlag;
-            set => this._proxyFlag = value;
+            set {
+                this._proxyFlag = value;
+                Refresh();
+            }
         }
         /// <summary>
         /// true:点呼実施済 false:点呼未実施

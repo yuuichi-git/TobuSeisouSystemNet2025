@@ -137,6 +137,11 @@ namespace EmploymentAgreement {
         private readonly Dictionary<int, string> _dictionaryOccupation = new();
         private readonly Dictionary<int, string> _dictionaryJobDescription = new();
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
+        /*
+         * Flag
+         */
+        private bool _contractExpirationPartTimeJob;
+        private bool _contractExpirationLongJobFlag;
 
         /// <summary>
         /// コンストラクター
@@ -261,12 +266,15 @@ namespace EmploymentAgreement {
                 List<ContractExpirationVo>? listContractExpirationVo = _listContractExpirationVo.FindAll(x => x.StaffCode == staffMasterVo.StaffCode);
                 if (listContractExpirationVo is not null) {
                     /*
-                     * 体験入社契約
+                     * 長期対象者契約
                      */
-                    if (listContractExpirationVo.Find(x => x.Code == 21) is not null) {
-                        SheetViewList.Cells[rowCount, _colExperienceStartDate].Value = listContractExpirationVo.Find(x => x.Code == 21).StartDate;
-                        SheetViewList.Cells[rowCount, _colExperienceEndDate].Value = listContractExpirationVo.Find(x => x.Code == 21).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 21).EndDate, rowCount, _colExperienceEndDate);
+                    if (listContractExpirationVo.Find(x => x.Code == 10) is not null) {
+                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 10).StartDate;
+                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 10).EndDate;
+                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 10).EndDate, rowCount, _colContractExpirationLongJobEndDate);
+                        this._contractExpirationLongJobFlag = true;
+                    } else {
+                        this._contractExpirationLongJobFlag = false;
                     }
                     /*
                      * 継続アルバイト契約
@@ -274,15 +282,20 @@ namespace EmploymentAgreement {
                     if (listContractExpirationVo.Find(x => x.Code == 20) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationPartTimeJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 20).StartDate;
                         SheetViewList.Cells[rowCount, _colContractExpirationPartTimeJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 20).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 20).EndDate, rowCount, _colContractExpirationPartTimeJobEndDate);
+                        if (!this._contractExpirationLongJobFlag) // 長期対象者契約がされている場合は色処理をしない
+                            this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 20).EndDate, rowCount, _colContractExpirationPartTimeJobEndDate);
+                        this._contractExpirationPartTimeJob = true;
+                    } else {
+                        this._contractExpirationPartTimeJob = false;
                     }
                     /*
-                     * 長期対象者契約
+                     * 体験入社契約
                      */
-                    if (listContractExpirationVo.Find(x => x.Code == 10) is not null) {
-                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 10).StartDate;
-                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 10).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 10).EndDate, rowCount, _colContractExpirationLongJobEndDate);
+                    if (listContractExpirationVo.Find(x => x.Code == 21) is not null) {
+                        SheetViewList.Cells[rowCount, _colExperienceStartDate].Value = listContractExpirationVo.Find(x => x.Code == 21).StartDate;
+                        SheetViewList.Cells[rowCount, _colExperienceEndDate].Value = listContractExpirationVo.Find(x => x.Code == 21).EndDate;
+                        if (!this._contractExpirationPartTimeJob) // 継続アルバイト契約がされている場合は色処理をしない
+                            this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 21).EndDate, rowCount, _colExperienceEndDate);
                     }
                     /*
                      * 短期対象者契約
@@ -313,6 +326,16 @@ namespace EmploymentAgreement {
                         SheetViewList.Cells[rowCount, _colContractExpirationNotice].Value = listContractExpirationVo.Find(x => x.Code == 50).EndDate;
                         this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 50).EndDate, rowCount, _colContractExpirationNotice);
                     }
+                    /*
+                     * セルの色指定
+                     * 入社年月日に対して182日以内、年齢65歳以下、尚且つ55日以降と60日以降に色を変える（労共加入対象者）
+                     */
+                    if ((DateTime.Now - staffMasterVo.EmploymentDate).Days < 183 &&           // 半年以内
+                        !this._contractExpirationLongJobFlag &&                               // 長期対象者契約ではない
+                        _dateUtility.GetAge(staffMasterVo.BirthDate) <= 65 &&                 // ６５歳以下
+                        (staffMasterVo.Occupation == 10 || staffMasterVo.Occupation == 11)) { // 運転手・作業員
+                        this.SetCellColorEmploymentDate(staffMasterVo.EmploymentDate, rowCount, _colEmplomentDate);
+                    }
                 }
                 SheetViewList.Rows[rowCount].Tag = staffMasterVo;
                 rowCount++;
@@ -325,7 +348,7 @@ namespace EmploymentAgreement {
         }
 
         /// <summary>
-        /// セルの色を設定
+        /// 契約期限切れの基準色
         /// </summary>
         /// <param name="endDate"></param>
         /// <param name="row"></param>
@@ -337,6 +360,23 @@ namespace EmploymentAgreement {
                     break;
                 case int n when (n <= 3):
                     SheetViewList.Cells[row, col].BackColor = Color.Orange;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 入社日から６０日の基準色
+        /// </summary>
+        /// <param name="employmentDate"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        private void SetCellColorEmploymentDate(DateTime employmentDate, int row, int col) {
+            switch ((DateTime.Now.Date - employmentDate.Date).Days) {
+                case int n when (n >= 60):
+                    SheetViewList.Cells[row, col].BackColor = Color.LightCoral;
+                    break;
+                case int n when (n >= 50):
+                    SheetViewList.Cells[row, col].BackColor = Color.MistyRose;
                     break;
             }
         }

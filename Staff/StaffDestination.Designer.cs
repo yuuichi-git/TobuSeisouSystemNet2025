@@ -26,7 +26,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDestination));
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
             this.CheckBoxExAbsence = new ControlEx.CheckBoxEx();
@@ -59,6 +58,7 @@
             this.checkBoxEx3 = new ControlEx.CheckBoxEx();
             this.checkBoxEx5 = new ControlEx.CheckBoxEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();
@@ -262,6 +262,8 @@
             // checkBoxEx18
             // 
             this.checkBoxEx18.AutoSize = true;
+            this.checkBoxEx18.Checked = true;
+            this.checkBoxEx18.CheckState = CheckState.Checked;
             this.checkBoxEx18.Location = new Point(432, 20);
             this.checkBoxEx18.Name = "checkBoxEx18";
             this.checkBoxEx18.Size = new Size(68, 19);

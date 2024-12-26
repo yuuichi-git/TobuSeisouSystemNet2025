@@ -113,7 +113,7 @@ namespace VehicleDispatch {
                     break;
                 case "ButtonExStockBoxOpen":
                     if (stockBoxs is null || stockBoxs.IsDisposed) {
-                        stockBoxs = new(_connectionVo);
+                        stockBoxs = new(_connectionVo, _board);
                         _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), stockBoxs);
                         stockBoxs.Show(this);
                     } else {
@@ -451,13 +451,103 @@ namespace VehicleDispatch {
                  * ---------- CarLabel ----------
                  * 
                  */
-
+                /*
+                 * 管理地
+                 */
+                case "ToolStripMenuItemCarWarehouseAdachi": // 0:該当なし 1:足立 2:三郷
+                    try {
+                        ((CarLabel)_contextMenuStripExOpendControl).CarGarageCode = 1;
+                        ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の管理車庫を足立に変更しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                case "ToolStripMenuItemCarWarehouseMisato": // 0:該当なし 1:足立 2:三郷
+                    try {
+                        ((CarLabel)_contextMenuStripExOpendControl).CarGarageCode = 2;
+                        ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の管理車庫を三郷に変更しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                /*
+                 * 代車処理
+                 */
+                case "ToolStripMenuItemCarProxyTrue": // true:代車 false:なし
+                    try {
+                        ((CarLabel)_contextMenuStripExOpendControl).ProxyFlag = true;
+                        ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "を代車に設定しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                case "ToolStripMenuItemCarProxyFalse": // true:代車 false:なし
+                    try {
+                        ((CarLabel)_contextMenuStripExOpendControl).ProxyFlag = false;
+                        ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の代車を解除しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
                 /*
                  * 
                  * ---------- StaffLabel ----------
                  * 
                  */
-
+                /*
+                 * 代番
+                 */
+                case "ToolStripMenuItemStaffProxyTrue":
+                    try {
+                        ((StaffLabel)_contextMenuStripExOpendControl).ProxyFlag = true;
+                        ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を代番に設定しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                case "ToolStripMenuItemStaffProxyFalse":
+                    try {
+                        ((StaffLabel)_contextMenuStripExOpendControl).ProxyFlag = false;
+                        ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "の代番を解除しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                /*
+                 * 職種
+                 */
+                case "ToolStripMenuItemStaffOccupation10":
+                    try {
+                        ((StaffLabel)_contextMenuStripExOpendControl).OccupationCode = 10;
+                        ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を運転手として登録しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
+                case "ToolStripMenuItemStaffOccupation11":
+                    try {
+                        ((StaffLabel)_contextMenuStripExOpendControl).OccupationCode = 11;
+                        ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).SetControlRelocation(); // プロパティの再構築
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を作業員として登録しました。"));
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message);
+                    }
+                    break;
                 default:
                     MessageBox.Show("ToolStripMenuItem_Click");
                     break;

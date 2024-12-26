@@ -365,7 +365,10 @@ namespace ControlEx {
         /// </summary>
         public int CarGarageCode {
             get => this._carGarageCode;
-            set => this._carGarageCode = value;
+            set {
+                this._carGarageCode = value;
+                Refresh();
+            }
         }
         /// <summary>
         /// true:メモが存在する false:メモが存在しない
@@ -386,7 +389,10 @@ namespace ControlEx {
         /// </summary>
         public bool ProxyFlag {
             get => this._proxyFlag;
-            set => this._proxyFlag = value;
+            set {
+                this._proxyFlag = value;
+                Refresh();
+            }
         }
 
     }

@@ -530,8 +530,15 @@ namespace ControlEx {
             set {
                 this._operationFlag = value;
                 this.Refresh();
-                // SetControlのプロパティをセット
-                ((SetControl)this.ParentControl).OperationFlag = this.OperationFlag;
+                switch (this.ParentControl) {
+                    case SetControl: // SetControl
+                        // SetControlのプロパティをセット
+                        ((SetControl)this.ParentControl).OperationFlag = this.OperationFlag;
+                        break;
+                    case StockBoxPanel: // StockBoxPanelBase
+
+                        break;
+                }
             }
         }
         /// <summary>
@@ -647,12 +654,5 @@ namespace ControlEx {
                 this.Refresh();
             }
         }
-
-
-
-
-
-
-
     }
 }

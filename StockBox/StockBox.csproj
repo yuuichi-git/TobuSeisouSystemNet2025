@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\Dao\Dao.csproj" />
   </ItemGroup>
 
 </Project>
