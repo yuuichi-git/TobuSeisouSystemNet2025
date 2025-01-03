@@ -10,11 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CollectionWeight\CollectionWeight.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
     <ProjectReference Include="..\Dao\Dao.csproj" />
-    <ProjectReference Include="..\RollCall\RollCall.csproj" />
-    <ProjectReference Include="..\StockBox\StockBox.csproj" />
   </ItemGroup>
 
 </Project>

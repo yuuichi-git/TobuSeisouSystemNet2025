@@ -21,6 +21,7 @@ namespace StockBox {
         private readonly SetMasterDao _setMasterDao;
         private readonly CarMasterDao _carMasterDao;
         private readonly StaffMasterDao _staffMasterDao;
+        private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
          */
@@ -45,6 +46,7 @@ namespace StockBox {
             _setMasterDao = new(connectionVo);
             _carMasterDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
+            _vehicleDispatchDetailDao = new(connectionVo);
             /*
              * Vo
              */
@@ -73,12 +75,15 @@ namespace StockBox {
              * StockBoxPanelBase
              */
             _stockBoxPanel = new();
-
+            _stockBoxPanel.StockBoxPanel_OnDragDrop += this.OnDragDrop;
+            _stockBoxPanel.StockBoxPanel_OnDragEnter += this.OnDragEnter;
+            _stockBoxPanel.StockBoxPanel_OnDragOver += this.OnDragOver;
             this.TableLayoutPanelExBase.Controls.Add(_stockBoxPanel, 0, 2);
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
         }
 
+        private string _selectedPanelName = string.Empty;
         /// <summary>
         /// 
         /// </summary>
@@ -87,6 +92,7 @@ namespace StockBox {
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((ButtonEx)sender).Name) {
                 case "ButtonExSet":
+                    _selectedPanelName = "SetLabel";
                     try {
                         this.RemoveControls();
                         this._stockBoxPanel.Controls.AddRange(GetArraySetLabel());
@@ -95,6 +101,7 @@ namespace StockBox {
                     }
                     break;
                 case "ButtonExCar":
+                    _selectedPanelName = "CarLabel";
                     try {
                         this.RemoveControls();
                         this._stockBoxPanel.Controls.AddRange(GetArrayCarLabel(_board.GetAllCarLabel()));
@@ -103,41 +110,46 @@ namespace StockBox {
                     }
                     break;
                 case "ButtonExFullTime":
+                    _selectedPanelName = "StaffLabel";
                     try {
                         this.RemoveControls();
-                        MessageBox.Show("ButtonExFullTime");
+                        this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExFullTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ButtonExPartTime":
+                    _selectedPanelName = "StaffLabel";
                     try {
                         this.RemoveControls();
-                        MessageBox.Show("ButtonExPartTime");
+                        this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExPartTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ButtonExLongTime":
+                    _selectedPanelName = "StaffLabel";
                     try {
                         this.RemoveControls();
-                        MessageBox.Show("ButtonExLongTime");
+                        this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExLongTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ButtonExShortTime":
+                    _selectedPanelName = "StaffLabel";
                     try {
                         this.RemoveControls();
-                        MessageBox.Show("ButtonExShortTime");
+                        this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExShortTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ButtonExDispatch":
+                    _selectedPanelName = "StaffLabel";
                     try {
                         this.RemoveControls();
-                        MessageBox.Show("ButtonExDispatch");
+                        this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExDispatch"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -165,13 +177,6 @@ namespace StockBox {
             return _arrayControl;
         }
 
-        private List<int> CreateSetCodeList(List<SetMasterVo> listSetMasterVo) {
-            List<int> list = new();
-            foreach (SetMasterVo setMasterVo in listSetMasterVo)
-                list.Add(setMasterVo.SetCode);
-            return list;
-        }
-
         public SetLabel GetOneSetLabel(SetMasterVo setMasterVo) {
             SetLabel setLabel = new(setMasterVo);
             setLabel.ParentControl = this._stockBoxPanel;
@@ -193,7 +198,7 @@ namespace StockBox {
             //setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //setLabel.SetLabel_OnMouseClick += OnMouseClick;
             //setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            //setLabel.SetLabel_OnMouseDown += OnMouseDown;
+            setLabel.SetLabel_OnMouseDown += OnMouseDown;
             //setLabel.MouseMove += OnMouseMove;
             //setLabel.MouseUp += OnMouseUp;
             return setLabel;
@@ -240,7 +245,7 @@ namespace StockBox {
             //carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //carLabel.CarLabel_OnMouseClick += OnMouseClick;
             //carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            //carLabel.CarLabel_OnMouseDown += OnMouseDown;
+            carLabel.CarLabel_OnMouseDown += OnMouseDown;
             //carLabel.MouseMove += OnMouseMove;
             //carLabel.MouseUp += OnMouseUp;
             return carLabel;
@@ -251,11 +256,28 @@ namespace StockBox {
          * StaffLabel
          * 
          */
-        public StaffLabel[] GetArrayStaffLabel(List<StaffMasterVo> listStaffMasterVo) {
+        public StaffLabel[] GetArrayStaffLabel(List<StaffMasterVo> listStaffMasterVo, string key) {
             List<StaffMasterVo> newListStaffMasterVo = _listStaffMasterVoForMasterData.Where(x => !CreateStaffCodeList(listStaffMasterVo).Contains(x.StaffCode)).ToList();
+            switch (key) {
+                case "ButtonExFullTime": // 社員
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 10 || x.Belongs == 11 || x.Belongs == 14 || x.Belongs == 15) && x.RetirementFlag == false);
+                    break;
+                case "ButtonExPartTime": // アルバイト
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 12 && x.RetirementFlag == false);
+                    break;
+                case "ButtonExLongTime": // 長期
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 20 || x.Belongs == 21) && x.JobForm == 10 && x.RetirementFlag == false);
+                    break;
+                case "ButtonExShortTime": // 短期
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 20 || x.Belongs == 21) && x.JobForm == 11 && x.RetirementFlag == false);
+                    break;
+                case "ButtonExDispatch": // 派遣
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 13 && x.RetirementFlag == false);
+                    break;
+            }
             StaffLabel[] _arrayControl = new StaffLabel[newListStaffMasterVo.Count];
             int i = 0;
-            foreach (StaffMasterVo staffMasterVo in newListStaffMasterVo) {
+            foreach (StaffMasterVo staffMasterVo in newListStaffMasterVo.OrderBy(x => x.NameKana)) {
                 _arrayControl[i] = GetOneStaffLabel(staffMasterVo);
                 i++;
             }
@@ -283,10 +305,120 @@ namespace StockBox {
             //staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
             //staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            //staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
+            staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
             //staffLabel.MouseMove += OnMouseMove;
             //staffLabel.MouseUp += OnMouseUp;
             return staffLabel;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMouseDown(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                switch (sender) {
+                    case SetLabel setLabel:
+                        setLabel.DoDragDrop(sender, DragDropEffects.Move);
+                        break;
+                    case CarLabel carLabel:
+                        carLabel.DoDragDrop(sender, DragDropEffects.Move);
+                        break;
+                    case StaffLabel staffLabel:
+                        staffLabel.DoDragDrop(sender, DragDropEffects.Move);
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// DragされているControl
+        /// </summary>
+        private Control _dragEnterObject;
+        /// <summary>
+        /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
+        /// </summary>
+        /// <param name="dragEventArgs"></param>
+        private void OnDragEnter(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+                _dragEnterObject = (SetLabel)e.Data.GetData(typeof(SetLabel));
+            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                _dragEnterObject = (CarLabel)e.Data.GetData(typeof(CarLabel));
+            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                _dragEnterObject = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+            }
+        }
+
+        /// <summary>
+        /// ドラッグ アンド ドロップ操作中にマウス カーソルがコントロールの境界内を移動したときに発生します。
+        /// Copy  :データがドロップ先にコピーされようとしている状態
+        /// Move  :データがドロップ先に移動されようとしている状態
+        /// Scroll:データによってドロップ先でスクロールが開始されようとしている状態、あるいは現在スクロール中である状態
+        /// All   :上の3つを組み合わせたもの
+        /// Link  :データのリンクがドロップ先に作成されようとしている状態
+        /// None  :いかなるデータもドロップ先が受け付けようとしない状態
+        /// </summary>
+        /// <param name="e"></param>
+        private void OnDragOver(object sender, DragEventArgs e) {
+            if (_selectedPanelName == _dragEnterObject.Name) {
+                e.Effect = DragDropEffects.Move;
+            } else {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// ObjectがDropされると発生します。
+        /// </summary>
+        /// <param name="sender">DropされたSetControlが入っている</param>
+        /// <param name="e"></param>
+        private void OnDragDrop(object sender, DragEventArgs e) {
+            switch (_dragEnterObject.Parent) {
+                case SetControl setControl:
+                    switch (_dragEnterObject) {
+                        /* 
+                         * 更新手順
+                         * ①Controlを移動する
+                         * ②SetControlRelocationを実行
+                         * ③DB更新
+                         */
+                        case SetLabel setLabel:
+                            try {
+                                ((StockBoxPanel)sender).Controls.Add(setLabel);
+                                ((SetControl)setLabel.ParentControl).SetControlRelocation();
+                                this._vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)setLabel.ParentControl).GetVehicleDispatchDetailVo());
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat("SetLabelのDrug&Drop処理を完了しました。");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case CarLabel carLabel:
+                            try {
+                                ((StockBoxPanel)sender).Controls.Add(carLabel);
+                                ((SetControl)carLabel.ParentControl).SetControlRelocation();
+                                this._vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)carLabel.ParentControl).GetVehicleDispatchDetailVo());
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat("CarLabelのDrug&Drop処理を完了しました。");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case StaffLabel staffLabel:
+                            try {
+                                ((StockBoxPanel)sender).Controls.Add(staffLabel);
+                                ((SetControl)staffLabel.ParentControl).SetControlRelocation();
+                                this._vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo());
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat("StaffLabelのDrug&Drop処理を完了しました。");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                    }
+                    break;
+                case StockBoxPanel stockBoxPanel:
+                    this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat("StockBoxPanel内での移動です。");
+                    break;
+            }
         }
 
         /// <summary>

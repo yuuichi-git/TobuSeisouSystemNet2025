@@ -356,7 +356,7 @@ namespace ControlEx {
                 if (this.StandByFlag)
                     pe.Graphics.DrawString("待機", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(37, 90));
                 // カーソル関係
-                if (CursorEnterFlag)
+                if (this.CursorEnterFlag)
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             } else {
                 // 休車

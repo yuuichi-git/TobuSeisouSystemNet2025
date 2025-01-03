@@ -19,6 +19,12 @@ namespace Vo {
         private bool _checkFlag; //組合に押印提出中
         private bool _koyouFlag; // 雇用保険の適用
         private bool _syakaiFlag; // 社会保険の適用
+        private string _salaryRaise; // 昇給
+        private string _bonusSummerText; // 夏ボーナス
+        private int _bonusSummerPay; // 夏ボーナス金額
+        private string _bonusWinterText; // 冬ボーナス
+        private int _bonusWinterPay; // 冬ボーナス金額
+        private string _bonusDetailText; // 但し書き
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -43,6 +49,12 @@ namespace Vo {
             _checkFlag = false;
             _koyouFlag = false;
             _syakaiFlag = false;
+            _salaryRaise = string.Empty;
+            _bonusSummerText = string.Empty;
+            _bonusSummerPay = 0;
+            _bonusWinterText = string.Empty;
+            _bonusWinterPay = 0;
+            _bonusDetailText = string.Empty;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -162,6 +174,48 @@ namespace Vo {
         public bool SyakaiFlag {
             get => this._syakaiFlag;
             set => this._syakaiFlag = value;
+        }
+        /// <summary>
+        /// 昇給の有無
+        /// </summary>
+        public string SalaryRaise {
+            get => this._salaryRaise;
+            set => this._salaryRaise = value;
+        }
+        /// <summary>
+        /// 夏賞与の有無
+        /// </summary>
+        public string BonusSummerText {
+            get => this._bonusSummerText;
+            set => this._bonusSummerText = value;
+        }
+        /// <summary>
+        /// 夏賞与の金額
+        /// </summary>
+        public int BonusSummerPay {
+            get => this._bonusSummerPay;
+            set => this._bonusSummerPay = value;
+        }
+        /// <summary>
+        /// 冬賞与の有無
+        /// </summary>
+        public string BonusWinterText {
+            get => this._bonusWinterText;
+            set => this._bonusWinterText = value;
+        }
+        /// <summary>
+        /// 冬賞与の金額
+        /// </summary>
+        public int BonusWinterPay {
+            get => this._bonusWinterPay;
+            set => this._bonusWinterPay = value;
+        }
+        /// <summary>
+        /// 但し、会社の業績により支給しない場合もある。
+        /// </summary>
+        public string BonusDetailText {
+            get => this._bonusDetailText;
+            set => this._bonusDetailText = value;
         }
         public string InsertPcName {
             get => this._insertPcName;

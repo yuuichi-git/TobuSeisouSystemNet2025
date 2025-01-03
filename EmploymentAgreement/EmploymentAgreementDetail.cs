@@ -427,7 +427,12 @@ namespace EmploymentAgreement {
             this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime; // 休憩時間
             this.CheckBoxExKOYOU.Checked = _employmentAgreementVo.KoyouFlag; // 雇用保険の有無
             this.CheckBoxExSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag; // 社会保険の有無
-
+            this.ComboBoxExSalaryRaise.Text = _employmentAgreementVo.SalaryRaise;
+            this.ComboBoxExBonusSummerText.Text = _employmentAgreementVo.BonusSummerText;
+            this.NumericUpDownExBonusSummerPay.Value = _employmentAgreementVo.BonusSummerPay;
+            this.ComboBoxExBonusWinterText.Text = _employmentAgreementVo.BonusWinterText;
+            this.NumericUpDownExBonusWinterPay.Value = _employmentAgreementVo.BonusWinterPay;
+            this.ComboBoxExBonusDetailText.Text = _employmentAgreementVo.BonusDetailText;
             this.PutExpiration(_listContractExpirationVo);
             this.PutContractExpirationPartTimeJob(_listContractExpirationVo);
             this.PutContractExpirationLongJob(_listContractExpirationVo);
@@ -613,6 +618,12 @@ namespace EmploymentAgreement {
             employmentAgreementVo.CheckFlag = this.CheckBoxExCheckFlag.Checked;
             employmentAgreementVo.KoyouFlag = this.CheckBoxExKOYOU.Checked;
             employmentAgreementVo.SyakaiFlag = this.CheckBoxExSYAKAI.Checked;
+            employmentAgreementVo.SalaryRaise = this.ComboBoxExSalaryRaise.Text;
+            employmentAgreementVo.BonusSummerText = this.ComboBoxExBonusSummerText.Text;
+            employmentAgreementVo.BonusSummerPay = (int)this.NumericUpDownExBonusSummerPay.Value;
+            employmentAgreementVo.BonusWinterText = this.ComboBoxExBonusWinterText.Text;
+            employmentAgreementVo.BonusWinterPay = (int)this.NumericUpDownExBonusWinterPay.Value;
+            employmentAgreementVo.BonusDetailText = this.ComboBoxExBonusDetailText.Text;
             employmentAgreementVo.InsertPcName = Environment.MachineName;
             employmentAgreementVo.InsertYmdHms = DateTime.Now;
             employmentAgreementVo.UpdatePcName = Environment.MachineName;

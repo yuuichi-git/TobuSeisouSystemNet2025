@@ -65,6 +65,12 @@ namespace Dao {
                                             "CheckFlag," +
                                             "KoyouFlag," +
                                             "SyakaiFlag," +
+                                            "SalaryRaise," +
+                                            "BonusSummerText," +
+                                            "BonusSummerPay," +
+                                            "BonusWinterText," +
+                                            "BonusWinterPay," +
+                                            "BonusDetailText," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -91,6 +97,12 @@ namespace Dao {
                     employmentAgreementVo.CheckFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CheckFlag"]);
                     employmentAgreementVo.KoyouFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["KoyouFlag"]);
                     employmentAgreementVo.SyakaiFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["SyakaiFlag"]);
+                    employmentAgreementVo.SalaryRaise = _defaultValue.GetDefaultValue<string>(sqlDataReader["SalaryRaise"]);
+                    employmentAgreementVo.BonusSummerText = _defaultValue.GetDefaultValue<string>(sqlDataReader["BonusSummerText"]);
+                    employmentAgreementVo.BonusSummerPay = _defaultValue.GetDefaultValue<int>(sqlDataReader["BonusSummerPay"]);
+                    employmentAgreementVo.BonusWinterText = _defaultValue.GetDefaultValue<string>(sqlDataReader["BonusWinterText"]);
+                    employmentAgreementVo.BonusWinterPay = _defaultValue.GetDefaultValue<int>(sqlDataReader["BonusWinterPay"]);
+                    employmentAgreementVo.BonusDetailText = _defaultValue.GetDefaultValue<string>(sqlDataReader["BonusDetailText"]);
                     employmentAgreementVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     employmentAgreementVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     employmentAgreementVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -144,6 +156,12 @@ namespace Dao {
                                                                        "CheckFlag," +
                                                                        "KoyouFlag," +
                                                                        "SyakaiFlag," +
+                                                                       "SalaryRaise," +
+                                                                       "BonusSummerText," +
+                                                                       "BonusSummerPay," +
+                                                                       "BonusWinterText," +
+                                                                       "BonusWinterPay," +
+                                                                       "BonusDetailText," +
                                                                        "InsertPcName," +
                                                                        "InsertYmdHms," +
                                                                        "UpdatePcName," +
@@ -166,6 +184,12 @@ namespace Dao {
                                             "'" + employmentAgreementVo.CheckFlag + "'," +
                                             "'" + employmentAgreementVo.KoyouFlag + "'," +
                                             "'" + employmentAgreementVo.SyakaiFlag + "'," +
+                                            "'" + employmentAgreementVo.SalaryRaise + "'," +
+                                            "'" + employmentAgreementVo.BonusSummerText + "'," +
+                                             "" + employmentAgreementVo.BonusSummerPay + "," +
+                                            "'" + employmentAgreementVo.BonusWinterText + "'," +
+                                             "" + employmentAgreementVo.BonusWinterPay + "," +
+                                            "'" + employmentAgreementVo.BonusDetailText + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -204,6 +228,12 @@ namespace Dao {
                                          "CheckFlag = '" + employmentAgreementVo.CheckFlag + "'," +
                                          "KoyouFlag = '" + employmentAgreementVo.KoyouFlag + "'," +
                                          "SyakaiFlag = '" + employmentAgreementVo.SyakaiFlag + "'," +
+                                         "SalaryRaise = '" + employmentAgreementVo.SalaryRaise + "'," +
+                                         "BonusSummerText = '" + employmentAgreementVo.BonusSummerText + "'," +
+                                         "BonusSummerPay = " + employmentAgreementVo.BonusSummerPay + "," +
+                                         "BonusWinterText = '" + employmentAgreementVo.BonusWinterText + "'," +
+                                         "BonusWinterPay = " + employmentAgreementVo.BonusWinterPay + "," +
+                                         "BonusDetailText = '" + employmentAgreementVo.BonusDetailText + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + employmentAgreementVo.StaffCode;

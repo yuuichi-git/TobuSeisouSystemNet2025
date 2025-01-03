@@ -117,13 +117,17 @@ namespace ControlEx {
          */
         private const int _columnCount = 1; // Columnの数
         private const int _rowCount = 4; // Rowの数
+        /*
+         * 
+         */
+        private bool _oldOnCursorFlag = false;
+        private bool _newOnCursorFlag = false;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
         public SetControl(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             _vehicleDispatchDetailVo = vehicleDispatchDetailVo;
-
             /*
              * プロパティに値をセットする
              */
@@ -177,27 +181,36 @@ namespace ControlEx {
             this.MouseDown += OnMouseDown; // 画面スクロールに使う
             this.MouseMove += OnMouseMove; // 画面スクロールに使う
             this.MouseUp += OnMouseUp; // 画面スクロールに使う
+            this.MouseEnter += OnMouseEnter;
+            this.MouseLeave += OnMouseLeave;
         }
 
+        /*
+         * ContextMenuStrip
+         */
+        ContextMenuStrip contextMenuStrip = new();
+        ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
+        ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
         private void CreateContextMenuStrip() {
-            ContextMenuStrip contextMenuStrip = new();
+            //ContextMenuStrip contextMenuStrip = new();
             contextMenuStrip.Name = "ContextMenuStripSetControl";
             contextMenuStrip.Opened += ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
 
-            ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
+            //ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
             toolStripMenuItem00.Name = "ToolStripMenuItemCarVerification";
             toolStripMenuItem00.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
-            ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
+            //ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
             toolStripMenuItem00_0.Name = "ToolStripMenuItemSetControlSingle";
             toolStripMenuItem00_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_0);
             contextMenuStrip.Items.Add(toolStripMenuItem00);
-            ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
+            //ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
             toolStripMenuItem00_1.Name = "ToolStripMenuItemSetControlDouble";
             toolStripMenuItem00_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_1);
@@ -244,6 +257,8 @@ namespace ControlEx {
             setLabel.SetLabel_OnMouseClick += OnMouseClick;
             setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
             setLabel.SetLabel_OnMouseDown += OnMouseDown;
+            setLabel.SetLabel_OnMouseEnter += OnMouseEnter;
+            setLabel.SetLabel_OnMouseLeave += OnMouseLeave;
             setLabel.MouseMove += OnMouseMove;
             setLabel.MouseUp += OnMouseUp;
             this.Controls.Add(setLabel, 0, 0);
@@ -272,6 +287,8 @@ namespace ControlEx {
             carLabel.CarLabel_OnMouseClick += OnMouseClick;
             carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
             carLabel.CarLabel_OnMouseDown += OnMouseDown;
+            carLabel.CarLabel_OnMouseEnter += OnMouseEnter;
+            carLabel.CarLabel_OnMouseLeave += OnMouseLeave;
             carLabel.MouseMove += OnMouseMove;
             carLabel.MouseUp += OnMouseUp;
             this.Controls.Add(carLabel, 0, 1);
@@ -352,6 +369,8 @@ namespace ControlEx {
                 staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
                 staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
                 staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
+                staffLabel.StaffLabel_OnMouseEnter += OnMouseEnter;
+                staffLabel.StaffLabel_OnMouseLeave += OnMouseLeave;
                 staffLabel.MouseMove += OnMouseMove;
                 staffLabel.MouseUp += OnMouseUp;
                 this.Controls.Add(staffLabel, number <= 1 ? 0 : 1, number % 2 == 0 ? 2 : 3);
@@ -575,6 +594,15 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            if ((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
+                // Single-SetControlに変更する場合、自分自身が"Double-SetControl"でなくてはならない
+                toolStripMenuItem00_0.Enabled = this.PurposeFlag ? true : false;
+                // Double-SetControlに変更する場合、自分自身が"Single-SetControl"でなくてはならない
+                toolStripMenuItem00_1.Enabled = !this.PurposeFlag ? true : false;
+            } else {
+                toolStripMenuItem00_0.Enabled = false;
+                toolStripMenuItem00_1.Enabled = false;
+            }
             //
             SetControl_ContextMenuStrip_Opened.Invoke(sender, e);
         }
@@ -632,38 +660,35 @@ namespace ControlEx {
             } else {
 
             }
+            /*
+             * H_SetControlの外枠を描画する
+             */
+            if (_oldOnCursorFlag) {
+                if (this.PurposeFlag) {
+                    e.Graphics.DrawRectangle(new Pen(Color.Gray, 2), new Rectangle(1, 1, 146, 477));
+                } else {
+                    e.Graphics.DrawRectangle(new Pen(Color.Gray, 2), new Rectangle(1, 1, 71, 477));
+                }
+            }
         }
 
         /// <summary>
-        /// Drag・DropされたControlを退避する処理
+        /// DragされているControl
         /// </summary>
-        /// <param name="dragEventArgs"></param>
-        protected override void OnDragDrop(DragEventArgs e) {
-            if (e.Data.GetDataPresent(typeof(SetLabel))) {
-                this.DragControl = (SetLabel)e.Data.GetData(typeof(SetLabel));
-                this.DragParentControl = ((SetLabel)this.DragControl).Parent;
-                ((SetLabel)this.DragControl).ParentControl = this;
-            }
-            if (e.Data.GetDataPresent(typeof(CarLabel))) {
-                this.DragControl = (CarLabel)e.Data.GetData(typeof(CarLabel));
-                this.DragParentControl = ((CarLabel)this.DragControl).Parent;
-                ((CarLabel)this.DragControl).ParentControl = this;
-            }
-            if (e.Data.GetDataPresent(typeof(StaffLabel))) {
-                this.DragControl = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
-                this.DragParentControl = ((StaffLabel)this.DragControl).Parent;
-                ((StaffLabel)this.DragControl).ParentControl = this;
-            }
-            //
-            SetControl_OnDragDrop.Invoke(this, e);
-        }
-
+        private Control _dragEnterObject;
         /// <summary>
         /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
         /// </summary>
         /// <param name="dragEventArgs"></param>
         protected override void OnDragEnter(DragEventArgs e) {
-            //
+            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+                _dragEnterObject = (SetLabel)e.Data.GetData(typeof(SetLabel));
+            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                _dragEnterObject = (CarLabel)e.Data.GetData(typeof(CarLabel));
+            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                _dragEnterObject = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+            }
+            // 処理を渡す
             SetControl_OnDragEnter.Invoke(this, e);
         }
 
@@ -680,17 +705,46 @@ namespace ControlEx {
         protected override void OnDragOver(DragEventArgs e) {
             Point clientPoint = this.PointToClient(new Point(e.X, e.Y));
             Point cellPoint = new(clientPoint.X / (int)CellWidth, clientPoint.Y / (int)CellHeight);
-            if (e.Data.GetDataPresent(typeof(SetLabel))) {
-                e.Effect = (cellPoint.X == 0 && cellPoint.Y == 0 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
-            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
-                e.Effect = (cellPoint.X == 0 && cellPoint.Y == 1 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
-            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
-                e.Effect = ((cellPoint.Y == 2 || cellPoint.Y == 3) && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
-            } else {
-                e.Effect = DragDropEffects.None;
+            switch (_dragEnterObject) {
+                case SetLabel setLabel:
+                    e.Effect = (cellPoint.X == 0 && cellPoint.Y == 0 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+                    break;
+                case CarLabel carLabel:
+                    e.Effect = (cellPoint.X == 0 && cellPoint.Y == 1 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+                    break;
+                case StaffLabel staffLabel:
+                    e.Effect = ((cellPoint.Y == 2 || cellPoint.Y == 3) && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
+                    break;
+                default:
+                    e.Effect = DragDropEffects.None;
+                    break;
             }
             // 処理を渡す
             SetControl_OnDragOver.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Drag・DropされたControlを退避する処理
+        /// </summary>
+        /// <param name="dragEventArgs"></param>
+        protected override void OnDragDrop(DragEventArgs e) {
+            this.DragControl = _dragEnterObject;
+            switch (_dragEnterObject) {
+                case SetLabel setLabel:
+                    this.DragParentControl = setLabel.Parent;
+                    setLabel.ParentControl = this;
+                    break;
+                case CarLabel carLabel:
+                    this.DragParentControl = carLabel.Parent;
+                    carLabel.ParentControl = this;
+                    break;
+                case StaffLabel staffLabel:
+                    this.DragParentControl = staffLabel.Parent;
+                    staffLabel.ParentControl = this;
+                    break;
+            }
+            // 処理を渡す
+            SetControl_OnDragDrop.Invoke(this, e);
         }
 
         /// <summary>
@@ -727,7 +781,15 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseEnter(EventArgs e) {
+        private void OnMouseEnter(object sender, EventArgs e) {
+            /*
+             * Control上にカーソルがある
+             */
+            _newOnCursorFlag = true;
+            if (_oldOnCursorFlag != _newOnCursorFlag) {
+                _oldOnCursorFlag = _newOnCursorFlag;
+                this.Refresh();
+            }
             //
             SetControl_OnMouseEnter.Invoke(this, e);
         }
@@ -736,7 +798,15 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseLeave(EventArgs e) {
+        private void OnMouseLeave(object sender, EventArgs e) {
+            /*
+             * Control上にカーソルがない
+             */
+            _newOnCursorFlag = false;
+            if (_oldOnCursorFlag != _newOnCursorFlag) {
+                _oldOnCursorFlag = _newOnCursorFlag;
+                this.Refresh();
+            }
             //
             SetControl_OnMouseLeave.Invoke(this, e);
         }

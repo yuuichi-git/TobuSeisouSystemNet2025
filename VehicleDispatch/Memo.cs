@@ -1,0 +1,184 @@
+﻿/*
+ * 2024-1-2
+ */
+using ControlEx;
+
+using Dao;
+
+using Vo;
+
+namespace VehicleDispatch {
+    public partial class Memo : Form {
+        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private Control _control;
+        /*
+         * Dao
+         */
+        private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
+        /*
+         * Vo
+         */
+        private ConnectionVo _connectionVo;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Memo(ConnectionVo connectionVo, Control control) {
+            _control = control;
+            /*
+             * Dao
+             */
+            _vehicleDispatchDetailDao = new(connectionVo);
+            /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+
+            /*
+             * InitializeControl
+             */
+            InitializeComponent();
+            this.InitializeControl();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonExUpdate_Click(object sender, EventArgs e) {
+            switch (_control) {
+                case SetLabel setLabel:
+                    setLabel.Memo = this.TextBoxExMemo.Text;
+                    setLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
+                    ((SetControl)setLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)setLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    break;
+                case CarLabel carLabel:
+                    carLabel.Memo = this.TextBoxExMemo.Text;
+                    carLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
+                    ((SetControl)carLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)carLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    break;
+                case StaffLabel staffLabel:
+                    staffLabel.Memo = this.TextBoxExMemo.Text;
+                    staffLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
+                    ((SetControl)staffLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    break;
+            }
+            this.Close();
+        }
+
+        /// <summary>
+        /// タイムスタンプ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonExTimeStamp_Click(object sender, EventArgs e) {
+            if (this.TextBoxExMemo.Text.Length > 0) {
+                TextBoxExMemo.Text += DateTime.Now.ToString(Environment.NewLine + "yyyy年MM月dd日 HH時mm分ss秒：");
+            } else {
+                TextBoxExMemo.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時mm分ss秒：");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InitializeControl() {
+            VehicleDispatchDetailVo vehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(GetCellNumber(_control), GetOperationDate(_control));
+            switch (_control) {
+                case SetLabel setLabel:
+                    if (vehicleDispatchDetailVo.SetMemoFlag)
+                        this.TextBoxExMemo.Text = vehicleDispatchDetailVo.SetMemo;
+                    break;
+                case CarLabel carLabel:
+                    if (vehicleDispatchDetailVo.CarMemoFlag)
+                        this.TextBoxExMemo.Text = vehicleDispatchDetailVo.CarMemo;
+                    break;
+                case StaffLabel staffLabel:
+                    switch (GetStaffNumber(staffLabel)) {
+                        case 0:
+                            if (vehicleDispatchDetailVo.StaffMemoFlag1)
+                                this.TextBoxExMemo.Text = vehicleDispatchDetailVo.StaffMemo1;
+                            break;
+                        case 1:
+                            if (vehicleDispatchDetailVo.StaffMemoFlag2)
+                                this.TextBoxExMemo.Text = vehicleDispatchDetailVo.StaffMemo2;
+                            break;
+                        case 2:
+                            if (vehicleDispatchDetailVo.StaffMemoFlag3)
+                                this.TextBoxExMemo.Text = vehicleDispatchDetailVo.StaffMemo3;
+                            break;
+                        case 3:
+                            if (vehicleDispatchDetailVo.StaffMemoFlag4)
+                                this.TextBoxExMemo.Text = vehicleDispatchDetailVo.StaffMemo4;
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        private int GetCellNumber(Control control) {
+            int cellNumber = 999;
+            switch (_control) {
+                case SetLabel setLabel:
+                    cellNumber = ((SetControl)setLabel.ParentControl).CellNumber;
+                    break;
+                case CarLabel carLabel:
+                    cellNumber = ((SetControl)carLabel.ParentControl).CellNumber;
+                    break;
+                case StaffLabel staffLabel:
+                    cellNumber = ((SetControl)staffLabel.ParentControl).CellNumber;
+                    break;
+            }
+            return cellNumber;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        private DateTime GetOperationDate(Control control) {
+            DateTime operationDate = _defaultDateTime;
+            switch (_control) {
+                case SetLabel setLabel:
+                    operationDate = ((SetControl)setLabel.ParentControl).OperationDate;
+                    break;
+                case CarLabel carLabel:
+                    operationDate = ((SetControl)carLabel.ParentControl).OperationDate;
+                    break;
+                case StaffLabel staffLabel:
+                    operationDate = ((SetControl)staffLabel.ParentControl).OperationDate;
+                    break;
+            }
+            return operationDate;
+        }
+
+        /// <summary>
+        /// StaffLabelがSetControlに配置されている位置を取得する
+        /// </summary>
+        /// <param name="staffLabel"></param>
+        /// <returns>CellNumber</returns>
+        private int GetStaffNumber(StaffLabel staffLabel) {
+            TableLayoutPanelCellPosition tableLayoutPanelCellPosition = ((SetControl)staffLabel.ParentControl).GetCellPosition(staffLabel);
+            return tableLayoutPanelCellPosition.Column * 2 + (tableLayoutPanelCellPosition.Row - 2);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Memo_FormClosing(object sender, FormClosingEventArgs e) {
+
+        }
+    }
+}

@@ -211,6 +211,10 @@ namespace EmploymentAgreement {
             this.SheetViewアルバイト契約.Cells[44, 19].Value = _employmentAgreementVo.KoyouFlag ? "有" : "無";
             // 社会保険
             this.SheetViewアルバイト契約.Cells[45, 19].Value = _employmentAgreementVo.SyakaiFlag ? "有" : "無";
+            // 昇給
+            this.SheetViewアルバイト契約.Cells[37, 17].Value = _employmentAgreementVo.SalaryRaise;
+            // 賞与
+            this.SheetViewアルバイト契約.Cells[38, 17].Value = _employmentAgreementVo.BonusSummerText;
             // 印影
             this.SheetViewアルバイト契約.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
@@ -276,7 +280,16 @@ namespace EmploymentAgreement {
             this.SheetViewパートタイマー.Cells[28, 9].Text = _employmentAgreementVo.PayDetail;
             // 給料金額
             this.SheetViewパートタイマー.Cells[28, 30].Value = _employmentAgreementVo.Pay != 0 ? _employmentAgreementVo.Pay : "---";
-
+            // 昇給
+            this.SheetViewパートタイマー.Cells[35, 17].Value = _employmentAgreementVo.SalaryRaise;
+            // 賞与(夏)
+            this.SheetViewパートタイマー.Cells[36, 17].Value = _employmentAgreementVo.BonusSummerText;
+            this.SheetViewパートタイマー.Cells[36, 30].Value = _employmentAgreementVo.BonusSummerPay;
+            // 賞与(冬)
+            this.SheetViewパートタイマー.Cells[37, 17].Value = _employmentAgreementVo.BonusWinterText;
+            this.SheetViewパートタイマー.Cells[37, 30].Value = _employmentAgreementVo.BonusWinterPay;
+            // 詳細
+            this.SheetViewパートタイマー.Cells[38, 17].Value = _employmentAgreementVo.BonusDetailText;
             // 印影
             this.SheetViewパートタイマー.Cells[8, 33].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
@@ -389,7 +402,12 @@ namespace EmploymentAgreement {
             this.SpreadList.ActiveSheet.Cells[5, 6].Text = this.ComboBoxExBaseAddress.Text;
         }
 
-        private void EmploymentAgreementPaper_Load(object sender, EventArgs e) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EmploymentAgreementPaper_FormClosing(object sender, FormClosingEventArgs e) {
 
         }
 

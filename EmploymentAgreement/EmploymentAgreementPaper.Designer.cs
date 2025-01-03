@@ -135,7 +135,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, アルバイト契約, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, パートタイマー, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(403, 67);
@@ -201,7 +201,7 @@
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "EmploymentAgreementPaper";
             this.Text = "EmploymentAgreementPaper";
-            this.Load += this.EmploymentAgreementPaper_Load;
+            this.FormClosing += this.EmploymentAgreementPaper_FormClosing;
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);

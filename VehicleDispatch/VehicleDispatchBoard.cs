@@ -3,6 +3,8 @@
  */
 using System.Diagnostics;
 
+using CollectionWeight;
+
 using Common;
 
 using ControlEx;
@@ -64,11 +66,27 @@ namespace VehicleDispatch {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemEdit",
+                "ToolStripMenuItemUpdateTaitou",
+                "ToolStripMenuItemHelp"
+            };
+            MenuStripEx1.ChangeEnable(listString);
+
             this.DateTimePickerExOperationDate.SetToday();
             // ControlButtonを初期化
             this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";
             this.AddBoard();
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
+            /*
+             * Eventを登録する
+             */
+            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -216,6 +234,9 @@ namespace VehicleDispatch {
         /// <param name="e"></param>
         private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
             switch (((ContextMenuStrip)sender).SourceControl) {
+                case SetControl setControl:
+                    _contextMenuStripExOpendControl = setControl;
+                    break;
                 case SetLabel setLabel:
                     _contextMenuStripExOpendControl = setLabel;
                     break;
@@ -226,10 +247,6 @@ namespace VehicleDispatch {
                     _contextMenuStripExOpendControl = staffLabel;
                     break;
             }
-            // SetControl
-            // SetLabel
-            // CarLabel
-            // StaffLabel
         }
 
         /// <summary>
@@ -241,14 +258,59 @@ namespace VehicleDispatch {
             switch (((ToolStripMenuItem)sender).Name) {
                 /*
                  * 
+                 * Form(MenuStrip)
+                 * 
+                 */
+                case "ToolStripMenuItemExit":
+                    MessageBox.Show("ToolStripMenuItemExit");
+                    break;
+                case "ToolStripMenuItemUpdateTaitou":
+                    CollectionWeightTaitou collectionWeightTaitou = new(_connectionVo, this.DateTimePickerExOperationDate.GetDate());
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), collectionWeightTaitou);
+                    collectionWeightTaitou.ShowDialog(this);
+                    break;
+                /*
+                 * 
                  * SetControl
                  * 
                  */
                 case "ToolStripMenuItemSetControlSingle": // SetControl Single
-                    MessageBox.Show("ToolStripMenuItemSetControlSingle");
+                    int cellNumberSingle = ((SetControl)_contextMenuStripExOpendControl).CellNumber;
+                    int endCellNumberSingle = 0;
+                    switch (cellNumberSingle) {
+                        case int i when i >= 0 && i <= 43:
+                            endCellNumberSingle = 43;
+                            break;
+                        case int i when i >= 50 && i <= 93:
+                            endCellNumberSingle = 93;
+                            break;
+                        case int i when i >= 100 && i <= 143:
+                            endCellNumberSingle = 143;
+                            break;
+                        case int i when i >= 150 && i <= 193:
+                            endCellNumberSingle = 193;
+                            break;
+                    }
+                    this.SetControlChengeSingle(cellNumberSingle, endCellNumberSingle);
                     break;
                 case "ToolStripMenuItemSetControlDouble": // SetControl Double
-                    MessageBox.Show("ToolStripMenuItemSetControlDouble");
+                    int cellNumberDouble = ((SetControl)_contextMenuStripExOpendControl).CellNumber;
+                    int endCellNumberDouble = 0;
+                    switch (cellNumberDouble) {
+                        case int i when i >= 0 && i <= 43:
+                            endCellNumberDouble = 43;
+                            break;
+                        case int i when i >= 50 && i <= 93:
+                            endCellNumberDouble = 93;
+                            break;
+                        case int i when i >= 100 && i <= 143:
+                            endCellNumberDouble = 143;
+                            break;
+                        case int i when i >= 150 && i <= 193:
+                            endCellNumberDouble = 193;
+                            break;
+                    }
+                    this.SetControlChengeDouble(cellNumberDouble, endCellNumberDouble);
                     break;
                 /*
                  * 
@@ -410,7 +472,9 @@ namespace VehicleDispatch {
                  * メモを作成・編集する
                  */
                 case "ToolStripMenuItemSetMemo": //
-                    MessageBox.Show("ToolStripMenuItemSetMemo");
+                    Memo setMemo = new(_connectionVo, _contextMenuStripExOpendControl);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), setMemo);
+                    setMemo.ShowDialog(this);
                     break;
                 /*
                  * 代車・代番のFAX確認
@@ -498,6 +562,14 @@ namespace VehicleDispatch {
                     }
                     break;
                 /*
+                 * メモを作成・編集する
+                 */
+                case "ToolStripMenuItemCarMemo": //
+                    Memo carMemo = new(_connectionVo, _contextMenuStripExOpendControl);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carMemo);
+                    carMemo.ShowDialog(this);
+                    break;
+                /*
                  * 
                  * ---------- StaffLabel ----------
                  * 
@@ -548,10 +620,171 @@ namespace VehicleDispatch {
                         MessageBox.Show(exception.Message);
                     }
                     break;
+                /*
+                 * メモを作成・編集する
+                 */
+                case "ToolStripMenuItemStaffMemo": //
+                    Memo staffMemo = new(_connectionVo, _contextMenuStripExOpendControl);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffMemo);
+                    staffMemo.ShowDialog(this);
+                    break;
                 default:
                     MessageBox.Show("ToolStripMenuItem_Click");
                     break;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cellNumber">選択されたCellNumber</param>
+        /// <param name="endCellNumber">１段目:43 2段目:93 3段目:143 4段目:193</param>
+        private void SetControlChengeSingle(int cellNumber, int endCellNumber) {
+            try {
+                // ①対象SetControlのプロパティを変更する(Singleに変更する)
+                VehicleDispatchDetailVo vehicleDispatchDetailVo = this._vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(cellNumber, this.DateTimePickerExOperationDate.GetDate());
+                vehicleDispatchDetailVo.PurposeFlag = false;
+                this._vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(cellNumber, vehicleDispatchDetailVo);
+                Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " のPurposeFlagを'False'に変更しました"));
+
+                // ②各CellNumberをインクリメントする
+                for (int i = cellNumber + 2; i <= endCellNumber; i++) { // DoubleをSingleに変えるんだから+2からスタートする
+                    if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberがズレるから存在確認が必要
+                        vehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
+                        vehicleDispatchDetailVo.CellNumber--;
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, vehicleDispatchDetailVo);
+                        Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " をCellNumber = ", vehicleDispatchDetailVo.CellNumber, " に変更しました"));
+                    } else {
+                        continue;
+                    }
+                }
+
+                // ③末尾に空のVehicleDispatchDetailVoを追加する
+                VehicleDispatchDetailVo defaultVehicleDispatchDetailVo = new();
+                defaultVehicleDispatchDetailVo.CellNumber = endCellNumber;
+                defaultVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
+                _vehicleDispatchDetailDao.InsertOneVehicleDispatchDetail(defaultVehicleDispatchDetailVo);
+                Debug.WriteLine(string.Concat("CellNumber = ", defaultVehicleDispatchDetailVo.CellNumber, " に空のレコードををINSERTしました"));
+            } catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cellNumber">選択されたCellNumber</param>
+        /// <param name="endCellNumber">１段目:43 2段目:93 3段目:143 4段目:193</param>
+        private void SetControlChengeDouble(int cellNumber, int endCellNumber) {
+            try {
+                // ①CellNumber93を削除する
+                VehicleDispatchDetailVo defaultVehicleDispatchDetailVo = new();
+                if (_vehicleDispatchDetailDao.DeleteOneVehicleDispatchDetail(endCellNumber, this.DateTimePickerExOperationDate.GetDate()) == 0) {
+                    MessageBox.Show("CellNumber93番を削除できません。処理を中断します。");
+                    return;
+                }
+
+                // ②各CellNumberをデクリメントする
+                for (int i = endCellNumber - 1; i >= cellNumber + 1; i--) {
+                    if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberが飛ぶから存在確認が必要
+                        defaultVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
+                        defaultVehicleDispatchDetailVo.CellNumber++;
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, defaultVehicleDispatchDetailVo);
+                    } else {
+                        continue;
+                    }
+                }
+
+                // ③対象SetControlのプロパティを変更する(Doubleに変更する)
+                VehicleDispatchDetailVo targetVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(cellNumber, this.DateTimePickerExOperationDate.GetDate());
+                targetVehicleDispatchDetailVo.CellNumber = cellNumber;
+                targetVehicleDispatchDetailVo.PurposeFlag = true;
+                _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(cellNumber, targetVehicleDispatchDetailVo);
+                Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " のPurposeFlagを'True'に変更しました"));
+            } catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// SetControlの形状をDoubleに変更する
+        /// </summary>
+        private void SetControlChengeDouble() {
+            switch (((SetControl)_contextMenuStripExOpendControl).CellNumber) {
+                case int cellNumber when cellNumber >= 0 && cellNumber < 43:
+
+                    break;
+                case int targetCellNumber when targetCellNumber >= 50 && targetCellNumber < 93:
+                    try {
+                        // ①CellNumber93を削除する
+                        VehicleDispatchDetailVo blankVehicleDispatchDetailVo = new();
+                        if (_vehicleDispatchDetailDao.DeleteOneVehicleDispatchDetail(93, this.DateTimePickerExOperationDate.GetDate()) == 0) {
+                            MessageBox.Show("CellNumber93番を削除できません。処理を中断します。");
+                            break;
+                        }
+
+                        // ②各CellNumberをデクリメントする
+                        for (int i = 92; i >= targetCellNumber + 1; i--) {
+                            if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberが飛ぶから存在確認が必要
+                                blankVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
+                                blankVehicleDispatchDetailVo.CellNumber++;
+                                _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, blankVehicleDispatchDetailVo);
+                            } else {
+                                continue;
+                            }
+                        }
+
+                        // ③対象SetControlのプロパティを変更する(Doubleに変更する)
+                        VehicleDispatchDetailVo targetVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(targetCellNumber, this.DateTimePickerExOperationDate.GetDate());
+                        targetVehicleDispatchDetailVo.CellNumber = targetCellNumber;
+                        targetVehicleDispatchDetailVo.PurposeFlag = true;
+                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(targetCellNumber, targetVehicleDispatchDetailVo);
+                        Debug.WriteLine(string.Concat("CellNumber=", targetCellNumber, "のPurposeFlagをTrueに変更しました"));
+                    } catch (Exception e) {
+                        MessageBox.Show(e.Message);
+                    }
+                    break;
+                case int cellNumber when cellNumber >= 100 && cellNumber < 143:
+
+                    break;
+                case int cellNumber when cellNumber >= 150 && cellNumber < 193:
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// DragされているControl
+        /// </summary>
+        private Control _dragEnterObject;
+        /// <summary>
+        /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
+        /// </summary>
+        /// <param name="sender">これを呼出したSetControlが入っている</param>
+        /// <param name="e"></param>
+        private void OnDragEnter(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+                _dragEnterObject = (SetLabel)e.Data.GetData(typeof(SetLabel));
+            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+                _dragEnterObject = (CarLabel)e.Data.GetData(typeof(CarLabel));
+            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+                _dragEnterObject = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
+            }
+        }
+
+        /// <summary>
+        /// ドラッグ アンド ドロップ操作中にマウス カーソルがコントロールの境界内を移動したときに発生します。
+        /// Copy  :データがドロップ先にコピーされようとしている状態
+        /// Move  :データがドロップ先に移動されようとしている状態
+        /// Scroll:データによってドロップ先でスクロールが開始されようとしている状態、あるいは現在スクロール中である状態
+        /// All   :上の3つを組み合わせたもの
+        /// Link  :データのリンクがドロップ先に作成されようとしている状態
+        ///  None  :いかなるデータもドロップ先が受け付けようとしない状態
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDragOver(object sender, DragEventArgs e) {
+
         }
 
         /// <summary>
@@ -560,13 +793,16 @@ namespace VehicleDispatch {
         /// <param name="sender">DropされたSetControlが入っている</param>
         /// <param name="e"></param>
         private void OnDragDrop(object sender, DragEventArgs e) {
+            /*
+             * SetControl上のセルの位置を取得する
+             */
+            Point clientPoint = ((SetControl)sender).PointToClient(new Point(e.X, e.Y));
+            Point cellPoint = new(clientPoint.X / (int)((SetControl)sender).CellWidth, clientPoint.Y / (int)((SetControl)sender).CellHeight);
+            /*
+             * DropされたObjectのParentによって処理を分岐する
+             */
             switch (((SetControl)sender).DragParentControl) {
                 case SetControl dragParentControl:
-                    /*
-                     * H_SetControl上のセルの位置を取得する
-                     */
-                    Point clientPoint = ((SetControl)sender).PointToClient(new Point(e.X, e.Y));
-                    Point cellPoint = new(clientPoint.X / (int)((SetControl)sender).CellWidth, clientPoint.Y / (int)((SetControl)sender).CellHeight);
                     /*
                      * Drop処理
                      * Controlを追加する
@@ -645,33 +881,49 @@ namespace VehicleDispatch {
                     Debug.WriteLine(string.Concat(dragParentControl.CellNumber, " → ", ((SetControl)sender).CellNumber, "の", cellPoint.X, ",", cellPoint.Y));
                     break;
                 case StockBoxPanel stockBoxPanel:
-                    MessageBox.Show("StockBoxtPanel");
+                    switch (this._dragEnterObject) {
+                        case SetLabel setLabel:
+                            ((SetControl)sender).Controls.Add(setLabel, cellPoint.X, cellPoint.Y); // SetLabelを移動する
+                            /*
+                             * Dropデータの処理
+                             */
+                            try {
+                                ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " SetLabel UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case CarLabel carLabel:
+                            ((SetControl)sender).Controls.Add(carLabel, cellPoint.X, cellPoint.Y); // CarLabelを移動する
+                            /*
+                             * Dropデータの処理
+                             */
+                            try {
+                                ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " CarLabel UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case StaffLabel staffLabel:
+                            ((SetControl)sender).Controls.Add(staffLabel, cellPoint.X, cellPoint.Y); // StaffLabelを移動する
+                            /*
+                             * Dropデータの処理
+                             */
+                            try {
+                                ((SetControl)sender).SetControlRelocation(); // プロパティの再構築
+                                int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " StaffLabel UpdateSuccess");
+                            } catch (Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                    }
                     break;
             }
-        }
-
-        /// <summary>
-        /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
-        /// </summary>
-        /// <param name="sender">これを呼出したSetControlが入っている</param>
-        /// <param name="e"></param>
-        private void OnDragEnter(object sender, DragEventArgs e) {
-
-        }
-
-        /// <summary>
-        /// ドラッグ アンド ドロップ操作中にマウス カーソルがコントロールの境界内を移動したときに発生します。
-        /// Copy  :データがドロップ先にコピーされようとしている状態
-        /// Move  :データがドロップ先に移動されようとしている状態
-        /// Scroll:データによってドロップ先でスクロールが開始されようとしている状態、あるいは現在スクロール中である状態
-        /// All   :上の3つを組み合わせたもの
-        /// Link  :データのリンクがドロップ先に作成されようとしている状態
-        ///  None  :いかなるデータもドロップ先が受け付けようとしない状態
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDragOver(object sender, DragEventArgs e) {
-
         }
 
         /// <summary>
@@ -753,17 +1005,21 @@ namespace VehicleDispatch {
         private void OnMouseDown(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 switch (sender) {
-                    case SetLabel control:
-                        control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                    case SetLabel setLabel:
+                        this.DragParentControl = (SetControl)setLabel.Parent; // Dragラベルが格納されているSetControlを退避する
+                        if (setLabel.SetMasterVo.MoveFlag) {
+                            setLabel.DoDragDrop(sender, DragDropEffects.Move);
+                        } else {
+                            setLabel.DoDragDrop(sender, DragDropEffects.None);
+                        }
                         break;
-                    case CarLabel control:
-                        control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                    case CarLabel carLabel:
+                        this.DragParentControl = (SetControl)carLabel.Parent; // Dragラベルが格納されているSetControlを退避する
+                        carLabel.DoDragDrop(sender, DragDropEffects.Move);
                         break;
-                    case StaffLabel control:
-                        control.DoDragDrop(sender, DragDropEffects.Move);
-                        this.DragParentControl = (SetControl)control.Parent; // Dragラベルが格納されているSetControlを退避する
+                    case StaffLabel staffLabel:
+                        this.DragParentControl = (SetControl)staffLabel.Parent; // Dragラベルが格納されているSetControlを退避する
+                        staffLabel.DoDragDrop(sender, DragDropEffects.Move);
                         break;
                 }
             }
