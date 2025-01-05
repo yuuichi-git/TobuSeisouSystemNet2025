@@ -11,9 +11,13 @@ using ControlEx;
 
 using Dao;
 
+using DriversReport;
+
 using RollCall;
 
 using StockBox;
+
+using Substitute;
 
 using Vo;
 
@@ -327,7 +331,9 @@ namespace VehicleDispatch {
                  * 日報印刷
                  */
                 case "ToolStripMenuItemDriversReport": //
-                    MessageBox.Show("ToolStripMenuItemDriversReport");
+                    DriversReportPaper driversReportPaper = new(_connectionVo, (SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), driversReportPaper);
+                    driversReportPaper.ShowDialog(this);
                     break;
                 /*
                  * 稼働・休車
@@ -495,7 +501,9 @@ namespace VehicleDispatch {
                  * FAXを送信する
                  */
                 case "ToolStripMenuItemCreateFax": //
-                    MessageBox.Show("ToolStripMenuItemCreateFax");
+                    SubstituteSheet substituteSheet = new(_connectionVo, (SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), substituteSheet);
+                    substituteSheet.ShowDialog(this);
                     break;
                 /*
                  * 削除

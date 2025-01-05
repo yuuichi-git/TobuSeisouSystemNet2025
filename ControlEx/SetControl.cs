@@ -596,7 +596,7 @@ namespace ControlEx {
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
             if ((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
                 // Single-SetControlに変更する場合、自分自身が"Double-SetControl"でなくてはならない
-                toolStripMenuItem00_0.Enabled = this.PurposeFlag ? true : false;
+                toolStripMenuItem00_0.Enabled = this.PurposeFlag && this.StaffCode3 == 0 && this.StaffCode4 == 0 ? true : false;
                 // Double-SetControlに変更する場合、自分自身が"Single-SetControl"でなくてはならない
                 toolStripMenuItem00_1.Enabled = !this.PurposeFlag ? true : false;
             } else {

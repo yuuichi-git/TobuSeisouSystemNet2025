@@ -25,6 +25,8 @@ namespace ControlEx {
 
         private ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
         private ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
+        private ToolStripMenuItem toolStripMenuItemPrintB5 = new("B5で印刷する");
+        private ToolStripMenuItem toolStripMenuItemPrintB5Dialog = new("B5で印刷する(Dialog)");
 
         private ToolStripMenuItem toolStripMenuItemHelp = new("ヘルプ");
         /*
@@ -99,10 +101,15 @@ namespace ControlEx {
              */
             toolStripMenuItemPrint.Name = "ToolStripMenuItemPrint";
             this.Items.Add(toolStripMenuItemPrint);
-
             toolStripMenuItemPrintA4.Name = "ToolStripMenuItemPrintA4";
             toolStripMenuItemPrintA4.Click += ToolStripMenuItem_Click;
             toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintA4);
+            toolStripMenuItemPrintB5.Name = "ToolStripMenuItemPrintB5";
+            toolStripMenuItemPrintB5.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintB5);
+            toolStripMenuItemPrintB5Dialog.Name = "ToolStripMenuItemPrintB5Dialog";
+            toolStripMenuItemPrintB5Dialog.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintB5Dialog);
             /*
              * ヘルプ
              */

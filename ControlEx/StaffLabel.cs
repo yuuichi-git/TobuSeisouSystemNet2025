@@ -85,28 +85,42 @@ namespace ControlEx {
             _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
             _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
             // Timer イベント登録
-            _timerControl.Tick += this._timer_Tick;
+            _timerControl.Tick += this.Timer_Tick;
         }
 
+        /*
+         * ContextMenuStrip
+         */
+        ContextMenuStrip contextMenuStrip = new();
+        ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
+        ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
+        ToolStripMenuItem toolStripMenuItem02 = new("代番処理"); // 親アイテム
+        ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem03 = new("職種設定"); // 親アイテム
+        ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)"); // 親アイテム
+        ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
+        ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
         private void CreateContextMenuStrip() {
-            ContextMenuStrip contextMenuStrip = new();
             contextMenuStrip.Name = "ContextMenuStripHStaffLabel";
             contextMenuStrip.Opened += ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
             /*
              * 従事者台帳を表示する
              */
-            ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
             toolStripMenuItem00.Name = "ToolStripMenuItemStaffDetail";
             toolStripMenuItem00.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
             /*
              * 従事者免許証を表示する
              */
-            ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
             toolStripMenuItem01.Name = "ToolStripMenuItemStaffLicense";
             toolStripMenuItem01.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem01);
@@ -117,16 +131,11 @@ namespace ControlEx {
             /*
              * 代番処理
              */
-            ToolStripMenuItem toolStripMenuItem02 = new("代番処理"); // 親アイテム
             toolStripMenuItem02.Name = "ToolStripMenuItemStaffProxy";
-
-            ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する"); // 子アイテム１
             toolStripMenuItem02_0.Name = "ToolStripMenuItemStaffProxyTrue";
             toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
-
-            ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する"); // 子アイテム２
             toolStripMenuItem02_1.Name = "ToolStripMenuItemStaffProxyFalse";
             toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
@@ -134,16 +143,11 @@ namespace ControlEx {
             /*
              * 料金設定
              */
-            ToolStripMenuItem toolStripMenuItem03 = new("職種設定"); // 親アイテム
             toolStripMenuItem03.Name = "ToolStripMenuItemStaffOccupation";
-
-            ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)"); // 子アイテム１
             toolStripMenuItem03_0.Name = "ToolStripMenuItemStaffOccupation10";
             toolStripMenuItem03_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_0);
             contextMenuStrip.Items.Add(toolStripMenuItem03);
-
-            ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする"); // 子アイテム２
             toolStripMenuItem03_1.Name = "ToolStripMenuItemStaffOccupation11";
             toolStripMenuItem03_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_1);
@@ -151,16 +155,11 @@ namespace ControlEx {
             /*
              * 電話連絡・出勤確認
              */
-            ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)"); // 親アイテム
             toolStripMenuItem04.Name = "ToolStripMenuItemStaffTelephoneMark";
-
-            ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済"); // 子アイテム１
             toolStripMenuItem04_0.Name = "ToolStripMenuItemTelephoneMarkTrue";
             toolStripMenuItem04_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_0);
             contextMenuStrip.Items.Add(toolStripMenuItem04);
-
-            ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認"); // 子アイテム２
             toolStripMenuItem04_1.Name = "ToolStripMenuItemStaffTelephoneMarkFalse";
             toolStripMenuItem04_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_1);
@@ -168,14 +167,12 @@ namespace ControlEx {
             /*
              * メモを作成・編集する("Ctrl + Click")
              */
-            ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
             toolStripMenuItem05.Name = "ToolStripMenuItemStaffMemo";
             toolStripMenuItem05.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem05);
             /*
              * プロパティ
              */
-            ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
             toolStripMenuItem07.Name = "ToolStripMenuItemStaffProperty";
             toolStripMenuItem07.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem07);
@@ -254,7 +251,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _timer_Tick(object sender, EventArgs e) {
+        private void Timer_Tick(object sender, EventArgs e) {
             _clickTime += _timerControl.Interval; // 計測時間を保存しておく
             if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
                 _timerControl.Stop(); // タイマー停止

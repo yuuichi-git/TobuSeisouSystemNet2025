@@ -3,20 +3,20 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.20348.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CollectionWeight\CollectionWeight.csproj" />
+    <PackageReference Include="grapecity.spread.winforms.ja" Version="15.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
     <ProjectReference Include="..\Dao\Dao.csproj" />
-    <ProjectReference Include="..\DriversReport\DriversReport.csproj" />
-    <ProjectReference Include="..\RollCall\RollCall.csproj" />
-    <ProjectReference Include="..\StockBox\StockBox.csproj" />
-    <ProjectReference Include="..\Substitute\Substitute.csproj" />
   </ItemGroup>
 
 </Project>

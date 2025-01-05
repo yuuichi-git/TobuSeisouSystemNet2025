@@ -87,18 +87,29 @@ namespace ControlEx {
             _timerControl.Tick += this._timer_Tick;
         }
 
+        /*
+         * ContextMenuStrip
+         */
+        ContextMenuStrip contextMenuStrip = new();
+        ToolStripMenuItem toolStripMenuItem00 = new("車両台帳を表示");
+        ToolStripMenuItem toolStripMenuItem01 = new("出庫地"); // 親アイテム
+        ToolStripMenuItem toolStripMenuItem01_0 = new("本社から出庫"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem01_1 = new("三郷から出庫"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem02 = new("代車処理"); // 親アイテム
+        ToolStripMenuItem toolStripMenuItem02_0 = new("代車として記録する"); // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem02_1 = new("代車を解除する"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem03 = new("メモを作成・編集する");
+        ToolStripMenuItem toolStripMenuItem04 = new("プロパティ");
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
         private void CreateContextMenuStrip() {
-            ContextMenuStrip contextMenuStrip = new();
             contextMenuStrip.Name = "ContextMenuStripHCarLabel";
             contextMenuStrip.Opened += ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
             /*
              * 車両台帳を表示する
              */
-            ToolStripMenuItem toolStripMenuItem00 = new("車両台帳を表示");
             toolStripMenuItem00.Name = "ToolStripMenuItemCarVerification";
             toolStripMenuItem00.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
@@ -109,15 +120,11 @@ namespace ControlEx {
             /*
              * 車庫地コード
              */
-            ToolStripMenuItem toolStripMenuItem01 = new("出庫地"); // 親アイテム
             toolStripMenuItem01.Name = "ToolStripMenuItemCarWarehouse";
-            ToolStripMenuItem toolStripMenuItem01_0 = new("本社から出庫"); // 子アイテム１
             toolStripMenuItem01_0.Name = "ToolStripMenuItemCarWarehouseAdachi";
             toolStripMenuItem01_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem01.DropDownItems.Add(toolStripMenuItem01_0);
             contextMenuStrip.Items.Add(toolStripMenuItem01);
-
-            ToolStripMenuItem toolStripMenuItem01_1 = new("三郷から出庫"); // 子アイテム２
             toolStripMenuItem01_1.Name = "ToolStripMenuItemCarWarehouseMisato";
             toolStripMenuItem01_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem01.DropDownItems.Add(toolStripMenuItem01_1);
@@ -125,15 +132,11 @@ namespace ControlEx {
             /*
              * 代番処理
              */
-            ToolStripMenuItem toolStripMenuItem02 = new("代車処理"); // 親アイテム
             toolStripMenuItem02.Name = "ToolStripMenuItemCarProxy";
-            ToolStripMenuItem toolStripMenuItem02_0 = new("代車として記録する"); // 子アイテム１
             toolStripMenuItem02_0.Name = "ToolStripMenuItemCarProxyTrue";
             toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
-
-            ToolStripMenuItem toolStripMenuItem02_1 = new("代車を解除する"); // 子アイテム２
             toolStripMenuItem02_1.Name = "ToolStripMenuItemCarProxyFalse";
             toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
@@ -141,14 +144,12 @@ namespace ControlEx {
             /*
              * メモを作成・編集する
              */
-            ToolStripMenuItem toolStripMenuItem03 = new("メモを作成・編集する");
             toolStripMenuItem03.Name = "ToolStripMenuItemCarMemo";
             toolStripMenuItem03.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem03);
             /*
              * プロパティ
              */
-            ToolStripMenuItem toolStripMenuItem04 = new("プロパティ");
             toolStripMenuItem04.Name = "ToolStripMenuItemCarProperty";
             toolStripMenuItem04.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem04);
