@@ -140,7 +140,7 @@ namespace Staff {
             switch (((ButtonEx)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        this.SetSheetView();
+                        this.PutSheetView();
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -170,7 +170,7 @@ namespace Staff {
         /// <summary>
         /// 
         /// </summary>
-        private void SetSheetView() {
+        private void PutSheetView() {
             List<SheetViewVo> _listSheetViewVo = new();
             /*
              * ComboBoxExStaffNameが未選択ならCheckBoxでSQLを発行

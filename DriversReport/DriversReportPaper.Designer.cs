@@ -103,7 +103,7 @@
             // 
             // SpreadDriversReportPaper
             // 
-            this.SpreadDriversReportPaper.AccessibleDescription = "Book1, Sheet1, Row 0, Column 0";
+            this.SpreadDriversReportPaper.AccessibleDescription = "SpreadDriversReportPaper, Sheet1, Row 0, Column 0";
             this.SpreadDriversReportPaper.Dock = DockStyle.Fill;
             this.SpreadDriversReportPaper.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadDriversReportPaper.Location = new Point(3, 87);
@@ -138,8 +138,8 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.PanelEx PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadDriversReportPaper;
-        private FarPoint.Win.Spread.SheetView SheetViewDriversReport;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
+        private FarPoint.Win.Spread.SheetView SheetViewDriversReport;
     }
 }

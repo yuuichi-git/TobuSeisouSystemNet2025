@@ -81,7 +81,25 @@ namespace StockBox {
             this.TableLayoutPanelExBase.Controls.Add(_stockBoxPanel, 0, 2);
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
+            /*
+             * Eventを登録する
+             */
+            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemExit":
+                    Close();
+                    break;
+            }
+        }
+
 
         private string _selectedPanelName = string.Empty;
         /// <summary>

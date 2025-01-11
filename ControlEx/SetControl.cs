@@ -2,6 +2,7 @@
  * 2024-10-10
  */
 using System.Diagnostics;
+using System.Windows.Forms;
 
 using Vo;
 
@@ -381,6 +382,16 @@ namespace ControlEx {
         }
 
         /// <summary>
+        /// StaffLabelがSetControlに配置されている位置を取得する
+        /// </summary>
+        /// <param name="staffLabel"></param>
+        /// <returns>CellNumber</returns>
+        public int GetStaffNumber(StaffLabel staffLabel) {
+            TableLayoutPanelCellPosition tableLayoutPanelCellPosition = ((SetControl)staffLabel.ParentControl).GetCellPosition(staffLabel);
+            return tableLayoutPanelCellPosition.Column * 2 + (tableLayoutPanelCellPosition.Row - 2);
+        }
+
+        /// <summary>
         /// 条件によって”作”をつけるかどうかを決定する
         /// </summary>
         /// <param name="number">0～3</param>
@@ -399,10 +410,9 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// プロパティに配置されているobjectをセットする
+        /// プロパティの操作はせずに再配置のみ実施する
         /// </summary>
-        /// <param name="setControl">対象のSetControl</param>
-        public void SetControlRelocation() {
+        public void DefaultRelocation() {
             this.CellNumber = this.CellNumber;
             this.OperationDate = this.OperationDate;
             this.OperationFlag = this.OperationFlag;
@@ -412,6 +422,88 @@ namespace ControlEx {
              * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
              */
             switch (this.PurposeFlag) {
+                case true:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = this.GetTableLayoutChildControl(1, 2);
+                    this.DeployedStaffLabel4 = this.GetTableLayoutChildControl(1, 3);
+                    break;
+                case false:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = null;
+                    this.DeployedStaffLabel4 = null;
+                    break;
+            }
+            this.InsertPcName = Environment.MachineName;
+            this.InsertYmdHms = DateTime.Now;
+            this.UpdatePcName = Environment.MachineName;
+            this.UpdateYmdHms = DateTime.Now;
+            this.DeletePcName = Environment.MachineName;
+            this.DeleteYmdHms = DateTime.Now;
+            this.DeleteFlag = false;
+        }
+
+        /// <summary>
+        /// Drug側のSetControlを再構築する
+        /// LabelがDragされて削除されている状態
+        /// </summary>
+        /// <param name="setControl">対象のSetControl</param>
+        public void SetControlRelocation() {
+            this.CellNumber = this.CellNumber;
+            this.OperationDate = this.OperationDate;
+            this.OperationFlag = false;                 // SetLabelが移動されたのだから、SetLabelは無い。つまり休車扱いになるよね。
+            this.VehicleDispatchFlag = false;           // SetLabelが移動されたのだから、SetLabelは無い。つまり配車されていない扱いになるよね。
+            this.PurposeFlag = this.PurposeFlag;        // DoubleかSingleかはSetLabelには関係ないのでそのままにしておいてね。あくまでもDouble・Singleの違いはSetControlの問題だよ。
+            /*
+             * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
+             */
+            switch (this.PurposeFlag) {
+                case true:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = this.GetTableLayoutChildControl(1, 2);
+                    this.DeployedStaffLabel4 = this.GetTableLayoutChildControl(1, 3);
+                    break;
+                case false:
+                    this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
+                    this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
+                    this.DeployedStaffLabel1 = this.GetTableLayoutChildControl(0, 2);
+                    this.DeployedStaffLabel2 = this.GetTableLayoutChildControl(0, 3);
+                    this.DeployedStaffLabel3 = null;
+                    this.DeployedStaffLabel4 = null;
+                    break;
+            }
+            this.InsertPcName = Environment.MachineName;
+            this.InsertYmdHms = DateTime.Now;
+            this.UpdatePcName = Environment.MachineName;
+            this.UpdateYmdHms = DateTime.Now;
+            this.DeletePcName = Environment.MachineName;
+            this.DeleteYmdHms = DateTime.Now;
+            this.DeleteFlag = false;
+        }
+
+        /// <summary>
+        /// Drop側のSetControlを再構築する
+        /// LabelがDropされて追加されている状態
+        /// </summary>
+        /// <param name="setControl"></param>
+        public void SetControlRelocation(SetControl setControl) {
+            this.CellNumber = setControl.CellNumber;
+            this.OperationDate = this.OperationDate;
+            this.OperationFlag = true;                  // SetLabelが移動されたのだから、SetLabelは有る。つまり稼働扱いになるよね。
+            this.VehicleDispatchFlag = true;            // SetLabelが移動されたのだから、SetLabelは有る。つまり配車されている扱いになるよね。
+            this.PurposeFlag = this.PurposeFlag;        // DoubleかSingleかはSetLabelには関係ないのでそのままにしておいてね。あくまでもDouble・Singleの違いはSetControlの問題だよ。
+            /*
+             * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
+             */
+            switch (setControl.PurposeFlag) {
                 case true:
                     this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
                     this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
@@ -452,6 +544,92 @@ namespace ControlEx {
                 Debug.WriteLine(string.Concat(row, ",", column, "→", "null"));
             }
             return control;
+        }
+
+        public void EventAdd(Control control) {
+            if (control is null)
+                return;
+            /*
+             * Eventの付け替え
+             */
+            switch (control) {
+                case SetLabel setLabel:
+                    setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+                    setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+                    setLabel.SetLabel_OnMouseClick += OnMouseClick;
+                    setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+                    setLabel.SetLabel_OnMouseDown += OnMouseDown;
+                    setLabel.SetLabel_OnMouseEnter += OnMouseEnter;
+                    setLabel.SetLabel_OnMouseLeave += OnMouseLeave;
+                    setLabel.MouseMove += OnMouseMove;
+                    setLabel.MouseUp += OnMouseUp;
+                    break;
+                case CarLabel carLabel:
+                    carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+                    carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+                    carLabel.CarLabel_OnMouseClick += OnMouseClick;
+                    carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+                    carLabel.CarLabel_OnMouseDown += OnMouseDown;
+                    carLabel.CarLabel_OnMouseEnter += OnMouseEnter;
+                    carLabel.CarLabel_OnMouseLeave += OnMouseLeave;
+                    carLabel.MouseMove += OnMouseMove;
+                    carLabel.MouseUp += OnMouseUp;
+                    break;
+                case StaffLabel staffLabel:
+                    staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+                    staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+                    staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
+                    staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
+                    staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
+                    staffLabel.StaffLabel_OnMouseEnter += OnMouseEnter;
+                    staffLabel.StaffLabel_OnMouseLeave += OnMouseLeave;
+                    staffLabel.MouseMove += OnMouseMove;
+                    staffLabel.MouseUp += OnMouseUp;
+                    break;
+            }
+        }
+
+        public void EventDel(Control control) {
+            if (control is null)
+                return;
+            /*
+             * Eventの付け替え
+             */
+            switch (control) {
+                case SetLabel setLabel:
+                    setLabel.SetLabel_ContextMenuStrip_Opened -= ContextMenuStrip_Opened;
+                    setLabel.SetLabel_ToolStripMenuItem_Click -= ToolStripMenuItem_Click;
+                    setLabel.SetLabel_OnMouseClick -= OnMouseClick;
+                    setLabel.SetLabel_OnMouseDoubleClick -= OnMouseDoubleClick;
+                    setLabel.SetLabel_OnMouseDown -= OnMouseDown;
+                    setLabel.SetLabel_OnMouseEnter -= OnMouseEnter;
+                    setLabel.SetLabel_OnMouseLeave -= OnMouseLeave;
+                    setLabel.MouseMove -= OnMouseMove;
+                    setLabel.MouseUp -= OnMouseUp;
+                    break;
+                case CarLabel carLabel:
+                    carLabel.CarLabel_ContextMenuStrip_Opened -= ContextMenuStrip_Opened;
+                    carLabel.CarLabel_ToolStripMenuItem_Click -= ToolStripMenuItem_Click;
+                    carLabel.CarLabel_OnMouseClick -= OnMouseClick;
+                    carLabel.CarLabel_OnMouseDoubleClick -= OnMouseDoubleClick;
+                    carLabel.CarLabel_OnMouseDown -= OnMouseDown;
+                    carLabel.CarLabel_OnMouseEnter -= OnMouseEnter;
+                    carLabel.CarLabel_OnMouseLeave -= OnMouseLeave;
+                    carLabel.MouseMove -= OnMouseMove;
+                    carLabel.MouseUp -= OnMouseUp;
+                    break;
+                case StaffLabel staffLabel:
+                    staffLabel.StaffLabel_ContextMenuStrip_Opened -= ContextMenuStrip_Opened;
+                    staffLabel.StaffLabel_ToolStripMenuItem_Click -= ToolStripMenuItem_Click;
+                    staffLabel.StaffLabel_OnMouseClick -= OnMouseClick;
+                    staffLabel.StaffLabel_OnMouseDoubleClick -= OnMouseDoubleClick;
+                    staffLabel.StaffLabel_OnMouseDown -= OnMouseDown;
+                    staffLabel.StaffLabel_OnMouseEnter -= OnMouseEnter;
+                    staffLabel.StaffLabel_OnMouseLeave -= OnMouseLeave;
+                    staffLabel.MouseMove -= OnMouseMove;
+                    staffLabel.MouseUp -= OnMouseUp;
+                    break;
+            }
         }
 
         /// <summary>
@@ -594,14 +772,27 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            if ((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
-                // Single-SetControlに変更する場合、自分自身が"Double-SetControl"でなくてはならない
-                toolStripMenuItem00_0.Enabled = this.PurposeFlag && this.StaffCode3 == 0 && this.StaffCode4 == 0 ? true : false;
-                // Double-SetControlに変更する場合、自分自身が"Single-SetControl"でなくてはならない
-                toolStripMenuItem00_1.Enabled = !this.PurposeFlag ? true : false;
-            } else {
-                toolStripMenuItem00_0.Enabled = false;
-                toolStripMenuItem00_1.Enabled = false;
+            switch (((ContextMenuStrip)sender).SourceControl) {
+                case SetControl setControl:
+                    if ((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
+                        // Single-SetControlに変更する場合、自分自身が"Double-SetControl"でなくてはならない
+                        toolStripMenuItem00_0.Enabled = this.PurposeFlag && this.StaffCode3 == 0 && this.StaffCode4 == 0 ? true : false;
+                        // Double-SetControlに変更する場合、自分自身が"Single-SetControl"でなくてはならない
+                        toolStripMenuItem00_1.Enabled = !this.PurposeFlag ? true : false;
+                    } else {
+                        toolStripMenuItem00_0.Enabled = false;
+                        toolStripMenuItem00_1.Enabled = false;
+                    }
+                    break;
+                case SetLabel setLabel:
+
+                    break;
+                case CarLabel carLabel:
+
+                    break;
+                case StaffLabel staffLabel:
+
+                    break;
             }
             //
             SetControl_ContextMenuStrip_Opened.Invoke(sender, e);

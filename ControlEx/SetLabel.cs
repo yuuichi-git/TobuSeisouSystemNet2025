@@ -1,8 +1,6 @@
 ﻿/*
  * 2024-10-12
  */
-using System.Diagnostics;
-
 using ControlEx.Properties;
 
 using Vo;
@@ -412,6 +410,7 @@ namespace ControlEx {
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
             // Fax送信するに設定されている場合
+            this.toolStripMenuItem10.Enabled = this.SetMasterVo.ContactMethod == 11 || this.SetMasterVo.ContactMethod == 13 ? true : false;
             this.toolStripMenuItem11.Enabled = this.FaxTransmissionFlag;
             // 
             SetLabel_ContextMenuStrip_Opened.Invoke(sender, e);

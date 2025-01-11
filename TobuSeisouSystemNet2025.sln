@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionWeight", "Collect
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substitute", "Substitute\Substitute.csproj", "{C537DE09-CE43-4D9C-B4AE-E5B607B41897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriversReport", "DriversReport\DriversReport.csproj", "{B3B4E384-143E-4787-B18D-8323202B7760}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DriversReport", "DriversReport\DriversReport.csproj", "{B3B4E384-143E-4787-B18D-8323202B7760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "License", "License\License.csproj", "{9103061D-16EE-4CC2-80A1-38389E2B40BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{B3B4E384-143E-4787-B18D-8323202B7760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B4E384-143E-4787-B18D-8323202B7760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B4E384-143E-4787-B18D-8323202B7760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9103061D-16EE-4CC2-80A1-38389E2B40BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9103061D-16EE-4CC2-80A1-38389E2B40BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9103061D-16EE-4CC2-80A1-38389E2B40BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9103061D-16EE-4CC2-80A1-38389E2B40BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

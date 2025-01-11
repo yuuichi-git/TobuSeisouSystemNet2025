@@ -93,7 +93,7 @@ namespace ControlEx {
          */
         ContextMenuStrip contextMenuStrip = new();
         ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
-        ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
+        public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
         ToolStripMenuItem toolStripMenuItem02 = new("代番処理"); // 親アイテム
         ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する"); // 子アイテム１
         ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する"); // 子アイテム２
@@ -115,7 +115,7 @@ namespace ControlEx {
             /*
              * 従事者台帳を表示する
              */
-            toolStripMenuItem00.Name = "ToolStripMenuItemStaffDetail";
+            toolStripMenuItem00.Name = "ToolStripMenuItemStaffPaper";
             toolStripMenuItem00.Click += ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
             /*
@@ -230,7 +230,12 @@ namespace ControlEx {
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
             stringFormat.LineAlignment = StringAlignment.Center;
-            pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
+            if (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) {
+                pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Red, rectangle, stringFormat);
+            } else {
+                pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
+            }
+
         }
 
         /// <summary>
@@ -265,8 +270,6 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            Debug.WriteLine("StaffLabel ContextMenuStripOpened");
-
             StaffLabel_ContextMenuStrip_Opened.Invoke(sender, e);
         }
 
@@ -276,8 +279,6 @@ namespace ControlEx {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            Debug.WriteLine("StaffLabel ToolStripMenuItemClick");
-
             StaffLabel_ToolStripMenuItem_Click.Invoke(sender, e);
         }
 

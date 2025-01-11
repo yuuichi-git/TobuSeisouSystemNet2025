@@ -199,8 +199,6 @@ namespace DriversReport {
         /// <param name="sheetView"></param>
         /// <param name="setControl"></param>
         private void PutSheetView(SheetView sheetView, SetControl setControl) {
-            // タブストリップボタンを必要に応じて表示します。
-            this.SpreadDriversReportPaper.TabStripPolicy = TabStripPolicy.Never;
             // 各種値の取得
             SheetViewDriversReport.Cells[3, 17].Text = ((SetLabel)setControl.DeployedSetLabel).SetMasterVo.SetName1; // 配車先
             SheetViewDriversReport.Cells[3, 23].Text = ((SetLabel)setControl.DeployedSetLabel).SetMasterVo.SetName2; // 組名

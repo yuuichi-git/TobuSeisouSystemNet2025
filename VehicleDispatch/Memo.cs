@@ -50,21 +50,43 @@ namespace VehicleDispatch {
             switch (_control) {
                 case SetLabel setLabel:
                     setLabel.Memo = this.TextBoxExMemo.Text;
-                    setLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
-                    ((SetControl)setLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
-                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)setLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    setLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;                                                          // SetLabelのフラグをセット(ControlのViewを変化させる)
+                    ((SetControl)setLabel.ParentControl).SetMemo = this.TextBoxExMemo.Text;
+                    ((SetControl)setLabel.ParentControl).SetMemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;                           // SetControlのフラグをセット
+                    ((SetControl)setLabel.ParentControl).DefaultRelocation();                                                                       // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)setLabel.ParentControl).GetVehicleDispatchDetailVo());    // thisのVehicleDispatchDetailVoを取得　SQL発行
                     break;
                 case CarLabel carLabel:
                     carLabel.Memo = this.TextBoxExMemo.Text;
-                    carLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
-                    ((SetControl)carLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
-                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)carLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    carLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;                                                          // SetControlのフラグをセット
+                    ((SetControl)carLabel.ParentControl).CarMemo = this.TextBoxExMemo.Text;
+                    ((SetControl)carLabel.ParentControl).CarMemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;                           // SetControlのフラグをセット
+                    ((SetControl)carLabel.ParentControl).DefaultRelocation();                                                                       // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)carLabel.ParentControl).GetVehicleDispatchDetailVo());    // thisのVehicleDispatchDetailVoを取得　SQL発行
                     break;
                 case StaffLabel staffLabel:
                     staffLabel.Memo = this.TextBoxExMemo.Text;
                     staffLabel.MemoFlag = this.TextBoxExMemo.Text.Length > 0 ? true : false;
-                    ((SetControl)staffLabel.ParentControl).SetControlRelocation(); // プロパティの再構築
-                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
+                    switch (this.GetStaffNumber(staffLabel)) {
+                        case 0: // Staff1
+                            ((SetControl)staffLabel.ParentControl).StaffMemo1 = this.TextBoxExMemo.Text;
+                            ((SetControl)staffLabel.ParentControl).StaffMemoFlag1 = this.TextBoxExMemo.Text.Length > 0 ? true : false;              // SetControlのフラグをセット
+                            break;
+                        case 1: // Staff2
+                            ((SetControl)staffLabel.ParentControl).StaffMemo2 = this.TextBoxExMemo.Text;
+                            ((SetControl)staffLabel.ParentControl).StaffMemoFlag2 = this.TextBoxExMemo.Text.Length > 0 ? true : false;              // SetControlのフラグをセット
+                            break;
+                        case 2: // Staff3
+                            ((SetControl)staffLabel.ParentControl).StaffMemo3 = this.TextBoxExMemo.Text;
+                            ((SetControl)staffLabel.ParentControl).StaffMemoFlag3 = this.TextBoxExMemo.Text.Length > 0 ? true : false;              // SetControlのフラグをセット
+                            break;
+                        case 3: // Staff4
+                            ((SetControl)staffLabel.ParentControl).StaffMemo4 = this.TextBoxExMemo.Text;
+                            ((SetControl)staffLabel.ParentControl).StaffMemoFlag4 = this.TextBoxExMemo.Text.Length > 0 ? true : false;              // SetControlのフラグをセット
+                            break;
+                    }
+                    ((SetControl)staffLabel.ParentControl).DefaultRelocation();                                                                     // プロパティの再構築
+                    _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                     break;
             }
             this.Close();

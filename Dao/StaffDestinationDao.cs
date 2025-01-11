@@ -112,7 +112,7 @@ namespace Dao {
                                      "LEFT OUTER JOIN H_StaffMaster AS H_StaffMaster3 ON H_VehicleDispatchDetail.StaffCode3 = H_StaffMaster3.StaffCode " +
                                      "LEFT OUTER JOIN H_StaffMaster AS H_StaffMaster4 ON H_VehicleDispatchDetail.StaffCode4 = H_StaffMaster4.StaffCode " +
                                      "WHERE H_VehicleDispatchDetail.OperationDate BETWEEN '" + operationDate1.ToString("yyyy-MM-dd") + "' AND '" + operationDate2.ToString("yyyy-MM-dd") + "' " +
-                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true' AND H_VehicleDispatchDetail.VehicleDispatchFlag = 'true'";
+                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true'";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     StaffDestinationVo staffDestinationVo = new();
@@ -223,7 +223,7 @@ namespace Dao {
                                      "LEFT OUTER JOIN H_SetMaster ON H_VehicleDispatchDetail.SetCode = H_SetMaster.SetCode " +
                                      "WHERE H_VehicleDispatchDetail.OperationDate BETWEEN '" + operationDate1.ToString("yyyy-MM-dd") + "' AND '" + operationDate2.ToString("yyyy-MM-dd") + "' " +
                                        "AND " + staffCode.ToString("####0") + "IN (H_VehicleDispatchDetail.StaffCode1,H_VehicleDispatchDetail.StaffCode2,H_VehicleDispatchDetail.StaffCode3,H_VehicleDispatchDetail.StaffCode4) " +
-                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true' AND H_VehicleDispatchDetail.VehicleDispatchFlag = 'true'";
+                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true'";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     StaffDestinationVo staffDestinationVo = new();
