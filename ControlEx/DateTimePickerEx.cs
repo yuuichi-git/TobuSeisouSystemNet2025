@@ -156,5 +156,13 @@ namespace ControlEx {
             get => this._cultureFlag;
             set => this._cultureFlag = value;
         }
+
+        /// <summary>
+        /// GetValueJp
+        /// </summary>
+        /// <returns>和暦を返す</returns>
+        public string GetValueJp() {
+            return this.Value.ToString(" ggy年M月d日(dddd)", _cultureInfo);
+        }
     }
 }

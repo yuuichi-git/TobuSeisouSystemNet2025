@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDestination));
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
             this.CheckBoxExAbsence = new ControlEx.CheckBoxEx();
@@ -47,10 +48,8 @@
             this.checkBoxEx9 = new ControlEx.CheckBoxEx();
             this.checkBoxEx11 = new ControlEx.CheckBoxEx();
             this.checkBoxEx13 = new ControlEx.CheckBoxEx();
-            this.checkBoxEx15 = new ControlEx.CheckBoxEx();
             this.GroupBoxExBelongs = new ControlEx.GroupBoxEx();
             this.checkBoxEx4 = new ControlEx.CheckBoxEx();
-            this.checkBoxEx8 = new ControlEx.CheckBoxEx();
             this.checkBoxEx1 = new ControlEx.CheckBoxEx();
             this.checkBoxEx7 = new ControlEx.CheckBoxEx();
             this.checkBoxEx2 = new ControlEx.CheckBoxEx();
@@ -58,7 +57,8 @@
             this.checkBoxEx3 = new ControlEx.CheckBoxEx();
             this.checkBoxEx5 = new ControlEx.CheckBoxEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
+            this.checkBoxEx8 = new ControlEx.CheckBoxEx();
+            this.checkBoxEx12 = new ControlEx.CheckBoxEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();
@@ -296,10 +296,11 @@
             // 
             // GroupBoxExJobForm
             // 
+            this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx8);
+            this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx12);
             this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx9);
             this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx11);
             this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx13);
-            this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx15);
             this.GroupBoxExJobForm.Location = new Point(8, 116);
             this.GroupBoxExJobForm.Name = "GroupBoxExJobForm";
             this.GroupBoxExJobForm.Size = new Size(616, 48);
@@ -312,7 +313,7 @@
             this.checkBoxEx9.AutoSize = true;
             this.checkBoxEx9.Checked = true;
             this.checkBoxEx9.CheckState = CheckState.Checked;
-            this.checkBoxEx9.Location = new Point(200, 20);
+            this.checkBoxEx9.Location = new Point(316, 20);
             this.checkBoxEx9.Name = "checkBoxEx9";
             this.checkBoxEx9.Size = new Size(68, 19);
             this.checkBoxEx9.TabIndex = 3;
@@ -327,10 +328,10 @@
             this.checkBoxEx11.CheckState = CheckState.Checked;
             this.checkBoxEx11.Location = new Point(12, 20);
             this.checkBoxEx11.Name = "checkBoxEx11";
-            this.checkBoxEx11.Size = new Size(50, 19);
+            this.checkBoxEx11.Size = new Size(70, 19);
             this.checkBoxEx11.TabIndex = 0;
-            this.checkBoxEx11.Tag = "10";
-            this.checkBoxEx11.Text = "長期";
+            this.checkBoxEx11.Tag = "20";
+            this.checkBoxEx11.Text = "長期(新)";
             this.checkBoxEx11.UseVisualStyleBackColor = true;
             // 
             // checkBoxEx13
@@ -338,31 +339,17 @@
             this.checkBoxEx13.AutoSize = true;
             this.checkBoxEx13.Checked = true;
             this.checkBoxEx13.CheckState = CheckState.Checked;
-            this.checkBoxEx13.Location = new Point(68, 20);
+            this.checkBoxEx13.Location = new Point(88, 20);
             this.checkBoxEx13.Name = "checkBoxEx13";
-            this.checkBoxEx13.Size = new Size(50, 19);
+            this.checkBoxEx13.Size = new Size(70, 19);
             this.checkBoxEx13.TabIndex = 1;
-            this.checkBoxEx13.Tag = "11";
-            this.checkBoxEx13.Text = "短期";
+            this.checkBoxEx13.Tag = "21";
+            this.checkBoxEx13.Text = "短期(新)";
             this.checkBoxEx13.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxEx15
-            // 
-            this.checkBoxEx15.AutoSize = true;
-            this.checkBoxEx15.Checked = true;
-            this.checkBoxEx15.CheckState = CheckState.Checked;
-            this.checkBoxEx15.Location = new Point(124, 20);
-            this.checkBoxEx15.Name = "checkBoxEx15";
-            this.checkBoxEx15.Size = new Size(72, 19);
-            this.checkBoxEx15.TabIndex = 2;
-            this.checkBoxEx15.Tag = "12";
-            this.checkBoxEx15.Text = "アルバイト";
-            this.checkBoxEx15.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExBelongs
             // 
             this.GroupBoxExBelongs.Controls.Add(this.checkBoxEx4);
-            this.GroupBoxExBelongs.Controls.Add(this.checkBoxEx8);
             this.GroupBoxExBelongs.Controls.Add(this.checkBoxEx1);
             this.GroupBoxExBelongs.Controls.Add(this.checkBoxEx7);
             this.GroupBoxExBelongs.Controls.Add(this.checkBoxEx2);
@@ -387,19 +374,6 @@
             this.checkBoxEx4.Text = "嘱託雇用契約社員";
             this.checkBoxEx4.UseVisualStyleBackColor = true;
             // 
-            // checkBoxEx8
-            // 
-            this.checkBoxEx8.AutoSize = true;
-            this.checkBoxEx8.Checked = true;
-            this.checkBoxEx8.CheckState = CheckState.Checked;
-            this.checkBoxEx8.Location = new Point(544, 20);
-            this.checkBoxEx8.Name = "checkBoxEx8";
-            this.checkBoxEx8.Size = new Size(62, 19);
-            this.checkBoxEx8.TabIndex = 7;
-            this.checkBoxEx8.Tag = "21";
-            this.checkBoxEx8.Text = "自運労";
-            this.checkBoxEx8.UseVisualStyleBackColor = true;
-            // 
             // checkBoxEx1
             // 
             this.checkBoxEx1.AutoSize = true;
@@ -418,10 +392,10 @@
             this.checkBoxEx7.CheckState = CheckState.Checked;
             this.checkBoxEx7.Location = new Point(476, 20);
             this.checkBoxEx7.Name = "checkBoxEx7";
-            this.checkBoxEx7.Size = new Size(62, 19);
+            this.checkBoxEx7.Size = new Size(50, 19);
             this.checkBoxEx7.TabIndex = 6;
-            this.checkBoxEx7.Tag = "20";
-            this.checkBoxEx7.Text = "新運転";
+            this.checkBoxEx7.Tag = "22";
+            this.checkBoxEx7.Text = "労供";
             this.checkBoxEx7.UseVisualStyleBackColor = true;
             // 
             // checkBoxEx2
@@ -479,6 +453,32 @@
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
+            // checkBoxEx8
+            // 
+            this.checkBoxEx8.AutoSize = true;
+            this.checkBoxEx8.Checked = true;
+            this.checkBoxEx8.CheckState = CheckState.Checked;
+            this.checkBoxEx8.Location = new Point(164, 20);
+            this.checkBoxEx8.Name = "checkBoxEx8";
+            this.checkBoxEx8.Size = new Size(70, 19);
+            this.checkBoxEx8.TabIndex = 4;
+            this.checkBoxEx8.Tag = "22";
+            this.checkBoxEx8.Text = "長期(自)";
+            this.checkBoxEx8.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxEx12
+            // 
+            this.checkBoxEx12.AutoSize = true;
+            this.checkBoxEx12.Checked = true;
+            this.checkBoxEx12.CheckState = CheckState.Checked;
+            this.checkBoxEx12.Location = new Point(240, 20);
+            this.checkBoxEx12.Name = "checkBoxEx12";
+            this.checkBoxEx12.Size = new Size(70, 19);
+            this.checkBoxEx12.TabIndex = 5;
+            this.checkBoxEx12.Tag = "23";
+            this.checkBoxEx12.Text = "短期(自)";
+            this.checkBoxEx12.UseVisualStyleBackColor = true;
+            // 
             // StaffDestination
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -514,7 +514,6 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.GroupBoxEx GroupBoxExBelongs;
         private ControlEx.CheckBoxEx checkBoxEx4;
-        private ControlEx.CheckBoxEx checkBoxEx8;
         private ControlEx.CheckBoxEx checkBoxEx1;
         private ControlEx.CheckBoxEx checkBoxEx7;
         private ControlEx.CheckBoxEx checkBoxEx2;
@@ -532,7 +531,6 @@
         private ControlEx.CheckBoxEx checkBoxEx9;
         private ControlEx.CheckBoxEx checkBoxEx11;
         private ControlEx.CheckBoxEx checkBoxEx13;
-        private ControlEx.CheckBoxEx checkBoxEx15;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;
@@ -542,5 +540,7 @@
         private ControlEx.ComboBoxEx ComboBoxExStaffName;
         private ControlEx.CheckBoxEx CheckBoxExAbsence;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private ControlEx.CheckBoxEx checkBoxEx8;
+        private ControlEx.CheckBoxEx checkBoxEx12;
     }
 }

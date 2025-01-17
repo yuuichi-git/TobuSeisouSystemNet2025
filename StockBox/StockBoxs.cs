@@ -284,10 +284,10 @@ namespace StockBox {
                     newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 12 && x.RetirementFlag == false);
                     break;
                 case "ButtonExLongTime": // 長期
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 20 || x.Belongs == 21) && x.JobForm == 10 && x.RetirementFlag == false);
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 22 && (x.JobForm == 20 || x.JobForm == 22) && x.RetirementFlag == false);
                     break;
                 case "ButtonExShortTime": // 短期
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 20 || x.Belongs == 21) && x.JobForm == 11 && x.RetirementFlag == false);
+                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 22 && (x.JobForm == 21 || x.JobForm == 23) && x.RetirementFlag == false);
                     break;
                 case "ButtonExDispatch": // 派遣
                     newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 13 && x.RetirementFlag == false);

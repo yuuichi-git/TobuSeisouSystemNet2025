@@ -9,6 +9,8 @@ using ControlEx;
 
 using EmploymentAgreement;
 
+using RollCall;
+
 using Staff;
 
 using VehicleDispatch;
@@ -187,10 +189,20 @@ namespace TobuSeisouSystemNet2025 {
             switch (_connectionVo.Connection.State) {
                 case ConnectionState.Open: //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
-                        case "VehicleDispatchBoard": // 配車表
+                        case "VehicleDispatchBoard": // 配車パネル
                             VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();
+                            break;
+                        case "FirstRollColl": // 配車表
+                            FirstRollColl firstRollColl = new(_connectionVo);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
+                            firstRollColl.Show();
+                            break;
+                        case "StaffList": // 従事者リスト
+                            StaffList staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
+                            staffList.Show();
                             break;
                         case "EmploymentAgreementList": // 契約書・誓約書等
                             EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);

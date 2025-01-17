@@ -27,12 +27,21 @@ namespace Staff {
         private readonly StaffCarViolateDao _staffCarViolateDao;
         private readonly StaffEducateDao _staffEducateDao;
         private readonly StaffPunishmentDao _staffPunishmentDao;
+        private readonly BelongsMasterDao _belongsMasterDao;
+        private readonly JobFormMasterDao _jobFormMasterDao;
+        private readonly OccupationMasterDao _occupationMasterDao;
         /*
          * Vo
          */
         private readonly ConnectionVo _connectionVo;
         private StaffMasterVo _staffMasterVo;
         private LicenseMasterVo _licenseMasterVo;
+        /*
+         * Dictionary
+         */
+        private readonly Dictionary<int, string> _dictionaryBelongs = new();
+        private readonly Dictionary<int, string> _dictionaryOccupation = new();
+        private readonly Dictionary<int, string> _dictionaryJobForm = new();
 
         /// <summary>
         /// コンストラクター
@@ -55,11 +64,23 @@ namespace Staff {
             _staffCarViolateDao = new(connectionVo);
             _staffEducateDao = new(connectionVo);
             _staffPunishmentDao = new(connectionVo);
+            _belongsMasterDao = new(connectionVo);
+            _jobFormMasterDao = new(connectionVo);
+            _occupationMasterDao = new(connectionVo);
             /*
              * Vo
              */
             _connectionVo = connectionVo;
             _staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
+            /*
+             * Dictionary
+             */
+            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+                _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
+            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
+                _dictionaryOccupation.Add(occupationMasterVo.Code, occupationMasterVo.Name);
+            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
+                _dictionaryJobForm.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
             /*
              * InitializeControl
              */
@@ -171,14 +192,14 @@ namespace Staff {
             /*
              * 労共(長期)
              */
-            if ((_staffMasterVo.Belongs == 20 || _staffMasterVo.Belongs == 21) && _staffMasterVo.JobForm == 10) {
+            if (_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 20 || _staffMasterVo.JobForm == 22)) {
                 sheetView.Cells[5, 1].ForeColor = Color.Red;
                 sheetView.Cells[5, 2].ForeColor = Color.Red;
             }
             /*
              * 労共(短期)
              */
-            if ((_staffMasterVo.Belongs == 20 || _staffMasterVo.Belongs == 21) && _staffMasterVo.JobForm == 11) {
+            if (_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 21 || _staffMasterVo.JobForm == 23)) {
                 sheetView.Cells[6, 1].ForeColor = Color.Red;
                 sheetView.Cells[6, 2].ForeColor = Color.Red;
             }
@@ -192,7 +213,6 @@ namespace Staff {
             /*
              * 作業員
              */
-            Dictionary<int, string> _dictionaryBelongs = new() { { 10, "役員" }, { 11, "社員" }, { 12, "アルバイト" }, { 13, "派遣" }, { 14, "嘱託雇用契約社員" }, { 15, "パートタイマー" }, { 20, "新運転" }, { 21, "自運労" }, { 99, "指定なし" } };
             if (_staffMasterVo.Occupation == 11) {
                 sheetView.Cells[8, 1].ForeColor = Color.Red;
                 sheetView.Cells[8, 2].ForeColor = Color.Red;

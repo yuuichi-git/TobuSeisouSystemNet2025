@@ -135,7 +135,6 @@ namespace EmploymentAgreement {
          */
         private readonly Dictionary<int, string> _dictionaryBelongs = new();
         private readonly Dictionary<int, string> _dictionaryOccupation = new();
-        private readonly Dictionary<int, string> _dictionaryJobDescription = new();
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
         /*
          * Flag
@@ -203,9 +202,9 @@ namespace EmploymentAgreement {
                     try {
                         _listEmploymentAgreementVo = _employmentAgreementDao.SelectAllEmploymentAgreement();
                         _listContractExpirationVo = _contractExpirationDao.SelectAllContractExpiration();
-                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(new int[] { 12, 14, 15, 20, 21 },
-                                                                                   new int[] { 10, 99 },
-                                                                                   new int[] { 10, 11, 12, 13, 20, 99 },
+                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(new List<int> { 12, 14, 15, 22 },            // アルバイト・嘱託雇用契約社員・パートタイマー・労供
+                                                                                   new List<int> { 20, 22, 99 },                // 新運転長期・自運労長期・指定なし
+                                                                                   new List<int> { 10, 11, 12, 13, 20, 99 },    // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし
                                                                                    this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -223,7 +222,7 @@ namespace EmploymentAgreement {
             /*
              * Sort
              */
-            var orderListStaffMasterVo = listStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.UnionCode);
+            var orderListStaffMasterVo = listStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.JobForm).ThenBy(x => x.Occupation).ThenBy(x => x.UnionCode);
 
             int rowCount = 0;
             // Spread 非活性化

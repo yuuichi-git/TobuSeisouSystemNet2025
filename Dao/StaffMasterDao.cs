@@ -36,7 +36,7 @@ namespace Dao {
         /// <param name="sqlOccupation"></param>
         /// <param name="sqlRetirementFlag">true:退職 false:在職 null:全て</param>
         /// <returns></returns>
-        public List<StaffMasterVo> SelectAllStaffMaster(int[]? sqlBelongs, int[]? sqlJobForm, int[]? sqlOccupation, bool? sqlRetirementFlag) {
+        public List<StaffMasterVo> SelectAllStaffMaster(List<int>? sqlBelongs, List<int>? sqlJobForm, List<int>? sqlOccupation, bool? sqlRetirementFlag) {
             List<StaffMasterVo> listStaffMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
@@ -298,13 +298,13 @@ namespace Dao {
         /// </summary>
         /// <param name="sqlBelongs"></param>
         /// <returns></returns>
-        private string CreateSqlBelongs(int[]? sqlBelongs) {
+        private string CreateSqlBelongs(List<int>? sqlBelongs) {
             string sql = string.Empty;
             if (sqlBelongs is not null) {
                 string codes = string.Empty;
                 int i = 0;
                 foreach (int code in sqlBelongs) {
-                    codes += string.Concat(code.ToString(), i < sqlBelongs.Length - 1 ? "," : "");
+                    codes += string.Concat(code.ToString(), i < sqlBelongs.Count - 1 ? "," : "");
                     i++;
                 }
                 sql = " AND Belongs IN (" + codes + ")";
@@ -319,13 +319,13 @@ namespace Dao {
         /// </summary>
         /// <param name="sqlJobForm"></param>
         /// <returns></returns>
-        private string CreateSqlJobForm(int[]? sqlJobForm) {
+        private string CreateSqlJobForm(List<int>? sqlJobForm) {
             string sql = string.Empty;
             if (sqlJobForm is not null) {
                 string codes = string.Empty;
                 int i = 0;
                 foreach (int code in sqlJobForm) {
-                    codes += string.Concat(code.ToString(), i < sqlJobForm.Length - 1 ? "," : "");
+                    codes += string.Concat(code.ToString(), i < sqlJobForm.Count - 1 ? "," : "");
                     i++;
                 }
                 sql = " AND JobForm IN (" + codes + ")";
@@ -340,13 +340,13 @@ namespace Dao {
         /// </summary>
         /// <param name="sqlOccupation"></param>
         /// <returns></returns>
-        private string CreateSqlOccupation(int[]? sqlOccupation) {
+        private string CreateSqlOccupation(List<int>? sqlOccupation) {
             string sql = string.Empty;
             if (sqlOccupation is not null) {
                 string codes = string.Empty;
                 int i = 0;
                 foreach (int code in sqlOccupation) {
-                    codes += string.Concat(code.ToString(), i < sqlOccupation.Length - 1 ? "," : "");
+                    codes += string.Concat(code.ToString(), i < sqlOccupation.Count - 1 ? "," : "");
                     i++;
                 }
                 sql = " AND Occupation IN (" + codes + ")";

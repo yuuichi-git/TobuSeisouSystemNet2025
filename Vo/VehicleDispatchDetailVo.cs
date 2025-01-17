@@ -315,7 +315,7 @@ namespace Vo {
         }
         /// <summary>
         /// 職種コード1
-        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// 10:運転手 11:作業員 12:自転車駐輪場 13:リサイクルセンター 20:事務職 99:指定なし
         /// </summary>
         public int StaffOccupation1 {
             get => _staffOccupation1;
@@ -368,7 +368,7 @@ namespace Vo {
         }
         /// <summary>
         /// 職種コード2
-        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// 10:運転手 11:作業員 12:自転車駐輪場 13:リサイクルセンター 20:事務職 99:指定なし
         /// </summary>
         public int StaffOccupation2 {
             get => _staffOccupation2;
@@ -421,7 +421,7 @@ namespace Vo {
         }
         /// <summary>
         /// 職種コード3
-        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// 10:運転手 11:作業員 12:自転車駐輪場 13:リサイクルセンター 20:事務職 99:指定なし
         /// </summary>
         public int StaffOccupation3 {
             get => _staffOccupation3;
@@ -474,7 +474,7 @@ namespace Vo {
         }
         /// <summary>
         /// 職種コード4
-        /// 10:運転手 11:作業員 20:事務職 99:指定なし
+        /// 10:運転手 11:作業員 12:自転車駐輪場 13:リサイクルセンター 20:事務職 99:指定なし
         /// </summary>
         public int StaffOccupation4 {
             get => _staffOccupation4;

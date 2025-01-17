@@ -193,11 +193,14 @@ namespace ControlEx {
                     break;
                 case 20:
                 case 21:
+                case 22:
                     switch (this.StaffMasterVo.JobForm) {
-                        case 10:
+                        case 20:
+                        case 22:
                             pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
                             break;
-                        case 11:
+                        case 21:
+                        case 23:
                             pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageShortTime), 0, 0, Width, Height);
                             break;
                     }

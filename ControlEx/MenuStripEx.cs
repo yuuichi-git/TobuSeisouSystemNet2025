@@ -11,17 +11,19 @@ namespace ControlEx {
          * ToolStripMenuItem
          */
         private ToolStripMenuItem toolStripMenuItemFile = new("ファイル");
+        private ToolStripMenuItem toolStripMenuItemExit = new("アプリケーションを終了する");
 
         private ToolStripMenuItem toolStripMenuItemEdit = new("編集");
         private ToolStripMenuItem toolStripMenuItemUpdateTaitou = new("台東資源収集量入力");
-
-        private ToolStripMenuItem toolStripMenuItemExit = new("アプリケーションを終了する");
 
         private ToolStripMenuItem toolStripMenuItemInitialize = new("初期化");
         private ToolStripMenuItem toolStripMenuItemInitializeBord = new("配車ボードを初期化する");
 
         private ToolStripMenuItem toolStripMenuItemDataBase = new("データベース");
         private ToolStripMenuItem toolStripMenuItemDataBaseLocal = new("ローカルデータベースへ接続する");
+
+        private ToolStripMenuItem toolStripMenuItemExport = new("エクスポート");
+        private ToolStripMenuItem toolStripMenuItemExportExcel = new("xls形式ファイルをエクスポートします");
 
         private ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
         private ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
@@ -96,6 +98,15 @@ namespace ControlEx {
             toolStripMenuItemDataBaseLocal.Name = "ToolStripMenuItemDataBaseLocal";
             toolStripMenuItemDataBaseLocal.Click += ToolStripMenuItem_Click;
             toolStripMenuItemDataBase.DropDownItems.Add(toolStripMenuItemDataBaseLocal);
+            /*
+             * エクスポート
+             */
+            toolStripMenuItemExport.Name = "ToolStripMenuItemExport";
+            this.Items.Add(toolStripMenuItemExport);
+
+            toolStripMenuItemExportExcel.Name = "ToolStripMenuItemExportExcel";
+            toolStripMenuItemExportExcel.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemExport.DropDownItems.Add(toolStripMenuItemExportExcel);
             /*
              * 印刷
              */

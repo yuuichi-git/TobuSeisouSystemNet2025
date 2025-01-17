@@ -2,7 +2,6 @@
  * 2024-10-10
  */
 using System.Diagnostics;
-using System.Windows.Forms;
 
 using Vo;
 
@@ -334,7 +333,8 @@ namespace ControlEx {
                     case 0:
                         staffLabel.Memo = this.StaffMemo1;
                         staffLabel.MemoFlag = this.StaffMemoFlag1;
-                        staffLabel.OccupationCode = GetOccupationCode(0);
+                        staffLabel.OccupationCode = this.StaffOccupation1;//GetOccupationCode(0);
+
                         staffLabel.ProxyFlag = this.StaffProxyFlag1;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag1;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms1;
@@ -342,7 +342,7 @@ namespace ControlEx {
                     case 1:
                         staffLabel.Memo = this.StaffMemo2;
                         staffLabel.MemoFlag = this.StaffMemoFlag2;
-                        staffLabel.OccupationCode = GetOccupationCode(1);
+                        staffLabel.OccupationCode = this.StaffOccupation2;//GetOccupationCode(1);
                         staffLabel.ProxyFlag = this.StaffProxyFlag2;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag2;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms2;
@@ -350,7 +350,7 @@ namespace ControlEx {
                     case 2:
                         staffLabel.Memo = this.StaffMemo3;
                         staffLabel.MemoFlag = this.StaffMemoFlag3;
-                        staffLabel.OccupationCode = GetOccupationCode(2);
+                        staffLabel.OccupationCode = this.StaffOccupation3;//GetOccupationCode(2);
                         staffLabel.ProxyFlag = this.StaffProxyFlag3;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag3;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms3;
@@ -358,7 +358,7 @@ namespace ControlEx {
                     case 3:
                         staffLabel.Memo = this.StaffMemo4;
                         staffLabel.MemoFlag = this.StaffMemoFlag4;
-                        staffLabel.OccupationCode = GetOccupationCode(3);
+                        staffLabel.OccupationCode = this.StaffOccupation4;//GetOccupationCode(3);
                         staffLabel.ProxyFlag = this.StaffProxyFlag4;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag4;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms4;
@@ -402,7 +402,7 @@ namespace ControlEx {
                     if (number == 0) {
                         return 10;
                     } else {
-                        return 11;
+                        return this.ClassificationCode;
                     }
                 default:
                     return this.ClassificationCode;
