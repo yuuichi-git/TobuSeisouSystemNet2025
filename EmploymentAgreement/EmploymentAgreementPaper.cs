@@ -92,7 +92,7 @@ namespace EmploymentAgreement {
             /// 23:パートタイマー
             /// 30:誓約書
             /// 40:失墜行為確認書
-            /// 50:満了一カ月前通知
+            /// 50:使用停止予告通知書
             switch (code) {
                 case 10: // 長期雇用契約（新産別）
                     this.SpreadList.ActiveSheetIndex = 4;
@@ -132,8 +132,9 @@ namespace EmploymentAgreement {
                 case 40: // 失墜行為確認書
 
                     break;
-                case 50: // 満了一カ月前通知
-
+                case 50: // 使用停止予告通知書
+                    this.SpreadList.ActiveSheetIndex = 8;
+                    this.PutContractExpirationNotice();
                     break;
 
             }
@@ -352,6 +353,27 @@ namespace EmploymentAgreement {
             this.SheetView誓約書.Cells[42, 30].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
+        /// <summary>
+        /// 使用停止予告通知書
+        /// </summary>
+        private void PutContractExpirationNotice() {
+            if (_staffMasterVo.Belongs == 22) {
+                switch (_staffMasterVo.JobForm) {
+                    case 20:    // 新産別
+                    case 21:
+                        this.SheetView使用停止予告通知書.Cells[6, 2].Text = "新産別運転者労働組合　東京地方本部";
+                        this.SheetView使用停止予告通知書.Cells[8, 2].Text = string.Concat(_staffMasterVo.OtherName, " 殿");
+                        this.SheetView使用停止予告通知書.Cells[22, 2].Text = "　東武清掃株式会社と新産別運転者労働組合東京地方本部との間で取り交わしている";
+                        break;
+                    case 22:    // 自運労
+                    case 23:
+                        this.SheetView使用停止予告通知書.Cells[6, 2].Text = "日本自動車運転士労働組合　東京支部";
+                        this.SheetView使用停止予告通知書.Cells[8, 2].Text = string.Concat(_staffMasterVo.OtherName, " 殿");
+                        this.SheetView使用停止予告通知書.Cells[22, 2].Text = "　東武清掃株式会社と日本自動車運転士労働組合東京支部との間で取り交わしている";
+                        break;
+                }
+            }
+        }
         /*
          * Print
          */

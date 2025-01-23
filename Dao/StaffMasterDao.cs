@@ -1,6 +1,7 @@
 ﻿/*
  * 2023-11-16
  */
+using System.Data;
 using System.Data.SqlClient;
 
 using Common;
@@ -10,6 +11,18 @@ using Vo;
 namespace Dao {
     public class StaffMasterDao {
         private readonly DefaultValue _defaultValue = new();
+        /*
+         * Dao
+         */
+        private readonly StaffHistoryDao _staffHistoryDao;
+        private readonly StaffExperienceDao _staffExperienceDao;
+        private readonly StaffFamilyDao _staffFamilyDao;
+        private readonly StaffMedicalExaminationDao _staffMedicalExaminationDao;
+        private readonly StaffCarViolateDao _staffCarViolateDao;
+        private readonly StaffEducateDao _staffEducateDao;
+        private readonly StaffProperDao _staffProperDao;
+        private readonly StaffPunishmentDao _staffPunishmentDao;
+        private readonly LicenseMasterDao _licenseMasterDao;
         /*
          * Vo
          */
@@ -21,9 +34,41 @@ namespace Dao {
         /// <param name="connectionVo"></param>
         public StaffMasterDao(ConnectionVo connectionVo) {
             /*
+             * Dao
+             */
+            _staffHistoryDao = new(connectionVo);
+            _staffExperienceDao = new(connectionVo);
+            _staffFamilyDao = new(connectionVo);
+            _staffMedicalExaminationDao = new(connectionVo);
+            _staffCarViolateDao = new(connectionVo);
+            _staffEducateDao = new(connectionVo);
+            _staffProperDao = new(connectionVo);
+            _staffPunishmentDao = new(connectionVo);
+            _licenseMasterDao = new(connectionVo);
+            /*
              * Vo
              */
             _connectionVo = connectionVo;
+        }
+
+        /// <summary>
+        /// ExistenceHStaffMasterRecord
+        /// true:該当レコードあり false:該当レコードなし
+        /// </summary>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        public bool ExistenceStaffMaster(int staffCode) {
+            int count;
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
+                                     "FROM H_StaffMaster " +
+                                     "WHERE StaffCode = " + staffCode;
+            try {
+                count = (int)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
+            return count != 0 ? true : false;
         }
 
         /// <summary>
@@ -165,9 +210,7 @@ namespace Dao {
         }
 
         /// <summary>
-        /// SelectOneStaffMaster
-        /// Picture有
-        /// DeleteFlag = False
+        /// 
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
@@ -258,6 +301,9 @@ namespace Dao {
                     staffMasterVo.SelectionDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["SelectionDate"]);
                     staffMasterVo.NotSelectionDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["NotSelectionDate"]);
                     staffMasterVo.NotSelectionReason = _defaultValue.GetDefaultValue<string>(sqlDataReader["NotSelectionReason"]);
+                    staffMasterVo.LicenseMasterVo = _licenseMasterDao.SelectOneLicenseMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffHistoryVo = _staffHistoryDao.SelectOneStaffHistoryMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffExperienceVo = _staffExperienceDao.SelectOneStaffExperienceMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.ContractFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ContractFlag"]);
                     staffMasterVo.ContractDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ContractDate"]);
                     staffMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
@@ -267,6 +313,7 @@ namespace Dao {
                     staffMasterVo.DeathNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeathNote"]);
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
+                    staffMasterVo.ListHStaffFamilyVo = _staffFamilyDao.SelectOneStaffFamilyMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
                     staffMasterVo.UrgentTelephoneMethod = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneMethod"]);
                     staffMasterVo.HealthInsuranceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["HealthInsuranceDate"]);
@@ -281,6 +328,11 @@ namespace Dao {
                     staffMasterVo.WorkerAccidentInsuranceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["WorkerAccidentInsuranceDate"]);
                     staffMasterVo.WorkerAccidentInsuranceNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkerAccidentInsuranceNumber"]);
                     staffMasterVo.WorkerAccidentInsuranceNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkerAccidentInsuranceNote"]);
+                    staffMasterVo.ListHStaffMedicalExaminationVo = _staffMedicalExaminationDao.SelectOneStaffMedicalExaminationMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffCarViolateVo = _staffCarViolateDao.SelectOneStaffCarViolateMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffEducateVo = _staffEducateDao.SelectOneStaffEducateMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffProperVo = _staffProperDao.SelectOneStaffProperMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
+                    staffMasterVo.ListHStaffPunishmentVo = _staffPunishmentDao.SelectOneStaffPunishmentMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     staffMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     staffMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -291,6 +343,199 @@ namespace Dao {
                 }
             }
             return staffMasterVo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffMasterVo"></param>
+        public void InsertOneStaffMaster(StaffMasterVo staffMasterVo) {
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_StaffMaster(StaffCode," +
+                                                               "UnionCode," +
+                                                               "Belongs," +
+                                                               "VehicleDispatchTarget," +
+                                                               "JobForm," +
+                                                               "Occupation," +
+                                                               "NameKana," +
+                                                               "Name," +
+                                                               "DisplayName," +
+                                                               "OtherNameKana," +
+                                                               "OtherName," +
+                                                               "Gender," +
+                                                               "BirthDate," +
+                                                               "EmploymentDate," +
+                                                               "CurrentAddress," +
+                                                               "BeforeChangeAddress," +
+                                                               "Remarks," +
+                                                               "TelephoneNumber," +
+                                                               "CellphoneNumber," +
+                                                               "Picture," +
+                                                               "StampPicture," +
+                                                               "BloodType," +
+                                                               "SelectionDate," +
+                                                               "NotSelectionDate," +
+                                                               "NotSelectionReason," +
+                                                               "ContractFlag," +
+                                                               "ContractDate," +
+                                                               "RetirementFlag," +
+                                                               "RetirementDate," +
+                                                               "RetirementNote," +
+                                                               "DeathDate," +
+                                                               "DeathNote," +
+                                                               "LegalTwelveItemFlag," +
+                                                               "ToukanpoFlag," +
+                                                               "UrgentTelephoneNumber," +
+                                                               "UrgentTelephoneMethod," +
+                                                               "HealthInsuranceDate," +
+                                                               "HealthInsuranceNumber," +
+                                                               "HealthInsuranceNote," +
+                                                               "WelfarePensionDate," +
+                                                               "WelfarePensionNumber," +
+                                                               "WelfarePensionNote," +
+                                                               "EmploymentInsuranceDate," +
+                                                               "EmploymentInsuranceNumber," +
+                                                               "EmploymentInsuranceNote," +
+                                                               "WorkerAccidentInsuranceDate," +
+                                                               "WorkerAccidentInsuranceNumber," +
+                                                               "WorkerAccidentInsuranceNote," +
+                                                               "InsertPcName," +
+                                                               "InsertYmdHms," +
+                                                               "UpdatePcName," +
+                                                               "UpdateYmdHms," +
+                                                               "DeletePcName," +
+                                                               "DeleteYmdHms," +
+                                                               "DeleteFlag) " +
+                                     "VALUES (" + staffMasterVo.StaffCode + "," +
+                                             "" + staffMasterVo.UnionCode + "," +
+                                             "" + staffMasterVo.Belongs + "," +
+                                            "'" + staffMasterVo.VehicleDispatchTarget + "'," +
+                                             "" + staffMasterVo.JobForm + "," +
+                                             "" + staffMasterVo.Occupation + "," +
+                                            "'" + staffMasterVo.NameKana + "'," +
+                                            "'" + staffMasterVo.Name + "'," +
+                                            "'" + staffMasterVo.DisplayName + "'," +
+                                            "'" + staffMasterVo.OtherNameKana + "'," +
+                                            "'" + staffMasterVo.OtherName + "'," +
+                                            "'" + staffMasterVo.Gender + "'," +
+                                            "'" + staffMasterVo.BirthDate + "'," +
+                                            "'" + staffMasterVo.EmploymentDate + "'," +
+                                            "'" + staffMasterVo.CurrentAddress + "'," +
+                                            "'" + staffMasterVo.BeforeChangeAddress + "'," +
+                                            "'" + staffMasterVo.Remarks + "'," +
+                                            "'" + staffMasterVo.TelephoneNumber + "'," +
+                                            "'" + staffMasterVo.CellphoneNumber + "'," +
+                                            "@member_picture," +
+                                            "@member_stampPicture," +
+                                            "'" + staffMasterVo.BloodType + "'," +
+                                            "'" + staffMasterVo.SelectionDate + "'," +
+                                            "'" + staffMasterVo.NotSelectionDate + "'," +
+                                            "'" + staffMasterVo.NotSelectionReason + "'," +
+                                            "'" + staffMasterVo.ContractFlag + "'," +
+                                            "'" + staffMasterVo.ContractDate + "'," +
+                                            "'" + staffMasterVo.RetirementFlag + "'," +
+                                            "'" + staffMasterVo.RetirementDate + "'," +
+                                            "'" + staffMasterVo.RetirementNote + "'," +
+                                            "'" + staffMasterVo.DeathDate + "'," +
+                                            "'" + staffMasterVo.DeathNote + "'," +
+                                            "'" + staffMasterVo.LegalTwelveItemFlag + "'," +
+                                            "'" + staffMasterVo.ToukanpoFlag + "'," +
+                                            "'" + staffMasterVo.UrgentTelephoneNumber + "'," +
+                                            "'" + staffMasterVo.UrgentTelephoneMethod + "'," +
+                                            "'" + staffMasterVo.HealthInsuranceDate + "'," +
+                                            "'" + staffMasterVo.HealthInsuranceNumber + "'," +
+                                            "'" + staffMasterVo.HealthInsuranceNote + "'," +
+                                            "'" + staffMasterVo.WelfarePensionDate + "'," +
+                                            "'" + staffMasterVo.WelfarePensionNumber + "'," +
+                                            "'" + staffMasterVo.WelfarePensionNote + "'," +
+                                            "'" + staffMasterVo.EmploymentInsuranceDate + "'," +
+                                            "'" + staffMasterVo.EmploymentInsuranceNumber + "'," +
+                                            "'" + staffMasterVo.EmploymentInsuranceNote + "'," +
+                                            "'" + staffMasterVo.WorkerAccidentInsuranceDate + "'," +
+                                            "'" + staffMasterVo.WorkerAccidentInsuranceNumber + "'," +
+                                            "'" + staffMasterVo.WorkerAccidentInsuranceNote + "'," +
+                                            "'" + staffMasterVo.InsertPcName + "'," +
+                                            "'" + staffMasterVo.InsertYmdHms + "'," +
+                                            "'" + staffMasterVo.UpdatePcName + "'," +
+                                            "'" + staffMasterVo.UpdateYmdHms + "'," +
+                                            "'" + staffMasterVo.DeletePcName + "'," +
+                                            "'" + staffMasterVo.DeleteYmdHms + "'," +
+                                             "'false'" +
+                                             ");";
+            try {
+                sqlCommand.Parameters.Add("@member_picture", SqlDbType.Image, staffMasterVo.Picture.Length).Value = staffMasterVo.Picture;
+                sqlCommand.Parameters.Add("@member_stampPicture", SqlDbType.Image, staffMasterVo.StampPicture.Length).Value = staffMasterVo.StampPicture;
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffMasterVo"></param>
+        public void UpdateOneStaffMaster(StaffMasterVo staffMasterVo) {
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_StaffMaster " +
+                                     "SET StaffCode = " + staffMasterVo.StaffCode + "," +
+                                         "UnionCode = " + staffMasterVo.UnionCode + "," +
+                                         "Belongs = " + staffMasterVo.Belongs + "," +
+                                         "VehicleDispatchTarget = '" + staffMasterVo.VehicleDispatchTarget + "'," +
+                                         "JobForm = " + staffMasterVo.JobForm + "," +
+                                         "Occupation = " + staffMasterVo.Occupation + "," +
+                                         "NameKana = '" + staffMasterVo.NameKana + "'," +
+                                         "Name = '" + staffMasterVo.Name + "'," +
+                                         "DisplayName = '" + staffMasterVo.DisplayName + "'," +
+                                         "OtherNameKana = '" + staffMasterVo.OtherNameKana + "'," +
+                                         "OtherName = '" + staffMasterVo.OtherName + "'," +
+                                         "Gender = '" + staffMasterVo.Gender + "'," +
+                                         "BirthDate = '" + staffMasterVo.BirthDate + "'," +
+                                         "EmploymentDate = '" + staffMasterVo.EmploymentDate + "'," +
+                                         "CurrentAddress = '" + staffMasterVo.CurrentAddress + "'," +
+                                         "BeforeChangeAddress = '" + staffMasterVo.BeforeChangeAddress + "'," +
+                                         "Remarks = '" + staffMasterVo.Remarks + "'," +
+                                         "TelephoneNumber = '" + staffMasterVo.TelephoneNumber + "'," +
+                                         "CellphoneNumber = '" + staffMasterVo.CellphoneNumber + "'," +
+                                         "Picture = @member_picture," +
+                                         "StampPicture = @member_stampPicture," +
+                                         "BloodType = '" + staffMasterVo.BloodType + "'," +
+                                         "SelectionDate = '" + staffMasterVo.SelectionDate + "'," +
+                                         "NotSelectionDate = '" + staffMasterVo.NotSelectionDate + "'," +
+                                         "NotSelectionReason = '" + staffMasterVo.NotSelectionReason + "'," +
+                                         "ContractFlag = '" + staffMasterVo.ContractFlag + "'," +
+                                         "ContractDate = '" + staffMasterVo.ContractDate + "'," +
+                                         "RetirementFlag = '" + staffMasterVo.RetirementFlag + "'," +
+                                         "RetirementDate = '" + staffMasterVo.RetirementDate + "'," +
+                                         "RetirementNote = '" + staffMasterVo.RetirementNote + "'," +
+                                         "DeathDate = '" + staffMasterVo.DeathDate + "'," +
+                                         "DeathNote = '" + staffMasterVo.DeathNote + "'," +
+                                         "LegalTwelveItemFlag = '" + staffMasterVo.LegalTwelveItemFlag + "'," +
+                                         "ToukanpoFlag = '" + staffMasterVo.ToukanpoFlag + "'," +
+                                         "UrgentTelephoneNumber = '" + staffMasterVo.UrgentTelephoneNumber + "'," +
+                                         "UrgentTelephoneMethod = '" + staffMasterVo.UrgentTelephoneMethod + "'," +
+                                         "HealthInsuranceDate = '" + staffMasterVo.HealthInsuranceDate + "'," +
+                                         "HealthInsuranceNumber = '" + staffMasterVo.HealthInsuranceNumber + "'," +
+                                         "HealthInsuranceNote = '" + staffMasterVo.HealthInsuranceNote + "'," +
+                                         "WelfarePensionDate = '" + staffMasterVo.WelfarePensionDate + "'," +
+                                         "WelfarePensionNumber = '" + staffMasterVo.WelfarePensionNumber + "'," +
+                                         "WelfarePensionNote = '" + staffMasterVo.WelfarePensionNote + "'," +
+                                         "EmploymentInsuranceDate = '" + staffMasterVo.EmploymentInsuranceDate + "'," +
+                                         "EmploymentInsuranceNumber = '" + staffMasterVo.EmploymentInsuranceNumber + "'," +
+                                         "EmploymentInsuranceNote = '" + staffMasterVo.EmploymentInsuranceNote + "'," +
+                                         "WorkerAccidentInsuranceDate = '" + staffMasterVo.WorkerAccidentInsuranceDate + "'," +
+                                         "WorkerAccidentInsuranceNumber = '" + staffMasterVo.WorkerAccidentInsuranceNumber + "'," +
+                                         "WorkerAccidentInsuranceNote = '" + staffMasterVo.WorkerAccidentInsuranceNote + "'," +
+                                         "UpdatePcName = '" + staffMasterVo.UpdatePcName + "'," +
+                                         "UpdateYmdHms = '" + staffMasterVo.UpdateYmdHms + "' " +
+                                     "WHERE StaffCode = " + staffMasterVo.StaffCode;
+            try {
+                sqlCommand.Parameters.Add("@member_picture", SqlDbType.Image, staffMasterVo.Picture.Length).Value = staffMasterVo.Picture;
+                sqlCommand.Parameters.Add("@member_stampPicture", SqlDbType.Image, staffMasterVo.StampPicture.Length).Value = staffMasterVo.StampPicture;
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
         }
 
         /// <summary>

@@ -103,7 +103,8 @@
             // 
             this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob新産別, this.ToolStripMenuItemContractExpirationLongJob自運労運転士, this.ToolStripMenuItemContractExpirationLongJob自運労作業員, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(261, 246);
+            this.ContextMenuStripEx1.Size = new Size(261, 268);
+            this.ContextMenuStripEx1.Opening += this.ContextMenuStripEx1_Opening;
             // 
             // ToolStripMenuItemExpiration
             // 
@@ -179,7 +180,7 @@
             // 
             this.ToolStripMenuItemContractExpirationNotice.Name = "ToolStripMenuItemContractExpirationNotice";
             this.ToolStripMenuItemContractExpirationNotice.Size = new Size(260, 22);
-            this.ToolStripMenuItemContractExpirationNotice.Text = "契約満了通知";
+            this.ToolStripMenuItemContractExpirationNotice.Text = "使用停止予告通知書";
             this.ToolStripMenuItemContractExpirationNotice.Click += this.ToolStripMenuItem_Click;
             // 
             // PanelExTop

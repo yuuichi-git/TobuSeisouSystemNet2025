@@ -292,7 +292,9 @@ namespace Staff {
                 return;
             }
             // 修飾キーが無い場合
-
+            StaffDetail staffDetail = new(_connectionVo, ((StaffMasterVo)SheetViewList.Rows[e.Row].Tag).StaffCode);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffDetail);
+            staffDetail.Show(this);
         }
 
         int _spreadListTopRow = 0;

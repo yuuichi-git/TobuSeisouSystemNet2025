@@ -86,7 +86,7 @@ namespace Dao {
         /// InsertOneHStaffMedicalExaminationMaster
         /// </summary>
         /// <param name="staffMedicalExaminationVo"></param>
-        public void InsertOneHStaffMedicalExaminationMaster(StaffMedicalExaminationVo staffMedicalExaminationVo) {
+        public void InsertOneStaffMedicalExaminationMaster(StaffMedicalExaminationVo staffMedicalExaminationVo) {
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StaffMedicalExaminationMaster(StaffCode," +
                                                                                  "MedicalExaminationDate," +

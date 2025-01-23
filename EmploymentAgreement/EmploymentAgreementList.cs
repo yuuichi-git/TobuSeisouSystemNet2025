@@ -15,7 +15,7 @@ using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementList : Form {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /// <summary>
         /// 所属
         /// </summary>
@@ -187,6 +187,7 @@ namespace EmploymentAgreement {
                 "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
+
             this.CheckBoxExRetirementFlag.Checked = false;
             this.InitializeSheetView(this.SheetViewList);
         }
@@ -423,6 +424,59 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void ContextMenuStripEx1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+            StaffMasterVo staffMasterVo = (StaffMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
+            switch (staffMasterVo.Belongs) {
+                case 12:                                                                                    // アルバイト
+                case 14:                                                                                    // 嘱託雇用契約社員
+                case 15:                                                                                    // パートタイマー
+                    this.ToolStripMenuItemExpiration.Enabled = true;                                        // 体験アルバイト契約 20
+                    this.ToolStripMenuItemContractExpirationPartTimeJob.Enabled = true;                     // 継続アルバイト契約 21
+                    this.ToolStripMenuItemContractExpirationPartTimeEmployee.Enabled = true;                // 嘱託雇用契約社員 22
+                    this.ToolStripMenuItemContractExpirationPartTimer.Enabled = true;                       // パートタイマー 23
+                    this.ToolStripMenuItemContractExpirationLongJob新産別.Enabled = false;                   // 長期雇用契約（新産別)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Enabled = false;              // 長期雇用契約（自運労運転士)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Enabled = false;              // 長期雇用契約（自運労作業員)
+                    this.ToolStripMenuItemContractExpirationShortJob.Enabled = false;                       // 短期雇用契約
+                    this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = true;                   // 誓約書
+                    this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = true;               // 失墜行為確認書
+                    this.ToolStripMenuItemContractExpirationNotice.Enabled = true;                          // 使用停止予告通知書
+                    break;
+                case 22:                                                                                    // 労供
+                    this.ToolStripMenuItemExpiration.Enabled = false;                                       // 体験アルバイト契約 20
+                    this.ToolStripMenuItemContractExpirationPartTimeJob.Enabled = false;                    // 継続アルバイト契約 21
+                    this.ToolStripMenuItemContractExpirationPartTimeEmployee.Enabled = false;               // 嘱託雇用契約社員 22
+                    this.ToolStripMenuItemContractExpirationPartTimer.Enabled = false;                      // パートタイマー 23
+                    this.ToolStripMenuItemContractExpirationLongJob新産別.Enabled = true;                    // 長期雇用契約（新産別)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Enabled = true;               // 長期雇用契約（自運労運転士)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Enabled = true;               // 長期雇用契約（自運労作業員)
+                    this.ToolStripMenuItemContractExpirationShortJob.Enabled = true;                        // 短期雇用契約
+                    this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = true;                   // 誓約書
+                    this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = true;               // 失墜行為確認書
+                    this.ToolStripMenuItemContractExpirationNotice.Enabled = true;                          // 使用停止予告通知書
+                    break;
+                default:
+                    this.ToolStripMenuItemExpiration.Enabled = false;                                       // 体験アルバイト契約 20
+                    this.ToolStripMenuItemContractExpirationPartTimeJob.Enabled = false;                    // 継続アルバイト契約 21
+                    this.ToolStripMenuItemContractExpirationPartTimeEmployee.Enabled = false;               // 嘱託雇用契約社員 22
+                    this.ToolStripMenuItemContractExpirationPartTimer.Enabled = false;                      // パートタイマー 23
+                    this.ToolStripMenuItemContractExpirationLongJob新産別.Enabled = false;                   // 長期雇用契約（新産別)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Enabled = false;              // 長期雇用契約（自運労運転士)
+                    this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Enabled = false;              // 長期雇用契約（自運労作業員)
+                    this.ToolStripMenuItemContractExpirationShortJob.Enabled = false;                       // 短期雇用契約
+                    this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = false;                  // 誓約書
+                    this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = false;              // 失墜行為確認書
+                    this.ToolStripMenuItemContractExpirationNotice.Enabled = false;                         // 使用停止予告通知書
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             EmploymentAgreementPaper employmentAgreementPaper;
             StaffMasterVo staffMasterVo = (StaffMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
@@ -474,8 +528,10 @@ namespace EmploymentAgreement {
                 case "ToolStripMenuItemContractExpirationLossWrittenPledge": // 失墜行為確認書
 
                     break;
-                case "ToolStripMenuItemContractExpirationNotice": // 契約満了通知
-
+                case "ToolStripMenuItemContractExpirationNotice": // 使用停止予告通知書
+                    employmentAgreementPaper = new(_connectionVo, 50, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
                     break;
             }
         }

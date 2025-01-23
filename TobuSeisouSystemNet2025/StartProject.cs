@@ -3,6 +3,10 @@
  */
 using System.Data;
 
+using Car;
+
+using CollectionWeight;
+
 using Common;
 
 using ControlEx;
@@ -187,24 +191,29 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="e"></param>
         private void Label_Click(object sender, EventArgs e) {
             switch (_connectionVo.Connection.State) {
-                case ConnectionState.Open: //接続が開いています。
+                case ConnectionState.Open:                              //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
-                        case "VehicleDispatchBoard": // 配車パネル
+                        case "VehicleDispatchBoard":                    // 配車パネル
                             VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();
                             break;
-                        case "FirstRollColl": // 配車表
+                        case "FirstRollColl":                           // 配車表
                             FirstRollColl firstRollColl = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
                             firstRollColl.Show();
                             break;
-                        case "StaffList": // 従事者リスト
+                        case "StaffList":                               // 従事者リスト
                             StaffList staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
                             staffList.Show();
                             break;
-                        case "EmploymentAgreementList": // 契約書・誓約書等
+                        case "CarList":                                 // 車両台帳
+                            CarList carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
+                            carList.Show();
+                            break;
+                        case "EmploymentAgreementList":                 // 契約書・誓約書等
                             EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
                             employmentAgreementList.Show();
@@ -214,6 +223,12 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffDestination);
                             staffDestination.Show();
                             break;
+                        case "CollectionWeightChiyoda":                 // 千代田配車集計表
+                            CollectionWeightChiyoda collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
+                            collectionWeightChiyoda.Show();
+                            break;
+                        
                     }
                     break;
                 case ConnectionState.Connecting: //接続オブジェクトがデータ ソースに接続しています。
