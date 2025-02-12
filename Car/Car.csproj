@@ -10,7 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="grapecity.spread.winforms.ja" Version="15.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\Dao\Dao.csproj" />
   </ItemGroup>
 
 </Project>

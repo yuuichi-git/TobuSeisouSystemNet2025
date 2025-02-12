@@ -2068,6 +2068,8 @@
             // ComboBoxExProperKind
             // 
             this.ComboBoxExProperKind.FormattingEnabled = true;
+            this.ComboBoxExProperKind.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExProperKind.Items.AddRange(new object[] { "初任診断", "適齢診断", "特定診断Ⅰ", "特定診断Ⅱ", "一般診断", "カウンセリング付き定期診断", "特別診断" });
             this.ComboBoxExProperKind.Location = new Point(228, 44);
             this.ComboBoxExProperKind.Name = "ComboBoxExProperKind";
             this.ComboBoxExProperKind.Size = new Size(328, 23);

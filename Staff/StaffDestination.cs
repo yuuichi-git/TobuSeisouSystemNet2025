@@ -19,7 +19,6 @@ namespace Staff {
          * インスタンス作成
          */
         private readonly DateUtility _dateUtility = new();
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * SPREADのColumnの番号
          */
@@ -58,7 +57,6 @@ namespace Staff {
         /*
          * Dao
          */
-        private readonly StaffMasterDao _staffMasterDao;
         private readonly StaffDestinationDao _staffDestinationDao;
         private BelongsMasterDao _belongsMasterDao;
         private JobFormMasterDao _jobFormMasterDao;
@@ -72,7 +70,6 @@ namespace Staff {
          */
         private readonly Dictionary<int, string> _dictionaryBelongs = new();
         private readonly Dictionary<int, string> _dictionaryOccupation = new();
-        private readonly Dictionary<int, string> _dictionaryJobDescription = new();
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
 
 
@@ -85,7 +82,6 @@ namespace Staff {
             /*
              * Dao
              */
-            _staffMasterDao = new(connectionVo);
             _staffDestinationDao = new(connectionVo);
             _belongsMasterDao = new(connectionVo);
             _jobFormMasterDao = new(connectionVo);
@@ -140,7 +136,7 @@ namespace Staff {
             switch (((ButtonEx)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        this.PutSheetView();
+                        this.SetSheetView();
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -170,7 +166,7 @@ namespace Staff {
         /// <summary>
         /// 
         /// </summary>
-        private void PutSheetView() {
+        private void SetSheetView() {
             List<SheetViewVo> _listSheetViewVo = new();
             /*
              * ComboBoxExStaffNameが未選択ならCheckBoxでSQLを発行

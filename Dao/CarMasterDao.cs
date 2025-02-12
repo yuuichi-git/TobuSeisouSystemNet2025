@@ -237,7 +237,7 @@ namespace Dao {
         /// </summary>
         /// <param name="carCode"></param>
         /// <returns></returns>
-        public CarMasterVo SelectOneHCarMasterP(int carCode) {
+        public CarMasterVo SelectOneCarMasterP(int carCode) {
             CarMasterVo carMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT CarCode," +
@@ -364,7 +364,7 @@ namespace Dao {
         /// InsertOneHCarMaster
         /// </summary>
         /// <param name="carMasterVo"></param>
-        public void InsertOneHCarMaster(CarMasterVo carMasterVo) {
+        public void InsertOneCarMaster(CarMasterVo carMasterVo) {
             var sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_CarMaster(CarCode," +
                                                              "ClassificationCode," +
@@ -491,7 +491,7 @@ namespace Dao {
         /// </summary>
         /// <param name="carMasterVo"></param>
         /// <returns></returns>
-        public void UpdateOneHCarMaster(CarMasterVo carMasterVo) {
+        public void UpdateOneCarMaster(CarMasterVo carMasterVo) {
             var sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
                                      "SET CarCode = " + carMasterVo.CarCode + "," +
@@ -559,7 +559,7 @@ namespace Dao {
         /// </summary>
         /// <param name="carCode"></param>
         /// <returns></returns>
-        public int DeleteOneHCarMaster(int carCode) {
+        public int DeleteOneCarMaster(int carCode) {
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
                                      "SET DeletePcName = '" + Environment.MachineName + "'," +

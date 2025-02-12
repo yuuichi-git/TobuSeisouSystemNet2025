@@ -228,7 +228,12 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
                             collectionWeightChiyoda.Show();
                             break;
-                        
+                        case "StaffWorkingHours":                       // 個別労働時間集計表
+                            StaffWorkingHours staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
+                            staffWorkingHours.Show();
+                            break;
+
                     }
                     break;
                 case ConnectionState.Connecting: //接続オブジェクトがデータ ソースに接続しています。

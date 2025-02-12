@@ -45,6 +45,7 @@
             this.labelEx1 = new ControlEx.LabelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -101,85 +102,85 @@
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob新産別, this.ToolStripMenuItemContractExpirationLongJob自運労運転士, this.ToolStripMenuItemContractExpirationLongJob自運労作業員, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice });
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob新産別, this.ToolStripMenuItemContractExpirationLongJob自運労運転士, this.ToolStripMenuItemContractExpirationLongJob自運労作業員, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice, this.ToolStripMenuItemContractExpirationNoticeBicycle });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(261, 268);
+            this.ContextMenuStripEx1.Size = new Size(263, 290);
             this.ContextMenuStripEx1.Opening += this.ContextMenuStripEx1_Opening;
             // 
             // ToolStripMenuItemExpiration
             // 
             this.ToolStripMenuItemExpiration.Name = "ToolStripMenuItemExpiration";
-            this.ToolStripMenuItemExpiration.Size = new Size(260, 22);
+            this.ToolStripMenuItemExpiration.Size = new Size(262, 22);
             this.ToolStripMenuItemExpiration.Text = "体験入社契約書";
             this.ToolStripMenuItemExpiration.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimeJob
             // 
             this.ToolStripMenuItemContractExpirationPartTimeJob.Name = "ToolStripMenuItemContractExpirationPartTimeJob";
-            this.ToolStripMenuItemContractExpirationPartTimeJob.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationPartTimeJob.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationPartTimeJob.Text = "継続アルバイト契約書";
             this.ToolStripMenuItemContractExpirationPartTimeJob.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimeEmployee
             // 
             this.ToolStripMenuItemContractExpirationPartTimeEmployee.Name = "ToolStripMenuItemContractExpirationPartTimeEmployee";
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationPartTimeEmployee.Text = "嘱託雇用契約社員";
             this.ToolStripMenuItemContractExpirationPartTimeEmployee.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimer
             // 
             this.ToolStripMenuItemContractExpirationPartTimer.Name = "ToolStripMenuItemContractExpirationPartTimer";
-            this.ToolStripMenuItemContractExpirationPartTimer.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationPartTimer.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationPartTimer.Text = "パートタイマー";
             this.ToolStripMenuItemContractExpirationPartTimer.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob新産別
             // 
             this.ToolStripMenuItemContractExpirationLongJob新産別.Name = "ToolStripMenuItemContractExpirationLongJob新産別";
-            this.ToolStripMenuItemContractExpirationLongJob新産別.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationLongJob新産別.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationLongJob新産別.Text = "長期雇用契約書（新産別）";
             this.ToolStripMenuItemContractExpirationLongJob新産別.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob自運労運転士
             // 
             this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Name = "ToolStripMenuItemContractExpirationLongJob自運労運転士";
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Text = "長期雇用契約書（自運労・運転手）";
             this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob自運労作業員
             // 
             this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Name = "ToolStripMenuItemContractExpirationLongJob自運労作業員";
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Text = "長期雇用契約書（自運労・作業員）";
             this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationShortJob
             // 
             this.ToolStripMenuItemContractExpirationShortJob.Name = "ToolStripMenuItemContractExpirationShortJob";
-            this.ToolStripMenuItemContractExpirationShortJob.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationShortJob.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationShortJob.Text = "短期雇用契約書";
             this.ToolStripMenuItemContractExpirationShortJob.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationWrittenPledge
             // 
             this.ToolStripMenuItemContractExpirationWrittenPledge.Name = "ToolStripMenuItemContractExpirationWrittenPledge";
-            this.ToolStripMenuItemContractExpirationWrittenPledge.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationWrittenPledge.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationWrittenPledge.Text = "誓約書";
             this.ToolStripMenuItemContractExpirationWrittenPledge.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLossWrittenPledge
             // 
             this.ToolStripMenuItemContractExpirationLossWrittenPledge.Name = "ToolStripMenuItemContractExpirationLossWrittenPledge";
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationLossWrittenPledge.Text = "失墜行為確認書";
             this.ToolStripMenuItemContractExpirationLossWrittenPledge.Click += this.ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationNotice
             // 
             this.ToolStripMenuItemContractExpirationNotice.Name = "ToolStripMenuItemContractExpirationNotice";
-            this.ToolStripMenuItemContractExpirationNotice.Size = new Size(260, 22);
+            this.ToolStripMenuItemContractExpirationNotice.Size = new Size(262, 22);
             this.ToolStripMenuItemContractExpirationNotice.Text = "使用停止予告通知書";
             this.ToolStripMenuItemContractExpirationNotice.Click += this.ToolStripMenuItem_Click;
             // 
@@ -226,6 +227,13 @@
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
             this.ButtonExUpdate.Click += this.ButtonEx_Click;
             // 
+            // ToolStripMenuItemContractExpirationNoticeBicycle
+            // 
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Name = "ToolStripMenuItemContractExpirationNoticeBicycle";
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Size = new Size(262, 22);
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Text = "使用停止予告通知書(自転車駐車場)";
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Click += this.ToolStripMenuItem_Click;
+            // 
             // EmploymentAgreementList
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -268,5 +276,6 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private ControlEx.LabelEx labelEx1;
+        private ToolStripMenuItem ToolStripMenuItemContractExpirationNoticeBicycle;
     }
 }

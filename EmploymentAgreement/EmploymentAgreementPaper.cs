@@ -136,6 +136,10 @@ namespace EmploymentAgreement {
                     this.SpreadList.ActiveSheetIndex = 8;
                     this.PutContractExpirationNotice();
                     break;
+                case 51: // 使用停止予告通知書(自転車駐車場)
+                    this.SpreadList.ActiveSheetIndex = 9;
+                    this.PutContractExpirationNoticeBicycle();
+                    break;
 
             }
         }
@@ -373,6 +377,12 @@ namespace EmploymentAgreement {
                         break;
                 }
             }
+        }
+        /// <summary>
+        /// 使用停止予告通知書(自転車駐車場)
+        /// </summary>
+        private void PutContractExpirationNoticeBicycle() {
+            this.SheetView使用停止予告通知書自転車駐車場.Cells[8, 2].Text = string.Concat(_staffMasterVo.OtherName, " 殿");
         }
         /*
          * Print

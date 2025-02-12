@@ -441,6 +441,7 @@ namespace EmploymentAgreement {
                     this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = true;                   // 誓約書
                     this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = true;               // 失墜行為確認書
                     this.ToolStripMenuItemContractExpirationNotice.Enabled = true;                          // 使用停止予告通知書
+                    this.ToolStripMenuItemContractExpirationNoticeBicycle.Enabled = true;                   // 使用停止予告通知書
                     break;
                 case 22:                                                                                    // 労供
                     this.ToolStripMenuItemExpiration.Enabled = false;                                       // 体験アルバイト契約 20
@@ -454,6 +455,7 @@ namespace EmploymentAgreement {
                     this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = true;                   // 誓約書
                     this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = true;               // 失墜行為確認書
                     this.ToolStripMenuItemContractExpirationNotice.Enabled = true;                          // 使用停止予告通知書
+                    this.ToolStripMenuItemContractExpirationNoticeBicycle.Enabled = false;                  // 使用停止予告通知書
                     break;
                 default:
                     this.ToolStripMenuItemExpiration.Enabled = false;                                       // 体験アルバイト契約 20
@@ -467,6 +469,7 @@ namespace EmploymentAgreement {
                     this.ToolStripMenuItemContractExpirationWrittenPledge.Enabled = false;                  // 誓約書
                     this.ToolStripMenuItemContractExpirationLossWrittenPledge.Enabled = false;              // 失墜行為確認書
                     this.ToolStripMenuItemContractExpirationNotice.Enabled = false;                         // 使用停止予告通知書
+                    this.ToolStripMenuItemContractExpirationNoticeBicycle.Enabled = false;                  // 使用停止予告通知書
                     break;
             }
 
@@ -530,6 +533,11 @@ namespace EmploymentAgreement {
                     break;
                 case "ToolStripMenuItemContractExpirationNotice": // 使用停止予告通知書
                     employmentAgreementPaper = new(_connectionVo, 50, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
+                    _screenForm.SetPosition(_screen, employmentAgreementPaper);
+                    employmentAgreementPaper.Show(this);
+                    break;
+                case "ToolStripMenuItemContractExpirationNoticeBicycle": // 使用停止予告通知書(自転車駐車場)
+                    employmentAgreementPaper = new(_connectionVo, 51, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;

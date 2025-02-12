@@ -121,18 +121,13 @@ namespace Staff {
             /*
              * 初任診断
              */
-            if (_staffMasterVo.Occupation == 10) {
-                DateTime syoninProperDate = _staffProperDao.GetSyoninProperDate(_staffMasterVo.StaffCode);
-                if (syoninProperDate != _defaultDateTime) {
-                    sheetView.Cells[2, 10].ForeColor = Color.Black;
-                    sheetView.Cells[2, 10].Text = syoninProperDate.ToString("yyyy/MM/dd");
-                } else {
-                    sheetView.Cells[2, 10].ForeColor = Color.Black;
-                    sheetView.Cells[2, 10].Text = "記録なし";
-                }
+            DateTime syoninProperDate = _staffProperDao.GetSyoninProperDate(_staffMasterVo.StaffCode);
+            if (syoninProperDate != _defaultDateTime) {
+                sheetView.Cells[2, 10].ForeColor = Color.Black;
+                sheetView.Cells[2, 10].Text = syoninProperDate.ToString("yyyy/MM/dd");
             } else {
-                sheetView.Cells[2, 10].ForeColor = Color.White;
-                sheetView.Cells[2, 10].Text = string.Empty;
+                sheetView.Cells[2, 10].ForeColor = Color.Black;
+                sheetView.Cells[2, 10].Text = "記録なし";
             }
             /*
              * 適齢診断

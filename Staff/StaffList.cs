@@ -144,7 +144,6 @@ namespace Staff {
          */
         private readonly Dictionary<int, string> _dictionaryBelongs = new();
         private readonly Dictionary<int, string> _dictionaryOccupation = new();
-        private readonly Dictionary<int, string> _dictionaryJobDescription = new();
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
 
         /// <summary>

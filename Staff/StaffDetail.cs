@@ -947,9 +947,6 @@ namespace Staff {
                         } else if (DateTimeExProperDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExProperDate, "診断年月日");
                             break;
-                        } else if (TextBoxExProperNote.Text.Length == 0) {
-                            _errorProvider.SetError(TextBoxExProperNote, "");
-                            break;
                         }
                         _staffProperDao.InsertOneStaffProperMaster(staffProperVo);
                         StatusStripEx1.ToolStripStatusLabelDetail.Text = "AddGroupBoxProperを更新しました。";

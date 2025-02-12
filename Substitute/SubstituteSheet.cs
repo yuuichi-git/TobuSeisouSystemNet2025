@@ -229,11 +229,11 @@ namespace Substitute {
             if (vehicleDispatchBodyVo.CarCode != displayCarMasterVo.CarCode) { // 本番データと実際の配車データを比較
                 // 本番 組数 車両ナンバー ドア番号
                 sheetView.Cells["B29"].Text = displaySetMasterVo.SetName2;
-                sheetView.Cells["C29"].Text = _carMasterDao.SelectOneHCarMasterP(vehicleDispatchBodyVo.CarCode).RegistrationNumber;
-                sheetView.Cells["F29"].Text = _carMasterDao.SelectOneHCarMasterP(vehicleDispatchBodyVo.CarCode).DoorNumber.ToString();
+                sheetView.Cells["C29"].Text = _carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).RegistrationNumber;
+                sheetView.Cells["F29"].Text = _carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).DoorNumber.ToString();
                 // 代車 車両ナンバー ドア番号
-                sheetView.Cells["H29"].Text = _carMasterDao.SelectOneHCarMasterP(displayCarMasterVo.CarCode).RegistrationNumber;
-                sheetView.Cells["L29"].Text = _carMasterDao.SelectOneHCarMasterP(displayCarMasterVo.CarCode).DoorNumber.ToString();
+                sheetView.Cells["H29"].Text = _carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).RegistrationNumber;
+                sheetView.Cells["L29"].Text = _carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).DoorNumber.ToString();
             }
             /*
              * 連絡先番号をセット
