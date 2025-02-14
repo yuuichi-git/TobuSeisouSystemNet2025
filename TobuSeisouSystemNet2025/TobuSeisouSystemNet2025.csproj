@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <NoWin32Manifest>true</NoWin32Manifest>
     <AnalysisLevel>6.0</AnalysisLevel>
   </PropertyGroup>
 

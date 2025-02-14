@@ -9,118 +9,15 @@ using Dao;
 
 using FarPoint.Win.Spread;
 
-using Vo;
+using Microsoft.VisualBasic;
 
+using Vo;
 namespace Staff {
 
     public partial class StaffList : Form {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DateUtility _dateUtility = new();
         private readonly ScreenForm _screenForm = new();
-        /*
-         * SPREADのColumnの番号
-         */
-        /// <summary>
-        /// 所属
-        /// </summary>
-        private const int colBelongs = 0;
-        /// <summary>
-        /// 形態
-        /// </summary>
-        private const int colJobForm = 1;
-        /// <summary>
-        /// 職種
-        /// </summary>
-        private const int colOccupation = 2;
-        /// <summary>
-        /// 配車の対象かどうか
-        /// </summary>
-        private const int colVehicleDispatchTarget = 3;
-        /// <summary>
-        /// <summary>
-        /// 社員CD
-        /// </summary>
-        private const int colCode = 4;
-        /// <summary>
-        /// 氏名
-        /// </summary>
-        private const int colName = 5;
-        /// <summary>
-        /// カナ
-        /// </summary>
-        private const int colNameKana = 6;
-        /// <summary>
-        /// 生年月日
-        /// </summary>
-        private const int colBirthDate = 7;
-        /// <summary>
-        /// 年齢
-        /// </summary>
-        private const int colFullAge = 8;
-        /// <summary>
-        /// 雇用年月日
-        /// </summary>
-        private const int colEmploymentDate = 9;
-        /// <summary>
-        /// 勤続年数
-        /// </summary>
-        private const int colServiceDate = 10;
-        /// <summary>
-        /// 東環保カード有無
-        /// </summary>
-        private const int colToukanpoCard = 11;
-        /// <summary>
-        /// 法定１２項目の研修対象
-        /// </summary>
-        private const int colLegalTwelveItemFlag = 12;
-        /// <summary>
-        /// 東環保研修の対象
-        /// </summary>
-        private const int colToukanpoFlag = 13;
-        /// <summary>
-        /// 免許証期限
-        /// </summary>
-        private const int colLicensExpirationDate = 14;
-        /// <summary>
-        /// 初任
-        /// </summary>
-        private const int colFirstTerm = 15;
-        /// <summary>
-        /// 適齢
-        /// </summary>
-        private const int colSuitableAge = 16;
-        /// <summary>
-        /// 事故件数
-        /// </summary>
-        private const int colCarAccidentCount = 17;
-        /// <summary>
-        /// １年以内の健康診断
-        /// </summary>
-        private const int colMedicalExaminationDate = 18;
-        /// <summary>
-        /// 現住所
-        /// </summary>
-        private const int colCurrentAddress = 19;
-        /// <summary>
-        /// 健康保険
-        /// </summary>
-        private const int colHealthInsuranceNumber = 20;
-        /// <summary>
-        /// 厚生年金
-        /// </summary>
-        private const int colWelfarePensionNumber = 21;
-        /// <summary>
-        /// 雇用保険
-        /// </summary>
-        private const int colEmploymentInsuranceNumber = 22;
-        /// <summary>
-        /// 労災保険
-        /// </summary>
-        private const int colWorkerAccidentInsuranceNumber = 23;
-        /*
-         * 参照
-         */
-        private Screen _screen;
         /*
          * Dao
          */
@@ -151,10 +48,6 @@ namespace Staff {
         /// </summary>
         /// <param name="connectionVo"></param>
         public StaffList(ConnectionVo connectionVo, Screen screen) {
-            /*
-             * 参照
-             */
-            _screen = screen;
             /*
              * Dao
              */
@@ -218,7 +111,7 @@ namespace Staff {
                             this.PutSheetViewList(this.SheetViewList);
                             break;
                         case "健康診断用リスト":
-
+                            this.PutSheetViewMedical(this.SheetViewMedical);
                             break;
                         case "運転者リスト":
                             this.PutSheetViewDriver(this.SheetViewDriver);
@@ -238,9 +131,6 @@ namespace Staff {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "":
-
-                    break;
                 case "ToolStripMenuItemExit": // アプリケーションを終了する
                     this.Close();
                     break;
@@ -259,7 +149,7 @@ namespace Staff {
                         this.PutSheetViewList(this.SheetViewList);
                         break;
                     case "健康診断用リスト":
-
+                        this.PutSheetViewMedical(this.SheetViewMedical);
                         break;
                     case "運転者リスト":
                         this.PutSheetViewDriver(this.SheetViewDriver);
@@ -330,65 +220,135 @@ namespace Staff {
                     sheetView.Rows[rowCount].Resizable = false; // RowのResizableを禁止
                     sheetView.Rows[rowCount].Tag = staffMasterVo;
                     // 所属
-                    sheetView.Cells[rowCount, colBelongs].Value = _dictionaryBelongs[staffMasterVo.Belongs];
+                    sheetView.Cells[rowCount, 0].Value = _dictionaryBelongs[staffMasterVo.Belongs];
                     // 雇用形態
-                    sheetView.Cells[rowCount, colJobForm].Value = _dictionaryJobForm[staffMasterVo.JobForm];
+                    sheetView.Cells[rowCount, 1].Value = _dictionaryJobForm[staffMasterVo.JobForm];
                     // 職種
-                    sheetView.Cells[rowCount, colOccupation].Value = _dictionaryOccupation[staffMasterVo.Occupation];
+                    sheetView.Cells[rowCount, 2].Value = _dictionaryOccupation[staffMasterVo.Occupation];
                     // 配車の対象かどうか
-                    sheetView.Cells[rowCount, colVehicleDispatchTarget].Value = staffMasterVo.VehicleDispatchTarget;
+                    sheetView.Cells[rowCount, 3].Value = staffMasterVo.VehicleDispatchTarget;
                     // 組合コード
-                    sheetView.Cells[rowCount, colCode].Value = staffMasterVo.UnionCode;
+                    sheetView.Cells[rowCount, 4].Value = staffMasterVo.UnionCode;
                     // 名前
-                    sheetView.Cells[rowCount, colName].Text = staffMasterVo.Name;
+                    sheetView.Cells[rowCount, 5].Text = staffMasterVo.Name;
                     // カナ
-                    sheetView.Cells[rowCount, colNameKana].Text = staffMasterVo.NameKana;
+                    sheetView.Cells[rowCount, 6].Text = staffMasterVo.NameKana;
                     // 生年月日
-                    sheetView.Cells[rowCount, colBirthDate].Value = _dateUtility.GetBirthday(staffMasterVo.BirthDate);
+                    sheetView.Cells[rowCount, 7].Value = _dateUtility.GetBirthday(staffMasterVo.BirthDate);
                     // 年齢
-                    sheetView.Cells[rowCount, colFullAge].Value = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate.Date), "歳");
+                    sheetView.Cells[rowCount, 8].Value = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate.Date), "歳");
                     // 雇用年月日
-                    sheetView.Cells[rowCount, colEmploymentDate].Value = _dateUtility.GetEmploymentDate(staffMasterVo.EmploymentDate.Date);
+                    sheetView.Cells[rowCount, 9].Value = _dateUtility.GetEmploymentDate(staffMasterVo.EmploymentDate.Date);
                     // 勤続年数
                     if (staffMasterVo.EmploymentDate.Date != _defaultDateTime.Date)
-                        sheetView.Cells[rowCount, colServiceDate].Value = string.Concat(_dateUtility.GetEmploymenteYear(staffMasterVo.EmploymentDate.Date).ToString("#0年"), _dateUtility.GetEmploymenteMonth(staffMasterVo.EmploymentDate.Date).ToString("00月"));
+                        sheetView.Cells[rowCount, 10].Value = string.Concat(_dateUtility.GetEmploymenteYear(staffMasterVo.EmploymentDate.Date).ToString("#0年"), _dateUtility.GetEmploymenteMonth(staffMasterVo.EmploymentDate.Date).ToString("00月"));
                     // 東環保研修カード
-                    sheetView.Cells[rowCount, colToukanpoCard].Value = _toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 11].Value = _toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(staffMasterVo.StaffCode);
                     // 法定１２項目
-                    sheetView.Cells[rowCount, colLegalTwelveItemFlag].Value = staffMasterVo.LegalTwelveItemFlag;
+                    sheetView.Cells[rowCount, 12].Value = staffMasterVo.LegalTwelveItemFlag;
                     // 東環保講習
-                    sheetView.Cells[rowCount, colToukanpoFlag].Value = staffMasterVo.ToukanpoFlag;
+                    sheetView.Cells[rowCount, 13].Value = staffMasterVo.ToukanpoFlag;
                     // 免許証期限
-                    sheetView.Cells[rowCount, colLicensExpirationDate].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 14].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
                    　// 初任診断
                     if (_staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode) != _defaultDateTime) {
-                        sheetView.Cells[rowCount, colFirstTerm].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode);
+                        sheetView.Cells[rowCount, 15].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode);
                     } else {
-                        sheetView.Cells[rowCount, colFirstTerm].Value = string.Empty;
+                        sheetView.Cells[rowCount, 15].Value = string.Empty;
                     }
                     // 適齢診断の残日数
-                    sheetView.Cells[rowCount, colSuitableAge].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 16].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
                     // 年度内事故回数
-                    sheetView.Cells[rowCount, colCarAccidentCount].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 17].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
                     /*
                      * 1年以内の健康診断
                      */
                     DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(staffMasterVo.StaffCode);
                     if (medicalExaminationDate != _defaultDateTime) {
-                        sheetView.Cells[rowCount, colMedicalExaminationDate].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                        sheetView.Cells[rowCount, 18].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                     } else {
-                        sheetView.Cells[rowCount, colMedicalExaminationDate].Value = "健康診断の記録無し";
+                        sheetView.Cells[rowCount, 18].Value = "健康診断の記録無し";
                     }
                     // 現住所
-                    sheetView.Cells[rowCount, colCurrentAddress].Value = staffMasterVo.CurrentAddress;
+                    sheetView.Cells[rowCount, 19].Value = staffMasterVo.CurrentAddress;
                     // 健康保険加入
-                    sheetView.Cells[rowCount, colHealthInsuranceNumber].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 20].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
                     // 厚生年金加入
-                    sheetView.Cells[rowCount, colWelfarePensionNumber].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 21].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
                     // 雇用保険加入
-                    sheetView.Cells[rowCount, colEmploymentInsuranceNumber].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 22].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
                     // 労災保険
-                    sheetView.Cells[rowCount, colWorkerAccidentInsuranceNumber].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 23].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
+                    rowCount++;
+                }
+            }
+            // 先頭行（列）インデックスをセット
+            this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
+            // Spread 活性化
+            this.SpreadList.ResumeLayout();
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
+        }
+
+        /// <summary>
+        /// 2025-2-14
+        /// 健康診断用リスト
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void PutSheetViewMedical(SheetView sheetView) {
+            int rowCount = 0;
+            // Spread 非活性化
+            SpreadList.SuspendLayout();
+            // 先頭行（列）インデックスを取得
+            _spreadListTopRow = SpreadList.GetViewportTopRow(0);
+            // Rowを削除する
+            if (sheetView.Rows.Count > 0)
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+            List<StaffMasterVo>? _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
+                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
+                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
+                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
+                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
+                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
+                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
+                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
+                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
+                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
+                _ => _listStaffMasterVo,
+            };
+
+            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.RetirementFlag == false);
+            if (_findListStaffMasterVo is not null) {
+                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+                    sheetView.Rows.Add(rowCount, 1);
+                    sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
+                    sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black;    // 退職済のレコードのForeColorをセット
+                    sheetView.Rows[rowCount].Height = 20; // Rowの高さ
+                    sheetView.Rows[rowCount].Resizable = false; // RowのResizableを禁止
+                    sheetView.Rows[rowCount].Tag = staffMasterVo;
+
+                    string unionName = string.Empty;
+                    switch (staffMasterVo.JobForm) {
+                        case 20 or 21:
+                            unionName = "(新運転)";
+                            break;
+                        case 22 or 23:
+                            unionName = "(自運労)";
+                            break;
+                        default:
+                            unionName = string.Empty;
+                            break;
+                    }
+                    sheetView.Cells[rowCount, 0].Value = rowCount + 1;                                                                                              // 通しナンバー
+                    sheetView.Cells[rowCount, 1].Text = staffMasterVo.Belongs.ToString("0000");                                                                     // 所属CD
+                    sheetView.Cells[rowCount, 2].Text = string.Concat(_dictionaryBelongs[staffMasterVo.Belongs], unionName);                                        // 所属名
+                    sheetView.Cells[rowCount, 3].Text = staffMasterVo.Name;                                                                                         // 氏名(全角)
+                    sheetView.Cells[rowCount, 4].Text = Strings.StrConv(staffMasterVo.OtherNameKana, VbStrConv.Narrow);                                             // カナ(半角)
+                    sheetView.Cells[rowCount, 5].Text = staffMasterVo.BirthDate.ToString("yyyy/MM/dd");                                                             // 生年月日
+                    sheetView.Cells[rowCount, 6].Text = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate), "歳");                                           // 年齢
+                    sheetView.Cells[rowCount, 7].Text = staffMasterVo.Gender;                                                                                       // 性別
+                    sheetView.Cells[rowCount, 8].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber[2..6] : string.Empty;  // 記号
+                    sheetView.Cells[rowCount, 9].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber[9..12] : string.Empty; // 番号
                     rowCount++;
                 }
             }
@@ -421,11 +381,8 @@ namespace Staff {
                 "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
                 _ => _listStaffMasterVo,
             };
-            /*
-             * 法定１２項目の講習対象者(つまり運転手)
-             */
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.LegalTwelveItemFlag == true);
 
+            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.LegalTwelveItemFlag == true);   // 法定１２項目の講習対象者(つまり運転手)
             if (_findListStaffMasterVo is not null) {
                 foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);

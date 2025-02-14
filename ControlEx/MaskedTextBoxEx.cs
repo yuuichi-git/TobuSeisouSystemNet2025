@@ -28,6 +28,9 @@ namespace ControlEx {
                 case Keys.Enter:
                     SendKeys.Send("{TAB}");
                     break;
+                default:
+                    base.OnKeyDown(e);
+                    break;
             }
         }
     }

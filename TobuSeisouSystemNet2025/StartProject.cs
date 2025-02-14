@@ -233,6 +233,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
                             staffWorkingHours.Show();
                             break;
+                        case "StaffWorkingDays":                       // 個別労働時間集計表
+                            StaffWorkingDays staffWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingDays);
+                            staffWorkingDays.Show();
+                            break;
 
                     }
                     break;

@@ -28,8 +28,8 @@
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
             this.PanelExLeft = new ControlEx.PanelEx();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
-            this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
+            this.PictureBoxExMainPicture = new ControlEx.PictureBoxEx();
+            this.PictureBoxExSubPicture = new ControlEx.PictureBoxEx();
             this.groupBoxEx1 = new ControlEx.GroupBoxEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.labelEx2 = new ControlEx.LabelEx();
@@ -73,14 +73,73 @@
             this.labelEx37 = new ControlEx.LabelEx();
             this.labelEx38 = new ControlEx.LabelEx();
             this.labelEx39 = new ControlEx.LabelEx();
+            this.TextBoxExCarCode = new ControlEx.TextBoxEx();
+            this.TextBoxExRegistrationNumber = new ControlEx.TextBoxEx();
+            this.labelEx40 = new ControlEx.LabelEx();
+            this.TextBoxExDoorNumber = new ControlEx.TextBoxEx();
+            this.CheckBoxExEmergencyVehicleFlag = new ControlEx.CheckBoxEx();
+            this.DateTimePickerExEmergencyVehicleDate = new ControlEx.DateTimePickerEx();
+            this.ComboBoxExRegistrationNumber1 = new ControlEx.ComboBoxEx();
+            this.TextBoxExRegistrationNumber2 = new ControlEx.TextBoxEx();
+            this.TextBoxExRegistrationNumber3 = new ControlEx.TextBoxEx();
+            this.TextBoxExRegistrationNumber4 = new ControlEx.TextBoxEx();
+            this.ComboBoxExClassificationCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExGarageCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExDisguiseKind1 = new ControlEx.ComboBoxEx();
+            this.ComboBoxExDisguiseKind2 = new ControlEx.ComboBoxEx();
+            this.ComboBoxExDisguiseKind3 = new ControlEx.ComboBoxEx();
+            this.TextBoxExVehicleNumber = new ControlEx.TextBoxEx();
+            this.DateTimePickerExRegistrationDate = new ControlEx.DateTimePickerEx();
+            this.DateTimePickerExFirstRegistrationDate = new ControlEx.DateTimePickerEx();
+            this.DateTimePickerExExpirationDate = new ControlEx.DateTimePickerEx();
+            this.ComboBoxExOwnerName = new ControlEx.ComboBoxEx();
+            this.ComboBoxExOwnerAddress = new ControlEx.ComboBoxEx();
+            this.ComboBoxExUserName = new ControlEx.ComboBoxEx();
+            this.ComboBoxExUserAddress = new ControlEx.ComboBoxEx();
+            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
+            this.ComboBoxExManufacturerCode = new ControlEx.ComboBoxEx();
+            this.TextBoxExVersion = new ControlEx.TextBoxEx();
+            this.TextBoxExMotorVersion = new ControlEx.TextBoxEx();
+            this.ComboBoxExCarKindCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExCarUse = new ControlEx.ComboBoxEx();
+            this.ComboBoxExOtherCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExShapeCode = new ControlEx.ComboBoxEx();
+            this.NumericUpDownExCapacity = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExMaximumLoadCapacity = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExVehicleWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExTotalVehicleWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExLength = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExWidth = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExHeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExFfAxisWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExFrAxisWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExRfAxisWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExRrAxisWeight = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExTotalDisplacement = new ControlEx.NumericUpDownEx();
+            this.ComboBoxExTypesOfFuel = new ControlEx.ComboBoxEx();
+            this.TextBoxExVersionDesignateNumber = new ControlEx.TextBoxEx();
+            this.TextBoxExCategoryDistinguishNumber = new ControlEx.TextBoxEx();
+            this.TextBoxExRemarks = new ControlEx.TextBoxEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).BeginInit();
             this.groupBoxEx1.SuspendLayout();
             this.groupBoxEx2.SuspendLayout();
             this.groupBoxEx3.SuspendLayout();
             this.groupBoxEx4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExCapacity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExMaximumLoadCapacity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExVehicleWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExTotalVehicleWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLength).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExWidth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExHeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFfAxisWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFrAxisWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExRfAxisWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExRrAxisWeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExTotalDisplacement).BeginInit();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -92,8 +151,8 @@
             this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 4);
             this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
             this.TableLayoutPanelExBase.Controls.Add(this.PanelExLeft, 0, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.PictureBoxEx1, 1, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.PictureBoxEx2, 1, 3);
+            this.TableLayoutPanelExBase.Controls.Add(this.PictureBoxExMainPicture, 1, 2);
+            this.TableLayoutPanelExBase.Controls.Add(this.PictureBoxExSubPicture, 1, 3);
             this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
             this.TableLayoutPanelExBase.Location = new Point(0, 0);
             this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -103,7 +162,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1904, 1426);
+            this.TableLayoutPanelExBase.Size = new Size(1904, 1404);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
@@ -119,7 +178,7 @@
             // StatusStripEx1
             // 
             this.TableLayoutPanelExBase.SetColumnSpan(this.StatusStripEx1, 2);
-            this.StatusStripEx1.Location = new Point(0, 1404);
+            this.StatusStripEx1.Location = new Point(0, 1382);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1904, 22);
             this.StatusStripEx1.TabIndex = 1;
@@ -144,29 +203,44 @@
             this.PanelExLeft.Location = new Point(3, 87);
             this.PanelExLeft.Name = "PanelExLeft";
             this.TableLayoutPanelExBase.SetRowSpan(this.PanelExLeft, 2);
-            this.PanelExLeft.Size = new Size(794, 1311);
+            this.PanelExLeft.Size = new Size(794, 1289);
             this.PanelExLeft.TabIndex = 3;
             // 
-            // PictureBoxEx1
+            // PictureBoxExMainPicture
             // 
-            this.PictureBoxEx1.Dock = DockStyle.Fill;
-            this.PictureBoxEx1.Location = new Point(803, 87);
-            this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(1098, 521);
-            this.PictureBoxEx1.TabIndex = 4;
-            this.PictureBoxEx1.TabStop = false;
+            this.PictureBoxExMainPicture.Dock = DockStyle.Fill;
+            this.PictureBoxExMainPicture.Location = new Point(803, 87);
+            this.PictureBoxExMainPicture.Name = "PictureBoxExMainPicture";
+            this.PictureBoxExMainPicture.Size = new Size(1098, 512);
+            this.PictureBoxExMainPicture.TabIndex = 4;
+            this.PictureBoxExMainPicture.TabStop = false;
             // 
-            // PictureBoxEx2
+            // PictureBoxExSubPicture
             // 
-            this.PictureBoxEx2.Dock = DockStyle.Fill;
-            this.PictureBoxEx2.Location = new Point(803, 614);
-            this.PictureBoxEx2.Name = "PictureBoxEx2";
-            this.PictureBoxEx2.Size = new Size(1098, 784);
-            this.PictureBoxEx2.TabIndex = 5;
-            this.PictureBoxEx2.TabStop = false;
+            this.PictureBoxExSubPicture.Dock = DockStyle.Fill;
+            this.PictureBoxExSubPicture.Location = new Point(803, 605);
+            this.PictureBoxExSubPicture.Name = "PictureBoxExSubPicture";
+            this.PictureBoxExSubPicture.Size = new Size(1098, 771);
+            this.PictureBoxExSubPicture.TabIndex = 5;
+            this.PictureBoxExSubPicture.TabStop = false;
             // 
             // groupBoxEx1
             // 
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind3);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind2);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind1);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExGarageCode);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExClassificationCode);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber4);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber3);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber2);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExRegistrationNumber1);
+            this.groupBoxEx1.Controls.Add(this.DateTimePickerExEmergencyVehicleDate);
+            this.groupBoxEx1.Controls.Add(this.CheckBoxExEmergencyVehicleFlag);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExDoorNumber);
+            this.groupBoxEx1.Controls.Add(this.labelEx40);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber);
+            this.groupBoxEx1.Controls.Add(this.TextBoxExCarCode);
             this.groupBoxEx1.Controls.Add(this.labelEx7);
             this.groupBoxEx1.Controls.Add(this.labelEx6);
             this.groupBoxEx1.Controls.Add(this.labelEx5);
@@ -246,6 +320,10 @@
             // 
             // groupBoxEx2
             // 
+            this.groupBoxEx2.Controls.Add(this.DateTimePickerExExpirationDate);
+            this.groupBoxEx2.Controls.Add(this.DateTimePickerExFirstRegistrationDate);
+            this.groupBoxEx2.Controls.Add(this.DateTimePickerExRegistrationDate);
+            this.groupBoxEx2.Controls.Add(this.TextBoxExVehicleNumber);
             this.groupBoxEx2.Controls.Add(this.labelEx11);
             this.groupBoxEx2.Controls.Add(this.labelEx12);
             this.groupBoxEx2.Controls.Add(this.labelEx13);
@@ -263,7 +341,7 @@
             this.labelEx11.Name = "labelEx11";
             this.labelEx11.Size = new Size(176, 16);
             this.labelEx11.TabIndex = 3;
-            this.labelEx11.Text = "車庫地";
+            this.labelEx11.Text = "有効期限の満了する日";
             this.labelEx11.TextAlign = ContentAlignment.MiddleRight;
             // 
             // labelEx12
@@ -272,7 +350,7 @@
             this.labelEx12.Name = "labelEx12";
             this.labelEx12.Size = new Size(176, 16);
             this.labelEx12.TabIndex = 2;
-            this.labelEx12.Text = "使用区分";
+            this.labelEx12.Text = "初度登録年月";
             this.labelEx12.TextAlign = ContentAlignment.MiddleRight;
             // 
             // labelEx13
@@ -281,7 +359,7 @@
             this.labelEx13.Name = "labelEx13";
             this.labelEx13.Size = new Size(176, 16);
             this.labelEx13.TabIndex = 1;
-            this.labelEx13.Text = "自動車登録番号又は車両番号";
+            this.labelEx13.Text = "登録年月日/交付年月日";
             this.labelEx13.TextAlign = ContentAlignment.MiddleRight;
             // 
             // labelEx14
@@ -290,11 +368,16 @@
             this.labelEx14.Name = "labelEx14";
             this.labelEx14.Size = new Size(176, 16);
             this.labelEx14.TabIndex = 0;
-            this.labelEx14.Text = "車両コード";
+            this.labelEx14.Text = "車台番号";
             this.labelEx14.TextAlign = ContentAlignment.MiddleRight;
             // 
             // groupBoxEx3
             // 
+            this.groupBoxEx3.Controls.Add(this.ComboBoxExBaseAddress);
+            this.groupBoxEx3.Controls.Add(this.ComboBoxExUserAddress);
+            this.groupBoxEx3.Controls.Add(this.ComboBoxExUserName);
+            this.groupBoxEx3.Controls.Add(this.ComboBoxExOwnerAddress);
+            this.groupBoxEx3.Controls.Add(this.ComboBoxExOwnerName);
             this.groupBoxEx3.Controls.Add(this.labelEx10);
             this.groupBoxEx3.Controls.Add(this.labelEx15);
             this.groupBoxEx3.Controls.Add(this.labelEx16);
@@ -354,6 +437,29 @@
             // 
             // groupBoxEx4
             // 
+            this.groupBoxEx4.Controls.Add(this.TextBoxExRemarks);
+            this.groupBoxEx4.Controls.Add(this.TextBoxExCategoryDistinguishNumber);
+            this.groupBoxEx4.Controls.Add(this.TextBoxExVersionDesignateNumber);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExTypesOfFuel);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExTotalDisplacement);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExRrAxisWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExRfAxisWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExFrAxisWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExFfAxisWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExHeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExWidth);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExLength);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExTotalVehicleWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExVehicleWeight);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExMaximumLoadCapacity);
+            this.groupBoxEx4.Controls.Add(this.NumericUpDownExCapacity);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExShapeCode);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExOtherCode);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExCarUse);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExCarKindCode);
+            this.groupBoxEx4.Controls.Add(this.TextBoxExMotorVersion);
+            this.groupBoxEx4.Controls.Add(this.TextBoxExVersion);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExManufacturerCode);
             this.groupBoxEx4.Controls.Add(this.labelEx38);
             this.groupBoxEx4.Controls.Add(this.labelEx39);
             this.groupBoxEx4.Controls.Add(this.labelEx31);
@@ -591,11 +697,461 @@
             this.labelEx39.Text = "類別区分番号";
             this.labelEx39.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // TextBoxExCarCode
+            // 
+            this.TextBoxExCarCode.Location = new Point(188, 20);
+            this.TextBoxExCarCode.Name = "TextBoxExCarCode";
+            this.TextBoxExCarCode.ReadOnly = true;
+            this.TextBoxExCarCode.Size = new Size(40, 23);
+            this.TextBoxExCarCode.TabIndex = 7;
+            this.TextBoxExCarCode.Text = "88888";
+            this.TextBoxExCarCode.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TextBoxExRegistrationNumber
+            // 
+            this.TextBoxExRegistrationNumber.Location = new Point(232, 20);
+            this.TextBoxExRegistrationNumber.Name = "TextBoxExRegistrationNumber";
+            this.TextBoxExRegistrationNumber.Size = new Size(92, 23);
+            this.TextBoxExRegistrationNumber.TabIndex = 8;
+            this.TextBoxExRegistrationNumber.Text = "足立800あ8888";
+            // 
+            // labelEx40
+            // 
+            this.labelEx40.Location = new Point(340, 24);
+            this.labelEx40.Name = "labelEx40";
+            this.labelEx40.Size = new Size(46, 16);
+            this.labelEx40.TabIndex = 9;
+            this.labelEx40.Text = "ドア№";
+            this.labelEx40.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // TextBoxExDoorNumber
+            // 
+            this.TextBoxExDoorNumber.Location = new Point(392, 20);
+            this.TextBoxExDoorNumber.Name = "TextBoxExDoorNumber";
+            this.TextBoxExDoorNumber.Size = new Size(32, 23);
+            this.TextBoxExDoorNumber.TabIndex = 10;
+            this.TextBoxExDoorNumber.Text = "888";
+            this.TextBoxExDoorNumber.TextAlign = HorizontalAlignment.Center;
+            // 
+            // CheckBoxExEmergencyVehicleFlag
+            // 
+            this.CheckBoxExEmergencyVehicleFlag.AutoSize = true;
+            this.CheckBoxExEmergencyVehicleFlag.ForeColor = Color.Red;
+            this.CheckBoxExEmergencyVehicleFlag.Location = new Point(440, 24);
+            this.CheckBoxExEmergencyVehicleFlag.Name = "CheckBoxExEmergencyVehicleFlag";
+            this.CheckBoxExEmergencyVehicleFlag.Size = new Size(74, 19);
+            this.CheckBoxExEmergencyVehicleFlag.TabIndex = 11;
+            this.CheckBoxExEmergencyVehicleFlag.Text = "緊急車両";
+            this.CheckBoxExEmergencyVehicleFlag.UseVisualStyleBackColor = true;
+            // 
+            // DateTimePickerExEmergencyVehicleDate
+            // 
+            this.DateTimePickerExEmergencyVehicleDate.CultureFlag = false;
+            this.DateTimePickerExEmergencyVehicleDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DateTimePickerExEmergencyVehicleDate.Format = DateTimePickerFormat.Custom;
+            this.DateTimePickerExEmergencyVehicleDate.Location = new Point(520, 20);
+            this.DateTimePickerExEmergencyVehicleDate.Name = "DateTimePickerExEmergencyVehicleDate";
+            this.DateTimePickerExEmergencyVehicleDate.Size = new Size(180, 23);
+            this.DateTimePickerExEmergencyVehicleDate.TabIndex = 12;
+            this.DateTimePickerExEmergencyVehicleDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // ComboBoxExRegistrationNumber1
+            // 
+            this.ComboBoxExRegistrationNumber1.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExRegistrationNumber1.FormattingEnabled = true;
+            this.ComboBoxExRegistrationNumber1.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExRegistrationNumber1.Location = new Point(188, 48);
+            this.ComboBoxExRegistrationNumber1.Name = "ComboBoxExRegistrationNumber1";
+            this.ComboBoxExRegistrationNumber1.Size = new Size(48, 23);
+            this.ComboBoxExRegistrationNumber1.TabIndex = 13;
+            // 
+            // TextBoxExRegistrationNumber2
+            // 
+            this.TextBoxExRegistrationNumber2.Location = new Point(240, 48);
+            this.TextBoxExRegistrationNumber2.Name = "TextBoxExRegistrationNumber2";
+            this.TextBoxExRegistrationNumber2.Size = new Size(32, 23);
+            this.TextBoxExRegistrationNumber2.TabIndex = 14;
+            this.TextBoxExRegistrationNumber2.Text = "888";
+            this.TextBoxExRegistrationNumber2.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TextBoxExRegistrationNumber3
+            // 
+            this.TextBoxExRegistrationNumber3.Location = new Point(276, 48);
+            this.TextBoxExRegistrationNumber3.Name = "TextBoxExRegistrationNumber3";
+            this.TextBoxExRegistrationNumber3.Size = new Size(32, 23);
+            this.TextBoxExRegistrationNumber3.TabIndex = 15;
+            this.TextBoxExRegistrationNumber3.Text = "あ";
+            this.TextBoxExRegistrationNumber3.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TextBoxExRegistrationNumber4
+            // 
+            this.TextBoxExRegistrationNumber4.Location = new Point(312, 48);
+            this.TextBoxExRegistrationNumber4.Name = "TextBoxExRegistrationNumber4";
+            this.TextBoxExRegistrationNumber4.Size = new Size(40, 23);
+            this.TextBoxExRegistrationNumber4.TabIndex = 16;
+            this.TextBoxExRegistrationNumber4.Text = "8888";
+            this.TextBoxExRegistrationNumber4.TextAlign = HorizontalAlignment.Center;
+            // 
+            // ComboBoxExClassificationCode
+            // 
+            this.ComboBoxExClassificationCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExClassificationCode.FormattingEnabled = true;
+            this.ComboBoxExClassificationCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExClassificationCode.Location = new Point(188, 76);
+            this.ComboBoxExClassificationCode.Name = "ComboBoxExClassificationCode";
+            this.ComboBoxExClassificationCode.Size = new Size(164, 23);
+            this.ComboBoxExClassificationCode.TabIndex = 17;
+            // 
+            // ComboBoxExGarageCode
+            // 
+            this.ComboBoxExGarageCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExGarageCode.FormattingEnabled = true;
+            this.ComboBoxExGarageCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExGarageCode.Location = new Point(188, 104);
+            this.ComboBoxExGarageCode.Name = "ComboBoxExGarageCode";
+            this.ComboBoxExGarageCode.Size = new Size(164, 23);
+            this.ComboBoxExGarageCode.TabIndex = 18;
+            // 
+            // ComboBoxExDisguiseKind1
+            // 
+            this.ComboBoxExDisguiseKind1.FormattingEnabled = true;
+            this.ComboBoxExDisguiseKind1.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind1.Location = new Point(188, 132);
+            this.ComboBoxExDisguiseKind1.Name = "ComboBoxExDisguiseKind1";
+            this.ComboBoxExDisguiseKind1.Size = new Size(164, 23);
+            this.ComboBoxExDisguiseKind1.TabIndex = 19;
+            // 
+            // ComboBoxExDisguiseKind2
+            // 
+            this.ComboBoxExDisguiseKind2.FormattingEnabled = true;
+            this.ComboBoxExDisguiseKind2.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind2.Location = new Point(188, 160);
+            this.ComboBoxExDisguiseKind2.Name = "ComboBoxExDisguiseKind2";
+            this.ComboBoxExDisguiseKind2.Size = new Size(164, 23);
+            this.ComboBoxExDisguiseKind2.TabIndex = 20;
+            // 
+            // ComboBoxExDisguiseKind3
+            // 
+            this.ComboBoxExDisguiseKind3.FormattingEnabled = true;
+            this.ComboBoxExDisguiseKind3.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind3.Location = new Point(188, 188);
+            this.ComboBoxExDisguiseKind3.Name = "ComboBoxExDisguiseKind3";
+            this.ComboBoxExDisguiseKind3.Size = new Size(164, 23);
+            this.ComboBoxExDisguiseKind3.TabIndex = 21;
+            // 
+            // TextBoxExVehicleNumber
+            // 
+            this.TextBoxExVehicleNumber.Location = new Point(188, 20);
+            this.TextBoxExVehicleNumber.Name = "TextBoxExVehicleNumber";
+            this.TextBoxExVehicleNumber.Size = new Size(108, 23);
+            this.TextBoxExVehicleNumber.TabIndex = 22;
+            this.TextBoxExVehicleNumber.Text = "NKR88-7014022";
+            // 
+            // DateTimePickerExRegistrationDate
+            // 
+            this.DateTimePickerExRegistrationDate.CultureFlag = false;
+            this.DateTimePickerExRegistrationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DateTimePickerExRegistrationDate.Format = DateTimePickerFormat.Custom;
+            this.DateTimePickerExRegistrationDate.Location = new Point(188, 48);
+            this.DateTimePickerExRegistrationDate.Name = "DateTimePickerExRegistrationDate";
+            this.DateTimePickerExRegistrationDate.Size = new Size(180, 23);
+            this.DateTimePickerExRegistrationDate.TabIndex = 22;
+            this.DateTimePickerExRegistrationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // DateTimePickerExFirstRegistrationDate
+            // 
+            this.DateTimePickerExFirstRegistrationDate.CultureFlag = false;
+            this.DateTimePickerExFirstRegistrationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DateTimePickerExFirstRegistrationDate.Format = DateTimePickerFormat.Custom;
+            this.DateTimePickerExFirstRegistrationDate.Location = new Point(188, 76);
+            this.DateTimePickerExFirstRegistrationDate.Name = "DateTimePickerExFirstRegistrationDate";
+            this.DateTimePickerExFirstRegistrationDate.Size = new Size(180, 23);
+            this.DateTimePickerExFirstRegistrationDate.TabIndex = 23;
+            this.DateTimePickerExFirstRegistrationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // DateTimePickerExExpirationDate
+            // 
+            this.DateTimePickerExExpirationDate.CultureFlag = false;
+            this.DateTimePickerExExpirationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DateTimePickerExExpirationDate.Format = DateTimePickerFormat.Custom;
+            this.DateTimePickerExExpirationDate.Location = new Point(188, 104);
+            this.DateTimePickerExExpirationDate.Name = "DateTimePickerExExpirationDate";
+            this.DateTimePickerExExpirationDate.Size = new Size(180, 23);
+            this.DateTimePickerExExpirationDate.TabIndex = 24;
+            this.DateTimePickerExExpirationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // ComboBoxExOwnerName
+            // 
+            this.ComboBoxExOwnerName.FormattingEnabled = true;
+            this.ComboBoxExOwnerName.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExOwnerName.Location = new Point(188, 20);
+            this.ComboBoxExOwnerName.Name = "ComboBoxExOwnerName";
+            this.ComboBoxExOwnerName.Size = new Size(540, 23);
+            this.ComboBoxExOwnerName.TabIndex = 22;
+            // 
+            // ComboBoxExOwnerAddress
+            // 
+            this.ComboBoxExOwnerAddress.FormattingEnabled = true;
+            this.ComboBoxExOwnerAddress.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExOwnerAddress.Location = new Point(188, 48);
+            this.ComboBoxExOwnerAddress.Name = "ComboBoxExOwnerAddress";
+            this.ComboBoxExOwnerAddress.Size = new Size(540, 23);
+            this.ComboBoxExOwnerAddress.TabIndex = 23;
+            // 
+            // ComboBoxExUserName
+            // 
+            this.ComboBoxExUserName.FormattingEnabled = true;
+            this.ComboBoxExUserName.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExUserName.Location = new Point(188, 76);
+            this.ComboBoxExUserName.Name = "ComboBoxExUserName";
+            this.ComboBoxExUserName.Size = new Size(540, 23);
+            this.ComboBoxExUserName.TabIndex = 24;
+            // 
+            // ComboBoxExUserAddress
+            // 
+            this.ComboBoxExUserAddress.FormattingEnabled = true;
+            this.ComboBoxExUserAddress.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExUserAddress.Location = new Point(188, 104);
+            this.ComboBoxExUserAddress.Name = "ComboBoxExUserAddress";
+            this.ComboBoxExUserAddress.Size = new Size(540, 23);
+            this.ComboBoxExUserAddress.TabIndex = 25;
+            // 
+            // ComboBoxExBaseAddress
+            // 
+            this.ComboBoxExBaseAddress.FormattingEnabled = true;
+            this.ComboBoxExBaseAddress.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExBaseAddress.Location = new Point(188, 132);
+            this.ComboBoxExBaseAddress.Name = "ComboBoxExBaseAddress";
+            this.ComboBoxExBaseAddress.Size = new Size(540, 23);
+            this.ComboBoxExBaseAddress.TabIndex = 26;
+            // 
+            // ComboBoxExManufacturerCode
+            // 
+            this.ComboBoxExManufacturerCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExManufacturerCode.FormattingEnabled = true;
+            this.ComboBoxExManufacturerCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExManufacturerCode.Location = new Point(188, 20);
+            this.ComboBoxExManufacturerCode.Name = "ComboBoxExManufacturerCode";
+            this.ComboBoxExManufacturerCode.Size = new Size(164, 23);
+            this.ComboBoxExManufacturerCode.TabIndex = 23;
+            // 
+            // TextBoxExVersion
+            // 
+            this.TextBoxExVersion.Location = new Point(188, 48);
+            this.TextBoxExVersion.Name = "TextBoxExVersion";
+            this.TextBoxExVersion.Size = new Size(164, 23);
+            this.TextBoxExVersion.TabIndex = 25;
+            this.TextBoxExVersion.Text = "NKR88-7014022";
+            // 
+            // TextBoxExMotorVersion
+            // 
+            this.TextBoxExMotorVersion.Location = new Point(188, 76);
+            this.TextBoxExMotorVersion.Name = "TextBoxExMotorVersion";
+            this.TextBoxExMotorVersion.Size = new Size(164, 23);
+            this.TextBoxExMotorVersion.TabIndex = 26;
+            this.TextBoxExMotorVersion.Text = "NKR88-7014022";
+            // 
+            // ComboBoxExCarKindCode
+            // 
+            this.ComboBoxExCarKindCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExCarKindCode.FormattingEnabled = true;
+            this.ComboBoxExCarKindCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExCarKindCode.Location = new Point(188, 104);
+            this.ComboBoxExCarKindCode.Name = "ComboBoxExCarKindCode";
+            this.ComboBoxExCarKindCode.Size = new Size(164, 23);
+            this.ComboBoxExCarKindCode.TabIndex = 27;
+            // 
+            // ComboBoxExCarUse
+            // 
+            this.ComboBoxExCarUse.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExCarUse.FormattingEnabled = true;
+            this.ComboBoxExCarUse.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExCarUse.Location = new Point(188, 132);
+            this.ComboBoxExCarUse.Name = "ComboBoxExCarUse";
+            this.ComboBoxExCarUse.Size = new Size(164, 23);
+            this.ComboBoxExCarUse.TabIndex = 28;
+            // 
+            // ComboBoxExOtherCode
+            // 
+            this.ComboBoxExOtherCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExOtherCode.FormattingEnabled = true;
+            this.ComboBoxExOtherCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExOtherCode.Location = new Point(188, 160);
+            this.ComboBoxExOtherCode.Name = "ComboBoxExOtherCode";
+            this.ComboBoxExOtherCode.Size = new Size(164, 23);
+            this.ComboBoxExOtherCode.TabIndex = 29;
+            // 
+            // ComboBoxExShapeCode
+            // 
+            this.ComboBoxExShapeCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExShapeCode.FormattingEnabled = true;
+            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExShapeCode.Location = new Point(188, 188);
+            this.ComboBoxExShapeCode.Name = "ComboBoxExShapeCode";
+            this.ComboBoxExShapeCode.Size = new Size(164, 23);
+            this.ComboBoxExShapeCode.TabIndex = 30;
+            // 
+            // NumericUpDownExCapacity
+            // 
+            this.NumericUpDownExCapacity.Location = new Point(188, 216);
+            this.NumericUpDownExCapacity.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            this.NumericUpDownExCapacity.Name = "NumericUpDownExCapacity";
+            this.NumericUpDownExCapacity.Size = new Size(76, 23);
+            this.NumericUpDownExCapacity.TabIndex = 31;
+            this.NumericUpDownExCapacity.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExCapacity.Value = new decimal(new int[] { 3, 0, 0, 0 });
+            // 
+            // NumericUpDownExMaximumLoadCapacity
+            // 
+            this.NumericUpDownExMaximumLoadCapacity.Location = new Point(188, 244);
+            this.NumericUpDownExMaximumLoadCapacity.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExMaximumLoadCapacity.Name = "NumericUpDownExMaximumLoadCapacity";
+            this.NumericUpDownExMaximumLoadCapacity.Size = new Size(76, 23);
+            this.NumericUpDownExMaximumLoadCapacity.TabIndex = 32;
+            this.NumericUpDownExMaximumLoadCapacity.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExMaximumLoadCapacity.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExVehicleWeight
+            // 
+            this.NumericUpDownExVehicleWeight.Location = new Point(188, 272);
+            this.NumericUpDownExVehicleWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExVehicleWeight.Name = "NumericUpDownExVehicleWeight";
+            this.NumericUpDownExVehicleWeight.Size = new Size(76, 23);
+            this.NumericUpDownExVehicleWeight.TabIndex = 33;
+            this.NumericUpDownExVehicleWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExVehicleWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExTotalVehicleWeight
+            // 
+            this.NumericUpDownExTotalVehicleWeight.Location = new Point(188, 300);
+            this.NumericUpDownExTotalVehicleWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExTotalVehicleWeight.Name = "NumericUpDownExTotalVehicleWeight";
+            this.NumericUpDownExTotalVehicleWeight.Size = new Size(76, 23);
+            this.NumericUpDownExTotalVehicleWeight.TabIndex = 34;
+            this.NumericUpDownExTotalVehicleWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExTotalVehicleWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExLength
+            // 
+            this.NumericUpDownExLength.Location = new Point(188, 328);
+            this.NumericUpDownExLength.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExLength.Name = "NumericUpDownExLength";
+            this.NumericUpDownExLength.Size = new Size(76, 23);
+            this.NumericUpDownExLength.TabIndex = 35;
+            this.NumericUpDownExLength.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExLength.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExWidth
+            // 
+            this.NumericUpDownExWidth.Location = new Point(188, 356);
+            this.NumericUpDownExWidth.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExWidth.Name = "NumericUpDownExWidth";
+            this.NumericUpDownExWidth.Size = new Size(76, 23);
+            this.NumericUpDownExWidth.TabIndex = 36;
+            this.NumericUpDownExWidth.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExWidth.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExHeight
+            // 
+            this.NumericUpDownExHeight.Location = new Point(188, 384);
+            this.NumericUpDownExHeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExHeight.Name = "NumericUpDownExHeight";
+            this.NumericUpDownExHeight.Size = new Size(76, 23);
+            this.NumericUpDownExHeight.TabIndex = 37;
+            this.NumericUpDownExHeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExHeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExFfAxisWeight
+            // 
+            this.NumericUpDownExFfAxisWeight.Location = new Point(188, 412);
+            this.NumericUpDownExFfAxisWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExFfAxisWeight.Name = "NumericUpDownExFfAxisWeight";
+            this.NumericUpDownExFfAxisWeight.Size = new Size(76, 23);
+            this.NumericUpDownExFfAxisWeight.TabIndex = 38;
+            this.NumericUpDownExFfAxisWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExFfAxisWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExFrAxisWeight
+            // 
+            this.NumericUpDownExFrAxisWeight.Location = new Point(188, 440);
+            this.NumericUpDownExFrAxisWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExFrAxisWeight.Name = "NumericUpDownExFrAxisWeight";
+            this.NumericUpDownExFrAxisWeight.Size = new Size(76, 23);
+            this.NumericUpDownExFrAxisWeight.TabIndex = 39;
+            this.NumericUpDownExFrAxisWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExFrAxisWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExRfAxisWeight
+            // 
+            this.NumericUpDownExRfAxisWeight.Location = new Point(188, 468);
+            this.NumericUpDownExRfAxisWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExRfAxisWeight.Name = "NumericUpDownExRfAxisWeight";
+            this.NumericUpDownExRfAxisWeight.Size = new Size(76, 23);
+            this.NumericUpDownExRfAxisWeight.TabIndex = 40;
+            this.NumericUpDownExRfAxisWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExRfAxisWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExRrAxisWeight
+            // 
+            this.NumericUpDownExRrAxisWeight.Location = new Point(188, 496);
+            this.NumericUpDownExRrAxisWeight.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.NumericUpDownExRrAxisWeight.Name = "NumericUpDownExRrAxisWeight";
+            this.NumericUpDownExRrAxisWeight.Size = new Size(76, 23);
+            this.NumericUpDownExRrAxisWeight.TabIndex = 41;
+            this.NumericUpDownExRrAxisWeight.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExRrAxisWeight.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownExTotalDisplacement
+            // 
+            this.NumericUpDownExTotalDisplacement.DecimalPlaces = 2;
+            this.NumericUpDownExTotalDisplacement.Location = new Point(188, 524);
+            this.NumericUpDownExTotalDisplacement.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            this.NumericUpDownExTotalDisplacement.Name = "NumericUpDownExTotalDisplacement";
+            this.NumericUpDownExTotalDisplacement.Size = new Size(76, 23);
+            this.NumericUpDownExTotalDisplacement.TabIndex = 46;
+            this.NumericUpDownExTotalDisplacement.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExTotalDisplacement.Value = new decimal(new int[] { 299, 0, 0, 131072 });
+            // 
+            // ComboBoxExTypesOfFuel
+            // 
+            this.ComboBoxExTypesOfFuel.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExTypesOfFuel.FormattingEnabled = true;
+            this.ComboBoxExTypesOfFuel.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExTypesOfFuel.Location = new Point(188, 552);
+            this.ComboBoxExTypesOfFuel.Name = "ComboBoxExTypesOfFuel";
+            this.ComboBoxExTypesOfFuel.Size = new Size(164, 23);
+            this.ComboBoxExTypesOfFuel.TabIndex = 47;
+            // 
+            // TextBoxExVersionDesignateNumber
+            // 
+            this.TextBoxExVersionDesignateNumber.Location = new Point(188, 580);
+            this.TextBoxExVersionDesignateNumber.Name = "TextBoxExVersionDesignateNumber";
+            this.TextBoxExVersionDesignateNumber.Size = new Size(164, 23);
+            this.TextBoxExVersionDesignateNumber.TabIndex = 48;
+            this.TextBoxExVersionDesignateNumber.Text = "NKR88-7014022";
+            // 
+            // TextBoxExCategoryDistinguishNumber
+            // 
+            this.TextBoxExCategoryDistinguishNumber.Location = new Point(188, 608);
+            this.TextBoxExCategoryDistinguishNumber.Name = "TextBoxExCategoryDistinguishNumber";
+            this.TextBoxExCategoryDistinguishNumber.Size = new Size(164, 23);
+            this.TextBoxExCategoryDistinguishNumber.TabIndex = 49;
+            this.TextBoxExCategoryDistinguishNumber.Text = "NKR88-7014022";
+            // 
+            // TextBoxExRemarks
+            // 
+            this.TextBoxExRemarks.Location = new Point(188, 636);
+            this.TextBoxExRemarks.Multiline = true;
+            this.TextBoxExRemarks.Name = "TextBoxExRemarks";
+            this.TextBoxExRemarks.Size = new Size(580, 104);
+            this.TextBoxExRemarks.TabIndex = 50;
+            this.TextBoxExRemarks.Text = "NKR88-7014022";
+            // 
             // CarDetail
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1904, 1426);
+            this.ClientSize = new Size(1904, 1404);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "CarDetail";
@@ -603,12 +1159,27 @@
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).EndInit();
             this.groupBoxEx1.ResumeLayout(false);
+            this.groupBoxEx1.PerformLayout();
             this.groupBoxEx2.ResumeLayout(false);
+            this.groupBoxEx2.PerformLayout();
             this.groupBoxEx3.ResumeLayout(false);
             this.groupBoxEx4.ResumeLayout(false);
+            this.groupBoxEx4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExCapacity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExMaximumLoadCapacity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExVehicleWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExTotalVehicleWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLength).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExWidth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExHeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFfAxisWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFrAxisWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExRfAxisWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExRrAxisWeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExTotalDisplacement).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -619,8 +1190,8 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.PanelEx PanelExUp;
         private ControlEx.PanelEx PanelExLeft;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
-        private ControlEx.PictureBoxEx PictureBoxEx2;
+        private ControlEx.PictureBoxEx PictureBoxExMainPicture;
+        private ControlEx.PictureBoxEx PictureBoxExSubPicture;
         private ControlEx.GroupBoxEx groupBoxEx1;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;
@@ -664,5 +1235,52 @@
         private ControlEx.LabelEx labelEx21;
         private ControlEx.LabelEx labelEx22;
         private ControlEx.LabelEx labelEx23;
+        private ControlEx.TextBoxEx TextBoxExCarCode;
+        private ControlEx.TextBoxEx TextBoxExDoorNumber;
+        private ControlEx.LabelEx labelEx40;
+        private ControlEx.TextBoxEx TextBoxExRegistrationNumber;
+        private ControlEx.CheckBoxEx CheckBoxExEmergencyVehicleFlag;
+        private ControlEx.DateTimePickerEx DateTimePickerExEmergencyVehicleDate;
+        private ControlEx.TextBoxEx TextBoxExRegistrationNumber4;
+        private ControlEx.TextBoxEx TextBoxExRegistrationNumber3;
+        private ControlEx.TextBoxEx TextBoxExRegistrationNumber2;
+        private ControlEx.ComboBoxEx ComboBoxExRegistrationNumber1;
+        private ControlEx.ComboBoxEx ComboBoxExGarageCode;
+        private ControlEx.ComboBoxEx ComboBoxExClassificationCode;
+        private ControlEx.ComboBoxEx ComboBoxExDisguiseKind3;
+        private ControlEx.ComboBoxEx ComboBoxExDisguiseKind2;
+        private ControlEx.ComboBoxEx ComboBoxExDisguiseKind1;
+        private ControlEx.DateTimePickerEx DateTimePickerExExpirationDate;
+        private ControlEx.DateTimePickerEx DateTimePickerExFirstRegistrationDate;
+        private ControlEx.DateTimePickerEx DateTimePickerExRegistrationDate;
+        private ControlEx.TextBoxEx TextBoxExVehicleNumber;
+        private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
+        private ControlEx.ComboBoxEx ComboBoxExUserAddress;
+        private ControlEx.ComboBoxEx ComboBoxExUserName;
+        private ControlEx.ComboBoxEx ComboBoxExOwnerAddress;
+        private ControlEx.ComboBoxEx ComboBoxExOwnerName;
+        private ControlEx.NumericUpDownEx NumericUpDownExRrAxisWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExRfAxisWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExFrAxisWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExFfAxisWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExHeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExWidth;
+        private ControlEx.NumericUpDownEx NumericUpDownExLength;
+        private ControlEx.NumericUpDownEx NumericUpDownExTotalVehicleWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExVehicleWeight;
+        private ControlEx.NumericUpDownEx NumericUpDownExMaximumLoadCapacity;
+        private ControlEx.NumericUpDownEx NumericUpDownExCapacity;
+        private ControlEx.ComboBoxEx ComboBoxExShapeCode;
+        private ControlEx.ComboBoxEx ComboBoxExOtherCode;
+        private ControlEx.ComboBoxEx ComboBoxExCarUse;
+        private ControlEx.ComboBoxEx ComboBoxExCarKindCode;
+        private ControlEx.TextBoxEx TextBoxExMotorVersion;
+        private ControlEx.TextBoxEx TextBoxExVersion;
+        private ControlEx.ComboBoxEx ComboBoxExManufacturerCode;
+        private ControlEx.NumericUpDownEx NumericUpDownExTotalDisplacement;
+        private ControlEx.TextBoxEx TextBoxExRemarks;
+        private ControlEx.TextBoxEx TextBoxExCategoryDistinguishNumber;
+        private ControlEx.TextBoxEx TextBoxExVersionDesignateNumber;
+        private ControlEx.ComboBoxEx ComboBoxExTypesOfFuel;
     }
 }

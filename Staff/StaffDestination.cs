@@ -227,7 +227,6 @@ namespace Staff {
             int rowCount = 0;
             this.SpreadList.SuspendLayout(); // Spread 非活性化
             // Rowを削除する
-
             if (SheetViewList.Rows.Count > 0)
                 SheetViewList.RemoveRows(0, SheetViewList.Rows.Count);
             if (_listSheetViewVo is not null) {

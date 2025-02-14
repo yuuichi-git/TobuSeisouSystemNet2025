@@ -555,7 +555,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, 従事者リスト, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, 健康診断用リスト, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(3, 119);
@@ -622,10 +622,6 @@
         private ControlEx.CheckBoxEx checkBoxEx11;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
-        private FarPoint.Win.Spread.SheetView SheetViewMedical;
-        private FarPoint.Win.Spread.SheetView SheetViewDriver;
-        private FarPoint.Win.Spread.SheetView SheetViewToukanpo;
         private TabPage tabPage3;
         private TabPage tabPage4;
         private TabPage tabPage5;
@@ -635,5 +631,9 @@
         private TabPage tabPage9;
         private TabPage tabPage10;
         private TabPage tabPage11;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
+        private FarPoint.Win.Spread.SheetView SheetViewMedical;
+        private FarPoint.Win.Spread.SheetView SheetViewDriver;
+        private FarPoint.Win.Spread.SheetView SheetViewToukanpo;
     }
 }

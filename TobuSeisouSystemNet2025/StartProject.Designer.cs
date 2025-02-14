@@ -44,6 +44,8 @@
             this.TabControlExConnect = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
             this.TabPageOffice = new TabPage();
+            this.labelEx18 = new ControlEx.LabelEx();
+            this.labelEx19 = new ControlEx.LabelEx();
             this.labelEx14 = new ControlEx.LabelEx();
             this.labelEx15 = new ControlEx.LabelEx();
             this.labelEx8 = new ControlEx.LabelEx();
@@ -60,8 +62,8 @@
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
-            this.labelEx18 = new ControlEx.LabelEx();
-            this.labelEx19 = new ControlEx.LabelEx();
+            this.labelEx20 = new ControlEx.LabelEx();
+            this.labelEx21 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
@@ -293,6 +295,8 @@
             // 
             // TabPageOffice
             // 
+            this.TabPageOffice.Controls.Add(this.labelEx20);
+            this.TabPageOffice.Controls.Add(this.labelEx21);
             this.TabPageOffice.Controls.Add(this.labelEx18);
             this.TabPageOffice.Controls.Add(this.labelEx19);
             this.TabPageOffice.Controls.Add(this.labelEx14);
@@ -307,6 +311,30 @@
             this.TabPageOffice.TabIndex = 3;
             this.TabPageOffice.Text = "事務";
             this.TabPageOffice.UseVisualStyleBackColor = true;
+            // 
+            // labelEx18
+            // 
+            this.labelEx18.ForeColor = Color.DimGray;
+            this.labelEx18.Location = new Point(16, 176);
+            this.labelEx18.Name = "labelEx18";
+            this.labelEx18.Size = new Size(344, 20);
+            this.labelEx18.TabIndex = 21;
+            this.labelEx18.Text = "　月毎の労働時間を集計します";
+            this.labelEx18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx19
+            // 
+            this.labelEx19.ForeColor = Color.Black;
+            this.labelEx19.Location = new Point(16, 156);
+            this.labelEx19.Name = "labelEx19";
+            this.labelEx19.Size = new Size(344, 20);
+            this.labelEx19.TabIndex = 20;
+            this.labelEx19.Tag = "StaffWorkingHours";
+            this.labelEx19.Text = "個別労働時間集計表";
+            this.labelEx19.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx19.Click += this.Label_Click;
+            this.labelEx19.MouseEnter += this.Label_MouseEnter;
+            this.labelEx19.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx14
             // 
@@ -503,29 +531,29 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
-            // labelEx18
+            // labelEx20
             // 
-            this.labelEx18.ForeColor = Color.DimGray;
-            this.labelEx18.Location = new Point(16, 176);
-            this.labelEx18.Name = "labelEx18";
-            this.labelEx18.Size = new Size(344, 20);
-            this.labelEx18.TabIndex = 21;
-            this.labelEx18.Text = "　月毎の労働時間を集計します";
-            this.labelEx18.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx20.ForeColor = Color.DimGray;
+            this.labelEx20.Location = new Point(16, 224);
+            this.labelEx20.Name = "labelEx20";
+            this.labelEx20.Size = new Size(344, 20);
+            this.labelEx20.TabIndex = 23;
+            this.labelEx20.Text = "　月毎の労働日数を集計します";
+            this.labelEx20.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // labelEx19
+            // labelEx21
             // 
-            this.labelEx19.ForeColor = Color.Black;
-            this.labelEx19.Location = new Point(16, 156);
-            this.labelEx19.Name = "labelEx19";
-            this.labelEx19.Size = new Size(344, 20);
-            this.labelEx19.TabIndex = 20;
-            this.labelEx19.Tag = "StaffWorkingHours";
-            this.labelEx19.Text = "個別労働時間集計表";
-            this.labelEx19.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx19.Click += this.Label_Click;
-            this.labelEx19.MouseEnter += this.Label_MouseEnter;
-            this.labelEx19.MouseLeave += this.Label_MouseLeave;
+            this.labelEx21.ForeColor = Color.Black;
+            this.labelEx21.Location = new Point(16, 204);
+            this.labelEx21.Name = "labelEx21";
+            this.labelEx21.Size = new Size(344, 20);
+            this.labelEx21.TabIndex = 22;
+            this.labelEx21.Tag = "StaffWorkingDays";
+            this.labelEx21.Text = "個別労働日数集計表";
+            this.labelEx21.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx21.Click += this.Label_Click;
+            this.labelEx21.MouseEnter += this.Label_MouseEnter;
+            this.labelEx21.MouseLeave += this.Label_MouseLeave;
             // 
             // StartProject
             // 
@@ -591,5 +619,7 @@
         private ControlEx.LabelEx labelEx17;
         private ControlEx.LabelEx labelEx18;
         private ControlEx.LabelEx labelEx19;
+        private ControlEx.LabelEx labelEx20;
+        private ControlEx.LabelEx labelEx21;
     }
 }

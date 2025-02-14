@@ -9,13 +9,11 @@ using Vo;
 
 namespace Dao {
     public class StaffWorkingHoursDao {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DefaultValue _defaultValue = new();
         /*
          * Vo
          */
         private readonly ConnectionVo _connectionVo;
-        private List<StaffWorkingHoursVo> _listStaffWorkingHoursVo;
 
         /// <summary>
         /// コンストラクター
@@ -26,7 +24,6 @@ namespace Dao {
              * Vo
              */
             _connectionVo = connectionVo;
-            _listStaffWorkingHoursVo = new();
         }
 
         /// <summary>

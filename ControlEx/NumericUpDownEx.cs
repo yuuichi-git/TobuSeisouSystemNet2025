@@ -3,10 +3,17 @@
  */
 namespace ControlEx {
     public partial class NumericUpDownEx : NumericUpDown {
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public NumericUpDownEx() {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
         }
@@ -23,10 +30,17 @@ namespace ControlEx {
             SendKeys.Send("+{END}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e) {
             switch (e.KeyCode) {
                 case Keys.Enter:
                     SendKeys.Send("{TAB}");
+                    break;
+                default:
+                    base.OnKeyDown(e);
                     break;
             }
         }
