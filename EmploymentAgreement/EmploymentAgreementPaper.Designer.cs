@@ -30,8 +30,7 @@
             this.PanelExUp = new ControlEx.PanelEx();
             this.ComboBoxExPrinter = new ControlEx.ComboBoxEx();
             this.labelEx2 = new ControlEx.LabelEx();
-            this.ButtonExPrint = new ControlEx.ButtonEx();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
+            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView体験期間契約 = this.SpreadList.GetSheet(0);
             this.SheetViewアルバイト契約 = this.SpreadList.GetSheet(1);
             this.SheetView嘱託雇用契約社員 = this.SpreadList.GetSheet(2);
@@ -98,7 +97,6 @@
             this.TableLayoutPanelExBase.SetColumnSpan(this.PanelExUp, 2);
             this.PanelExUp.Controls.Add(this.ComboBoxExPrinter);
             this.PanelExUp.Controls.Add(this.labelEx2);
-            this.PanelExUp.Controls.Add(this.ButtonExPrint);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
@@ -121,19 +119,6 @@
             this.labelEx2.Size = new Size(86, 15);
             this.labelEx2.TabIndex = 6;
             this.labelEx2.Text = "出力先プリンター";
-            // 
-            // ButtonExPrint
-            // 
-            this.ButtonExPrint.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExPrint.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            this.ButtonExPrint.Location = new Point(1070, 0);
-            this.ButtonExPrint.Name = "ButtonExPrint";
-            this.ButtonExPrint.SetTextDirectionVertical = "";
-            this.ButtonExPrint.Size = new Size(184, 32);
-            this.ButtonExPrint.TabIndex = 5;
-            this.ButtonExPrint.Text = "印　　刷";
-            this.ButtonExPrint.UseVisualStyleBackColor = true;
-            this.ButtonExPrint.Click += this.ButtonExPrint_Click;
             // 
             // SpreadList
             // 
@@ -227,7 +212,6 @@
         private ControlEx.LabelEx LabelExCurrentAddress;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
-        private ControlEx.ButtonEx ButtonExPrint;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.ComboBoxEx ComboBoxExPrinter;
         private FarPoint.Win.Spread.SheetView SheetView体験期間契約;

@@ -107,6 +107,15 @@ namespace ControlEx {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public void SetEmpty() {
+            this.CustomFormat = " ";
+            this.Value = _defaultDateTime;
+            this.Refresh();
+        }
+
+        /// <summary>
         /// 西暦で表示
         /// </summary>
         /// <param name="dateTime"></param>

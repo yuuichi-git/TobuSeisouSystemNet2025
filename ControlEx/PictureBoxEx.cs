@@ -10,5 +10,12 @@ namespace ControlEx {
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Clear() {
+            this.Image = null;
+        }
     }
 }

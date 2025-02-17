@@ -35,7 +35,7 @@ namespace DriversReport {
                 "ToolStripMenuItemPrintB5Dialog",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
@@ -71,7 +71,7 @@ namespace DriversReport {
                 "ToolStripMenuItemPrintB5Dialog",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */

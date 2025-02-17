@@ -2814,6 +2814,7 @@
             // ComboBoxExHealthInsuranceNumber
             // 
             this.ComboBoxExHealthInsuranceNumber.FormattingEnabled = true;
+            this.ComboBoxExHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
             this.ComboBoxExHealthInsuranceNumber.Location = new Point(264, 28);
             this.ComboBoxExHealthInsuranceNumber.Name = "ComboBoxExHealthInsuranceNumber";
             this.ComboBoxExHealthInsuranceNumber.Size = new Size(292, 23);

@@ -1,4 +1,6 @@
-﻿using Dao;
+﻿using Common;
+
+using Dao;
 
 using FarPoint.Win.Spread;
 
@@ -85,6 +87,10 @@ namespace Car {
         /// 備考
         /// </summary>
         private const int _colRemarks = 18;
+        /*
+         * インスタンス作成
+         */
+        private readonly ScreenForm _screenForm = new();
         /*
          * Dao
          */
@@ -231,6 +237,25 @@ namespace Car {
             sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
             sheetView.RemoveRows(0, sheetView.Rows.Count);
             return sheetView;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            /*
+             * ヘッダーのDoubleClickを回避
+             */
+            if (e.Row < 0)
+                return;
+            /*
+             * CarDetailを表示する
+             */
+            CarDetail carDetail = new(_connectionVo, (int)SheetViewList.Cells[e.Row, _colCarCode].Value);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
+            carDetail.ShowDialog(this);
         }
 
         /// <summary>

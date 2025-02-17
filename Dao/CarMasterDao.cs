@@ -26,7 +26,6 @@ namespace Dao {
              * Vo
              */
             _connectionVo = connectionVo;
-
         }
 
         /// <summary>

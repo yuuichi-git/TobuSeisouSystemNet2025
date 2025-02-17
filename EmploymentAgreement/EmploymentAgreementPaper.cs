@@ -72,13 +72,21 @@ namespace EmploymentAgreement {
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
+                "ToolStripMenuItemPrint",
+                "ToolStripMenuItemPrintA4",
                 "ToolStripMenuItemHelp"
             };
+            this.MenuStripEx1.ChangeEnable(listString);
+
             // プリンターの一覧を取得後、通常使うプリンター名をセットする
             _printUtility.SetAllPrinterForComboBoxEx(ComboBoxExPrinter);
 
             this.ComboBoxExBaseAddress.Text = _employmentAgreementVo.BaseLocation;
             this.LabelExCurrentAddress.Text = _staffMasterVo.CurrentAddress;
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             /// <summary>
             /// 契約書識別コード
@@ -384,36 +392,63 @@ namespace EmploymentAgreement {
         private void PutContractExpirationNoticeBicycle() {
             this.SheetView使用停止予告通知書自転車駐車場.Cells[8, 2].Text = string.Concat(_staffMasterVo.OtherName, " 殿");
         }
-        /*
-         * Print
-         */
-        private PrintDocument _printDocument = new();
-        private void ButtonExPrint_Click(object sender, EventArgs e) {
-            // Eventを登録
-            _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
-            //// 出力先プリンタを指定します。
-            //_printDocument.PrinterSettings.PrinterName = this.HComboBoxExPrinterName.Text;
-            // 用紙の向きを設定(横：true、縦：false)
-            _printDocument.DefaultPageSettings.Landscape = false;
-            /*
-             * プリンタがサポートしている用紙サイズを調べる
-             */
-            foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
-                // A4用紙に設定する
-                if (paperSize.Kind == PaperKind.A4) {
-                    _printDocument.DefaultPageSettings.PaperSize = paperSize;
-                    break;
-                }
-            }
-            // 印刷部数を指定します。
-            _printDocument.PrinterSettings.Copies = 1;
-            // 片面印刷に設定します。
-            _printDocument.PrinterSettings.Duplex = Duplex.Default;
-            // カラー印刷に設定します。
-            _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
-            // 印刷する
-            _printDocument.Print();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ComboBoxExBaseAddress_SelectedIndexChanged(object sender, EventArgs e) {
+            // 【使用者】事業場所在地
+            this.SpreadList.ActiveSheet.Cells[5, 6].Text = this.ComboBoxExBaseAddress.Text;
         }
+
+        private PrintDocument _printDocument = new();
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                /*
+                 * B5で印刷する
+                 */
+                case "ToolStripMenuItemPrintA4":
+                    // Eventを登録
+                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+                    //// 出力先プリンタを指定します。
+                    //_printDocument.PrinterSettings.PrinterName = this.HComboBoxExPrinterName.Text;
+                    // 用紙の向きを設定(横：true、縦：false)
+                    _printDocument.DefaultPageSettings.Landscape = false;
+                    /*
+                     * プリンタがサポートしている用紙サイズを調べる
+                     */
+                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                        // A4用紙に設定する
+                        if (paperSize.Kind == PaperKind.A4) {
+                            _printDocument.DefaultPageSettings.PaperSize = paperSize;
+                            break;
+                        }
+                    }
+                    // 印刷部数を指定します。
+                    _printDocument.PrinterSettings.Copies = 1;
+                    // 片面印刷に設定します。
+                    _printDocument.PrinterSettings.Duplex = Duplex.Default;
+                    // カラー印刷に設定します。
+                    _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
+                    // 印刷する
+                    _printDocument.Print();
+                    break;
+                /*
+                 * アプリケーションを終了する
+                 */
+                case "ToolStripMenuItemExit":
+                    this.Close();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
             int sheetNumber = SpreadList.ActiveSheetIndex;
             // 印刷ページ（1ページ目）の描画を行う
@@ -429,18 +464,17 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBoxExBaseAddress_SelectedIndexChanged(object sender, EventArgs e) {
-            // 【使用者】事業場所在地
-            this.SpreadList.ActiveSheet.Cells[5, 6].Text = this.ComboBoxExBaseAddress.Text;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void EmploymentAgreementPaper_FormClosing(object sender, FormClosingEventArgs e) {
-
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
         }
 
         /*

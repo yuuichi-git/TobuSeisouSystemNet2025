@@ -83,6 +83,7 @@
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1898, 927);
             this.SpreadList.TabIndex = 2;
+            this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
             // 
             // PanelExUp
             // 

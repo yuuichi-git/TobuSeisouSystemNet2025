@@ -21,5 +21,13 @@ namespace ControlEx {
                     break;
             }
         }
+
+        /// <summary>
+        /// クリア
+        /// </summary>
+        public void Clear() {
+            this.SelectedIndex = -1;
+            this.Text = string.Empty;
+        }
     }
 }
