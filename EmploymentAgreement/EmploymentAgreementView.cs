@@ -2,14 +2,14 @@
  * 2024-11-06
  */
 namespace EmploymentAgreement {
-    public partial class ShowPicture : Form {
+    public partial class EmploymentAgreementView : Form {
         private byte[] _picture;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="picture"></param>
-        public ShowPicture(byte[] picture) {
+        public EmploymentAgreementView(byte[] picture) {
             _picture = picture;
             /*
              * コントロール初期化

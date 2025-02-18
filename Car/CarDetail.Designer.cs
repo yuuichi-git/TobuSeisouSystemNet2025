@@ -120,7 +120,13 @@
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.PictureBoxExMainPicture = new ControlEx.PictureBoxEx();
+            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemMainPictureClip = new ToolStripMenuItem();
+            this.ToolStripMenuItemMainPictureDelete = new ToolStripMenuItem();
             this.PictureBoxExSubPicture = new ControlEx.PictureBoxEx();
+            this.ContextMenuStripEx2 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemSubPictureClip = new ToolStripMenuItem();
+            this.ToolStripMenuItemSubPictureDelete = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
@@ -141,7 +147,9 @@
             this.groupBoxEx2.SuspendLayout();
             this.groupBoxEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).BeginInit();
+            this.ContextMenuStripEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).BeginInit();
+            this.ContextMenuStripEx2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -316,7 +324,7 @@
             // 
             this.NumericUpDownExTotalDisplacement.DecimalPlaces = 2;
             this.NumericUpDownExTotalDisplacement.Location = new Point(188, 524);
-            this.NumericUpDownExTotalDisplacement.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            this.NumericUpDownExTotalDisplacement.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
             this.NumericUpDownExTotalDisplacement.Name = "NumericUpDownExTotalDisplacement";
             this.NumericUpDownExTotalDisplacement.Size = new Size(76, 23);
             this.NumericUpDownExTotalDisplacement.TabIndex = 46;
@@ -995,6 +1003,7 @@
             this.TextBoxExRegistrationNumber4.TabIndex = 16;
             this.TextBoxExRegistrationNumber4.Text = "8888";
             this.TextBoxExRegistrationNumber4.TextAlign = HorizontalAlignment.Center;
+            this.TextBoxExRegistrationNumber4.TextChanged += this.TextBoxExRegistrationNumber_TextChanged;
             // 
             // TextBoxExRegistrationNumber3
             // 
@@ -1004,6 +1013,7 @@
             this.TextBoxExRegistrationNumber3.TabIndex = 15;
             this.TextBoxExRegistrationNumber3.Text = "あ";
             this.TextBoxExRegistrationNumber3.TextAlign = HorizontalAlignment.Center;
+            this.TextBoxExRegistrationNumber3.TextChanged += this.TextBoxExRegistrationNumber_TextChanged;
             // 
             // TextBoxExRegistrationNumber2
             // 
@@ -1013,6 +1023,7 @@
             this.TextBoxExRegistrationNumber2.TabIndex = 14;
             this.TextBoxExRegistrationNumber2.Text = "888";
             this.TextBoxExRegistrationNumber2.TextAlign = HorizontalAlignment.Center;
+            this.TextBoxExRegistrationNumber2.TextChanged += this.TextBoxExRegistrationNumber_TextChanged;
             // 
             // ComboBoxExRegistrationNumber1
             // 
@@ -1023,6 +1034,7 @@
             this.ComboBoxExRegistrationNumber1.Name = "ComboBoxExRegistrationNumber1";
             this.ComboBoxExRegistrationNumber1.Size = new Size(48, 23);
             this.ComboBoxExRegistrationNumber1.TabIndex = 13;
+            this.ComboBoxExRegistrationNumber1.SelectedIndexChanged += this.ComboBoxExRegistrationNumber1_SelectedIndexChanged;
             // 
             // DateTimePickerExEmergencyVehicleDate
             // 
@@ -1068,6 +1080,7 @@
             // 
             this.TextBoxExRegistrationNumber.Location = new Point(232, 20);
             this.TextBoxExRegistrationNumber.Name = "TextBoxExRegistrationNumber";
+            this.TextBoxExRegistrationNumber.ReadOnly = true;
             this.TextBoxExRegistrationNumber.Size = new Size(92, 23);
             this.TextBoxExRegistrationNumber.TabIndex = 8;
             this.TextBoxExRegistrationNumber.Text = "足立800あ8888";
@@ -1148,6 +1161,7 @@
             // PictureBoxExMainPicture
             // 
             this.PictureBoxExMainPicture.BorderStyle = BorderStyle.Fixed3D;
+            this.PictureBoxExMainPicture.ContextMenuStrip = this.ContextMenuStripEx1;
             this.PictureBoxExMainPicture.Dock = DockStyle.Fill;
             this.PictureBoxExMainPicture.Location = new Point(803, 87);
             this.PictureBoxExMainPicture.Name = "PictureBoxExMainPicture";
@@ -1155,10 +1169,32 @@
             this.PictureBoxExMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
             this.PictureBoxExMainPicture.TabIndex = 4;
             this.PictureBoxExMainPicture.TabStop = false;
+            this.PictureBoxExMainPicture.DoubleClick += this.PictureBoxEx_DoubleClick;
+            // 
+            // ContextMenuStripEx1
+            // 
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemMainPictureClip, this.ToolStripMenuItemMainPictureDelete });
+            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            // 
+            // ToolStripMenuItemMainPictureClip
+            // 
+            this.ToolStripMenuItemMainPictureClip.Name = "ToolStripMenuItemMainPictureClip";
+            this.ToolStripMenuItemMainPictureClip.Size = new Size(107, 22);
+            this.ToolStripMenuItemMainPictureClip.Text = "Clip";
+            this.ToolStripMenuItemMainPictureClip.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemMainPictureDelete
+            // 
+            this.ToolStripMenuItemMainPictureDelete.Name = "ToolStripMenuItemMainPictureDelete";
+            this.ToolStripMenuItemMainPictureDelete.Size = new Size(107, 22);
+            this.ToolStripMenuItemMainPictureDelete.Text = "Delete";
+            this.ToolStripMenuItemMainPictureDelete.Click += this.ToolStripMenuItem_Click;
             // 
             // PictureBoxExSubPicture
             // 
             this.PictureBoxExSubPicture.BorderStyle = BorderStyle.Fixed3D;
+            this.PictureBoxExSubPicture.ContextMenuStrip = this.ContextMenuStripEx2;
             this.PictureBoxExSubPicture.Dock = DockStyle.Fill;
             this.PictureBoxExSubPicture.Location = new Point(803, 460);
             this.PictureBoxExSubPicture.Name = "PictureBoxExSubPicture";
@@ -1166,6 +1202,27 @@
             this.PictureBoxExSubPicture.SizeMode = PictureBoxSizeMode.Zoom;
             this.PictureBoxExSubPicture.TabIndex = 5;
             this.PictureBoxExSubPicture.TabStop = false;
+            this.PictureBoxExSubPicture.DoubleClick += this.PictureBoxEx_DoubleClick;
+            // 
+            // ContextMenuStripEx2
+            // 
+            this.ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemSubPictureClip, this.ToolStripMenuItemSubPictureDelete });
+            this.ContextMenuStripEx2.Name = "ContextMenuStripEx2";
+            this.ContextMenuStripEx2.Size = new Size(108, 48);
+            // 
+            // ToolStripMenuItemSubPictureClip
+            // 
+            this.ToolStripMenuItemSubPictureClip.Name = "ToolStripMenuItemSubPictureClip";
+            this.ToolStripMenuItemSubPictureClip.Size = new Size(107, 22);
+            this.ToolStripMenuItemSubPictureClip.Text = "Clip";
+            this.ToolStripMenuItemSubPictureClip.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemSubPictureDelete
+            // 
+            this.ToolStripMenuItemSubPictureDelete.Name = "ToolStripMenuItemSubPictureDelete";
+            this.ToolStripMenuItemSubPictureDelete.Size = new Size(107, 22);
+            this.ToolStripMenuItemSubPictureDelete.Text = "Delete";
+            this.ToolStripMenuItemSubPictureDelete.Click += this.ToolStripMenuItem_Click;
             // 
             // CarDetail
             // 
@@ -1176,6 +1233,7 @@
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "CarDetail";
             this.Text = "CarDetail";
+            this.FormClosing += this.CarDetail_FormClosing;
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
@@ -1200,7 +1258,9 @@
             this.groupBoxEx1.ResumeLayout(false);
             this.groupBoxEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).EndInit();
+            this.ContextMenuStripEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).EndInit();
+            this.ContextMenuStripEx2.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -1304,5 +1364,11 @@
         private ControlEx.TextBoxEx TextBoxExVersionDesignateNumber;
         private ControlEx.ComboBoxEx ComboBoxExTypesOfFuel;
         private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private ControlEx.ContextMenuStripEx ContextMenuStripEx2;
+        private ToolStripMenuItem ToolStripMenuItemMainPictureClip;
+        private ToolStripMenuItem ToolStripMenuItemMainPictureDelete;
+        private ToolStripMenuItem ToolStripMenuItemSubPictureClip;
+        private ToolStripMenuItem ToolStripMenuItemSubPictureDelete;
     }
 }

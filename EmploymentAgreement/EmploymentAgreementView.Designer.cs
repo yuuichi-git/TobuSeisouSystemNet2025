@@ -1,5 +1,5 @@
 ﻿namespace EmploymentAgreement {
-    partial class ShowPicture {
+    partial class EmploymentAgreementView {
         /// <summary>
         /// Required designer variable.
         /// </summary>

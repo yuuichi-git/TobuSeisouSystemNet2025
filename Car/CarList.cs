@@ -145,7 +145,23 @@ namespace Car {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemEdit",
+                "ToolStripMenuItemInsertNewRecord",
+                "ToolStripMenuItemHelp"
+            };
+            MenuStripEx1.ChangeEnable(listString);
+
             this.InitializeSheetViewList(this.SheetViewList);
+            /*
+             * Eventを登録する
+             */
+            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -256,6 +272,22 @@ namespace Car {
             CarDetail carDetail = new(_connectionVo, (int)SheetViewList.Cells[e.Row, _colCarCode].Value);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
             carDetail.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemInsertNewRecord":
+                    MessageBox.Show("作成中・・・・");
+                    break;
+                case "ToolStripMenuItemExit": // アプリケーションを終了する
+                    this.Close();
+                    break;
+            }
         }
 
         /// <summary>

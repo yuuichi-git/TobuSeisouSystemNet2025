@@ -1,6 +1,12 @@
 ﻿/*
  * 2025-02-12
  */
+using System.Drawing.Printing;
+
+using Common;
+
+using ControlEx;
+
 using Dao;
 
 using Vo;
@@ -9,10 +15,18 @@ namespace Car {
 
     public partial class CarDetail : Form {
         /*
+         * インスタンス作成
+         */
+        private readonly ScreenForm _screenForm = new();
+        /*
          * Dao
          */
         private readonly CarMasterDao _carMasterDao;
         private readonly ClassificationMasterDao _classificationMasterDao;
+        /*
+         * Vo
+         */
+        private readonly ConnectionVo _connectionVo;
         /*
          * Dictionary
          */
@@ -45,6 +59,10 @@ namespace Car {
             _carMasterDao = new(connectionVo);
             _classificationMasterDao = new(connectionVo);
             /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+            /*
              * Dictionary
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMasterVo()) {
@@ -55,9 +73,23 @@ namespace Car {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.MenuStripEx1.ChangeEnable(listString);
+
             this.InitializeControl();
             this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                        // 新規での車両コード採番
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -72,6 +104,10 @@ namespace Car {
             _carMasterDao = new(connectionVo);
             _classificationMasterDao = new(connectionVo);
             /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+            /*
              * Dictionary
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMasterVo()) {
@@ -82,9 +118,25 @@ namespace Car {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemPrint",
+                "ToolStripMenuItemPrintA4",
+                "ToolStripMenuItemHelp"
+            };
+            this.MenuStripEx1.ChangeEnable(listString);
+
             this.InitializeControl();
             this.SetControl(_carMasterDao.SelectOneCarMasterP(carCode));
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Select Success";
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -113,6 +165,34 @@ namespace Car {
                 }
             } catch (Exception exception) {
                 MessageBox.Show(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemMainPictureClip":                                                                            // MainPicture クリップボード
+                    PictureBoxExMainPicture.Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    break;
+                case "ToolStripMenuItemMainPictureDelete":                                                                          // MainPicture 削除
+                    PictureBoxExMainPicture.Image = null;
+                    break;
+                case "ToolStripMenuItemSubPictureClip":                                                                             // SubPicture クリップボード
+                    PictureBoxExSubPicture.Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    break;
+                case "ToolStripMenuItemSubPictureDelete":                                                                           // SubPicture 削除
+                    PictureBoxExSubPicture.Image = null;
+                    break;
+                case "ToolStripMenuItemExit":                                                                                       // アプロケーションを終了する
+                    this.Close();
+                    break;
+                case "ToolStripMenuItemPrintA4":                                                                                    // アプロケーションを終了する
+                    this.ToolStripMenuItemPrintA4_Click();
+                    break;
             }
         }
 
@@ -329,6 +409,88 @@ namespace Car {
                 ImageConverter imageConverter = new();
                 this.PictureBoxExSubPicture.Image = (Image?)imageConverter.ConvertFrom(carMasterVo.SubPicture);                     // 写真
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PictureBoxEx_DoubleClick(object sender, EventArgs e) {
+            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((PictureBoxEx)sender).Image);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carVehicleInspectionView);
+            carVehicleInspectionView.ShowDialog(this);
+        }
+
+        /*
+         * TextBoxExRegistrationNumberの変更
+         */
+        private void ComboBoxExRegistrationNumber1_SelectedIndexChanged(object sender, EventArgs e) {
+            this.TextBoxExRegistrationNumber.Text = this.SetTextBoxExRegistrationNumber();
+        }
+        private void TextBoxExRegistrationNumber_TextChanged(object sender, EventArgs e) {
+            this.TextBoxExRegistrationNumber.Text = this.SetTextBoxExRegistrationNumber();
+        }
+        private string SetTextBoxExRegistrationNumber() {
+            return string.Concat(ComboBoxExRegistrationNumber1.Text, TextBoxExRegistrationNumber2.Text, TextBoxExRegistrationNumber3.Text, TextBoxExRegistrationNumber4.Text);
+        }
+
+        /// <summary>
+        /// ToolStripMenuItemPrintA4_Click
+        /// </summary>
+        private void ToolStripMenuItemPrintA4_Click() {
+            PrintDocument _printDocument = new();
+            _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            // 出力先プリンタを指定します。
+            //printDocument.PrinterSettings.PrinterName = "(PrinterName)";
+            // 印刷部数を指定します。
+            _printDocument.PrinterSettings.Copies = 1;
+            // 両面印刷に設定します。
+            _printDocument.PrinterSettings.Duplex = Duplex.Vertical;
+            // カラー印刷に設定します。
+            _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
+            _printDocument.Print();
+        }
+
+        /// <summary>
+        /// printDocument_PrintPage
+        /// </summary>
+        private int _curPageNumber = 0; // 現在のページ番号
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
+            try {
+                if (_curPageNumber == 0) {
+                    /*
+                     * 新型車検証
+                     */
+                    if (this.PictureBoxExMainPicture.Image is not null) {
+                        // 新型車検証のサイズ(１０５＊１７７.８)
+                        Rectangle rectangle = new(0, 0, 177 * 4, 105 * 4);
+                        e.Graphics.DrawImage(this.PictureBoxExMainPicture.Image, rectangle);
+                    }
+                    e.HasMorePages = true;
+                } else {
+                    /*
+                     * 記録事項と旧型車検証
+                     */
+                    if (this.PictureBoxExSubPicture.Image is not null) {
+                        Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
+                        e.Graphics.DrawImage(this.PictureBoxExSubPicture.Image, rectangle);
+                    }
+                    e.HasMorePages = false;
+                }
+                _curPageNumber++;
+            } catch (Exception exception) {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CarDetail_FormClosing(object sender, FormClosingEventArgs e) {
+
         }
     }
 }

@@ -14,6 +14,7 @@ namespace ControlEx {
         private ToolStripMenuItem toolStripMenuItemExit = new("アプリケーションを終了する");
 
         private ToolStripMenuItem toolStripMenuItemEdit = new("編集");
+        private ToolStripMenuItem toolStripMenuItemInsertNewRecord = new("新規レコード作成");
         private ToolStripMenuItem toolStripMenuItemUpdateTaitou = new("台東資源収集量入力");
 
         private ToolStripMenuItem toolStripMenuItemInitialize = new("初期化");
@@ -74,6 +75,10 @@ namespace ControlEx {
              */
             toolStripMenuItemEdit.Name = "ToolStripMenuItemEdit";
             this.Items.Add(toolStripMenuItemEdit);
+
+            toolStripMenuItemInsertNewRecord.Name = "ToolStripMenuItemInsertNewRecord";
+            toolStripMenuItemInsertNewRecord.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemEdit.DropDownItems.Add(toolStripMenuItemInsertNewRecord);
 
             toolStripMenuItemUpdateTaitou.Name = "ToolStripMenuItemUpdateTaitou";
             toolStripMenuItemUpdateTaitou.Click += ToolStripMenuItem_Click;

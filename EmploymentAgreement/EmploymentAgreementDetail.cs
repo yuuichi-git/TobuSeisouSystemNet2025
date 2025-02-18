@@ -281,7 +281,7 @@ namespace EmploymentAgreement {
                 // 体験入社期間 画像
                 case "BTNExExpirationPicture":
                     if (this.BTNExExpirationPicture.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExExpirationPicture.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExExpirationPicture.Tag).Show();
                     } else {
                         MessageBox.Show("体験入社期間の契約書が添付されていません。");
                     }
@@ -289,7 +289,7 @@ namespace EmploymentAgreement {
                 // 長期アルバイト更新期間　画像１
                 case "BTNExContractExpirationPartTimeJobPicture1":
                     if (this.BTNExContractExpirationPartTimeJobPicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationPartTimeJobPicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
@@ -297,7 +297,7 @@ namespace EmploymentAgreement {
                 // 長期アルバイト更新期間　画像２
                 case "BTNExContractExpirationPartTimeJobPicture2":
                     if (this.BTNExContractExpirationPartTimeJobPicture2.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationPartTimeJobPicture2.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
@@ -305,7 +305,7 @@ namespace EmploymentAgreement {
                 // 組合長期雇用期間　画像１
                 case "BTNExContractExpirationLongJobPicture1":
                     if (this.BTNExContractExpirationLongJobPicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationLongJobPicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
@@ -313,7 +313,7 @@ namespace EmploymentAgreement {
                 // 組合長期雇用期間　画像２
                 case "BTNExContractExpirationLongJobPicture2":
                     if (this.BTNExContractExpirationLongJobPicture2.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationLongJobPicture2.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
@@ -321,7 +321,7 @@ namespace EmploymentAgreement {
                 // 組合短期雇用期間　画像１
                 case "BTNExContractExpirationShortJobPicture1":
                     if (this.BTNExContractExpirationShortJobPicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationShortJobPicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
@@ -329,7 +329,7 @@ namespace EmploymentAgreement {
                 // 組合短期雇用期間　画像２
                 case "BTNExContractExpirationShortJobPicture2":
                     if (this.BTNExContractExpirationShortJobPicture2.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationShortJobPicture2.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
@@ -337,7 +337,7 @@ namespace EmploymentAgreement {
                 // 誓約書期間　画像１
                 case "BTNExContractExpirationWrittenPledgePicture1":
                     if (this.BTNExContractExpirationWrittenPledgePicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationWrittenPledgePicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("誓約書が添付されていません。");
                     }
@@ -345,7 +345,7 @@ namespace EmploymentAgreement {
                 // 失墜行為書類期間　画像１
                 case "BTNExContractExpirationLossWrittenPledgePicture1":
                     if (this.BTNExContractExpirationLossWrittenPledgePicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationLossWrittenPledgePicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLossWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("失墜行為確認書が添付されていません。");
                     }
@@ -353,7 +353,7 @@ namespace EmploymentAgreement {
                 // 契約満了通知(事前通知書)　画像１
                 case "BTNExContractExpirationNoticePicture1":
                     if (this.BTNExContractExpirationNoticePicture1.Tag is not null) {
-                        new ShowPicture((byte[])this.BTNExContractExpirationNoticePicture1.Tag).Show();
+                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationNoticePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("契約満了通知(事前通知書)が添付されていません。");
                     }
