@@ -132,7 +132,7 @@
             // CheckBoxExRetirementFlag
             // 
             this.CheckBoxExRetirementFlag.AutoSize = true;
-            this.CheckBoxExRetirementFlag.Location = new Point(1560, 18);
+            this.CheckBoxExRetirementFlag.Location = new Point(1592, 19);
             this.CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
             this.CheckBoxExRetirementFlag.Size = new Size(95, 19);
             this.CheckBoxExRetirementFlag.TabIndex = 6;
@@ -142,11 +142,11 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            this.ButtonExUpdate.Location = new Point(1664, 11);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Location = new Point(1696, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = null;
-            this.ButtonExUpdate.Size = new Size(184, 32);
+            this.ButtonExUpdate.Size = new Size(160, 32);
             this.ButtonExUpdate.TabIndex = 5;
             this.ButtonExUpdate.Text = "最　新　化";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;

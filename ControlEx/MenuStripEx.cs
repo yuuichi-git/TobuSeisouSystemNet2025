@@ -25,6 +25,7 @@ namespace ControlEx {
 
         private ToolStripMenuItem toolStripMenuItemExport = new("エクスポート");
         private ToolStripMenuItem toolStripMenuItemExportExcel = new("xls形式ファイルをエクスポートします");
+        private ToolStripMenuItem toolStripMenuItemExportCSV = new("免許証登録用ファイルをエクスポートします");
 
         private ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
         private ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
@@ -112,6 +113,10 @@ namespace ControlEx {
             toolStripMenuItemExportExcel.Name = "ToolStripMenuItemExportExcel";
             toolStripMenuItemExportExcel.Click += ToolStripMenuItem_Click;
             toolStripMenuItemExport.DropDownItems.Add(toolStripMenuItemExportExcel);
+
+            toolStripMenuItemExportCSV.Name = "ToolStripMenuItemExportCSV";
+            toolStripMenuItemExportCSV.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemExport.DropDownItems.Add(toolStripMenuItemExportCSV);
             /*
              * 印刷
              */

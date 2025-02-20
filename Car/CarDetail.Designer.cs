@@ -483,6 +483,7 @@
             // 
             // TextBoxExMotorVersion
             // 
+            this.TextBoxExMotorVersion.ImeMode = ImeMode.Off;
             this.TextBoxExMotorVersion.Location = new Point(188, 76);
             this.TextBoxExMotorVersion.Name = "TextBoxExMotorVersion";
             this.TextBoxExMotorVersion.Size = new Size(164, 23);
@@ -491,6 +492,7 @@
             // 
             // TextBoxExVersion
             // 
+            this.TextBoxExVersion.ImeMode = ImeMode.Off;
             this.TextBoxExVersion.Location = new Point(188, 48);
             this.TextBoxExVersion.Name = "TextBoxExVersion";
             this.TextBoxExVersion.Size = new Size(164, 23);
@@ -951,7 +953,7 @@
             // ComboBoxExDisguiseKind3
             // 
             this.ComboBoxExDisguiseKind3.FormattingEnabled = true;
-            this.ComboBoxExDisguiseKind3.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind3.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExDisguiseKind3.Location = new Point(188, 188);
             this.ComboBoxExDisguiseKind3.Name = "ComboBoxExDisguiseKind3";
             this.ComboBoxExDisguiseKind3.Size = new Size(164, 23);
@@ -960,7 +962,7 @@
             // ComboBoxExDisguiseKind2
             // 
             this.ComboBoxExDisguiseKind2.FormattingEnabled = true;
-            this.ComboBoxExDisguiseKind2.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind2.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExDisguiseKind2.Location = new Point(188, 160);
             this.ComboBoxExDisguiseKind2.Name = "ComboBoxExDisguiseKind2";
             this.ComboBoxExDisguiseKind2.Size = new Size(164, 23);
@@ -969,7 +971,7 @@
             // ComboBoxExDisguiseKind1
             // 
             this.ComboBoxExDisguiseKind1.FormattingEnabled = true;
-            this.ComboBoxExDisguiseKind1.Items.AddRange(new object[] { "足立" });
+            this.ComboBoxExDisguiseKind1.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExDisguiseKind1.Location = new Point(188, 132);
             this.ComboBoxExDisguiseKind1.Name = "ComboBoxExDisguiseKind1";
             this.ComboBoxExDisguiseKind1.Size = new Size(164, 23);
@@ -979,7 +981,7 @@
             // 
             this.ComboBoxExGarageCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExGarageCode.FormattingEnabled = true;
-            this.ComboBoxExGarageCode.Items.AddRange(new object[] { "足立", "三郷", "産廃車庫" });
+            this.ComboBoxExGarageCode.Items.AddRange(new object[] { "足立", "三郷" });
             this.ComboBoxExGarageCode.Location = new Point(188, 104);
             this.ComboBoxExGarageCode.Name = "ComboBoxExGarageCode";
             this.ComboBoxExGarageCode.Size = new Size(164, 23);

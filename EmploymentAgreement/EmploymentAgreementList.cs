@@ -15,7 +15,6 @@ using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementList : Form {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /// <summary>
         /// 所属
         /// </summary>
@@ -126,7 +125,6 @@ namespace EmploymentAgreement {
          * Vo
          */
         private ConnectionVo _connectionVo;
-        private List<StaffMasterVo> _listStaffMasterVo;
         private EmploymentAgreementVo _employmentAgreementVo;
         private List<EmploymentAgreementVo> _listEmploymentAgreementVo;
         private List<ContractExpirationVo> _listContractExpirationVo;

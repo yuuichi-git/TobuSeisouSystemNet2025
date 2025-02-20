@@ -13,6 +13,8 @@ using ControlEx;
 
 using EmploymentAgreement;
 
+using License;
+
 using RollCall;
 
 using Staff;
@@ -238,7 +240,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingDays);
                             staffWorkingDays.Show();
                             break;
-
+                        case "LicenseList":
+                            LicenseList licenseList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, licenseList);
+                            licenseList.Show();
+                            break;
                     }
                     break;
                 case ConnectionState.Connecting: //接続オブジェクトがデータ ソースに接続しています。

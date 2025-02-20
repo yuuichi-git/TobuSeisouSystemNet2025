@@ -28,10 +28,10 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelEx1.Controls"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExUp = new ControlEx.PanelEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
             this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();
@@ -76,7 +76,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "Book1, Sheet1, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
             this.SpreadList.Location = new Point(3, 87);
@@ -142,8 +142,8 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.PanelEx PanelExUp;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private ControlEx.CheckBoxEx CheckBoxExDeleteFlag;
         private ControlEx.ButtonEx ButtonExUpdate;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

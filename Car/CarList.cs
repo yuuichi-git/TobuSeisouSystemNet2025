@@ -155,13 +155,13 @@ namespace Car {
                 "ToolStripMenuItemInsertNewRecord",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
 
             this.InitializeSheetViewList(this.SheetViewList);
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -179,27 +179,23 @@ namespace Car {
         /// </summary>
         private void SetSheetViewList(SheetView sheetView) {
             List<CarMasterVo> _listCarMasterVo = new();
-            // 削除済のレコードも表示
-            if (CheckBoxExDeleteFlag.Checked) {
+            if (CheckBoxExDeleteFlag.Checked) {                                                                                                                                         // 削除済のレコードも表示
                 _listCarMasterVo = _carMasterDao.SelectAllHCarMaster();
             } else {
                 _listCarMasterVo = _carMasterDao.SelectAllHCarMaster().FindAll(x => x.DeleteFlag == false);
             }
-            // 非活性化
-            SpreadList.SuspendLayout();
-            // 先頭行（列）インデックスを取得
-            spreadListTopRow = SpreadList.GetViewportTopRow(0);
-            // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            SpreadList.SuspendLayout();                                                                                                                                                 // 非活性化
+            spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得
+            if (sheetView.Rows.Count > 0)                                                                                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
 
             int i = 0;
             foreach (CarMasterVo carMasterVo in _listCarMasterVo.OrderBy(x => x.RegistrationNumber4)) {
                 sheetView.Rows.Add(i, 1);
-                sheetView.RowHeader.Columns[0].Label = (i + 1).ToString(); // Rowヘッダ
-                sheetView.Rows[i].Height = 22; // Rowの高さ
-                sheetView.Rows[i].Resizable = false; // RowのResizableを禁止
-                sheetView.Rows[i].ForeColor = !carMasterVo.DeleteFlag ? Color.Black : Color.Red; // 削除済レコードは赤色で表示する
+                sheetView.RowHeader.Columns[0].Label = (i + 1).ToString();                                                                                                              // Rowヘッダ
+                sheetView.Rows[i].Height = 22;                                                                                                                                          // Rowの高さ
+                sheetView.Rows[i].Resizable = false;                                                                                                                                    // RowのResizableを禁止
+                sheetView.Rows[i].ForeColor = !carMasterVo.DeleteFlag ? Color.Black : Color.Red;                                                                                        // 削除済レコードは赤色で表示する
 
                 sheetView.Cells[i, _colCarCode].Value = carMasterVo.CarCode;
                 sheetView.Cells[i, _colEmergencyVehicle].Value = carMasterVo.EmergencyVehicleFlag;
@@ -226,10 +222,9 @@ namespace Car {
                 sheetView.Cells[i, _colRemarks].Text = carMasterVo.Remarks;
                 i++;
             }
-            // 先頭行（列）インデックスをセット
-            SpreadList.SetViewportTopRow(0, spreadListTopRow);
-            // 活性化
-            SpreadList.ResumeLayout();
+            SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                                                                          // 先頭行（列）インデックスをセット
+
+            SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
@@ -282,7 +277,9 @@ namespace Car {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":
-                    MessageBox.Show("作成中・・・・");
+                    CarDetail carDetail = new(_connectionVo); // CarDetailを表示する
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
+                    carDetail.ShowDialog(this);
                     break;
                 case "ToolStripMenuItemExit": // アプリケーションを終了する
                     this.Close();
