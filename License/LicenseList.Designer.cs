@@ -91,6 +91,7 @@
             this.TabControlExKana.SelectedIndex = 0;
             this.TabControlExKana.Size = new Size(1898, 26);
             this.TabControlExKana.TabIndex = 4;
+            this.TabControlExKana.Click += this.TabControlExKana_Click;
             // 
             // tabPage1
             // 
@@ -251,7 +252,7 @@
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1898, 895);
             this.SpreadList.TabIndex = 3;
-            this.SpreadList.ActiveSheetChanging += this.SpreadList_ActiveSheetChanging;
+            this.SpreadList.ActiveSheetChanged += this.SpreadList_ActiveSheetChanged;
             this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
             // 
             // LicenseList
@@ -280,8 +281,6 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.PanelEx PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
-        private FarPoint.Win.Spread.SheetView SheetViewToukaidenshi;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.TabControlEx TabControlExKana;
         private TabPage tabPage1;
@@ -296,5 +295,7 @@
         private TabPage tabPage10;
         private TabPage tabPage11;
         private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
+        private FarPoint.Win.Spread.SheetView SheetViewToukaidenshi;
     }
 }

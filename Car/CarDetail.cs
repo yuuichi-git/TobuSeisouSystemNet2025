@@ -273,15 +273,15 @@ namespace Car {
             /*
              * システム情報
              */
-            this.TextBoxExCarCode.ClearEmpty();                                                                                     // 車両コード
-            this.TextBoxExRegistrationNumber.ClearEmpty();                                                                          // 車両ナンバー
-            this.TextBoxExDoorNumber.ClearEmpty();                                                                                  // ドア番号
+            this.TextBoxExCarCode.SetEmpty();                                                                                     // 車両コード
+            this.TextBoxExRegistrationNumber.SetEmpty();                                                                          // 車両ナンバー
+            this.TextBoxExDoorNumber.SetEmpty();                                                                                  // ドア番号
             this.CheckBoxExEmergencyVehicleFlag.Checked = false;                                                                    // 緊急車両
             this.DateTimePickerExEmergencyVehicleDate.SetClear();                                                                   // 緊急車両登録期限
             this.ComboBoxExRegistrationNumber1.Clear();                                                                             // 車両ナンバー１
-            this.TextBoxExRegistrationNumber2.ClearEmpty();                                                                         // 車両ナンバー２
-            this.TextBoxExRegistrationNumber3.ClearEmpty();                                                                         // 車両ナンバー３
-            this.TextBoxExRegistrationNumber4.ClearEmpty();                                                                         // 車両ナンバー４
+            this.TextBoxExRegistrationNumber2.SetEmpty();                                                                         // 車両ナンバー２
+            this.TextBoxExRegistrationNumber3.SetEmpty();                                                                         // 車両ナンバー３
+            this.TextBoxExRegistrationNumber4.SetEmpty();                                                                         // 車両ナンバー４
             this.ComboBoxExClassificationCode.Clear();                                                                              // 使用区分
             this.ComboBoxExGarageCode.Clear();                                                                                      // 車庫地
             this.ComboBoxExDisguiseKind1.Clear();                                                                                   // 仮装の名称(システム表示)
@@ -290,7 +290,7 @@ namespace Car {
             /*
              * １．基本情報
              */
-            this.TextBoxExVehicleNumber.ClearEmpty();                                                                               // 車台番号
+            this.TextBoxExVehicleNumber.SetEmpty();                                                                               // 車台番号
             this.DateTimePickerExRegistrationDate.SetClear();                                                                       // 登録年月日/交付年月日
             this.DateTimePickerExFirstRegistrationDate.SetClear();                                                                  // 初度登録年月
             this.DateTimePickerExExpirationDate.SetClear();                                                                         // 有効期限の満了する日
@@ -306,8 +306,8 @@ namespace Car {
              * ３．車両詳細情報
              */
             this.ComboBoxExManufacturerCode.Clear();                                                                                // 車名
-            this.TextBoxExVersion.ClearEmpty();                                                                                     // 型式
-            this.TextBoxExMotorVersion.ClearEmpty();                                                                                // 原動機の型式
+            this.TextBoxExVersion.SetEmpty();                                                                                     // 型式
+            this.TextBoxExMotorVersion.SetEmpty();                                                                                // 原動機の型式
             this.ComboBoxExCarKindCode.Clear();                                                                                     // 自動車の種別
             this.ComboBoxExCarUse.Clear();                                                                                          // 用途
             this.ComboBoxExOtherCode.Clear();                                                                                       // 自家用・事業用の別
@@ -325,11 +325,11 @@ namespace Car {
             this.NumericUpDownExRrAxisWeight.Value = 0;                                                                             // 後後軸重
             this.NumericUpDownExTotalDisplacement.Value = 0;                                                                        // 総排気量又は定格出力
             this.ComboBoxExTypesOfFuel.Clear();                                                                                     // 燃料の種類
-            this.TextBoxExVersionDesignateNumber.ClearEmpty();                                                                      // 型式指定番号
-            this.TextBoxExCategoryDistinguishNumber.ClearEmpty();                                                                   // 類別区分番号
-            this.TextBoxExRemarks.ClearEmpty();                                                                                     // 備考
-            this.PictureBoxExMainPicture.Clear();                                                                                   // 写真
-            this.PictureBoxExSubPicture.Clear();                                                                                    // 写真
+            this.TextBoxExVersionDesignateNumber.SetEmpty();                                                                      // 型式指定番号
+            this.TextBoxExCategoryDistinguishNumber.SetEmpty();                                                                   // 類別区分番号
+            this.TextBoxExRemarks.SetEmpty();                                                                                     // 備考
+            this.PictureBoxExMainPicture.SetEmpty();                                                                                   // 写真
+            this.PictureBoxExSubPicture.SetEmpty();                                                                                    // 写真
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
         }

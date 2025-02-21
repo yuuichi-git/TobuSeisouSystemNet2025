@@ -15,7 +15,7 @@ namespace ControlEx {
             base.OnPaint(pe);
         }
 
-        public void ClearEmpty() {
+        public void SetEmpty() {
             this.Text = string.Empty;
         }
     }

@@ -14,7 +14,7 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
-        public void Clear() {
+        public void SetEmpty() {
             this.Image = null;
         }
     }

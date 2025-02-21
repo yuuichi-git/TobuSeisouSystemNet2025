@@ -114,6 +114,8 @@ namespace License {
         /// フリガナ
         /// </summary>
         private const int _colTNameKana = 8;
+
+        private readonly ScreenForm _screenForm = new();
         /*
          * Dao
          */
@@ -158,14 +160,14 @@ namespace License {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
-            switch (this.SpreadList.ActiveSheetIndex) {
-                case 0:                                                                         // SheetViewList
+            switch (this.SpreadList.ActiveSheet.SheetName) {
+                case "LicenseList":                                                                         // SheetViewList
                     _listLicenseMasterVo = _licenseMasterDao.SelectAllLicenseMaster();
-                    this.PutSheetViewList(SheetViewList, _listLicenseMasterVo);
+                    this.SetSheetViewList(SheetViewList, _listLicenseMasterVo);
                     break;
-                case 1:                                                                         // SheetViewTokaidenshi
+                case "ToukaiDenshiCSV":                                                                     // SheetViewTokaidenshi
                     _listLicenseMasterVo = _licenseMasterDao.SelectAllLicenseMaster();
-                    this.PutSheetViewToukaidenshi(SheetViewToukaidenshi, _listLicenseMasterVo);
+                    this.SetSheetViewToukaidenshi(SheetViewToukaidenshi, _listLicenseMasterVo);
                     break;
             }
         }
@@ -178,7 +180,9 @@ namespace License {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":
-                    MessageBox.Show("作成中・・・・");
+                    LicenseDetail licenseDetail = new(_connectionVo);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), licenseDetail);
+                    licenseDetail.Show(this);
                     break;
                 case "ToolStripMenuItemExportCSV":
                     //csv形式ファイルをエクスポートします
@@ -204,7 +208,15 @@ namespace License {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
-
+            // ダブルクリックされたのが従事者リストで無ければReturnする
+            if (((FpSpread)sender).ActiveSheet.SheetName != "LicenseList")
+                return;
+            // ヘッダーのDoubleClickを回避
+            if (e.ColumnHeader)
+                return;
+            LicenseDetail licenseDetail = new(_connectionVo, ((LicenseMasterVo)SheetViewList.Rows[e.Row].Tag).StaffCode);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), licenseDetail);
+            licenseDetail.Show(this);
         }
 
         /// <summary>
@@ -212,9 +224,9 @@ namespace License {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SpreadList_ActiveSheetChanging(object sender, ActiveSheetChangingEventArgs e) {
-            switch (e.ActivatedSheetIndex) {
-                case 0:
+        private void SpreadList_ActiveSheetChanged(object sender, EventArgs e) {
+            switch (((FpSpread)sender).ActiveSheet.SheetName) {
+                case "LicenseList":
                     /*
                      * MenuStrip
                      */
@@ -228,7 +240,7 @@ namespace License {
                     this.MenuStripEx1.ChangeEnable(listStringSheetViewList);
                     this.TabControlExKana.Enabled = true;                                       // TabControlを有効にする
                     break;
-                case 1:
+                case "ToukaiDenshiCSV":
                     /*
                      * MenuStrip
                      */
@@ -268,10 +280,22 @@ namespace License {
         }
 
         /// <summary>
-        /// PutSheetViewList
+        /// 
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TabControlExKana_Click(object sender, EventArgs e) {
+            if (_listLicenseMasterVo is not null)
+                this.SetSheetViewList(SheetViewList, _listLicenseMasterVo);
+        }
+
         int spreadListTopRow = 0;
-        private void PutSheetViewList(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
+        /// <summary>
+        /// SetSheetViewList
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <param name="listLicenseMasterVo"></param>
+        private void SetSheetViewList(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
             int row = 0;
             // Spread 非活性化
             this.SpreadList.SuspendLayout();
@@ -327,7 +351,12 @@ namespace License {
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
         }
 
-        private void PutSheetViewToukaidenshi(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
+        /// <summary>
+        /// SetSheetViewToukaidenshi
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <param name="listLicenseMasterVo"></param>
+        private void SetSheetViewToukaidenshi(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
             // Spread 非活性化
             SpreadList.SuspendLayout();
             // 先頭行（列）インデックスを取得
@@ -430,5 +459,7 @@ namespace License {
                     break;
             }
         }
+
+        
     }
 }

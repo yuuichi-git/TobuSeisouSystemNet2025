@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "License", "License\License.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car", "Car\Car.csproj", "{64DD3AF8-C02C-4CCD-B13C-C9793CBBBFDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toukanpo", "Toukanpo\Toukanpo.csproj", "{C2E13AD2-2567-4070-A65B-237F403FFBD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{64DD3AF8-C02C-4CCD-B13C-C9793CBBBFDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64DD3AF8-C02C-4CCD-B13C-C9793CBBBFDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64DD3AF8-C02C-4CCD-B13C-C9793CBBBFDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E13AD2-2567-4070-A65B-237F403FFBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E13AD2-2567-4070-A65B-237F403FFBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E13AD2-2567-4070-A65B-237F403FFBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E13AD2-2567-4070-A65B-237F403FFBD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
