@@ -465,7 +465,7 @@
             // 
             this.ComboBoxExCarUse.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExCarUse.FormattingEnabled = true;
-            this.ComboBoxExCarUse.Items.AddRange(new object[] { "貨物", "乗用", "乗合", "特種" });
+            this.ComboBoxExCarUse.Items.AddRange(new object[] { "貨物", "乗用", "乗合", "特殊" });
             this.ComboBoxExCarUse.Location = new Point(188, 132);
             this.ComboBoxExCarUse.Name = "ComboBoxExCarUse";
             this.ComboBoxExCarUse.Size = new Size(164, 23);

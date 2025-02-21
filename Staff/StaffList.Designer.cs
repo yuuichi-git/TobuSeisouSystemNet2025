@@ -142,7 +142,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             this.ButtonExUpdate.Location = new Point(1696, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = null;
@@ -557,7 +557,7 @@
             // 
             this.SpreadList.AccessibleDescription = "SpreadList, 健康診断用リスト, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 119);
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1898, 895);

@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.20348.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CollectionWeight\CollectionWeight.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
@@ -20,5 +18,4 @@
     <ProjectReference Include="..\StockBox\StockBox.csproj" />
     <ProjectReference Include="..\Substitute\Substitute.csproj" />
   </ItemGroup>
-
 </Project>
