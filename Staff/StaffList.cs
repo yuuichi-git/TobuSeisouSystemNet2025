@@ -87,7 +87,7 @@ namespace Staff {
                 "ToolStripMenuItemExit",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * FpSpread/Viewを初期化
              */
@@ -95,6 +95,10 @@ namespace Staff {
             this.InitializeSheetView(SheetViewMedical);
             this.InitializeSheetView(SheetViewDriver);
             this.InitializeSheetView(SheetViewToukanpo);
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>

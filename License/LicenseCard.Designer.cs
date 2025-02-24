@@ -66,6 +66,7 @@
             this.StatusStripEx1.Location = new Point(0, 662);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(492, 22);
+            this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 0;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 

@@ -55,6 +55,8 @@
             this.labelEx6 = new ControlEx.LabelEx();
             this.labelEx7 = new ControlEx.LabelEx();
             this.TabPageAdachi = new TabPage();
+            this.labelEx22 = new ControlEx.LabelEx();
+            this.labelEx23 = new ControlEx.LabelEx();
             this.labelEx16 = new ControlEx.LabelEx();
             this.labelEx17 = new ControlEx.LabelEx();
             this.labelEx12 = new ControlEx.LabelEx();
@@ -64,8 +66,8 @@
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
-            this.labelEx22 = new ControlEx.LabelEx();
-            this.labelEx23 = new ControlEx.LabelEx();
+            this.labelEx24 = new ControlEx.LabelEx();
+            this.labelEx25 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
@@ -212,7 +214,7 @@
             // 
             // ButtonExConnect
             // 
-            this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
             this.ButtonExConnect.Location = new Point(568, 44);
             this.ButtonExConnect.Name = "ButtonExConnect";
             this.ButtonExConnect.SetTextDirectionVertical = "";
@@ -297,6 +299,8 @@
             // 
             // TabPageOffice
             // 
+            this.TabPageOffice.Controls.Add(this.labelEx24);
+            this.TabPageOffice.Controls.Add(this.labelEx25);
             this.TabPageOffice.Controls.Add(this.labelEx20);
             this.TabPageOffice.Controls.Add(this.labelEx21);
             this.TabPageOffice.Controls.Add(this.labelEx18);
@@ -317,7 +321,7 @@
             // labelEx20
             // 
             this.labelEx20.ForeColor = Color.DimGray;
-            this.labelEx20.Location = new Point(16, 224);
+            this.labelEx20.Location = new Point(16, 176);
             this.labelEx20.Name = "labelEx20";
             this.labelEx20.Size = new Size(344, 20);
             this.labelEx20.TabIndex = 23;
@@ -327,7 +331,7 @@
             // labelEx21
             // 
             this.labelEx21.ForeColor = Color.Black;
-            this.labelEx21.Location = new Point(16, 204);
+            this.labelEx21.Location = new Point(16, 156);
             this.labelEx21.Name = "labelEx21";
             this.labelEx21.Size = new Size(344, 20);
             this.labelEx21.TabIndex = 22;
@@ -341,7 +345,7 @@
             // labelEx18
             // 
             this.labelEx18.ForeColor = Color.DimGray;
-            this.labelEx18.Location = new Point(16, 176);
+            this.labelEx18.Location = new Point(16, 128);
             this.labelEx18.Name = "labelEx18";
             this.labelEx18.Size = new Size(344, 20);
             this.labelEx18.TabIndex = 21;
@@ -351,7 +355,7 @@
             // labelEx19
             // 
             this.labelEx19.ForeColor = Color.Black;
-            this.labelEx19.Location = new Point(16, 156);
+            this.labelEx19.Location = new Point(16, 108);
             this.labelEx19.Name = "labelEx19";
             this.labelEx19.Size = new Size(344, 20);
             this.labelEx19.TabIndex = 20;
@@ -365,7 +369,7 @@
             // labelEx14
             // 
             this.labelEx14.ForeColor = Color.DimGray;
-            this.labelEx14.Location = new Point(16, 128);
+            this.labelEx14.Location = new Point(376, 32);
             this.labelEx14.Name = "labelEx14";
             this.labelEx14.Size = new Size(344, 20);
             this.labelEx14.TabIndex = 19;
@@ -375,7 +379,7 @@
             // labelEx15
             // 
             this.labelEx15.ForeColor = Color.Black;
-            this.labelEx15.Location = new Point(16, 108);
+            this.labelEx15.Location = new Point(376, 12);
             this.labelEx15.Name = "labelEx15";
             this.labelEx15.Size = new Size(344, 20);
             this.labelEx15.TabIndex = 18;
@@ -453,6 +457,30 @@
             this.TabPageAdachi.TabIndex = 1;
             this.TabPageAdachi.Text = "本社";
             this.TabPageAdachi.UseVisualStyleBackColor = true;
+            // 
+            // labelEx22
+            // 
+            this.labelEx22.ForeColor = Color.DimGray;
+            this.labelEx22.Location = new Point(16, 224);
+            this.labelEx22.Name = "labelEx22";
+            this.labelEx22.Size = new Size(344, 20);
+            this.labelEx22.TabIndex = 21;
+            this.labelEx22.Text = "　台帳の作成・印刷";
+            this.labelEx22.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx23
+            // 
+            this.labelEx23.ForeColor = Color.Black;
+            this.labelEx23.Location = new Point(16, 204);
+            this.labelEx23.Name = "labelEx23";
+            this.labelEx23.Size = new Size(344, 20);
+            this.labelEx23.TabIndex = 20;
+            this.labelEx23.Tag = "LicenseList";
+            this.labelEx23.Text = "免許証台帳";
+            this.labelEx23.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx23.Click += this.Label_Click;
+            this.labelEx23.MouseEnter += this.Label_MouseEnter;
+            this.labelEx23.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx16
             // 
@@ -559,29 +587,29 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
-            // labelEx22
+            // labelEx24
             // 
-            this.labelEx22.ForeColor = Color.DimGray;
-            this.labelEx22.Location = new Point(16, 224);
-            this.labelEx22.Name = "labelEx22";
-            this.labelEx22.Size = new Size(344, 20);
-            this.labelEx22.TabIndex = 21;
-            this.labelEx22.Text = "　台帳の作成・印刷";
-            this.labelEx22.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx24.ForeColor = Color.DimGray;
+            this.labelEx24.Location = new Point(376, 80);
+            this.labelEx24.Name = "labelEx24";
+            this.labelEx24.Size = new Size(344, 20);
+            this.labelEx24.TabIndex = 25;
+            this.labelEx24.Text = "　東京環境保全協会　会員カードの管理をします";
+            this.labelEx24.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // labelEx23
+            // labelEx25
             // 
-            this.labelEx23.ForeColor = Color.Black;
-            this.labelEx23.Location = new Point(16, 204);
-            this.labelEx23.Name = "labelEx23";
-            this.labelEx23.Size = new Size(344, 20);
-            this.labelEx23.TabIndex = 20;
-            this.labelEx23.Tag = "LicenseList";
-            this.labelEx23.Text = "免許証台帳";
-            this.labelEx23.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx23.Click += this.Label_Click;
-            this.labelEx23.MouseEnter += this.Label_MouseEnter;
-            this.labelEx23.MouseLeave += this.Label_MouseLeave;
+            this.labelEx25.ForeColor = Color.Black;
+            this.labelEx25.Location = new Point(376, 60);
+            this.labelEx25.Name = "labelEx25";
+            this.labelEx25.Size = new Size(344, 20);
+            this.labelEx25.TabIndex = 24;
+            this.labelEx25.Tag = "ToukanpoList";
+            this.labelEx25.Text = "東環保カード";
+            this.labelEx25.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx25.Click += this.Label_Click;
+            this.labelEx25.MouseEnter += this.Label_MouseEnter;
+            this.labelEx25.MouseLeave += this.Label_MouseLeave;
             // 
             // StartProject
             // 
@@ -651,5 +679,7 @@
         private ControlEx.LabelEx labelEx21;
         private ControlEx.LabelEx labelEx22;
         private ControlEx.LabelEx labelEx23;
+        private ControlEx.LabelEx labelEx24;
+        private ControlEx.LabelEx labelEx25;
     }
 }

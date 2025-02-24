@@ -37,6 +37,11 @@ namespace Dao {
             return sqlCommand.ExecuteScalar() is not null ? true : false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
         public ToukanpoTrainingCardVo SelectOneToukanpoTrainingCardMaster(int staffCode) {
             ToukanpoTrainingCardVo toukanpoTrainingCardVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
@@ -58,7 +63,7 @@ namespace Dao {
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     toukanpoTrainingCardVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
-                    toukanpoTrainingCardVo.DisplayName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DisplayName"]);
+                    toukanpoTrainingCardVo.Name = _defaultValue.GetDefaultValue<string>(sqlDataReader["DisplayName"]);
                     toukanpoTrainingCardVo.CompanyName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CompanyName"]);
                     toukanpoTrainingCardVo.CardName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CardName"]);
                     toukanpoTrainingCardVo.CertificationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["CertificationDate"]);
@@ -75,6 +80,62 @@ namespace Dao {
             return toukanpoTrainingCardVo;
         }
 
+        /// <summary>
+        /// ToukanpoList内で使用している
+        /// </summary>
+        /// <returns></returns>
+        public List<ToukanpoTrainingCardVo> SelectAllToukanpoTrainingCardMaster() {
+            List<ToukanpoTrainingCardVo> listToukanpoTrainingCardVo = new();
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT H_ToukanpoTrainingCardMaster.StaffCode," +
+                                            "H_StaffMaster.UnionCode," +
+                                            "H_StaffMaster.Name," +
+                                            "H_StaffMaster.NameKana," +
+                                            "H_ToukanpoTrainingCardMaster.CompanyName," +
+                                            "H_ToukanpoTrainingCardMaster.CardName," +
+                                            "H_ToukanpoTrainingCardMaster.CertificationDate," +
+                                            //"Picture," +
+                                            "H_ToukanpoTrainingCardMaster.Memo," +
+                                            "H_ToukanpoTrainingCardMaster.InsertPcName," +
+                                            "H_ToukanpoTrainingCardMaster.InsertYmdHms," +
+                                            "H_ToukanpoTrainingCardMaster.UpdatePcName," +
+                                            "H_ToukanpoTrainingCardMaster.UpdateYmdHms," +
+                                            "H_ToukanpoTrainingCardMaster.DeletePcName," +
+                                            "H_ToukanpoTrainingCardMaster.DeleteYmdHms," +
+                                            "H_ToukanpoTrainingCardMaster.DeleteFlag " +
+                                     "FROM H_ToukanpoTrainingCardMaster " +
+                                     "LEFT OUTER JOIN H_StaffMaster ON H_ToukanpoTrainingCardMaster.StaffCode = H_StaffMaster.StaffCode " +
+                                     "WHERE H_StaffMaster.RetirementFlag = 'false'";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    ToukanpoTrainingCardVo toukanpoTrainingCardVo = new();
+                    toukanpoTrainingCardVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    toukanpoTrainingCardVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
+                    toukanpoTrainingCardVo.Name = _defaultValue.GetDefaultValue<string>(sqlDataReader["Name"]);
+                    toukanpoTrainingCardVo.NameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["NameKana"]);
+                    toukanpoTrainingCardVo.CompanyName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CompanyName"]);
+                    toukanpoTrainingCardVo.CardName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CardName"]);
+                    toukanpoTrainingCardVo.CertificationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["CertificationDate"]);
+                    //toukanpoTrainingCardVo.Picture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture"]);
+                    toukanpoTrainingCardVo.Memo = _defaultValue.GetDefaultValue<string>(sqlDataReader["Memo"]);
+                    toukanpoTrainingCardVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    toukanpoTrainingCardVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    toukanpoTrainingCardVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    toukanpoTrainingCardVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    toukanpoTrainingCardVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    toukanpoTrainingCardVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    toukanpoTrainingCardVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    listToukanpoTrainingCardVo.Add(toukanpoTrainingCardVo);
+                }
+            }
+            return listToukanpoTrainingCardVo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="toukanpoTrainingCardVo"></param>
+        /// <returns></returns>
         public int InsertOneToukanpoTrainingCardMaster(ToukanpoTrainingCardVo toukanpoTrainingCardVo) {
             var sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_ToukanpoTrainingCardMaster(StaffCode," +
@@ -91,7 +152,7 @@ namespace Dao {
                                                                               "DeleteYmdHms," +
                                                                               "DeleteFlag) " +
                                      "VALUES (" + toukanpoTrainingCardVo.StaffCode + "," +
-                                            "'" + toukanpoTrainingCardVo.DisplayName + "'," +
+                                            "'" + toukanpoTrainingCardVo.Name + "'," +
                                             "'" + toukanpoTrainingCardVo.CompanyName + "'," +
                                             "'" + toukanpoTrainingCardVo.CardName + "'," +
                                             "'" + toukanpoTrainingCardVo.CertificationDate + "'," +
@@ -112,11 +173,16 @@ namespace Dao {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="toukanpoTrainingCardVo"></param>
+        /// <returns></returns>
         public int UpdateOneToukanpoTrainingCardMaster(ToukanpoTrainingCardVo toukanpoTrainingCardVo) {
             var sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_ToukanpoTrainingCardMaster " +
                                      "SET CompanyName = '" + toukanpoTrainingCardVo.CompanyName + "'," +
-                                         "DisplayName = '" + toukanpoTrainingCardVo.DisplayName + "'," +
+                                         "DisplayName = '" + toukanpoTrainingCardVo.Name + "'," +
                                          "CardName = '" + toukanpoTrainingCardVo.CardName + "'," +
                                          "CertificationDate = '" + toukanpoTrainingCardVo.CertificationDate + "'," +
                                          "Picture = @pictureCard," +

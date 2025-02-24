@@ -6,11 +6,14 @@ namespace Vo {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
 
         private int _staffCode;
-        private string _displayName;
+        private int _unionCode;
+        private string _name;
+        private string _nameKana;
         private string _companyName;
         private string _cardName;
         private DateTime _certificationDate;
         private byte[] _picture;
+        private string _memo;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -24,11 +27,14 @@ namespace Vo {
         /// </summary>
         public ToukanpoTrainingCardVo() {
             _staffCode = 0;
-            _displayName = string.Empty;
+            _unionCode = 0;
+            _name = string.Empty;
+            _nameKana = string.Empty;
             _companyName = string.Empty;
             _cardName = string.Empty;
             _certificationDate = _defaultDateTime;
             _picture = Array.Empty<byte>();
+            _memo = string.Empty;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -46,11 +52,25 @@ namespace Vo {
             set => _staffCode = value;
         }
         /// <summary>
-        /// 略称氏名
+        /// 組合コード
         /// </summary>
-        public string DisplayName {
-            get => _displayName;
-            set => _displayName = value;
+        public int UnionCode {
+            get => this._unionCode;
+            set => this._unionCode = value;
+        }
+        /// <summary>
+        /// 氏名
+        /// </summary>
+        public string Name {
+            get => _name;
+            set => _name = value;
+        }
+        /// <summary>
+        /// カナ
+        /// </summary>
+        public string NameKana {
+            get => this._nameKana;
+            set => this._nameKana = value;
         }
         /// <summary>
         /// 会社名
@@ -79,6 +99,13 @@ namespace Vo {
         public byte[] Picture {
             get => _picture;
             set => _picture = value;
+        }
+        /// <summary>
+        /// メモ
+        /// </summary>
+        public string Memo {
+            get => this._memo;
+            set => this._memo = value;
         }
         public string InsertPcName {
             get => _insertPcName;

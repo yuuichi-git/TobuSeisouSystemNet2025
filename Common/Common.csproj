@@ -7,6 +7,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
   </ItemGroup>
 </Project>

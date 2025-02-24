@@ -162,12 +162,10 @@ namespace License {
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
             switch (this.SpreadList.ActiveSheet.SheetName) {
                 case "LicenseList":                                                                         // SheetViewList
-                    _listLicenseMasterVo = _licenseMasterDao.SelectAllLicenseMaster();
-                    this.SetSheetViewList(SheetViewList, _listLicenseMasterVo);
+                    this.SetSheetViewList(SheetViewList, _licenseMasterDao.SelectAllLicenseMaster());
                     break;
                 case "ToukaiDenshiCSV":                                                                     // SheetViewTokaidenshi
-                    _listLicenseMasterVo = _licenseMasterDao.SelectAllLicenseMaster();
-                    this.SetSheetViewToukaidenshi(SheetViewToukaidenshi, _listLicenseMasterVo);
+                    this.SetSheetViewToukaidenshi(SheetViewToukaidenshi, _licenseMasterDao.SelectAllLicenseMaster());
                     break;
             }
         }
@@ -286,7 +284,7 @@ namespace License {
         /// <param name="e"></param>
         private void TabControlExKana_Click(object sender, EventArgs e) {
             if (_listLicenseMasterVo is not null)
-                this.SetSheetViewList(SheetViewList, _listLicenseMasterVo);
+                this.SetSheetViewList(SheetViewList, _licenseMasterDao.SelectAllLicenseMaster());
         }
 
         int spreadListTopRow = 0;
@@ -306,7 +304,7 @@ namespace License {
              */
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<LicenseMasterVo> _listLicenseMasterVo = TabControlExKana.SelectedTab.Text switch {
+            _listLicenseMasterVo = TabControlExKana.SelectedTab.Text switch {
                 "あ行" => listLicenseMasterVo.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => listLicenseMasterVo.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => listLicenseMasterVo.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
@@ -459,7 +457,5 @@ namespace License {
                     break;
             }
         }
-
-        
     }
 }

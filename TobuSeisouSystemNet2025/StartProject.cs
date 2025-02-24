@@ -19,6 +19,8 @@ using RollCall;
 
 using Staff;
 
+using Toukanpo;
+
 using VehicleDispatch;
 
 using Vo;
@@ -103,7 +105,7 @@ namespace TobuSeisouSystemNet2025 {
             /*
              * Event
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -193,29 +195,29 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="e"></param>
         private void Label_Click(object sender, EventArgs e) {
             switch (_connectionVo.Connection.State) {
-                case ConnectionState.Open:                              //接続が開いています。
+                case ConnectionState.Open:                                                                                                      //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
-                        case "VehicleDispatchBoard":                    // 配車パネル
+                        case "VehicleDispatchBoard":                                                                                            // 配車パネル
                             VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();
                             break;
-                        case "FirstRollColl":                           // 配車表
+                        case "FirstRollColl":                                                                                                   // 配車表
                             FirstRollColl firstRollColl = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
                             firstRollColl.Show();
                             break;
-                        case "StaffList":                               // 従事者リスト
+                        case "StaffList":                                                                                                       // 従事者リスト
                             StaffList staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
                             staffList.Show();
                             break;
-                        case "CarList":                                 // 車両台帳
+                        case "CarList":                                                                                                         // 車両台帳
                             CarList carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
                             carList.Show();
                             break;
-                        case "EmploymentAgreementList":                 // 契約書・誓約書等
+                        case "EmploymentAgreementList":                                                                                         // 契約書・誓約書等
                             EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
                             employmentAgreementList.Show();
@@ -225,25 +227,30 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffDestination);
                             staffDestination.Show();
                             break;
-                        case "CollectionWeightChiyoda":                 // 千代田配車集計表
+                        case "CollectionWeightChiyoda":                                                                                         // 千代田配車集計表
                             CollectionWeightChiyoda collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
                             collectionWeightChiyoda.Show();
                             break;
-                        case "StaffWorkingHours":                       // 個別労働時間集計表
+                        case "StaffWorkingHours":                                                                                               // 個別労働時間集計表
                             StaffWorkingHours staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
                             staffWorkingHours.Show();
                             break;
-                        case "StaffWorkingDays":                       // 個別労働時間集計表
+                        case "StaffWorkingDays":                                                                                                // 個別労働時間集計表
                             StaffWorkingDays staffWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingDays);
                             staffWorkingDays.Show();
                             break;
-                        case "LicenseList":
+                        case "LicenseList":                                                                                                     // 免許証台帳
                             LicenseList licenseList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, licenseList);
                             licenseList.Show();
+                            break;
+                        case "ToukanpoList":                                                                                                    // 東環保カード
+                            ToukanpoList toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
+                            toukanpoList.Show();
                             break;
                     }
                     break;

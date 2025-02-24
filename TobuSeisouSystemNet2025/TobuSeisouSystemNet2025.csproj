@@ -2,17 +2,21 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AnalysisLevel>6.0</AnalysisLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Car\Car.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
     <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
     <ProjectReference Include="..\Staff\Staff.csproj" />
+    <ProjectReference Include="..\Toukanpo\Toukanpo.csproj" />
     <ProjectReference Include="..\VehicleDispatch\VehicleDispatch.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
   </ItemGroup>
