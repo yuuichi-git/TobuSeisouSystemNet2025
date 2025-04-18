@@ -52,13 +52,13 @@ namespace License {
                 "ToolStripMenuItemPrintB5",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Initialize Success";
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace License {
             this.TextBoxExCurrentAddress.SetEmpty();
             this.DateTimePickerExDeliveryDate.SetEmpty();
             this.DateTimePickerExExpirationDate.SetEmpty();
-            this.ComboBoxExLicenseCondition.SelectedIndex = -1;
+            this.InitializeComboBoxExLicenseCondition();
             this.TextBoxExLicenseNumber.SetEmpty();
             this.DateTimePickerExGetDate1.SetEmpty();
             this.DateTimePickerExGetDate2.SetEmpty();
@@ -305,8 +305,8 @@ namespace License {
              * StaffLedgerVoの値をControlにセットする
              */
             this.TextBoxExStaffCode.Text = hStaffMasterVo.StaffCode.ToString();
-            this.TextBoxExNameKana.Text = hStaffMasterVo.OtherNameKana;
-            this.TextBoxExName.Text = hStaffMasterVo.OtherName;
+            this.TextBoxExNameKana.Text = hStaffMasterVo.NameKana;
+            this.TextBoxExName.Text = hStaffMasterVo.Name;
             this.DateTimePickerExBirthDate.SetValueJp(hStaffMasterVo.BirthDate);
             this.TextBoxExCurrentAddress.Text = hStaffMasterVo.CurrentAddress;
         }
@@ -332,6 +332,12 @@ namespace License {
                 get => _staffMasterVo;
                 set => _staffMasterVo = value;
             }
+        }
+
+        private void InitializeComboBoxExLicenseCondition() {
+            this.ComboBoxExLicenseCondition.Items.Clear();
+            foreach (string licenseCondition in _licenseMasterDao.SelectGroupLicenseCondition())
+                this.ComboBoxExLicenseCondition.Items.Add(licenseCondition);
         }
 
         /// <summary>

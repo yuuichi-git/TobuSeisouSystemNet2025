@@ -24,21 +24,29 @@ namespace Substitute {
         /// </summary>
         string _cellphoneNumber = string.Empty;
         /// <summary>
-        /// 配車先コードと電話番号の紐づけ
+        /// 配車先コードと車載電話番号の紐づけ
         /// </summary>
-        readonly Dictionary<int, string> _dictionaryTelephoneNumber = new() { { 1310101, "090-6506-7967" }, // 千代田２
-                                                                              { 1310102, "080-8868-7459" }, // 千代田６
-                                                                              { 1310103, "080-8868-8023" }, // 千代田紙１
-                                                                              { 1310201, "080-2202-7713" }, // 中央ペット７
-                                                                              { 1310202, "080-3493-3729" }, // 中央ペット８
-                                                                              //{ 1310207, "" }, // 中央ペット１１
-                                                                              { 1312162, "090-5560-0491" }, // 足立２２(2024)
-                                                                              { 1312164, "090-5560-0677" }, // 足立２３(2024)
-                                                                              { 1312163, "090-5560-0700" }, // 足立３７(2024)
-                                                                              { 1312204, "090-9817-8129" }, // 葛飾１１
-                                                                              { 1312211, "090-9817-8129" }, // 葛飾軽１２(2024)
-                                                                              { 1312209, "080-3493-3728" }, // 葛飾３２
-                                                                              { 1312210, "080-2202-7269" } }; // 葛飾５４
+        readonly Dictionary<int, string> _dictionaryTelephoneNumber = new() { { 1310101, "090-6506-7967" },     // 千代田２
+                                                                              { 1310102, "080-8868-7459" },     // 千代田６
+                                                                              { 1310103, "080-8868-8023" },     // 千代田紙１
+                                                                              { 1310201, "080-2202-7713" },     // 中央ペット７
+                                                                              { 1310202, "080-3493-3729" },     // 中央ペット８
+                                                                              { 1310207, "080-2567-3121" },     // 中央ペット１１
+
+                                                                              //{ 1312167, "" },                // 足立１２(個人)
+                                                                              //{ 1312168, "" },                // 足立１３(個人)
+                                                                              { 1312162, "090-5560-0491" },     // 足立２２
+                                                                              { 1312102, "090-5560-0677" },     // 足立２３
+                                                                              { 1312163, "090-5560-0700" },     // 足立３７
+                                                                              //{ 1312169, "" },                // 足立８(個人)
+
+                                                                              { 1312214, "080-3493-3728" },     // 葛飾４４
+                                                                              { 1312215, "080-2202-7269" },     // 葛飾５３
+                                                                              //{ 1312203, "" },                // 小岩４(個人)
+                                                                              { 1312216, "090-9817-8129" },     // 葛飾１３
+                                                                              //{ 1312212, "" }                 // 小岩６(個人)
+                                                                              };   
+
         /*
          * 代番のセル位置の紐づけ(SheetView1用)
          */
@@ -142,10 +150,14 @@ namespace Substitute {
                     Clipboard.SetText("0362805841");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
                     break;
+                case 1312169: // 足立８
+                case 1312167: // 足立１２
+                case 1312168: // 足立１３
                 case 1312161: // 足立１６
                 case 1312134: // 足立１８
                 case 1312162: // 足立２２
-                case 1312164: // 足立２３
+                case 1312102: // 足立２３(2025)
+                case 1312164: // 足立２３(2024)
                 case 1312103: // 足立２４
                 case 1312163: // 足立３７
                 case 1312104: // 足立３８
@@ -157,7 +169,10 @@ namespace Substitute {
                     break;
                 case 1312204: // 葛飾１１
                 case 1312211: // 葛飾軽１２
+                case 1312216: // 葛飾軽１３
                 case 1312209: // 葛飾３２
+                case 1312214: // 葛飾４４
+                case 1312215: // 葛飾５３
                 case 1312210: // 葛飾５４
                     _cleanOfficeName = "　葛飾区清掃事務所　御中";
                     _cleanOfficeFaxText = string.Concat("葛飾区清掃事務所", "\r\n", " ＦＡＸ ０３－３６９１－１７９７");
@@ -239,14 +254,16 @@ namespace Substitute {
              * 連絡先番号をセット
              */
             switch (displaySetMasterVo.SetCode) {
-                case 1312161: // 足立１６組
-                case 1312105: // 足立不燃４
-                case 1312203: // 小岩４
-                case 1312212: // 小岩６
-                case 1310207: // 中央ペット１１
+                case 1312167: // 足立１２(個人)
+                case 1312168: // 足立１３(個人)
+                case 1312169: // 足立８(個人)
+                case 1312203: // 小岩４(個人)
+                case 1312212: // 小岩６(個人)
+                    // 個人携帯番号を登録
                     _cellphoneNumber = _staffMasterDao.SelectOneStaffMaster(((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo.StaffCode).CellphoneNumber.ToString();
                     break;
                 default:
+                    // 車載携帯番号を登録
                     _cellphoneNumber = _dictionaryTelephoneNumber[displaySetMasterVo.SetCode];
                     break;
             }
@@ -278,7 +295,7 @@ namespace Substitute {
             bool isEqual = _arrayHONBANStaffCodes.SequenceEqual(_arrayDAIBANStaffCodes);
             // Listを比較して同一で無ければ代番が存在する
             if (!isEqual) {
-                List<int> staffCodes = new List<int>();
+                List<int> staffCodes = new();
                 staffCodes.AddRange(_arrayHONBANStaffCodes);
                 staffCodes.AddRange(_arrayDAIBANStaffCodes);
                 foreach (int staffCode in staffCodes) {
@@ -305,6 +322,11 @@ namespace Substitute {
             this.LabelExFaxNumber.Text = _cleanOfficeFaxText;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <param name="setControl"></param>
         private void OutputSheetViewSAKURADAI(SheetView sheetView, SetControl setControl) {
             // シートを選択
             SpreadSubstitute.ActiveSheetIndex = 1;
@@ -330,7 +352,7 @@ namespace Substitute {
             /*
              * 作成日・組・曜日
              */
-            CultureInfo cultureInfo = new CultureInfo("ja-JP", true);
+            CultureInfo cultureInfo = new("ja-JP", true);
             cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
             sheetView.Cells["J3"].Text = DateTime.Now.ToString("gg y年M月d日", cultureInfo);
             sheetView.Cells["H18"].Text = string.Concat(displaySetMasterVo.SetName2, " 組");

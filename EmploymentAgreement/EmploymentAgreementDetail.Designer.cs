@@ -68,7 +68,7 @@
             this.ComboBoxExJobDescription = new ControlEx.ComboBoxEx();
             this.NUDExTravelCost = new ControlEx.NumericUpDownEx();
             this.labelEx4 = new ControlEx.LabelEx();
-            this.NUDExPay = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownExPay = new ControlEx.NumericUpDownEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.CheckBoxExCheckFlag = new ControlEx.CheckBoxEx();
             this.GroupBoxExExpiration = new ControlEx.GroupBoxEx();
@@ -172,7 +172,7 @@
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExBonusWinterPay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExBonusSummerPay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NUDExTravelCost).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.NUDExPay).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExPay).BeginInit();
             this.GroupBoxExExpiration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.NUDExContractExpirationPeriod).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
@@ -243,7 +243,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -266,7 +266,7 @@
             // 
             this.LabelExUnionCode.BackColor = Color.White;
             this.LabelExUnionCode.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExUnionCode.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExUnionCode.Font = new Font("Yu Gothic UI", 12F);
             this.LabelExUnionCode.Location = new Point(76, 4);
             this.LabelExUnionCode.Name = "LabelExUnionCode";
             this.LabelExUnionCode.Size = new Size(124, 24);
@@ -287,7 +287,7 @@
             // 
             this.LabelExDisplayName.BackColor = Color.White;
             this.LabelExDisplayName.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExDisplayName.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExDisplayName.Font = new Font("Yu Gothic UI", 12F);
             this.LabelExDisplayName.Location = new Point(272, 4);
             this.LabelExDisplayName.Name = "LabelExDisplayName";
             this.LabelExDisplayName.Size = new Size(124, 24);
@@ -308,7 +308,7 @@
             // 
             this.LabelExBelongs.BackColor = Color.White;
             this.LabelExBelongs.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExBelongs.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExBelongs.Font = new Font("Yu Gothic UI", 12F);
             this.LabelExBelongs.Location = new Point(468, 4);
             this.LabelExBelongs.Name = "LabelExBelongs";
             this.LabelExBelongs.Size = new Size(164, 24);
@@ -329,7 +329,7 @@
             // 
             this.LabelExOccupation.BackColor = Color.White;
             this.LabelExOccupation.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExOccupation.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExOccupation.Font = new Font("Yu Gothic UI", 12F);
             this.LabelExOccupation.Location = new Point(704, 4);
             this.LabelExOccupation.Name = "LabelExOccupation";
             this.LabelExOccupation.Size = new Size(124, 24);
@@ -350,7 +350,7 @@
             // 
             this.LabelExJobForm.BackColor = Color.White;
             this.LabelExJobForm.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExJobForm.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExJobForm.Font = new Font("Yu Gothic UI", 12F);
             this.LabelExJobForm.Location = new Point(900, 4);
             this.LabelExJobForm.Name = "LabelExJobForm";
             this.LabelExJobForm.Size = new Size(124, 24);
@@ -389,7 +389,7 @@
             this.PanelExMiddle.Controls.Add(this.ComboBoxExJobDescription);
             this.PanelExMiddle.Controls.Add(this.NUDExTravelCost);
             this.PanelExMiddle.Controls.Add(this.labelEx4);
-            this.PanelExMiddle.Controls.Add(this.NUDExPay);
+            this.PanelExMiddle.Controls.Add(this.NumericUpDownExPay);
             this.PanelExMiddle.Controls.Add(this.labelEx2);
             this.PanelExMiddle.Controls.Add(this.CheckBoxExCheckFlag);
             this.PanelExMiddle.Controls.Add(this.GroupBoxExExpiration);
@@ -429,7 +429,7 @@
             // 
             // NumericUpDownExBonusWinterPay
             // 
-            this.NumericUpDownExBonusWinterPay.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NumericUpDownExBonusWinterPay.Font = new Font("Yu Gothic UI", 9F);
             this.NumericUpDownExBonusWinterPay.ForeColor = Color.Black;
             this.NumericUpDownExBonusWinterPay.ImeMode = ImeMode.Off;
             this.NumericUpDownExBonusWinterPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
@@ -444,7 +444,7 @@
             // 
             // NumericUpDownExBonusSummerPay
             // 
-            this.NumericUpDownExBonusSummerPay.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NumericUpDownExBonusSummerPay.Font = new Font("Yu Gothic UI", 9F);
             this.NumericUpDownExBonusSummerPay.ForeColor = Color.Black;
             this.NumericUpDownExBonusSummerPay.ImeMode = ImeMode.Off;
             this.NumericUpDownExBonusSummerPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
@@ -677,7 +677,7 @@
             // 
             // NUDExTravelCost
             // 
-            this.NUDExTravelCost.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NUDExTravelCost.Font = new Font("Yu Gothic UI", 9.75F);
             this.NUDExTravelCost.ForeColor = Color.Black;
             this.NUDExTravelCost.ImeMode = ImeMode.Off;
             this.NUDExTravelCost.Increment = new decimal(new int[] { 100, 0, 0, 0 });
@@ -699,20 +699,20 @@
             this.labelEx4.Text = "交通費";
             this.labelEx4.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // NUDExPay
+            // NumericUpDownExPay
             // 
-            this.NUDExPay.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            this.NUDExPay.ForeColor = Color.Black;
-            this.NUDExPay.ImeMode = ImeMode.Off;
-            this.NUDExPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            this.NUDExPay.Location = new Point(492, 64);
-            this.NUDExPay.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            this.NUDExPay.Name = "NUDExPay";
-            this.NUDExPay.Size = new Size(116, 23);
-            this.NUDExPay.TabIndex = 6;
-            this.NUDExPay.TextAlign = HorizontalAlignment.Right;
-            this.NUDExPay.ThousandsSeparator = true;
-            this.NUDExPay.Value = new decimal(new int[] { 888888, 0, 0, 0 });
+            this.NumericUpDownExPay.Font = new Font("Yu Gothic UI", 9F);
+            this.NumericUpDownExPay.ForeColor = Color.Black;
+            this.NumericUpDownExPay.ImeMode = ImeMode.Off;
+            this.NumericUpDownExPay.Increment = new decimal(new int[] { 100, 0, 0, 0 });
+            this.NumericUpDownExPay.Location = new Point(492, 64);
+            this.NumericUpDownExPay.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            this.NumericUpDownExPay.Name = "NumericUpDownExPay";
+            this.NumericUpDownExPay.Size = new Size(116, 23);
+            this.NumericUpDownExPay.TabIndex = 6;
+            this.NumericUpDownExPay.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExPay.ThousandsSeparator = true;
+            this.NumericUpDownExPay.Value = new decimal(new int[] { 888888, 0, 0, 0 });
             // 
             // labelEx2
             // 
@@ -821,7 +821,7 @@
             // 
             // NUDExContractExpirationPeriod
             // 
-            this.NUDExContractExpirationPeriod.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.NUDExContractExpirationPeriod.Font = new Font("Yu Gothic UI", 9.75F);
             this.NUDExContractExpirationPeriod.ForeColor = Color.Red;
             this.NUDExContractExpirationPeriod.ImeMode = ImeMode.Off;
             this.NUDExContractExpirationPeriod.Location = new Point(512, 20);
@@ -1805,7 +1805,7 @@
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExBonusWinterPay).EndInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExBonusSummerPay).EndInit();
             ((System.ComponentModel.ISupportInitialize)this.NUDExTravelCost).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.NUDExPay).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExPay).EndInit();
             this.GroupBoxExExpiration.ResumeLayout(false);
             this.GroupBoxExExpiration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.NUDExContractExpirationPeriod).EndInit();
@@ -1940,7 +1940,7 @@
         private ControlEx.GroupBoxEx GroupBoxExExpiration;
         private ControlEx.CheckBoxEx CheckBoxExCheckFlag;
         private ControlEx.ButtonEx BTNExExpiration;
-        private ControlEx.NumericUpDownEx NUDExPay;
+        private ControlEx.NumericUpDownEx NumericUpDownExPay;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx13;
         private ControlEx.ComboBoxEx ComboBoxExBreakTime;

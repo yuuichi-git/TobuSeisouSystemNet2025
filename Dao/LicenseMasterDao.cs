@@ -403,5 +403,24 @@ namespace Dao {
                 throw;
             }
         }
+
+        /// <summary>
+        /// 条件等をグループ化して返す
+        /// </summary>
+        /// <returns></returns>
+        public List<string> SelectGroupLicenseCondition() {
+            List<string> listGroupLicenseCondition = new();
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT LicenseCondition " +
+                                     "FROM H_LicenseMaster " +
+                                     "GROUP BY LicenseCondition";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    string licenseCondition = _defaultValue.GetDefaultValue<string>(sqlDataReader["LicenseCondition"]);
+                    listGroupLicenseCondition.Add(licenseCondition);
+                }
+            }
+            return listGroupLicenseCondition;
+        }
     }
 }

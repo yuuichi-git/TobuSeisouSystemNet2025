@@ -84,6 +84,8 @@ namespace Toukanpo {
             };
             this.MenuStripEx1.ChangeEnable(listString);
             this.SetControl(_toukanpoTrainingCardDao.SelectOneToukanpoTrainingCardMaster(staffCode));
+            this.ComboBoxExSelectName.Enabled = false;
+            this.DateTimePickerExCertificationDate.Enabled = false;
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Initialize Success";
             /*
              * Eventを登録する

@@ -40,7 +40,7 @@ namespace EmploymentAgreement {
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
 
         /// <summary>
-        /// 
+        /// コンストラクター
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="staffMasterVo"></param>
@@ -90,11 +90,12 @@ namespace EmploymentAgreement {
                 this.ButtonExUpdate.Text = "更　新";
                 this.PutControlHead();
                 this.PutControlBody();
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "この従事者の基本台帳が存在します。";
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "基本台帳を修正します。";
             } else {
                 this.ButtonExUpdate.Text = "新規登録";
                 this.PutControlHead();
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "この従事者の基本台帳が存在しません。台帳を作成してください。";
+                this.PutControlInitializeBody();
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "基本台帳が存在しません。新規登録します。";
             }
         }
 
@@ -373,7 +374,14 @@ namespace EmploymentAgreement {
         }
 
         /// <summary>
-        /// 
+        /// 新規の場合の初期値をセットする
+        /// </summary>
+        private void PutControlInitializeBody() {
+
+        }
+
+        /// <summary>
+        /// 修正の場合の値をセットする
         /// </summary>
         private void PutControlBody() {
             this.ComboBoxExBaseAddress.Text = _employmentAgreementVo.BaseLocation; // 勤務地
@@ -392,23 +400,23 @@ namespace EmploymentAgreement {
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", date.Date.AddDays(6).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
-                    case 1:
+                    case 1:         // １カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
-                    case 2:
+                    case 2:         // ２カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(1)).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
-                    case 3:
+                    case 3:         // ３カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(2)).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
-                    case 6:
+                    case 6:         // ６カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(5)).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
-                    case 12:
+                    case 12:        // １２カ月更新の場合
                         time = string.Concat(_dateUtility.GetFiscalYearStartDate(date).ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetFiscalYearEndDate(date).AddDays(-1).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
                         break;
@@ -417,21 +425,21 @@ namespace EmploymentAgreement {
                         break;
                 }
             }
-            this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag; // 各労共に提出中
-            this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail; // 給与区分
-            this.NUDExPay.Value = _employmentAgreementVo.Pay; // 給与単価
-            this.ComboBoxExTravelCostDetail.Text = _employmentAgreementVo.TravelCostDetail; // 交通費区分
-            this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost; // 交通費
-            this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription; // 従事すべき業務内容
-            this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime; // 勤務時間
-            this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime; // 休憩時間
-            this.CheckBoxExKOYOU.Checked = _employmentAgreementVo.KoyouFlag; // 雇用保険の有無
-            this.CheckBoxExSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag; // 社会保険の有無
-            this.ComboBoxExSalaryRaise.Text = _employmentAgreementVo.SalaryRaise;
-            this.ComboBoxExBonusSummerText.Text = _employmentAgreementVo.BonusSummerText;
-            this.NumericUpDownExBonusSummerPay.Value = _employmentAgreementVo.BonusSummerPay;
-            this.ComboBoxExBonusWinterText.Text = _employmentAgreementVo.BonusWinterText;
-            this.NumericUpDownExBonusWinterPay.Value = _employmentAgreementVo.BonusWinterPay;
+            this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag;                        // 各労共に提出中
+            this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail;                           // 給与区分
+            this.NumericUpDownExPay.Value = _employmentAgreementVo.Pay;                                 // 給与単価
+            this.ComboBoxExTravelCostDetail.Text = _employmentAgreementVo.TravelCostDetail;             // 交通費区分
+            this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost;                             // 交通費
+            this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription;        // 従事すべき業務内容
+            this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime;                             // 勤務時間
+            this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime;                           // 休憩時間
+            this.CheckBoxExKOYOU.Checked = _employmentAgreementVo.KoyouFlag;                            // 雇用保険の有無
+            this.CheckBoxExSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag;                          // 社会保険の有無
+            this.ComboBoxExSalaryRaise.Text = _employmentAgreementVo.SalaryRaise;                       // 昇給の有無
+            this.ComboBoxExBonusSummerText.Text = _employmentAgreementVo.BonusSummerText;               // 夏賞与の有無
+            this.NumericUpDownExBonusSummerPay.Value = _employmentAgreementVo.BonusSummerPay;           // 夏賞与の金額
+            this.ComboBoxExBonusWinterText.Text = _employmentAgreementVo.BonusWinterText;               // 冬賞与の有無
+            this.NumericUpDownExBonusWinterPay.Value = _employmentAgreementVo.BonusWinterPay;           // 冬賞与の金額
             this.ComboBoxExBonusDetailText.Text = _employmentAgreementVo.BonusDetailText;
             this.PutExpiration(_listContractExpirationVo);
             this.PutContractExpirationPartTimeJob(_listContractExpirationVo);
@@ -609,7 +617,7 @@ namespace EmploymentAgreement {
             employmentAgreementVo.ContractExpirationPeriod = (int)NUDExContractExpirationPeriod.Value;
             employmentAgreementVo.ContractExpirationPeriodString = this.TextBoxExContractExpirationPeriod.Text;
             employmentAgreementVo.PayDetail = this.ComboBoxExPayDetail.Text;
-            employmentAgreementVo.Pay = (int)this.NUDExPay.Value;
+            employmentAgreementVo.Pay = (int)this.NumericUpDownExPay.Value;
             employmentAgreementVo.TravelCostDetail = this.ComboBoxExTravelCostDetail.Text;
             employmentAgreementVo.TravelCost = (int)this.NUDExTravelCost.Value;
             employmentAgreementVo.JobDescription = int.Parse(this.ComboBoxExJobDescription.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
@@ -670,7 +678,7 @@ namespace EmploymentAgreement {
             this.TextBoxExContractExpirationPeriod.Text = string.Empty;
             this.CheckBoxExCheckFlag.Checked = false;
             this.InitializeComboBoxExPayDetail();
-            this.NUDExPay.Value = 0;
+            this.NumericUpDownExPay.Value = 0;
             this.ComboBoxExTravelCostDetail.SelectedIndex = 0;
             this.NUDExTravelCost.Value = 0;
             this.InitializeComboBoxExJobDescription();

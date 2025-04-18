@@ -375,10 +375,10 @@
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Location = new Point(1716, 8);
+            this.ButtonExUpdate.Location = new Point(1672, 8);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(140, 36);
+            this.ButtonExUpdate.Size = new Size(180, 36);
             this.ButtonExUpdate.TabIndex = 0;
             this.ButtonExUpdate.Text = "UPDATE";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
@@ -1497,7 +1497,7 @@
             // LabelExStaffCode
             // 
             this.LabelExStaffCode.BorderStyle = BorderStyle.FixedSingle;
-            this.LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F);
             this.LabelExStaffCode.Location = new Point(80, 216);
             this.LabelExStaffCode.Name = "LabelExStaffCode";
             this.LabelExStaffCode.Size = new Size(56, 23);
@@ -2567,7 +2567,7 @@
             // 
             // labelEx60
             // 
-            this.labelEx60.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            this.labelEx60.Font = new Font("Yu Gothic UI", 14.25F);
             this.labelEx60.ForeColor = Color.Blue;
             this.labelEx60.Location = new Point(8, 24);
             this.labelEx60.Name = "labelEx60";
@@ -3244,6 +3244,8 @@
             this.ClientSize = new Size(1904, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "StaffDetail";
             this.Text = "StaffDetail";
             this.FormClosing += this.StaffDetail_FormClosing;

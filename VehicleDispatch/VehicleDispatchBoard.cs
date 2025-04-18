@@ -31,6 +31,7 @@ namespace VehicleDispatch {
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
+        private readonly DateUtility _dateUtility = new();
         /*
          * プロパティ
          */
@@ -84,6 +85,8 @@ namespace VehicleDispatch {
                 "ToolStripMenuItemExit",
                 "ToolStripMenuItemEdit",
                 "ToolStripMenuItemUpdateTaitou",
+                "ToolStripMenuItemInitialize",
+                "ToolStripMenuItemInitializeBord",
                 "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
@@ -96,7 +99,7 @@ namespace VehicleDispatch {
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace VehicleDispatch {
             _board.Board_OnDragEnter += OnDragEnter;
             _board.Board_OnDragOver += OnDragOver;
 
-            TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
+            this.TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
 
         private StockBoxs? stockBoxs = null;
@@ -152,14 +155,14 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// 
+        /// VehicleDispatchDetailVoのレコードから作成
         /// </summary>
         /// <param name="listVehicleDispatchDetailVo"></param>
         private void AddControls(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             // Board上のSetControlをDisposeする
             _board.RemoveControls();
             /*
-             * 全てのCellを捜査してSetControlを追加する
+             * SetControlを追加する
              */
             int _cellNumber = 0; // 0～199
             for (int row = 0; row < _board.RowAllNumber; row++) {
@@ -180,6 +183,37 @@ namespace VehicleDispatch {
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// HEAD/BODYのレコードから作成
+        /// </summary>
+        /// <param name="listVehicleDispatchDetailVo"></param>
+        private void AddDefaultControls(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+            //// Board上のSetControlをDisposeする
+            //_board.RemoveControls();
+            ///*
+            // * SetControlを追加する
+            // */
+            //int _cellNumber = 0; // 0～199
+            //for (int row = 0; row < _board.RowAllNumber; row++) {
+            //    switch (row) {
+            //        case 0 or 2 or 4 or 6: // DetailCell
+            //            break;
+            //        case 1 or 3 or 5 or 7: // SetControlCell
+            //            for (int x = 0; x < _board.ColumnCount; x++) {
+            //                VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
+            //                if (vehicleDispatchDetailVo is not null) {
+            //                    _board.AddSetControl(_cellNumber, vehicleDispatchDetailVo,
+            //                                         _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
+            //                                         _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
+            //                                         ConvertStaffMasterVo(vehicleDispatchDetailVo));
+            //                }
+            //                _cellNumber++;
+            //            }
+            //            break;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -279,6 +313,19 @@ namespace VehicleDispatch {
                     CollectionWeightTaitou collectionWeightTaitou = new(_connectionVo, this.DateTimePickerExOperationDate.GetDate());
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), collectionWeightTaitou);
                     collectionWeightTaitou.ShowDialog(this);
+                    break;
+                case "ToolStripMenuItemInitializeBord":
+                    if (_vehicleDispatchDetailDao.ExistenceVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue())) {
+                        if (MessageBox.Show("対象日の配車データが存在します。本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                            return;
+                    } else {
+                        if (MessageBox.Show("本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                            return;
+                    }
+                    int financialYear = _dateUtility.GetFiscalYear(this.DateTimePickerExOperationDate.GetValue());
+                    string dayOgWeek = this.DateTimePickerExOperationDate.Value.ToString("ddd");
+                    this.AddDefaultControls(_vehicleDispatchDetailDao.SelectVehicleDispatchDetailVo(financialYear, dayOgWeek));
+                    MessageBox.Show("本番での初期化を完了しました。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 /*
                  * 
@@ -769,6 +816,8 @@ namespace VehicleDispatch {
             } catch (Exception e) {
                 MessageBox.Show(e.Message);
             }
+            // ButtonをClickする
+            this.ButtonExUpdate.PerformClick();
         }
 
         /// <summary>
@@ -805,6 +854,8 @@ namespace VehicleDispatch {
             } catch (Exception e) {
                 MessageBox.Show(e.Message);
             }
+            // ButtonをClickする
+            this.ButtonExUpdate.PerformClick();
         }
 
         /// <summary>

@@ -72,6 +72,24 @@ namespace Dao {
         }
 
         /// <summary>
+        /// 新規staff_codeを採番
+        /// 引数(staffCode)より小さい番号の中で最大の番号を取得する
+        /// </summary>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        public int GetStaffCode(int staffCode) {
+            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT MAX(StaffCode) " +
+                                     "FROM H_StaffMaster " +
+                                     "WHERE StaffCode < " + staffCode;
+            try {
+                return (int)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// SelectAllStaffMaster
         /// Picture無
         /// DeleteFlag = False

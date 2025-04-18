@@ -104,7 +104,7 @@
             // LabelExFaxNumber
             // 
             this.LabelExFaxNumber.BorderStyle = BorderStyle.FixedSingle;
-            this.LabelExFaxNumber.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExFaxNumber.Font = new Font("Yu Gothic UI", 11.25F);
             this.LabelExFaxNumber.Location = new Point(312, 4);
             this.LabelExFaxNumber.Name = "LabelExFaxNumber";
             this.LabelExFaxNumber.Size = new Size(428, 44);
@@ -134,7 +134,7 @@
             // 
             this.SpreadSubstitute.AccessibleDescription = "Book1, 共通, Row 0, Column 0";
             this.SpreadSubstitute.Dock = DockStyle.Fill;
-            this.SpreadSubstitute.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadSubstitute.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadSubstitute.Location = new Point(3, 87);
             this.SpreadSubstitute.Name = "SpreadSubstitute";
             this.SpreadSubstitute.Size = new Size(1030, 847);

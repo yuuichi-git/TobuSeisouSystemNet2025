@@ -30,7 +30,8 @@ namespace Dao {
         /// true:該当レコードあり 
         /// false:該当レコードなし
         /// </summary>
-        /// <param name="staffCode"></param>
+        /// <param name="cellNumber"></param>
+        /// <param name="operationDate"></param>
         /// <returns></returns>
         public bool ExistenceEmploymentAgreement(int cellNumber, DateTime operationDate) {
             int count;
@@ -38,6 +39,26 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                count = (int)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
+            return count != 0 ? true : false;
+        }
+
+        /// <summary>
+        /// true:該当レコードあり
+        /// false:該当レコードなし
+        /// </summary>
+        /// <param name="operationDate"></param>
+        /// <returns></returns>
+        public bool ExistenceVehicleDispatchDetail(DateTime operationDate) {
+            int count;
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
             try {
                 count = (int)sqlCommand.ExecuteScalar();
             } catch {
@@ -862,6 +883,13 @@ namespace Dao {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lastRollCallFlag"></param>
+        /// <param name="cellNumber"></param>
+        /// <param name="lastRollCallVo"></param>
+        /// <returns></returns>
         public int UpdateOneLastRollCall(bool lastRollCallFlag, int cellNumber, LastRollCallVo lastRollCallVo) {
             /*
              * DB更新
@@ -930,6 +958,47 @@ namespace Dao {
             } catch {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// H_VehicleDispatchHead/H_VehicleDispatchBodyからVehicleDispatchDetailVoを作成する
+        /// </summary>
+        /// <param name="financialYear"></param>
+        /// <param name="dayOfWeek"></param>
+        /// <returns></returns>
+        public List<VehicleDispatchDetailVo> SelectVehicleDispatchDetailVo(int financialYear, string dayOfWeek) {
+            List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT H_VehicleDispatchHead.CellNumber," +
+                                            "H_VehicleDispatchHead.VehicleDispatchFlag," +
+                                            "H_VehicleDispatchHead.Purpose," +
+                                            "H_VehicleDispatchHead.SetCode," +
+                                            "H_VehicleDispatchBody.CarCode," +
+                                            "H_VehicleDispatchBody.StaffCode1," +
+                                            "H_VehicleDispatchBody.StaffCode2," +
+                                            "H_VehicleDispatchBody.StaffCode3," +
+                                            "H_VehicleDispatchBody.StaffCode4 " +
+                                     "FROM H_VehicleDispatchHead " +
+                                     "LEFT OUTER JOIN H_VehicleDispatchBody ON H_VehicleDispatchHead.SetCode = H_VehicleDispatchBody.SetCode " +
+                                                                          "AND H_VehicleDispatchHead.FinancialYear = H_VehicleDispatchBody.FinancialYear " +
+                                     "WHERE H_VehicleDispatchHead.FinancialYear = " + financialYear + " " +
+                                       "AND H_VehicleDispatchBody.DayOfWeek = '" + dayOfWeek + "'";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
+                    vehicleDispatchDetailVo.CellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
+                    vehicleDispatchDetailVo.VehicleDispatchFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["VehicleDispatchFlag"]);
+                    vehicleDispatchDetailVo.PurposeFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Purpose"]);
+                    vehicleDispatchDetailVo.SetCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["SetCode"]);
+                    vehicleDispatchDetailVo.CarCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CarCode"]);
+                    vehicleDispatchDetailVo.StaffCode1 = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode1"]);
+                    vehicleDispatchDetailVo.StaffCode2 = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode2"]);
+                    vehicleDispatchDetailVo.StaffCode3 = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode3"]);
+                    vehicleDispatchDetailVo.StaffCode4 = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode4"]);
+                    listVehicleDispatchDetailVo.Add(vehicleDispatchDetailVo);
+                }
+            }
+            return listVehicleDispatchDetailVo;
         }
     }
 }

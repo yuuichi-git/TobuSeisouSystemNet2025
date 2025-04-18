@@ -37,6 +37,62 @@ namespace Staff {
         private readonly Dictionary<string, int> _dictionaryOccupationSI = new();
         private readonly Dictionary<string, int> _dictionaryJobFormSI = new();
 
+        public StaffDetail(ConnectionVo connectionVo) {
+            /*
+             * Dao
+             */
+            _belongsMasterDao = new(connectionVo);
+            _jobFormMasterDao = new(connectionVo);
+            _occupationMasterDao = new(connectionVo);
+
+            _staffMasterDao = new(connectionVo);
+            _staffHistoryDao = new(connectionVo);
+            _staffExperienceDao = new(connectionVo);
+            _staffFamilyDao = new(connectionVo);
+            _staffMedicalExaminationDao = new(connectionVo);
+            _staffCarViolateDao = new(connectionVo);
+            _staffEducateDao = new(connectionVo);
+            _staffProperDao = new(connectionVo);
+            _staffPunishmentDao = new(connectionVo);
+            /*
+             * Dictionary
+             */
+            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster()) {
+                _dictionaryBelongsIS.Add(belongsMasterVo.Code, belongsMasterVo.Name);
+                _dictionaryBelongsSI.Add(belongsMasterVo.Name, belongsMasterVo.Code);
+            }
+            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster()) {
+                _dictionaryOccupationIS.Add(occupationMasterVo.Code, occupationMasterVo.Name);
+                _dictionaryOccupationSI.Add(occupationMasterVo.Name, occupationMasterVo.Code);
+            }
+            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster()) {
+                _dictionaryJobFormIS.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
+                _dictionaryJobFormSI.Add(jobFormMasterVo.Name, jobFormMasterVo.Code);
+            }
+            // アイコンを常に点滅に設定する
+            _errorProvider.BlinkStyle = ErrorBlinkStyle.AlwaysBlink;
+            /*
+             * InitializeControl
+             */
+            InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            MenuStripEx1.ChangeEnable(listString);
+
+            this.InitializeControls();
+            this.LabelExStaffCode.Text = (_staffMasterDao.GetStaffCode(24000) + 1).ToString("#####");        // 新規従事者コードを採番
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+        }
+
         /// <summary>
         /// 
         /// </summary>

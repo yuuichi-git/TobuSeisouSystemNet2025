@@ -145,6 +145,7 @@
             // ComboBoxExSelectName
             // 
             this.ComboBoxExSelectName.FormattingEnabled = true;
+            this.ComboBoxExSelectName.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExSelectName.Location = new Point(76, 16);
             this.ComboBoxExSelectName.Name = "ComboBoxExSelectName";
             this.ComboBoxExSelectName.Size = new Size(228, 23);
@@ -162,7 +163,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             this.ButtonExUpdate.Location = new Point(876, 10);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -438,7 +439,7 @@
             // 
             // TextBoxExLicenseNumber
             // 
-            this.TextBoxExLicenseNumber.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExLicenseNumber.Font = new Font("Yu Gothic UI", 9F);
             this.TextBoxExLicenseNumber.Location = new Point(120, 232);
             this.TextBoxExLicenseNumber.Name = "TextBoxExLicenseNumber";
             this.TextBoxExLicenseNumber.Size = new Size(88, 23);
@@ -477,7 +478,7 @@
             // 
             // TextBoxExCurrentAddress
             // 
-            this.TextBoxExCurrentAddress.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExCurrentAddress.Font = new Font("Yu Gothic UI", 9F);
             this.TextBoxExCurrentAddress.Location = new Point(120, 120);
             this.TextBoxExCurrentAddress.Name = "TextBoxExCurrentAddress";
             this.TextBoxExCurrentAddress.Size = new Size(400, 23);
@@ -578,7 +579,7 @@
             // 
             // TextBoxExName
             // 
-            this.TextBoxExName.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExName.Font = new Font("Yu Gothic UI", 9F);
             this.TextBoxExName.Location = new Point(120, 64);
             this.TextBoxExName.Name = "TextBoxExName";
             this.TextBoxExName.ReadOnly = true;
@@ -597,7 +598,7 @@
             // 
             // TextBoxExNameKana
             // 
-            this.TextBoxExNameKana.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExNameKana.Font = new Font("Yu Gothic UI", 9F);
             this.TextBoxExNameKana.Location = new Point(120, 36);
             this.TextBoxExNameKana.Name = "TextBoxExNameKana";
             this.TextBoxExNameKana.ReadOnly = true;
@@ -616,7 +617,7 @@
             // 
             // TextBoxExStaffCode
             // 
-            this.TextBoxExStaffCode.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExStaffCode.Font = new Font("Yu Gothic UI", 9F);
             this.TextBoxExStaffCode.Location = new Point(120, 8);
             this.TextBoxExStaffCode.Name = "TextBoxExStaffCode";
             this.TextBoxExStaffCode.ReadOnly = true;

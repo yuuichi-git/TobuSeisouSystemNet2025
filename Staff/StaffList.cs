@@ -85,6 +85,8 @@ namespace Staff {
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
+                "ToolStripMenuItemEdit",
+                "ToolStripMenuItemInsertNewRecord",
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
@@ -135,6 +137,11 @@ namespace Staff {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemInsertNewRecord":
+                    StaffDetail staffDetail = new(_connectionVo);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffDetail);
+                    staffDetail.Show(this);
+                    break;
                 case "ToolStripMenuItemExit": // アプリケーションを終了する
                     this.Close();
                     break;
