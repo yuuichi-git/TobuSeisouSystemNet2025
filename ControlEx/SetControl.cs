@@ -24,7 +24,7 @@ namespace ControlEx {
         public event MouseEventHandler SetControl_OnMouseMove = delegate { };
         public event MouseEventHandler SetControl_OnMouseUp = delegate { };
 
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
 
         private Control? _deployedSetLabel;
         private Control? _deployedCarLabel;

@@ -961,6 +961,21 @@ namespace Dao {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operationDate"></param>
+        public void DeleteVehicleDispatchDetail(DateTime operationDate) {
+            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "DELETE FROM H_VehicleDispatchDetail " +
+                                     "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// H_VehicleDispatchHead/H_VehicleDispatchBodyからVehicleDispatchDetailVoを作成する
         /// </summary>
         /// <param name="financialYear"></param>

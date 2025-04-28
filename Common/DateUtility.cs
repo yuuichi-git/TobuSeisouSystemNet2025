@@ -5,7 +5,7 @@ using System.Globalization;
 
 namespace Common {
     public class DateUtility {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DateTime _todayDate = DateTime.Today;
         private readonly CultureInfo _cultureInfo = new("ja-JP");
 
@@ -203,8 +203,8 @@ namespace Common {
         /// true:稼働 false:休車
         /// </summary>
         /// <param name="dayOfWeek">稼働日</param>
-        /// <param name="workingDays">稼働する曜日</param>
-        /// <param name="fiveLap">五週目フラグ</param>
+        /// <param name="workingDays">稼働する曜日(SetMasterVo内)</param>
+        /// <param name="fiveLap">五週目フラグ(SetMasterVo内)</param>
         /// <returns></returns>
         public bool GetWorkingDays(DateTime dateTime, string workingDays, bool fiveLap) {
             if (workingDays.Contains(dateTime.ToString("ddd"))) {

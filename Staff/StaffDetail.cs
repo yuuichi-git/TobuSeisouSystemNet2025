@@ -666,7 +666,7 @@ namespace Staff {
             ComboBoxExMedicalInstitutionName.SelectedIndex = -1;
             TextBoxExMedicalExaminationNote.Text = string.Empty;
             int countGroupBoxExMedical = 0;
-            foreach (StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo) {
+            foreach (StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo.OrderByDescending(x => x.MedicalExaminationDate)) {
                 dictionaryMedicalDate[countGroupBoxExMedical].SetValueJp(staffMedicalExaminationVo.MedicalExaminationDate);
                 dictionaryMedicalName[countGroupBoxExMedical].Text = staffMedicalExaminationVo.MedicalInstitutionName;
                 dictionaryMedicalNote[countGroupBoxExMedical].Text += staffMedicalExaminationVo.MedicalExaminationNote;

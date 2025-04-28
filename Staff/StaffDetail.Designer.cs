@@ -3244,8 +3244,6 @@
             this.ClientSize = new Size(1904, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "StaffDetail";
             this.Text = "StaffDetail";
             this.FormClosing += this.StaffDetail_FormClosing;

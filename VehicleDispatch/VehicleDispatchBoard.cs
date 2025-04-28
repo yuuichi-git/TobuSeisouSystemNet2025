@@ -30,6 +30,7 @@ namespace VehicleDispatch {
         /*
          * インスタンス作成
          */
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly ScreenForm _screenForm = new();
         private readonly DateUtility _dateUtility = new();
         /*
@@ -173,7 +174,8 @@ namespace VehicleDispatch {
                         for (int x = 0; x < _board.ColumnCount; x++) {
                             VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
                             if (vehicleDispatchDetailVo is not null) {
-                                _board.AddSetControl(_cellNumber, vehicleDispatchDetailVo,
+                                _board.AddSetControl(_cellNumber,
+                                                     vehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
                                                      ConvertStaffMasterVo(vehicleDispatchDetailVo));
@@ -186,34 +188,228 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// HEAD/BODYのレコードから作成
+        /// HEAD/BODYのレコードから初期配車を作成する
         /// </summary>
         /// <param name="listVehicleDispatchDetailVo"></param>
         private void AddDefaultControls(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
-            //// Board上のSetControlをDisposeする
-            //_board.RemoveControls();
-            ///*
-            // * SetControlを追加する
-            // */
-            //int _cellNumber = 0; // 0～199
-            //for (int row = 0; row < _board.RowAllNumber; row++) {
-            //    switch (row) {
-            //        case 0 or 2 or 4 or 6: // DetailCell
-            //            break;
-            //        case 1 or 3 or 5 or 7: // SetControlCell
-            //            for (int x = 0; x < _board.ColumnCount; x++) {
-            //                VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
-            //                if (vehicleDispatchDetailVo is not null) {
-            //                    _board.AddSetControl(_cellNumber, vehicleDispatchDetailVo,
-            //                                         _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
-            //                                         _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
-            //                                         ConvertStaffMasterVo(vehicleDispatchDetailVo));
-            //                }
-            //                _cellNumber++;
-            //            }
-            //            break;
-            //    }
-            //}
+            // Board上のSetControlをDisposeする
+            _board.RemoveControls();
+            /*
+             * SetControlを追加する
+             */
+            int _cellNumber = 0; // 0～199
+            for (int row = 0; row < _board.RowAllNumber; row++) {
+                switch (row) {
+                    case 0 or 2 or 4 or 6: // DetailCell
+                        break;
+                    case 1 or 3 or 5 or 7: // SetControlCell
+                        for (int x = 0; x < _board.ColumnCount; x++) {
+                            if (listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber) is not null) {
+                                /*
+                                 * HEAD/BODYにCellNumberが存在する場合の処理
+                                 * コメント部分は元の値か初期値を採用する
+                                 */
+                                VehicleDispatchDetailVo trueVehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
+                                trueVehicleDispatchDetailVo.CellNumber = _cellNumber;
+                                trueVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
+                                trueVehicleDispatchDetailVo.OperationFlag = this.CheckOperationFlag(_listSetMasterVo, trueVehicleDispatchDetailVo.SetCode, this.DateTimePickerExOperationDate.GetDate());
+                                /*
+                                 * SetMasterVoを作成
+                                 */
+                                SetMasterVo setMasterVo = _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode);
+                                if (setMasterVo is not null) {
+                                    trueVehicleDispatchDetailVo.VehicleDispatchFlag = true;
+                                    trueVehicleDispatchDetailVo.PurposeFlag = setMasterVo.NumberOfPeople > 2 ? true : false;
+                                    trueVehicleDispatchDetailVo.SetCode = setMasterVo.SetCode;
+                                    trueVehicleDispatchDetailVo.ManagedSpaceCode = setMasterVo.ManagedSpaceCode;
+                                    trueVehicleDispatchDetailVo.ClassificationCode = setMasterVo.ClassificationCode;
+                                    trueVehicleDispatchDetailVo.LastRollCallFlag = false;
+                                    trueVehicleDispatchDetailVo.LastRollCallYmdHms = _defaultDateTime;
+                                    trueVehicleDispatchDetailVo.SetMemoFlag = setMasterVo.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.SetMemo = setMasterVo.Remarks;
+                                    trueVehicleDispatchDetailVo.ShiftCode = 0;
+                                    trueVehicleDispatchDetailVo.StandByFlag = false;
+                                    trueVehicleDispatchDetailVo.AddWorkerFlag = false;
+                                    trueVehicleDispatchDetailVo.ContactInfomationFlag = false;
+                                    trueVehicleDispatchDetailVo.FaxTransmissionFlag = false;
+                                }
+                                /*
+                                 * CarMasterVoを作成
+                                 */
+                                CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode);
+                                if (carMasterVo is not null) {
+                                    trueVehicleDispatchDetailVo.CarCode = carMasterVo.CarCode;
+                                    trueVehicleDispatchDetailVo.CarGarageCode = carMasterVo.GarageCode;
+                                    trueVehicleDispatchDetailVo.CarProxyFlag = false;
+                                    trueVehicleDispatchDetailVo.CarMemoFlag = carMasterVo.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.CarMemo = carMasterVo.Remarks;
+                                }
+                                /*
+                                 * StaffMasterVoのStaff1部分を作成(運転手)
+                                 */
+                                StaffMasterVo staffMasterVo1 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode1);
+                                if (staffMasterVo1 is not null) {
+                                    trueVehicleDispatchDetailVo.StaffCode1 = staffMasterVo1.StaffCode;
+                                    trueVehicleDispatchDetailVo.StaffOccupation1 = staffMasterVo1.Occupation;
+                                    trueVehicleDispatchDetailVo.StaffProxyFlag1 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallFlag1 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallYmdHms1 = _defaultDateTime;
+                                    trueVehicleDispatchDetailVo.StaffMemoFlag1 = staffMasterVo1.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.StaffMemo1 = staffMasterVo1.Remarks;
+                                }
+                                /*
+                                 * StaffMasterVoのStaff2部分を作成(作業員１)
+                                 */
+                                StaffMasterVo staffMasterVo2 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode2);
+                                if (staffMasterVo2 is not null) {
+                                    trueVehicleDispatchDetailVo.StaffCode2 = staffMasterVo2.StaffCode;
+                                    trueVehicleDispatchDetailVo.StaffOccupation2 = staffMasterVo2.Occupation;
+                                    trueVehicleDispatchDetailVo.StaffProxyFlag2 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallFlag2 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallYmdHms2 = _defaultDateTime;
+                                    trueVehicleDispatchDetailVo.StaffMemoFlag2 = staffMasterVo2.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.StaffMemo2 = staffMasterVo2.Remarks;
+                                }
+                                /*
+                                 * StaffMasterVoのStaff3部分を作成(作業員２)
+                                 */
+                                StaffMasterVo staffMasterVo3 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode3);
+                                if (staffMasterVo3 is not null) {
+                                    trueVehicleDispatchDetailVo.StaffCode3 = staffMasterVo3.StaffCode;
+                                    trueVehicleDispatchDetailVo.StaffOccupation3 = staffMasterVo3.Occupation;
+                                    trueVehicleDispatchDetailVo.StaffProxyFlag3 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallFlag3 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallYmdHms3 = _defaultDateTime;
+                                    trueVehicleDispatchDetailVo.StaffMemoFlag3 = staffMasterVo3.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.StaffMemo3 = staffMasterVo3.Remarks;
+                                }
+                                /*
+                                 * StaffMasterVoのStaff4部分を作成(作業員３)
+                                 */
+                                StaffMasterVo staffMasterVo4 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode4);
+                                if (staffMasterVo4 is not null) {
+                                    trueVehicleDispatchDetailVo.StaffCode4 = staffMasterVo4.StaffCode;
+                                    trueVehicleDispatchDetailVo.StaffOccupation4 = staffMasterVo4.Occupation;
+                                    trueVehicleDispatchDetailVo.StaffProxyFlag4 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallFlag4 = false;
+                                    trueVehicleDispatchDetailVo.StaffRollCallYmdHms4 = _defaultDateTime;
+                                    trueVehicleDispatchDetailVo.StaffMemoFlag4 = staffMasterVo4.Remarks.Length > 0 ? true : false;
+                                    trueVehicleDispatchDetailVo.StaffMemo4 = staffMasterVo4.Remarks;
+                                }
+
+                                trueVehicleDispatchDetailVo.InsertPcName = Environment.MachineName;
+                                trueVehicleDispatchDetailVo.InsertYmdHms = DateTime.Now;
+                                trueVehicleDispatchDetailVo.UpdatePcName = string.Empty;
+                                trueVehicleDispatchDetailVo.UpdateYmdHms = _defaultDateTime;
+                                trueVehicleDispatchDetailVo.DeletePcName = string.Empty;
+                                trueVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
+                                trueVehicleDispatchDetailVo.DeleteFlag = false;
+                                _board.AddSetControl(_cellNumber,
+                                                     trueVehicleDispatchDetailVo,
+                                                     _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
+                                                     _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
+                                                     ConvertStaffMasterVo(trueVehicleDispatchDetailVo));
+                                /*
+                                 * PurposeFlag = true なら_cellNumber++する(１つ飛ばす)
+                                 */
+                                if (trueVehicleDispatchDetailVo.PurposeFlag)
+                                    _cellNumber++;
+                            } else {
+                                /*
+                                 * HEAD/BODYにCellNumberが存在しない場合の処理
+                                 * 空のSetControlを作成する
+                                 * コメント部分は元の値か初期値を採用する
+                                 */
+                                VehicleDispatchDetailVo falseVehicleDispatchDetailVo = new();
+                                falseVehicleDispatchDetailVo.CellNumber = _cellNumber;
+                                falseVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
+                                falseVehicleDispatchDetailVo.OperationFlag = false;
+                                falseVehicleDispatchDetailVo.VehicleDispatchFlag = false;
+                                falseVehicleDispatchDetailVo.PurposeFlag = false;
+                                //falseVehicleDispatchDetailVo.SetCode
+                                //falseVehicleDispatchDetailVo.ManagedSpaceCode
+                                //falseVehicleDispatchDetailVo.ClassificationCode
+                                //falseVehicleDispatchDetailVo.LastRollCallFlag
+                                //falseVehicleDispatchDetailVo.LastRollCallYmdHms
+                                //falseVehicleDispatchDetailVo.SetMemoFlag
+                                //falseVehicleDispatchDetailVo.SetMemo
+                                //falseVehicleDispatchDetailVo.ShiftCode
+                                //falseVehicleDispatchDetailVo.StandByFlag
+                                //falseVehicleDispatchDetailVo.AddWorkerFlag
+                                //falseVehicleDispatchDetailVo.ContactInfomationFlag
+                                //falseVehicleDispatchDetailVo.FaxTransmissionFlag
+                                //falseVehicleDispatchDetailVo.CarCode
+                                //falseVehicleDispatchDetailVo.CarGarageCode
+                                //falseVehicleDispatchDetailVo.CarProxyFlag
+                                //falseVehicleDispatchDetailVo.CarMemoFlag
+                                //falseVehicleDispatchDetailVo.CarMemo
+                                //falseVehicleDispatchDetailVo.StaffCode1
+                                //falseVehicleDispatchDetailVo.StaffOccupation1
+                                //falseVehicleDispatchDetailVo.StaffProxyFlag1
+                                //falseVehicleDispatchDetailVo.StaffRollCallFlag1
+                                //falseVehicleDispatchDetailVo.StaffRollCallYmdHms1
+                                //falseVehicleDispatchDetailVo.StaffMemoFlag1
+                                //falseVehicleDispatchDetailVo.StaffMemo1
+                                //falseVehicleDispatchDetailVo.StaffCode2
+                                //falseVehicleDispatchDetailVo.StaffOccupation2
+                                //falseVehicleDispatchDetailVo.StaffProxyFlag2
+                                //falseVehicleDispatchDetailVo.StaffRollCallFlag2
+                                //falseVehicleDispatchDetailVo.StaffRollCallYmdHms2
+                                //falseVehicleDispatchDetailVo.StaffMemoFlag2
+                                //falseVehicleDispatchDetailVo.StaffMemo2
+                                //falseVehicleDispatchDetailVo.StaffCode3
+                                //falseVehicleDispatchDetailVo.StaffOccupation3
+                                //falseVehicleDispatchDetailVo.StaffProxyFlag3
+                                //falseVehicleDispatchDetailVo.StaffRollCallFlag3
+                                //falseVehicleDispatchDetailVo.StaffRollCallYmdHms3
+                                //falseVehicleDispatchDetailVo.StaffMemoFlag3
+                                //falseVehicleDispatchDetailVo.StaffMemo3
+                                //falseVehicleDispatchDetailVo.StaffCode4
+                                //falseVehicleDispatchDetailVo.StaffOccupation4
+                                //falseVehicleDispatchDetailVo.StaffProxyFlag4
+                                //falseVehicleDispatchDetailVo.StaffRollCallFlag4
+                                //falseVehicleDispatchDetailVo.StaffRollCallYmdHms4
+                                //falseVehicleDispatchDetailVo.StaffMemoFlag4
+                                //falseVehicleDispatchDetailVo.StaffMemo4
+                                falseVehicleDispatchDetailVo.InsertPcName = string.Empty;
+                                falseVehicleDispatchDetailVo.InsertYmdHms = _defaultDateTime;
+                                falseVehicleDispatchDetailVo.UpdatePcName = string.Empty;
+                                falseVehicleDispatchDetailVo.UpdateYmdHms = _defaultDateTime;
+                                falseVehicleDispatchDetailVo.DeletePcName = string.Empty;
+                                falseVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
+                                falseVehicleDispatchDetailVo.DeleteFlag = false;
+                                _board.AddSetControl(_cellNumber,
+                                                     falseVehicleDispatchDetailVo,
+                                                     _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
+                                                     _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
+                                                     ConvertStaffMasterVo(falseVehicleDispatchDetailVo));
+                            }
+                            _cellNumber++;
+                        }
+                        break;
+                }
+            }
+            /*
+             * 対象データをDELETEしたのちにINSERTする
+             */
+            try {
+                _vehicleDispatchDetailDao.DeleteVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
+                _vehicleDispatchDetailDao.InsertVehicleDispatchDetail(this._board.GetListVehicleDispatchDetailVo());
+            } catch (Exception exception) {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// 対象の稼働日が配車対象日かを返す
+        /// </summary>
+        /// <param name="listSetMasterVo">配車先リスト</param>
+        /// <param name="setCode">配車先コード</param>
+        /// <param name="ymdHms">稼働日</param>
+        /// <returns>true:配車 false:休車</returns>
+        private bool CheckOperationFlag(List<SetMasterVo> listSetMasterVo, int setCode, DateTime ymdHms) {
+            SetMasterVo setMasterVo = _listSetMasterVo.Find(x => x.SetCode == setCode);
+            return _dateUtility.GetWorkingDays(ymdHms, setMasterVo.WorkingDays, setMasterVo.FiveLap);
         }
 
         /// <summary>
@@ -309,11 +505,13 @@ namespace VehicleDispatch {
                 case "ToolStripMenuItemExit":
                     MessageBox.Show("ToolStripMenuItemExit");
                     break;
+                // 台東
                 case "ToolStripMenuItemUpdateTaitou":
                     CollectionWeightTaitou collectionWeightTaitou = new(_connectionVo, this.DateTimePickerExOperationDate.GetDate());
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), collectionWeightTaitou);
                     collectionWeightTaitou.ShowDialog(this);
                     break;
+                // 初期化
                 case "ToolStripMenuItemInitializeBord":
                     if (_vehicleDispatchDetailDao.ExistenceVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue())) {
                         if (MessageBox.Show("対象日の配車データが存在します。本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
@@ -795,7 +993,7 @@ namespace VehicleDispatch {
                 this._vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(cellNumber, vehicleDispatchDetailVo);
                 Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " のPurposeFlagを'False'に変更しました"));
 
-                // ②各CellNumberをインクリメントする
+                // ②各CellNumberをインクリメントする。
                 for (int i = cellNumber + 2; i <= endCellNumber; i++) { // DoubleをSingleに変えるんだから+2からスタートする
                     if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberがズレるから存在確認が必要
                         vehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
@@ -816,7 +1014,7 @@ namespace VehicleDispatch {
             } catch (Exception e) {
                 MessageBox.Show(e.Message);
             }
-            // ButtonをClickする
+            // ButtonをClickする。画面とDBの整合性を担保するため。
             this.ButtonExUpdate.PerformClick();
         }
 
@@ -854,7 +1052,7 @@ namespace VehicleDispatch {
             } catch (Exception e) {
                 MessageBox.Show(e.Message);
             }
-            // ButtonをClickする
+            // ButtonをClickする。画面とDBの整合性を担保するため。
             this.ButtonExUpdate.PerformClick();
         }
 

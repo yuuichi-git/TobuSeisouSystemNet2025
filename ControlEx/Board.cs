@@ -189,6 +189,17 @@ namespace ControlEx {
             return listStaffMasterVo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<VehicleDispatchDetailVo> GetListVehicleDispatchDetailVo() {
+            List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
+            foreach (SetControl setControl in this.Controls)
+                listVehicleDispatchDetailVo.Add(setControl.GetVehicleDispatchDetailVo());
+            return listVehicleDispatchDetailVo;
+        }
+
         /*
          * Event処理
          */
