@@ -3,6 +3,8 @@
  */
 using System.Data;
 
+using AccountingParttime;
+
 using Car;
 
 using CollectionWeight;
@@ -251,6 +253,11 @@ namespace TobuSeisouSystemNet2025 {
                             ToukanpoList toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
                             toukanpoList.Show();
+                            break;
+                        case "AccountingParttimeList":
+                            AccountingParttimeList accountingParttimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);        // アルバイト出勤状況
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingParttimeList);
+                            accountingParttimeList.Show();
                             break;
                     }
                     break;

@@ -68,7 +68,7 @@ namespace Dao {
         /// Picture無
         /// </summary>
         /// <returns></returns>
-        public List<CarMasterVo> SelectAllHCarMaster() {
+        public List<CarMasterVo> SelectAllCarMaster() {
             List<CarMasterVo> listCarMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT CarCode," +

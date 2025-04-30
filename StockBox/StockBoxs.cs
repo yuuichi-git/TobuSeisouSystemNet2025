@@ -52,7 +52,7 @@ namespace StockBox {
              */
             _connectionVo = connectionVo;
             _listSetMasterVoForMasterData = _setMasterDao.SelectAllSetMaster();
-            _listCarMasterVoForMasterData = _carMasterDao.SelectAllHCarMaster();
+            _listCarMasterVoForMasterData = _carMasterDao.SelectAllCarMaster();
             _listStaffMasterVoForMasterData = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
             /*
              * InitializeControl

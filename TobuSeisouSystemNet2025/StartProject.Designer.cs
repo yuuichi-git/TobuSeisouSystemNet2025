@@ -44,6 +44,10 @@
             this.TabControlExConnect = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
             this.TabPageOffice = new TabPage();
+            this.labelEx26 = new ControlEx.LabelEx();
+            this.labelEx27 = new ControlEx.LabelEx();
+            this.labelEx24 = new ControlEx.LabelEx();
+            this.labelEx25 = new ControlEx.LabelEx();
             this.labelEx20 = new ControlEx.LabelEx();
             this.labelEx21 = new ControlEx.LabelEx();
             this.labelEx18 = new ControlEx.LabelEx();
@@ -66,8 +70,6 @@
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
-            this.labelEx24 = new ControlEx.LabelEx();
-            this.labelEx25 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
@@ -299,6 +301,8 @@
             // 
             // TabPageOffice
             // 
+            this.TabPageOffice.Controls.Add(this.labelEx26);
+            this.TabPageOffice.Controls.Add(this.labelEx27);
             this.TabPageOffice.Controls.Add(this.labelEx24);
             this.TabPageOffice.Controls.Add(this.labelEx25);
             this.TabPageOffice.Controls.Add(this.labelEx20);
@@ -317,6 +321,54 @@
             this.TabPageOffice.TabIndex = 3;
             this.TabPageOffice.Text = "事務";
             this.TabPageOffice.UseVisualStyleBackColor = true;
+            // 
+            // labelEx26
+            // 
+            this.labelEx26.ForeColor = Color.DimGray;
+            this.labelEx26.Location = new Point(376, 128);
+            this.labelEx26.Name = "labelEx26";
+            this.labelEx26.Size = new Size(344, 20);
+            this.labelEx26.TabIndex = 27;
+            this.labelEx26.Text = "　アルバイトの出勤状況を管理します";
+            this.labelEx26.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx27
+            // 
+            this.labelEx27.ForeColor = Color.Black;
+            this.labelEx27.Location = new Point(376, 108);
+            this.labelEx27.Name = "labelEx27";
+            this.labelEx27.Size = new Size(344, 20);
+            this.labelEx27.TabIndex = 26;
+            this.labelEx27.Tag = "AccountingParttimeList";
+            this.labelEx27.Text = "アルバイト　出勤確認表(経理)";
+            this.labelEx27.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx27.Click += this.Label_Click;
+            this.labelEx27.MouseEnter += this.Label_MouseEnter;
+            this.labelEx27.MouseLeave += this.Label_MouseLeave;
+            // 
+            // labelEx24
+            // 
+            this.labelEx24.ForeColor = Color.DimGray;
+            this.labelEx24.Location = new Point(376, 80);
+            this.labelEx24.Name = "labelEx24";
+            this.labelEx24.Size = new Size(344, 20);
+            this.labelEx24.TabIndex = 25;
+            this.labelEx24.Text = "　東京環境保全協会　会員カードの管理をします";
+            this.labelEx24.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx25
+            // 
+            this.labelEx25.ForeColor = Color.Black;
+            this.labelEx25.Location = new Point(376, 60);
+            this.labelEx25.Name = "labelEx25";
+            this.labelEx25.Size = new Size(344, 20);
+            this.labelEx25.TabIndex = 24;
+            this.labelEx25.Tag = "ToukanpoList";
+            this.labelEx25.Text = "東環保カード";
+            this.labelEx25.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx25.Click += this.Label_Click;
+            this.labelEx25.MouseEnter += this.Label_MouseEnter;
+            this.labelEx25.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx20
             // 
@@ -587,30 +639,6 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
-            // labelEx24
-            // 
-            this.labelEx24.ForeColor = Color.DimGray;
-            this.labelEx24.Location = new Point(376, 80);
-            this.labelEx24.Name = "labelEx24";
-            this.labelEx24.Size = new Size(344, 20);
-            this.labelEx24.TabIndex = 25;
-            this.labelEx24.Text = "　東京環境保全協会　会員カードの管理をします";
-            this.labelEx24.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelEx25
-            // 
-            this.labelEx25.ForeColor = Color.Black;
-            this.labelEx25.Location = new Point(376, 60);
-            this.labelEx25.Name = "labelEx25";
-            this.labelEx25.Size = new Size(344, 20);
-            this.labelEx25.TabIndex = 24;
-            this.labelEx25.Tag = "ToukanpoList";
-            this.labelEx25.Text = "東環保カード";
-            this.labelEx25.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx25.Click += this.Label_Click;
-            this.labelEx25.MouseEnter += this.Label_MouseEnter;
-            this.labelEx25.MouseLeave += this.Label_MouseLeave;
-            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -681,5 +709,7 @@
         private ControlEx.LabelEx labelEx23;
         private ControlEx.LabelEx labelEx24;
         private ControlEx.LabelEx labelEx25;
+        private ControlEx.LabelEx labelEx26;
+        private ControlEx.LabelEx labelEx27;
     }
 }

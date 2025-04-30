@@ -117,7 +117,7 @@ namespace RollCall {
              */
             _connectionVo = connectionVo;
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
-            _listCarMasterVo = _carMasterDao.SelectAllHCarMaster();
+            _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
             _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
             _listFareMasterVo = _fareMasterDao.SelectAllFareMasterVo();
             /*

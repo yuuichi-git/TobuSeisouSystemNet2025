@@ -374,8 +374,8 @@ namespace ControlEx {
             StringFormat stringFormat = new();
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.Alignment = StringAlignment.Center;
-            pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
-            //pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", SetMasterVo.SetCode, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
+            //pe.Graphics.DrawString(string.Concat(SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
+            pe.Graphics.DrawString(string.Concat(" ", "\r\n", SetMasterVo.SetName1, "\r\n", SetMasterVo.SetName2, "\r\n", SetMasterVo.SetCode, "\r\n", AddWorkerFlag ? "(作付)" : "  "), fontSetLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
         }
 
         /// <summary>

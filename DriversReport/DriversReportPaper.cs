@@ -269,6 +269,7 @@ namespace DriversReport {
                     SheetViewDriversReport.Cells[10, 17].Text = "新宿清掃事務所　駐車場 /"; // 休憩場所
                     break;
                 case 1311507: // 方南２３３
+                case 1311511: // 方南２３２
                     SheetViewDriversReport.Cells[10, 17].Text = "杉並清掃工場 /"; // 休憩場所
                     break;
             }

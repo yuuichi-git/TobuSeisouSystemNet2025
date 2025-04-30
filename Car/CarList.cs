@@ -180,9 +180,9 @@ namespace Car {
         private void SetSheetViewList(SheetView sheetView) {
             List<CarMasterVo> _listCarMasterVo = new();
             if (CheckBoxExDeleteFlag.Checked) {                                                                                                                                         // 削除済のレコードも表示
-                _listCarMasterVo = _carMasterDao.SelectAllHCarMaster();
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
             } else {
-                _listCarMasterVo = _carMasterDao.SelectAllHCarMaster().FindAll(x => x.DeleteFlag == false);
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.DeleteFlag == false);
             }
             SpreadList.SuspendLayout();                                                                                                                                                 // 非活性化
             spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得

@@ -28,13 +28,15 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExPrint = new ControlEx.ButtonEx();
+            this.ButtonExPrint2 = new ControlEx.ButtonEx();
+            this.ButtonExPrint1 = new ControlEx.ButtonEx();
             this.LabelExFaxNumber = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView1 = this.SpreadSubstitute.GetSheet(0);
             this.SheetView2 = this.SpreadSubstitute.GetSheet(1);
+            this.SheetView3 = this.SpreadSubstitute.GetSheet(2);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadSubstitute).BeginInit();
@@ -57,55 +59,68 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1036, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1564, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1036, 24);
+            this.MenuStripEx1.Size = new Size(1564, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 939);
+            this.StatusStripEx1.Location = new Point(0, 1019);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1036, 22);
+            this.StatusStripEx1.Size = new Size(1564, 22);
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
-            this.PanelExUp.Controls.Add(this.ButtonExPrint);
+            this.PanelExUp.Controls.Add(this.ButtonExPrint2);
+            this.PanelExUp.Controls.Add(this.ButtonExPrint1);
             this.PanelExUp.Controls.Add(this.LabelExFaxNumber);
             this.PanelExUp.Controls.Add(this.labelEx1);
             this.PanelExUp.Controls.Add(this.ComboBoxExPrinterName);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1030, 54);
+            this.PanelExUp.Size = new Size(1558, 54);
             this.PanelExUp.TabIndex = 2;
             // 
-            // ButtonExPrint
+            // ButtonExPrint2
             // 
-            this.ButtonExPrint.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExPrint.Location = new Point(804, 12);
-            this.ButtonExPrint.Name = "ButtonExPrint";
-            this.ButtonExPrint.SetTextDirectionVertical = "";
-            this.ButtonExPrint.Size = new Size(192, 32);
-            this.ButtonExPrint.TabIndex = 3;
-            this.ButtonExPrint.Text = "印刷する";
-            this.ButtonExPrint.UseVisualStyleBackColor = true;
-            this.ButtonExPrint.Click += this.ButtonExPrint_Click;
+            this.ButtonExPrint2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExPrint2.Location = new Point(1348, 12);
+            this.ButtonExPrint2.Name = "ButtonExPrint2";
+            this.ButtonExPrint2.SetTextDirectionVertical = "";
+            this.ButtonExPrint2.Size = new Size(172, 32);
+            this.ButtonExPrint2.TabIndex = 4;
+            this.ButtonExPrint2.Text = "FAX(文京支部宛て)";
+            this.ButtonExPrint2.UseVisualStyleBackColor = true;
+            this.ButtonExPrint2.Click += this.ButtonExPrint2_Click;
+            // 
+            // ButtonExPrint1
+            // 
+            this.ButtonExPrint1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExPrint1.Location = new Point(1168, 12);
+            this.ButtonExPrint1.Name = "ButtonExPrint1";
+            this.ButtonExPrint1.SetTextDirectionVertical = "";
+            this.ButtonExPrint1.Size = new Size(172, 32);
+            this.ButtonExPrint1.TabIndex = 3;
+            this.ButtonExPrint1.Text = "印刷する";
+            this.ButtonExPrint1.UseVisualStyleBackColor = true;
+            this.ButtonExPrint1.Click += this.ButtonExPrint1_Click;
             // 
             // LabelExFaxNumber
             // 
             this.LabelExFaxNumber.BorderStyle = BorderStyle.FixedSingle;
             this.LabelExFaxNumber.Font = new Font("Yu Gothic UI", 11.25F);
-            this.LabelExFaxNumber.Location = new Point(312, 4);
+            this.LabelExFaxNumber.Location = new Point(552, 4);
             this.LabelExFaxNumber.Name = "LabelExFaxNumber";
             this.LabelExFaxNumber.Size = new Size(428, 44);
             this.LabelExFaxNumber.TabIndex = 2;
@@ -132,19 +147,19 @@
             // 
             // SpreadSubstitute
             // 
-            this.SpreadSubstitute.AccessibleDescription = "Book1, 共通, Row 0, Column 0";
+            this.SpreadSubstitute.AccessibleDescription = "SpreadSubstitute, 葛飾, Row 0, Column 0";
             this.SpreadSubstitute.Dock = DockStyle.Fill;
             this.SpreadSubstitute.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadSubstitute.Location = new Point(3, 87);
             this.SpreadSubstitute.Name = "SpreadSubstitute";
-            this.SpreadSubstitute.Size = new Size(1030, 847);
+            this.SpreadSubstitute.Size = new Size(1558, 927);
             this.SpreadSubstitute.TabIndex = 3;
             // 
             // SubstituteSheet
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1036, 961);
+            this.ClientSize = new Size(1564, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;
@@ -167,11 +182,13 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.PanelEx PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadSubstitute;
-        private FarPoint.Win.Spread.SheetView SheetView1;
-        private FarPoint.Win.Spread.SheetView SheetView2;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
         private ControlEx.LabelEx LabelExFaxNumber;
-        private ControlEx.ButtonEx ButtonExPrint;
+        private ControlEx.ButtonEx ButtonExPrint1;
+        private FarPoint.Win.Spread.SheetView SheetView1;
+        private FarPoint.Win.Spread.SheetView SheetView2;
+        private FarPoint.Win.Spread.SheetView SheetView3;
+        private ControlEx.ButtonEx ButtonExPrint2;
     }
 }

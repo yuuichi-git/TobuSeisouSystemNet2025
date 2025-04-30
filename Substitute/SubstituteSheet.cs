@@ -16,7 +16,7 @@ using Vo;
 
 namespace Substitute {
     public partial class SubstituteSheet : Form {
-        PrintDocument _printDocument = new();
+        PrintDocument _printDocument = new();  // 清掃事務所用
         DateUtility _dateUtility = new();
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Substitute {
                                                                               //{ 1312203, "" },                // 小岩４(個人)
                                                                               { 1312216, "090-9817-8129" },     // 葛飾１３
                                                                               //{ 1312212, "" }                 // 小岩６(個人)
-                                                                              };   
+                                                                              };
 
         /*
          * 代番のセル位置の紐づけ(SheetView1用)
@@ -61,7 +61,8 @@ namespace Substitute {
         Dictionary<int, string> _dictionarySheetView2BeforeStaffDisplayName = new() { { 0, "D40" }, { 1, "D42" } };
         Dictionary<int, string> _dictionarySheetView2AfterDisplayName = new() { { 0, "H40" }, { 1, "H42" } };
 
-        private string _cleanOfficeName; // 清掃事務所名
+        private string _cleanOfficeName;    // 清掃事務所名
+        private string _officerStaffName;   // 配置担当者
         private string _cleanOfficeFaxText; // 清掃事務所FAXテキスト
         /*
          * Dao
@@ -129,6 +130,7 @@ namespace Substitute {
             this.InitializeSheetView();
             this.InitializeSheetViewKYOTUU();
             this.InitializeSheetViewSAKURADAI();
+            this.InitializeSheetViewKATSUSHIKA();
 
             /*
              * FAXの宛先・FAX番号をセット
@@ -138,17 +140,23 @@ namespace Substitute {
                 case 1310102: // 千代田６
                 case 1310103: // 千代田紙１
                     _cleanOfficeName = "　日盛運輸　様";
+                    _officerStaffName = "石原　由規";
                     _cleanOfficeFaxText = string.Concat("千代田区支部", "\r\n", "ＦＡＸ ０３－３６７８－２６８８");
                     Clipboard.SetText("0336782688");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
                 case 1310201: // 中央ペット７
                 case 1310202: // 中央ペット８
                 case 1310207: // 中央ペット１１
                     _cleanOfficeName = string.Concat("　東京都環境衛生事業協同組合", "\r\n", " 　中央区支部　様");
+                    _officerStaffName = "石原　由規";
                     _cleanOfficeFaxText = string.Concat("中央区支部", "\r\n", " ＦＡＸ ０３－６２８０－５８４１");
                     Clipboard.SetText("0362805841");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
                 case 1312169: // 足立８
                 case 1312167: // 足立１２
@@ -163,9 +171,12 @@ namespace Substitute {
                 case 1312104: // 足立３８
                 case 1312105: // 足立不燃４
                     _cleanOfficeName = "　足立清掃事務所　御中";
+                    _officerStaffName = "石原　由規";
                     _cleanOfficeFaxText = string.Concat("足立清掃事務所", "\r\n", " ＦＡＸ ０３－３８５７－５７４３");
                     Clipboard.SetText("0338575743");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
                 case 1312204: // 葛飾１１
                 case 1312211: // 葛飾軽１２
@@ -175,29 +186,49 @@ namespace Substitute {
                 case 1312215: // 葛飾５３
                 case 1312210: // 葛飾５４
                     _cleanOfficeName = "　葛飾区清掃事務所　御中";
+                    _officerStaffName = "石原　由規";
                     _cleanOfficeFaxText = string.Concat("葛飾区清掃事務所", "\r\n", " ＦＡＸ ０３－３６９１－１７９７");
                     Clipboard.SetText("0336911797");
-                    OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    OutputSheetViewKATSUSHIKA(SheetView3, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
                 case 1312203: // 小岩４
                 case 1312208: // 小岩５
                 case 1312212: // 小岩６
                     _cleanOfficeName = "　小岩清掃事務所　御中";
+                    _officerStaffName = "石原　由規";
                     _cleanOfficeFaxText = string.Concat("小岩清掃事務所", "\r\n", " ＦＡＸ ０３－３６７３－２５３５");
                     Clipboard.SetText("0336732535");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
                 case 1312011: // 桜台2-1
                 case 1312012: // 桜台2-2
                 case 1312006: // 桜台臨時
                     _cleanOfficeName = string.Empty;
+                    _officerStaffName = "百瀨　友";
                     _cleanOfficeFaxText = string.Concat("東京都環境衛生事業協同組合 練馬区支部事務局", "\r\n", " ＦＡＸ ０３－５９４７－３４４１");
                     Clipboard.SetText("0359473441");
                     OutputSheetViewSAKURADAI(SheetView2, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = false;    // PrintButton2
+                    break;
+                case 1310501: // 文京プラ軽３
+                case 1310503: // 文京プラ６
+                    _cleanOfficeName = string.Concat("　文京清掃事務所　御中");
+                    _officerStaffName = "今村　修";
+                    _cleanOfficeFaxText = string.Concat("文京清掃事務所", "\r\n", " ＦＡＸ ０３－３８１６－３９８１");
+                    Clipboard.SetText("0338163981");
+                    OutputSheetViewKYOTUU(SheetView1, _setControl);
+                    this.ButtonExPrint1.Enabled = true;     // PrintButton1
+                    this.ButtonExPrint2.Enabled = true;     // PrintButton2
                     break;
                 default:
-                    _cleanOfficeName = "";
-                    _cleanOfficeFaxText = "";
+                    _cleanOfficeName = string.Empty;
+                    _officerStaffName = string.Empty;
+                    _cleanOfficeFaxText = string.Empty;
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
                     break;
             }
@@ -236,6 +267,8 @@ namespace Substitute {
             CultureInfo cultureInfo = new("ja-JP", true);
             cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
             sheetView.Cells["G3"].Text = DateTime.Now.ToString("gg y年M月d日", cultureInfo);
+            // 配置担当者
+            sheetView.Cells["J13"].Text = _officerStaffName;
             // 宛先
             sheetView.Cells["B6"].Text = _cleanOfficeName;
             /*
@@ -259,6 +292,8 @@ namespace Substitute {
                 case 1312169: // 足立８(個人)
                 case 1312203: // 小岩４(個人)
                 case 1312212: // 小岩６(個人)
+                case 1310501: // 文京プラ軽３(個人)
+                case 1310503: // 文京プラ６(個人)
                     // 個人携帯番号を登録
                     _cellphoneNumber = _staffMasterDao.SelectOneStaffMaster(((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo.StaffCode).CellphoneNumber.ToString();
                     break;
@@ -423,6 +458,115 @@ namespace Substitute {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <param name="setControl"></param>
+        private void OutputSheetViewKATSUSHIKA(SheetView sheetView, SetControl setControl) {
+            // シートを選択
+            SpreadSubstitute.ActiveSheetIndex = 2;
+            int arrayLoopCount = 0;
+            /*
+             * 各要素を取得
+             */
+            // 本番登録のデータ
+            VehicleDispatchBodyVo vehicleDispatchBodyVo = _vehicleDispatchBodyDao.SelectOneVehicleDispatchBody(_setControl.SetCode, _setControl.OperationDate.Date, _dateUtility.GetFiscalYear(_setControl.OperationDate.Date));
+            /*
+             * VehicleDispatchBodyVoのCarCode・StaffCodeがゼロの場合、当該曜日の本番データは無い
+             */
+            if (vehicleDispatchBodyVo.CarCode == 0 && vehicleDispatchBodyVo.StaffCode1 == 0 && vehicleDispatchBodyVo.StaffCode2 == 0 && vehicleDispatchBodyVo.StaffCode3 == 0 && vehicleDispatchBodyVo.StaffCode4 == 0) {
+                this.LabelExFaxNumber.BackColor = Color.Pink;
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "当該曜日の本番データが存在しません。手打ちで入力してください。";
+            } else {
+                this.LabelExFaxNumber.BackColor = SystemColors.Control;
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            }
+            // 配車パネルのデータ
+            SetMasterVo displaySetMasterVo = ((SetLabel)_setControl.DeployedSetLabel).SetMasterVo;
+            CarMasterVo displayCarMasterVo = ((CarLabel)_setControl.DeployedCarLabel).CarMasterVo;
+            StaffMasterVo displayStaffMasterVo1 = ((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo;
+            StaffMasterVo displayStaffMasterVo2 = ((StaffLabel)_setControl.DeployedStaffLabel2).StaffMasterVo;
+            StaffMasterVo displayStaffMasterVo3 = ((StaffLabel)_setControl.DeployedStaffLabel3).StaffMasterVo;
+
+            // 日付
+            CultureInfo cultureInfo = new("ja-JP", true);
+            cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
+            sheetView.Cells["B2"].Text = DateTime.Now.ToString("gg　　y年　　M月　　d日　　(dddd)", cultureInfo);
+            // 宛先
+            sheetView.Cells["C3"].Text = _cleanOfficeName;
+            /*
+             * 代車
+             */
+            if (vehicleDispatchBodyVo.CarCode != displayCarMasterVo.CarCode) { // 本番データと実際の配車データを比較
+                // 本番 組数 車両ナンバー ドア番号
+                sheetView.Cells["B9"].Text = displaySetMasterVo.SetName2;
+                sheetView.Cells["F9"].Text = string.Concat(_carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).RegistrationNumber, " (", _carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).DoorNumber.ToString(), ")");
+                // 代車 車両ナンバー ドア番号
+                sheetView.Cells["F11"].Text = string.Concat(_carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).RegistrationNumber, " (", _carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).DoorNumber.ToString(), ")");
+            }
+            /*
+             * 運転手
+             */
+            if (_setControl.DeployedStaffLabel1 is not null && vehicleDispatchBodyVo.StaffCode1 != ((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo.StaffCode) {
+                // 本番　運転手
+                sheetView.Cells["J9"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(vehicleDispatchBodyVo.StaffCode1).DisplayName);
+                sheetView.Cells["J11"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(displayStaffMasterVo1.StaffCode).DisplayName);
+            }
+
+            List<int> _arrayHONBANStaffCodes = new();
+            List<int> _arrayDAIBANStaffCodes = new();
+            // 本番の作業員コードを格納
+            if (vehicleDispatchBodyVo.StaffCode2 != 0)
+                _arrayHONBANStaffCodes.Add(vehicleDispatchBodyVo.StaffCode2);
+            if (vehicleDispatchBodyVo.StaffCode3 != 0)
+                _arrayHONBANStaffCodes.Add(vehicleDispatchBodyVo.StaffCode3);
+            if (vehicleDispatchBodyVo.StaffCode4 != 0)
+                _arrayHONBANStaffCodes.Add(vehicleDispatchBodyVo.StaffCode4);
+            // 代番の作業員コードを格納
+            if ((StaffLabel)_setControl.DeployedStaffLabel2 is not null)
+                _arrayDAIBANStaffCodes.Add(((StaffLabel)_setControl.DeployedStaffLabel2).StaffMasterVo.StaffCode);
+            if ((StaffLabel)_setControl.DeployedStaffLabel3 is not null)
+                _arrayDAIBANStaffCodes.Add(((StaffLabel)_setControl.DeployedStaffLabel3).StaffMasterVo.StaffCode);
+            if ((StaffLabel)_setControl.DeployedStaffLabel4 is not null)
+                _arrayDAIBANStaffCodes.Add(((StaffLabel)_setControl.DeployedStaffLabel4).StaffMasterVo.StaffCode);
+
+            bool isEqual = _arrayHONBANStaffCodes.SequenceEqual(_arrayDAIBANStaffCodes);
+            // Listを比較して同一で無ければ代番が存在する
+            if (!isEqual) {
+                List<int> staffCodes = new();
+                staffCodes.AddRange(_arrayHONBANStaffCodes);
+                staffCodes.AddRange(_arrayDAIBANStaffCodes);
+                foreach (int staffCode in staffCodes) {
+                    if (_arrayHONBANStaffCodes.Contains(staffCode) && _arrayDAIBANStaffCodes.Contains(staffCode)) {
+                        _arrayHONBANStaffCodes.Remove(staffCode);
+                        _arrayDAIBANStaffCodes.Remove(staffCode);
+                    }
+                }
+
+                foreach (int staffCode in _arrayHONBANStaffCodes) {
+                    switch (arrayLoopCount) {
+                        case 0: // 作業員１
+                            sheetView.Cells["M9"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(_arrayHONBANStaffCodes[arrayLoopCount]).DisplayName);
+                            sheetView.Cells["M11"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(_arrayDAIBANStaffCodes[arrayLoopCount]).DisplayName);
+                            break;
+                        case 1: // 作業員２
+                            sheetView.Cells["Q9"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(_arrayHONBANStaffCodes[arrayLoopCount]).DisplayName);
+                            sheetView.Cells["Q11"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(_arrayDAIBANStaffCodes[arrayLoopCount]).DisplayName);
+                            break;
+                        case 2: // 作業員３
+                            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "作業員の人数が不正です。";
+                            break;
+                    }
+                    arrayLoopCount++;
+                }
+            }
+            /*
+             * 送信先FAX番号
+             */
+            this.LabelExFaxNumber.Text = _cleanOfficeFaxText;
+        }
+
+        /// <summary>
         /// PutSheetView1
         /// 共通のシート
         /// </summary>
@@ -533,6 +677,29 @@ namespace Substitute {
             SheetView2.Cells["I49"].ResetValue();
         }
 
+        /// <summary>
+        /// InitializeSheetViewList3
+        /// </summary>
+        private void InitializeSheetViewKATSUSHIKA() {
+            // 日付
+            SheetView3.Cells["B2"].ResetValue();
+            // 担当
+            SheetView3.Cells["B9"].ResetValue();
+            // 車番
+            SheetView3.Cells["F9"].ResetValue();
+            SheetView3.Cells["F11"].ResetValue();
+            // 運転手
+            SheetView3.Cells["J9"].ResetValue();
+            SheetView3.Cells["J11"].ResetValue();
+            // 作業員１
+            SheetView3.Cells["M9"].ResetValue();
+            SheetView3.Cells["M11"].ResetValue();
+            // 作業員２
+            SheetView3.Cells["Q9"].ResetValue();
+            SheetView3.Cells["Q11"].ResetValue();
+
+        }
+
         private void InitializeSheetView() {
             SpreadSubstitute.AllowDragDrop = false; // DrugDropを禁止する
             SpreadSubstitute.PaintSelectionHeader = false; // ヘッダの選択状態をしない
@@ -540,18 +707,81 @@ namespace Substitute {
             SpreadSubstitute.TabStripPolicy = TabStripPolicy.Never; // シートタブを非表示
         }
 
-        private void ButtonExPrint_Click(object sender, EventArgs e) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonExPrint1_Click(object sender, EventArgs e) {
             // Eventを登録
             _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
             // 出力先プリンタを指定します。
             _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;
             // 用紙の向きを設定(横：true、縦：false)
-            _printDocument.DefaultPageSettings.Landscape = false;
+            switch (SpreadSubstitute.ActiveSheetIndex) {
+                case 0:     // 共通
+                case 1:     // 練馬
+                    _printDocument.DefaultPageSettings.Landscape = false;
+                    break;
+                case 2:     // 葛飾
+                    _printDocument.DefaultPageSettings.Landscape = true;
+                    break;
+            }
             /*
              * プリンタがサポートしている用紙サイズを調べる
              */
             foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
-                // B5用紙に設定する
+                // A4用紙に設定する
+                if (paperSize.Kind == PaperKind.A4) {
+                    _printDocument.DefaultPageSettings.PaperSize = paperSize;
+                    break;
+                }
+            }
+            // 印刷部数を指定します。
+            _printDocument.PrinterSettings.Copies = 1;
+            // 片面印刷に設定します。
+            _printDocument.PrinterSettings.Duplex = Duplex.Default;
+            // カラー印刷に設定します。
+            _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
+            // 印刷する
+            _printDocument.Print();
+        }
+
+        /// <summary>
+        /// 文京支部対応
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonExPrint2_Click(object sender, EventArgs e) {
+            // 文京支部の値をセットする
+            _cleanOfficeName = string.Concat("　東京都環境衛生事業協同組合　文京支部　御中");
+            _officerStaffName = "今村　修";
+            _cleanOfficeFaxText = string.Concat("東京都環境衛生事業協同組合　文京支部", "\r\n", " ＦＡＸ ０３－３６０７－６０４０");
+            Clipboard.SetText("0336076040");
+            OutputSheetViewKYOTUU(SheetView1, _setControl);
+
+            //メッセージキューに現在あるWindowsメッセージをすべて処理する
+            System.Windows.Forms.Application.DoEvents();
+
+            // Eventを登録
+            _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            // 出力先プリンタを指定します。
+            _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;
+            // 用紙の向きを設定(横：true、縦：false)
+            switch (SpreadSubstitute.ActiveSheetIndex) {
+                case 0:     // 共通
+                case 1:     // 練馬
+                    _printDocument.DefaultPageSettings.Landscape = false;
+                    break;
+                case 2:     // 葛飾
+                    _printDocument.DefaultPageSettings.Landscape = true;
+                    break;
+            }
+            /*
+             * プリンタがサポートしている用紙サイズを調べる
+             */
+            foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                // A4用紙に設定する
                 if (paperSize.Kind == PaperKind.A4) {
                     _printDocument.DefaultPageSettings.PaperSize = paperSize;
                     break;

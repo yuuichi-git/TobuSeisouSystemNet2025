@@ -11,6 +11,7 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AccountingParttime\AccountingParttime.csproj" />
     <ProjectReference Include="..\Car\Car.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
