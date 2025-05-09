@@ -272,6 +272,18 @@ namespace DriversReport {
                 case 1311511: // 方南２３２
                     SheetViewDriversReport.Cells[10, 17].Text = "杉並清掃工場 /"; // 休憩場所
                     break;
+                case 1312014: // 桜台粗大１
+                case 1312015: // 桜台粗大２
+                    SheetViewDriversReport.Cells[10, 17].Text = ""; // 休憩場所
+                    SheetViewDriversReport.Cells[12, 3].Text = "土支田　・　センター";
+                    SheetViewDriversReport.Cells[13, 3].Text = "土支田　・　センター";
+                    SheetViewDriversReport.Cells[14, 3].Text = "土支田　・　センター";
+                    SheetViewDriversReport.Cells[15, 3].Text = "土支田　・　センター";
+                    SheetViewDriversReport.Cells[12, 17].Text = "土支田　・　センター";
+                    SheetViewDriversReport.Cells[13, 17].Text = "";
+                    SheetViewDriversReport.Cells[14, 17].Text = "";
+                    SheetViewDriversReport.Cells[15, 17].Text = "";
+                    break;
             }
         }
 

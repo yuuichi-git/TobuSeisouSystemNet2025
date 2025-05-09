@@ -503,7 +503,7 @@ namespace VehicleDispatch {
                  * 
                  */
                 case "ToolStripMenuItemExit":
-                    MessageBox.Show("ToolStripMenuItemExit");
+                    this.Close();
                     break;
                 // 台東
                 case "ToolStripMenuItemUpdateTaitou":

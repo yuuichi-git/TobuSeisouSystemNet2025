@@ -83,35 +83,35 @@ namespace AccountingParttime {
 
             foreach (StaffMasterVo staffMasterVo in _listStaffMasterVo.FindAll(x => x.Belongs == 12 && x.VehicleDispatchTarget == true && x.RetirementFlag == false).OrderBy(x => x.EmploymentDate)) {
                 SheetViewList.Cells[startRow, startCol].Text = staffMasterVo.DisplayName;
-                var hVehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
-                                                                                      x.StaffCode2 == staffMasterVo.StaffCode ||
-                                                                                      x.StaffCode3 == staffMasterVo.StaffCode ||
-                                                                                      x.StaffCode4 == staffMasterVo.StaffCode) &&
-                                                                                      x.OperationDate == this.DateTimePickerExOperationDate.GetValue().Date);
+                VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode2 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode3 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode4 == staffMasterVo.StaffCode) &&
+                                                                                                         x.OperationDate == this.DateTimePickerExOperationDate.GetValue().Date);
                 /*
                  * îzé‘êÊÇ™ê›íËÇ≥ÇÍÇƒÇ»Ç≠ÇƒStaffLabelExÇæÇØíuÇ¢ÇƒÇ†ÇÈèÍçáèàóùÇÇµÇ»Ç¢
                  * ÅhvehicleDispatchDetailVo.Set_code > 0Åh Å® Ç±ÇÃïîï™
                  */
-                if (hVehicleDispatchDetailVo != null && hVehicleDispatchDetailVo.SetCode > 0) {
+                if (vehicleDispatchDetailVo != null && vehicleDispatchDetailVo.SetCode > 0) {
                     SheetViewList.Cells[startRow, startCol + 1].Text = "èoãŒ";
                     /*
                      * èúäOÇê›íË
                      * á@êÆîıñ{é–ÇÕëSÇƒÅyâ^ì]éËÅzÇ…Ç∑ÇÈÅiê^óRî¸Ç≥ÇÒàÀóäÅj
                      */
-                    switch (hVehicleDispatchDetailVo.SetCode) {
+                    switch (vehicleDispatchDetailVo.SetCode) {
                         case 1312111: // êÆîıñ{é–
                             _operationName = "Åyâ^ì]éËÅz";
                             break;
                         default:
-                            _operationName = hVehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode ? "Åyâ^ì]éËÅz" : "ÅyçÏã∆àıÅz";
+                            _operationName = vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode ? "Åyâ^ì]éËÅz" : "ÅyçÏã∆àıÅz";
                             break;
                     }
-                    SheetViewList.Cells[startRow, startCol + 2].Text = string.Concat(_operationName, _listSetMasterVo.Find(x => x.SetCode == hVehicleDispatchDetailVo.SetCode).SetName);
+                    SheetViewList.Cells[startRow, startCol + 2].Text = string.Concat(_operationName, _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName);
                     /*
                      * é‘éÌ
                      */
-                    CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == hVehicleDispatchDetailVo.CarCode);
-                    if (carMasterVo != null && hVehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
+                    CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode);
+                    if (carMasterVo != null && vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
                         var carKidName = "";
                         switch (carMasterVo.CarKindCode) {
                             case 10:
@@ -129,8 +129,8 @@ namespace AccountingParttime {
                     /*
                      * èoãŒín
                      */
-                    if (hVehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
-                        SheetViewList.Cells[startRow, startCol + 4].Text = hVehicleDispatchDetailVo.CarGarageCode == 1 ? "ñ{é–" : "éOãΩ";
+                    if (vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
+                        SheetViewList.Cells[startRow, startCol + 4].Text = vehicleDispatchDetailVo.CarGarageCode == 1 ? "ñ{é–" : "éOãΩ";
                     } else {
                         SheetViewList.Cells[startRow, startCol + 4].Text = "ñ{é–";
                     }

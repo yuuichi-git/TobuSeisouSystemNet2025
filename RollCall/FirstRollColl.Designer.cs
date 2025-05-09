@@ -342,7 +342,7 @@
             // 
             this.SpreadFirstRollCall.AccessibleDescription = "SpreadFirstRollCall, Sheet2, Row 0, Column 0";
             this.SpreadFirstRollCall.Dock = DockStyle.Fill;
-            this.SpreadFirstRollCall.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadFirstRollCall.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadFirstRollCall.Location = new Point(3, 197);
             this.SpreadFirstRollCall.Name = "SpreadFirstRollCall";
             this.SpreadFirstRollCall.Size = new Size(1898, 817);

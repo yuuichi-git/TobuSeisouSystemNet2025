@@ -259,6 +259,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingParttimeList);
                             accountingParttimeList.Show();
                             break;
+                        case "AccountingFulltime":
+                            AccountingFulltime accountingFulltime = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                // 全従事者出勤状況
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltime);
+                            accountingFulltime.Show();
+                            break;
                     }
                     break;
                 case ConnectionState.Connecting: //接続オブジェクトがデータ ソースに接続しています。
