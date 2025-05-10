@@ -1,5 +1,5 @@
-﻿namespace AccountingParttime {
-    partial class AccountingFulltime {
+﻿namespace Accounting {
+    partial class AccountingFulltimeList {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingFulltime));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingFulltimeList));
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx = new ControlEx.StatusStripEx();
@@ -129,15 +129,15 @@
             this.SpreadList.Size = new Size(823, 847);
             this.SpreadList.TabIndex = 3;
             // 
-            // AccountingFulltime
+            // AccountingFulltimeList
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(829, 961);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "AccountingFulltime";
-            this.Text = "AccountingFulltime";
+            this.Name = "AccountingFulltimeList";
+            this.Text = "AccountingFulltimeList";
             this.FormClosing += this.AccountingFulltime_FormClosing;
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();

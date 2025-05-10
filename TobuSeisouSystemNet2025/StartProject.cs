@@ -3,7 +3,7 @@
  */
 using System.Data;
 
-using AccountingParttime;
+using Accounting;
 
 using Car;
 
@@ -20,6 +20,8 @@ using License;
 using RollCall;
 
 using Staff;
+
+using StatusOfResidence;
 
 using Toukanpo;
 
@@ -260,9 +262,14 @@ namespace TobuSeisouSystemNet2025 {
                             accountingParttimeList.Show();
                             break;
                         case "AccountingFulltime":
-                            AccountingFulltime accountingFulltime = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                // 全従事者出勤状況
-                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltime);
-                            accountingFulltime.Show();
+                            AccountingFulltimeList accountingFulltimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                // 全従事者出勤状況
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltimeList);
+                            accountingFulltimeList.Show();
+                            break;
+                        case "StatusOfResidenceList":
+                            StatusOfResidenceList statusOfResidenceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);          // 在留カード
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, statusOfResidenceList);
+                            statusOfResidenceList.Show();
                             break;
                     }
                     break;

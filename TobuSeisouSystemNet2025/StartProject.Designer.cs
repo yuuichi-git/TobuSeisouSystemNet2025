@@ -44,6 +44,10 @@
             this.TabControlExConnect = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
             this.TabPageOffice = new TabPage();
+            this.labelEx30 = new ControlEx.LabelEx();
+            this.labelEx31 = new ControlEx.LabelEx();
+            this.labelEx28 = new ControlEx.LabelEx();
+            this.labelEx29 = new ControlEx.LabelEx();
             this.labelEx26 = new ControlEx.LabelEx();
             this.labelEx27 = new ControlEx.LabelEx();
             this.labelEx24 = new ControlEx.LabelEx();
@@ -70,8 +74,6 @@
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
-            this.labelEx28 = new ControlEx.LabelEx();
-            this.labelEx29 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
@@ -303,6 +305,8 @@
             // 
             // TabPageOffice
             // 
+            this.TabPageOffice.Controls.Add(this.labelEx30);
+            this.TabPageOffice.Controls.Add(this.labelEx31);
             this.TabPageOffice.Controls.Add(this.labelEx28);
             this.TabPageOffice.Controls.Add(this.labelEx29);
             this.TabPageOffice.Controls.Add(this.labelEx26);
@@ -325,6 +329,54 @@
             this.TabPageOffice.TabIndex = 3;
             this.TabPageOffice.Text = "事務";
             this.TabPageOffice.UseVisualStyleBackColor = true;
+            // 
+            // labelEx30
+            // 
+            this.labelEx30.ForeColor = Color.DimGray;
+            this.labelEx30.Location = new Point(376, 224);
+            this.labelEx30.Name = "labelEx30";
+            this.labelEx30.Size = new Size(344, 20);
+            this.labelEx30.TabIndex = 31;
+            this.labelEx30.Text = "　許可情報を登録します";
+            this.labelEx30.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx31
+            // 
+            this.labelEx31.ForeColor = Color.Black;
+            this.labelEx31.Location = new Point(376, 204);
+            this.labelEx31.Name = "labelEx31";
+            this.labelEx31.Size = new Size(344, 20);
+            this.labelEx31.TabIndex = 30;
+            this.labelEx31.Tag = "StatusOfResidenceList";
+            this.labelEx31.Text = "在留カード・特別永住者証明書";
+            this.labelEx31.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx31.Click += this.Label_Click;
+            this.labelEx31.MouseEnter += this.Label_MouseEnter;
+            this.labelEx31.MouseLeave += this.Label_MouseLeave;
+            // 
+            // labelEx28
+            // 
+            this.labelEx28.ForeColor = Color.DimGray;
+            this.labelEx28.Location = new Point(376, 176);
+            this.labelEx28.Name = "labelEx28";
+            this.labelEx28.Size = new Size(344, 20);
+            this.labelEx28.TabIndex = 29;
+            this.labelEx28.Text = "　配車表に記載されている従事者の出勤状況を管理します";
+            this.labelEx28.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx29
+            // 
+            this.labelEx29.ForeColor = Color.Black;
+            this.labelEx29.Location = new Point(376, 156);
+            this.labelEx29.Name = "labelEx29";
+            this.labelEx29.Size = new Size(344, 20);
+            this.labelEx29.TabIndex = 28;
+            this.labelEx29.Tag = "AccountingFulltime";
+            this.labelEx29.Text = "全従事者　出勤確認表(経理)";
+            this.labelEx29.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx29.Click += this.Label_Click;
+            this.labelEx29.MouseEnter += this.Label_MouseEnter;
+            this.labelEx29.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx26
             // 
@@ -643,30 +695,6 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
-            // labelEx28
-            // 
-            this.labelEx28.ForeColor = Color.DimGray;
-            this.labelEx28.Location = new Point(376, 176);
-            this.labelEx28.Name = "labelEx28";
-            this.labelEx28.Size = new Size(344, 20);
-            this.labelEx28.TabIndex = 29;
-            this.labelEx28.Text = "　配車表に記載されている従事者の出勤状況を管理します";
-            this.labelEx28.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelEx29
-            // 
-            this.labelEx29.ForeColor = Color.Black;
-            this.labelEx29.Location = new Point(376, 156);
-            this.labelEx29.Name = "labelEx29";
-            this.labelEx29.Size = new Size(344, 20);
-            this.labelEx29.TabIndex = 28;
-            this.labelEx29.Tag = "AccountingFulltime";
-            this.labelEx29.Text = "全従事者　出勤確認表(経理)";
-            this.labelEx29.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx29.Click += this.Label_Click;
-            this.labelEx29.MouseEnter += this.Label_MouseEnter;
-            this.labelEx29.MouseLeave += this.Label_MouseLeave;
-            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -741,5 +769,7 @@
         private ControlEx.LabelEx labelEx27;
         private ControlEx.LabelEx labelEx28;
         private ControlEx.LabelEx labelEx29;
+        private ControlEx.LabelEx labelEx30;
+        private ControlEx.LabelEx labelEx31;
     }
 }

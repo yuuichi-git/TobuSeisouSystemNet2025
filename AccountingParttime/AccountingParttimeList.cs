@@ -5,7 +5,7 @@ using Dao;
 
 using Vo;
 
-namespace AccountingParttime {
+namespace Accounting {
     public partial class AccountingParttimeList : Form {
         /*
          * Dao

@@ -47,6 +47,7 @@ namespace Staff {
         /// コンストラクター
         /// </summary>
         /// <param name="connectionVo"></param>
+        /// <param name="screen"></param>
         public StaffList(ConnectionVo connectionVo, Screen screen) {
             /*
              * Dao

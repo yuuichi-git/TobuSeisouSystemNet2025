@@ -35,7 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car", "Car\Car.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toukanpo", "Toukanpo\Toukanpo.csproj", "{C2E13AD2-2567-4070-A65B-237F403FFBD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingParttime", "AccountingParttime\AccountingParttime.csproj", "{290CE66F-1934-4251-92D8-CBEC37F0F3FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting", "AccountingParttime\Accounting.csproj", "{290CE66F-1934-4251-92D8-CBEC37F0F3FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusOfResidence", "StatusOfResidence\StatusOfResidence.csproj", "{35D11B84-46E6-4F51-B223-724287AFF58A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{290CE66F-1934-4251-92D8-CBEC37F0F3FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290CE66F-1934-4251-92D8-CBEC37F0F3FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290CE66F-1934-4251-92D8-CBEC37F0F3FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D11B84-46E6-4F51-B223-724287AFF58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D11B84-46E6-4F51-B223-724287AFF58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D11B84-46E6-4F51-B223-724287AFF58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D11B84-46E6-4F51-B223-724287AFF58A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

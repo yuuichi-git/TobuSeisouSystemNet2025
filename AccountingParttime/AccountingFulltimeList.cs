@@ -7,8 +7,8 @@ using FarPoint.Win.Spread;
 
 using Vo;
 
-namespace AccountingParttime {
-    public partial class AccountingFulltime : Form {
+namespace Accounting {
+    public partial class AccountingFulltimeList : Form {
         /*
          * Dao
          */
@@ -37,7 +37,7 @@ namespace AccountingParttime {
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="screen"></param>
-        public AccountingFulltime(ConnectionVo connectionVo, Screen screen) {
+        public AccountingFulltimeList(ConnectionVo connectionVo, Screen screen) {
             /*
              * Dao
              */
