@@ -10,27 +10,27 @@ namespace ControlEx {
         /*
          * ToolStripMenuItem
          */
-        private ToolStripMenuItem toolStripMenuItemFile = new("ファイル");
-        private ToolStripMenuItem toolStripMenuItemExit = new("アプリケーションを終了する");
+        private readonly ToolStripMenuItem toolStripMenuItemFile = new("ファイル");
+        private readonly ToolStripMenuItem toolStripMenuItemExit = new("アプリケーションを終了する");
 
-        private ToolStripMenuItem toolStripMenuItemEdit = new("編集");
-        private ToolStripMenuItem toolStripMenuItemInsertNewRecord = new("新規レコード作成");
-        private ToolStripMenuItem toolStripMenuItemUpdateTaitou = new("台東資源収集量入力");
+        private readonly ToolStripMenuItem toolStripMenuItemEdit = new("編集");
+        private readonly ToolStripMenuItem toolStripMenuItemInsertNewRecord = new("新規レコード作成");
+        private readonly ToolStripMenuItem toolStripMenuItemUpdateTaitou = new("台東資源収集量入力");
 
-        private ToolStripMenuItem toolStripMenuItemInitialize = new("初期化");
-        private ToolStripMenuItem toolStripMenuItemInitializeBord = new("配車ボードを初期化する");
+        private readonly ToolStripMenuItem toolStripMenuItemInitialize = new("初期化");
+        private readonly ToolStripMenuItem toolStripMenuItemInitializeBord = new("配車ボードを初期化する");
 
-        private ToolStripMenuItem toolStripMenuItemDataBase = new("データベース");
-        private ToolStripMenuItem toolStripMenuItemDataBaseLocal = new("ローカルデータベースへ接続する");
+        private readonly ToolStripMenuItem toolStripMenuItemDataBase = new("データベース");
+        private readonly ToolStripMenuItem toolStripMenuItemDataBaseLocal = new("ローカルデータベースへ接続する");
 
-        private ToolStripMenuItem toolStripMenuItemExport = new("エクスポート");
-        private ToolStripMenuItem toolStripMenuItemExportExcel = new("xls形式ファイルをエクスポートします");
-        private ToolStripMenuItem toolStripMenuItemExportCSV = new("免許証登録用ファイルをエクスポートします");
+        private readonly ToolStripMenuItem toolStripMenuItemExport = new("エクスポート");
+        private readonly ToolStripMenuItem toolStripMenuItemExportExcel = new("xls形式ファイルをエクスポートします");
+        private readonly ToolStripMenuItem toolStripMenuItemExportCSV = new("免許証登録用ファイルをエクスポートします");
 
-        private ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
-        private ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
-        private ToolStripMenuItem toolStripMenuItemPrintB5 = new("B5で印刷する");
-        private ToolStripMenuItem toolStripMenuItemPrintB5Dialog = new("B5で印刷する(Dialog)");
+        private readonly ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
+        private readonly ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
+        private readonly ToolStripMenuItem toolStripMenuItemPrintB5 = new("B5で印刷する");
+        private readonly ToolStripMenuItem toolStripMenuItemPrintB5Dialog = new("B5で印刷する(Dialog)");
 
         private ToolStripMenuItem toolStripMenuItemHelp = new("ヘルプ");
         /*

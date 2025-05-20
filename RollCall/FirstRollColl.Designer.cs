@@ -53,6 +53,7 @@
             this.SpreadFirstRollCall = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewFirstRollCall = this.SpreadFirstRollCall.GetSheet(0);
             this.SheetViewPartTime = this.SpreadFirstRollCall.GetSheet(1);
+            this.SheetViewFullStaff = this.SpreadFirstRollCall.GetSheet(2);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.groupBoxEx2.SuspendLayout();
@@ -404,5 +405,6 @@
         private ControlEx.CheckBoxEx CheckBoxEx1;
         private FarPoint.Win.Spread.SheetView SheetViewFirstRollCall;
         private FarPoint.Win.Spread.SheetView SheetViewPartTime;
+        private FarPoint.Win.Spread.SheetView SheetViewFullStaff;
     }
 }

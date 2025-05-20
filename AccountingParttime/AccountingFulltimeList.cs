@@ -93,22 +93,21 @@ namespace Accounting {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
-            this.SetSheetViewList(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(DateTimePickerExOperationDate.GetValue().Date));
+            this.PutSheetViewList(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(DateTimePickerExOperationDate.GetValue().Date));
         }
 
-        int spreadListTopRow = 0;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="listVehicleDispatchDetailVo"></param>
-        private void SetSheetViewList(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+        private void PutSheetViewList(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             this.SpreadList.SuspendLayout();                                                                                                                                            // 非活性化
-            spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得
+            int spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                                                                     // 先頭行（列）インデックスを取得
             if (this.SheetViewList.Rows.Count > 0)                                                                                                                                      // Rowを削除する
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
 
             int i = 0;
-            List<AccountingFulltimeVo>? listAccountingFulltimeVo;
+            List<AccountingFulltimeVo> listAccountingFulltimeVo;
             foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.FindAll(x => x.OperationFlag == true && x.VehicleDispatchFlag == true)) {
                 listAccountingFulltimeVo = new();
                 if (vehicleDispatchDetailVo.StaffCode1 != 0) {

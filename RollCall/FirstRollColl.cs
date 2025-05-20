@@ -143,11 +143,11 @@ namespace RollCall {
                 "ToolStripMenuItemExportExcel",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -203,13 +203,13 @@ namespace RollCall {
                         } catch (Exception exception) {
                             MessageBox.Show(exception.Message);
                         }
-                        this.SetSheetViewFirstRollCall();
+                        this.PutSheetViewFirstRollCall();
                         /*
                          * 
                          * ②アルバイト出勤表作成
                          * 
                          */
-                        this.SetSheetViewPartTime(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue().Date));
+                        this.PutSheetViewPartTime(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue().Date));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -297,7 +297,7 @@ namespace RollCall {
         /// <summary>
         /// 
         /// </summary>
-        private void SetSheetViewFirstRollCall() {
+        private void PutSheetViewFirstRollCall() {
             // インナークラス　選択行等を保持
             EntryCellPosition entryCellPosition = new();
             int blockRowCount;
@@ -938,12 +938,11 @@ namespace RollCall {
          * 
          * アルバイト出勤表
          * 
-         * 
          */
-        string _operationName = string.Empty;
-        private void SetSheetViewPartTime(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+        private void PutSheetViewPartTime(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             int startRow = 3;
             int startCol = 1;
+            string _operationName = string.Empty;
 
             // 日付
             this.SheetViewPartTime.Cells["E2"].Text = this.DateTimePickerExOperationDate.GetValueJp();
@@ -1012,6 +1011,15 @@ namespace RollCall {
                 }
                 startRow++;
             }
+        }
+
+        /*
+         * 
+         * 全出勤者出勤表
+         * 
+         */
+        private void PutSheetViewFullTime(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+
         }
 
         /// <summary>

@@ -1,6 +1,8 @@
 ﻿/*
  * 2025-05-10
  */
+using System.Drawing.Printing;
+
 using ControlEx;
 
 using Dao;
@@ -45,6 +47,8 @@ namespace StatusOfResidence {
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
+                "ToolStripMenuItemPrint",
+                "ToolStripMenuItemPrintB5",
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
@@ -83,6 +87,8 @@ namespace StatusOfResidence {
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
+                "ToolStripMenuItemPrint",
+                "ToolStripMenuItemPrintB5",
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
@@ -117,9 +123,9 @@ namespace StatusOfResidence {
                     ((PictureBoxEx)_sourceControl).Image = null;
                     break;
                 case "ToolStripMenuItemPrintB5":
-                    //PrintDocument printDocument = new();
-                    //printDocument.PrintPage += PrintPage;
-                    //printDocument.Print();
+                    PrintDocument printDocument = new();
+                    printDocument.PrintPage += PrintPage;
+                    printDocument.Print();
                     break;
                 case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する
                     this.Close();
@@ -248,6 +254,9 @@ namespace StatusOfResidence {
             return statusOfResidenceMasterVo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeComboBoxExSelectName() {
             this.ComboBoxExSelectName.Items.Clear();
             List<ComboBoxExSelectNameVo> listComboBoxSelectNameVo = new();
@@ -302,6 +311,23 @@ namespace StatusOfResidence {
                 get => _staffMasterVo;
                 set => _staffMasterVo = value;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrintPage(object sender, PrintPageEventArgs e) {
+            Bitmap bitmapHead = new(this.PictureBoxEx1.Width, this.PictureBoxEx1.Height);                                // 表のBitmapを作成
+            Bitmap bitmapTail = new(this.PictureBoxEx2.Width, this.PictureBoxEx2.Height);                                // 裏のBitmapを作成
+            this.PictureBoxEx1.DrawToBitmap(bitmapHead, new Rectangle(0, 0, bitmapHead.Width, bitmapHead.Height));
+            this.PictureBoxEx2.DrawToBitmap(bitmapTail, new Rectangle(0, 0, bitmapTail.Width, bitmapTail.Height));
+
+            e.Graphics.DrawImage(bitmapHead, 0, 0, 342, 222);                                                       // 表を描画
+            e.Graphics.DrawImage(bitmapTail, 0, 250, 342, 222);                                                     // 裏を描画
+
+            e.HasMorePages = false;
         }
 
         /// <summary>

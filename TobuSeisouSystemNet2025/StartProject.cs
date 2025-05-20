@@ -15,6 +15,8 @@ using ControlEx;
 
 using EmploymentAgreement;
 
+using LegalTwelveItem;
+
 using License;
 
 using RollCall;
@@ -262,7 +264,7 @@ namespace TobuSeisouSystemNet2025 {
                             accountingParttimeList.Show();
                             break;
                         case "AccountingFulltime":
-                            AccountingFulltimeList accountingFulltimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                // 全従事者出勤状況
+                            AccountingFulltimeList accountingFulltimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);        // 全従事者出勤状況
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltimeList);
                             accountingFulltimeList.Show();
                             break;
@@ -270,6 +272,16 @@ namespace TobuSeisouSystemNet2025 {
                             StatusOfResidenceList statusOfResidenceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);          // 在留カード
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, statusOfResidenceList);
                             statusOfResidenceList.Show();
+                            break;
+                        case "RollCallRecordSheet":
+                            RollCallRecordSheet rollCallRecordSheet = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);             // 点呼記録簿
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, rollCallRecordSheet);
+                            rollCallRecordSheet.Show();
+                            break;
+                        case "LegalTwelveItemList":
+                            LegalTwelveItemList legalTwelveItemList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);             // 法定１２項目の講習
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, legalTwelveItemList);
+                            legalTwelveItemList.Show();
                             break;
                     }
                     break;
