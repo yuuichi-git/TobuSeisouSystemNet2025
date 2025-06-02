@@ -26,9 +26,6 @@
         private byte[] _picture3;
         private byte[] _picture4;
         private byte[] _picture5;
-        private byte[] _picture6;
-        private byte[] _picture7;
-        private byte[] _picture8;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -65,9 +62,6 @@
             _picture3 = Array.Empty<byte>();
             _picture4 = Array.Empty<byte>();
             _picture5 = Array.Empty<byte>();
-            _picture6 = Array.Empty<byte>();
-            _picture7 = Array.Empty<byte>();
-            _picture8 = Array.Empty<byte>();
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -229,18 +223,6 @@
         public byte[] Picture5 {
             get => _picture5;
             set => _picture5 = value;
-        }
-        public byte[] Picture6 {
-            get => _picture6;
-            set => _picture6 = value;
-        }
-        public byte[] Picture7 {
-            get => _picture7;
-            set => _picture7 = value;
-        }
-        public byte[] Picture8 {
-            get => _picture8;
-            set => _picture8 = value;
         }
         public string InsertPcName {
             get => _insertPcName;

@@ -3,9 +3,13 @@
  */
 using System.Data;
 
+using Accident;
+
 using Accounting;
 
 using Car;
+
+using Certification;
 
 using CollectionWeight;
 
@@ -64,15 +68,15 @@ namespace TobuSeisouSystemNet2025 {
                 "ToolStripMenuItemDataBaseLocal",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
 
-            LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
-            LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new Network().GetIpAddress());
-            LabelExLocation.Text = string.Concat("〇 NW-Location：", new Network().GetConnectLocation(), "からの接続");
+            this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
+            this.LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new Network().GetIpAddress());
+            this.LabelExLocation.Text = string.Concat("〇 NW-Location：", new Network().GetConnectLocation(), "からの接続");
             /*
              * ComboBoxExMonitor
              */
-            ComboBoxExMonitor.Items.Clear();
+            this.ComboBoxExMonitor.Items.Clear();
             List<ComboBoxItem> listComboBoxItem = new();
             int i = 0;
             int primaryScreenNumber = 0;
@@ -84,26 +88,26 @@ namespace TobuSeisouSystemNet2025 {
                 i++;
             }
             // ComboBoxにデータをバインド
-            ComboBoxExMonitor.DataSource = listComboBoxItem;
-            ComboBoxExMonitor.DisplayMember = "DisplayName"; // 表示名を設定
-            ComboBoxExMonitor.ValueMember = "Screen"; // 値を設定
+            this.ComboBoxExMonitor.DataSource = listComboBoxItem;
+            this.ComboBoxExMonitor.DisplayMember = "DisplayName"; // 表示名を設定
+            this.ComboBoxExMonitor.ValueMember = "Screen"; // 値を設定
             // PrimaryScreenをセット
-            ComboBoxExMonitor.SelectedIndex = primaryScreenNumber;
+            this.ComboBoxExMonitor.SelectedIndex = primaryScreenNumber;
             /*
              * TabControlExConnect
              */
             switch (new Network().GetConnectLocation()) {
-                case "システム管理": // TabPage[0]
+                case "システム管理":                                        // TabPage[0]
                     break;
-                case "事務": // TabPage[1]
+                case "事務":                                              // TabPage[1]
                     break;
-                case "本社": // TabPage[2]
+                case "本社":                                              // TabPage[2]
                     break;
-                case "三郷": // TabPage[3]
+                case "三郷":                                              // TabPage[3]
                     break;
-                case "２丁目事務所": // TabPage[]
+                case "２丁目事務所":                                       // TabPage[]
                     break;
-                case "中間処理場": // TabPage[]
+                case "中間処理場":                                         // TabPage[]
                     break;
                 default:
                     break;
@@ -124,22 +128,22 @@ namespace TobuSeisouSystemNet2025 {
                 case "ButtonExConnect":
                     try {
                         _connectionVo.Connect(MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag);
-                        ButtonExConnect.Enabled = false;
-                        ButtonExDisConnect.Enabled = true;
-                        LabelExServerName.Text = string.Concat("接続先サーバー：" + _connectionVo.Connection.DataSource);
-                        LabelExDataBaseName.Text = string.Concat("接続先データベース：" + _connectionVo.Connection.Database);
-                        LabelExStatus.Text = string.Concat("状態：" + _connectionVo.Connection.State);
+                        this.ButtonExConnect.Enabled = false;
+                        this.ButtonExDisConnect.Enabled = true;
+                        this.LabelExServerName.Text = string.Concat("接続先サーバー：" + _connectionVo.Connection.DataSource);
+                        this.LabelExDataBaseName.Text = string.Concat("接続先データベース：" + _connectionVo.Connection.Database);
+                        this.LabelExStatus.Text = string.Concat("状態：" + _connectionVo.Connection.State);
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case "ButtonExDisConnect":
                     _connectionVo.Connection.Close();
-                    ButtonExConnect.Enabled = true;
-                    ButtonExDisConnect.Enabled = false;
-                    LabelExServerName.Text = "接続先サーバー：";
-                    LabelExDataBaseName.Text = "接続先データベース：";
-                    LabelExStatus.Text = "状態：";
+                    this.ButtonExConnect.Enabled = true;
+                    this.ButtonExDisConnect.Enabled = false;
+                    this.LabelExServerName.Text = "接続先サーバー：";
+                    this.LabelExDataBaseName.Text = "接続先データベース：";
+                    this.LabelExStatus.Text = "状態：";
                     break;
             }
         }
@@ -155,42 +159,11 @@ namespace TobuSeisouSystemNet2025 {
                     this.Close();
                     break;
                 case "ToolStripMenuItemDataBaseLocal":
-                    MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = ((ToolStripMenuItem)sender).Checked;
+                    this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = ((ToolStripMenuItem)sender).Checked;
                     break;
                 default:
                     MessageBox.Show("ToolStripMenuItemが登録されていません", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
-            }
-        }
-
-        /// <summary>
-        /// 内部クラス
-        /// </summary>
-        private class ComboBoxItem {
-            string _displayName = string.Empty;
-            Screen _screen = null;
-            /// <summary>
-            /// コンストラクター
-            /// </summary>
-            /// <param name="displayName"></param>
-            /// <param name="screen"></param>
-            public ComboBoxItem(string displayName, Screen screen) {
-                _displayName = displayName;
-                _screen = screen;
-            }
-            /// <summary>
-            /// DisplayName
-            /// </summary>
-            public string DisplayName {
-                get => this._displayName;
-                set => this._displayName = value;
-            }
-            /// <summary>
-            /// Screen
-            /// </summary>
-            public Screen Screen {
-                get => this._screen;
-                set => this._screen = value;
             }
         }
 
@@ -283,17 +256,27 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, legalTwelveItemList);
                             legalTwelveItemList.Show();
                             break;
+                        case "CertificationList":
+                            CertificationList certificationList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                  // 有資格者証一覧
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, certificationList);
+                            certificationList.Show();
+                            break;
+                        case "AccidentList":
+                            AccidentList accidentList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                            // 事故記録簿
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accidentList);
+                            accidentList.Show();
+                            break;
                     }
                     break;
-                case ConnectionState.Connecting: //接続オブジェクトがデータ ソースに接続しています。
+                case ConnectionState.Connecting:                                                                                                // 接続オブジェクトがデータ ソースに接続しています。
                     break;
-                case ConnectionState.Closed: //接続が閉じています。
+                case ConnectionState.Closed:                                                                                                    //接続が閉じています。
                     break;
-                case ConnectionState.Executing: //接続オブジェクトがコマンドを実行しています。
+                case ConnectionState.Executing:                                                                                                 //接続オブジェクトがコマンドを実行しています。
                     break;
-                case ConnectionState.Fetching: //接続オブジェクトがデータを検索しています。
+                case ConnectionState.Fetching:                                                                                                  //接続オブジェクトがデータを検索しています。
                     break;
-                case ConnectionState.Broken: //データ ソースへの接続が断絶しています。
+                case ConnectionState.Broken:                                                                                                    //データ ソースへの接続が断絶しています。
                     break;
             }
         }
@@ -314,6 +297,37 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="e"></param>
         private void Label_MouseLeave(object sender, EventArgs e) {
             ((Label)sender).ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// 内部クラス
+        /// </summary>
+        private class ComboBoxItem {
+            string _displayName = string.Empty;
+            Screen _screen = null;
+            /// <summary>
+            /// コンストラクター
+            /// </summary>
+            /// <param name="displayName"></param>
+            /// <param name="screen"></param>
+            public ComboBoxItem(string displayName, Screen screen) {
+                _displayName = displayName;
+                _screen = screen;
+            }
+            /// <summary>
+            /// DisplayName
+            /// </summary>
+            public string DisplayName {
+                get => this._displayName;
+                set => this._displayName = value;
+            }
+            /// <summary>
+            /// Screen
+            /// </summary>
+            public Screen Screen {
+                get => this._screen;
+                set => this._screen = value;
+            }
         }
 
         /// <summary>

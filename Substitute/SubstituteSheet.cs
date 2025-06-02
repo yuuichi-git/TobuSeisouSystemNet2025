@@ -484,9 +484,7 @@ namespace Substitute {
             // 配車パネルのデータ
             SetMasterVo displaySetMasterVo = ((SetLabel)_setControl.DeployedSetLabel).SetMasterVo;
             CarMasterVo displayCarMasterVo = ((CarLabel)_setControl.DeployedCarLabel).CarMasterVo;
-            StaffMasterVo displayStaffMasterVo1 = ((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo;
-            StaffMasterVo displayStaffMasterVo2 = ((StaffLabel)_setControl.DeployedStaffLabel2).StaffMasterVo;
-            StaffMasterVo displayStaffMasterVo3 = ((StaffLabel)_setControl.DeployedStaffLabel3).StaffMasterVo;
+            StaffMasterVo displayStaffMasterVo = ((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo;
 
             // 日付
             CultureInfo cultureInfo = new("ja-JP", true);
@@ -494,12 +492,13 @@ namespace Substitute {
             sheetView.Cells["B2"].Text = DateTime.Now.ToString("gg　　y年　　M月　　d日　　(dddd)", cultureInfo);
             // 宛先
             sheetView.Cells["C3"].Text = _cleanOfficeName;
+            // 組数
+            sheetView.Cells["B9"].Text = displaySetMasterVo.SetName2;
             /*
              * 代車
              */
             if (vehicleDispatchBodyVo.CarCode != displayCarMasterVo.CarCode) { // 本番データと実際の配車データを比較
-                // 本番 組数 車両ナンバー ドア番号
-                sheetView.Cells["B9"].Text = displaySetMasterVo.SetName2;
+                // 本番 車両ナンバー ドア番号
                 sheetView.Cells["F9"].Text = string.Concat(_carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).RegistrationNumber, " (", _carMasterDao.SelectOneCarMasterP(vehicleDispatchBodyVo.CarCode).DoorNumber.ToString(), ")");
                 // 代車 車両ナンバー ドア番号
                 sheetView.Cells["F11"].Text = string.Concat(_carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).RegistrationNumber, " (", _carMasterDao.SelectOneCarMasterP(displayCarMasterVo.CarCode).DoorNumber.ToString(), ")");
@@ -510,7 +509,7 @@ namespace Substitute {
             if (_setControl.DeployedStaffLabel1 is not null && vehicleDispatchBodyVo.StaffCode1 != ((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo.StaffCode) {
                 // 本番　運転手
                 sheetView.Cells["J9"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(vehicleDispatchBodyVo.StaffCode1).DisplayName);
-                sheetView.Cells["J11"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(displayStaffMasterVo1.StaffCode).DisplayName);
+                sheetView.Cells["J11"].Text = string.Concat(_staffMasterDao.SelectOneStaffMaster(displayStaffMasterVo.StaffCode).DisplayName);
             }
 
             List<int> _arrayHONBANStaffCodes = new();
@@ -678,7 +677,7 @@ namespace Substitute {
         }
 
         /// <summary>
-        /// InitializeSheetViewList3
+        /// InitializeSheetViewKATSUSHIKA
         /// </summary>
         private void InitializeSheetViewKATSUSHIKA() {
             // 日付
@@ -700,6 +699,9 @@ namespace Substitute {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeSheetView() {
             SpreadSubstitute.AllowDragDrop = false; // DrugDropを禁止する
             SpreadSubstitute.PaintSelectionHeader = false; // ヘッダの選択状態をしない

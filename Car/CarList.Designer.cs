@@ -32,6 +32,7 @@
             this.ButtonExUpdate = new ControlEx.ButtonEx();
             this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
             this.SheetViewList = this.SpreadList.GetSheet(0);
+            this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
             this.TableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();
@@ -76,9 +77,9 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, 車両台帳, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 87);
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1898, 927);
@@ -145,5 +146,6 @@
         private ControlEx.CheckBoxEx CheckBoxExDeleteFlag;
         private ControlEx.ButtonEx ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
     }
 }

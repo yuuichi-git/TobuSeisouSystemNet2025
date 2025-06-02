@@ -1,5 +1,5 @@
 ﻿/*
- * 
+ * 2025-05-24
  */
 using System.Diagnostics;
 
@@ -34,12 +34,12 @@ namespace Common {
         /// <param name="startAddress"></param>
         /// <param name="endAddress"></param>
         public void RouteMapOpen(string startAddress, string endAddress) {
-            var startAddressSplit = new AddressSplit(startAddress);
-            var endAddressSplit = new AddressSplit(endAddress);
-            var address1 = string.Concat(startAddressSplit.PrefecturesAddress, startAddressSplit.CityAddress, startAddressSplit.OtherAddress);
-            var address2 = string.Concat(endAddressSplit.PrefecturesAddress, endAddressSplit.CityAddress, endAddressSplit.OtherAddress);
+            AddressSplit startAddressSplit = new(startAddress);
+            AddressSplit endAddressSplit = new(endAddress);
+            String address1 = string.Concat(startAddressSplit.PrefecturesAddress, startAddressSplit.CityAddress, startAddressSplit.OtherAddress);
+            String address2 = string.Concat(endAddressSplit.PrefecturesAddress, endAddressSplit.CityAddress, endAddressSplit.OtherAddress);
 
-            var processStartInfo = new ProcessStartInfo();
+            ProcessStartInfo processStartInfo = new();
             processStartInfo.FileName = "https://www.google.co.jp/maps/dir/" + address1 + "/" + address2 + "/";
             processStartInfo.UseShellExecute = true;
 

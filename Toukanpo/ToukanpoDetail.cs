@@ -23,7 +23,6 @@ namespace Toukanpo {
             /*
              * Dao
              */
-            _connectionVo = new();
             _toukanpoTrainingCardDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
             /*
@@ -62,7 +61,6 @@ namespace Toukanpo {
             /*
              * Dao
              */
-            _connectionVo = new();
             _toukanpoTrainingCardDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
             /*

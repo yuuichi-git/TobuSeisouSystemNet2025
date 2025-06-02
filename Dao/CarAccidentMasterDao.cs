@@ -101,9 +101,6 @@ namespace Dao {
                                             "Picture3," +
                                             "Picture4," +
                                             "Picture5," +
-                                            "Picture6," +
-                                            "Picture7," +
-                                            "Picture8," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -140,9 +137,6 @@ namespace Dao {
                     carAccidentMasterVo.Picture3 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture3"]);
                     carAccidentMasterVo.Picture4 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture4"]);
                     carAccidentMasterVo.Picture5 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture5"]);
-                    carAccidentMasterVo.Picture6 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture6"]);
-                    carAccidentMasterVo.Picture7 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture7"]);
-                    carAccidentMasterVo.Picture8 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture8"]);
                     carAccidentMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carAccidentMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     carAccidentMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
@@ -189,9 +183,6 @@ namespace Dao {
                                             "Picture3," +
                                             "Picture4," +
                                             "Picture5," +
-                                            "Picture6," +
-                                            "Picture7," +
-                                            "Picture8," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -227,9 +218,6 @@ namespace Dao {
                     carAccidentMasterVo.Picture3 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture3"]);
                     carAccidentMasterVo.Picture4 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture4"]);
                     carAccidentMasterVo.Picture5 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture5"]);
-                    carAccidentMasterVo.Picture6 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture6"]);
-                    carAccidentMasterVo.Picture7 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture7"]);
-                    carAccidentMasterVo.Picture8 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture8"]);
                     carAccidentMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carAccidentMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     carAccidentMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
@@ -274,9 +262,6 @@ namespace Dao {
                                             //"Picture3," +
                                             //"Picture4," +
                                             //"Picture5," +
-                                            //"Picture6," +
-                                            //"Picture7," +
-                                            //"Picture8," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -313,9 +298,6 @@ namespace Dao {
                     //hCarAccidentMasterVo.Picture3 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture3"]);
                     //hCarAccidentMasterVo.Picture4 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture4"]);
                     //hCarAccidentMasterVo.Picture5 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture5"]);
-                    //hCarAccidentMasterVo.Picture6 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture6"]);
-                    //hCarAccidentMasterVo.Picture7 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture7"]);
-                    //hCarAccidentMasterVo.Picture8 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture8"]);
                     carAccidentMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carAccidentMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     carAccidentMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
@@ -359,9 +341,6 @@ namespace Dao {
                                                                      "Picture3," +
                                                                      "Picture4," +
                                                                      "Picture5," +
-                                                                     "Picture6," +
-                                                                     "Picture7," +
-                                                                     "Picture8," +
                                                                      "InsertPcName," +
                                                                      "InsertYmdHms," +
                                                                      "UpdatePcName," +
@@ -393,9 +372,6 @@ namespace Dao {
                                              "@member_picture3," +
                                              "@member_picture4," +
                                              "@member_picture5," +
-                                             "@member_picture6," +
-                                             "@member_picture7," +
-                                             "@member_picture8," +
                                              "'" + Environment.MachineName + "'," +
                                              "'" + DateTime.Now + "'," +
                                              "'" + string.Empty + "'," +
@@ -415,12 +391,6 @@ namespace Dao {
                     sqlCommand.Parameters.Add("@member_picture4", SqlDbType.Image, carAccidentMasterVo.Picture4.Length).Value = carAccidentMasterVo.Picture4;
                 if (carAccidentMasterVo.Picture5 is not null)
                     sqlCommand.Parameters.Add("@member_picture5", SqlDbType.Image, carAccidentMasterVo.Picture5.Length).Value = carAccidentMasterVo.Picture5;
-                if (carAccidentMasterVo.Picture6 is not null)
-                    sqlCommand.Parameters.Add("@member_picture6", SqlDbType.Image, carAccidentMasterVo.Picture6.Length).Value = carAccidentMasterVo.Picture6;
-                if (carAccidentMasterVo.Picture7 is not null)
-                    sqlCommand.Parameters.Add("@member_picture7", SqlDbType.Image, carAccidentMasterVo.Picture7.Length).Value = carAccidentMasterVo.Picture7;
-                if (carAccidentMasterVo.Picture8 is not null)
-                    sqlCommand.Parameters.Add("@member_picture8", SqlDbType.Image, carAccidentMasterVo.Picture8.Length).Value = carAccidentMasterVo.Picture8;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -459,9 +429,6 @@ namespace Dao {
                                          "Picture3 = @member_picture3," +
                                          "Picture4 = @member_picture4," +
                                          "Picture5 = @member_picture5," +
-                                         "Picture6 = @member_picture6," +
-                                         "Picture7 = @member_picture7," +
-                                         "Picture8 = @member_picture8," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + carAccidentMasterVo.StaffCode + " AND OccurrenceYmdHms = '" + carAccidentMasterVo.OccurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
@@ -476,12 +443,6 @@ namespace Dao {
                     sqlCommand.Parameters.Add("@member_picture4", SqlDbType.Image, carAccidentMasterVo.Picture4.Length).Value = carAccidentMasterVo.Picture4;
                 if (carAccidentMasterVo.Picture5 is not null)
                     sqlCommand.Parameters.Add("@member_picture5", SqlDbType.Image, carAccidentMasterVo.Picture5.Length).Value = carAccidentMasterVo.Picture5;
-                if (carAccidentMasterVo.Picture6 is not null)
-                    sqlCommand.Parameters.Add("@member_picture6", SqlDbType.Image, carAccidentMasterVo.Picture6.Length).Value = carAccidentMasterVo.Picture6;
-                if (carAccidentMasterVo.Picture7 is not null)
-                    sqlCommand.Parameters.Add("@member_picture7", SqlDbType.Image, carAccidentMasterVo.Picture7.Length).Value = carAccidentMasterVo.Picture7;
-                if (carAccidentMasterVo.Picture8 is not null)
-                    sqlCommand.Parameters.Add("@member_picture8", SqlDbType.Image, carAccidentMasterVo.Picture8.Length).Value = carAccidentMasterVo.Picture8;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

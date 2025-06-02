@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusOfResidence", "Status
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegalTwelveItem", "LegalTwelveItem\LegalTwelveItem.csproj", "{076AB7CA-C541-4392-A767-86B80CDDFF75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Certification", "Certification\Certification.csproj", "{5A71407D-EB52-4B73-9052-202F02D24A13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accident", "Accident\Accident.csproj", "{A0F33E11-DA02-4687-AC36-82180FDE1EBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,14 @@ Global
 		{076AB7CA-C541-4392-A767-86B80CDDFF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076AB7CA-C541-4392-A767-86B80CDDFF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076AB7CA-C541-4392-A767-86B80CDDFF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A71407D-EB52-4B73-9052-202F02D24A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A71407D-EB52-4B73-9052-202F02D24A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A71407D-EB52-4B73-9052-202F02D24A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A71407D-EB52-4B73-9052-202F02D24A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

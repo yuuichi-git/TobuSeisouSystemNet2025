@@ -8,15 +8,18 @@ using Vo.Properties;
 
 namespace Vo {
     public class ConnectionVo {
-        private SqlConnection _sqlConnection = new();
-        private Ping _ping = new();
-        private PingReply _pingReply = null;
+        private SqlConnection _sqlConnection;
+        private readonly Ping _ping;
+        private PingReply? _pingReply;
         private string _serverName = "(Local)";
 
         /// <summary>
         /// コンストラクター
         /// </summary>
         public ConnectionVo() {
+            _sqlConnection = new();
+            _ping = new();
+            _pingReply = null;
         }
 
         /// <summary>
@@ -30,11 +33,11 @@ namespace Vo {
                     if (!localDbFlag) {
                         _pingReply = _ping.Send("192.168.1.21");
                         if (_pingReply.Status == IPStatus.Success)
-                            _serverName = @"TOBUSERVER\SQLEXPRESS";
+                            _serverName = @"192.168.1.21\SQLEXPRESS";
                     }
                     break;
                 default:
-                    _serverName = @"TOBUSERVER\SQLEXPRESS";
+                    _serverName = @"192.168.1.21\SQLEXPRESS";
                     break;
             }
             string connectionString = "Data Source = " + _serverName + ";"
