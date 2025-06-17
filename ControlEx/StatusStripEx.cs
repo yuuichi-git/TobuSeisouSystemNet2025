@@ -28,10 +28,17 @@ namespace ControlEx {
             this.CreateItem();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CreateItem() {
             /*
              * 
@@ -46,7 +53,7 @@ namespace ControlEx {
         }
 
         /*
-         * アクセサー
+         * 
          */
         /// <summary>
         /// 

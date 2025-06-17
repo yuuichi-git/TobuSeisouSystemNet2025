@@ -117,9 +117,9 @@ namespace Car {
         /// </summary>
         private readonly Dictionary<int, string> _dictionaryOtherName = new Dictionary<int, string> { { 10, "事業用" }, { 11, "自家用" } };
         /// <summary>
-        /// 10:キャブオーバー 11:塵芥車 12:ダンプ 13:コンテナ専用 14:脱着装置付コンテナ専用車 15:粉粒体運搬車 16:糞尿車 17:清掃車
+        /// 10:キャブオーバー 11:塵芥車 12:ダンプ 13:コンテナ専用 14:脱着装置付コンテナ専用車 15:粉粒体運搬車 16:糞尿車 17:清掃車 18:番
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryShapeName = new Dictionary<int, string> { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" } };
+        private readonly Dictionary<int, string> _dictionaryShapeName = new Dictionary<int, string> { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" }, { 18, "バン" } };
 
         /// <summary>
         /// 
@@ -157,7 +157,8 @@ namespace Car {
             };
             this.MenuStripEx1.ChangeEnable(listString);
 
-            this.InitializeSheetViewList(this.SheetViewList);
+            this.InitializeSheetViewList1(this.SheetViewList);
+            this.InitializeSheetViewList2(this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金);
             /*
              * Eventを登録する
              */
@@ -170,14 +171,23 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
-            this.SetSheetViewList(SheetViewList);
+            switch (this.SpreadList.ActiveSheet.SheetName) {
+                case "車両台帳":
+                    this.SetSheetViewList1(this.SheetViewList);
+                    break;
+                case "東京都運輸事業者向け燃料費高騰緊急対策事業支援金":
+                    this.SetSheetViewList2(this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金);
+                    break;
+
+            }
         }
 
-        int spreadListTopRow = 0;
+        int spreadListTopRow1 = 0;
         /// <summary>
-        /// PutSheetViewList
+        /// 
         /// </summary>
-        private void SetSheetViewList(SheetView sheetView) {
+        /// <param name="sheetView"></param>
+        private void SetSheetViewList1(SheetView sheetView) {
             List<CarMasterVo> _listCarMasterVo = new();
             if (CheckBoxExDeleteFlag.Checked) {                                                                                                                                         // 削除済のレコードも表示
                 _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
@@ -185,7 +195,7 @@ namespace Car {
                 _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.DeleteFlag == false);
             }
             SpreadList.SuspendLayout();                                                                                                                                                 // 非活性化
-            spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得
+            spreadListTopRow1 = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得
             if (sheetView.Rows.Count > 0)                                                                                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
 
@@ -222,20 +232,97 @@ namespace Car {
                 sheetView.Cells[i, _colRemarks].Text = carMasterVo.Remarks;
                 i++;
             }
-            SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                                                                          // 先頭行（列）インデックスをセット
+            SpreadList.SetViewportTopRow(0, spreadListTopRow1);                                                                                                                          // 先頭行（列）インデックスをセット
+
+            SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+        }
+
+        int spreadListTopRow2 = 0;
+        /// <summary>
+        /// PutSheetViewList
+        /// </summary>
+        private void SetSheetViewList2(SheetView sheetView) {
+            List<CarMasterVo> _listCarMasterVo = new();
+            if (CheckBoxExDeleteFlag.Checked) {                                                                                                                                         // 削除済のレコードも表示
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.OtherCode == 10);
+            } else {
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.OtherCode == 10 && x.DeleteFlag == false);
+            }
+            SpreadList.SuspendLayout();                                                                                                                                                 // 非活性化
+            spreadListTopRow2 = SpreadList.GetViewportTopRow(0);                                                                                                                        // 先頭行（列）インデックスを取得
+            if (sheetView.Rows.Count > 0)                                                                                                                                               // Rowを削除する
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+
+            int i = 0;
+            foreach (CarMasterVo carMasterVo in _listCarMasterVo.OrderBy(x => x.CarKindCode).ThenBy(x => x.RegistrationNumber4)) {
+                sheetView.Rows.Add(i, 1);
+                sheetView.RowHeader.Columns[0].Label = (i + 1).ToString();                                                                                                              // Rowヘッダ
+                sheetView.Rows[i].Height = 22;                                                                                                                                          // Rowの高さ
+                sheetView.Rows[i].Resizable = false;                                                                                                                                    // RowのResizableを禁止
+                sheetView.Rows[i].ForeColor = !carMasterVo.DeleteFlag ? Color.Black : Color.Red;                                                                                        // 削除済レコードは赤色で表示する
+
+                sheetView.Cells[i, _colCarCode].Value = carMasterVo.CarCode;
+                sheetView.Cells[i, _colEmergencyVehicle].Value = carMasterVo.EmergencyVehicleFlag;
+                if (carMasterVo.EmergencyVehicleFlag) {
+                    sheetView.Cells[i, _colEmergencyVehicleDate].ForeColor = carMasterVo.EmergencyVehicleDate.Date < DateTime.Now.Date ? Color.Red : Color.Black;
+                    sheetView.Cells[i, _colEmergencyVehicleDate].Value = carMasterVo.EmergencyVehicleDate.Date;
+                }
+                sheetView.Cells[i, 0].Text = carMasterVo.RegistrationNumber1.ToString();
+                sheetView.Cells[i, 1].Text = carMasterVo.RegistrationNumber2.ToString();
+                sheetView.Cells[i, 2].Text = carMasterVo.RegistrationNumber3.ToString();
+                sheetView.Cells[i, 3].Text = carMasterVo.RegistrationNumber4.ToString().PadLeft(4, '・');
+                switch (carMasterVo.CarKindCode) {
+                    case 10:    // 軽自動車
+                        sheetView.Cells[i, 4].Text = "軽自動車";
+                        break;
+                    case 11:    // 小型
+                    case 12:    // 普通
+                        sheetView.Cells[i, 4].Text = "普通・小型";
+                        break;
+                }
+                sheetView.Cells[i, 5].Text = "所有";
+                sheetView.Cells[i, 6].Text = carMasterVo.OtherCode == 10 ? "事業用" : "自家用"
+                ;
+                i++;
+            }
+            SpreadList.SetViewportTopRow(0, spreadListTopRow2);                                                                                                                          // 先頭行（列）インデックスをセット
 
             SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
         /// <summary>
-        /// 
+        /// 車両台帳
         /// </summary>
         /// <param name="sheetView"></param>
         /// <returns></returns>
-        private SheetView InitializeSheetViewList(SheetView sheetView) {
+        private SheetView InitializeSheetViewList1(SheetView sheetView) {
             this.SpreadList.AllowDragDrop = false;                                                      // DrugDropを禁止する
             this.SpreadList.PaintSelectionHeader = false;                                               // ヘッダの選択状態をしない
+            this.SpreadList.TabStripPolicy = TabStripPolicy.Always;                                     // シートタブを表示
+            sheetView.AlternatingRows.Count = 2;                                                        // 行スタイルを２行単位とします
+            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                                  // 1行目の背景色を設定します
+            sheetView.AlternatingRows[1].BackColor = Color.White;                                       // 2行目の背景色を設定します
+            sheetView.ColumnHeader.Rows[0].Height = 30;                                                 // Columnヘッダの高さ
+            sheetView.GrayAreaBackColor = Color.White;
+            sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                          // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 50;                                                  // 行ヘッダの幅を変更します
+            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
+            sheetView.RemoveRows(0, sheetView.Rows.Count);
+            return sheetView;
+        }
+
+        /// <summary>
+        /// 東京都運輸事業者向け燃料費高騰緊急対策事業支援金
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <returns></returns>
+        private SheetView InitializeSheetViewList2(SheetView sheetView) {
+            this.SpreadList.AllowDragDrop = false;                                                      // DrugDropを禁止する
+            this.SpreadList.PaintSelectionHeader = false;                                               // ヘッダの選択状態をしない
+            this.SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
             this.SpreadList.TabStripPolicy = TabStripPolicy.Always;                                     // シートタブを表示
             sheetView.AlternatingRows.Count = 2;                                                        // 行スタイルを２行単位とします
             sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                                  // 1行目の背景色を設定します
@@ -262,11 +349,21 @@ namespace Car {
             if (e.Row < 0)
                 return;
             /*
-             * CarDetailを表示する
+             * ActiveSheetにより処理を変更
              */
-            CarDetail carDetail = new(_connectionVo, (int)SheetViewList.Cells[e.Row, _colCarCode].Value);
-            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
-            carDetail.ShowDialog(this);
+            switch (this.SpreadList.ActiveSheet.SheetName) {
+                case "車両台帳":
+                    /*
+                     * CarDetailを表示する
+                     */
+                    CarDetail carDetail = new(_connectionVo, (int)SheetViewList.Cells[e.Row, _colCarCode].Value);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
+                    carDetail.ShowDialog(this);
+                    break;
+                case "東京都運輸事業者向け燃料費高騰緊急対策事業支援金":
+
+                    break;
+            }
         }
 
         /// <summary>

@@ -148,7 +148,7 @@ namespace Staff {
 
             this.InitializeControls();
             try {
-                this.SetControl(_staffMasterDao.SelectOneStaffMaster(staffCode));
+                this.SetControls(_staffMasterDao.SelectOneStaffMaster(staffCode));
             } catch (Exception exception) {
                 MessageBox.Show(exception.Message);
             }
@@ -432,16 +432,32 @@ namespace Staff {
              * GroupBoxExInsurance
              * 保険関係
              */
-            staffMasterVo.HealthInsuranceDate = DateTimeExHealthInsuranceDate.GetValue();                                               // 健康保険加入日
+            if (DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                    // 健康保険加入日
+                staffMasterVo.HealthInsuranceDate = DateTimeExHealthInsuranceDate.GetValue();
+            } else {
+                staffMasterVo.HealthInsuranceDate = _defaultDateTime;
+            }
             staffMasterVo.HealthInsuranceNumber = ComboBoxExHealthInsuranceNumber.Text;                                                 // 健康保険番号
             staffMasterVo.HealthInsuranceNote = TextBoxExHealthInsuranceNote.Text;                                                      // 健康保険備考
-            staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();                                                 // 年金保険加入日
+            if (DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                     // 年金保険加入日
+                staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();
+            } else {
+                staffMasterVo.WelfarePensionDate = _defaultDateTime;
+            }
             staffMasterVo.WelfarePensionNumber = ComboBoxExWelfarePensionNumber.Text;                                                   // 年金保険番号
             staffMasterVo.WelfarePensionNote = TextBoxExWelfarePensionNote.Text;                                                        // 年金保険備考
-            staffMasterVo.EmploymentInsuranceDate = DateTimeExEmploymentInsuranceDate.GetValue();                                       // 雇用保険加入日
+            if (DateTimeExEmploymentInsuranceDate.CustomFormat != " ") {                                                                // 雇用保険加入日
+                staffMasterVo.EmploymentInsuranceDate = DateTimeExEmploymentInsuranceDate.GetValue();
+            } else {
+                staffMasterVo.EmploymentInsuranceDate = _defaultDateTime;
+            }
             staffMasterVo.EmploymentInsuranceNumber = ComboBoxExEmploymentInsuranceNumber.Text;                                         // 雇用保険番号
             staffMasterVo.EmploymentInsuranceNote = TextBoxExEmploymentInsuranceNote.Text;                                              // 雇用保険備考
-            staffMasterVo.WorkerAccidentInsuranceDate = DateTimeExWorkerAccidentInsuranceDate.GetValue();                               // 労災保険加入日
+            if (DateTimeExWorkerAccidentInsuranceDate.CustomFormat != " ") {                                                            // 労災保険加入日
+                staffMasterVo.WorkerAccidentInsuranceDate = DateTimeExWorkerAccidentInsuranceDate.GetValue();
+            } else {
+                staffMasterVo.WorkerAccidentInsuranceDate = _defaultDateTime;
+            }
             staffMasterVo.WorkerAccidentInsuranceNumber = ComboBoxExWorkerAccidentInsuranceNumber.Text;                                 // 労災保険番号
             staffMasterVo.WorkerAccidentInsuranceNote = TextBoxExWorkerAccidentInsuranceNote.Text;                                      // 労災保険備考
 
@@ -452,7 +468,7 @@ namespace Staff {
         /// 
         /// </summary>
         /// <param name="staffMasterVo"></param>
-        private void SetControl(StaffMasterVo staffMasterVo) {
+        private void SetControls(StaffMasterVo staffMasterVo) {
             /*
              * Nullチェック
              */

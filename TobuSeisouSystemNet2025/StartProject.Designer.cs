@@ -88,12 +88,16 @@
             this.labelEx5 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
+            this.TabPageHaikibutu = new TabPage();
+            this.labelEx46 = new ControlEx.LabelEx();
+            this.labelEx47 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
             this.TabControlExConnect.SuspendLayout();
             this.TabPageOffice.SuspendLayout();
             this.TabPageAdachi.SuspendLayout();
+            this.TabPageHaikibutu.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -300,6 +304,7 @@
             this.TabControlExConnect.Controls.Add(this.TabPageOffice);
             this.TabControlExConnect.Controls.Add(this.TabPageAdachi);
             this.TabControlExConnect.Controls.Add(this.TabPageMisato);
+            this.TabControlExConnect.Controls.Add(this.TabPageHaikibutu);
             this.TabControlExConnect.Location = new Point(8, 164);
             this.TabControlExConnect.Name = "TabControlExConnect";
             this.TabControlExConnect.SelectedIndex = 0;
@@ -900,6 +905,43 @@
             this.TabPageMisato.Text = "三郷";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
+            // TabPageHaikibutu
+            // 
+            this.TabPageHaikibutu.Controls.Add(this.labelEx46);
+            this.TabPageHaikibutu.Controls.Add(this.labelEx47);
+            this.TabPageHaikibutu.Location = new Point(4, 24);
+            this.TabPageHaikibutu.Name = "TabPageHaikibutu";
+            this.TabPageHaikibutu.Padding = new Padding(3);
+            this.TabPageHaikibutu.Size = new Size(752, 464);
+            this.TabPageHaikibutu.TabIndex = 4;
+            this.TabPageHaikibutu.Text = "廃棄物";
+            this.TabPageHaikibutu.UseVisualStyleBackColor = true;
+            // 
+            // labelEx46
+            // 
+            this.labelEx46.ForeColor = Color.DimGray;
+            this.labelEx46.Location = new Point(16, 32);
+            this.labelEx46.Name = "labelEx46";
+            this.labelEx46.Size = new Size(344, 20);
+            this.labelEx46.TabIndex = 15;
+            this.labelEx46.Text = "　顧客リストの作成・修正・検索";
+            this.labelEx46.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx47
+            // 
+            this.labelEx47.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.labelEx47.ForeColor = Color.Black;
+            this.labelEx47.Location = new Point(16, 12);
+            this.labelEx47.Name = "labelEx47";
+            this.labelEx47.Size = new Size(344, 20);
+            this.labelEx47.TabIndex = 14;
+            this.labelEx47.Tag = "WasteList";
+            this.labelEx47.Text = "廃棄物顧客リスト";
+            this.labelEx47.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx47.Click += this.Label_Click;
+            this.labelEx47.MouseEnter += this.Label_MouseEnter;
+            this.labelEx47.MouseLeave += this.Label_MouseLeave;
+            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -920,6 +962,7 @@
             this.TabControlExConnect.ResumeLayout(false);
             this.TabPageOffice.ResumeLayout(false);
             this.TabPageAdachi.ResumeLayout(false);
+            this.TabPageHaikibutu.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -990,5 +1033,8 @@
         private ControlEx.LabelEx labelEx35;
         private ControlEx.LabelEx labelEx38;
         private ControlEx.LabelEx labelEx39;
+        private TabPage TabPageHaikibutu;
+        private ControlEx.LabelEx labelEx46;
+        private ControlEx.LabelEx labelEx47;
     }
 }

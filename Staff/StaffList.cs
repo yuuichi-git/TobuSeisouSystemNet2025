@@ -209,7 +209,7 @@ namespace Staff {
             _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);// 先頭行（列）インデックスを取得
             if (sheetView.Rows.Count > 0)// Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+            _findListStaffMasterVo = this.TabControlEx1.SelectedTab.Text switch {
                 "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
@@ -277,8 +277,16 @@ namespace Staff {
                      */
                     DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(staffMasterVo.StaffCode);
                     if (medicalExaminationDate != _defaultDateTime) {
-                        sheetView.Cells[rowCount, 18].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                        if (medicalExaminationDate.AddYears(1) > DateTime.Now) {
+                            sheetView.Cells[rowCount, 18].ForeColor = Color.Black;
+                            sheetView.Cells[rowCount, 18].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                        } else {
+                            sheetView.Cells[rowCount, 18].ForeColor = Color.Red;
+                            sheetView.Cells[rowCount, 18].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                        }
+                            
                     } else {
+                        sheetView.Cells[rowCount, 18].ForeColor = Color.DarkGray;
                         sheetView.Cells[rowCount, 18].Value = "健康診断の記録無し";
                     }
                     // 現住所

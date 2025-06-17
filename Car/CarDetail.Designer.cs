@@ -445,7 +445,7 @@
             // 
             this.ComboBoxExShapeCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExShapeCode.FormattingEnabled = true;
-            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "キャブオーバー", "塵芥車", "ダンプ", "コンテナ専用", "脱着装置付コンテナ専用車", "粉粒体運搬車", "糞尿車", "清掃車" });
+            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "キャブオーバー", "塵芥車", "ダンプ", "コンテナ専用", "脱着装置付コンテナ専用車", "粉粒体運搬車", "糞尿車", "清掃車", "バン" });
             this.ComboBoxExShapeCode.Location = new Point(188, 188);
             this.ComboBoxExShapeCode.Name = "ComboBoxExShapeCode";
             this.ComboBoxExShapeCode.Size = new Size(164, 23);

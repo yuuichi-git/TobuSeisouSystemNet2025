@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Certification", "Certificat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accident", "Accident\Accident.csproj", "{A0F33E11-DA02-4687-AC36-82180FDE1EBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waste", "Waste\Waste.csproj", "{0568CC0D-E937-4611-AB8A-20EC397F320A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F33E11-DA02-4687-AC36-82180FDE1EBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2672,6 +2672,8 @@
             // ComboBoxExMedicalInstitutionName
             // 
             this.ComboBoxExMedicalInstitutionName.FormattingEnabled = true;
+            this.ComboBoxExMedicalInstitutionName.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExMedicalInstitutionName.Items.AddRange(new object[] { "一般財団法人　日本健康増進財団" });
             this.ComboBoxExMedicalInstitutionName.Location = new Point(228, 44);
             this.ComboBoxExMedicalInstitutionName.Name = "ComboBoxExMedicalInstitutionName";
             this.ComboBoxExMedicalInstitutionName.Size = new Size(328, 23);
@@ -2682,6 +2684,7 @@
             this.DateTimeExMedicalExaminationDate.CultureFlag = false;
             this.DateTimeExMedicalExaminationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.DateTimeExMedicalExaminationDate.Format = DateTimePickerFormat.Custom;
+            this.DateTimeExMedicalExaminationDate.ImeMode = ImeMode.Disable;
             this.DateTimeExMedicalExaminationDate.Location = new Point(36, 44);
             this.DateTimeExMedicalExaminationDate.Name = "DateTimeExMedicalExaminationDate";
             this.DateTimeExMedicalExaminationDate.Size = new Size(188, 23);

@@ -46,7 +46,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1000, 669);
+            this.TableLayoutPanelExBase.Size = new Size(1184, 961);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // PictureBoxEx1
@@ -54,7 +54,7 @@
             this.PictureBoxEx1.Dock = DockStyle.Fill;
             this.PictureBoxEx1.Location = new Point(3, 27);
             this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(994, 615);
+            this.PictureBoxEx1.Size = new Size(1178, 907);
             this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
             this.PictureBoxEx1.TabIndex = 0;
             this.PictureBoxEx1.TabStop = false;
@@ -63,16 +63,16 @@
             // 
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1000, 24);
+            this.MenuStripEx1.Size = new Size(1184, 24);
             this.MenuStripEx1.TabIndex = 2;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 647);
+            this.StatusStripEx1.Location = new Point(0, 939);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1000, 22);
+            this.StatusStripEx1.Size = new Size(1184, 22);
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1000, 669);
+            this.ClientSize = new Size(1184, 961);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;

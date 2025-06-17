@@ -35,6 +35,8 @@ using VehicleDispatch;
 
 using Vo;
 
+using Waste;
+
 namespace TobuSeisouSystemNet2025 {
     public partial class StartProject : Form {
         /*
@@ -112,6 +114,7 @@ namespace TobuSeisouSystemNet2025 {
                 default:
                     break;
             }
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
              * Event
              */
@@ -265,6 +268,11 @@ namespace TobuSeisouSystemNet2025 {
                             AccidentList accidentList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                            // 事故記録簿
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accidentList);
                             accidentList.Show();
+                            break;
+                        case "WasteList":
+                            WasteList wasteList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                                  // 廃棄物
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wasteList);
+                            wasteList.Show();
                             break;
                     }
                     break;
