@@ -436,14 +436,18 @@
             // 
             // labelEx33
             // 
-            this.labelEx33.ForeColor = Color.DimGray;
+            this.labelEx33.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            this.labelEx33.ForeColor = Color.Black;
             this.labelEx33.Location = new Point(376, 204);
             this.labelEx33.Name = "labelEx33";
             this.labelEx33.Size = new Size(344, 20);
             this.labelEx33.TabIndex = 32;
-            this.labelEx33.Tag = "";
+            this.labelEx33.Tag = "ToukanpoSpeedSurvey";
             this.labelEx33.Text = "東環保(速度超過集計表)";
             this.labelEx33.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx33.Click += this.Label_Click;
+            this.labelEx33.MouseEnter += this.Label_MouseEnter;
+            this.labelEx33.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx30
             // 

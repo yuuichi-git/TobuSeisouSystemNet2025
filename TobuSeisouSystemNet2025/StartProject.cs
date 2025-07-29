@@ -234,6 +234,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
                             toukanpoList.Show();
                             break;
+                        case "ToukanpoSpeedSurvey":                                                                                             // 東環保速度超過表
+                            ToukanpoSpeedSurvey toukanpoSpeedSurvey = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoSpeedSurvey);
+                            toukanpoSpeedSurvey.Show();
+                            break;
                         case "AccountingParttimeList":
                             AccountingParttimeList accountingParttimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);        // アルバイト出勤状況
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingParttimeList);

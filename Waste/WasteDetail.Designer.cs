@@ -203,7 +203,7 @@
             this.TextBoxExEmissionPlaceAddress.ImeMode = ImeMode.Hiragana;
             this.TextBoxExEmissionPlaceAddress.Location = new Point(168, 264);
             this.TextBoxExEmissionPlaceAddress.Name = "TextBoxExEmissionPlaceAddress";
-            this.TextBoxExEmissionPlaceAddress.Size = new Size(276, 23);
+            this.TextBoxExEmissionPlaceAddress.Size = new Size(544, 23);
             this.TextBoxExEmissionPlaceAddress.TabIndex = 10;
             // 
             // TextBoxExEmissionPlaceName
@@ -211,7 +211,7 @@
             this.TextBoxExEmissionPlaceName.ImeMode = ImeMode.Hiragana;
             this.TextBoxExEmissionPlaceName.Location = new Point(168, 236);
             this.TextBoxExEmissionPlaceName.Name = "TextBoxExEmissionPlaceName";
-            this.TextBoxExEmissionPlaceName.Size = new Size(276, 23);
+            this.TextBoxExEmissionPlaceName.Size = new Size(544, 23);
             this.TextBoxExEmissionPlaceName.TabIndex = 9;
             // 
             // MaskedTextBoxExFaxNumber
@@ -237,7 +237,7 @@
             this.TextBoxExAddress.ImeMode = ImeMode.Hiragana;
             this.TextBoxExAddress.Location = new Point(168, 180);
             this.TextBoxExAddress.Name = "TextBoxExAddress";
-            this.TextBoxExAddress.Size = new Size(276, 23);
+            this.TextBoxExAddress.Size = new Size(544, 23);
             this.TextBoxExAddress.TabIndex = 6;
             // 
             // MaskedTextBoxExPostNumber
@@ -256,7 +256,7 @@
             this.ComboBoxExTransportationCompany.Items.AddRange(new object[] { "東武清掃株式会社", "都清掃株式会社", "第一輸送株式会社" });
             this.ComboBoxExTransportationCompany.Location = new Point(168, 68);
             this.ComboBoxExTransportationCompany.Name = "ComboBoxExTransportationCompany";
-            this.ComboBoxExTransportationCompany.Size = new Size(276, 23);
+            this.ComboBoxExTransportationCompany.Size = new Size(544, 23);
             this.ComboBoxExTransportationCompany.TabIndex = 2;
             // 
             // TextBoxExEmissionCompanyKana
@@ -264,7 +264,7 @@
             this.TextBoxExEmissionCompanyKana.ImeMode = ImeMode.Katakana;
             this.TextBoxExEmissionCompanyKana.Location = new Point(168, 96);
             this.TextBoxExEmissionCompanyKana.Name = "TextBoxExEmissionCompanyKana";
-            this.TextBoxExEmissionCompanyKana.Size = new Size(276, 23);
+            this.TextBoxExEmissionCompanyKana.Size = new Size(544, 23);
             this.TextBoxExEmissionCompanyKana.TabIndex = 3;
             // 
             // groupBoxEx1
@@ -304,6 +304,8 @@
             this.NumericUpDownExUnitPriceBulkyDisposal.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceBulkyDisposal.TabIndex = 4;
             this.NumericUpDownExUnitPriceBulkyDisposal.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceBulkyDisposal.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceBulkyDisposal.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceBulkyTransportationCosts
             // 
@@ -315,6 +317,8 @@
             this.NumericUpDownExUnitPriceBulkyTransportationCosts.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceBulkyTransportationCosts.TabIndex = 3;
             this.NumericUpDownExUnitPriceBulkyTransportationCosts.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceBulkyTransportationCosts.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceBulkyTransportationCosts.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceOtherCosts
             // 
@@ -326,6 +330,8 @@
             this.NumericUpDownExUnitPriceOtherCosts.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceOtherCosts.TabIndex = 8;
             this.NumericUpDownExUnitPriceOtherCosts.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceOtherCosts.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceOtherCosts.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceTransportationCosts
             // 
@@ -337,6 +343,8 @@
             this.NumericUpDownExUnitPriceTransportationCosts.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceTransportationCosts.TabIndex = 6;
             this.NumericUpDownExUnitPriceTransportationCosts.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceTransportationCosts.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceTransportationCosts.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceDisposal
             // 
@@ -348,6 +356,8 @@
             this.NumericUpDownExUnitPriceDisposal.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceDisposal.TabIndex = 2;
             this.NumericUpDownExUnitPriceDisposal.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceDisposal.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceDisposal.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceCollection
             // 
@@ -359,6 +369,8 @@
             this.NumericUpDownExUnitPriceCollection.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceCollection.TabIndex = 1;
             this.NumericUpDownExUnitPriceCollection.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceCollection.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceCollection.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceManifestCosts
             // 
@@ -370,6 +382,8 @@
             this.NumericUpDownExUnitPriceManifestCosts.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceManifestCosts.TabIndex = 7;
             this.NumericUpDownExUnitPriceManifestCosts.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceManifestCosts.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceManifestCosts.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceResources
             // 
@@ -381,6 +395,8 @@
             this.NumericUpDownExUnitPriceResources.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceResources.TabIndex = 5;
             this.NumericUpDownExUnitPriceResources.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceResources.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceResources.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // NumericUpDownExUnitPriceFlammable
             // 
@@ -392,6 +408,8 @@
             this.NumericUpDownExUnitPriceFlammable.Size = new Size(112, 23);
             this.NumericUpDownExUnitPriceFlammable.TabIndex = 0;
             this.NumericUpDownExUnitPriceFlammable.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownExUnitPriceFlammable.ThousandsSeparator = true;
+            this.NumericUpDownExUnitPriceFlammable.Value = new decimal(new int[] { 999999, 0, 0, 0 });
             // 
             // labelEx19
             // 
@@ -552,7 +570,7 @@
             this.ComboBoxExEmissionCompanyName.ImeMode = ImeMode.Hiragana;
             this.ComboBoxExEmissionCompanyName.Location = new Point(168, 124);
             this.ComboBoxExEmissionCompanyName.Name = "ComboBoxExEmissionCompanyName";
-            this.ComboBoxExEmissionCompanyName.Size = new Size(276, 23);
+            this.ComboBoxExEmissionCompanyName.Size = new Size(544, 23);
             this.ComboBoxExEmissionCompanyName.TabIndex = 4;
             // 
             // labelEx3
@@ -568,7 +586,7 @@
             // 
             this.ComboBoxExConcludedDetail.FormattingEnabled = true;
             this.ComboBoxExConcludedDetail.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExConcludedDetail.Items.AddRange(new object[] { "一般廃棄物", "産業廃棄物", "資源", "一般・産業", "一般・産業・資源", "粗大ごみ　スポット", "処分業" });
+            this.ComboBoxExConcludedDetail.Items.AddRange(new object[] { "一般廃棄物", "産業廃棄物", "資源", "一般・産業", "一般・産業・資源", "粗大ごみ　スポット", "処分業", "蛍光灯収集運搬" });
             this.ComboBoxExConcludedDetail.Location = new Point(168, 40);
             this.ComboBoxExConcludedDetail.Name = "ComboBoxExConcludedDetail";
             this.ComboBoxExConcludedDetail.Size = new Size(544, 23);

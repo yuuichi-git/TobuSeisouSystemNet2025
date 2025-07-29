@@ -61,7 +61,7 @@ namespace Vo.Properties {
         }
         
         /// <summary>
-        ///   tobuseisoudb2022 に類似しているローカライズされた文字列を検索します。
+        ///   tobuseisoudb2025 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DataBaseName {
             get {

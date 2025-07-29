@@ -90,7 +90,7 @@ namespace VehicleDispatch {
                 "ToolStripMenuItemInitializeBord",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
 
             this.DateTimePickerExOperationDate.SetToday();
             // ControlButtonを初期化
@@ -128,7 +128,7 @@ namespace VehicleDispatch {
             this.TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
 
-        private StockBoxs? stockBoxs = null;
+        private StockBoxs stockBoxs = null;
         /// <summary>
         /// 
         /// </summary>
@@ -165,22 +165,22 @@ namespace VehicleDispatch {
             /*
              * SetControlを追加する
              */
-            int _cellNumber = 0; // 0～199
+            int cellNumber = 0; // 0～199
             for (int row = 0; row < _board.RowAllNumber; row++) {
                 switch (row) {
-                    case 0 or 2 or 4 or 6: // DetailCell
+                    case 0 or 2 or 4 or 6: // 空のCell
                         break;
-                    case 1 or 3 or 5 or 7: // SetControlCell
+                    case 1 or 3 or 5 or 7: // SetControlが入るCell
                         for (int x = 0; x < _board.ColumnCount; x++) {
-                            VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
+                            VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber);
                             if (vehicleDispatchDetailVo is not null) {
-                                _board.AddSetControl(_cellNumber,
+                                _board.AddSetControl(cellNumber,
                                                      vehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
                                                      ConvertStaffMasterVo(vehicleDispatchDetailVo));
                             }
-                            _cellNumber++;
+                            cellNumber++;
                         }
                         break;
                 }
@@ -197,20 +197,20 @@ namespace VehicleDispatch {
             /*
              * SetControlを追加する
              */
-            int _cellNumber = 0; // 0～199
-            for (int row = 0; row < _board.RowAllNumber; row++) {
-                switch (row) {
-                    case 0 or 2 or 4 or 6: // DetailCell
+            int cellNumber = 0; // 0～199
+            for (int rowNumber = 0; rowNumber < _board.RowAllNumber; rowNumber++) {
+                switch (rowNumber) {
+                    case 0 or 2 or 4 or 6: // 空のCell
                         break;
-                    case 1 or 3 or 5 or 7: // SetControlCell
-                        for (int x = 0; x < _board.ColumnCount; x++) {
-                            if (listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber) is not null) {
+                    case 1 or 3 or 5 or 7: // SetControlが入るCell
+                        for (int columnNumber = 0; columnNumber < _board.ColumnCount; columnNumber++) {
+                            if (listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber) is not null) {
                                 /*
                                  * HEAD/BODYにCellNumberが存在する場合の処理
                                  * コメント部分は元の値か初期値を採用する
                                  */
-                                VehicleDispatchDetailVo trueVehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == _cellNumber);
-                                trueVehicleDispatchDetailVo.CellNumber = _cellNumber;
+                                VehicleDispatchDetailVo trueVehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber);
+                                trueVehicleDispatchDetailVo.CellNumber = cellNumber;
                                 trueVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
                                 trueVehicleDispatchDetailVo.OperationFlag = this.CheckOperationFlag(_listSetMasterVo, trueVehicleDispatchDetailVo.SetCode, this.DateTimePickerExOperationDate.GetDate());
                                 /*
@@ -304,16 +304,19 @@ namespace VehicleDispatch {
                                 trueVehicleDispatchDetailVo.DeletePcName = string.Empty;
                                 trueVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 trueVehicleDispatchDetailVo.DeleteFlag = false;
-                                _board.AddSetControl(_cellNumber,
+                                _board.AddSetControl(cellNumber,
                                                      trueVehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
                                                      ConvertStaffMasterVo(trueVehicleDispatchDetailVo));
                                 /*
-                                 * PurposeFlag = true なら_cellNumber++する(１つ飛ばす)
+                                 * PurposeFlag = true なら columnNumber++
+                                 * PurposeFlag = true なら _cellNumber++
                                  */
-                                if (trueVehicleDispatchDetailVo.PurposeFlag)
-                                    _cellNumber++;
+                                if (trueVehicleDispatchDetailVo.PurposeFlag) {
+                                    columnNumber++; // 一番右のCellがDoubleだったらおかしくなるかも・・・・
+                                    cellNumber++;
+                                }
                             } else {
                                 /*
                                  * HEAD/BODYにCellNumberが存在しない場合の処理
@@ -321,7 +324,7 @@ namespace VehicleDispatch {
                                  * コメント部分は元の値か初期値を採用する
                                  */
                                 VehicleDispatchDetailVo falseVehicleDispatchDetailVo = new();
-                                falseVehicleDispatchDetailVo.CellNumber = _cellNumber;
+                                falseVehicleDispatchDetailVo.CellNumber = cellNumber;
                                 falseVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
                                 falseVehicleDispatchDetailVo.OperationFlag = false;
                                 falseVehicleDispatchDetailVo.VehicleDispatchFlag = false;
@@ -371,20 +374,20 @@ namespace VehicleDispatch {
                                 //falseVehicleDispatchDetailVo.StaffRollCallYmdHms4
                                 //falseVehicleDispatchDetailVo.StaffMemoFlag4
                                 //falseVehicleDispatchDetailVo.StaffMemo4
-                                falseVehicleDispatchDetailVo.InsertPcName = string.Empty;
-                                falseVehicleDispatchDetailVo.InsertYmdHms = _defaultDateTime;
+                                falseVehicleDispatchDetailVo.InsertPcName = Environment.MachineName;
+                                falseVehicleDispatchDetailVo.InsertYmdHms = DateTime.Now;
                                 falseVehicleDispatchDetailVo.UpdatePcName = string.Empty;
                                 falseVehicleDispatchDetailVo.UpdateYmdHms = _defaultDateTime;
                                 falseVehicleDispatchDetailVo.DeletePcName = string.Empty;
                                 falseVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 falseVehicleDispatchDetailVo.DeleteFlag = false;
-                                _board.AddSetControl(_cellNumber,
+                                _board.AddSetControl(cellNumber,
                                                      falseVehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
                                                      ConvertStaffMasterVo(falseVehicleDispatchDetailVo));
                             }
-                            _cellNumber++;
+                            cellNumber++;
                         }
                         break;
                 }

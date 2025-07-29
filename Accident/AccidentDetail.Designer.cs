@@ -196,7 +196,7 @@
             this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(160, 32);
             this.ButtonExUpdate.TabIndex = 2;
-            this.ButtonExUpdate.Text = "最　新　化";
+            this.ButtonExUpdate.Text = "UPDATE";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
             this.ButtonExUpdate.Click += this.ButtonExUpdate_Click;
             // 
@@ -567,9 +567,8 @@
             // 
             // ComboBoxExCarStatic
             // 
-            this.ComboBoxExCarStatic.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExCarStatic.FormattingEnabled = true;
-            this.ComboBoxExCarStatic.Items.AddRange(new object[] { "直進時", "後退時", "Uターン時", "停車時", "右折時", "左折時" });
+            this.ComboBoxExCarStatic.Items.AddRange(new object[] { "前進時", "直進時", "後退時", "Uターン時", "停車時", "右折時", "左折時" });
             this.ComboBoxExCarStatic.Location = new Point(112, 72);
             this.ComboBoxExCarStatic.Name = "ComboBoxExCarStatic";
             this.ComboBoxExCarStatic.Size = new Size(148, 23);

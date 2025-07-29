@@ -46,6 +46,48 @@ namespace Dao {
         }
 
         /// <summary>
+        /// SelectAllCertificationFile
+        /// Picture無し
+        /// </summary>
+        /// <returns></returns>
+        public List<CertificationFileVo> SelectAllCertificationFile() {
+            List<CertificationFileVo> listCertificationFileVo = new();
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT StaffCode," +
+                                            "CertificationCode," +
+                                            "MarkCode," +
+                                            "Picture1Flag," +
+                                            "Picture2Flag," +
+                                            "InsertPcName," +
+                                            "InsertYmdHms," +
+                                            "UpdatePcName," +
+                                            "UpdateYmdHms," +
+                                            "DeletePcName," +
+                                            "DeleteYmdHms," +
+                                            "DeleteFlag " +
+                                     "FROM H_CertificationFile";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    CertificationFileVo certificationFileVo = new();
+                    certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
+                    certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
+                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
+                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
+                    certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    certificationFileVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    certificationFileVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    certificationFileVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    certificationFileVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    certificationFileVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    listCertificationFileVo.Add(certificationFileVo);
+                }
+            }
+            return listCertificationFileVo;
+        }
+
+        /// <summary>
         /// SelectAllCertificationFileP
         /// Picture有り
         /// </summary>
@@ -56,7 +98,9 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CertificationCode," +
                                             "MarkCode," +
+                                            "Picture1Flag," +
                                             "Picture1," +
+                                            "Picture2Flag," +
                                             "Picture2," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
@@ -72,7 +116,9 @@ namespace Dao {
                     certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
                     certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
+                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
                     certificationFileVo.Picture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
+                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
                     certificationFileVo.Picture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
                     certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
@@ -98,7 +144,9 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CertificationCode," +
                                             "MarkCode," +
+                                            "Picture1Flag," +
                                             "Picture1," +
+                                            "Picture2Flag," +
                                             "Picture2," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
@@ -114,7 +162,9 @@ namespace Dao {
                     certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
                     certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
+                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
                     certificationFileVo.Picture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
+                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
                     certificationFileVo.Picture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
                     certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
@@ -139,7 +189,9 @@ namespace Dao {
             sqlCommand.CommandText = "INSERT INTO H_CertificationFile(StaffCode," +
                                                                      "CertificationCode," +
                                                                      "MarkCode," +
+                                                                     "Picture1Flag," +
                                                                      "Picture1," +
+                                                                     "Picture2Flag," +
                                                                      "Picture2," +
                                                                      "InsertPcName," +
                                                                      "InsertYmdHms," +
@@ -151,7 +203,9 @@ namespace Dao {
                                      "VALUES (" + certificationFileVo.StaffCode + "," +
                                                   certificationFileVo.CertificationCode + "," +
                                                   certificationFileVo.MarkCode + "," +
+                                            "'" + certificationFileVo.Picture1Flag + "'," +
                                                  "@member_picture1," +
+                                            "'" + certificationFileVo.Picture2Flag + "'," +
                                                  "@member_picture2," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
@@ -183,7 +237,9 @@ namespace Dao {
                                      "SET StaffCode = " + certificationFileVo.StaffCode + "," +
                                          "CertificationCode = " + certificationFileVo.CertificationCode + "," +
                                          "MarkCode = " + certificationFileVo.MarkCode + "," +
+                                         "Picture1Flag = '" + certificationFileVo.Picture1Flag + "'," +
                                          "Picture1 = @member_picture1," +
+                                         "Picture2Flag = '" + certificationFileVo.Picture2Flag + "'," +
                                          "Picture2 = @member_picture2," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +

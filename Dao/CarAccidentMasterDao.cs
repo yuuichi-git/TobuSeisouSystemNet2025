@@ -35,12 +35,12 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <param name="occurrenceYmdHms"></param>
         /// <returns></returns>
-        public bool ExistenceCarAccidentMaster(CarAccidentMasterVo carAccidentMasterVo) {
+        public bool ExistenceCarAccidentMaster(int staffCode, DateTime occurrenceYmdHms) {
             int count;
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_CarAccidentMaster " +
-                                     "WHERE StaffCode = " + carAccidentMasterVo.StaffCode + " AND OccurrenceYmdHms = '" + carAccidentMasterVo.OccurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                                     "WHERE StaffCode = " + staffCode + " AND OccurrenceYmdHms = '" + occurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             try {
                 count = (int)sqlCommand.ExecuteScalar();
             } catch {

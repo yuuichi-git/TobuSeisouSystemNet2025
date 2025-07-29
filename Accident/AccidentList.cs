@@ -205,6 +205,7 @@ namespace Accident {
         private SheetView InitializeSheetView(SheetView sheetView) {
             this.SpreadList.AllowDragDrop = false;                                              // DrugDropを禁止する
             this.SpreadList.PaintSelectionHeader = false;                                       // ヘッダの選択状態をしない
+            this.SpreadList.TabStripPolicy = TabStripPolicy.Never;                              // シートタブを非表示
             this.SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
             sheetView.AlternatingRows.Count = 2;                                                // 行スタイルを２行単位とします
             sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                          // 1行目の背景色を設定します

@@ -69,10 +69,10 @@ namespace ControlEx {
             this.RowCount = _rowAllNumber;
             for (int i = 0; i < _rowAllNumber; i++) {
                 switch (i) {
-                    case 0 or 2 or 4 or 6: // DetailCell
+                    case 0 or 2 or 4 or 6: // 空のCell
                         this.RowStyles.Add(new RowStyle(SizeType.Absolute, _rowDummyHeight));
                         break;
-                    case 1 or 3 or 5 or 7: // SetControlCell
+                    case 1 or 3 or 5 or 7: // SetControlが入るCell
                         this.RowStyles.Add(new RowStyle(SizeType.Absolute, _rowHeight));
                         break;
                 }
@@ -114,7 +114,7 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// 
+        /// 配置されている全てのControlを解放する
         /// </summary>
         public void RemoveControls() {
             /*

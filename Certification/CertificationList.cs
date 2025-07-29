@@ -216,7 +216,7 @@ namespace Certification {
         /// <param name="sheetView"></param>
         private void PutSheetViewList(SheetView sheetView) {
             List<LicenseMasterVo> listLicenseMasterVo = _licenseMasterDao.SelectAllLicenseMaster();
-            List<CertificationFileVo> listCertificationFileVo = _certificationFileDao.SelectAllCertificationFileP();
+            List<CertificationFileVo> listCertificationFileVo = _certificationFileDao.SelectAllCertificationFile();
             /*
              * RowÇí«â¡Ç∑ÇÈ
              */
@@ -281,7 +281,7 @@ namespace Certification {
                             sheetView.Cells[rowCount, columnCount].Font = new Font("Yu Gothic UI", 12);
                             sheetView.Cells[rowCount, columnCount].ForeColor = Color.Blue;
                             sheetView.Cells[rowCount, columnCount].HorizontalAlignment = CellHorizontalAlignment.Center;
-                            if (certificationFileVo.Picture1.Length > 0 || certificationFileVo.Picture2.Length > 0) {
+                            if (certificationFileVo.Picture1Flag || certificationFileVo.Picture2Flag) {
                                 sheetView.Cells[rowCount, columnCount].Text = "ÅZ";
                             } else {
                                 sheetView.Cells[rowCount, columnCount].Text = "Å~";

@@ -26,12 +26,12 @@ namespace ControlEx {
 
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
 
-        private Control? _deployedSetLabel;
-        private Control? _deployedCarLabel;
-        private Control? _deployedStaffLabel1;
-        private Control? _deployedStaffLabel2;
-        private Control? _deployedStaffLabel3;
-        private Control? _deployedStaffLabel4;
+        private Control _deployedSetLabel;
+        private Control _deployedCarLabel;
+        private Control _deployedStaffLabel1;
+        private Control _deployedStaffLabel2;
+        private Control _deployedStaffLabel3;
+        private Control _deployedStaffLabel4;
 
         private object _dragParentControl;
         private object _dragControl;
@@ -1048,7 +1048,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているSetLabelの参照を保持
         /// </summary>
-        public Control? DeployedSetLabel {
+        public Control DeployedSetLabel {
             get => this._deployedSetLabel;
             set {
                 this._deployedSetLabel = value;
@@ -1084,7 +1084,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているCarLabelの参照を保持
         /// </summary>
-        public Control? DeployedCarLabel {
+        public Control DeployedCarLabel {
             get => this._deployedCarLabel;
             set {
                 this._deployedCarLabel = value;
@@ -1107,7 +1107,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているStaffLabel 1の参照を保持
         /// </summary>
-        public Control? DeployedStaffLabel1 {
+        public Control DeployedStaffLabel1 {
             get => this._deployedStaffLabel1;
             set {
                 this._deployedStaffLabel1 = value;
@@ -1133,7 +1133,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているStaffLabel 2の参照を保持
         /// </summary>
-        public Control? DeployedStaffLabel2 {
+        public Control DeployedStaffLabel2 {
             get => this._deployedStaffLabel2;
             set {
                 this._deployedStaffLabel2 = value;
@@ -1159,7 +1159,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているStaffLabel 3の参照を保持
         /// </summary>
-        public Control? DeployedStaffLabel3 {
+        public Control DeployedStaffLabel3 {
             get => this._deployedStaffLabel3;
             set {
                 this._deployedStaffLabel3 = value;
@@ -1185,7 +1185,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されているStaffLabel 4の参照を保持
         /// </summary>
-        public Control? DeployedStaffLabel4 {
+        public Control DeployedStaffLabel4 {
             get => this._deployedStaffLabel4;
             set {
                 this._deployedStaffLabel4 = value;

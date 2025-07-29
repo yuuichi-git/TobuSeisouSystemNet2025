@@ -1015,5 +1015,47 @@ namespace Dao {
             }
             return listVehicleDispatchDetailVo;
         }
+
+        /// <summary>
+        /// GetEmploymentCount
+        /// 雇上の件数を取得
+        /// 2023-05-06 fare_code = 21を追加。雇上大Gのclassification_codeが20(清掃工場)のため、運賃コードでSelectする
+        /// </summary>
+        /// <param name="operationDate"></param>
+        /// <returns></returns>
+        public int GetEmploymentCount(DateTime operationDate) {
+            int count = 0;
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(H_VehicleDispatchDetail.OperationFlag) " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "LEFT OUTER JOIN H_SetMaster ON H_VehicleDispatchDetail.SetCode = H_SetMaster.SetCode " +
+                                     "WHERE OperationDate = '" + operationDate + "' " +                                                 // 配車日
+                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true' " +                                          // 稼働フラグ
+                                       "AND (H_SetMaster.ClassificationCode IN (10,12) " +                                              // 雇上・臨時 ※基本臨時は雇上
+                                       "OR H_SetMaster.FareCode = 21)";                                                                 // 運賃コード
+            if (sqlCommand.ExecuteScalar() != null)
+                count = (int)sqlCommand.ExecuteScalar();
+            return count;
+        }
+
+        /// <summary>
+        /// GetWardCount
+        /// 区契の件数を取得
+        /// </summary>
+        /// <param name="operationDate"></param>
+        /// <returns></returns>
+        public int GetWardCount(DateTime operationDate) {
+            int count = 0;
+            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(H_VehicleDispatchDetail.OperationFlag) " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "LEFT OUTER JOIN H_SetMaster ON H_VehicleDispatchDetail.SetCode = H_SetMaster.SetCode " +
+                                     "WHERE OperationDate = '" + operationDate + "' " +                                                 // 配車日
+                                       "AND H_VehicleDispatchDetail.OperationFlag = 'true' " +                                          // 稼働フラグ
+                                       "AND H_SetMaster.ClassificationCode = 11";                                                       // 区契約
+            if (sqlCommand.ExecuteScalar() != null)
+                count = (int)sqlCommand.ExecuteScalar();
+            return count;
+        }
     }
 }

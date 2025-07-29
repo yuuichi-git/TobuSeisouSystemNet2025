@@ -86,7 +86,7 @@ namespace Waste {
             _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);                                                   // 先頭行（列）インデックスを取得
             if (sheetView.Rows.Count > 0)                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            foreach (WasteCustomerVo wasteCustomerVo in _wasteCustomerDao.SelectAllWasteCustomerVo()) {
+            foreach (WasteCustomerVo wasteCustomerVo in _wasteCustomerDao.SelectAllWasteCustomerVo().Where(x => x.EmissionPlaceName.Contains(this.TextBoxExEmissionPlaceNameSearch.Text))) {
                 sheetView.Rows.Add(rowCount, 1);
                 sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                       // Rowヘッダ
                 sheetView.Rows[rowCount].Height = 20;                                                                   // Rowの高さ

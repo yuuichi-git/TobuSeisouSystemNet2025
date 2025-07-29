@@ -64,7 +64,9 @@ namespace Certification {
             certificationFileVo.StaffCode = _staffCode;
             certificationFileVo.CertificationCode = _certificationCode;
             certificationFileVo.MarkCode = 0;
+            certificationFileVo.Picture1Flag = PictureBoxEx1.Image is not null ? true : false;
             certificationFileVo.Picture1 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx1.Image, typeof(byte[]));
+            certificationFileVo.Picture2Flag = PictureBoxEx2.Image is not null ? true : false;
             certificationFileVo.Picture2 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx2.Image, typeof(byte[]));
             certificationFileVo.InsertPcName = Environment.MachineName;
             certificationFileVo.InsertYmdHms = _defaultDatetime;

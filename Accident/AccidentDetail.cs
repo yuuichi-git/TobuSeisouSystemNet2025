@@ -157,7 +157,92 @@ namespace Accident {
             // 事故の詳細
             // 再発防止指導
 
+            /*
+             * INSERT / UPDATE
+             */
+            CarAccidentMasterVo carAccidentMasterVo = SetVo();
+            if (_carAccidentMasterDao.ExistenceCarAccidentMaster(carAccidentMasterVo.StaffCode, carAccidentMasterVo.OccurrenceYmdHms)) {
+                _carAccidentMasterDao.UpdateOneCarAccidentMaster(carAccidentMasterVo);
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "INSERT SUCCESS";
+            } else {
+                _carAccidentMasterDao.InsertOneCarAccidentMaster(carAccidentMasterVo);
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "UPDATE SUCCESS";
+            }
+            this.Close();
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private CarAccidentMasterVo SetVo() {
+            // ComboBox.SelectItemからVoを取得する
+            StaffMasterVo staffMasterVo = ((ComboBoxExDisplayNameVo)ComboBoxExDisplayName.SelectedItem).StaffMasterVo;
+
+            CarAccidentMasterVo carAccidentMasterVo = new();
+            // 集計
+            switch (ComboBoxExTotallingFlag.Text) {
+                case "反映する":
+                    carAccidentMasterVo.TotallingFlag = true;
+                    break;
+                case "反映しない":
+                    carAccidentMasterVo.TotallingFlag = false;
+                    break;
+            }
+            // 事故発生年月日
+            carAccidentMasterVo.OccurrenceYmdHms = new DateTime(DateTimePickerExOccurrence.Value.Year,
+                                                                DateTimePickerExOccurrence.Value.Month,
+                                                                DateTimePickerExOccurrence.Value.Day,
+                                                                int.Parse(MaskedTextBoxExTime.Text.Substring(0, 2)),
+                                                                int.Parse(MaskedTextBoxExTime.Text.Substring(2, 2)),
+                                                                0);
+            // 天候
+            carAccidentMasterVo.Weather = this.ComboBoxExWeather.Text;
+            // 事故の種別 
+            carAccidentMasterVo.AccidentKind = this.ComboBoxExAccidentKind.Text;
+            // 車両の静動
+            carAccidentMasterVo.CarStatic = this.ComboBoxExCarStatic.Text;
+            // 事故の発生原因　
+            carAccidentMasterVo.OccurrenceCause = this.ComboBoxExOccurrenceCause.Text;
+            // 過失の有無 
+            carAccidentMasterVo.Negligence = this.ComboBoxExNegligence.Text;
+            // 人身事故の詳細　
+            carAccidentMasterVo.PersonalInjury = this.ComboBoxExPersonalInjury.Text;
+            // 事故の状態
+            carAccidentMasterVo.PropertyAccident1 = this.ComboBoxExPropertyAccident1.Text;
+            // 事故の相手
+            carAccidentMasterVo.PropertyAccident2 = this.ComboBoxExPropertyAccident2.Text;
+            // 事故の発生場所
+            carAccidentMasterVo.OccurrenceAddress = this.TextBoxExOccurrenceAddress.Text;
+            // 運転手・作業員の氏名
+            if (staffMasterVo is not null) {
+                carAccidentMasterVo.StaffCode = staffMasterVo.StaffCode;
+                carAccidentMasterVo.DisplayName = staffMasterVo.DisplayName;
+                // 免許証番号
+                carAccidentMasterVo.LicenseNumber = staffMasterVo.LicenseMasterVo.LicenseNumber;
+            }
+            // 運転手・作業員の別 
+            carAccidentMasterVo.WorkKind = this.ComboBoxExWorkKind.Text;
+            // 車両登録番号
+            carAccidentMasterVo.CarRegistrationNumber = this.ComboBoxExCarRegistrationNumber.Text;
+            // 事故概要
+            carAccidentMasterVo.AccidentSummary = this.TextBoxExAccidentSummary.Text;
+            // 事故詳細
+            carAccidentMasterVo.AccidentDetail = this.TextBoxExAccidentDetail.Text;
+            // 事故後の指導
+            carAccidentMasterVo.Guide = this.TextBoxExGuide.Text;
+            // PictureBoxPicture1
+            carAccidentMasterVo.Picture1 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx1.Image, typeof(byte[]));
+            // PictureBoxPicture2
+            carAccidentMasterVo.Picture2 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx2.Image, typeof(byte[]));
+            // PictureBoxPicture3
+            carAccidentMasterVo.Picture3 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx3.Image, typeof(byte[]));
+            // PictureBoxPicture4
+            carAccidentMasterVo.Picture4 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx4.Image, typeof(byte[]));
+            // PictureBoxPicture5
+            carAccidentMasterVo.Picture5 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx5.Image, typeof(byte[]));
+
+            return carAccidentMasterVo;
         }
 
         /// <summary>
@@ -352,7 +437,7 @@ namespace Accident {
                                                                                          new List<int> { 20, 21, 22, 23, 99 },              // 労供長期・労供短期・指定なし
                                                                                          new List<int> { 10, 11, 12, 13, 20, 99 },          // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし
                                                                                          false).FindAll(x => x.RetirementFlag == false).OrderBy(x => x.NameKana)) {
-                this.ComboBoxExDisplayName.Items.Add(new ComboBoxExDisplayNameVo(staffMasterVo.Name, staffMasterVo));
+                this.ComboBoxExDisplayName.Items.Add(new ComboBoxExDisplayNameVo(staffMasterVo.DisplayName, staffMasterVo));
             }
             this.ComboBoxExDisplayName.DisplayMember = "Name";
             // ここでイベント追加しないと初期化で発火しちゃうよ

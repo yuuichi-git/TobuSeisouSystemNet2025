@@ -8,7 +8,9 @@ namespace Vo {
         private int _staffCode;
         private int _certificationCode;
         private int _markCode;
+        private bool _picture1Flag;
         private byte[] _picture1;
+        private bool _picture2Flag;
         private byte[] _picture2;
         private string _insertPcName;
         private DateTime _insertYmdHms;
@@ -25,7 +27,9 @@ namespace Vo {
             _staffCode = 0;
             _certificationCode = 0;
             _markCode = 0;
+            _picture1Flag = false;
             _picture1 = Array.Empty<byte>();
+            _picture2Flag = false;
             _picture2 = Array.Empty<byte>();
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
@@ -58,9 +62,25 @@ namespace Vo {
             get => _markCode;
             set => _markCode = value;
         }
+        /// <summary>
+        /// Picture1の存在の有無
+        /// True:画像あり False:画像なし
+        /// </summary>
+        public bool Picture1Flag {
+            get => this._picture1Flag;
+            set => this._picture1Flag = value;
+        }
         public byte[] Picture1 {
             get => _picture1;
             set => _picture1 = value;
+        }
+        /// <summary>
+        /// Picture２の存在の有無
+        /// True:画像あり False:画像なし
+        /// </summary>
+        public bool Picture2Flag {
+            get => this._picture2Flag;
+            set => this._picture2Flag = value;
         }
         public byte[] Picture2 {
             get => _picture2;

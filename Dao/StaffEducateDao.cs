@@ -52,8 +52,8 @@ namespace Dao {
                     StaffEducateVo staffEducateVo = new();
                     staffEducateVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffEducateVo.EducateDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EducateDate"]);
-                    staffEducateVo.EducateName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CarViolateContent"]);
-                    staffEducateVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["EducateName"]);
+                    staffEducateVo.EducateName = _defaultValue.GetDefaultValue<string>(sqlDataReader["EducateName"]);
+                    staffEducateVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     staffEducateVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     staffEducateVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     staffEducateVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);

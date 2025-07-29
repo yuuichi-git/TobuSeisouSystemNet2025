@@ -37,6 +37,10 @@ namespace Staff {
         private readonly Dictionary<string, int> _dictionaryOccupationSI = new();
         private readonly Dictionary<string, int> _dictionaryJobFormSI = new();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionVo"></param>
         public StaffDetail(ConnectionVo connectionVo) {
             /*
              * Dao
@@ -148,6 +152,7 @@ namespace Staff {
 
             this.InitializeControls();
             try {
+                StaffMasterVo staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
                 this.SetControls(_staffMasterDao.SelectOneStaffMaster(staffCode));
             } catch (Exception exception) {
                 MessageBox.Show(exception.Message);
@@ -982,10 +987,10 @@ namespace Staff {
                          */
                         if (DateTimeExEducateDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExEducateDate, "教育を受けた年月日");
-                            break;
+                            return;
                         } else if (ComboBoxExEducateName.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExEducateName, "教育名称");
-                            break;
+                            return;
                         }
                         _staffEducateDao.InsertOneStaffEducateMaster(staffEducateVo);
                         StatusStripEx1.ToolStripStatusLabelDetail.Text = "AddGroupBoxEducateを更新しました。";

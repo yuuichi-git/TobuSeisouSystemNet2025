@@ -22,6 +22,40 @@ namespace Vo {
             _pingReply = null;
         }
 
+        ///// <summary>
+        ///// 2025-07-29 新サーバーへ接続切り替えのためコメントアウト
+        ///// </summary>
+        ///// <param name="localDbFlag">true:Localに接続 false:Networkに接続</param>
+        ///// <returns>true:成功 false:失敗</returns>
+        //public bool Connect(bool localDbFlag) {
+        //    switch (Environment.MachineName) {
+        //        case "LAPTOP-5J3QGU8A":
+        //            if (!localDbFlag) {
+        //                _pingReply = _ping.Send("192.168.1.21");
+        //                if (_pingReply.Status == IPStatus.Success)
+        //                    _serverName = @"192.168.1.21\SQLEXPRESS";
+        //            }
+        //            break;
+        //        default:
+        //            _serverName = @"192.168.1.21\SQLEXPRESS";
+        //            break;
+        //    }
+        //    string connectionString = "Data Source = " + _serverName + ";"
+        //                            + "Initial Catalog = " + Resources.DataBaseName + ";"
+        //                            + "User ID = " + Resources.UserName + ";"
+        //                            + "Password = " + Resources.UserPassword + ";"
+        //                            + "MultipleActiveResultSets = True";
+        //    _sqlConnection = new(connectionString);
+        //    try {
+        //        _sqlConnection.Open();
+        //        Connection = _sqlConnection;
+        //        return true;
+        //    } catch {
+        //        return false;
+        //        throw;
+        //    }
+        //}
+
         /// <summary>
         /// 
         /// </summary>
@@ -31,13 +65,13 @@ namespace Vo {
             switch (Environment.MachineName) {
                 case "LAPTOP-5J3QGU8A":
                     if (!localDbFlag) {
-                        _pingReply = _ping.Send("192.168.1.21");
+                        _pingReply = _ping.Send("192.168.1.20");
                         if (_pingReply.Status == IPStatus.Success)
-                            _serverName = @"192.168.1.21\SQLEXPRESS";
+                            _serverName = @"192.168.1.20";
                     }
                     break;
                 default:
-                    _serverName = @"192.168.1.21\SQLEXPRESS";
+                    _serverName = @"192.168.1.20";
                     break;
             }
             string connectionString = "Data Source = " + _serverName + ";"
