@@ -3,7 +3,7 @@
  */
 using System.Diagnostics;
 
-using CollectionWeight;
+using Collection;
 
 using Common;
 

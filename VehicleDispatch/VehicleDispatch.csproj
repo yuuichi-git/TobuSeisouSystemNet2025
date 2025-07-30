@@ -11,7 +11,7 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CollectionWeight\CollectionWeight.csproj" />
+    <ProjectReference Include="..\CollectionWeight\Collection.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
     <ProjectReference Include="..\Dao\Dao.csproj" />
     <ProjectReference Include="..\DriversReport\DriversReport.csproj" />

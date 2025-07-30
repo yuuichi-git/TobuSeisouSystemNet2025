@@ -1,4 +1,4 @@
-﻿namespace CollectionWeight {
+﻿namespace Collection {
     partial class CollectionWeightTaitou {
         /// <summary>
         /// Required designer variable.

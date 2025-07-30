@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RollCall", "RollCall\RollCa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Staff", "Staff\Staff.csproj", "{F9F902ED-07EB-4581-AA0F-2F45075DD495}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionWeight", "CollectionWeight\CollectionWeight.csproj", "{D94ADB92-166A-495E-AECD-B653CD33468D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection", "CollectionWeight\Collection.csproj", "{D94ADB92-166A-495E-AECD-B653CD33468D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substitute", "Substitute\Substitute.csproj", "{C537DE09-CE43-4D9C-B4AE-E5B607B41897}"
 EndProject

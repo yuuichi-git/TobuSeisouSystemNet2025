@@ -7,12 +7,12 @@ using Dao;
 
 using Vo;
 
-namespace CollectionWeight {
+namespace Collection {
     public partial class CollectionWeightTaitou : Form {
         /*
          * Dao
          */
-        private CollectionWeightTaitouDao _CollectionWeightTaitouDao;
+        private CollectionTaitouDao _CollectionWeightTaitouDao;
         /*
          * Vo
          */

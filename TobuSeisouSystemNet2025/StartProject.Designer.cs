@@ -394,14 +394,18 @@
             // 
             // labelEx45
             // 
-            this.labelEx45.ForeColor = Color.DimGray;
+            this.labelEx45.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            this.labelEx45.ForeColor = Color.Black;
             this.labelEx45.Location = new Point(376, 108);
             this.labelEx45.Name = "labelEx45";
             this.labelEx45.Size = new Size(344, 20);
             this.labelEx45.TabIndex = 40;
-            this.labelEx45.Tag = "";
+            this.labelEx45.Tag = "CollectionStaffsTaitou";
             this.labelEx45.Text = "台東古紙配車人数集計表";
             this.labelEx45.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx45.Click += this.Label_Click;
+            this.labelEx45.MouseEnter += this.Label_MouseEnter;
+            this.labelEx45.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx42
             // 

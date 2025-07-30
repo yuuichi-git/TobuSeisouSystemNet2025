@@ -11,7 +11,7 @@ using Car;
 
 using Certification;
 
-using CollectionWeight;
+using Collection;
 
 using Common;
 
@@ -210,9 +210,14 @@ namespace TobuSeisouSystemNet2025 {
                             staffDestination.Show();
                             break;
                         case "CollectionWeightChiyoda":                                                                                         // 千代田配車集計表
-                            CollectionWeightChiyoda collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            CollectionStaffsChiyoda collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
-                            collectionWeightChiyoda.Show();
+                            collectionWeightChiyoda.ShowDialog();
+                            break;
+                        case "CollectionStaffsTaitou":                                                                                          // 台東古紙配車人数集計表
+                            CollectionStaffsTaitou collectionStaffsTaitou = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionStaffsTaitou);
+                            collectionStaffsTaitou.ShowDialog();
                             break;
                         case "StaffWorkingHours":                                                                                               // 個別労働時間集計表
                             StaffWorkingHours staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
@@ -281,7 +286,7 @@ namespace TobuSeisouSystemNet2025 {
                             break;
                     }
                     break;
-                case ConnectionState.Connecting:                                                                                                // 接続オブジェクトがデータ ソースに接続しています。
+                case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
                     break;
                 case ConnectionState.Closed:                                                                                                    //接続が閉じています。
                     break;

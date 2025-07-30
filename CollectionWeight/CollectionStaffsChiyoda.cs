@@ -9,8 +9,8 @@ using H_Common;
 
 using Vo;
 
-namespace CollectionWeight {
-    public partial class CollectionWeightChiyoda : Form {
+namespace Collection {
+    public partial class CollectionStaffsChiyoda : Form {
         /*
          * Dao
          */
@@ -25,7 +25,7 @@ namespace CollectionWeight {
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="screen"></param>
-        public CollectionWeightChiyoda(ConnectionVo connectionVo, Screen screen) {
+        public CollectionStaffsChiyoda(ConnectionVo connectionVo, Screen screen) {
             /*
              * Dao
              */
