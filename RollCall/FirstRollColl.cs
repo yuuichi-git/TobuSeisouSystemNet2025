@@ -132,7 +132,8 @@ namespace RollCall {
 
             InitializeComponent();
             this.InitializeSheetViewFirstRollCall();
-            this.InitializeSheetViewPartTime(this.SheetViewPartTime);
+            this.InitializeSheetViewPartTimeStaff(this.SheetViewPartTimeStaff);
+            this.InitializeSheetViewFullStaff(this.SheetViewFullStaff);
             /*
              * MenuStrip
              */
@@ -144,6 +145,7 @@ namespace RollCall {
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
              * Eventを登録する
              */
@@ -210,6 +212,12 @@ namespace RollCall {
                          * 
                          */
                         this.PutSheetViewPartTime(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue().Date));
+                        /*
+                         * 
+                         * ③全従事者出勤表作成
+                         * 
+                         */
+                        this.PutSheetViewFullStaff(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue().Date));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -275,23 +283,30 @@ namespace RollCall {
         /// <summary>
         /// アルバイト出勤表を初期化
         /// </summary>
-        private void InitializeSheetViewPartTime(SheetView sheetView) {
+        private void InitializeSheetViewPartTimeStaff(SheetView sheetView) {
             this.SpreadFirstRollCall.AllowDragDrop = false; // DrugDropを禁止する
             this.SpreadFirstRollCall.PaintSelectionHeader = false; // ヘッダの選択状態をしない
             this.SpreadFirstRollCall.TabStrip.DefaultSheetTab.Font = new System.Drawing.Font("Yu Gothic UI", 9);
-            //sheetView.AlternatingRows.Count = 2; // 行スタイルを２行単位とします
-            //sheetView.AlternatingRows[0].BackColor = System.Drawing.Color.WhiteSmoke; // 1行目の背景色を設定します
-            //sheetView.AlternatingRows[1].BackColor = System.Drawing.Color.White; // 2行目の背景色を設定します
-            //sheetView.ColumnHeader.Rows[0].Height = 26; // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = System.Drawing.Color.White;
             sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
-            //sheetView.RowHeader.Columns[0].Font = new System.Drawing.Font("Yu Gothic UI", 9); // 行ヘッダのFont
-            //sheetView.RowHeader.Columns[0].Width = 48; // 行ヘッダの幅を変更します
-            //sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, System.Drawing.Color.LightGray);
-            //sheetView.RemoveRows(0, sheetView.Rows.Count);
-
             sheetView.Cells["E2"].Text = string.Empty;
             sheetView.ClearRange(3, 1, 40, 5, true); // 指定範囲のデータをクリア
+        }
+
+        /// <summary>
+        /// 全従事者出勤表を初期化
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void InitializeSheetViewFullStaff(SheetView sheetView) {
+            this.SpreadFirstRollCall.AllowDragDrop = false; // DrugDropを禁止する
+            this.SpreadFirstRollCall.PaintSelectionHeader = false; // ヘッダの選択状態をしない
+            this.SpreadFirstRollCall.TabStrip.DefaultSheetTab.Font = new System.Drawing.Font("Yu Gothic UI", 9);
+            sheetView.ColumnHeader.Rows[0].Height = 30; // Columnヘッダの高さ
+            sheetView.GrayAreaBackColor = System.Drawing.Color.White;
+            sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
+            sheetView.RowHeader.Columns[0].Font = new System.Drawing.Font("Yu Gothic UI", 9); // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 50; // 行ヘッダの幅を変更します
+            sheetView.RemoveRows(0, sheetView.Rows.Count);
         }
 
         /// <summary>
@@ -945,10 +960,10 @@ namespace RollCall {
             string _operationName = string.Empty;
 
             // 日付
-            this.SheetViewPartTime.Cells["E2"].Text = this.DateTimePickerExOperationDate.GetValueJp();
+            this.SheetViewPartTimeStaff.Cells["E2"].Text = this.DateTimePickerExOperationDate.GetValueJp();
 
             foreach (StaffMasterVo staffMasterVo in _listStaffMasterVo.FindAll(x => x.Belongs == 12 && x.VehicleDispatchTarget == true && x.RetirementFlag == false).OrderBy(x => x.EmploymentDate)) {
-                this.SheetViewPartTime.Cells[startRow, startCol].Text = staffMasterVo.DisplayName;
+                this.SheetViewPartTimeStaff.Cells[startRow, startCol].Text = staffMasterVo.DisplayName;
                 VehicleDispatchDetailVo? vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
                                                                                                           x.StaffCode2 == staffMasterVo.StaffCode ||
                                                                                                           x.StaffCode3 == staffMasterVo.StaffCode ||
@@ -962,10 +977,10 @@ namespace RollCall {
                     switch (vehicleDispatchDetailVo.SetCode) {
                         case 1312140: // 当日朝電・無断
                         case 1312141:
-                            this.SheetViewPartTime.Cells[startRow, startCol + 1].Text = "欠勤";
+                            this.SheetViewPartTimeStaff.Cells[startRow, startCol + 1].Text = "欠勤";
                             break;
                         default:
-                            this.SheetViewPartTime.Cells[startRow, startCol + 1].Text = "出勤";
+                            this.SheetViewPartTimeStaff.Cells[startRow, startCol + 1].Text = "出勤";
                             break;
                     }
                     /*
@@ -980,7 +995,7 @@ namespace RollCall {
                             _operationName = vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode ? "【運転手】" : "【作業員】";
                             break;
                     }
-                    this.SheetViewPartTime.Cells[startRow, startCol + 2].Text = string.Concat(_operationName, _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName);
+                    this.SheetViewPartTimeStaff.Cells[startRow, startCol + 2].Text = string.Concat(_operationName, _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName);
                     /*
                      * 車種
                      */
@@ -998,15 +1013,15 @@ namespace RollCall {
                                 carKidName = "普通";
                                 break;
                         }
-                        this.SheetViewPartTime.Cells[startRow, startCol + 3].Text = carKidName;
+                        this.SheetViewPartTimeStaff.Cells[startRow, startCol + 3].Text = carKidName;
                     }
                     /*
                      * 出勤地
                      */
                     if (vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
-                        this.SheetViewPartTime.Cells[startRow, startCol + 4].Text = vehicleDispatchDetailVo.CarGarageCode == 1 ? "本社" : "三郷";
+                        this.SheetViewPartTimeStaff.Cells[startRow, startCol + 4].Text = vehicleDispatchDetailVo.CarGarageCode == 1 ? "本社" : "三郷";
                     } else {
-                        this.SheetViewPartTime.Cells[startRow, startCol + 4].Text = "本社";
+                        this.SheetViewPartTimeStaff.Cells[startRow, startCol + 4].Text = "本社";
                     }
                 }
                 startRow++;
@@ -1018,8 +1033,88 @@ namespace RollCall {
          * 全出勤者出勤表
          * 
          */
-        private void PutSheetViewFullTime(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+        private void PutSheetViewFullStaff(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
+            this.SpreadFirstRollCall.SuspendLayout();                                                                                                                                   // 非活性化
+            int spreadListTopRow = SpreadFirstRollCall.GetViewportTopRow(0);                                                                                                            // 先頭行（列）インデックスを取得
+            if (this.SheetViewFullStaff.Rows.Count > 0)                                                                                                                                 // Rowを削除する
+                this.SheetViewFullStaff.RemoveRows(0, this.SheetViewFullStaff.Rows.Count);
 
+            int i = 0;
+            List<AccountingFulltimeVo> listAccountingFulltimeVo;
+            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.FindAll(x => x.OperationFlag == true && x.VehicleDispatchFlag == true)) {
+                listAccountingFulltimeVo = new();
+                if (vehicleDispatchDetailVo.StaffCode1 != 0) {
+                    AccountingFulltimeVo accountingFulltimeVo = new();
+                    accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode1;
+                    accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation1;
+                    listAccountingFulltimeVo.Add(accountingFulltimeVo);
+                }
+                if (vehicleDispatchDetailVo.StaffCode2 != 0) {
+                    AccountingFulltimeVo accountingFulltimeVo = new();
+                    accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode2;
+                    accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation2;
+                    listAccountingFulltimeVo.Add(accountingFulltimeVo);
+                }
+                if (vehicleDispatchDetailVo.StaffCode3 != 0) {
+                    AccountingFulltimeVo accountingFulltimeVo = new();
+                    accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode3;
+                    accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation3;
+                    listAccountingFulltimeVo.Add(accountingFulltimeVo);
+                }
+                if (vehicleDispatchDetailVo.StaffCode4 != 0) {
+                    AccountingFulltimeVo accountingFulltimeVo = new();
+                    accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode4;
+                    accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation4;
+                    listAccountingFulltimeVo.Add(accountingFulltimeVo);
+                }
+
+                foreach (AccountingFulltimeVo accountingFulltimeVo in listAccountingFulltimeVo) {
+                    this.SheetViewFullStaff.Rows.Add(i, 1);
+                    this.SheetViewFullStaff.RowHeader.Columns[0].Label = (i + 1).ToString();                                                                                            // Rowヘッダ
+                    this.SheetViewFullStaff.Rows[i].Height = 20;                                                                                                                        // Rowの高さ
+                    this.SheetViewFullStaff.Rows[i].Resizable = false;                                                                                                                  // RowのResizableを禁止
+
+                    this.SheetViewFullStaff.Cells[i, 0].Value = _listStaffMasterVo.Find(x => x.StaffCode == accountingFulltimeVo.StaffCode).UnionCode;
+                    this.SheetViewFullStaff.Cells[i, 1].Text = string.Concat("【", _dictionaryOccupation[accountingFulltimeVo.Occupation], "】", _listStaffMasterVo.Find(x => x.StaffCode == accountingFulltimeVo.StaffCode).DisplayName);
+                    if (vehicleDispatchDetailVo.CarCode > 0) {
+                        this.SheetViewFullStaff.Cells[i, 3].Text = _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode).DisguiseKind2;
+                    }
+                    this.SheetViewFullStaff.Cells[i, 4].Text = _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName;
+
+                    switch (vehicleDispatchDetailVo.ManagedSpaceCode) {
+                        case 0:
+                            break;
+                        case 1:
+                            this.SheetViewFullStaff.Cells[i, 5].Text = "本社";
+                            break;
+                        case 2:
+                            this.SheetViewFullStaff.Cells[i, 5].Text = "三郷";
+                            break;
+                    }
+                    i++;
+                }
+                listAccountingFulltimeVo = null;
+            }
+            this.SpreadFirstRollCall.SetViewportTopRow(0, spreadListTopRow);                                                                                                                          // 先頭行（列）インデックスをセット
+            this.SpreadFirstRollCall.ResumeLayout();                                                                                                                                                  // 活性化
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+        }
+
+        /// <summary>
+        /// インナークラス(Vo)
+        /// </summary>
+        private class AccountingFulltimeVo {
+            int _staffCode = 0;
+            int _occupation = 0;
+
+            public int StaffCode {
+                get => this._staffCode;
+                set => this._staffCode = value;
+            }
+            public int Occupation {
+                get => this._occupation;
+                set => this._occupation = value;
+            }
         }
 
         /// <summary>

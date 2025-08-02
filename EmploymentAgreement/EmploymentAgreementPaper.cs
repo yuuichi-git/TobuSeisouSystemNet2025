@@ -148,7 +148,6 @@ namespace EmploymentAgreement {
                     this.SpreadList.ActiveSheetIndex = 9;
                     this.PutContractExpirationNoticeBicycle();
                     break;
-
             }
         }
 
@@ -413,7 +412,7 @@ namespace EmploymentAgreement {
                     // Eventを登録
                     _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
                     //// 出力先プリンタを指定します。
-                    //_printDocument.PrinterSettings.PrinterName = this.HComboBoxExPrinterName.Text;
+                    _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinter.Text;
                     // 用紙の向きを設定(横：true、縦：false)
                     _printDocument.DefaultPageSettings.Landscape = false;
                     /*

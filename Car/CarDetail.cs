@@ -259,10 +259,12 @@ namespace Car {
             carMasterVo.VersionDesignateNumber = this.TextBoxExVersionDesignateNumber.Text;                                         // 型式指定番号
             carMasterVo.CategoryDistinguishNumber = this.TextBoxExCategoryDistinguishNumber.Text;                                   // 類別区分番号
             carMasterVo.Remarks = this.TextBoxExRemarks.Text;                                                                       // 備考
-            carMasterVo.MainPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExMainPicture.Image, typeof(byte[]));  // 
-            carMasterVo.SubPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));    // 
+            carMasterVo.MainPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExMainPicture.Image, typeof(byte[]));  // 車検証
+            carMasterVo.SubPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));    // 自動車検査証記録事項
             carMasterVo.EmergencyVehicleFlag = this.CheckBoxExEmergencyVehicleFlag.Checked;                                         // 緊急車両登録フラグ
             carMasterVo.EmergencyVehicleDate = this.DateTimePickerExEmergencyVehicleDate.GetValue();                                // 緊急車両登録期限
+            carMasterVo.DigitalTachographFlag = false;                                                                              // デジタコ装着フラグ
+            carMasterVo.DigitalTachographType = string.Empty;                                                                       // デジタコ機種
             return carMasterVo;
         }
 

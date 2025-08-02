@@ -106,7 +106,6 @@ namespace ControlEx {
          * SetMasterVoのNumberOfPeopleを退避
          */
         private int _numberOfPeople;
-
         /*
          * Cellのサイズ
          */
@@ -124,8 +123,9 @@ namespace ControlEx {
         private bool _newOnCursorFlag = false;
 
         /// <summary>
-        /// コンストラクター
+        /// コンストラクタ
         /// </summary>
+        /// <param name="vehicleDispatchDetailVo"></param>
         public SetControl(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             _vehicleDispatchDetailVo = vehicleDispatchDetailVo;
             /*
@@ -276,12 +276,16 @@ namespace ControlEx {
             CarLabel carLabel = new(carMasterVo);
             carLabel.ParentControl = this;
 
+            carLabel.CarGarageCode = this.CarGarageCode;
+            carLabel.ClassificationCode = carMasterVo.ClassificationCode;               // CarMasterの値を使用する
+            carLabel.EmergencyVehicleFlag = carMasterVo.EmergencyVehicleFlag;           // CarMasterの値を使用する
             carLabel.Memo = this.CarMemo;
             carLabel.MemoFlag = this.CarMemoFlag;
-            carLabel.ClassificationCode = carMasterVo.ClassificationCode; // 車両登録がされているのでCarMasterVoのデータ
-            carLabel.CarGarageCode = this.CarGarageCode;
             carLabel.ProxyFlag = this.CarProxyFlag;
-            // Eventを登録
+
+            /*
+             * Eventを登録
+             */
             carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             carLabel.CarLabel_OnMouseClick += OnMouseClick;
@@ -292,7 +296,9 @@ namespace ControlEx {
             carLabel.MouseMove += OnMouseMove;
             carLabel.MouseUp += OnMouseUp;
             this.Controls.Add(carLabel, 0, 1);
-            // 参照を退避
+            /*
+             * 参照を退避
+             */
             this.DeployedCarLabel = carLabel;
         }
 
@@ -546,6 +552,10 @@ namespace ControlEx {
             return control;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
         public void EventAdd(Control control) {
             if (control is null)
                 return;
@@ -589,6 +599,10 @@ namespace ControlEx {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
         public void EventDel(Control control) {
             if (control is null)
                 return;

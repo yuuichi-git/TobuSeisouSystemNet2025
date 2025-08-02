@@ -93,7 +93,7 @@ namespace Collection {
                         "ToolStripMenuItemHelp"
                         };
             this.MenuStripEx1.ChangeEnable(listString);
-
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Initialize Success";
             /*
              * Eventを登録する
              */

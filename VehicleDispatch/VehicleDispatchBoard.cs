@@ -3,6 +3,8 @@
  */
 using System.Diagnostics;
 
+using Car;
+
 using Collection;
 
 using Common;
@@ -161,7 +163,7 @@ namespace VehicleDispatch {
         /// <param name="listVehicleDispatchDetailVo"></param>
         private void AddControls(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             // Board上のSetControlをDisposeする
-            _board.RemoveControls();
+            _board.RemoveAllControls();
             /*
              * SetControlを追加する
              */
@@ -174,7 +176,7 @@ namespace VehicleDispatch {
                         for (int x = 0; x < _board.ColumnCount; x++) {
                             VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber);
                             if (vehicleDispatchDetailVo is not null) {
-                                _board.AddSetControl(cellNumber,
+                                _board.AddOneSetControl(cellNumber,
                                                      vehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
@@ -193,7 +195,7 @@ namespace VehicleDispatch {
         /// <param name="listVehicleDispatchDetailVo"></param>
         private void AddDefaultControls(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             // Board上のSetControlをDisposeする
-            _board.RemoveControls();
+            _board.RemoveAllControls();
             /*
              * SetControlを追加する
              */
@@ -304,7 +306,7 @@ namespace VehicleDispatch {
                                 trueVehicleDispatchDetailVo.DeletePcName = string.Empty;
                                 trueVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 trueVehicleDispatchDetailVo.DeleteFlag = false;
-                                _board.AddSetControl(cellNumber,
+                                _board.AddOneSetControl(cellNumber,
                                                      trueVehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
@@ -381,7 +383,7 @@ namespace VehicleDispatch {
                                 falseVehicleDispatchDetailVo.DeletePcName = string.Empty;
                                 falseVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 falseVehicleDispatchDetailVo.DeleteFlag = false;
-                                _board.AddSetControl(cellNumber,
+                                _board.AddOneSetControl(cellNumber,
                                                      falseVehicleDispatchDetailVo,
                                                      _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
                                                      _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
@@ -799,6 +801,11 @@ namespace VehicleDispatch {
                  * ---------- CarLabel ----------
                  * 
                  */
+                case "ToolStripMenuItemCarVerification":
+                    CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.CarCode);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carVehicleInspectionView);
+                    carVehicleInspectionView.ShowDialog(this);
+                    break;
                 /*
                  * 管理地
                  */

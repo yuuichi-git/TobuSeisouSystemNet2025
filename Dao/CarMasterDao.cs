@@ -119,6 +119,8 @@ namespace Dao {
                                             //"SubPicture," +
                                             "EmergencyVehicleFlag," +
                                             "EmergencyVehicleDate," +
+                                            "DigitalTachographFlag," +
+                                            "DigitalTachographType," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -179,6 +181,8 @@ namespace Dao {
                     //hCarMasterVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
                     carMasterVo.EmergencyVehicleFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["EmergencyVehicleFlag"]);
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
+                    carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
+                    carMasterVo.DigitalTachographType = _defaultValue.GetDefaultValue<string>(sqlDataReader["DigitalTachographType"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -287,6 +291,8 @@ namespace Dao {
                                             "SubPicture," +
                                             "EmergencyVehicleFlag," +
                                             "EmergencyVehicleDate," +
+                                            "DigitalTachographFlag," +
+                                            "DigitalTachographType," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -347,6 +353,8 @@ namespace Dao {
                     carMasterVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
                     carMasterVo.EmergencyVehicleFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["EmergencyVehicleFlag"]);
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
+                    carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
+                    carMasterVo.DigitalTachographType = _defaultValue.GetDefaultValue<string>(sqlDataReader["DigitalTachographType"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -413,6 +421,8 @@ namespace Dao {
                                                              "SubPicture," +
                                                              "EmergencyVehicleFlag," +
                                                              "EmergencyVehicleDate," +
+                                                             "DigitalTachographFlag," +
+                                                             "DigitalTachographType," +
                                                              "InsertPcName," +
                                                              "InsertYmdHms," +
                                                              "UpdatePcName," +
@@ -468,6 +478,8 @@ namespace Dao {
                                             "@member_SubPicture," +
                                              "'false'," +
                                             "'" + _defaultDateTime + "'," +
+                                            "'" + carMasterVo.DigitalTachographFlag + "'," +
+                                            "'" + carMasterVo.DigitalTachographType + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -541,6 +553,8 @@ namespace Dao {
                                          "SubPicture = @member_SubPicture," +
                                          "EmergencyVehicleFlag = '" + carMasterVo.EmergencyVehicleFlag + "'," +
                                          "EmergencyVehicleDate = '" + carMasterVo.EmergencyVehicleDate + "'," +
+                                         "DigitalTachographFlag = '" + carMasterVo.DigitalTachographFlag + "'," +
+                                         "DigitalTachographType = '" + carMasterVo.DigitalTachographType + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE CarCode = " + carMasterVo.CarCode;

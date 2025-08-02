@@ -73,6 +73,16 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] CarLabelImageEmergency {
+            get {
+                object obj = ResourceManager.GetObject("CarLabelImageEmergency", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] CarLabelImageK {
             get {
                 object obj = ResourceManager.GetObject("CarLabelImageK", resourceCulture);

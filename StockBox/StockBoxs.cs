@@ -250,13 +250,19 @@ namespace StockBox {
             return list;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="carMasterVo"></param>
+        /// <returns></returns>
         public CarLabel GetOneCarLabel(CarMasterVo carMasterVo) {
             CarLabel carLabel = new(carMasterVo);
-            carLabel.ParentControl = this._stockBoxPanel;
-            carLabel.ClassificationCode = carMasterVo.ClassificationCode; // 車両登録がされているのでCarMasterVoのデータ
             carLabel.CarGarageCode = carMasterVo.GarageCode;
+            carLabel.ClassificationCode = carMasterVo.ClassificationCode;               // CarMasterの値を使用する
+            carLabel.EmergencyVehicleFlag = carMasterVo.EmergencyVehicleFlag;           // CarMasterの値を使用する
             carLabel.Memo = string.Empty;
             carLabel.MemoFlag = false;
+            carLabel.ParentControl = this._stockBoxPanel;
             carLabel.ProxyFlag = false;
             //// Eventを登録
             //carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;

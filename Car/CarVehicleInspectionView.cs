@@ -1,10 +1,16 @@
 ﻿/*
  * 2025-02-18
  */
+using Dao;
+
 using Vo;
 
 namespace Car {
     public partial class CarVehicleInspectionView : Form {
+        /*
+         * Dao
+         */
+        private CarMasterDao _carMasterDao;
 
         /// <summary>
         /// コンストラクター
@@ -25,12 +31,49 @@ namespace Car {
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
-            this.PictureBoxEx1.Image = image;
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
              * Eventを登録する
              */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
+            this.PictureBoxEx1.Image = image;
+        }
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="connectionVo"></param>
+        /// <param name="carCode"></param>
+        public CarVehicleInspectionView(ConnectionVo connectionVo, int carCode) {
+            /*
+             * Dao
+             */
+            _carMasterDao = new(connectionVo);
+            /*
+             * InitializeControl
+             */
+            InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.MenuStripEx1.ChangeEnable(listString);
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
+            byte[] subPicture = _carMasterDao.SelectOneSubPicture(carCode);
+            if (subPicture.Length != 0) {
+                ImageConverter imageConverter = new();
+                this.PictureBoxEx1.Image = (Image)imageConverter.ConvertFrom(subPicture);                   // 写真
+            }
         }
 
         /// <summary>

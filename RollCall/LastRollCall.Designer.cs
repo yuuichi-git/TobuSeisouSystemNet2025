@@ -53,7 +53,7 @@
             // LabelExSetName
             // 
             this.LabelExSetName.BorderStyle = BorderStyle.Fixed3D;
-            this.LabelExSetName.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            this.LabelExSetName.Font = new Font("Yu Gothic UI", 18F);
             this.LabelExSetName.Location = new Point(4, 4);
             this.LabelExSetName.Name = "LabelExSetName";
             this.LabelExSetName.Size = new Size(424, 40);

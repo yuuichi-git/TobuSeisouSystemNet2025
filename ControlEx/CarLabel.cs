@@ -11,7 +11,6 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace ControlEx {
     public partial class CarLabel : Label {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -35,6 +34,7 @@ namespace ControlEx {
         private bool _proxyFlag = false;
         private bool _memoFlag = false;
         private string _memo = string.Empty;
+        private bool _emergencyVehicleFlag = false;     // 2025-07-31追加
         /*
          * Vo
          */
@@ -184,6 +184,12 @@ namespace ControlEx {
             // 代車
             if (ProxyFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            /*
+             * 2025-07-31追加
+             * 緊急車両登録
+             */
+            if (!EmergencyVehicleFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageEmergency), 0, 0, Width, Height);
             // カーソル関係
             if (CursorEnterFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
@@ -395,6 +401,13 @@ namespace ControlEx {
                 Refresh();
             }
         }
-
+        /// <summary>
+        /// 緊急車両登録
+        /// true:登録済 false:未登録
+        /// </summary>
+        public bool EmergencyVehicleFlag {
+            get => this._emergencyVehicleFlag;
+            set => this._emergencyVehicleFlag = value;
+        }
     }
 }

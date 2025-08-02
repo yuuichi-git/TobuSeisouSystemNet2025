@@ -86,7 +86,7 @@ namespace ControlEx {
         /// <param name="setMasterVo"></param>
         /// <param name="carMasterVo"></param>
         /// <param name="listStaffMasterVo"></param>
-        public void AddSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo) {
+        public void AddOneSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo) {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.CellNumber = cellNumber;
             setControl.NumberOfPeople = setMasterVo is not null ? setMasterVo.NumberOfPeople : 0;
@@ -116,7 +116,7 @@ namespace ControlEx {
         /// <summary>
         /// 配置されている全てのControlを解放する
         /// </summary>
-        public void RemoveControls() {
+        public void RemoveAllControls() {
             /*
              * メソッドをClear呼び出してもコントロール ハンドルはメモリから削除されません。 メモリリークを回避するにはメソッドをDispose明示的に呼び出す必要があります。
              * ※後ろから解放している点が重要らしい。

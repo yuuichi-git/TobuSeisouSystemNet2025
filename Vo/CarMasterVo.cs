@@ -50,10 +50,12 @@
         private string _baseAddress;
         private DateTime _expirationDate;
         private string _remarks;
-        private byte[] _mainPicture; // 2024-08-09 追加
-        private byte[] _subPicture; // 2024-08-09 名前変更
-        private bool _emergencyVehicleFlag; // 2024-08-13
-        private DateTime _emergencyVehicleDate; // 2024-08-13
+        private byte[] _mainPicture;                            // 2024-08-09 追加
+        private byte[] _subPicture;                             // 2024-08-09 名前変更
+        private bool _emergencyVehicleFlag;                     // 2024-08-13
+        private DateTime _emergencyVehicleDate;                 // 2024-08-13
+        private bool _digitalTachographFlag;                    // 2025-08-02
+        private string _digitalTachographType;                  // 2025-08-02
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -114,6 +116,8 @@
             _subPicture = Array.Empty<byte>();
             _emergencyVehicleFlag = false;
             _emergencyVehicleDate = _defaultDateTime;
+            _digitalTachographFlag = false;
+            _digitalTachographType = string.Empty;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -466,6 +470,21 @@
         public DateTime EmergencyVehicleDate {
             get => _emergencyVehicleDate;
             set => _emergencyVehicleDate = value;
+        }
+        /// <summary>
+        /// デジタコ装着フラグ
+        /// true:装着 false:未装着
+        /// </summary>
+        public bool DigitalTachographFlag {
+            get => this._digitalTachographFlag;
+            set => this._digitalTachographFlag = value;
+        }
+        /// <summary>
+        /// デジタコ機種
+        /// </summary>
+        public string DigitalTachographType {
+            get => this._digitalTachographType;
+            set => this._digitalTachographType = value;
         }
         public string InsertPcName {
             get => _insertPcName;

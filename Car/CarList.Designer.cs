@@ -28,11 +28,11 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelEx1.Controls"));
+            this.SheetViewList = this.SpreadList.GetSheet(0);
+            this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
             this.PanelExUp = new ControlEx.PanelEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
             this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
             this.TableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();

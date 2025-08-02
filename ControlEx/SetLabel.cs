@@ -32,7 +32,7 @@ namespace ControlEx {
         private int _managedSpaceCode = 0;
         private int _classificationCode = 0;
         private bool _lastRollCallFlag = false;
-        private DateTime _lastRollCallYmdHms = new DateTime(1900, 01, 01);
+        private DateTime _lastRollCallYmdHms = new(1900, 01, 01);
         private bool _memoFlag = false;
         private string _memo = string.Empty;
         private int _shiftCode = 0;

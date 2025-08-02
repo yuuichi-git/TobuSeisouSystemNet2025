@@ -52,7 +52,7 @@
             this.labelEx1 = new ControlEx.LabelEx();
             this.SpreadFirstRollCall = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewFirstRollCall = this.SpreadFirstRollCall.GetSheet(0);
-            this.SheetViewPartTime = this.SpreadFirstRollCall.GetSheet(1);
+            this.SheetViewPartTimeStaff = this.SpreadFirstRollCall.GetSheet(1);
             this.SheetViewFullStaff = this.SpreadFirstRollCall.GetSheet(2);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
@@ -341,7 +341,7 @@
             // 
             // SpreadFirstRollCall
             // 
-            this.SpreadFirstRollCall.AccessibleDescription = "SpreadFirstRollCall, Sheet2, Row 0, Column 0";
+            this.SpreadFirstRollCall.AccessibleDescription = "SpreadFirstRollCall, 配車表, Row 0, Column 0";
             this.SpreadFirstRollCall.Dock = DockStyle.Fill;
             this.SpreadFirstRollCall.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadFirstRollCall.Location = new Point(3, 197);
@@ -404,7 +404,7 @@
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxEx1;
         private FarPoint.Win.Spread.SheetView SheetViewFirstRollCall;
-        private FarPoint.Win.Spread.SheetView SheetViewPartTime;
+        private FarPoint.Win.Spread.SheetView SheetViewPartTimeStaff;
         private FarPoint.Win.Spread.SheetView SheetViewFullStaff;
     }
 }
