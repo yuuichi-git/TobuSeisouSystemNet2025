@@ -24,69 +24,73 @@ namespace Car {
         /// </summary>
         private const int _colEmergencyVehicleDate = 2;
         /// <summary>
+        /// デジタコ機種
+        /// </summary>
+        private const int _colDigitalTachographType = 3;
+        /// <summary>
         /// 自動車登録番号1
         /// </summary>
-        private const int _colRegistrationNumber1 = 3;
+        private const int _colRegistrationNumber1 = 4;
         /// <summary>
         /// 自動車登録番号2(4桁の数字部分)
         /// </summary>
-        private const int _colRegistrationNumber2 = 4;
+        private const int _colRegistrationNumber2 = 5;
         /// <summary>
         /// Door番号
         /// </summary>
-        private const int _colDoorNumber = 5;
+        private const int _colDoorNumber = 6;
         /// <summary>
         /// 区分(雇上・区契・一般)
         /// </summary>
-        private const int _colClassificationName = 6;
+        private const int _colClassificationName = 7;
         /// <summary>
         /// 車庫地
         /// </summary>
-        private const int _colGarageName = 7;
+        private const int _colGarageName = 8;
         /// <summary>
         /// 名称(配車パネル)
         /// </summary>
-        private const int _colDisguiseKind_1 = 8;
+        private const int _colDisguiseKind_1 = 9;
         /// <summary>
         /// 名称(事故報告書)
         /// </summary>
-        private const int _colDisguiseKind_2 = 9;
+        private const int _colDisguiseKind_2 = 10;
         /// <summary>
         /// 名称(整備)
         /// </summary>
-        private const int _colDisguiseKind_3 = 10;
+        private const int _colDisguiseKind_3 = 11;
         /// <summary>
         /// 登録年月日
         /// </summary>
-        private const int _colRegistrationDate = 11;
+        private const int _colRegistrationDate = 12;
         /// <summary>
         /// 初年度登録年月
         /// </summary>
-        private const int _colFirstRegistrationDate = 12;
+        private const int _colFirstRegistrationDate = 13;
         /// <summary>
         /// 自動車の種類
         /// </summary>
-        private const int _colCarKindName = 13;
+        private const int _colCarKindName = 14;
         /// <summary>
         /// 用途
         /// </summary>
-        private const int _colCarUse = 14;
+        private const int _colCarUse = 15;
         /// <summary>
         /// 自家用・事業用の別
         /// </summary>
-        private const int _colOtherCode = 15;
+        private const int _colOtherCode = 16;
         /// <summary>
         /// 車体の形状
         /// </summary>
-        private const int _colShapeName = 16;
+        private const int _colShapeName = 17;
         /// <summary>
         /// 有効期限の満了する日
         /// </summary>
-        private const int _colExpirationDate = 17;
+        private const int _colExpirationDate = 18;
         /// <summary>
         /// 備考
         /// </summary>
-        private const int _colRemarks = 18;
+        private const int _colRemarks = 19;
         /*
          * インスタンス作成
          */
@@ -209,9 +213,14 @@ namespace Car {
 
                 sheetView.Cells[i, _colCarCode].Value = carMasterVo.CarCode;
                 sheetView.Cells[i, _colEmergencyVehicle].Value = carMasterVo.EmergencyVehicleFlag;
-                if (carMasterVo.EmergencyVehicleFlag) {
+                if (carMasterVo.EmergencyVehicleFlag) {                                                                                                                                 // 緊急車両登録期限
                     sheetView.Cells[i, _colEmergencyVehicleDate].ForeColor = carMasterVo.EmergencyVehicleDate.Date < DateTime.Now.Date ? Color.Red : Color.Black;
                     sheetView.Cells[i, _colEmergencyVehicleDate].Value = carMasterVo.EmergencyVehicleDate.Date;
+                }
+                if (carMasterVo.DigitalTachographFlag) {                                                                                                                                // デジタコ機種
+                    sheetView.Cells[i, _colDigitalTachographType].Text = carMasterVo.DigitalTachographType;
+                } else {
+                    sheetView.Cells[i, _colDigitalTachographType].Text = string.Empty;
                 }
                 sheetView.Cells[i, _colRegistrationNumber1].Text = string.Concat(carMasterVo.RegistrationNumber1, carMasterVo.RegistrationNumber2, carMasterVo.RegistrationNumber3);
                 sheetView.Cells[i, _colRegistrationNumber2].Text = carMasterVo.RegistrationNumber4.ToString();
@@ -230,6 +239,7 @@ namespace Car {
                 sheetView.Cells[i, _colExpirationDate].ForeColor = carMasterVo.ExpirationDate.Date < DateTime.Now.Date ? Color.Red : Color.Black;
                 sheetView.Cells[i, _colExpirationDate].Value = carMasterVo.ExpirationDate.Date;
                 sheetView.Cells[i, _colRemarks].Text = carMasterVo.Remarks;
+                sheetView.Rows[i].Tag = carMasterVo;
                 i++;
             }
             SpreadList.SetViewportTopRow(0, spreadListTopRow1);                                                                                                                          // 先頭行（列）インデックスをセット
@@ -373,14 +383,41 @@ namespace Car {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemInsertNewRecord":
+                case "ToolStripMenuItemInsertNewRecord":                                                                // 新規レコード作成
                     CarDetail carDetail = new(_connectionVo); // CarDetailを表示する
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carDetail);
                     carDetail.ShowDialog(this);
                     break;
-                case "ToolStripMenuItemExit": // アプリケーションを終了する
+                case "ToolStripMenuItemDelete":                                                                         // ContextMenuStripEx Delete
+                case "ToolStripMenuItemRemove":                                                                         // ContextMenuStripEx Remove
+                    CarMasterVo carMasterVo = (CarMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
+                    try {
+                        _carMasterDao.DeleteOneCarMaster(carMasterVo.CarCode, !carMasterVo.DeleteFlag);
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
+                    this.ButtonExUpdate.PerformClick();                                                                 // ButtonをClickする。画面とDBの整合性を担保するため。
+                    break;
+                case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStripEx1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+            CarMasterVo carMasterVo = (CarMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
+            if (carMasterVo.DeleteFlag) {
+                ToolStripMenuItemDelete.Enabled = false;
+                ToolStripMenuItemRemove.Enabled = true;
+            } else {
+                ToolStripMenuItemDelete.Enabled = true;
+                ToolStripMenuItemRemove.Enabled = false;
             }
         }
 

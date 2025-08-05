@@ -106,7 +106,7 @@ namespace Dao {
         /// <param name="operationDate1"></param>
         /// <param name="operationDate2"></param>
         /// <returns></returns>
-        public List<CollectionWeightTaitouVo> SelectListCollectionWeightTaitou(DateTime operationDate1, DateTime operationDate2) {
+        public List<CollectionWeightTaitouVo> SelectCollectionWeightTaitou(DateTime operationDate1, DateTime operationDate2) {
             List<CollectionWeightTaitouVo> listCollectionWeightTaitouVo = new();
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "SELECT OperationDate," +

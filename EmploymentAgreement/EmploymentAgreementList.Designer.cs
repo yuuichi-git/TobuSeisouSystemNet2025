@@ -40,12 +40,12 @@
             this.ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
+            this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.PanelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
-            this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -93,7 +93,7 @@
             this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.ContextMenuStrip = this.ContextMenuStripEx1;
             this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 67);
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1898, 947);
@@ -184,6 +184,13 @@
             this.ToolStripMenuItemContractExpirationNotice.Text = "使用停止予告通知書";
             this.ToolStripMenuItemContractExpirationNotice.Click += this.ToolStripMenuItem_Click;
             // 
+            // ToolStripMenuItemContractExpirationNoticeBicycle
+            // 
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Name = "ToolStripMenuItemContractExpirationNoticeBicycle";
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Size = new Size(262, 22);
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Text = "使用停止予告通知書(自転車駐車場)";
+            this.ToolStripMenuItemContractExpirationNoticeBicycle.Click += this.ToolStripMenuItem_Click;
+            // 
             // PanelExTop
             // 
             this.PanelExTop.Controls.Add(this.labelEx1);
@@ -217,7 +224,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F);
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -226,13 +233,6 @@
             this.ButtonExUpdate.Text = "最　新　化";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
             this.ButtonExUpdate.Click += this.ButtonEx_Click;
-            // 
-            // ToolStripMenuItemContractExpirationNoticeBicycle
-            // 
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Name = "ToolStripMenuItemContractExpirationNoticeBicycle";
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Text = "使用停止予告通知書(自転車駐車場)";
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Click += this.ToolStripMenuItem_Click;
             // 
             // EmploymentAgreementList
             // 

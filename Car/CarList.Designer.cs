@@ -28,6 +28,9 @@
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelEx1.Controls"));
+            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
+            this.ToolStripMenuItemRemove = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
             this.PanelExUp = new ControlEx.PanelEx();
@@ -35,6 +38,7 @@
             this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
             this.TableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
+            this.ContextMenuStripEx1.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +82,7 @@
             // SpreadList
             // 
             this.SpreadList.AccessibleDescription = "SpreadList, 車両台帳, Row 0, Column 0";
+            this.SpreadList.ContextMenuStrip = this.ContextMenuStripEx1;
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 87);
@@ -85,6 +90,27 @@
             this.SpreadList.Size = new Size(1898, 927);
             this.SpreadList.TabIndex = 2;
             this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
+            // 
+            // ContextMenuStripEx1
+            // 
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemDelete, this.ToolStripMenuItemRemove });
+            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            this.ContextMenuStripEx1.Size = new Size(178, 48);
+            this.ContextMenuStripEx1.Opening += this.ContextMenuStripEx1_Opening;
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            this.ToolStripMenuItemDelete.Size = new Size(177, 22);
+            this.ToolStripMenuItemDelete.Text = "このレコードを削除する";
+            this.ToolStripMenuItemDelete.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemRemove
+            // 
+            this.ToolStripMenuItemRemove.Name = "ToolStripMenuItemRemove";
+            this.ToolStripMenuItemRemove.Size = new Size(177, 22);
+            this.ToolStripMenuItemRemove.Text = "このレコードを戻す";
+            this.ToolStripMenuItemRemove.Click += this.ToolStripMenuItem_Click;
             // 
             // PanelExUp
             // 
@@ -131,6 +157,7 @@
             this.TableLayoutPanelEx1.ResumeLayout(false);
             this.TableLayoutPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
+            this.ContextMenuStripEx1.ResumeLayout(false);
             this.PanelExUp.ResumeLayout(false);
             this.PanelExUp.PerformLayout();
             this.ResumeLayout(false);
@@ -147,5 +174,8 @@
         private ControlEx.ButtonEx ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
+        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private ToolStripMenuItem ToolStripMenuItemDelete;
+        private ToolStripMenuItem ToolStripMenuItemRemove;
     }
 }

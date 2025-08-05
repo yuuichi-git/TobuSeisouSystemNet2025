@@ -227,6 +227,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionStaffsTaitou);
                             collectionStaffsTaitou.ShowDialog();
                             break;
+                        case "CollectionWeightTaitouList":                                                                                      // 台東古紙収集量集計表
+                            CollectionWeightTaitouList collectionWeightTaitouList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightTaitouList);
+                            collectionWeightTaitouList.ShowDialog();
+                            break;
                         case "StaffWorkingHours":                                                                                               // 個別労働時間集計表
                             StaffWorkingHours staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
@@ -297,6 +302,7 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
                     break;
                 case ConnectionState.Closed:                                                                                                    //接続が閉じています。
+                    MessageBox.Show("データベースへ接続して下さい。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case ConnectionState.Executing:                                                                                                 //接続オブジェクトがコマンドを実行しています。
                     break;

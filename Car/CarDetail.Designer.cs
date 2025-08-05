@@ -97,6 +97,9 @@
             this.labelEx13 = new ControlEx.LabelEx();
             this.labelEx14 = new ControlEx.LabelEx();
             this.groupBoxEx1 = new ControlEx.GroupBoxEx();
+            this.CheckBoxExDigitalTachographFlag = new ControlEx.CheckBoxEx();
+            this.labelEx41 = new ControlEx.LabelEx();
+            this.ComboBoxExDigitalTachographType = new ControlEx.ComboBoxEx();
             this.ComboBoxExDisguiseKind3 = new ControlEx.ComboBoxEx();
             this.ComboBoxExDisguiseKind2 = new ControlEx.ComboBoxEx();
             this.ComboBoxExDisguiseKind1 = new ControlEx.ComboBoxEx();
@@ -278,7 +281,7 @@
             this.groupBoxEx4.Controls.Add(this.labelEx21);
             this.groupBoxEx4.Controls.Add(this.labelEx22);
             this.groupBoxEx4.Controls.Add(this.labelEx23);
-            this.groupBoxEx4.Location = new Point(8, 540);
+            this.groupBoxEx4.Location = new Point(8, 576);
             this.groupBoxEx4.Name = "groupBoxEx4";
             this.groupBoxEx4.Size = new Size(760, 748);
             this.groupBoxEx4.TabIndex = 7;
@@ -728,7 +731,7 @@
             this.groupBoxEx3.Controls.Add(this.labelEx16);
             this.groupBoxEx3.Controls.Add(this.labelEx17);
             this.groupBoxEx3.Controls.Add(this.labelEx18);
-            this.groupBoxEx3.Location = new Point(8, 372);
+            this.groupBoxEx3.Location = new Point(8, 408);
             this.groupBoxEx3.Name = "groupBoxEx3";
             this.groupBoxEx3.Size = new Size(760, 160);
             this.groupBoxEx3.TabIndex = 7;
@@ -835,7 +838,7 @@
             this.groupBoxEx2.Controls.Add(this.labelEx12);
             this.groupBoxEx2.Controls.Add(this.labelEx13);
             this.groupBoxEx2.Controls.Add(this.labelEx14);
-            this.groupBoxEx2.Location = new Point(8, 232);
+            this.groupBoxEx2.Location = new Point(8, 268);
             this.groupBoxEx2.Name = "groupBoxEx2";
             this.groupBoxEx2.Size = new Size(760, 132);
             this.groupBoxEx2.TabIndex = 7;
@@ -921,6 +924,9 @@
             // 
             // groupBoxEx1
             // 
+            this.groupBoxEx1.Controls.Add(this.CheckBoxExDigitalTachographFlag);
+            this.groupBoxEx1.Controls.Add(this.labelEx41);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExDigitalTachographType);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind3);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind2);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind1);
@@ -945,10 +951,40 @@
             this.groupBoxEx1.Controls.Add(this.labelEx1);
             this.groupBoxEx1.Location = new Point(8, 8);
             this.groupBoxEx1.Name = "groupBoxEx1";
-            this.groupBoxEx1.Size = new Size(760, 216);
+            this.groupBoxEx1.Size = new Size(760, 252);
             this.groupBoxEx1.TabIndex = 0;
             this.groupBoxEx1.TabStop = false;
             this.groupBoxEx1.Text = "System Infomation";
+            // 
+            // CheckBoxExDigitalTachographFlag
+            // 
+            this.CheckBoxExDigitalTachographFlag.AutoSize = true;
+            this.CheckBoxExDigitalTachographFlag.ForeColor = Color.Black;
+            this.CheckBoxExDigitalTachographFlag.Location = new Point(188, 222);
+            this.CheckBoxExDigitalTachographFlag.Name = "CheckBoxExDigitalTachographFlag";
+            this.CheckBoxExDigitalTachographFlag.Size = new Size(15, 14);
+            this.CheckBoxExDigitalTachographFlag.TabIndex = 24;
+            this.CheckBoxExDigitalTachographFlag.UseVisualStyleBackColor = true;
+            this.CheckBoxExDigitalTachographFlag.CheckedChanged += this.CheckBoxExDigitalTachographFlag_CheckedChanged;
+            // 
+            // labelEx41
+            // 
+            this.labelEx41.Location = new Point(8, 220);
+            this.labelEx41.Name = "labelEx41";
+            this.labelEx41.Size = new Size(176, 16);
+            this.labelEx41.TabIndex = 23;
+            this.labelEx41.Text = "デジタコ機種";
+            this.labelEx41.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // ComboBoxExDigitalTachographType
+            // 
+            this.ComboBoxExDigitalTachographType.FormattingEnabled = true;
+            this.ComboBoxExDigitalTachographType.ImeMode = ImeMode.Hiragana;
+            this.ComboBoxExDigitalTachographType.Items.AddRange(new object[] { "YDX-8", "YDX-7", "YDX-3α" });
+            this.ComboBoxExDigitalTachographType.Location = new Point(204, 216);
+            this.ComboBoxExDigitalTachographType.Name = "ComboBoxExDigitalTachographType";
+            this.ComboBoxExDigitalTachographType.Size = new Size(148, 23);
+            this.ComboBoxExDigitalTachographType.TabIndex = 22;
             // 
             // ComboBoxExDisguiseKind3
             // 
@@ -1372,5 +1408,8 @@
         private ToolStripMenuItem ToolStripMenuItemMainPictureDelete;
         private ToolStripMenuItem ToolStripMenuItemSubPictureClip;
         private ToolStripMenuItem ToolStripMenuItemSubPictureDelete;
+        private ControlEx.LabelEx labelEx41;
+        private ControlEx.ComboBoxEx ComboBoxExDigitalTachographType;
+        private ControlEx.CheckBoxEx CheckBoxExDigitalTachographFlag;
     }
 }

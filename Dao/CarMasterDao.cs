@@ -568,18 +568,18 @@ namespace Dao {
         }
 
         /// <summary>
-        /// DeleteOneHCarMaster
+        /// 削除フラグを操作する
         /// </summary>
         /// <param name="carCode"></param>
+        /// <param name="deleteFlag"></param>
         /// <returns></returns>
-        public int DeleteOneCarMaster(int carCode) {
+        public int DeleteOneCarMaster(int carCode, bool deleteFlag) {
             SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
                                      "SET DeletePcName = '" + Environment.MachineName + "'," +
                                          "DeleteYmdHms = '" + DateTime.Now + "'," +
-                                         "DeleteFlag = 'True' " +
-                                     "WHERE CarCode = " + carCode + " " +
-                                       "AND DeleteFlag = 'False'";
+                                         "DeleteFlag = '" + deleteFlag + "' " +
+                                     "WHERE CarCode = " + carCode;
             try {
                 return sqlCommand.ExecuteNonQuery();
             } catch {
