@@ -25,6 +25,8 @@ using License;
 
 using RollCall;
 
+using Seisou;
+
 using Staff;
 
 using StatusOfResidence;
@@ -80,6 +82,10 @@ namespace TobuSeisouSystemNet2025 {
              */
             this.TreeViewEx1.Enabled = false;
             /*
+             * システム管理
+             */
+            this.GroupBoxEx1.Enabled = false;
+            /*
              * ComboBoxExMonitor
              */
             this.ComboBoxExMonitor.Items.Clear();
@@ -132,29 +138,68 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((ButtonEx)sender).Name) {
-                case "ButtonExConnect":
+                case "ButtonExConnectSqlServer":
                     try {
-                        _connectionVo.Connect(MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag);
-                        this.ButtonExConnect.Enabled = false;
-                        this.ButtonExDisConnect.Enabled = true;
-                        this.LabelExServerName.Text = string.Concat("接続先サーバー：" + _connectionVo.Connection.DataSource);
-                        this.LabelExDataBaseName.Text = string.Concat("接続先データベース：" + _connectionVo.Connection.Database);
-                        this.LabelExStatus.Text = string.Concat("状態：" + _connectionVo.Connection.State);
+                        _connectionVo.ConnectSqlServer(this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag);
+                        this.ButtonExConnectSqlServer.Enabled = false;
+                        this.ButtonExDisConnectSqlServer.Enabled = true;
+                        this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
+                        this.LabelExDataBaseNameSqlServer.Text = string.Concat("接続先データベース：" + _connectionVo.SqlServerConnection.Database);
+                        this.LabelExStatusSqlServer.Text = string.Concat("状態：" + _connectionVo.SqlServerConnection.State);
 
                         this.TreeViewEx1.Enabled = true;
+                        this.GroupBoxEx1.Enabled = true;
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
-                case "ButtonExDisConnect":
-                    _connectionVo.Connection.Close();
-                    this.ButtonExConnect.Enabled = true;
-                    this.ButtonExDisConnect.Enabled = false;
-                    this.LabelExServerName.Text = "接続先サーバー：";
-                    this.LabelExDataBaseName.Text = "接続先データベース：";
-                    this.LabelExStatus.Text = "状態：";
+                case "ButtonExDisConnectSqlServer":
+                    if (_connectionVo.OracleConnection.State == ConnectionState.Open) {
+                        MessageBox.Show("OracleをCloseして下さい", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    } else {
+                        try {
+                            _connectionVo.DisConnectSqlServer();
+                            this.ButtonExConnectSqlServer.Enabled = true;
+                            this.ButtonExDisConnectSqlServer.Enabled = false;
+                            this.LabelExServerNameSqlServer.Text = "接続先サーバー：";
+                            this.LabelExDataBaseNameSqlServer.Text = "接続先データベース：";
+                            this.LabelExStatusSqlServer.Text = "状態：";
 
-                    this.TreeViewEx1.Enabled = false;
+                            this.TreeViewEx1.Enabled = false;
+                            this.GroupBoxEx1.Enabled = false;
+                        } catch (Exception exception) {
+                            MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    break;
+                case "ButtonExConnectOracle":
+                    try {
+                        _connectionVo.ConnectOracle();
+                        this.ButtonExConnectOracle.Enabled = false;
+                        this.ButtonExDisConnectOracle.Enabled = true;
+                        this.LabelExServerNameOracle.Text = string.Concat("接続先サーバー：" + _connectionVo.OracleConnection.DataSource);
+                        this.LabelExServerVersion.Text = string.Concat("ServerVersion：" + _connectionVo.OracleConnection.ServerVersion);
+                        this.LabelExDataBaseNameOracle.Text = string.Concat("接続先データベース：" + _connectionVo.OracleConnection.DatabaseName);
+                        this.LabelExStatusOracle.Text = string.Concat("状態：" + _connectionVo.OracleConnection.State);
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case "ButtonExDisConnectOracle":
+                    try {
+                        _connectionVo.DisConnectOracle();
+                        this.ButtonExConnectOracle.Enabled = true;
+                        this.ButtonExDisConnectOracle.Enabled = false;
+                        this.LabelExServerNameOracle.Text = "接続先サーバー：";
+                        this.LabelExServerVersion.Text = "ServerVersion：";
+                        this.LabelExDataBaseNameOracle.Text = "接続先データベース：";
+                        this.LabelExStatusOracle.Text = "状態：";
+
+                        this.TreeViewEx1.Enabled = false;
+                    } catch (Exception exception) {
+                        MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     break;
             }
         }
@@ -179,12 +224,12 @@ namespace TobuSeisouSystemNet2025 {
         }
 
         /// <summary>
-        /// Label_Click
+        /// 接続先がSQLServerの場合
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Label_Click(object sender, EventArgs e) {
-            switch (_connectionVo.Connection.State) {
+        /// <param name="e"></param>a
+        private void Label_SqlServer_Click(object sender, EventArgs e) {
+            switch (_connectionVo.SqlServerConnection.State) {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
@@ -302,7 +347,40 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
                     break;
                 case ConnectionState.Closed:                                                                                                    //接続が閉じています。
-                    MessageBox.Show("データベースへ接続して下さい。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("SQLServerへ接続して下さい。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case ConnectionState.Executing:                                                                                                 //接続オブジェクトがコマンドを実行しています。
+                    break;
+                case ConnectionState.Fetching:                                                                                                  //接続オブジェクトがデータを検索しています。
+                    break;
+                case ConnectionState.Broken:                                                                                                    //データ ソースへの接続が断絶しています。
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 接続先がOracleの場合
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Label_Oracle_Click(object sender, EventArgs e) {
+            switch (_connectionVo.OracleConnection.State) {
+                case ConnectionState.Open:                                                                                                      //接続が開いています。
+                    switch ((string)((Label)sender).Tag) {
+                        /*
+                         * システム管理
+                         */
+                        case "OracleAllTable":
+                            OracleAllTable oracleAllTable = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                        // Oracleテーブル一覧表示
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, oracleAllTable);
+                            oracleAllTable.Show();
+                            break;
+                    }
+                    break;
+                case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
+                    break;
+                case ConnectionState.Closed:                                                                                                    //接続が閉じています。
+                    MessageBox.Show("Oracleへ接続して下さい。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case ConnectionState.Executing:                                                                                                 //接続オブジェクトがコマンドを実行しています。
                     break;
@@ -368,7 +446,7 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void StartForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (_connectionVo.Connection.State == ConnectionState.Open) {
+            if (_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
                 MessageBox.Show("アプリケーションを終了する前に、データベースを切断して下さい。", "ACID特性の確保", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
             } else {
@@ -385,9 +463,14 @@ namespace TobuSeisouSystemNet2025 {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TreeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
             Files files = new();
-            if (_connectionVo.Connection.State == ConnectionState.Open) {
+            if (_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
                 switch (e.Node.Name) {
                     /*
                      * 陸運局監査

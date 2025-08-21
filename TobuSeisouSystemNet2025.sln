@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accident", "Accident\Accide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waste", "Waste\Waste.csproj", "{0568CC0D-E937-4611-AB8A-20EC397F320A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seisou", "Seisou\Seisou.csproj", "{FE11E622-38F5-4FD2-8DB3-08C35AD9788F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0568CC0D-E937-4611-AB8A-20EC397F320A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE11E622-38F5-4FD2-8DB3-08C35AD9788F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE11E622-38F5-4FD2-8DB3-08C35AD9788F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE11E622-38F5-4FD2-8DB3-08C35AD9788F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE11E622-38F5-4FD2-8DB3-08C35AD9788F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

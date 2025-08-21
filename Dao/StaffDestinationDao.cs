@@ -32,7 +32,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffMasterVo> SelectAllStaffMasterVo() {
             List<StaffMasterVo> listStaffMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "Belongs," +
                                             "JobForm," +
@@ -60,7 +60,7 @@ namespace Dao {
 
         public List<StaffDestinationVo> SelectAllStaffDestinationVo(DateTime operationDate1, DateTime operationDate2) {
             List<StaffDestinationVo> listStaffDestinationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_SetMaster.SetCode," +
                                             "H_SetMaster.SetName," +
@@ -174,7 +174,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffDestinationVo> SelectOneStaffDestinationVo(DateTime operationDate1, DateTime operationDate2, int staffCode) {
             List<StaffDestinationVo> listStaffDestinationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_SetMaster.SetCode," +
                                             "H_SetMaster.SetName," +
@@ -282,7 +282,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffDestinationVo> SelectAllStaffDestinationVo(DateTime operationDate1, DateTime operationDate2, string sqlBelongs, string sqlJobForm, string sqlOccupation) {
             List<StaffDestinationVo> listStaffDestinationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_SetMaster.SetCode," +
                                             "H_SetMaster.SetName," +

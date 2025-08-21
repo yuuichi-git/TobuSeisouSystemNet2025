@@ -36,7 +36,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceHCarMaster(int carCode) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CarCode) " +
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode;
@@ -53,7 +53,7 @@ namespace Dao {
         /// </summary>
         /// <returns>CarCodeの最大値</returns>
         public int GetCarCode() {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(CarCode) " +
                                      "FROM H_CarMaster";
             try {
@@ -70,7 +70,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CarMasterVo> SelectAllCarMaster() {
             List<CarMasterVo> listCarMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT CarCode," +
                                             "ClassificationCode," +
                                             "RegistrationNumber," +
@@ -203,7 +203,7 @@ namespace Dao {
         /// <returns></returns>
         public byte[] SelectOneMainPicture(int carCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MainPicture " +
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode + "";
@@ -222,7 +222,7 @@ namespace Dao {
         /// <returns></returns>
         public byte[] SelectOneSubPicture(int carCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT SubPicture " +
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode + "";
@@ -242,7 +242,7 @@ namespace Dao {
         /// <returns></returns>
         public CarMasterVo SelectOneCarMasterP(int carCode) {
             CarMasterVo carMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT CarCode," +
                                             "ClassificationCode," +
                                             "RegistrationNumber," +
@@ -372,7 +372,7 @@ namespace Dao {
         /// </summary>
         /// <param name="carMasterVo"></param>
         public void InsertOneCarMaster(CarMasterVo carMasterVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_CarMaster(CarCode," +
                                                              "ClassificationCode," +
                                                              "RegistrationNumber," +
@@ -503,7 +503,7 @@ namespace Dao {
         /// <param name="carMasterVo"></param>
         /// <returns></returns>
         public void UpdateOneCarMaster(CarMasterVo carMasterVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
                                      "SET CarCode = " + carMasterVo.CarCode + "," +
                                          "ClassificationCode = " + carMasterVo.ClassificationCode + "," +
@@ -574,7 +574,7 @@ namespace Dao {
         /// <param name="deleteFlag"></param>
         /// <returns></returns>
         public int DeleteOneCarMaster(int carCode, bool deleteFlag) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
                                      "SET DeletePcName = '" + Environment.MachineName + "'," +
                                          "DeleteYmdHms = '" + DateTime.Now + "'," +

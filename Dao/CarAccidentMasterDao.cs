@@ -37,7 +37,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceCarAccidentMaster(int staffCode, DateTime occurrenceYmdHms) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_CarAccidentMaster " +
                                      "WHERE StaffCode = " + staffCode + " AND OccurrenceYmdHms = '" + occurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
@@ -55,7 +55,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns></returns>c
         public string GetCarAccidentMasterCount(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_CarAccidentMaster " +
                                      "WHERE StaffCode = " + staffCode + "" +
@@ -76,7 +76,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CarAccidentMasterVo> SelectGroupCarAccidentMaster(int staffCode) {
             List<CarAccidentMasterVo> listCarAccidentMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "OccurrenceYmdHms," +
                                             "TotallingFlag," +
@@ -158,7 +158,7 @@ namespace Dao {
         /// <returns></returns>
         public CarAccidentMasterVo SelectOneCarAccidentMaster(int staffCode, DateTime occurrenceYmdHms) {
             CarAccidentMasterVo carAccidentMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "OccurrenceYmdHms," +
                                             "TotallingFlag," +
@@ -237,7 +237,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CarAccidentMasterVo> SelectAllCarAccidentMaster(DateTime dateTime1, DateTime dateTime2) {
             List<CarAccidentMasterVo> listCarAccidentMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "OccurrenceYmdHms," +
                                             "TotallingFlag," +
@@ -316,7 +316,7 @@ namespace Dao {
         /// <param name="carAccidentMasterVo"></param>
         /// <returns></returns>
         public int InsertOneCarAccidentMaster(CarAccidentMasterVo carAccidentMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_CarAccidentMaster(StaffCode," +
                                                                      "OccurrenceYmdHms," +
                                                                      "TotallingFlag," +
@@ -403,7 +403,7 @@ namespace Dao {
         /// <param name="carAccidentMasterVo"></param>
         /// <returns></returns>
         public int UpdateOneCarAccidentMaster(CarAccidentMasterVo carAccidentMasterVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarAccidentMaster " +
                                      "SET StaffCode = " + carAccidentMasterVo.StaffCode + "," +
                                          "OccurrenceYmdHms = '" + carAccidentMasterVo.OccurrenceYmdHms + "'," +

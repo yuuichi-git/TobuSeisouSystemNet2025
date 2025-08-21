@@ -59,7 +59,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceStaffMaster(int staffCode) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_StaffMaster " +
                                      "WHERE StaffCode = " + staffCode;
@@ -78,7 +78,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns></returns>
         public int GetStaffCode(int staffCode) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(StaffCode) " +
                                      "FROM H_StaffMaster " +
                                      "WHERE StaffCode < " + staffCode;
@@ -101,7 +101,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffMasterVo> SelectAllStaffMaster(List<int>? sqlBelongs, List<int>? sqlJobForm, List<int>? sqlOccupation, bool? sqlRetirementFlag) {
             List<StaffMasterVo> listStaffMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "UnionCode," +
                                             "Belongs," +
@@ -234,7 +234,7 @@ namespace Dao {
         /// <returns></returns>
         public StaffMasterVo SelectOneStaffMaster(int staffCode) {
             StaffMasterVo staffMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "UnionCode," +
                                             "Belongs," +
@@ -368,7 +368,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffMasterVo"></param>
         public void InsertOneStaffMaster(StaffMasterVo staffMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StaffMaster(StaffCode," +
                                                                "UnionCode," +
                                                                "Belongs," +
@@ -494,7 +494,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffMasterVo"></param>
         public void UpdateOneStaffMaster(StaffMasterVo staffMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_StaffMaster " +
                                      "SET StaffCode = " + staffMasterVo.StaffCode + "," +
                                          "UnionCode = " + staffMasterVo.UnionCode + "," +

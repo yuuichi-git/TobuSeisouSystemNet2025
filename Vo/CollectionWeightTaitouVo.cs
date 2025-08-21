@@ -7,10 +7,15 @@ namespace Vo {
 
         private DateTime _operationDate;
         private int _weight1Total;
+        private DateTime _lastRollCallYmdHms1;
         private int _weight2Total;
+        private DateTime _lastRollCallYmdHms2;
         private int _weight3Total;
+        private DateTime _lastRollCallYmdHms3;
         private int _weight4Total;
+        private DateTime _lastRollCallYmdHms4;
         private int _weight5Total;
+        private DateTime _lastRollCallYmdHms5;
         private int _weight6Total;
         private int _weight7Total;
         private int _weight8Total;
@@ -61,11 +66,25 @@ namespace Vo {
             set => _weight1Total = value;
         }
         /// <summary>
+        /// 東武１組　最終空け日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms1 {
+            get => this._lastRollCallYmdHms1;
+            set => this._lastRollCallYmdHms1 = value;
+        }
+        /// <summary>
         /// 東武２組
         /// </summary>
         public int Weight2Total {
             get => _weight2Total;
             set => _weight2Total = value;
+        }
+        /// <summary>
+        /// 東武２組　最終空け日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms2 {
+            get => this._lastRollCallYmdHms2;
+            set => this._lastRollCallYmdHms2 = value;
         }
         /// <summary>
         /// 東武４組
@@ -75,6 +94,13 @@ namespace Vo {
             set => _weight3Total = value;
         }
         /// <summary>
+        /// 東武４組　最終空け日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms3 {
+            get => this._lastRollCallYmdHms3;
+            set => this._lastRollCallYmdHms3 = value;
+        }
+        /// <summary>
         /// 東武臨時１
         /// </summary>
         public int Weight4Total {
@@ -82,11 +108,25 @@ namespace Vo {
             set => _weight4Total = value;
         }
         /// <summary>
+        /// 東武臨時１　最終空け日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms4 {
+            get => this._lastRollCallYmdHms4;
+            set => this._lastRollCallYmdHms4 = value;
+        }
+        /// <summary>
         /// 東武臨時２
         /// </summary>
         public int Weight5Total {
             get => _weight5Total;
             set => _weight5Total = value;
+        }
+        /// <summary>
+        /// 東武臨時２　最終空け日時
+        /// </summary>
+        public DateTime LastRollCallYmdHms5 {
+            get => this._lastRollCallYmdHms5;
+            set => this._lastRollCallYmdHms5 = value;
         }
         /// <summary>
         /// 三東３組
@@ -144,6 +184,5 @@ namespace Vo {
             get => _deleteFlag;
             set => _deleteFlag = value;
         }
-        
     }
 }

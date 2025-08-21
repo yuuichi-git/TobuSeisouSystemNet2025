@@ -32,7 +32,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceContractExpiration(int staffCode) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_ContractExpiration " +
                                      "WHERE StaffCode = " + staffCode;
@@ -55,7 +55,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceContractExpiration(int code, int staffCode, DateTime startDate, DateTime endDate) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_ContractExpiration " +
                                      "WHERE Code = " + code + " " +
@@ -72,7 +72,7 @@ namespace Dao {
 
         public List<ContractExpirationVo> SelectAllContractExpiration() {
             List<ContractExpirationVo> listContractExpirationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "StaffCode," +
                                             "StartDate," +
@@ -112,7 +112,7 @@ namespace Dao {
 
         public List<ContractExpirationVo> SelectAllContractExpirationP() {
             List<ContractExpirationVo> listContractExpirationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "StaffCode," +
                                             "StartDate," +
@@ -151,7 +151,7 @@ namespace Dao {
 
         public List<ContractExpirationVo> SelectOneContractExpirationP(int staffCode) {
             List<ContractExpirationVo> listContractExpirationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "StaffCode," +
                                             "StartDate," +
@@ -190,7 +190,7 @@ namespace Dao {
         }
 
         public int InsertOneContractExpiration(ContractExpirationVo contractExpirationVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_ContractExpiration(Code," +
                                                                       "StaffCode," +
                                                                       "StartDate," +
@@ -227,7 +227,7 @@ namespace Dao {
         }
 
         public int UpdateOneContractExpiration(ContractExpirationVo contractExpirationVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_ContractExpiration " +
                                      "SET Code = " + contractExpirationVo.Code + "," +
                                          "StaffCode = " + contractExpirationVo.StaffCode + "," +

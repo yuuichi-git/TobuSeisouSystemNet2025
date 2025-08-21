@@ -33,7 +33,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CertificationMasterVo> SelectAllCertificationMaster() {
             List<CertificationMasterVo> listCertificationMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT CertificationCode," +
                                             "CertificationName," +
                                             "CertificationDisplayName," +

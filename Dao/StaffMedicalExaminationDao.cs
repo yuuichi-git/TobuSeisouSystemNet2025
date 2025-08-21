@@ -33,7 +33,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns>存在する:DateTime型 存在しない:_defaultDateTime</returns>
         public DateTime GetMedicalExaminationDate(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(MedicalExaminationDate) AS AA FROM H_StaffMedicalExaminationMaster WHERE StaffCode = " + staffCode + "";
             var data = sqlCommand.ExecuteScalar();
             if (data is not null) {
@@ -49,7 +49,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffMedicalExaminationVo> SelectOneStaffMedicalExaminationMaster(int staffCode) {
             List<StaffMedicalExaminationVo> listStaffMedicalExaminationVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "MedicalExaminationDate," +
                                             "MedicalInstitutionName," +
@@ -87,7 +87,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffMedicalExaminationVo"></param>
         public void InsertOneStaffMedicalExaminationMaster(StaffMedicalExaminationVo staffMedicalExaminationVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StaffMedicalExaminationMaster(StaffCode," +
                                                                                  "MedicalExaminationDate," +
                                                                                  "MedicalInstitutionName," +

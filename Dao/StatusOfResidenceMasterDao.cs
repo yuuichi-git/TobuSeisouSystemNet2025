@@ -35,7 +35,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns></returns>
         public bool ExistenceHStatusOfResidenceMaster(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 StaffCode FROM H_StatusOfResidenceMaster WHERE StaffCode = " + staffCode + "";
             return sqlCommand.ExecuteScalar() is not null ? true : false;
         }
@@ -48,7 +48,7 @@ namespace Dao {
         /// <returns></returns>
         public StatusOfResidenceMasterVo SelectOneStatusOfResidenceMasterP(int staffCode) {
             StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "StaffNameKana," +
                                             "StaffName," +
@@ -105,7 +105,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StatusOfResidenceMasterVo> SelectAllStatusOfResidenceMaster() {
             List<StatusOfResidenceMasterVo> listStatusOfResidenceMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "StaffNameKana," +
                                             "StaffName," +
@@ -163,7 +163,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StatusOfResidenceMasterVo> SelectAllStatusOfResidenceMasterP() {
             List<StatusOfResidenceMasterVo> listStatusOfResidenceMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "StaffNameKana," +
                                             "StaffName," +
@@ -220,7 +220,7 @@ namespace Dao {
         /// <param name="statusOfResidenceMasterVo"></param>
         /// <returns></returns>
         public int InsertOneStatusOfResidenceMaster(StatusOfResidenceMasterVo statusOfResidenceMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StatusOfResidenceMaster(StaffCode," +
                                                                            "StaffNameKana," +
                                                                            "StaffName," +
@@ -277,7 +277,7 @@ namespace Dao {
         /// <param name="statusOfResidenceMasterVo"></param>
         /// <returns></returns>
         public int UpdateOneStatusOfResidenceMaster(StatusOfResidenceMasterVo statusOfResidenceMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_StatusOfResidenceMaster " +
                                      "SET StaffCode = " + statusOfResidenceMasterVo.StaffCode + "," +
                                          "StaffNameKana = '" + statusOfResidenceMasterVo.StaffNameKana + "'," +
@@ -309,7 +309,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffCode"></param>
         public void DeleteOneStatusOfResidenceMaster(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_StatusOfResidenceMaster " +
                                      "SET DeletePcName = '" + Environment.MachineName + "'," +
                                          "DeleteYmdHms = '" + DateTime.Now + "'," +

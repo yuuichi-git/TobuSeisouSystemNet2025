@@ -34,7 +34,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns>true:あり false:なし</returns>
         public bool ExistenceLicenseMaster(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 StaffCode FROM H_LicenseMaster WHERE StaffCode = " + staffCode + "";
             return sqlCommand.ExecuteScalar() is not null ? true : false;
         }
@@ -46,7 +46,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns>有効期限を返す。存在しない場合はstring.Emptyを返す</returns>
         public string GetExpirationDate(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 ExpirationDate FROM H_LicenseMaster WHERE StaffCode = " + staffCode + "";
             var data = sqlCommand.ExecuteScalar();
             if (data is not null) {
@@ -63,7 +63,7 @@ namespace Dao {
         /// <returns></returns>
         public LicenseMasterVo SelectOneLicenseMaster(int staffCode) {
             LicenseMasterVo licenseMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "NameKana," +
                                             "Name," +
@@ -150,7 +150,7 @@ namespace Dao {
         /// <returns></returns>
         public byte[] SelectOnePictureHead(int staffCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT PictureHead " +
                                      "FROM H_LicenseMaster " +
                                      "WHERE StaffCode = " + staffCode + "";
@@ -169,7 +169,7 @@ namespace Dao {
         /// <returns></returns>
         public byte[] SelectOnePictureTail(int staffCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT PictureTail " +
                                      "FROM H_LicenseMaster " +
                                      "WHERE StaffCode = " + staffCode + "";
@@ -188,7 +188,7 @@ namespace Dao {
         /// <returns></returns>
         public List<LicenseMasterVo> SelectAllLicenseMaster() {
             List<LicenseMasterVo> listLicenseMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "NameKana," +
                                             "Name," +
@@ -275,7 +275,7 @@ namespace Dao {
         /// <param name="licenseMasterVo"></param>
         /// <returns></returns>
         public int InsertOneLicenseMaster(LicenseMasterVo licenseMasterVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_LicenseMaster(StaffCode," +
                                                                  "NameKana," +
                                                                  "Name," +
@@ -362,7 +362,7 @@ namespace Dao {
         /// <param name="licenseMasterVo"></param>
         /// <returns></returns>
         public int UpdateOneLicenseLedger(LicenseMasterVo licenseMasterVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_LicenseMaster " +
                                      "SET StaffCode = " + licenseMasterVo.StaffCode + "," +
                                          "NameKana = '" + licenseMasterVo.NameKana + "'," +
@@ -410,7 +410,7 @@ namespace Dao {
         /// <returns></returns>
         public List<string> SelectGroupLicenseCondition() {
             List<string> listGroupLicenseCondition = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT LicenseCondition " +
                                      "FROM H_LicenseMaster " +
                                      "GROUP BY LicenseCondition";

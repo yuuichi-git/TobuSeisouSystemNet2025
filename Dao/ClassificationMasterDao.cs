@@ -24,7 +24,7 @@ namespace Dao {
 
         public List<ClassificationMasterVo> SelectAllClassificationMasterVo() {
             List<ClassificationMasterVo> listClassificationMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "Name," +
                                             "InsertPcName," +

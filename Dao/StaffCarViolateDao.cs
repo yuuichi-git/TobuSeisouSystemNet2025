@@ -33,7 +33,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffCarViolateVo> SelectOneStaffCarViolateMaster(int staffCode) {
             List<StaffCarViolateVo> listStaffCarViolateVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CarViolateDate," +
                                             "CarViolateContent," +
@@ -72,7 +72,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffCarViolateVo"></param>
         public void InsertOneStaffCarViolateMaster(StaffCarViolateVo staffCarViolateVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StaffCarViolateMaster(StaffCode," +
                                                                          "CarViolateDate," +
                                                                          "CarViolateContent," +

@@ -35,7 +35,7 @@ namespace Dao {
         /// <returns></returns>
         public List<VehicleDispatchHeadVo> SelectAllVehicleDispatchHeadVo(int financialYear) {
             List<VehicleDispatchHeadVo> listVehicleDispatchHeadVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT CellNumber," +
                                             "VehicleDispatchFlag," +
                                             "Purpose," +

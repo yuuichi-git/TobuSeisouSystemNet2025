@@ -28,7 +28,7 @@ namespace Dao {
 
         public List<BelongsMasterVo> SelectAllBelongsMaster() {
             List<BelongsMasterVo> listBelongsMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "Name," +
                                             "InsertPcName," +

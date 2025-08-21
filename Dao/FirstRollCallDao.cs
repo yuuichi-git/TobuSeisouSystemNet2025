@@ -33,7 +33,7 @@ namespace Dao {
         /// <param name="dateTime"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceFirstRollCallVo(DateTime dateTime) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(OperationDate) " +
                                      "FROM H_FirstRollCall " +
                                      "WHERE OperationDate = '" + dateTime.ToString("yyyy-MM-dd") + "'";
@@ -51,7 +51,7 @@ namespace Dao {
         /// <returns>存在する:H_FirstRollCallVo 存在しない:NULL</returns>
         public FirstRollCallVo? SelectOneFirstRollCallVo(DateTime dateTime) {
             FirstRollCallVo firstRollCallVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT OperationDate," +
                                             "RollCallName1," +
                                             "RollCallName2," +
@@ -98,7 +98,7 @@ namespace Dao {
         /// </summary>
         /// <param name="firstRollCallVo"></param>
         public void InsertOneFirstRollCallVo(FirstRollCallVo firstRollCallVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_FirstRollCall(OperationDate," +
                                                                  "RollCallName1," +
                                                                  "RollCallName2," +
@@ -144,7 +144,7 @@ namespace Dao {
         /// </summary>
         /// <param name="firstRollCallVo"></param>
         public void UpdateOneFirstRollCallVo(FirstRollCallVo firstRollCallVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_FirstRollCall " +
                                      "SET OperationDate = '" + _defaultValue.GetDefaultValue<DateTime>(firstRollCallVo.OperationDate) + "'," +
                                          "RollCallName1 = '" + _defaultValue.GetDefaultValue<string>(firstRollCallVo.RollCallName1) + "'," +

@@ -29,7 +29,7 @@ namespace Dao {
         /// <returns></returns>
         public List<FareMasterVo> SelectAllFareMasterVo() {
             List<FareMasterVo> listFareMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT FareCode," +
                                             "FareName," +
                                             "InsertPcName," +

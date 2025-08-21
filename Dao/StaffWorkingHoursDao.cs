@@ -35,7 +35,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffWorkingHoursVo> SelectAllStaffWorkingHoursVo(DateTime operationDate1, DateTime operationDate2, int staffCode) {
             List<StaffWorkingHoursVo> listStaffWorkingHoursVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_SetMaster.SetName," +
                                             "CASE " +

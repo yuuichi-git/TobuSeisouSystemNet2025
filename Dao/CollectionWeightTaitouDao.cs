@@ -33,7 +33,7 @@ namespace Dao {
         /// <param name="operationDate"></param>
         /// <returns></returns>
         public bool ExistenceCollectionWeightTaitou(DateTime operationDate) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(OperationDate) " +
                                      "FROM H_CollectionWeightTaitou " +
                                      "WHERE OperationDate = '" + operationDate.Date + "'";
@@ -51,7 +51,7 @@ namespace Dao {
         /// <returns></returns>
         public CollectionWeightTaitouVo SelectOneCollectionWeightTaitou(DateTime operationDate) {
             CollectionWeightTaitouVo hCollectionWeightTaitouVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT OperationDate," +
                                             "Weight1Total," +
                                             "Weight2Total," +
@@ -108,7 +108,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CollectionWeightTaitouVo> SelectCollectionWeightTaitou(DateTime operationDate1, DateTime operationDate2) {
             List<CollectionWeightTaitouVo> listCollectionWeightTaitouVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT OperationDate," +
                                             "Weight1Total," +
                                             "Weight2Total," +
@@ -129,7 +129,7 @@ namespace Dao {
                                      "FROM H_CollectionWeightTaitou " +
                                      "WHERE OperationDate BETWEEN '" + operationDate1.Date + "' AND '" + operationDate2.Date + "'";
             try {
-                using (var sqlDataReader = sqlCommand.ExecuteReader()) {
+                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                     while (sqlDataReader.Read() == true) {
                         CollectionWeightTaitouVo hCollectionWeightTaitouVo = new();
                         hCollectionWeightTaitouVo.OperationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OperationDate"]);
@@ -164,7 +164,7 @@ namespace Dao {
         /// <param name="collectionWeightTaitouVo"></param>
         /// <returns></returns>
         public int InsertOneCollectionWeightTaitou(CollectionWeightTaitouVo collectionWeightTaitouVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_CollectionWeightTaitou(OperationDate," +
                                                                           "Weight1Total," +
                                                                           "Weight2Total," +
@@ -213,7 +213,7 @@ namespace Dao {
         /// <param name="collectionWeightTaitouVo"></param>
         /// <returns></returns>
         public int UpdateOneCollectionWeightTaitou(CollectionWeightTaitouVo collectionWeightTaitouVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CollectionWeightTaitou " +
                                      "SET OperationDate = '" + _defaultValue.GetDefaultValue<DateTime>(collectionWeightTaitouVo.OperationDate) + "'," +
                                          "Weight1Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight1Total) + "," +
@@ -254,7 +254,7 @@ namespace Dao {
             string staYmd = string.Concat(targetYmd.Year, "/", targetYmd.Month, "/01");
             string endYmd = string.Concat(targetYmd.Year, "/", targetYmd.Month, "/", targetYmd.AddMonths(1).AddDays(-1).Day);
 
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(SetCode) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate BETWEEN '" + staYmd + "' AND '" + endYmd + "' " +
@@ -288,7 +288,7 @@ namespace Dao {
             string endYmd = string.Concat(targetYmd.Year, "/", targetYmd.Month, "/", targetYmd.AddMonths(1).AddDays(-1).Day);
 
             List<CollectionStaffsTaitouVo> listCollectionStaffsTaitouVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT DATEPART(WEEKDAY,OperationDate) AS WeekDay," +
                                             "StaffCode3 " +
                                      "FROM H_VehicleDispatchDetail " +

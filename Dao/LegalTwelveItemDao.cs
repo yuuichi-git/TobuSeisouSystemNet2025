@@ -37,7 +37,7 @@ namespace Dao {
         /// <param name="legalTwelveItemVo">変更前のVo</param>
         /// <returns></returns>
         public bool ExistenceLegalTwelveItem(LegalTwelveItemVo legalTwelveItemVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StudentsDate) " +
                                      "FROM H_LegalTwelveItem " +
                                      "WHERE (StudentsDate BETWEEN '" + legalTwelveItemVo.StudentsDate + "' AND '" + legalTwelveItemVo.StudentsDate + "') " +
@@ -69,7 +69,7 @@ namespace Dao {
             //}
 
             List<LegalTwelveItemListVo> listLegalTwelveItemVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_BelongsMaster.Code AS BelongsCode," +
                                             "H_BelongsMaster.Name AS BelongsName," +
                                             "H_JobFormMaster.Code AS JobFormCode," +
@@ -159,7 +159,7 @@ namespace Dao {
         /// <returns></returns>
         public List<LegalTwelveItemVo> SelectLegalTwelveItemVo(int fiscalYear, int staffCode) {
             List<LegalTwelveItemVo> listLegalTwelveItemVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StudentsDate," +
                                             "StudentsCode," +
                                             "StudentsFlag," +
@@ -206,7 +206,7 @@ namespace Dao {
         /// <param name="legalTwelveItemVo"></param>
         /// <returns></returns>
         public int InsertOneLegalTwelveItem(LegalTwelveItemVo legalTwelveItemVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_LegalTwelveItem(StudentsDate," +
                                                                    "StudentsCode," +
                                                                    "StudentsFlag," +
@@ -252,7 +252,7 @@ namespace Dao {
         /// <param name="newLegalTwelveItemVo"></param>
         /// <returns></returns>
         public int UpdateOneLegalTwelveItem(LegalTwelveItemVo oldLegalTwelveItemVo, LegalTwelveItemVo newLegalTwelveItemVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_LegalTwelveItem " +
                                      "SET StudentsDate = '" + _defaultValue.GetDefaultValue<DateTime>(newLegalTwelveItemVo.StudentsDate) + "'," +
                                          "StudentsCode = " + _defaultValue.GetDefaultValue<int>(newLegalTwelveItemVo.StudentsCode) + "," +
@@ -286,7 +286,7 @@ namespace Dao {
         /// <param name="oldHLegalTwelveItemVo"></param>
         /// <returns></returns>
         public int DeleteOneLegalTwelveItemVo(LegalTwelveItemVo oldLegalTwelveItemVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "DELETE FROM H_LegalTwelveItem " +
                                      "WHERE (StudentsDate BETWEEN '" + oldLegalTwelveItemVo.StudentsDate + "' AND '" + oldLegalTwelveItemVo.StudentsDate + "') " +
                                      "AND StudentsCode = " + oldLegalTwelveItemVo.StudentsCode + " " +

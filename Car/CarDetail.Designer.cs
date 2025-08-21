@@ -1027,7 +1027,7 @@
             // 
             this.ComboBoxExClassificationCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExClassificationCode.FormattingEnabled = true;
-            this.ComboBoxExClassificationCode.Items.AddRange(new object[] { "雇上", "区契", "臨時", "清掃工場", "社内", "一般", "社用車", "指定なし" });
+            this.ComboBoxExClassificationCode.Items.AddRange(new object[] { "雇上", "区契", "臨時", "清掃工場", "社内", "一般", "社用車", "水物", "指定なし" });
             this.ComboBoxExClassificationCode.Location = new Point(188, 76);
             this.ComboBoxExClassificationCode.Name = "ComboBoxExClassificationCode";
             this.ComboBoxExClassificationCode.Size = new Size(164, 23);

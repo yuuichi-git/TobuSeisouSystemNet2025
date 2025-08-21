@@ -30,7 +30,7 @@ namespace Dao {
 
         public List<CollectionWeightChiyodaVo> SelectVehicleDispatchDetail(DateTime operationDate1, DateTime operationDate2) {
             List<CollectionWeightChiyodaVo> listCollectionWeightChiyodaVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_VehicleDispatchDetail.StaffCode1," +
                                             "H_StaffMaster1.DisplayName AS StaffDisplayName1," +
@@ -65,7 +65,7 @@ namespace Dao {
         public List<CollectionWeightGroupChiyodaVo> SelectGroupByVehicleDispatchDetail(DateTime operationDate1, DateTime operationDate2) {
             List<CollectionWeightGroupChiyodaVo> listCollectionWeightGroupChiyodaVo = new();
             CollectionWeightGroupChiyodaVo collectionWeightGroupChiyodaVo;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.OperationDate," +
                                             "H_VehicleDispatchDetail.StaffCode1," +
                                             "H_StaffMaster1.DisplayName AS StaffDisplayName1," +
@@ -109,7 +109,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns>従事者の期間内の出勤日数を返す</returns>
         public int GetWorkingDaysForStaff(DateTime operationDate1, DateTime operationDate2, int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate BETWEEN '" + operationDate1.ToString("yyyy-MM-dd") + "' AND '" + operationDate2.ToString("yyyy-MM-dd") + "' " +

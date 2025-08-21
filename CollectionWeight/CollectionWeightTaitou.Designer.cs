@@ -222,6 +222,7 @@
             // 
             // NumericUpDownEx9
             // 
+            this.NumericUpDownEx9.Enabled = false;
             this.NumericUpDownEx9.Location = new Point(64, 112);
             this.NumericUpDownEx9.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
             this.NumericUpDownEx9.Name = "NumericUpDownEx9";
@@ -326,6 +327,7 @@
             // 
             // NumericUpDownEx5
             // 
+            this.NumericUpDownEx5.Enabled = false;
             this.NumericUpDownEx5.Location = new Point(64, 140);
             this.NumericUpDownEx5.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
             this.NumericUpDownEx5.Name = "NumericUpDownEx5";

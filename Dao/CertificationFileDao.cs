@@ -34,7 +34,7 @@ namespace Dao {
         /// <param name="certificationCode"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceHCertificationFile(int staffCode, int certificationCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_CertificationFile " +
                                      "WHERE StaffCode = " + staffCode + " AND CertificationCode = " + certificationCode + "";
@@ -52,7 +52,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CertificationFileVo> SelectAllCertificationFile() {
             List<CertificationFileVo> listCertificationFileVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CertificationCode," +
                                             "MarkCode," +
@@ -94,7 +94,7 @@ namespace Dao {
         /// <returns></returns>
         public List<CertificationFileVo> SelectAllCertificationFileP() {
             List<CertificationFileVo> listCertificationFileVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CertificationCode," +
                                             "MarkCode," +
@@ -140,7 +140,7 @@ namespace Dao {
         /// <returns></returns>
         public CertificationFileVo SelectOneCertificationFile(int staffCode, int certificationCode) {
             CertificationFileVo certificationFileVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "CertificationCode," +
                                             "MarkCode," +
@@ -185,7 +185,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <param name="markCode"></param>
         public void InsertOneCertificationFile(CertificationFileVo certificationFileVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_CertificationFile(StaffCode," +
                                                                      "CertificationCode," +
                                                                      "MarkCode," +
@@ -232,7 +232,7 @@ namespace Dao {
         /// <param name="certificationFileVo"></param>
         /// <returns></returns>
         public int UpdateOneLicenseLedger(CertificationFileVo certificationFileVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CertificationFile " +
                                      "SET StaffCode = " + certificationFileVo.StaffCode + "," +
                                          "CertificationCode = " + certificationFileVo.CertificationCode + "," +

@@ -24,7 +24,7 @@ namespace Dao {
 
         public List<JobFormMasterVo> SelectAllJobFormMaster() {
             List<JobFormMasterVo> listJobFormMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "Name," +
                                             "InsertPcName," +

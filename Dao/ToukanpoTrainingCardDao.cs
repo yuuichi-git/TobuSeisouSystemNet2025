@@ -30,7 +30,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns>true:存在する false:存在しない</returns>
         public bool ExistenceToukanpoTrainingCardMaster(int staffCode) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 StaffCode " +
                                      "FROM H_ToukanpoTrainingCardMaster " +
                                      "WHERE StaffCode = " + staffCode + "";
@@ -44,7 +44,7 @@ namespace Dao {
         /// <returns></returns>
         public ToukanpoTrainingCardVo SelectOneToukanpoTrainingCardMaster(int staffCode) {
             ToukanpoTrainingCardVo toukanpoTrainingCardVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "DisplayName," +
                                             "CompanyName," +
@@ -86,7 +86,7 @@ namespace Dao {
         /// <returns></returns>
         public List<ToukanpoTrainingCardVo> SelectAllToukanpoTrainingCardMaster() {
             List<ToukanpoTrainingCardVo> listToukanpoTrainingCardVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_ToukanpoTrainingCardMaster.StaffCode," +
                                             "H_StaffMaster.UnionCode," +
                                             "H_StaffMaster.Name," +
@@ -137,7 +137,7 @@ namespace Dao {
         /// <param name="toukanpoTrainingCardVo"></param>
         /// <returns></returns>
         public int InsertOneToukanpoTrainingCardMaster(ToukanpoTrainingCardVo toukanpoTrainingCardVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_ToukanpoTrainingCardMaster(StaffCode," +
                                                                               "DisplayName," +
                                                                               "CompanyName," +
@@ -179,7 +179,7 @@ namespace Dao {
         /// <param name="toukanpoTrainingCardVo"></param>
         /// <returns></returns>
         public int UpdateOneToukanpoTrainingCardMaster(ToukanpoTrainingCardVo toukanpoTrainingCardVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_ToukanpoTrainingCardMaster " +
                                      "SET CompanyName = '" + toukanpoTrainingCardVo.CompanyName + "'," +
                                          "DisplayName = '" + toukanpoTrainingCardVo.Name + "'," +

@@ -19,6 +19,7 @@
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
     <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
     <ProjectReference Include="..\LegalTwelveItem\LegalTwelveItem.csproj" />
+    <ProjectReference Include="..\Seisou\Seisou.csproj" />
     <ProjectReference Include="..\Staff\Staff.csproj" />
     <ProjectReference Include="..\StatusOfResidence\StatusOfResidence.csproj" />
     <ProjectReference Include="..\Toukanpo\Toukanpo.csproj" />

@@ -23,100 +23,100 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            TreeNode treeNode95 = new TreeNode("ファイル及びデータへのショートカット");
-            TreeNode treeNode96 = new TreeNode("　　環境マネジメントマニュアル");
-            TreeNode treeNode97 = new TreeNode("１　目的");
-            TreeNode treeNode98 = new TreeNode("２　適用範囲");
-            TreeNode treeNode99 = new TreeNode("３　用語の定義");
-            TreeNode treeNode100 = new TreeNode("４.１　外部及び内部の課題");
-            TreeNode treeNode101 = new TreeNode("４.２　利害関係者のニーズ及び期待");
-            TreeNode treeNode102 = new TreeNode("４.３　環境マネジメントシステムの範囲");
-            TreeNode treeNode103 = new TreeNode("４.４　環境マネジメントシステムの概要");
-            TreeNode treeNode104 = new TreeNode("４　当社をとりまく状況の理解", new TreeNode[] { treeNode100, treeNode101, treeNode102, treeNode103 });
-            TreeNode treeNode105 = new TreeNode("５.１　リーダーシップ及びコミットメント");
-            TreeNode treeNode106 = new TreeNode("５.２　環境方針");
-            TreeNode treeNode107 = new TreeNode("５.３　役割、責任及び権限");
-            TreeNode treeNode108 = new TreeNode("５　リーダーシップ", new TreeNode[] { treeNode105, treeNode106, treeNode107 });
-            TreeNode treeNode109 = new TreeNode("６.１.１　リスク及び機会の決定");
-            TreeNode treeNode110 = new TreeNode("６.１.２　環境側面");
-            TreeNode treeNode111 = new TreeNode("６.１.３　順守義務(法的及びその他の要求事項)");
-            TreeNode treeNode112 = new TreeNode("６.１.４　取組みの計画策定");
-            TreeNode treeNode113 = new TreeNode("６.１　リスク及び機会への取組み", new TreeNode[] { treeNode109, treeNode110, treeNode111, treeNode112 });
-            TreeNode treeNode114 = new TreeNode("６.２　環境目標及びプログラム");
-            TreeNode treeNode115 = new TreeNode("６　計画", new TreeNode[] { treeNode113, treeNode114 });
-            TreeNode treeNode116 = new TreeNode("７.１　資源");
-            TreeNode treeNode117 = new TreeNode("７.２.１　力量(有資格者)");
-            TreeNode treeNode118 = new TreeNode("７.２.２　教育訓練");
-            TreeNode treeNode119 = new TreeNode("７.２　力量、教育訓練", new TreeNode[] { treeNode117, treeNode118 });
-            TreeNode treeNode120 = new TreeNode("７.３　認識");
-            TreeNode treeNode121 = new TreeNode("７.４　コミュニケーション");
-            TreeNode treeNode122 = new TreeNode("７.５.１　文章体系・文章の作成・承認");
-            TreeNode treeNode123 = new TreeNode("７.５.２　文章の管理・識別");
-            TreeNode treeNode124 = new TreeNode("７.５.３　文章の見直し");
-            TreeNode treeNode125 = new TreeNode("７.５.４　外部文章の保管・配布の管理");
-            TreeNode treeNode126 = new TreeNode("７.５.５　環境記録の管理");
-            TreeNode treeNode127 = new TreeNode("７.５　文章管理", new TreeNode[] { treeNode122, treeNode123, treeNode124, treeNode125, treeNode126 });
-            TreeNode treeNode128 = new TreeNode("７　支援(サポート)", new TreeNode[] { treeNode116, treeNode119, treeNode120, treeNode121, treeNode127 });
-            TreeNode treeNode129 = new TreeNode("８.１　運用の計画及び管理");
-            TreeNode treeNode130 = new TreeNode("８.２.１　緊急事態の可能性の特定");
-            TreeNode treeNode131 = new TreeNode("８.２.２　緊急事態対応手順書の作成");
-            TreeNode treeNode132 = new TreeNode("８.２.３　緊急事態対応訓練(対応手順のテスト)");
-            TreeNode treeNode133 = new TreeNode("８.２.４　手順書の見直し");
-            TreeNode treeNode134 = new TreeNode("８.２.５　取引先を含む利害関係者への情報提供");
-            TreeNode treeNode135 = new TreeNode("８.２　緊急事態への準備及び対応", new TreeNode[] { treeNode130, treeNode131, treeNode132, treeNode133, treeNode134 });
-            TreeNode treeNode136 = new TreeNode("８　運用", new TreeNode[] { treeNode129, treeNode135 });
-            TreeNode treeNode137 = new TreeNode("９.１.１　取組みの項目の監視、測定");
-            TreeNode treeNode138 = new TreeNode("９.１.２　順守評価(法的及びその他の要求事項)");
-            TreeNode treeNode139 = new TreeNode("９.１　監視、測定、分析及び評価", new TreeNode[] { treeNode137, treeNode138 });
-            TreeNode treeNode140 = new TreeNode("９.２　内部監査");
-            TreeNode treeNode141 = new TreeNode("９.３　経営層による見直し(マネジメントレビュー)");
-            TreeNode treeNode142 = new TreeNode("９　パフォーマンス評価", new TreeNode[] { treeNode139, treeNode140, treeNode141 });
-            TreeNode treeNode143 = new TreeNode("１０.１　一般");
-            TreeNode treeNode144 = new TreeNode("１０.２　不適合への対応");
-            TreeNode treeNode145 = new TreeNode("１０.３　継続的改善");
-            TreeNode treeNode146 = new TreeNode("１０改善", new TreeNode[] { treeNode143, treeNode144, treeNode145 });
-            TreeNode treeNode147 = new TreeNode("ISO14001", new TreeNode[] { treeNode96, treeNode97, treeNode98, treeNode99, treeNode104, treeNode108, treeNode115, treeNode128, treeNode136, treeNode142, treeNode146 });
-            TreeNode treeNode148 = new TreeNode("00　巡回指導資料");
-            TreeNode treeNode149 = new TreeNode("01　運転者台帳");
-            TreeNode treeNode150 = new TreeNode("02　運行管理規定");
-            TreeNode treeNode151 = new TreeNode("03　点呼記録簿・点呼執行要領");
-            TreeNode treeNode152 = new TreeNode("04　乗務記録(運転日報)");
-            TreeNode treeNode153 = new TreeNode("05　運行計画及び勤務割当表");
-            TreeNode treeNode154 = new TreeNode("06　乗務実績一覧表(拘束時間管理表)");
-            TreeNode treeNode155 = new TreeNode("07　運行記録計による記録");
-            TreeNode treeNode156 = new TreeNode("08　運行指示書");
-            TreeNode treeNode157 = new TreeNode("09　受注伝票");
-            TreeNode treeNode158 = new TreeNode("10　運行管理者・整備管理者選任届出書");
-            TreeNode treeNode159 = new TreeNode("11　運行管理者資格者証");
-            TreeNode treeNode160 = new TreeNode("12　運行管理者研修手帳");
-            TreeNode treeNode161 = new TreeNode("13　整備管理者研修手帳");
-            TreeNode treeNode162 = new TreeNode("14　教育実施計画");
-            TreeNode treeNode163 = new TreeNode("15　運転記録証明書又は無事故無違反証明書");
-            TreeNode treeNode164 = new TreeNode("16　乗務員指導記録簿");
-            TreeNode treeNode165 = new TreeNode("17　適性診断受診結果票");
-            TreeNode treeNode166 = new TreeNode("18　適性診断受診計画表");
-            TreeNode treeNode167 = new TreeNode("19　事故記録簿");
-            TreeNode treeNode168 = new TreeNode("20　自動車事故報告書");
-            TreeNode treeNode169 = new TreeNode("21　事業報告書・事業実績報告書");
-            TreeNode treeNode170 = new TreeNode("22　役員変更届出書");
-            TreeNode treeNode171 = new TreeNode("23　車両台帳・自動車検査証の写し");
-            TreeNode treeNode172 = new TreeNode("24　整備管理規定等の規定類");
-            TreeNode treeNode173 = new TreeNode("25　点検整備記録簿");
-            TreeNode treeNode174 = new TreeNode("26　日常点検基準");
-            TreeNode treeNode175 = new TreeNode("27　日常点検表");
-            TreeNode treeNode176 = new TreeNode("28　定期点検基準");
-            TreeNode treeNode177 = new TreeNode("29　定期点検整備実施計画表");
-            TreeNode treeNode178 = new TreeNode("30　賃金台帳");
-            TreeNode treeNode179 = new TreeNode("31　健康診断書・健康診断記録簿");
-            TreeNode treeNode180 = new TreeNode("32　就業規則");
-            TreeNode treeNode181 = new TreeNode("33　３６協定");
-            TreeNode treeNode182 = new TreeNode("34　出勤簿");
-            TreeNode treeNode183 = new TreeNode("35　運輸安全マネジメント関係");
-            TreeNode treeNode184 = new TreeNode("36　労災保険加入台帳");
-            TreeNode treeNode185 = new TreeNode("37　雇用保険加入台帳");
-            TreeNode treeNode186 = new TreeNode("38　健康保険加入台帳・厚生年金加入台帳");
-            TreeNode treeNode187 = new TreeNode("陸運局", new TreeNode[] { treeNode148, treeNode149, treeNode150, treeNode151, treeNode152, treeNode153, treeNode154, treeNode155, treeNode156, treeNode157, treeNode158, treeNode159, treeNode160, treeNode161, treeNode162, treeNode163, treeNode164, treeNode165, treeNode166, treeNode167, treeNode168, treeNode169, treeNode170, treeNode171, treeNode172, treeNode173, treeNode174, treeNode175, treeNode176, treeNode177, treeNode178, treeNode179, treeNode180, treeNode181, treeNode182, treeNode183, treeNode184, treeNode185, treeNode186 });
-            TreeNode treeNode188 = new TreeNode("労働基準監督署");
+            TreeNode treeNode1 = new TreeNode("ファイル及びデータへのショートカット");
+            TreeNode treeNode2 = new TreeNode("　　環境マネジメントマニュアル");
+            TreeNode treeNode3 = new TreeNode("１　目的");
+            TreeNode treeNode4 = new TreeNode("２　適用範囲");
+            TreeNode treeNode5 = new TreeNode("３　用語の定義");
+            TreeNode treeNode6 = new TreeNode("４.１　外部及び内部の課題");
+            TreeNode treeNode7 = new TreeNode("４.２　利害関係者のニーズ及び期待");
+            TreeNode treeNode8 = new TreeNode("４.３　環境マネジメントシステムの範囲");
+            TreeNode treeNode9 = new TreeNode("４.４　環境マネジメントシステムの概要");
+            TreeNode treeNode10 = new TreeNode("４　当社をとりまく状況の理解", new TreeNode[] { treeNode6, treeNode7, treeNode8, treeNode9 });
+            TreeNode treeNode11 = new TreeNode("５.１　リーダーシップ及びコミットメント");
+            TreeNode treeNode12 = new TreeNode("５.２　環境方針");
+            TreeNode treeNode13 = new TreeNode("５.３　役割、責任及び権限");
+            TreeNode treeNode14 = new TreeNode("５　リーダーシップ", new TreeNode[] { treeNode11, treeNode12, treeNode13 });
+            TreeNode treeNode15 = new TreeNode("６.１.１　リスク及び機会の決定");
+            TreeNode treeNode16 = new TreeNode("６.１.２　環境側面");
+            TreeNode treeNode17 = new TreeNode("６.１.３　順守義務(法的及びその他の要求事項)");
+            TreeNode treeNode18 = new TreeNode("６.１.４　取組みの計画策定");
+            TreeNode treeNode19 = new TreeNode("６.１　リスク及び機会への取組み", new TreeNode[] { treeNode15, treeNode16, treeNode17, treeNode18 });
+            TreeNode treeNode20 = new TreeNode("６.２　環境目標及びプログラム");
+            TreeNode treeNode21 = new TreeNode("６　計画", new TreeNode[] { treeNode19, treeNode20 });
+            TreeNode treeNode22 = new TreeNode("７.１　資源");
+            TreeNode treeNode23 = new TreeNode("７.２.１　力量(有資格者)");
+            TreeNode treeNode24 = new TreeNode("７.２.２　教育訓練");
+            TreeNode treeNode25 = new TreeNode("７.２　力量、教育訓練", new TreeNode[] { treeNode23, treeNode24 });
+            TreeNode treeNode26 = new TreeNode("７.３　認識");
+            TreeNode treeNode27 = new TreeNode("７.４　コミュニケーション");
+            TreeNode treeNode28 = new TreeNode("７.５.１　文章体系・文章の作成・承認");
+            TreeNode treeNode29 = new TreeNode("７.５.２　文章の管理・識別");
+            TreeNode treeNode30 = new TreeNode("７.５.３　文章の見直し");
+            TreeNode treeNode31 = new TreeNode("７.５.４　外部文章の保管・配布の管理");
+            TreeNode treeNode32 = new TreeNode("７.５.５　環境記録の管理");
+            TreeNode treeNode33 = new TreeNode("７.５　文章管理", new TreeNode[] { treeNode28, treeNode29, treeNode30, treeNode31, treeNode32 });
+            TreeNode treeNode34 = new TreeNode("７　支援(サポート)", new TreeNode[] { treeNode22, treeNode25, treeNode26, treeNode27, treeNode33 });
+            TreeNode treeNode35 = new TreeNode("８.１　運用の計画及び管理");
+            TreeNode treeNode36 = new TreeNode("８.２.１　緊急事態の可能性の特定");
+            TreeNode treeNode37 = new TreeNode("８.２.２　緊急事態対応手順書の作成");
+            TreeNode treeNode38 = new TreeNode("８.２.３　緊急事態対応訓練(対応手順のテスト)");
+            TreeNode treeNode39 = new TreeNode("８.２.４　手順書の見直し");
+            TreeNode treeNode40 = new TreeNode("８.２.５　取引先を含む利害関係者への情報提供");
+            TreeNode treeNode41 = new TreeNode("８.２　緊急事態への準備及び対応", new TreeNode[] { treeNode36, treeNode37, treeNode38, treeNode39, treeNode40 });
+            TreeNode treeNode42 = new TreeNode("８　運用", new TreeNode[] { treeNode35, treeNode41 });
+            TreeNode treeNode43 = new TreeNode("９.１.１　取組みの項目の監視、測定");
+            TreeNode treeNode44 = new TreeNode("９.１.２　順守評価(法的及びその他の要求事項)");
+            TreeNode treeNode45 = new TreeNode("９.１　監視、測定、分析及び評価", new TreeNode[] { treeNode43, treeNode44 });
+            TreeNode treeNode46 = new TreeNode("９.２　内部監査");
+            TreeNode treeNode47 = new TreeNode("９.３　経営層による見直し(マネジメントレビュー)");
+            TreeNode treeNode48 = new TreeNode("９　パフォーマンス評価", new TreeNode[] { treeNode45, treeNode46, treeNode47 });
+            TreeNode treeNode49 = new TreeNode("１０.１　一般");
+            TreeNode treeNode50 = new TreeNode("１０.２　不適合への対応");
+            TreeNode treeNode51 = new TreeNode("１０.３　継続的改善");
+            TreeNode treeNode52 = new TreeNode("１０改善", new TreeNode[] { treeNode49, treeNode50, treeNode51 });
+            TreeNode treeNode53 = new TreeNode("ISO14001", new TreeNode[] { treeNode2, treeNode3, treeNode4, treeNode5, treeNode10, treeNode14, treeNode21, treeNode34, treeNode42, treeNode48, treeNode52 });
+            TreeNode treeNode54 = new TreeNode("00　巡回指導資料");
+            TreeNode treeNode55 = new TreeNode("01　運転者台帳");
+            TreeNode treeNode56 = new TreeNode("02　運行管理規定");
+            TreeNode treeNode57 = new TreeNode("03　点呼記録簿・点呼執行要領");
+            TreeNode treeNode58 = new TreeNode("04　乗務記録(運転日報)");
+            TreeNode treeNode59 = new TreeNode("05　運行計画及び勤務割当表");
+            TreeNode treeNode60 = new TreeNode("06　乗務実績一覧表(拘束時間管理表)");
+            TreeNode treeNode61 = new TreeNode("07　運行記録計による記録");
+            TreeNode treeNode62 = new TreeNode("08　運行指示書");
+            TreeNode treeNode63 = new TreeNode("09　受注伝票");
+            TreeNode treeNode64 = new TreeNode("10　運行管理者・整備管理者選任届出書");
+            TreeNode treeNode65 = new TreeNode("11　運行管理者資格者証");
+            TreeNode treeNode66 = new TreeNode("12　運行管理者研修手帳");
+            TreeNode treeNode67 = new TreeNode("13　整備管理者研修手帳");
+            TreeNode treeNode68 = new TreeNode("14　教育実施計画");
+            TreeNode treeNode69 = new TreeNode("15　運転記録証明書又は無事故無違反証明書");
+            TreeNode treeNode70 = new TreeNode("16　乗務員指導記録簿");
+            TreeNode treeNode71 = new TreeNode("17　適性診断受診結果票");
+            TreeNode treeNode72 = new TreeNode("18　適性診断受診計画表");
+            TreeNode treeNode73 = new TreeNode("19　事故記録簿");
+            TreeNode treeNode74 = new TreeNode("20　自動車事故報告書");
+            TreeNode treeNode75 = new TreeNode("21　事業報告書・事業実績報告書");
+            TreeNode treeNode76 = new TreeNode("22　役員変更届出書");
+            TreeNode treeNode77 = new TreeNode("23　車両台帳・自動車検査証の写し");
+            TreeNode treeNode78 = new TreeNode("24　整備管理規定等の規定類");
+            TreeNode treeNode79 = new TreeNode("25　点検整備記録簿");
+            TreeNode treeNode80 = new TreeNode("26　日常点検基準");
+            TreeNode treeNode81 = new TreeNode("27　日常点検表");
+            TreeNode treeNode82 = new TreeNode("28　定期点検基準");
+            TreeNode treeNode83 = new TreeNode("29　定期点検整備実施計画表");
+            TreeNode treeNode84 = new TreeNode("30　賃金台帳");
+            TreeNode treeNode85 = new TreeNode("31　健康診断書・健康診断記録簿");
+            TreeNode treeNode86 = new TreeNode("32　就業規則");
+            TreeNode treeNode87 = new TreeNode("33　３６協定");
+            TreeNode treeNode88 = new TreeNode("34　出勤簿");
+            TreeNode treeNode89 = new TreeNode("35　運輸安全マネジメント関係");
+            TreeNode treeNode90 = new TreeNode("36　労災保険加入台帳");
+            TreeNode treeNode91 = new TreeNode("37　雇用保険加入台帳");
+            TreeNode treeNode92 = new TreeNode("38　健康保険加入台帳・厚生年金加入台帳");
+            TreeNode treeNode93 = new TreeNode("陸運局", new TreeNode[] { treeNode54, treeNode55, treeNode56, treeNode57, treeNode58, treeNode59, treeNode60, treeNode61, treeNode62, treeNode63, treeNode64, treeNode65, treeNode66, treeNode67, treeNode68, treeNode69, treeNode70, treeNode71, treeNode72, treeNode73, treeNode74, treeNode75, treeNode76, treeNode77, treeNode78, treeNode79, treeNode80, treeNode81, treeNode82, treeNode83, treeNode84, treeNode85, treeNode86, treeNode87, treeNode88, treeNode89, treeNode90, treeNode91, treeNode92 });
+            TreeNode treeNode94 = new TreeNode("労働基準監督署");
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
@@ -128,15 +128,26 @@
             this.PanelExRight = new ControlEx.PanelEx();
             this.ComboBoxExMonitor = new ControlEx.ComboBoxEx();
             this.labelEx3 = new ControlEx.LabelEx();
-            this.ButtonExDisConnect = new ControlEx.ButtonEx();
-            this.ButtonExConnect = new ControlEx.ButtonEx();
-            this.LabelExStatus = new ControlEx.LabelEx();
-            this.LabelExDataBaseName = new ControlEx.LabelEx();
-            this.LabelExServerName = new ControlEx.LabelEx();
+            this.ButtonExDisConnectSqlServer = new ControlEx.ButtonEx();
+            this.ButtonExConnectSqlServer = new ControlEx.ButtonEx();
+            this.LabelExStatusSqlServer = new ControlEx.LabelEx();
+            this.LabelExDataBaseNameSqlServer = new ControlEx.LabelEx();
+            this.LabelExServerNameSqlServer = new ControlEx.LabelEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.TabControlExConnect = new ControlEx.TabControlEx();
+            this.TabControlEx1 = new ControlEx.TabControlEx();
             this.TabPageSystem = new TabPage();
+            this.labelEx50 = new ControlEx.LabelEx();
+            this.labelEx51 = new ControlEx.LabelEx();
+            this.labelEx49 = new ControlEx.LabelEx();
+            this.GroupBoxEx1 = new ControlEx.GroupBoxEx();
+            this.LabelExServerVersion = new ControlEx.LabelEx();
+            this.ButtonExDisConnectOracle = new ControlEx.ButtonEx();
+            this.LabelExStatusOracle = new ControlEx.LabelEx();
+            this.LabelExDataBaseNameOracle = new ControlEx.LabelEx();
+            this.LabelExServerNameOracle = new ControlEx.LabelEx();
+            this.ButtonExConnectOracle = new ControlEx.ButtonEx();
+            this.labelEx48 = new ControlEx.LabelEx();
             this.TabPageOffice = new TabPage();
             this.labelEx38 = new ControlEx.LabelEx();
             this.labelEx39 = new ControlEx.LabelEx();
@@ -188,7 +199,9 @@
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
-            this.TabControlExConnect.SuspendLayout();
+            this.TabControlEx1.SuspendLayout();
+            this.TabPageSystem.SuspendLayout();
+            this.GroupBoxEx1.SuspendLayout();
             this.TabPageOffice.SuspendLayout();
             this.TabPageAdachi.SuspendLayout();
             this.TabPageHaikibutu.SuspendLayout();
@@ -250,195 +263,195 @@
             // 
             this.TreeViewEx1.Location = new Point(8, 96);
             this.TreeViewEx1.Name = "TreeViewEx1";
-            treeNode95.Name = "NodeISO0000";
-            treeNode95.Text = "ファイル及びデータへのショートカット";
-            treeNode96.Name = "ノード4";
-            treeNode96.Text = "　　環境マネジメントマニュアル";
-            treeNode97.Name = "NodeISO0100";
-            treeNode97.Text = "１　目的";
-            treeNode98.Name = "NodeISO0200";
-            treeNode98.Text = "２　適用範囲";
-            treeNode99.Name = "NodeISO0300";
-            treeNode99.Text = "３　用語の定義";
-            treeNode100.Name = "NodeISO0410";
-            treeNode100.Text = "４.１　外部及び内部の課題";
-            treeNode101.Name = "NodeISO0420";
-            treeNode101.Text = "４.２　利害関係者のニーズ及び期待";
-            treeNode102.Name = "NodeISO0430";
-            treeNode102.Text = "４.３　環境マネジメントシステムの範囲";
-            treeNode103.Name = "NodeISO0440";
-            treeNode103.Text = "４.４　環境マネジメントシステムの概要";
-            treeNode104.Name = "NodeISO0400";
-            treeNode104.Text = "４　当社をとりまく状況の理解";
-            treeNode105.Name = "NodeISO0510";
-            treeNode105.Text = "５.１　リーダーシップ及びコミットメント";
-            treeNode106.Name = "NodeISO0520";
-            treeNode106.Text = "５.２　環境方針";
-            treeNode107.Name = "NodeISO0530";
-            treeNode107.Text = "５.３　役割、責任及び権限";
-            treeNode108.Name = "NodeISO0500";
-            treeNode108.Text = "５　リーダーシップ";
-            treeNode109.Name = "NodeISO0611";
-            treeNode109.Text = "６.１.１　リスク及び機会の決定";
-            treeNode110.Name = "NodeISO0612";
-            treeNode110.Text = "６.１.２　環境側面";
-            treeNode111.Name = "NodeISO0613";
-            treeNode111.Text = "６.１.３　順守義務(法的及びその他の要求事項)";
-            treeNode112.Name = "NodeISO0614";
-            treeNode112.Text = "６.１.４　取組みの計画策定";
-            treeNode113.Name = "NodeISO0610";
-            treeNode113.Text = "６.１　リスク及び機会への取組み";
-            treeNode114.Name = "NodeISO0620";
-            treeNode114.Text = "６.２　環境目標及びプログラム";
-            treeNode115.Name = "NodeISO0600";
-            treeNode115.Text = "６　計画";
-            treeNode116.Name = "NodeISO0710";
-            treeNode116.Text = "７.１　資源";
-            treeNode117.Name = "NodeISO0721";
-            treeNode117.Text = "７.２.１　力量(有資格者)";
-            treeNode118.Name = "NodeISO0722";
-            treeNode118.Text = "７.２.２　教育訓練";
-            treeNode119.Name = "NodeISO0720";
-            treeNode119.Text = "７.２　力量、教育訓練";
-            treeNode120.Name = "NodeISO0730";
-            treeNode120.Text = "７.３　認識";
-            treeNode121.Name = "NodeISO0740";
-            treeNode121.Text = "７.４　コミュニケーション";
-            treeNode122.Name = "NodeISO0751";
-            treeNode122.Text = "７.５.１　文章体系・文章の作成・承認";
-            treeNode123.Name = "NodeISO0752";
-            treeNode123.Text = "７.５.２　文章の管理・識別";
-            treeNode124.Name = "NodeISO0753";
-            treeNode124.Text = "７.５.３　文章の見直し";
-            treeNode125.Name = "NodeISO0754";
-            treeNode125.Text = "７.５.４　外部文章の保管・配布の管理";
-            treeNode126.Name = "NodeISO0755";
-            treeNode126.Text = "７.５.５　環境記録の管理";
-            treeNode127.Name = "NodeISO0750";
-            treeNode127.Text = "７.５　文章管理";
-            treeNode128.Name = "NodeISO0700";
-            treeNode128.Text = "７　支援(サポート)";
-            treeNode129.Name = "NodeISO0810";
-            treeNode129.Text = "８.１　運用の計画及び管理";
-            treeNode130.Name = "NodeISO0821";
-            treeNode130.Text = "８.２.１　緊急事態の可能性の特定";
-            treeNode131.Name = "NodeISO0822";
-            treeNode131.Text = "８.２.２　緊急事態対応手順書の作成";
-            treeNode132.Name = "NodeISO0823";
-            treeNode132.Text = "８.２.３　緊急事態対応訓練(対応手順のテスト)";
-            treeNode133.Name = "NodeISO0824";
-            treeNode133.Text = "８.２.４　手順書の見直し";
-            treeNode134.Name = "NodeISO0825";
-            treeNode134.Text = "８.２.５　取引先を含む利害関係者への情報提供";
-            treeNode135.Name = "NodeISO0820";
-            treeNode135.Text = "８.２　緊急事態への準備及び対応";
-            treeNode136.Name = "NodeISO0800";
-            treeNode136.Text = "８　運用";
-            treeNode137.Name = "NodeISO0911";
-            treeNode137.Text = "９.１.１　取組みの項目の監視、測定";
-            treeNode138.Name = "NodeISO0912";
-            treeNode138.Text = "９.１.２　順守評価(法的及びその他の要求事項)";
-            treeNode139.Name = "NodeISO0910";
-            treeNode139.Text = "９.１　監視、測定、分析及び評価";
-            treeNode140.Name = "NodeISO0920";
-            treeNode140.Text = "９.２　内部監査";
-            treeNode141.Name = "NodeISO0930";
-            treeNode141.Text = "９.３　経営層による見直し(マネジメントレビュー)";
-            treeNode142.Name = "NodeISO0900";
-            treeNode142.Text = "９　パフォーマンス評価";
-            treeNode143.Name = "NodeISO1010";
-            treeNode143.Text = "１０.１　一般";
-            treeNode144.Name = "NodeISO1020";
-            treeNode144.Text = "１０.２　不適合への対応";
-            treeNode145.Name = "NodeISO1030";
-            treeNode145.Text = "１０.３　継続的改善";
-            treeNode146.Name = "NodeISO1000";
-            treeNode146.Text = "１０改善";
-            treeNode147.Name = "ノード1";
-            treeNode147.Text = "ISO14001";
-            treeNode148.Name = "NodeRik00";
-            treeNode148.Text = "00　巡回指導資料";
-            treeNode149.Name = "NodeRik01";
-            treeNode149.Text = "01　運転者台帳";
-            treeNode150.Name = "NodeRik02";
-            treeNode150.Text = "02　運行管理規定";
-            treeNode151.Name = "NodeRik03";
-            treeNode151.Text = "03　点呼記録簿・点呼執行要領";
-            treeNode152.Name = "NodeRik04";
-            treeNode152.Text = "04　乗務記録(運転日報)";
-            treeNode153.Name = "NodeRik05";
-            treeNode153.Text = "05　運行計画及び勤務割当表";
-            treeNode154.Name = "NodeRik06";
-            treeNode154.Text = "06　乗務実績一覧表(拘束時間管理表)";
-            treeNode155.Name = "NodeRik07";
-            treeNode155.Text = "07　運行記録計による記録";
-            treeNode156.Name = "NodeRik08";
-            treeNode156.Text = "08　運行指示書";
-            treeNode157.Name = "NodeRik09";
-            treeNode157.Text = "09　受注伝票";
-            treeNode158.Name = "NodeRik10";
-            treeNode158.Text = "10　運行管理者・整備管理者選任届出書";
-            treeNode159.Name = "NodeRik11";
-            treeNode159.Text = "11　運行管理者資格者証";
-            treeNode160.Name = "NodeRik12";
-            treeNode160.Text = "12　運行管理者研修手帳";
-            treeNode161.Name = "NodeRik13";
-            treeNode161.Text = "13　整備管理者研修手帳";
-            treeNode162.Name = "NodeRik14";
-            treeNode162.Text = "14　教育実施計画";
-            treeNode163.Name = "NodeRik15";
-            treeNode163.Text = "15　運転記録証明書又は無事故無違反証明書";
-            treeNode164.Name = "NodeRik16";
-            treeNode164.Text = "16　乗務員指導記録簿";
-            treeNode165.Name = "NodeRik17";
-            treeNode165.Text = "17　適性診断受診結果票";
-            treeNode166.Name = "NodeRik18";
-            treeNode166.Text = "18　適性診断受診計画表";
-            treeNode167.Name = "NodeRik19";
-            treeNode167.Text = "19　事故記録簿";
-            treeNode168.Name = "NodeRik20";
-            treeNode168.Text = "20　自動車事故報告書";
-            treeNode169.Name = "NodeRik21";
-            treeNode169.Text = "21　事業報告書・事業実績報告書";
-            treeNode170.Name = "NodeRik22";
-            treeNode170.Text = "22　役員変更届出書";
-            treeNode171.Name = "NodeRik23";
-            treeNode171.Text = "23　車両台帳・自動車検査証の写し";
-            treeNode172.Name = "NodeRik24";
-            treeNode172.Text = "24　整備管理規定等の規定類";
-            treeNode173.Name = "NodeRik25";
-            treeNode173.Text = "25　点検整備記録簿";
-            treeNode174.Name = "NodeRik26";
-            treeNode174.Text = "26　日常点検基準";
-            treeNode175.Name = "NodeRik27";
-            treeNode175.Text = "27　日常点検表";
-            treeNode176.Name = "NodeRik28";
-            treeNode176.Text = "28　定期点検基準";
-            treeNode177.Name = "NodeRik29";
-            treeNode177.Text = "29　定期点検整備実施計画表";
-            treeNode178.Name = "NodeRik30";
-            treeNode178.Text = "30　賃金台帳";
-            treeNode179.Name = "NodeRik31";
-            treeNode179.Text = "31　健康診断書・健康診断記録簿";
-            treeNode180.Name = "NodeRik32";
-            treeNode180.Text = "32　就業規則";
-            treeNode181.Name = "NodeRik33";
-            treeNode181.Text = "33　３６協定";
-            treeNode182.Name = "NodeRik34";
-            treeNode182.Text = "34　出勤簿";
-            treeNode183.Name = "NodeRik35";
-            treeNode183.Text = "35　運輸安全マネジメント関係";
-            treeNode184.Name = "NodeRik36";
-            treeNode184.Text = "36　労災保険加入台帳";
-            treeNode185.Name = "NodeRik37";
-            treeNode185.Text = "37　雇用保険加入台帳";
-            treeNode186.Name = "NodeRik38";
-            treeNode186.Text = "38　健康保険加入台帳・厚生年金加入台帳";
-            treeNode187.Name = "ノード2";
-            treeNode187.Text = "陸運局";
-            treeNode188.Name = "ノード3";
-            treeNode188.Text = "労働基準監督署";
-            this.TreeViewEx1.Nodes.AddRange(new TreeNode[] { treeNode95, treeNode147, treeNode187, treeNode188 });
+            treeNode1.Name = "NodeISO0000";
+            treeNode1.Text = "ファイル及びデータへのショートカット";
+            treeNode2.Name = "ノード4";
+            treeNode2.Text = "　　環境マネジメントマニュアル";
+            treeNode3.Name = "NodeISO0100";
+            treeNode3.Text = "１　目的";
+            treeNode4.Name = "NodeISO0200";
+            treeNode4.Text = "２　適用範囲";
+            treeNode5.Name = "NodeISO0300";
+            treeNode5.Text = "３　用語の定義";
+            treeNode6.Name = "NodeISO0410";
+            treeNode6.Text = "４.１　外部及び内部の課題";
+            treeNode7.Name = "NodeISO0420";
+            treeNode7.Text = "４.２　利害関係者のニーズ及び期待";
+            treeNode8.Name = "NodeISO0430";
+            treeNode8.Text = "４.３　環境マネジメントシステムの範囲";
+            treeNode9.Name = "NodeISO0440";
+            treeNode9.Text = "４.４　環境マネジメントシステムの概要";
+            treeNode10.Name = "NodeISO0400";
+            treeNode10.Text = "４　当社をとりまく状況の理解";
+            treeNode11.Name = "NodeISO0510";
+            treeNode11.Text = "５.１　リーダーシップ及びコミットメント";
+            treeNode12.Name = "NodeISO0520";
+            treeNode12.Text = "５.２　環境方針";
+            treeNode13.Name = "NodeISO0530";
+            treeNode13.Text = "５.３　役割、責任及び権限";
+            treeNode14.Name = "NodeISO0500";
+            treeNode14.Text = "５　リーダーシップ";
+            treeNode15.Name = "NodeISO0611";
+            treeNode15.Text = "６.１.１　リスク及び機会の決定";
+            treeNode16.Name = "NodeISO0612";
+            treeNode16.Text = "６.１.２　環境側面";
+            treeNode17.Name = "NodeISO0613";
+            treeNode17.Text = "６.１.３　順守義務(法的及びその他の要求事項)";
+            treeNode18.Name = "NodeISO0614";
+            treeNode18.Text = "６.１.４　取組みの計画策定";
+            treeNode19.Name = "NodeISO0610";
+            treeNode19.Text = "６.１　リスク及び機会への取組み";
+            treeNode20.Name = "NodeISO0620";
+            treeNode20.Text = "６.２　環境目標及びプログラム";
+            treeNode21.Name = "NodeISO0600";
+            treeNode21.Text = "６　計画";
+            treeNode22.Name = "NodeISO0710";
+            treeNode22.Text = "７.１　資源";
+            treeNode23.Name = "NodeISO0721";
+            treeNode23.Text = "７.２.１　力量(有資格者)";
+            treeNode24.Name = "NodeISO0722";
+            treeNode24.Text = "７.２.２　教育訓練";
+            treeNode25.Name = "NodeISO0720";
+            treeNode25.Text = "７.２　力量、教育訓練";
+            treeNode26.Name = "NodeISO0730";
+            treeNode26.Text = "７.３　認識";
+            treeNode27.Name = "NodeISO0740";
+            treeNode27.Text = "７.４　コミュニケーション";
+            treeNode28.Name = "NodeISO0751";
+            treeNode28.Text = "７.５.１　文章体系・文章の作成・承認";
+            treeNode29.Name = "NodeISO0752";
+            treeNode29.Text = "７.５.２　文章の管理・識別";
+            treeNode30.Name = "NodeISO0753";
+            treeNode30.Text = "７.５.３　文章の見直し";
+            treeNode31.Name = "NodeISO0754";
+            treeNode31.Text = "７.５.４　外部文章の保管・配布の管理";
+            treeNode32.Name = "NodeISO0755";
+            treeNode32.Text = "７.５.５　環境記録の管理";
+            treeNode33.Name = "NodeISO0750";
+            treeNode33.Text = "７.５　文章管理";
+            treeNode34.Name = "NodeISO0700";
+            treeNode34.Text = "７　支援(サポート)";
+            treeNode35.Name = "NodeISO0810";
+            treeNode35.Text = "８.１　運用の計画及び管理";
+            treeNode36.Name = "NodeISO0821";
+            treeNode36.Text = "８.２.１　緊急事態の可能性の特定";
+            treeNode37.Name = "NodeISO0822";
+            treeNode37.Text = "８.２.２　緊急事態対応手順書の作成";
+            treeNode38.Name = "NodeISO0823";
+            treeNode38.Text = "８.２.３　緊急事態対応訓練(対応手順のテスト)";
+            treeNode39.Name = "NodeISO0824";
+            treeNode39.Text = "８.２.４　手順書の見直し";
+            treeNode40.Name = "NodeISO0825";
+            treeNode40.Text = "８.２.５　取引先を含む利害関係者への情報提供";
+            treeNode41.Name = "NodeISO0820";
+            treeNode41.Text = "８.２　緊急事態への準備及び対応";
+            treeNode42.Name = "NodeISO0800";
+            treeNode42.Text = "８　運用";
+            treeNode43.Name = "NodeISO0911";
+            treeNode43.Text = "９.１.１　取組みの項目の監視、測定";
+            treeNode44.Name = "NodeISO0912";
+            treeNode44.Text = "９.１.２　順守評価(法的及びその他の要求事項)";
+            treeNode45.Name = "NodeISO0910";
+            treeNode45.Text = "９.１　監視、測定、分析及び評価";
+            treeNode46.Name = "NodeISO0920";
+            treeNode46.Text = "９.２　内部監査";
+            treeNode47.Name = "NodeISO0930";
+            treeNode47.Text = "９.３　経営層による見直し(マネジメントレビュー)";
+            treeNode48.Name = "NodeISO0900";
+            treeNode48.Text = "９　パフォーマンス評価";
+            treeNode49.Name = "NodeISO1010";
+            treeNode49.Text = "１０.１　一般";
+            treeNode50.Name = "NodeISO1020";
+            treeNode50.Text = "１０.２　不適合への対応";
+            treeNode51.Name = "NodeISO1030";
+            treeNode51.Text = "１０.３　継続的改善";
+            treeNode52.Name = "NodeISO1000";
+            treeNode52.Text = "１０改善";
+            treeNode53.Name = "ノード1";
+            treeNode53.Text = "ISO14001";
+            treeNode54.Name = "NodeRik00";
+            treeNode54.Text = "00　巡回指導資料";
+            treeNode55.Name = "NodeRik01";
+            treeNode55.Text = "01　運転者台帳";
+            treeNode56.Name = "NodeRik02";
+            treeNode56.Text = "02　運行管理規定";
+            treeNode57.Name = "NodeRik03";
+            treeNode57.Text = "03　点呼記録簿・点呼執行要領";
+            treeNode58.Name = "NodeRik04";
+            treeNode58.Text = "04　乗務記録(運転日報)";
+            treeNode59.Name = "NodeRik05";
+            treeNode59.Text = "05　運行計画及び勤務割当表";
+            treeNode60.Name = "NodeRik06";
+            treeNode60.Text = "06　乗務実績一覧表(拘束時間管理表)";
+            treeNode61.Name = "NodeRik07";
+            treeNode61.Text = "07　運行記録計による記録";
+            treeNode62.Name = "NodeRik08";
+            treeNode62.Text = "08　運行指示書";
+            treeNode63.Name = "NodeRik09";
+            treeNode63.Text = "09　受注伝票";
+            treeNode64.Name = "NodeRik10";
+            treeNode64.Text = "10　運行管理者・整備管理者選任届出書";
+            treeNode65.Name = "NodeRik11";
+            treeNode65.Text = "11　運行管理者資格者証";
+            treeNode66.Name = "NodeRik12";
+            treeNode66.Text = "12　運行管理者研修手帳";
+            treeNode67.Name = "NodeRik13";
+            treeNode67.Text = "13　整備管理者研修手帳";
+            treeNode68.Name = "NodeRik14";
+            treeNode68.Text = "14　教育実施計画";
+            treeNode69.Name = "NodeRik15";
+            treeNode69.Text = "15　運転記録証明書又は無事故無違反証明書";
+            treeNode70.Name = "NodeRik16";
+            treeNode70.Text = "16　乗務員指導記録簿";
+            treeNode71.Name = "NodeRik17";
+            treeNode71.Text = "17　適性診断受診結果票";
+            treeNode72.Name = "NodeRik18";
+            treeNode72.Text = "18　適性診断受診計画表";
+            treeNode73.Name = "NodeRik19";
+            treeNode73.Text = "19　事故記録簿";
+            treeNode74.Name = "NodeRik20";
+            treeNode74.Text = "20　自動車事故報告書";
+            treeNode75.Name = "NodeRik21";
+            treeNode75.Text = "21　事業報告書・事業実績報告書";
+            treeNode76.Name = "NodeRik22";
+            treeNode76.Text = "22　役員変更届出書";
+            treeNode77.Name = "NodeRik23";
+            treeNode77.Text = "23　車両台帳・自動車検査証の写し";
+            treeNode78.Name = "NodeRik24";
+            treeNode78.Text = "24　整備管理規定等の規定類";
+            treeNode79.Name = "NodeRik25";
+            treeNode79.Text = "25　点検整備記録簿";
+            treeNode80.Name = "NodeRik26";
+            treeNode80.Text = "26　日常点検基準";
+            treeNode81.Name = "NodeRik27";
+            treeNode81.Text = "27　日常点検表";
+            treeNode82.Name = "NodeRik28";
+            treeNode82.Text = "28　定期点検基準";
+            treeNode83.Name = "NodeRik29";
+            treeNode83.Text = "29　定期点検整備実施計画表";
+            treeNode84.Name = "NodeRik30";
+            treeNode84.Text = "30　賃金台帳";
+            treeNode85.Name = "NodeRik31";
+            treeNode85.Text = "31　健康診断書・健康診断記録簿";
+            treeNode86.Name = "NodeRik32";
+            treeNode86.Text = "32　就業規則";
+            treeNode87.Name = "NodeRik33";
+            treeNode87.Text = "33　３６協定";
+            treeNode88.Name = "NodeRik34";
+            treeNode88.Text = "34　出勤簿";
+            treeNode89.Name = "NodeRik35";
+            treeNode89.Text = "35　運輸安全マネジメント関係";
+            treeNode90.Name = "NodeRik36";
+            treeNode90.Text = "36　労災保険加入台帳";
+            treeNode91.Name = "NodeRik37";
+            treeNode91.Text = "37　雇用保険加入台帳";
+            treeNode92.Name = "NodeRik38";
+            treeNode92.Text = "38　健康保険加入台帳・厚生年金加入台帳";
+            treeNode93.Name = "ノード2";
+            treeNode93.Text = "陸運局";
+            treeNode94.Name = "ノード3";
+            treeNode94.Text = "労働基準監督署";
+            this.TreeViewEx1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode53, treeNode93, treeNode94 });
             this.TreeViewEx1.Size = new Size(312, 560);
             this.TreeViewEx1.TabIndex = 4;
             this.TreeViewEx1.NodeMouseDoubleClick += this.TreeView1_NodeMouseDoubleClick;
@@ -474,14 +487,14 @@
             // 
             this.PanelExRight.Controls.Add(this.ComboBoxExMonitor);
             this.PanelExRight.Controls.Add(this.labelEx3);
-            this.PanelExRight.Controls.Add(this.ButtonExDisConnect);
-            this.PanelExRight.Controls.Add(this.ButtonExConnect);
-            this.PanelExRight.Controls.Add(this.LabelExStatus);
-            this.PanelExRight.Controls.Add(this.LabelExDataBaseName);
-            this.PanelExRight.Controls.Add(this.LabelExServerName);
+            this.PanelExRight.Controls.Add(this.ButtonExDisConnectSqlServer);
+            this.PanelExRight.Controls.Add(this.ButtonExConnectSqlServer);
+            this.PanelExRight.Controls.Add(this.LabelExStatusSqlServer);
+            this.PanelExRight.Controls.Add(this.LabelExDataBaseNameSqlServer);
+            this.PanelExRight.Controls.Add(this.LabelExServerNameSqlServer);
             this.PanelExRight.Controls.Add(this.labelEx2);
             this.PanelExRight.Controls.Add(this.labelEx1);
-            this.PanelExRight.Controls.Add(this.TabControlExConnect);
+            this.PanelExRight.Controls.Add(this.TabControlEx1);
             this.PanelExRight.Dock = DockStyle.Fill;
             this.PanelExRight.Location = new Point(339, 29);
             this.PanelExRight.Name = "PanelExRight";
@@ -507,59 +520,59 @@
             this.labelEx3.Text = "モニター：";
             this.labelEx3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // ButtonExDisConnect
+            // ButtonExDisConnectSqlServer
             // 
-            this.ButtonExDisConnect.Enabled = false;
-            this.ButtonExDisConnect.Location = new Point(568, 84);
-            this.ButtonExDisConnect.Name = "ButtonExDisConnect";
-            this.ButtonExDisConnect.SetTextDirectionVertical = "";
-            this.ButtonExDisConnect.Size = new Size(144, 28);
-            this.ButtonExDisConnect.TabIndex = 9;
-            this.ButtonExDisConnect.Text = "DisConnect";
-            this.ButtonExDisConnect.UseVisualStyleBackColor = true;
-            this.ButtonExDisConnect.Click += this.ButtonEx_Click;
+            this.ButtonExDisConnectSqlServer.Enabled = false;
+            this.ButtonExDisConnectSqlServer.Location = new Point(568, 84);
+            this.ButtonExDisConnectSqlServer.Name = "ButtonExDisConnectSqlServer";
+            this.ButtonExDisConnectSqlServer.SetTextDirectionVertical = "";
+            this.ButtonExDisConnectSqlServer.Size = new Size(144, 28);
+            this.ButtonExDisConnectSqlServer.TabIndex = 9;
+            this.ButtonExDisConnectSqlServer.Text = "DisConnect";
+            this.ButtonExDisConnectSqlServer.UseVisualStyleBackColor = true;
+            this.ButtonExDisConnectSqlServer.Click += this.ButtonEx_Click;
             // 
-            // ButtonExConnect
+            // ButtonExConnectSqlServer
             // 
-            this.ButtonExConnect.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
-            this.ButtonExConnect.Location = new Point(568, 44);
-            this.ButtonExConnect.Name = "ButtonExConnect";
-            this.ButtonExConnect.SetTextDirectionVertical = "";
-            this.ButtonExConnect.Size = new Size(144, 36);
-            this.ButtonExConnect.TabIndex = 8;
-            this.ButtonExConnect.Text = "Connect";
-            this.ButtonExConnect.UseVisualStyleBackColor = true;
-            this.ButtonExConnect.Click += this.ButtonEx_Click;
+            this.ButtonExConnectSqlServer.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.ButtonExConnectSqlServer.Location = new Point(568, 44);
+            this.ButtonExConnectSqlServer.Name = "ButtonExConnectSqlServer";
+            this.ButtonExConnectSqlServer.SetTextDirectionVertical = "";
+            this.ButtonExConnectSqlServer.Size = new Size(144, 36);
+            this.ButtonExConnectSqlServer.TabIndex = 8;
+            this.ButtonExConnectSqlServer.Text = "Connect";
+            this.ButtonExConnectSqlServer.UseVisualStyleBackColor = true;
+            this.ButtonExConnectSqlServer.Click += this.ButtonEx_Click;
             // 
-            // LabelExStatus
+            // LabelExStatusSqlServer
             // 
-            this.LabelExStatus.ForeColor = Color.DimGray;
-            this.LabelExStatus.Location = new Point(36, 108);
-            this.LabelExStatus.Name = "LabelExStatus";
-            this.LabelExStatus.Size = new Size(332, 20);
-            this.LabelExStatus.TabIndex = 7;
-            this.LabelExStatus.Text = "状態：";
-            this.LabelExStatus.TextAlign = ContentAlignment.MiddleLeft;
+            this.LabelExStatusSqlServer.ForeColor = Color.DimGray;
+            this.LabelExStatusSqlServer.Location = new Point(36, 108);
+            this.LabelExStatusSqlServer.Name = "LabelExStatusSqlServer";
+            this.LabelExStatusSqlServer.Size = new Size(332, 20);
+            this.LabelExStatusSqlServer.TabIndex = 7;
+            this.LabelExStatusSqlServer.Text = "状態：";
+            this.LabelExStatusSqlServer.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // LabelExDataBaseName
+            // LabelExDataBaseNameSqlServer
             // 
-            this.LabelExDataBaseName.ForeColor = Color.DimGray;
-            this.LabelExDataBaseName.Location = new Point(36, 84);
-            this.LabelExDataBaseName.Name = "LabelExDataBaseName";
-            this.LabelExDataBaseName.Size = new Size(332, 20);
-            this.LabelExDataBaseName.TabIndex = 6;
-            this.LabelExDataBaseName.Text = "接続先データベース：";
-            this.LabelExDataBaseName.TextAlign = ContentAlignment.MiddleLeft;
+            this.LabelExDataBaseNameSqlServer.ForeColor = Color.DimGray;
+            this.LabelExDataBaseNameSqlServer.Location = new Point(36, 84);
+            this.LabelExDataBaseNameSqlServer.Name = "LabelExDataBaseNameSqlServer";
+            this.LabelExDataBaseNameSqlServer.Size = new Size(332, 20);
+            this.LabelExDataBaseNameSqlServer.TabIndex = 6;
+            this.LabelExDataBaseNameSqlServer.Text = "接続先データベース：";
+            this.LabelExDataBaseNameSqlServer.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // LabelExServerName
+            // LabelExServerNameSqlServer
             // 
-            this.LabelExServerName.ForeColor = Color.DimGray;
-            this.LabelExServerName.Location = new Point(36, 60);
-            this.LabelExServerName.Name = "LabelExServerName";
-            this.LabelExServerName.Size = new Size(332, 20);
-            this.LabelExServerName.TabIndex = 5;
-            this.LabelExServerName.Text = "接続先サーバー：";
-            this.LabelExServerName.TextAlign = ContentAlignment.MiddleLeft;
+            this.LabelExServerNameSqlServer.ForeColor = Color.DimGray;
+            this.LabelExServerNameSqlServer.Location = new Point(36, 60);
+            this.LabelExServerNameSqlServer.Name = "LabelExServerNameSqlServer";
+            this.LabelExServerNameSqlServer.Size = new Size(332, 20);
+            this.LabelExServerNameSqlServer.TabIndex = 5;
+            this.LabelExServerNameSqlServer.Text = "接続先サーバー：";
+            this.LabelExServerNameSqlServer.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelEx2
             // 
@@ -581,22 +594,24 @@
             this.labelEx1.TabIndex = 3;
             this.labelEx1.Text = "SQLServer";
             // 
-            // TabControlExConnect
+            // TabControlEx1
             // 
-            this.TabControlExConnect.Controls.Add(this.TabPageSystem);
-            this.TabControlExConnect.Controls.Add(this.TabPageOffice);
-            this.TabControlExConnect.Controls.Add(this.TabPageAdachi);
-            this.TabControlExConnect.Controls.Add(this.TabPageMisato);
-            this.TabControlExConnect.Controls.Add(this.TabPageHaikibutu);
-            this.TabControlExConnect.Location = new Point(8, 164);
-            this.TabControlExConnect.Name = "TabControlExConnect";
-            this.TabControlExConnect.SelectedIndex = 0;
-            this.TabControlExConnect.Size = new Size(760, 492);
-            this.TabControlExConnect.SizeMode = TabSizeMode.Fixed;
-            this.TabControlExConnect.TabIndex = 0;
+            this.TabControlEx1.Controls.Add(this.TabPageSystem);
+            this.TabControlEx1.Controls.Add(this.TabPageOffice);
+            this.TabControlEx1.Controls.Add(this.TabPageAdachi);
+            this.TabControlEx1.Controls.Add(this.TabPageMisato);
+            this.TabControlEx1.Controls.Add(this.TabPageHaikibutu);
+            this.TabControlEx1.Location = new Point(8, 164);
+            this.TabControlEx1.Name = "TabControlEx1";
+            this.TabControlEx1.SelectedIndex = 0;
+            this.TabControlEx1.Size = new Size(760, 492);
+            this.TabControlEx1.SizeMode = TabSizeMode.Fixed;
+            this.TabControlEx1.TabIndex = 0;
             // 
             // TabPageSystem
             // 
+            this.TabPageSystem.Controls.Add(this.labelEx49);
+            this.TabPageSystem.Controls.Add(this.GroupBoxEx1);
             this.TabPageSystem.Location = new Point(4, 24);
             this.TabPageSystem.Name = "TabPageSystem";
             this.TabPageSystem.Padding = new Padding(3);
@@ -604,6 +619,134 @@
             this.TabPageSystem.TabIndex = 0;
             this.TabPageSystem.Text = "システム管理";
             this.TabPageSystem.UseVisualStyleBackColor = true;
+            // 
+            // labelEx50
+            // 
+            this.labelEx50.ForeColor = Color.DimGray;
+            this.labelEx50.Location = new Point(12, 188);
+            this.labelEx50.Name = "labelEx50";
+            this.labelEx50.Size = new Size(344, 20);
+            this.labelEx50.TabIndex = 17;
+            this.labelEx50.Text = "　作成済テーブル一覧を表示します";
+            this.labelEx50.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx51
+            // 
+            this.labelEx51.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.labelEx51.ForeColor = Color.Black;
+            this.labelEx51.Location = new Point(12, 168);
+            this.labelEx51.Name = "labelEx51";
+            this.labelEx51.Size = new Size(344, 20);
+            this.labelEx51.TabIndex = 16;
+            this.labelEx51.Tag = "OracleAllTable";
+            this.labelEx51.Text = "Oracle Table View";
+            this.labelEx51.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx51.Click += this.Label_Oracle_Click;
+            this.labelEx51.MouseEnter += this.Label_MouseEnter;
+            this.labelEx51.MouseLeave += this.Label_MouseLeave;
+            // 
+            // labelEx49
+            // 
+            this.labelEx49.AutoSize = true;
+            this.labelEx49.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            this.labelEx49.ForeColor = Color.Red;
+            this.labelEx49.Location = new Point(12, 16);
+            this.labelEx49.Name = "labelEx49";
+            this.labelEx49.Size = new Size(319, 15);
+            this.labelEx49.TabIndex = 1;
+            this.labelEx49.Text = "※システム管理タブは触らないで下さい。DBが不安定になります。";
+            // 
+            // GroupBoxEx1
+            // 
+            this.GroupBoxEx1.Controls.Add(this.labelEx50);
+            this.GroupBoxEx1.Controls.Add(this.LabelExServerVersion);
+            this.GroupBoxEx1.Controls.Add(this.labelEx51);
+            this.GroupBoxEx1.Controls.Add(this.ButtonExDisConnectOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExStatusOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExDataBaseNameOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExServerNameOracle);
+            this.GroupBoxEx1.Controls.Add(this.ButtonExConnectOracle);
+            this.GroupBoxEx1.Controls.Add(this.labelEx48);
+            this.GroupBoxEx1.Location = new Point(8, 40);
+            this.GroupBoxEx1.Name = "GroupBoxEx1";
+            this.GroupBoxEx1.Size = new Size(736, 412);
+            this.GroupBoxEx1.TabIndex = 0;
+            this.GroupBoxEx1.TabStop = false;
+            this.GroupBoxEx1.Text = "Oracle19c(清掃トータルシステム)";
+            // 
+            // LabelExServerVersion
+            // 
+            this.LabelExServerVersion.ForeColor = Color.DimGray;
+            this.LabelExServerVersion.Location = new Point(12, 76);
+            this.LabelExServerVersion.Name = "LabelExServerVersion";
+            this.LabelExServerVersion.Size = new Size(332, 20);
+            this.LabelExServerVersion.TabIndex = 12;
+            this.LabelExServerVersion.Text = "ServerVersion：";
+            this.LabelExServerVersion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ButtonExDisConnectOracle
+            // 
+            this.ButtonExDisConnectOracle.Enabled = false;
+            this.ButtonExDisConnectOracle.ForeColor = Color.Blue;
+            this.ButtonExDisConnectOracle.Location = new Point(548, 64);
+            this.ButtonExDisConnectOracle.Name = "ButtonExDisConnectOracle";
+            this.ButtonExDisConnectOracle.SetTextDirectionVertical = "";
+            this.ButtonExDisConnectOracle.Size = new Size(144, 28);
+            this.ButtonExDisConnectOracle.TabIndex = 11;
+            this.ButtonExDisConnectOracle.Text = "DisConnect";
+            this.ButtonExDisConnectOracle.UseVisualStyleBackColor = true;
+            this.ButtonExDisConnectOracle.Click += this.ButtonEx_Click;
+            // 
+            // LabelExStatusOracle
+            // 
+            this.LabelExStatusOracle.ForeColor = Color.DimGray;
+            this.LabelExStatusOracle.Location = new Point(12, 124);
+            this.LabelExStatusOracle.Name = "LabelExStatusOracle";
+            this.LabelExStatusOracle.Size = new Size(332, 20);
+            this.LabelExStatusOracle.TabIndex = 10;
+            this.LabelExStatusOracle.Text = "状態：";
+            this.LabelExStatusOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LabelExDataBaseNameOracle
+            // 
+            this.LabelExDataBaseNameOracle.ForeColor = Color.DimGray;
+            this.LabelExDataBaseNameOracle.Location = new Point(12, 100);
+            this.LabelExDataBaseNameOracle.Name = "LabelExDataBaseNameOracle";
+            this.LabelExDataBaseNameOracle.Size = new Size(332, 20);
+            this.LabelExDataBaseNameOracle.TabIndex = 9;
+            this.LabelExDataBaseNameOracle.Text = "接続先データベース：";
+            this.LabelExDataBaseNameOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LabelExServerNameOracle
+            // 
+            this.LabelExServerNameOracle.ForeColor = Color.DimGray;
+            this.LabelExServerNameOracle.Location = new Point(12, 52);
+            this.LabelExServerNameOracle.Name = "LabelExServerNameOracle";
+            this.LabelExServerNameOracle.Size = new Size(332, 20);
+            this.LabelExServerNameOracle.TabIndex = 8;
+            this.LabelExServerNameOracle.Text = "接続先サーバー：";
+            this.LabelExServerNameOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ButtonExConnectOracle
+            // 
+            this.ButtonExConnectOracle.ForeColor = Color.Blue;
+            this.ButtonExConnectOracle.Location = new Point(548, 24);
+            this.ButtonExConnectOracle.Name = "ButtonExConnectOracle";
+            this.ButtonExConnectOracle.SetTextDirectionVertical = "";
+            this.ButtonExConnectOracle.Size = new Size(144, 36);
+            this.ButtonExConnectOracle.TabIndex = 1;
+            this.ButtonExConnectOracle.Text = "Connect";
+            this.ButtonExConnectOracle.UseVisualStyleBackColor = true;
+            this.ButtonExConnectOracle.Click += this.ButtonEx_Click;
+            // 
+            // labelEx48
+            // 
+            this.labelEx48.AutoSize = true;
+            this.labelEx48.Location = new Point(12, 24);
+            this.labelEx48.Name = "labelEx48";
+            this.labelEx48.Size = new Size(101, 15);
+            this.labelEx48.TabIndex = 0;
+            this.labelEx48.Text = "Oracleへ接続テスト";
             // 
             // TabPageOffice
             // 
@@ -661,7 +804,7 @@
             this.labelEx39.Tag = "CertificationList";
             this.labelEx39.Text = "有資格者一覧";
             this.labelEx39.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx39.Click += this.Label_Click;
+            this.labelEx39.Click += this.Label_SqlServer_Click;
             this.labelEx39.MouseEnter += this.Label_MouseEnter;
             this.labelEx39.MouseLeave += this.Label_MouseLeave;
             // 
@@ -686,7 +829,7 @@
             this.labelEx45.Tag = "CollectionStaffsTaitou";
             this.labelEx45.Text = "台東古紙配車人数集計表";
             this.labelEx45.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx45.Click += this.Label_Click;
+            this.labelEx45.Click += this.Label_SqlServer_Click;
             this.labelEx45.MouseEnter += this.Label_MouseEnter;
             this.labelEx45.MouseLeave += this.Label_MouseLeave;
             // 
@@ -711,7 +854,7 @@
             this.labelEx43.Tag = "CollectionWeightTaitouList";
             this.labelEx43.Text = "台東古紙収集量集計表";
             this.labelEx43.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx43.Click += this.Label_Click;
+            this.labelEx43.Click += this.Label_SqlServer_Click;
             this.labelEx43.MouseEnter += this.Label_MouseEnter;
             this.labelEx43.MouseLeave += this.Label_MouseLeave;
             // 
@@ -736,7 +879,7 @@
             this.labelEx33.Tag = "ToukanpoSpeedSurvey";
             this.labelEx33.Text = "東環保(速度超過集計表)";
             this.labelEx33.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx33.Click += this.Label_Click;
+            this.labelEx33.Click += this.Label_SqlServer_Click;
             this.labelEx33.MouseEnter += this.Label_MouseEnter;
             this.labelEx33.MouseLeave += this.Label_MouseLeave;
             // 
@@ -761,7 +904,7 @@
             this.labelEx31.Tag = "StatusOfResidenceList";
             this.labelEx31.Text = "在留カード・特別永住者証明書";
             this.labelEx31.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx31.Click += this.Label_Click;
+            this.labelEx31.Click += this.Label_SqlServer_Click;
             this.labelEx31.MouseEnter += this.Label_MouseEnter;
             this.labelEx31.MouseLeave += this.Label_MouseLeave;
             // 
@@ -786,7 +929,7 @@
             this.labelEx29.Tag = "AccountingFulltime";
             this.labelEx29.Text = "全従事者　出勤確認表(経理)";
             this.labelEx29.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx29.Click += this.Label_Click;
+            this.labelEx29.Click += this.Label_SqlServer_Click;
             this.labelEx29.MouseEnter += this.Label_MouseEnter;
             this.labelEx29.MouseLeave += this.Label_MouseLeave;
             // 
@@ -811,7 +954,7 @@
             this.labelEx27.Tag = "AccountingParttimeList";
             this.labelEx27.Text = "アルバイト　出勤確認表(経理)";
             this.labelEx27.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx27.Click += this.Label_Click;
+            this.labelEx27.Click += this.Label_SqlServer_Click;
             this.labelEx27.MouseEnter += this.Label_MouseEnter;
             this.labelEx27.MouseLeave += this.Label_MouseLeave;
             // 
@@ -836,7 +979,7 @@
             this.labelEx25.Tag = "ToukanpoList";
             this.labelEx25.Text = "東環保カード";
             this.labelEx25.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx25.Click += this.Label_Click;
+            this.labelEx25.Click += this.Label_SqlServer_Click;
             this.labelEx25.MouseEnter += this.Label_MouseEnter;
             this.labelEx25.MouseLeave += this.Label_MouseLeave;
             // 
@@ -861,7 +1004,7 @@
             this.labelEx21.Tag = "StaffWorkingDays";
             this.labelEx21.Text = "個別労働日数集計表";
             this.labelEx21.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx21.Click += this.Label_Click;
+            this.labelEx21.Click += this.Label_SqlServer_Click;
             this.labelEx21.MouseEnter += this.Label_MouseEnter;
             this.labelEx21.MouseLeave += this.Label_MouseLeave;
             // 
@@ -886,7 +1029,7 @@
             this.labelEx19.Tag = "StaffWorkingHours";
             this.labelEx19.Text = "個別労働時間集計表";
             this.labelEx19.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx19.Click += this.Label_Click;
+            this.labelEx19.Click += this.Label_SqlServer_Click;
             this.labelEx19.MouseEnter += this.Label_MouseEnter;
             this.labelEx19.MouseLeave += this.Label_MouseLeave;
             // 
@@ -911,7 +1054,7 @@
             this.labelEx15.Tag = "CollectionWeightChiyoda";
             this.labelEx15.Text = "千代田区配車集計表";
             this.labelEx15.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx15.Click += this.Label_Click;
+            this.labelEx15.Click += this.Label_SqlServer_Click;
             this.labelEx15.MouseEnter += this.Label_MouseEnter;
             this.labelEx15.MouseLeave += this.Label_MouseLeave;
             // 
@@ -936,7 +1079,7 @@
             this.labelEx9.Tag = "StaffDestination";
             this.labelEx9.Text = "従事者勤務詳細";
             this.labelEx9.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx9.Click += this.Label_Click;
+            this.labelEx9.Click += this.Label_SqlServer_Click;
             this.labelEx9.MouseEnter += this.Label_MouseEnter;
             this.labelEx9.MouseLeave += this.Label_MouseLeave;
             // 
@@ -961,7 +1104,7 @@
             this.labelEx7.Tag = "EmploymentAgreementList";
             this.labelEx7.Text = "雇用契約(契約書・誓約書等)";
             this.labelEx7.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx7.Click += this.Label_Click;
+            this.labelEx7.Click += this.Label_SqlServer_Click;
             this.labelEx7.MouseEnter += this.Label_MouseEnter;
             this.labelEx7.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1012,7 +1155,7 @@
             this.labelEx37.Tag = "LegalTwelveItemList";
             this.labelEx37.Text = "法定１２項目の講習(陸運局対応)";
             this.labelEx37.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx37.Click += this.Label_Click;
+            this.labelEx37.Click += this.Label_SqlServer_Click;
             this.labelEx37.MouseEnter += this.Label_MouseEnter;
             this.labelEx37.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1037,7 +1180,7 @@
             this.labelEx35.Tag = "RollCallRecordSheet";
             this.labelEx35.Text = "点呼記録簿(陸運局対応)";
             this.labelEx35.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx35.Click += this.Label_Click;
+            this.labelEx35.Click += this.Label_SqlServer_Click;
             this.labelEx35.MouseEnter += this.Label_MouseEnter;
             this.labelEx35.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1062,7 +1205,7 @@
             this.labelEx41.Tag = "AccidentList";
             this.labelEx41.Text = "事故記録簿";
             this.labelEx41.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx41.Click += this.Label_Click;
+            this.labelEx41.Click += this.Label_SqlServer_Click;
             this.labelEx41.MouseEnter += this.Label_MouseEnter;
             this.labelEx41.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1087,7 +1230,7 @@
             this.labelEx23.Tag = "LicenseList";
             this.labelEx23.Text = "免許証台帳";
             this.labelEx23.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx23.Click += this.Label_Click;
+            this.labelEx23.Click += this.Label_SqlServer_Click;
             this.labelEx23.MouseEnter += this.Label_MouseEnter;
             this.labelEx23.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1112,7 +1255,7 @@
             this.labelEx17.Tag = "CarList";
             this.labelEx17.Text = "車両台帳";
             this.labelEx17.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx17.Click += this.Label_Click;
+            this.labelEx17.Click += this.Label_SqlServer_Click;
             this.labelEx17.MouseEnter += this.Label_MouseEnter;
             this.labelEx17.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1137,7 +1280,7 @@
             this.labelEx13.Tag = "FirstRollColl";
             this.labelEx13.Text = "配車表";
             this.labelEx13.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx13.Click += this.Label_Click;
+            this.labelEx13.Click += this.Label_SqlServer_Click;
             this.labelEx13.MouseEnter += this.Label_MouseEnter;
             this.labelEx13.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1162,7 +1305,7 @@
             this.labelEx11.Tag = "StaffList";
             this.labelEx11.Text = "従事者台帳";
             this.labelEx11.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx11.Click += this.Label_Click;
+            this.labelEx11.Click += this.Label_SqlServer_Click;
             this.labelEx11.MouseEnter += this.Label_MouseEnter;
             this.labelEx11.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1187,7 +1330,7 @@
             this.labelEx4.Tag = "VehicleDispatchBoard";
             this.labelEx4.Text = "配車システム";
             this.labelEx4.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx4.Click += this.Label_Click;
+            this.labelEx4.Click += this.Label_SqlServer_Click;
             this.labelEx4.MouseEnter += this.Label_MouseEnter;
             this.labelEx4.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1233,7 +1376,7 @@
             this.labelEx47.Tag = "WasteList";
             this.labelEx47.Text = "廃棄物顧客リスト";
             this.labelEx47.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx47.Click += this.Label_Click;
+            this.labelEx47.Click += this.Label_SqlServer_Click;
             this.labelEx47.MouseEnter += this.Label_MouseEnter;
             this.labelEx47.MouseLeave += this.Label_MouseLeave;
             // 
@@ -1254,7 +1397,11 @@
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExLeft.ResumeLayout(false);
             this.PanelExRight.ResumeLayout(false);
-            this.TabControlExConnect.ResumeLayout(false);
+            this.TabControlEx1.ResumeLayout(false);
+            this.TabPageSystem.ResumeLayout(false);
+            this.TabPageSystem.PerformLayout();
+            this.GroupBoxEx1.ResumeLayout(false);
+            this.GroupBoxEx1.PerformLayout();
             this.TabPageOffice.ResumeLayout(false);
             this.TabPageAdachi.ResumeLayout(false);
             this.TabPageHaikibutu.ResumeLayout(false);
@@ -1268,19 +1415,19 @@
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.PanelEx PanelExLeft;
         private ControlEx.PanelEx PanelExRight;
-        private ControlEx.TabControlEx TabControlExConnect;
+        private ControlEx.TabControlEx TabControlEx1;
         private TabPage TabPageSystem;
         private TabPage TabPageAdachi;
         private TabPage TabPageMisato;
         private ControlEx.LabelEx LabelExPcName;
         private ControlEx.LabelEx LabelExIpAddress;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.LabelEx LabelExStatus;
-        private ControlEx.LabelEx LabelExDataBaseName;
-        private ControlEx.LabelEx LabelExServerName;
+        private ControlEx.LabelEx LabelExStatusSqlServer;
+        private ControlEx.LabelEx LabelExDataBaseNameSqlServer;
+        private ControlEx.LabelEx LabelExServerNameSqlServer;
         private ControlEx.LabelEx labelEx2;
-        private ControlEx.ButtonEx ButtonExConnect;
-        private ControlEx.ButtonEx ButtonExDisConnect;
+        private ControlEx.ButtonEx ButtonExConnectSqlServer;
+        private ControlEx.ButtonEx ButtonExDisConnectSqlServer;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExMonitor;
         private ControlEx.LabelEx LabelExLocation;
@@ -1331,5 +1478,16 @@
         private ControlEx.LabelEx labelEx46;
         private ControlEx.LabelEx labelEx47;
         private ControlEx.TreeViewEx TreeViewEx1;
+        private ControlEx.GroupBoxEx GroupBoxEx1;
+        private ControlEx.ButtonEx ButtonExConnectOracle;
+        private ControlEx.LabelEx labelEx48;
+        private ControlEx.LabelEx LabelExStatusOracle;
+        private ControlEx.LabelEx LabelExDataBaseNameOracle;
+        private ControlEx.LabelEx LabelExServerNameOracle;
+        private ControlEx.ButtonEx ButtonExDisConnectOracle;
+        private ControlEx.LabelEx LabelExServerVersion;
+        private ControlEx.LabelEx labelEx49;
+        private ControlEx.LabelEx labelEx50;
+        private ControlEx.LabelEx labelEx51;
     }
 }

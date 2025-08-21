@@ -4,6 +4,9 @@
 namespace ControlEx {
     public partial class TreeViewEx : TreeView {
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public TreeViewEx() {
             InitializeComponent();
 
@@ -16,7 +19,6 @@ namespace ControlEx {
         protected override void OnPaint(PaintEventArgs pe) {
             base.OnPaint(pe);
         }
-
 
     }
 }

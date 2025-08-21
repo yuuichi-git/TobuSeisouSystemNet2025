@@ -34,7 +34,7 @@ namespace Dao {
         /// <param name="dateTime"></param>
         /// <returns></returns>
         public bool ExistenceHVehicleDispatchBodyVo(int setCode, string dayOfWeek, int financialYear) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(SetCode) " +
                                      "FROM H_VehicleDispatchBody " +
                                      "WHERE SetCode = " + setCode + " AND DayOfWeek = '" + dayOfWeek + "' AND  FinancialYear = " + financialYear + "";
@@ -53,7 +53,7 @@ namespace Dao {
         /// <returns></returns>
         public VehicleDispatchBodyVo SelectOneVehicleDispatchBody(int setCode, DateTime operationDate, int financialYear) {
             VehicleDispatchBodyVo vehicleDispatchBodyVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT SetCode," +
                                             "DayOfWeek," +
                                             "CarCode," +
@@ -99,7 +99,7 @@ namespace Dao {
         /// </summary>
         /// <param name="vehicleDispatchBodyVo"></param>
         public void InsertOneHVehicleDispatchBodyVo(VehicleDispatchBodyVo vehicleDispatchBodyVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_VehicleDispatchBody(SetCode," +
                                                                        "DayOfWeek," +
                                                                        "CarCode," +
@@ -143,7 +143,7 @@ namespace Dao {
         /// </summary>
         /// <param name="vehicleDispatchBodyVo"></param>
         public void UpdateOneHVehicleDispatchBodyVo(VehicleDispatchBodyVo vehicleDispatchBodyVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchBody " +
                                      "SET SetCode = " + _defaultValue.GetDefaultValue<int>(vehicleDispatchBodyVo.SetCode) + "," +
                                          "DayOfWeek = '" + _defaultValue.GetDefaultValue<string>(vehicleDispatchBodyVo.DayOfWeek) + "'," +

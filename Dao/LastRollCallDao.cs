@@ -35,7 +35,7 @@ namespace Dao {
         /// <param name="dateTime"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceLastRollCall(int setCode, DateTime operationDate, DateTime lastRollCallYmdHms) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(LastRollCallYmdHms) " +
                                      "FROM H_LastRollCall " +
                                      "WHERE SetCode = " + setCode + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "' AND LastRollCallYmdHms = '" + lastRollCallYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
@@ -53,7 +53,7 @@ namespace Dao {
         /// <returns></returns>
         public LastRollCallVo? SelectOneLastRollCall(int setCode, DateTime operationDate, DateTime lastRollCallYmdHms) {
             LastRollCallVo? hLastRollCallVo = null;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_LastRollCall.SetCode," +
                                             "H_LastRollCall.OperationDate," +
                                             "H_VehicleDispatchDetail.StaffRollCallYmdHms1," +
@@ -92,7 +92,7 @@ namespace Dao {
         /// <param name="lastRollCallVo"></param>
         /// <returns></returns>
         public int InsertOneLastRollCall(LastRollCallVo lastRollCallVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_LastRollCall(SetCode," +
                                                                 "OperationDate," +
                                                                 "FirstRollCallYmdHms," +
@@ -140,7 +140,7 @@ namespace Dao {
         /// </summary>
         /// <param name="lastRollCallVo"></param>
         public int UpdateOneLastRollCall(int setCode, DateTime operationDate, DateTime lastRollCallYmdHms, LastRollCallVo lastRollCallVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_LastRollCall " +
                                      "SET SetCode = " + _defaultValue.GetDefaultValue<int>(lastRollCallVo.SetCode) + "," +
                                          "OperationDate = '" + _defaultValue.GetDefaultValue<DateTime>(lastRollCallVo.OperationDate) + "'," +
@@ -170,7 +170,7 @@ namespace Dao {
         /// <param name="lastRollCallYmdHms"></param>
         /// <returns></returns>
         public int DeleteOneLastRollCall(int setCode, DateTime operationDate, DateTime lastRollCallYmdHms) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "DELETE FROM H_LastRollCall " +
                                      "WHERE SetCode = " + setCode + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "' AND LastRollCallYmdHms = '" + lastRollCallYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             try {

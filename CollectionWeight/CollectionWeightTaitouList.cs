@@ -9,6 +9,7 @@ using ControlEx;
 
 using Dao;
 
+using FarPoint.Excel;
 using FarPoint.Win.Spread;
 
 using Vo;
@@ -21,6 +22,7 @@ namespace Collection {
          * Dao
          */
         private readonly CollectionTaitouDao _collectionTaitouDao;
+        private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
          */
@@ -36,6 +38,7 @@ namespace Collection {
              * Dao
              */
             _collectionTaitouDao = new(connectionVo);
+            _vehicleDispatchDetailDao = new(connectionVo);
             /*
              * Vo
              */
@@ -48,6 +51,8 @@ namespace Collection {
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
+                "ToolStripMenuItemExport",
+                "ToolStripMenuItemExportExcel",
                 "ToolStripMenuItemPrint",
                 "ToolStripMenuItemPrintA4",
                 "ToolStripMenuItemHelp"
@@ -85,7 +90,7 @@ namespace Collection {
             // Spread 非活性化
             this.SpreadList.SuspendLayout();
             // Rowを削除する
-            SheetViewList.ClearRange(1, 0, 31, 9, true);
+            this.SheetViewList.ClearRange(1, 0, 31, 13, true);
 
             int rowNumber = 1;
             for (int day = 1; day <= new DateUtility().GetDaysInMonth(DateTimePickerEx2.Value); day++) {
@@ -115,13 +120,17 @@ namespace Collection {
                         break;
                 }
                 if (collectionWeightTaitouVo is not null) {
-                    SheetViewList.Cells[rowNumber, 2].Value = collectionWeightTaitouVo.Weight1Total;
-                    SheetViewList.Cells[rowNumber, 3].Value = collectionWeightTaitouVo.Weight2Total;
-                    SheetViewList.Cells[rowNumber, 4].Value = collectionWeightTaitouVo.Weight3Total;
-                    SheetViewList.Cells[rowNumber, 5].Value = collectionWeightTaitouVo.Weight4Total;
-                    SheetViewList.Cells[rowNumber, 6].Value = collectionWeightTaitouVo.Weight5Total;
-                    SheetViewList.Cells[rowNumber, 7].Value = collectionWeightTaitouVo.Weight6Total;
-                    SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight7Total;
+                    this.SheetViewList.Cells[rowNumber, 2].Value = collectionWeightTaitouVo.Weight1Total;
+                    this.SheetViewList.Cells[rowNumber, 3].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310602).ToString("HH:mm");
+                    this.SheetViewList.Cells[rowNumber, 4].Value = collectionWeightTaitouVo.Weight2Total;
+                    this.SheetViewList.Cells[rowNumber, 5].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310603).ToString("HH:mm");
+                    this.SheetViewList.Cells[rowNumber, 6].Value = collectionWeightTaitouVo.Weight3Total;
+                    this.SheetViewList.Cells[rowNumber, 7].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310604).ToString("HH:mm");
+                    this.SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight4Total;
+
+                    this.SheetViewList.Cells[rowNumber, 10].Value = collectionWeightTaitouVo.Weight6Total;
+                    this.SheetViewList.Cells[rowNumber, 11].Value = collectionWeightTaitouVo.Weight7Total;
+                    this.SheetViewList.Cells[rowNumber, 12].Value = collectionWeightTaitouVo.Weight8Total;
                 }
                 rowNumber++;
             }
@@ -136,6 +145,15 @@ namespace Collection {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
+                /*
+                 * Excel(xlsx)形式でエクスポートする
+                 */
+                case "ToolStripMenuItemExportExcel":
+                    //xlsx形式ファイルをエクスポートします
+                    string fileName = string.Concat("台東古紙　収集量", DateTime.Now.ToString("MM月dd日"), "作成");
+                    SpreadList.SaveExcel(new Directry().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
+                    MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
                 /*
                  * A4で印刷する
                  */
@@ -195,9 +213,9 @@ namespace Collection {
         /// <param name="sheetView"></param>
         /// <returns></returns>
         private void InitializeSheetView(SheetView sheetView) {
-            SpreadList.AllowDragDrop = false; // DrugDropを禁止する
-            SpreadList.PaintSelectionHeader = false; // ヘッダの選択状態をしない
-            SheetViewList.ClearRange(1, 0, 31, 9, true);
+            this.SpreadList.AllowDragDrop = false;                              // DrugDropを禁止する
+            this.SpreadList.PaintSelectionHeader = false;                       // ヘッダの選択状態をしない
+            this.SheetViewList.ClearRange(1, 0, 31, 13, true);                  // Cell範囲をClear
         }
 
         /// <summary>

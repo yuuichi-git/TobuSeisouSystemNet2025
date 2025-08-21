@@ -31,7 +31,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceEmploymentAgreement(int staffCode) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_EmploymentAgreement " +
                                      "WHERE StaffCode = " + staffCode;
@@ -49,7 +49,7 @@ namespace Dao {
         /// <returns></returns>
         public List<EmploymentAgreementVo> SelectAllEmploymentAgreement() {
             List<EmploymentAgreementVo> listEmploymentAgreementVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "BaseLocation," +
                                             "Occupation," +
@@ -122,7 +122,7 @@ namespace Dao {
         /// <returns></returns>
         public List<string> SelectGroupPayDetail() {
             List<string> listGroupPayDetail = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT PayDetail " +
                                      "FROM H_EmploymentAgreement " +
                                      "GROUP BY PayDetail";
@@ -140,7 +140,7 @@ namespace Dao {
         /// </summary>
         /// <param name="employmentAgreementVo"></param>
         public int InsertOneEmploymentAgreement(EmploymentAgreementVo employmentAgreementVo) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_EmploymentAgreement(StaffCode," +
                                                                        "BaseLocation," +
                                                                        "Occupation," +
@@ -211,7 +211,7 @@ namespace Dao {
         /// <param name="employmentAgreementVo"></param>
         /// <returns></returns>
         public int UpdateOneEmploymentAgreement(EmploymentAgreementVo employmentAgreementVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_EmploymentAgreement " +
                                      "SET StaffCode = " + employmentAgreementVo.StaffCode + "," +
                                          "BaseLocation = '" + employmentAgreementVo.BaseLocation + "'," +

@@ -35,7 +35,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceEmploymentAgreement(int cellNumber, DateTime operationDate) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
@@ -55,7 +55,7 @@ namespace Dao {
         /// <returns></returns>
         public bool ExistenceVehicleDispatchDetail(DateTime operationDate) {
             int count;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
@@ -74,7 +74,7 @@ namespace Dao {
         /// <returns></returns>
         public List<VehicleDispatchDetailVo> SelectAllVehicleDispatchDetail(DateTime operationDate) {
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.CellNumber," +
                                             "H_VehicleDispatchDetail.OperationDate," +
                                             "H_VehicleDispatchDetail.OperationFlag," +
@@ -208,7 +208,7 @@ namespace Dao {
         /// <returns></returns>
         public List<VehicleDispatchDetailVo> SelectAllVehicleDispatchDetail(DateTime operationDate1, DateTime operationDate2) {
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.CellNumber," +
                                             "H_VehicleDispatchDetail.OperationDate," +
                                             "H_VehicleDispatchDetail.OperationFlag," +
@@ -342,7 +342,7 @@ namespace Dao {
         /// <returns></returns>
         public VehicleDispatchDetailVo SelectOneVehicleDispatchDetail(int cellNumber, DateTime operationDate) {
             VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchDetail.CellNumber," +
                                             "H_VehicleDispatchDetail.OperationDate," +
                                             "H_VehicleDispatchDetail.OperationFlag," +
@@ -474,7 +474,7 @@ namespace Dao {
         /// <param name="operationDate"></param>
         /// <returns>StaffRollCallYmdHms1</returns>
         public DateTime GetStaffRollCallYmdHms1(int cellNumber, DateTime operationDate) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffRollCallYmdHms1 " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
@@ -490,7 +490,7 @@ namespace Dao {
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
         public int InsertOneVehicleDispatchDetail(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_VehicleDispatchDetail(CellNumber," +
                                                                          "OperationDate," +
                                                                          "OperationFlag," +
@@ -681,7 +681,7 @@ namespace Dao {
                     sqlString += ",";
                 count++;
             }
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_VehicleDispatchDetail(CellNumber," +
                                                                          "OperationDate," +
                                                                          "OperationFlag," +
@@ -752,7 +752,7 @@ namespace Dao {
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
         public int UpdateOneVehicleDispatchDetail(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
                                      "Set CellNumber = " + vehicleDispatchDetailVo.CellNumber + "," +
                                          "OperationDate = '" + vehicleDispatchDetailVo.OperationDate + "'," +
@@ -821,7 +821,7 @@ namespace Dao {
         /// <param name="vehicleDispatchDetailVo">Update後のVehicleDispatchDetailVo</param>
         /// <returns></returns>
         public int UpdateOneVehicleDispatchDetail(int beforeCellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
                                      "Set CellNumber = " + vehicleDispatchDetailVo.CellNumber + "," +
                                          "OperationDate = '" + vehicleDispatchDetailVo.OperationDate + "'," +
@@ -894,7 +894,7 @@ namespace Dao {
             /*
              * DB更新
              */
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
                                      "SET StaffRollCallFlag1 = 'true'," +
                                          "StaffRollCallYmdHms1 = '" + lastRollCallVo.FirstRollCallYmdHms + "'," +
@@ -920,7 +920,7 @@ namespace Dao {
             /*
              * DB更新
              */
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_VehicleDispatchDetail " +
                                      "SET LastRollCallFlag = 'false'," +
                                          "LastRollCallYmdHms = '" + _defaultDateTime + "'," +
@@ -944,7 +944,7 @@ namespace Dao {
             /*
              * DB更新
              */
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "DELETE FROM H_VehicleDispatchDetail " +
                                      "WHERE CellNumber = " + cellNumber + " " +
                                        "AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "' " +
@@ -965,7 +965,7 @@ namespace Dao {
         /// </summary>
         /// <param name="operationDate"></param>
         public void DeleteVehicleDispatchDetail(DateTime operationDate) {
-            var sqlCommand = _connectionVo.Connection.CreateCommand();
+            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "DELETE FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
             try {
@@ -983,7 +983,7 @@ namespace Dao {
         /// <returns></returns>
         public List<VehicleDispatchDetailVo> SelectVehicleDispatchDetailVo(int financialYear, string dayOfWeek) {
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_VehicleDispatchHead.CellNumber," +
                                             "H_VehicleDispatchHead.VehicleDispatchFlag," +
                                             "H_VehicleDispatchHead.Purpose," +
@@ -1025,7 +1025,7 @@ namespace Dao {
         /// <returns></returns>
         public int GetEmploymentCount(DateTime operationDate) {
             int count = 0;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(H_VehicleDispatchDetail.OperationFlag) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "LEFT OUTER JOIN H_SetMaster ON H_VehicleDispatchDetail.SetCode = H_SetMaster.SetCode " +
@@ -1046,7 +1046,7 @@ namespace Dao {
         /// <returns></returns>
         public int GetWardCount(DateTime operationDate) {
             int count = 0;
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(H_VehicleDispatchDetail.OperationFlag) " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "LEFT OUTER JOIN H_SetMaster ON H_VehicleDispatchDetail.SetCode = H_SetMaster.SetCode " +
@@ -1056,6 +1056,25 @@ namespace Dao {
             if (sqlCommand.ExecuteScalar() != null)
                 count = (int)sqlCommand.ExecuteScalar();
             return count;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="setCode"></param>
+        /// <returns></returns>
+        public DateTime GetLastRollCallYmdHms(DateTime dateTime, int setCode) {
+            DateTime lastRollCallYmdHms = _defaultDateTime;
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT LastRollCallYmdHms " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "WHERE OperationDate = '" + dateTime + "' " +
+                                       "AND VehicleDispatchFlag = 'True' " +
+                                       "AND SetCode = " + setCode;
+            if (sqlCommand.ExecuteScalar() != null)
+                lastRollCallYmdHms = (DateTime)sqlCommand.ExecuteScalar();
+            return lastRollCallYmdHms;
         }
     }
 }

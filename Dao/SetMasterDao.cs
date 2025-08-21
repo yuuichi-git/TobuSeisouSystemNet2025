@@ -32,7 +32,7 @@ namespace Dao {
         /// <returns></returns>
         public List<SetMasterVo> SelectAllSetMaster() {
             List<SetMasterVo> listSetMasterVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT SetCode," +
                                             "WordCode," +
                                             "SetName," +

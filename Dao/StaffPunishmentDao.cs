@@ -33,7 +33,7 @@ namespace Dao {
         /// <returns></returns>
         public List<StaffPunishmentVo> SelectOneStaffPunishmentMaster(int staffCode) {
             List<StaffPunishmentVo> listStaffPunishmentVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "PunishmentDate," +
                                             "PunishmentNote," +
@@ -70,7 +70,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffPunishmentVo"></param>
         public void InsertOneStaffPunishmentMasters(StaffPunishmentVo staffPunishmentVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StaffPunishmentMaster(StaffCode," +
                                                                          "PunishmentDate," +
                                                                          "PunishmentNote," +

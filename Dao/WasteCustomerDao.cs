@@ -33,7 +33,7 @@ namespace Dao {
         /// <param name="targetId"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceWasteCustomerVo(int targetId) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCustomer " +
                                      "WHERE Id = " + targetId + "";
@@ -49,7 +49,7 @@ namespace Dao {
         /// </summary>
         /// <returns></returns>
         public int GetId() {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(Id) " +
                                      "FROM H_WasteCustomer";
             try {
@@ -70,7 +70,7 @@ namespace Dao {
         /// <returns></returns>
         public WasteCustomerVo SelectOneWasteCustomerVo(int targetId) {
             WasteCustomerVo wasteCustomerVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Id," +
                                             "ConcludedDate," +
                                             "ConcludedDetail," +
@@ -144,7 +144,7 @@ namespace Dao {
         /// <returns></returns>
         public List<WasteCustomerVo> SelectAllWasteCustomerVo() {
             List<WasteCustomerVo> listWasteCustomerVo = new();
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Id," +
                                             "ConcludedDate," +
                                             "ConcludedDetail," +
@@ -218,7 +218,7 @@ namespace Dao {
         /// </summary>
         /// <param name="wasteCustomerVo"></param>
         public void InsertOneWasteCustomerVo(WasteCustomerVo wasteCustomerVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_WasteCustomer(Id," +
                                                                  "ConcludedDate," +
                                                                  "ConcludedDetail," +
@@ -290,7 +290,7 @@ namespace Dao {
         /// </summary>
         /// <param name="wasteCustomerVo"></param>
         public void UpdateOneWasteCustomerVo(WasteCustomerVo wasteCustomerVo) {
-            SqlCommand sqlCommand = _connectionVo.Connection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_WasteCustomer " +
                                      "SET ConcludedDate = '" + _defaultValue.GetDefaultValue<DateTime>(wasteCustomerVo.ConcludedDate) + "'," +
                                          "ConcludedDetail = '" + _defaultValue.GetDefaultValue<string>(wasteCustomerVo.ConcludedDetail) + "'," +
