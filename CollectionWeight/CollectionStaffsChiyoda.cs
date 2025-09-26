@@ -5,7 +5,7 @@ using Dao;
 
 using FarPoint.Win.Spread;
 
-using H_Common;
+using Common;
 
 using Vo;
 

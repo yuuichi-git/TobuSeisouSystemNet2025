@@ -6,7 +6,7 @@
 using System.Net;
 using System.Text;
 
-namespace H_Common {
+namespace Common {
     public class HolidayUtility {
         private Dictionary<DateTime, string> _dictionary = new Dictionary<DateTime, string>();
 
@@ -15,7 +15,10 @@ namespace H_Common {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             // 祝日ファイルを取得
             string _path = @"https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv";
-            byte[] buffer = new WebClient().DownloadData(_path);
+            byte[] buffer;
+            using (HttpClient httpClient = new()) {
+                buffer = httpClient.GetByteArrayAsync(_path).GetAwaiter().GetResult();
+            }
             string str = Encoding.GetEncoding("shift_jis").GetString(buffer);
             // 行毎に配列に分割
             string[] rows = str.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);

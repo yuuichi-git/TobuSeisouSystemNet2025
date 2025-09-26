@@ -34,14 +34,37 @@ namespace Dao {
         public List<string> GetUserTables() {
             List<string> listTableName = new();
             OracleCommand oracleCommand = _connectionVo.OracleConnection.CreateCommand();
-            oracleCommand.CommandText = "SELECT *," +
+            oracleCommand.CommandText = "SELECT * " +
                                         "FROM USER_TABLES " +
                                         "ORDER BY TABLE_NAME";
             using (OracleDataReader oracleDataReader = oracleCommand.ExecuteReader()) {
                 while (oracleDataReader.Read() == true) {
-                    string tableName = string.Empty;
-                    tableName = _defaultValue.GetDefaultValue<string>(oracleDataReader["TABLE_NAME"]);
-                    listTableName.Add(tableName);
+                    string _tableName = string.Empty;
+                    _tableName = _defaultValue.GetDefaultValue<string>(oracleDataReader["TABLE_NAME"]);
+                    listTableName.Add(_tableName);
+                }
+            }
+            return listTableName;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ownerName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public List<string> GetColumns(string ownerName, string tableName) {
+            List<string> listTableName = new();
+            OracleCommand oracleCommand = _connectionVo.OracleConnection.CreateCommand();
+            oracleCommand.CommandText = "SELECT COLUMN_NAME " +
+                                        "FROM ALL_TAB_COLUMNS " +
+                                        "WHERE OWNER = '" + ownerName + "' AND TABLE_NAME = '" + tableName + "' " +
+                                        "ORDER BY COLUMN_ID";
+            using (OracleDataReader oracleDataReader = oracleCommand.ExecuteReader()) {
+                while (oracleDataReader.Read() == true) {
+                    string _tableName = string.Empty;
+                    _tableName = _defaultValue.GetDefaultValue<string>(oracleDataReader["COLUMN_NAME"]);
+                    listTableName.Add(_tableName);
                 }
             }
             return listTableName;

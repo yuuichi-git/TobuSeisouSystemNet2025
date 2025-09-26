@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Certification\Certification.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\eGov\EGov.csproj" />
     <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
     <ProjectReference Include="..\LegalTwelveItem\LegalTwelveItem.csproj" />
     <ProjectReference Include="..\Seisou\Seisou.csproj" />
