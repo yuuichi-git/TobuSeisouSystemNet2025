@@ -6,14 +6,14 @@ using Newtonsoft.Json;
 namespace Vo {
     public class LawFullTextVo {
         private string tag = string.Empty;
-        private dynamic attr;
-        private dynamic children;
+        private AttrVo attr = new();
+        private ChildrenVo[] children = Array.Empty<ChildrenVo>();
 
         /// <summary>
         /// 
         /// </summary>
         [JsonProperty("tag")]
-        public dynamic Tag {
+        public string Tag {
             get => this.tag;
             set => this.tag = value;
         }
@@ -21,7 +21,7 @@ namespace Vo {
         /// 
         /// </summary>
         [JsonProperty("attr")]
-        public dynamic Attr {
+        public AttrVo Attr {
             get => this.attr;
             set => this.attr = value;
         }
@@ -29,7 +29,7 @@ namespace Vo {
         /// 
         /// </summary>
         [JsonProperty("children")]
-        public dynamic Children {
+        public ChildrenVo[] Children {                                              // Array形式（子要素あり）
             get => this.children;
             set => this.children = value;
         }

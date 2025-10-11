@@ -2,6 +2,9 @@
  * 2025-08-28
  * e-Gov 法令API
  */
+using System.Text;
+using System.Text.Json;
+
 using Newtonsoft.Json;
 
 using Vo;
@@ -19,20 +22,18 @@ namespace EGov {
             string baseUrl = "https://laws.e-gov.go.jp/api/2" + endPoint + "/" + lawNum + "";               // APIのベースURL（例: 法令API Version 2）
 
             using (HttpClient client = new()) {                                                             // HTTPクライアントの初期化
-                client.BaseAddress = new Uri(baseUrl);
+                
 
                 try {
-
+                    //client.DefaultRequestHeaders.Add("Accept", "application/json");                         // 必要に応じてヘッダーを設定
+                    //client.BaseAddress = new Uri(baseUrl);
                     HttpResponseMessage httpResponseMessage = await client.GetAsync(baseUrl);               // GETリクエストの送信
 
                     if (httpResponseMessage.IsSuccessStatusCode) {
                         string responseData = await httpResponseMessage.Content.ReadAsStringAsync();        // レスポンスの内容を非同期で文字列として取得
                         LawDataResponseVo? lawData = JsonConvert.DeserializeObject<LawDataResponseVo>(responseData);
 
-
-
-
-
+                        
 
 
 
