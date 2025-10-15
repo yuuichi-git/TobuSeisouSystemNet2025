@@ -448,7 +448,7 @@
             // 
             this.ComboBoxExShapeCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExShapeCode.FormattingEnabled = true;
-            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "キャブオーバー", "塵芥車", "ダンプ", "コンテナ専用", "脱着装置付コンテナ専用車", "粉粒体運搬車", "糞尿車", "清掃車", "バン" });
+            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "キャブオーバー", "塵芥車", "ダンプ", "コンテナ専用", "脱着装置付コンテナ専用車", "粉粒体運搬車", "糞尿車", "清掃車", "バン", "ステーションワゴン" });
             this.ComboBoxExShapeCode.Location = new Point(188, 188);
             this.ComboBoxExShapeCode.Name = "ComboBoxExShapeCode";
             this.ComboBoxExShapeCode.Size = new Size(164, 23);
@@ -506,7 +506,7 @@
             // 
             this.ComboBoxExManufacturerCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExManufacturerCode.FormattingEnabled = true;
-            this.ComboBoxExManufacturerCode.Items.AddRange(new object[] { "いすゞ", "日産", "ダイハツ", "日野", "スバル" });
+            this.ComboBoxExManufacturerCode.Items.AddRange(new object[] { "いすゞ", "日産", "ダイハツ", "日野", "スバル", "トヨタ" });
             this.ComboBoxExManufacturerCode.Location = new Point(188, 20);
             this.ComboBoxExManufacturerCode.Name = "ComboBoxExManufacturerCode";
             this.ComboBoxExManufacturerCode.Size = new Size(164, 23);

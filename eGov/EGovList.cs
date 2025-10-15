@@ -32,7 +32,7 @@ namespace EGov {
         /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
             try {
-                this.eGobApi.GetLawData("平成二年運輸省令第二十二号");
+                this.eGobApi.GetLawData("402M50000800022_20250401_506M60000800090");
             } catch (HttpRequestException httpRequestException) {
                 MessageBox.Show(httpRequestException.Message);
                 return;

@@ -123,7 +123,7 @@ namespace Car {
         /// <summary>
         /// 10:キャブオーバー 11:塵芥車 12:ダンプ 13:コンテナ専用 14:脱着装置付コンテナ専用車 15:粉粒体運搬車 16:糞尿車 17:清掃車 18:番
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryShapeName = new Dictionary<int, string> { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" }, { 18, "バン" } };
+        private readonly Dictionary<int, string> _dictionaryShapeName = new Dictionary<int, string> { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" }, { 18, "バン" }, { 19, "ステーションワゴン" } };
 
         /// <summary>
         /// 
