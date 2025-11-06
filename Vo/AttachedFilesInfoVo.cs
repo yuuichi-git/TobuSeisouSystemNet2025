@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vo {
     public class AttachedFilesInfoVo {
+        /*
+         * Vo
+         */
         private string image_data = string.Empty;
         private AttachedFileVo[] attached_files = Array.Empty<AttachedFileVo>();
 

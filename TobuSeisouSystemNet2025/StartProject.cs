@@ -254,6 +254,11 @@ namespace TobuSeisouSystemNet2025 {
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
                             carList.Show();
                             break;
+                        case "CarWorkingDays":                                                                                                  // 車両稼働一覧
+                            CarWorkingDays carWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carWorkingDays);
+                            carWorkingDays.Show();
+                            break;
                         case "EmploymentAgreementList":                                                                                         // 契約書・誓約書等
                             EmploymentAgreementList employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);

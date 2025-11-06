@@ -210,10 +210,10 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Location = new Point(1712, 10);
+            this.ButtonExUpdate.Location = new Point(1696, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(152, 32);
+            this.ButtonExUpdate.Size = new Size(160, 32);
             this.ButtonExUpdate.TabIndex = 0;
             this.ButtonExUpdate.Text = "UPDATE";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;

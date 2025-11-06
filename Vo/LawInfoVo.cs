@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vo {
     public class LawInfoVo {
+        /*
+         * Vo
+         */
         private string law_type = string.Empty;
         private string law_id = string.Empty;
         private string law_num = string.Empty;

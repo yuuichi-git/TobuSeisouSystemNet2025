@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vo {
     public class AttachedFileVo {
+        /*
+         * Vo
+         */
         private string law_revision_id = string.Empty;
         private string src = string.Empty;
         private string updated = string.Empty;

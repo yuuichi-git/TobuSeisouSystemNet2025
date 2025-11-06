@@ -66,8 +66,9 @@
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewMedical = this.SpreadList.GetSheet(1);
-            this.SheetViewDriver = this.SpreadList.GetSheet(2);
-            this.SheetViewToukanpo = this.SpreadList.GetSheet(3);
+            this.SheetViewInfuru = this.SpreadList.GetSheet(2);
+            this.SheetViewDriver = this.SpreadList.GetSheet(3);
+            this.SheetViewToukanpo = this.SpreadList.GetSheet(4);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.GroupBoxExOccupation.SuspendLayout();
@@ -555,7 +556,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, 健康診断用リスト, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, インフルエンザ予防接種補助金請求, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 119);
@@ -633,6 +634,7 @@
         private TabPage tabPage11;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewMedical;
+        private FarPoint.Win.Spread.SheetView SheetViewInfuru;
         private FarPoint.Win.Spread.SheetView SheetViewDriver;
         private FarPoint.Win.Spread.SheetView SheetViewToukanpo;
     }

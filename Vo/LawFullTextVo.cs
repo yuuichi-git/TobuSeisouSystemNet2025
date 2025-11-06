@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vo {
     public class LawFullTextVo {
+        /*
+         * Vo
+         */
         private string tag = string.Empty;
         private AttrVo attr = new();
         private ChildrenVo[] children = Array.Empty<ChildrenVo>();

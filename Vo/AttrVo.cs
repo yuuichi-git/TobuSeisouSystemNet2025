@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vo {
     public class AttrVo {
+        /*
+         * Vo
+         */
         private string era = string.Empty;
         private string lang = string.Empty;
         private string lawType = string.Empty;

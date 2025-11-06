@@ -96,6 +96,7 @@ namespace Staff {
              */
             this.InitializeSheetView(SheetViewList);
             this.InitializeSheetView(SheetViewMedical);
+            this.InitializeSheetView(SheetViewInfuru);
             this.InitializeSheetView(SheetViewDriver);
             this.InitializeSheetView(SheetViewToukanpo);
             /*
@@ -119,6 +120,9 @@ namespace Staff {
                             break;
                         case "健康診断用リスト":
                             this.PutSheetViewMedical(this.SheetViewMedical);
+                            break;
+                        case "インフルエンザ予防接種補助金請求":
+                            this.PutSheetViewInfuru(this.SheetViewInfuru);
                             break;
                         case "運転者リスト":
                             this.PutSheetViewDriver(this.SheetViewDriver);
@@ -162,6 +166,9 @@ namespace Staff {
                         break;
                     case "健康診断用リスト":
                         this.PutSheetViewMedical(this.SheetViewMedical);
+                        break;
+                    case "インフルエンザ予防接種補助金請求":
+                        this.PutSheetViewInfuru(this.SheetViewInfuru);
                         break;
                     case "運転者リスト":
                         this.PutSheetViewDriver(this.SheetViewDriver);
@@ -284,7 +291,7 @@ namespace Staff {
                             sheetView.Cells[rowCount, 18].ForeColor = Color.Red;
                             sheetView.Cells[rowCount, 18].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         }
-                            
+
                     } else {
                         sheetView.Cells[rowCount, 18].ForeColor = Color.DarkGray;
                         sheetView.Cells[rowCount, 18].Value = "健康診断の記録無し";
@@ -369,6 +376,80 @@ namespace Staff {
                     sheetView.Cells[rowCount, 7].Text = staffMasterVo.Gender;                                                                                       // 性別
                     sheetView.Cells[rowCount, 8].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber[2..6] : string.Empty;  // 記号
                     sheetView.Cells[rowCount, 9].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber[9..12] : string.Empty; // 番号
+                    rowCount++;
+                }
+            }
+            // 先頭行（列）インデックスをセット
+            this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
+            // Spread 活性化
+            this.SpreadList.ResumeLayout();
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
+        }
+
+        /// <summary>
+        /// 2025-2-14
+        /// 健康診断用リスト
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void PutSheetViewInfuru(SheetView sheetView) {
+            int rowCount = 0;
+            // Spread 非活性化
+            SpreadList.SuspendLayout();
+            // 先頭行（列）インデックスを取得
+            _spreadListTopRow = SpreadList.GetViewportTopRow(0);
+            // Rowを削除する
+            if (sheetView.Rows.Count > 0)
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+            List<StaffMasterVo>? _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
+                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
+                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
+                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
+                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
+                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
+                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
+                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
+                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
+                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
+                _ => _listStaffMasterVo,
+            };
+
+            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.RetirementFlag == false);
+            if (_findListStaffMasterVo is not null) {
+                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+                    sheetView.Rows.Add(rowCount, 1);
+                    sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                                                               // Rowヘッダ
+                    sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black;                                                    // 退職済のレコードのForeColorをセット
+                    sheetView.Rows[rowCount].Height = 20;                                                                                                           // Rowの高さ
+                    sheetView.Rows[rowCount].Resizable = false;                                                                                                     // RowのResizableを禁止
+                    sheetView.Rows[rowCount].Tag = staffMasterVo;
+
+                    string unionName = string.Empty;
+                    switch (staffMasterVo.JobForm) {
+                        case 20 or 21:
+                            unionName = "(新運転)";
+                            break;
+                        case 22 or 23:
+                            unionName = "(自運労)";
+                            break;
+                        default:
+                            unionName = string.Empty;
+                            break;
+                    }
+                    sheetView.Cells[rowCount, 0].Value = rowCount + 1;                                                                                                              // 通し№
+                    sheetView.Cells[rowCount, 1].Text = "本人";                                                                                                                       // 続柄
+                    sheetView.Cells[rowCount, 2].Text = string.Concat(_dictionaryBelongs[staffMasterVo.Belongs], unionName);                                                        // 所属
+                    sheetView.Cells[rowCount, 3].Value = staffMasterVo.UnionCode;                                                                                                   // 組合コード
+                    sheetView.Cells[rowCount, 4].Text = staffMasterVo.Name;                                                                                                         // 氏名(全角)
+                    sheetView.Cells[rowCount, 5].Text = Strings.StrConv(staffMasterVo.OtherNameKana, VbStrConv.Narrow);                                                             // カナ(半角)
+                    sheetView.Cells[rowCount, 6].Text = staffMasterVo.BirthDate.ToString("yyyy/MM/dd");                                                                             // 生年月日
+                    sheetView.Cells[rowCount, 7].Text = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate), "歳");                                                           // 年齢
+                    sheetView.Cells[rowCount, 8].Text = staffMasterVo.Gender;                                                                                                       // 性別
+                    sheetView.Cells[rowCount, 9].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber.Substring(2, 4) : string.Empty;        // 記号１
+                    sheetView.Cells[rowCount, 10].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber.Substring(9, 3) : string.Empty;       // 記号２
+                    sheetView.Cells[rowCount, 11].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber.Substring(15) : string.Empty;         // 記号３
+                    sheetView.Cells[rowCount, 12].Text = staffMasterVo.HealthInsuranceNumber.Length > 0 ? staffMasterVo.HealthInsuranceNumber : string.Empty;                       // 健康保険番号
+                    sheetView.Cells[rowCount, 13].Value = staffMasterVo.HealthInsuranceNumber.Length > 0 ? 3850 : string.Empty;                                                     // 健康保険番号
                     rowCount++;
                 }
             }
