@@ -280,17 +280,17 @@ namespace Car {
             this.TextBoxExDoorNumber.SetEmpty();                                                                                    // ドア番号
             this.CheckBoxExEmergencyVehicleFlag.Checked = false;                                                                    // 緊急車両
             this.DateTimePickerExEmergencyVehicleDate.SetClear();                                                                   // 緊急車両登録期限
-            this.ComboBoxExRegistrationNumber1.Clear();                                                                             // 車両ナンバー１
+            this.ComboBoxExRegistrationNumber1.DisplayClear();                                                                             // 車両ナンバー１
             this.TextBoxExRegistrationNumber2.SetEmpty();                                                                           // 車両ナンバー２
             this.TextBoxExRegistrationNumber3.SetEmpty();                                                                           // 車両ナンバー３
             this.TextBoxExRegistrationNumber4.SetEmpty();                                                                           // 車両ナンバー４
-            this.ComboBoxExClassificationCode.Clear();                                                                              // 使用区分
-            this.ComboBoxExGarageCode.Clear();                                                                                      // 車庫地
-            this.ComboBoxExDisguiseKind1.Clear();                                                                                   // 仮装の名称(システム表示)
-            this.ComboBoxExDisguiseKind2.Clear();                                                                                   // 仮装の名称(事故報告書)
-            this.ComboBoxExDisguiseKind3.Clear();                                                                                   // 仮装の名称(整備工場等)
+            this.ComboBoxExClassificationCode.DisplayClear();                                                                              // 使用区分
+            this.ComboBoxExGarageCode.DisplayClear();                                                                                      // 車庫地
+            this.ComboBoxExDisguiseKind1.DisplayClear();                                                                                   // 仮装の名称(システム表示)
+            this.ComboBoxExDisguiseKind2.DisplayClear();                                                                                   // 仮装の名称(事故報告書)
+            this.ComboBoxExDisguiseKind3.DisplayClear();                                                                                   // 仮装の名称(整備工場等)
             this.CheckBoxExDigitalTachographFlag.Checked = false;                                                                   // デジタコ装着フラグ
-            this.ComboBoxExDigitalTachographType.Clear();                                                                           // デジタコ機種
+            this.ComboBoxExDigitalTachographType.DisplayClear();                                                                           // デジタコ機種
             /*
              * １．基本情報
              */
@@ -301,21 +301,21 @@ namespace Car {
             /*
              * ２．所有者・使用者情報
              */
-            this.ComboBoxExOwnerName.Clear();                                                                                       // 所有者の氏名又は名称
-            this.ComboBoxExOwnerAddress.Clear();                                                                                    // 所有者の住所
-            this.ComboBoxExUserName.Clear();                                                                                        // 使用者の氏名又は名称
-            this.ComboBoxExUserAddress.Clear();                                                                                     // 使用者の住所
-            this.ComboBoxExBaseAddress.Clear();                                                                                     // 使用の本拠の位置
+            this.ComboBoxExOwnerName.DisplayClear();                                                                                       // 所有者の氏名又は名称
+            this.ComboBoxExOwnerAddress.DisplayClear();                                                                                    // 所有者の住所
+            this.ComboBoxExUserName.DisplayClear();                                                                                        // 使用者の氏名又は名称
+            this.ComboBoxExUserAddress.DisplayClear();                                                                                     // 使用者の住所
+            this.ComboBoxExBaseAddress.DisplayClear();                                                                                     // 使用の本拠の位置
             /*
              * ３．車両詳細情報
              */
-            this.ComboBoxExManufacturerCode.Clear();                                                                                // 車名
+            this.ComboBoxExManufacturerCode.DisplayClear();                                                                         // 車名
             this.TextBoxExVersion.SetEmpty();                                                                                       // 型式
             this.TextBoxExMotorVersion.SetEmpty();                                                                                  // 原動機の型式
-            this.ComboBoxExCarKindCode.Clear();                                                                                     // 自動車の種別
-            this.ComboBoxExCarUse.Clear();                                                                                          // 用途
-            this.ComboBoxExOtherCode.Clear();                                                                                       // 自家用・事業用の別
-            this.ComboBoxExShapeCode.Clear();                                                                                       // 車体の形状
+            this.ComboBoxExCarKindCode.DisplayClear();                                                                              // 自動車の種別
+            this.ComboBoxExCarUse.DisplayClear();                                                                                   // 用途
+            this.ComboBoxExOtherCode.DisplayClear();                                                                                // 自家用・事業用の別
+            this.ComboBoxExShapeCode.DisplayClear();                                                                                // 車体の形状
             this.NumericUpDownExCapacity.Value = 0;                                                                                 // 乗車定員
             this.NumericUpDownExMaximumLoadCapacity.Value = 0;                                                                      // 最大積載量
             this.NumericUpDownExVehicleWeight.Value = 0;                                                                            // 車両重量
@@ -328,7 +328,7 @@ namespace Car {
             this.NumericUpDownExRfAxisWeight.Value = 0;                                                                             // 後前軸重
             this.NumericUpDownExRrAxisWeight.Value = 0;                                                                             // 後後軸重
             this.NumericUpDownExTotalDisplacement.Value = 0;                                                                        // 総排気量又は定格出力
-            this.ComboBoxExTypesOfFuel.Clear();                                                                                     // 燃料の種類
+            this.ComboBoxExTypesOfFuel.DisplayClear();                                                                              // 燃料の種類
             this.TextBoxExVersionDesignateNumber.SetEmpty();                                                                        // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.SetEmpty();                                                                     // 類別区分番号
             this.TextBoxExRemarks.SetEmpty();                                                                                       // 備考
@@ -361,7 +361,7 @@ namespace Car {
                 this.ComboBoxExDigitalTachographType.Text = carMasterVo.DigitalTachographType;
             } else {
                 this.ComboBoxExDigitalTachographType.Enabled = false;
-                this.ComboBoxExDigitalTachographType.Clear();
+                this.ComboBoxExDigitalTachographType.DisplayClear();
             }
             this.ComboBoxExRegistrationNumber1.Text = carMasterVo.RegistrationNumber1;                                              // 車両ナンバー１
             this.TextBoxExRegistrationNumber2.Text = carMasterVo.RegistrationNumber2;                                               // 車両ナンバー２
@@ -433,7 +433,7 @@ namespace Car {
                 this.ComboBoxExDigitalTachographType.Enabled = true;
             } else {
                 this.ComboBoxExDigitalTachographType.Enabled = false;
-                this.ComboBoxExDigitalTachographType.Clear();
+                this.ComboBoxExDigitalTachographType.DisplayClear();
             }
         }
 

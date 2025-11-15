@@ -30,10 +30,6 @@ namespace ControlEx {
             SendKeys.Send("+{END}");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e) {
             switch (e.KeyCode) {
                 case Keys.Enter:

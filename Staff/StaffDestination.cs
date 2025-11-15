@@ -373,7 +373,6 @@ namespace Staff {
         /// </summary>
         private void InitializeComboBoxExStaffDisplayName() {
             ComboBoxExStaffName.Items.Clear();
-            List<HComboBoxExSelectNameVo> listComboBoxSelectNameVo = new();
             foreach (StaffMasterVo staffMasterVo in _staffDestinationDao.SelectAllStaffMasterVo().OrderBy(x => x.NameKana))
                 ComboBoxExStaffName.Items.Add(new HComboBoxExSelectNameVo(staffMasterVo.Name, staffMasterVo));
             ComboBoxExStaffName.DisplayMember = "Name";

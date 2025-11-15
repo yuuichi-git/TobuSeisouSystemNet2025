@@ -10,8 +10,6 @@ using Dao;
 using FarPoint.Excel;
 using FarPoint.Win.Spread;
 
-using Common;
-
 using Vo;
 
 namespace Staff {
@@ -76,8 +74,8 @@ namespace Staff {
              */
             InitializeComponent();
             /*
-            * MenuStrip
-            */
+             * MenuStrip
+             */
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
@@ -85,7 +83,7 @@ namespace Staff {
                 "ToolStripMenuItemExportExcel",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * 配車日を設定
              */

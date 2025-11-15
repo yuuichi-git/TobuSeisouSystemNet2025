@@ -9,8 +9,6 @@ using Dao;
 
 using FarPoint.Win.Spread;
 
-using Common;
-
 using Vo;
 
 namespace Staff {
@@ -184,7 +182,7 @@ namespace Staff {
         /// </summary>
         private void InitializeComboBoxExStaffDisplayName() {
             ComboBoxExStaffDisplayName.Items.Clear();
-            List<HComboBoxExSelectNameVo> listComboBoxSelectNameVo = new();
+            //List<HComboBoxExSelectNameVo> listComboBoxSelectNameVo = new();
             foreach (StaffMasterVo staffMasterVo in _staffMasterDao.SelectAllStaffMaster(new List<int> { 11, 12, 14, 15, 22 },          // 社員・アルバイト・嘱託雇用契約社員・パートタイマー・労供
                                                                                          new List<int> { 20, 22, 99 },                  // 労供長期・労供短期・指定なし
                                                                                          new List<int> { 10, 11, 12, 13, 20, 99 },      // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし

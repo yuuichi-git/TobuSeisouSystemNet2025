@@ -111,19 +111,19 @@ namespace Car {
         /// <summary>
         /// 0:該当なし 1:足立 2:三郷 3:産廃車庫
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryGarageName = new Dictionary<int, string> { { 0, "該当なし" }, { 1, "本社" }, { 2, "三郷" }, { 3, "産廃車庫" } };
+        private readonly Dictionary<int, string> _dictionaryGarageName = new() { { 0, "該当なし" }, { 1, "本社" }, { 2, "三郷" }, { 3, "産廃車庫" } };
         /// <summary>
         /// 10:軽自動車 11:小型 12:普通
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryCarKindName = new Dictionary<int, string> { { 10, "軽自動車" }, { 11, "小型" }, { 12, "普通" } };
+        private readonly Dictionary<int, string> _dictionaryCarKindName = new() { { 10, "軽自動車" }, { 11, "小型" }, { 12, "普通" } };
         /// <summary>
         /// 10:事業用 11:自家用
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryOtherName = new Dictionary<int, string> { { 10, "事業用" }, { 11, "自家用" } };
+        private readonly Dictionary<int, string> _dictionaryOtherName = new() { { 10, "事業用" }, { 11, "自家用" } };
         /// <summary>
         /// 10:キャブオーバー 11:塵芥車 12:ダンプ 13:コンテナ専用 14:脱着装置付コンテナ専用車 15:粉粒体運搬車 16:糞尿車 17:清掃車 18:番
         /// </summary>
-        private readonly Dictionary<int, string> _dictionaryShapeName = new Dictionary<int, string> { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" }, { 18, "バン" }, { 19, "ステーションワゴン" } };
+        private readonly Dictionary<int, string> _dictionaryShapeName = new() { { 10, "キャブオーバー" }, { 11, "塵芥車" }, { 12, "ダンプ" }, { 13, "コンテナ専用" }, { 14, "脱着装置付コンテナ専用車" }, { 15, "粉粒体運搬車" }, { 16, "糞尿車" }, { 17, "清掃車" }, { 18, "バン" }, { 19, "ステーションワゴン" } };
 
         /// <summary>
         /// 
