@@ -45,6 +45,7 @@ namespace VehicleDispatch {
         private SetMasterDao _setMasterDao;
         private CarMasterDao _carMasterDao;
         private StaffMasterDao _staffMasterDao;
+        private StaffProperDao _staffProperDao;
         private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         private LicenseMasterDao _licenseMasterDao;
         /*
@@ -54,6 +55,7 @@ namespace VehicleDispatch {
         private List<SetMasterVo> _listSetMasterVo;
         private List<CarMasterVo> _listCarMasterVo;
         private List<StaffMasterVo> _listStaffMasterVo;
+        private List<StaffProperVo> _listStaffProperVo;
 
         private Board _board;
 
@@ -67,6 +69,7 @@ namespace VehicleDispatch {
             _setMasterDao = new(connectionVo);
             _carMasterDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
+            _staffProperDao = new(connectionVo);
             _vehicleDispatchDetailDao = new(connectionVo);
             _licenseMasterDao = new(connectionVo);
             /*
@@ -76,6 +79,7 @@ namespace VehicleDispatch {
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
             _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
+            _listStaffProperVo = _staffProperDao.SelectAllStaffProperMaster();
             /*
              * InitializeControl
              */
@@ -94,15 +98,14 @@ namespace VehicleDispatch {
             };
             this.MenuStripEx1.ChangeEnable(listString);
 
-            this.DateTimePickerExOperationDate.SetToday();
-            // ControlButtonを初期化
-            this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";
+            this.DateTimePickerExOperationDate.SetToday();                                                          // DateTimePickerExOperationDateを初期化
+            this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";                                      // ButtonExStockBoxOpenを初期化
             this.AddBoard();
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";                              // StatusStripEx1を初期化
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -113,19 +116,19 @@ namespace VehicleDispatch {
             /*
              * Eventを登録
              */
-            _board.Board_ContextMenuStrip_Opened += ContextMenuStripEx_Opened;
-            _board.Board_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            _board.Board_OnMouseClick += OnMouseClick;
-            _board.Board_OnMouseDoubleClick += OnMouseDoubleClick;
-            _board.Board_OnMouseDown += OnMouseDown;
-            _board.Board_OnMouseEnter += OnMouseEnter;
-            _board.Board_OnMouseLeave += OnMouseLeave;
-            _board.Board_OnMouseMove += OnMouseMove;
-            _board.Board_OnMouseUp += OnMouseUp;
+            _board.Board_ContextMenuStrip_Opened += this.ContextMenuStripEx_Opened;
+            _board.Board_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            _board.Board_OnMouseClick += this.OnMouseClick;
+            _board.Board_OnMouseDoubleClick += this.OnMouseDoubleClick;
+            _board.Board_OnMouseDown += this.OnMouseDown;
+            _board.Board_OnMouseEnter += this.OnMouseEnter;
+            _board.Board_OnMouseLeave += this.OnMouseLeave;
+            _board.Board_OnMouseMove += this.OnMouseMove;
+            _board.Board_OnMouseUp += this.OnMouseUp;
 
-            _board.Board_OnDragDrop += OnDragDrop;
-            _board.Board_OnDragEnter += OnDragEnter;
-            _board.Board_OnDragOver += OnDragOver;
+            _board.Board_OnDragDrop += this.OnDragDrop;
+            _board.Board_OnDragEnter += this.OnDragEnter;
+            _board.Board_OnDragOver += this.OnDragOver;
 
             this.TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
@@ -177,10 +180,11 @@ namespace VehicleDispatch {
                             VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber);
                             if (vehicleDispatchDetailVo is not null) {
                                 _board.AddOneSetControl(cellNumber,
-                                                     vehicleDispatchDetailVo,
-                                                     _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
-                                                     _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
-                                                     ConvertStaffMasterVo(vehicleDispatchDetailVo));
+                                                        vehicleDispatchDetailVo,
+                                                        _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
+                                                        _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
+                                                        ConvertStaffMasterVo(vehicleDispatchDetailVo),
+                                                        _listStaffProperVo);
                             }
                             cellNumber++;
                         }
@@ -307,10 +311,11 @@ namespace VehicleDispatch {
                                 trueVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 trueVehicleDispatchDetailVo.DeleteFlag = false;
                                 _board.AddOneSetControl(cellNumber,
-                                                     trueVehicleDispatchDetailVo,
-                                                     _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
-                                                     _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
-                                                     ConvertStaffMasterVo(trueVehicleDispatchDetailVo));
+                                                        trueVehicleDispatchDetailVo,
+                                                        _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
+                                                        _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
+                                                        ConvertStaffMasterVo(trueVehicleDispatchDetailVo),
+                                                        _listStaffProperVo);
                                 /*
                                  * PurposeFlag = true なら columnNumber++
                                  * PurposeFlag = true なら _cellNumber++
@@ -384,10 +389,11 @@ namespace VehicleDispatch {
                                 falseVehicleDispatchDetailVo.DeleteYmdHms = _defaultDateTime;
                                 falseVehicleDispatchDetailVo.DeleteFlag = false;
                                 _board.AddOneSetControl(cellNumber,
-                                                     falseVehicleDispatchDetailVo,
-                                                     _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
-                                                     _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
-                                                     ConvertStaffMasterVo(falseVehicleDispatchDetailVo));
+                                                        falseVehicleDispatchDetailVo,
+                                                        _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
+                                                        _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
+                                                        ConvertStaffMasterVo(falseVehicleDispatchDetailVo),
+                                                        _listStaffProperVo);
                             }
                             cellNumber++;
                         }
@@ -436,7 +442,7 @@ namespace VehicleDispatch {
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
-        private StaffMasterVo? GetStaffMasterVo(int staffCode) {
+        private StaffMasterVo GetStaffMasterVo(int staffCode) {
             StaffMasterVo? staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
             if (staffMasterVo is not null) {
                 // 検索で見つかったVoを返す

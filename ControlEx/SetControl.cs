@@ -178,11 +178,11 @@ namespace ControlEx {
             /*
              * Event
              */
-            this.MouseDown += OnMouseDown; // 画面スクロールに使う
-            this.MouseMove += OnMouseMove; // 画面スクロールに使う
-            this.MouseUp += OnMouseUp; // 画面スクロールに使う
-            this.MouseEnter += OnMouseEnter;
-            this.MouseLeave += OnMouseLeave;
+            this.MouseDown += this.OnMouseDown;                                     // 画面スクロールに使う
+            this.MouseMove += this.OnMouseMove;                                     // 画面スクロールに使う
+            this.MouseUp += this.OnMouseUp;                                         // 画面スクロールに使う
+            this.MouseEnter += this.OnMouseEnter;
+            this.MouseLeave += this.OnMouseLeave;
         }
 
         /*
@@ -190,29 +190,29 @@ namespace ControlEx {
          */
         ContextMenuStrip contextMenuStrip = new();
         ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
-        ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
-        ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
+        ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl");         // 子アイテム１
+        ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl");         // 子アイテム２
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
         private void CreateContextMenuStrip() {
             //ContextMenuStrip contextMenuStrip = new();
             contextMenuStrip.Name = "ContextMenuStripSetControl";
-            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            contextMenuStrip.Opened += this.ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
 
             //ToolStripMenuItem toolStripMenuItem00 = new("SetControlの形状");
             toolStripMenuItem00.Name = "ToolStripMenuItemCarVerification";
-            toolStripMenuItem00.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
-            //ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl"); // 子アイテム１
+            //ToolStripMenuItem toolStripMenuItem00_0 = new("Single-SetControl");   // 子アイテム１
             toolStripMenuItem00_0.Name = "ToolStripMenuItemSetControlSingle";
-            toolStripMenuItem00_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00_0.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_0);
             contextMenuStrip.Items.Add(toolStripMenuItem00);
-            //ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl"); // 子アイテム２
+            //ToolStripMenuItem toolStripMenuItem00_1 = new("Double-SetControl");   // 子アイテム２
             toolStripMenuItem00_1.Name = "ToolStripMenuItemSetControlDouble";
-            toolStripMenuItem00_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00_1.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem00.DropDownItems.Add(toolStripMenuItem00_1);
             contextMenuStrip.Items.Add(toolStripMenuItem00);
             /*
@@ -224,7 +224,7 @@ namespace ControlEx {
              */
             ToolStripMenuItem toolStripMenuItem01 = new("プロパティ");
             toolStripMenuItem01.Name = "ToolStripMenuItemSetControlProperty";
-            toolStripMenuItem01.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem01.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem01);
         }
 
@@ -252,15 +252,15 @@ namespace ControlEx {
             setLabel.TelCallingFlag = false; // 電話連絡(2024-12-11の時点では、電話連絡確認機能は利用していない
             setLabel.FaxTransmissionFlag = this.FaxTransmissionFlag;
             // Eventを登録
-            setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
-            setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            setLabel.SetLabel_OnMouseClick += OnMouseClick;
-            setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            setLabel.SetLabel_OnMouseDown += OnMouseDown;
-            setLabel.SetLabel_OnMouseEnter += OnMouseEnter;
-            setLabel.SetLabel_OnMouseLeave += OnMouseLeave;
-            setLabel.MouseMove += OnMouseMove;
-            setLabel.MouseUp += OnMouseUp;
+            setLabel.SetLabel_ContextMenuStrip_Opened += this.ContextMenuStrip_Opened;
+            setLabel.SetLabel_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            setLabel.SetLabel_OnMouseClick += this.OnMouseClick;
+            setLabel.SetLabel_OnMouseDoubleClick += this.OnMouseDoubleClick;
+            setLabel.SetLabel_OnMouseDown += this.OnMouseDown;
+            setLabel.SetLabel_OnMouseEnter += this.OnMouseEnter;
+            setLabel.SetLabel_OnMouseLeave += this.OnMouseLeave;
+            setLabel.MouseMove += this.OnMouseMove;
+            setLabel.MouseUp += this.OnMouseUp;
             this.Controls.Add(setLabel, 0, 0);
             // 参照を退避
             this.DeployedSetLabel = setLabel;
@@ -286,15 +286,15 @@ namespace ControlEx {
             /*
              * Eventを登録
              */
-            carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
-            carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            carLabel.CarLabel_OnMouseClick += OnMouseClick;
-            carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            carLabel.CarLabel_OnMouseDown += OnMouseDown;
-            carLabel.CarLabel_OnMouseEnter += OnMouseEnter;
-            carLabel.CarLabel_OnMouseLeave += OnMouseLeave;
-            carLabel.MouseMove += OnMouseMove;
-            carLabel.MouseUp += OnMouseUp;
+            carLabel.CarLabel_ContextMenuStrip_Opened += this.ContextMenuStrip_Opened;
+            carLabel.CarLabel_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            carLabel.CarLabel_OnMouseClick += this.OnMouseClick;
+            carLabel.CarLabel_OnMouseDoubleClick += this.OnMouseDoubleClick;
+            carLabel.CarLabel_OnMouseDown += this.OnMouseDown;
+            carLabel.CarLabel_OnMouseEnter += this.OnMouseEnter;
+            carLabel.CarLabel_OnMouseLeave += this.OnMouseLeave;
+            carLabel.MouseMove += this.OnMouseMove;
+            carLabel.MouseUp += this.OnMouseUp;
             this.Controls.Add(carLabel, 0, 1);
             /*
              * 参照を退避
@@ -306,19 +306,20 @@ namespace ControlEx {
         /// 
         /// </summary>
         /// <param name="listStaffMasterVo"></param>
-        public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo) {
+        /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
+        public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo, List<StaffProperVo> listStaffProperVo) {
             if (listStaffMasterVo is null)
                 return;
             switch (this.PurposeFlag) {
                 case true: // ２列
-                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
-                    this.DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2]);
-                    this.DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3]);
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], listStaffProperVo);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], listStaffProperVo);
+                    this.DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2], listStaffProperVo);
+                    this.DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3], listStaffProperVo);
                     break;
                 case false: // １列
-                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0]);
-                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1]);
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], listStaffProperVo);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], listStaffProperVo);
                     this.DeployedStaffLabel3 = null;
                     this.DeployedStaffLabel4 = null;
                     break;
@@ -328,19 +329,41 @@ namespace ControlEx {
         /// <summary>
         /// SetControlの指定したCellにStaffLabelを作成
         /// </summary>
-        /// <param name="number">0～3</param>
+        /// <param name="number"></param>
         /// <param name="staffMasterVo"></param>
+        /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
         /// <returns></returns>
-        private StaffLabel? AddStaffLabel(int number, StaffMasterVo staffMasterVo) {
+        private StaffLabel AddStaffLabel(int number, StaffMasterVo staffMasterVo, List<StaffProperVo> listStaffProperVo) {
             if (staffMasterVo is not null) {
                 StaffLabel staffLabel = new(staffMasterVo);
                 staffLabel.ParentControl = this;
+
+                if (staffMasterVo.Occupation == 10) {                                                                                                       // Occupation == 10(運転手)
+                    DateTime birthday = new(staffMasterVo.BirthDate.Year, staffMasterVo.BirthDate.Month, staffMasterVo.BirthDate.Day);                      // 誕生日を設定（例：1960年5月10日）
+                    if (DateTime.Today < birthday.AddYears(65)) {                                                                                           // 65歳未満
+                        /*
+                         * 初任診断の判定と処理
+                         */
+                        if (listStaffProperVo.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.ProperKind == "初任診断").Any() == false)
+                            staffLabel.SyoninFlag = true;
+                    } else {                                                                                                                                // 65歳以上
+                        /*
+                         * 適齢診断の判定と処理
+                         */
+                        StaffProperVo staffProperVo = listStaffProperVo.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.ProperKind == "適齢診断")
+                                                                       .OrderByDescending(x => x.ProperDate)
+                                                                       .FirstOrDefault();                                                                   // 条件に合う要素が 存在しない場合 は、その型の 既定値 (default) を返します。
+                        if (staffProperVo is null || (staffProperVo.ProperDate.AddYears(3) - DateTime.Now.Date).Days < 0) {                                 // 65歳以上で記録が存在しないか、最終診断日から3年を超過している場合
+                            staffLabel.TekireiFlag = true;
+                        }
+                    }
+                }
+
                 switch (number) {
                     case 0:
                         staffLabel.Memo = this.StaffMemo1;
                         staffLabel.MemoFlag = this.StaffMemoFlag1;
                         staffLabel.OccupationCode = this.StaffOccupation1;//GetOccupationCode(0);
-
                         staffLabel.ProxyFlag = this.StaffProxyFlag1;
                         staffLabel.RollCallFlag = this.StaffRollCallFlag1;
                         staffLabel.RollCallYmdHms = this.StaffRollCallYmdHms1;
@@ -371,15 +394,15 @@ namespace ControlEx {
                         break;
                 }
                 // Eventを登録
-                staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
-                staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-                staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
-                staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-                staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
-                staffLabel.StaffLabel_OnMouseEnter += OnMouseEnter;
-                staffLabel.StaffLabel_OnMouseLeave += OnMouseLeave;
-                staffLabel.MouseMove += OnMouseMove;
-                staffLabel.MouseUp += OnMouseUp;
+                staffLabel.StaffLabel_ContextMenuStrip_Opened += this.ContextMenuStrip_Opened;
+                staffLabel.StaffLabel_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+                staffLabel.StaffLabel_OnMouseClick += this.OnMouseClick;
+                staffLabel.StaffLabel_OnMouseDoubleClick += this.OnMouseDoubleClick;
+                staffLabel.StaffLabel_OnMouseDown += this.OnMouseDown;
+                staffLabel.StaffLabel_OnMouseEnter += this.OnMouseEnter;
+                staffLabel.StaffLabel_OnMouseLeave += this.OnMouseLeave;
+                staffLabel.MouseMove += this.OnMouseMove;
+                staffLabel.MouseUp += this.OnMouseUp;
                 this.Controls.Add(staffLabel, number <= 1 ? 0 : 1, number % 2 == 0 ? 2 : 3);
                 return staffLabel;
             } else {
@@ -542,7 +565,7 @@ namespace ControlEx {
         /// <param name="row"></param>
         /// <param name="column"></param>
         /// <returns></returns>
-        private Control? GetTableLayoutChildControl(int row, int column) {
+        private Control GetTableLayoutChildControl(int row, int column) {
             Control control = this.GetControlFromPosition(row, column);
             if (control is not null) {
                 Debug.WriteLine(string.Concat(row, ",", column, "→", control.Name));
@@ -844,7 +867,8 @@ namespace ControlEx {
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted); // StaffLabel1の枠線
                                 break;
                             case 3: // StaffLabel(2人目)
-                                if (this.NumberOfPeople >= 2)
+                                if (this.NumberOfPeople
+                                    >= 2)
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted); // StaffLabel2の枠線
                                 break;
                         }

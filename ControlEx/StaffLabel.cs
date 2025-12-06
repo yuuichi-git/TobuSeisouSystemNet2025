@@ -33,9 +33,11 @@ namespace ControlEx {
         private int _occupationCode = 99;
         private bool _proxyFlag = false;
         private bool _rollCallFlag = false;
-        private DateTime _rollCallYmdHms = new DateTime(1900, 01, 01);
+        private DateTime _rollCallYmdHms = new(1900, 01, 01);
         private bool _memoFlag = false;
         private string _memo = string.Empty;
+        private bool _syoninFlag = false;
+        private bool _tekireiFlag = false;
         /*
          * Vo
          */
@@ -110,19 +112,19 @@ namespace ControlEx {
         /// </summary>
         private void CreateContextMenuStrip() {
             contextMenuStrip.Name = "ContextMenuStripHStaffLabel";
-            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            contextMenuStrip.Opened += this.ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
             /*
              * 従事者台帳を表示する
              */
             toolStripMenuItem00.Name = "ToolStripMenuItemStaffPaper";
-            toolStripMenuItem00.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem00.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem00);
             /*
              * 従事者免許証を表示する
              */
             toolStripMenuItem01.Name = "ToolStripMenuItemStaffLicense";
-            toolStripMenuItem01.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem01.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem01);
             /*
              * スペーサー
@@ -133,11 +135,11 @@ namespace ControlEx {
              */
             toolStripMenuItem02.Name = "ToolStripMenuItemStaffProxy";
             toolStripMenuItem02_0.Name = "ToolStripMenuItemStaffProxyTrue";
-            toolStripMenuItem02_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02_0.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_0);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
             toolStripMenuItem02_1.Name = "ToolStripMenuItemStaffProxyFalse";
-            toolStripMenuItem02_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem02_1.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem02.DropDownItems.Add(toolStripMenuItem02_1);
             contextMenuStrip.Items.Add(toolStripMenuItem02);
             /*
@@ -145,11 +147,11 @@ namespace ControlEx {
              */
             toolStripMenuItem03.Name = "ToolStripMenuItemStaffOccupation";
             toolStripMenuItem03_0.Name = "ToolStripMenuItemStaffOccupation10";
-            toolStripMenuItem03_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem03_0.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_0);
             contextMenuStrip.Items.Add(toolStripMenuItem03);
             toolStripMenuItem03_1.Name = "ToolStripMenuItemStaffOccupation11";
-            toolStripMenuItem03_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem03_1.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem03.DropDownItems.Add(toolStripMenuItem03_1);
             contextMenuStrip.Items.Add(toolStripMenuItem03);
             /*
@@ -157,24 +159,24 @@ namespace ControlEx {
              */
             toolStripMenuItem04.Name = "ToolStripMenuItemStaffTelephoneMark";
             toolStripMenuItem04_0.Name = "ToolStripMenuItemTelephoneMarkTrue";
-            toolStripMenuItem04_0.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem04_0.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_0);
             contextMenuStrip.Items.Add(toolStripMenuItem04);
             toolStripMenuItem04_1.Name = "ToolStripMenuItemStaffTelephoneMarkFalse";
-            toolStripMenuItem04_1.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem04_1.Click += this.ToolStripMenuItem_Click;
             toolStripMenuItem04.DropDownItems.Add(toolStripMenuItem04_1);
             contextMenuStrip.Items.Add(toolStripMenuItem04);
             /*
              * メモを作成・編集する("Ctrl + Click")
              */
             toolStripMenuItem05.Name = "ToolStripMenuItemStaffMemo";
-            toolStripMenuItem05.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem05.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem05);
             /*
              * プロパティ
              */
             toolStripMenuItem07.Name = "ToolStripMenuItemStaffProperty";
-            toolStripMenuItem07.Click += ToolStripMenuItem_Click;
+            toolStripMenuItem07.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem07);
         }
 
@@ -206,23 +208,22 @@ namespace ControlEx {
                     }
                     break;
                 default:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
                     break;
             }
-            // メモ
-            if (MemoFlag)
+            if (MemoFlag)                                                                                                                       // メモ
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
-            // 代車
-            if (ProxyFlag)
+            if (ProxyFlag)                                                                                                                      // 代車
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
-            // 職種
-            if (OccupationCode == 11)
+            if (OccupationCode == 11)                                                                                                           // 職種
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSagyouin), 0, 0, Width, Height);
-            // 出庫点呼
-            if (!RollCallFlag)
+            if (!RollCallFlag)                                                                                                                  // 出庫点呼
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
-            // カーソル関係
-            if (CursorEnterFlag)
+            if (SyoninFlag)                                                                                                                     // 初任診断
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSyonin), 0, 0, Width, Height);
+            if (TekireiFlag)                                                                                                                    // 適齢診断
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTekirei), 0, 0, Width, Height);
+            if (CursorEnterFlag)                                                                                                                // カーソル関係
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             /*
              * 氏名を描画
@@ -398,6 +399,8 @@ namespace ControlEx {
             get => this._occupationCode;
             set {
                 this._occupationCode = value;
+                if (this.OccupationCode == 10) {
+                }
                 Refresh();
             }
         }
@@ -448,6 +451,20 @@ namespace ControlEx {
         public string Memo {
             get => this._memo;
             set => this._memo = value;
+        }
+        /// <summary>
+        /// 初任診断
+        /// </summary>
+        public bool SyoninFlag {
+            get => this._syoninFlag;
+            set => this._syoninFlag = value;
+        }
+        /// <summary>
+        /// 適齢診断
+        /// </summary>
+        public bool TekireiFlag {
+            get => this._tekireiFlag;
+            set => this._tekireiFlag = value;
         }
     }
 }

@@ -83,31 +83,33 @@ namespace ControlEx {
         /// SetControl追加(１個分のSetControlを処理)
         /// </summary>
         /// <param name="cellNumber"></param>
+        /// <param name="vehicleDispatchDetailVo"></param>
         /// <param name="setMasterVo"></param>
         /// <param name="carMasterVo"></param>
         /// <param name="listStaffMasterVo"></param>
-        public void AddOneSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo) {
+        /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
+        public void AddOneSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo, List<StaffProperVo> listStaffProperVo) {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.CellNumber = cellNumber;
             setControl.NumberOfPeople = setMasterVo is not null ? setMasterVo.NumberOfPeople : 0;
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
-            setControl.AddStaffLabels(listStaffMasterVo);
+            setControl.AddStaffLabels(listStaffMasterVo, listStaffProperVo);
             /*
              * Event
              */
-            setControl.SetControl_ContextMenuStrip_Opened += ContextMenuStripEx_Opened;
-            setControl.SetControl_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            setControl.SetControl_OnDragDrop += OnDragDrop;
-            setControl.SetControl_OnDragEnter += OnDragEnter;
-            setControl.SetControl_OnDragOver += OnDragOver;
-            setControl.SetControl_OnMouseClick += OnMouseClick;
-            setControl.SetControl_OnMouseDoubleClick += OnMouseDoubleClick;
-            setControl.SetControl_OnMouseDown += OnMouseDown;
-            setControl.SetControl_OnMouseEnter += OnMouseEnter;
-            setControl.SetControl_OnMouseLeave += OnMouseLeave;
-            setControl.SetControl_OnMouseMove += OnMouseMove;
-            setControl.SetControl_OnMouseUp += OnMouseUp;
+            setControl.SetControl_ContextMenuStrip_Opened += this.ContextMenuStripEx_Opened;
+            setControl.SetControl_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            setControl.SetControl_OnDragDrop += this.OnDragDrop;
+            setControl.SetControl_OnDragEnter += this.OnDragEnter;
+            setControl.SetControl_OnDragOver += this.OnDragOver;
+            setControl.SetControl_OnMouseClick += this.OnMouseClick;
+            setControl.SetControl_OnMouseDoubleClick += this.OnMouseDoubleClick;
+            setControl.SetControl_OnMouseDown += this.OnMouseDown;
+            setControl.SetControl_OnMouseEnter += this.OnMouseEnter;
+            setControl.SetControl_OnMouseLeave += this.OnMouseLeave;
+            setControl.SetControl_OnMouseMove += this.OnMouseMove;
+            setControl.SetControl_OnMouseUp += this.OnMouseUp;
 
             this.Controls.Add(setControl, GetCellPoint(cellNumber).X, GetCellPoint(cellNumber).Y);
             this.SetColumnSpan(setControl, vehicleDispatchDetailVo.PurposeFlag ? 2 : 1);
@@ -141,7 +143,7 @@ namespace ControlEx {
         public List<SetMasterVo> GetAllSetLabel() {
             List<SetMasterVo> listSetMasterVo = new();
             foreach (SetControl setControl in this.Controls) {
-                SetLabel? setLabel = (SetLabel?)setControl.DeployedSetLabel;
+                SetLabel setLabel = (SetLabel)setControl.DeployedSetLabel;
                 if (setLabel is not null)
                     listSetMasterVo.Add(setLabel.SetMasterVo);
             }
@@ -155,7 +157,7 @@ namespace ControlEx {
         public List<CarMasterVo> GetAllCarLabel() {
             List<CarMasterVo> listCarMasterVo = new();
             foreach (SetControl setControl in this.Controls) {
-                CarLabel? carLabel = (CarLabel?)setControl.DeployedCarLabel;
+                CarLabel carLabel = (CarLabel)setControl.DeployedCarLabel;
                 if (carLabel is not null)
                     listCarMasterVo.Add(carLabel.CarMasterVo);
             }
@@ -170,19 +172,19 @@ namespace ControlEx {
             List<StaffMasterVo> listStaffMasterVo = new();
             foreach (SetControl setControl in this.Controls) {
                 // (運転手)
-                StaffLabel? staffLabel0 = (StaffLabel?)setControl.DeployedStaffLabel1;
+                StaffLabel staffLabel0 = (StaffLabel)setControl.DeployedStaffLabel1;
                 if (staffLabel0 is not null)
                     listStaffMasterVo.Add(staffLabel0.StaffMasterVo);
                 // (作業員1)
-                StaffLabel? staffLabel1 = (StaffLabel?)setControl.DeployedStaffLabel2;
+                StaffLabel staffLabel1 = (StaffLabel)setControl.DeployedStaffLabel2;
                 if (staffLabel1 is not null)
                     listStaffMasterVo.Add(staffLabel1.StaffMasterVo);
                 // (作業員2)
-                StaffLabel? staffLabel2 = (StaffLabel?)setControl.DeployedStaffLabel3;
+                StaffLabel staffLabel2 = (StaffLabel)setControl.DeployedStaffLabel3;
                 if (staffLabel2 is not null)
                     listStaffMasterVo.Add(staffLabel2.StaffMasterVo);
                 // (作業員3)
-                StaffLabel? staffLabel3 = (StaffLabel?)setControl.DeployedStaffLabel4;
+                StaffLabel staffLabel3 = (StaffLabel)setControl.DeployedStaffLabel4;
                 if (staffLabel3 is not null)
                     listStaffMasterVo.Add(staffLabel3.StaffMasterVo);
             }

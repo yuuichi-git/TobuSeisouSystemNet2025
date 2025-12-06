@@ -263,6 +263,26 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        internal static byte[] StaffLabelImageSyonin {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImageSyonin", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static byte[] StaffLabelImageTekirei {
+            get {
+                object obj = ResourceManager.GetObject("StaffLabelImageTekirei", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         internal static byte[] StaffLabelImageTenko {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageTenko", resourceCulture);

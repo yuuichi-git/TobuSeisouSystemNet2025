@@ -422,7 +422,7 @@ namespace ControlEx {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolStripMenuItem_Click(object? sender, EventArgs e) {
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             //
             SetLabel_ToolStripMenuItem_Click.Invoke(sender, e);
         }
