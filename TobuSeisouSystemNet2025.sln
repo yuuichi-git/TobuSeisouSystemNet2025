@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seisou", "Seisou\Seisou.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EGov", "eGov\EGov.csproj", "{0EF46376-601C-4787-B9D4-5E2C7FEF8D5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Set", "Set\Set.csproj", "{CEE8BD0A-0B58-45F7-9D79-3D851C778F5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{0EF46376-601C-4787-B9D4-5E2C7FEF8D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EF46376-601C-4787-B9D4-5E2C7FEF8D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EF46376-601C-4787-B9D4-5E2C7FEF8D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE8BD0A-0B58-45F7-9D79-3D851C778F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE8BD0A-0B58-45F7-9D79-3D851C778F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE8BD0A-0B58-45F7-9D79-3D851C778F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE8BD0A-0B58-45F7-9D79-3D851C778F5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

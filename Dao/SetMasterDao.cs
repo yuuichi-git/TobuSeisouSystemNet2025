@@ -90,5 +90,70 @@ namespace Dao {
             }
             return listSetMasterVo;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="setCode"></param>
+        /// <returns></returns>
+        public SetMasterVo SelectOneSetMaster(int setCode) {
+            SetMasterVo setMasterVo = new();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT SetCode," +
+                                            "WordCode," +
+                                            "SetName," +
+                                            "SetName1," +
+                                            "SetName2," +
+                                            "FareCode," +
+                                            "ManagedSpaceCode," +
+                                            "ClassificationCode," +
+                                            "ContactMethod," +
+                                            "NumberOfPeople," +
+                                            "SpareOfPeople," +
+                                            "WorkingDays," +
+                                            "FiveLap," +
+                                            "MoveFlag," +
+                                            "Remarks," +
+                                            "TelephoneNumber," +
+                                            "FaxNumber," +
+                                            "InsertPcName," +
+                                            "InsertYmdHms," +
+                                            "UpdatePcName," +
+                                            "UpdateYmdHms," +
+                                            "DeletePcName," +
+                                            "DeleteYmdHms," +
+                                            "DeleteFlag " +
+                                     "FROM H_SetMaster " +
+                                     "WHERE SetCode = '" + setCode + "'";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    setMasterVo.SetCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["SetCode"]);
+                    setMasterVo.WordCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["WordCode"]);
+                    setMasterVo.SetName = _defaultValue.GetDefaultValue<string>(sqlDataReader["SetName"]);
+                    setMasterVo.SetName1 = _defaultValue.GetDefaultValue<string>(sqlDataReader["SetName1"]);
+                    setMasterVo.SetName2 = _defaultValue.GetDefaultValue<string>(sqlDataReader["SetName2"]);
+                    setMasterVo.FareCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["FareCode"]);
+                    setMasterVo.ManagedSpaceCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["ManagedSpaceCode"]);
+                    setMasterVo.ClassificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["ClassificationCode"]);
+                    setMasterVo.ContactMethod = _defaultValue.GetDefaultValue<int>(sqlDataReader["ContactMethod"]);
+                    setMasterVo.NumberOfPeople = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfPeople"]);
+                    setMasterVo.SpareOfPeople = _defaultValue.GetDefaultValue<bool>(sqlDataReader["SpareOfPeople"]);
+                    setMasterVo.WorkingDays = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkingDays"]);
+                    setMasterVo.FiveLap = _defaultValue.GetDefaultValue<bool>(sqlDataReader["FiveLap"]);
+                    setMasterVo.MoveFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MoveFlag"]);
+                    setMasterVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
+                    setMasterVo.TelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["TelephoneNumber"]);
+                    setMasterVo.FaxNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["FaxNumber"]);
+                    setMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    setMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    setMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    setMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    setMasterVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    setMasterVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    setMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                }
+            }
+            return setMasterVo;
+        }
     }
 }

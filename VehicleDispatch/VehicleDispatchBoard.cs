@@ -245,7 +245,7 @@ namespace VehicleDispatch {
                                 CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode);
                                 if (carMasterVo is not null) {
                                     trueVehicleDispatchDetailVo.CarCode = carMasterVo.CarCode;
-                                    trueVehicleDispatchDetailVo.CarGarageCode = carMasterVo.GarageCode;
+                                    trueVehicleDispatchDetailVo.CarGarageCode = carMasterVo.ManagedSpace;
                                     trueVehicleDispatchDetailVo.CarProxyFlag = false;
                                     trueVehicleDispatchDetailVo.CarMemoFlag = carMasterVo.Remarks.Length > 0 ? true : false;
                                     trueVehicleDispatchDetailVo.CarMemo = carMasterVo.Remarks;

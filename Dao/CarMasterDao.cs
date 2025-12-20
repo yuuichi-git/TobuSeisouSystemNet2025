@@ -140,7 +140,7 @@ namespace Dao {
                     carMasterVo.RegistrationNumber2 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber2"]);
                     carMasterVo.RegistrationNumber3 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber3"]);
                     carMasterVo.RegistrationNumber4 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber4"]);
-                    carMasterVo.GarageCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["GarageCode"]);
+                    carMasterVo.ManagedSpace = _defaultValue.GetDefaultValue<int>(sqlDataReader["GarageCode"]);
                     carMasterVo.DoorNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["DoorNumber"]);
                     carMasterVo.RegistrationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["RegistrationDate"]);
                     carMasterVo.FirstRegistrationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["FirstRegistrationDate"]);
@@ -312,7 +312,7 @@ namespace Dao {
                     carMasterVo.RegistrationNumber2 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber2"]);
                     carMasterVo.RegistrationNumber3 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber3"]);
                     carMasterVo.RegistrationNumber4 = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber4"]);
-                    carMasterVo.GarageCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["GarageCode"]);
+                    carMasterVo.ManagedSpace = _defaultValue.GetDefaultValue<int>(sqlDataReader["GarageCode"]);
                     carMasterVo.DoorNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["DoorNumber"]);
                     carMasterVo.RegistrationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["RegistrationDate"]);
                     carMasterVo.FirstRegistrationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["FirstRegistrationDate"]);
@@ -437,7 +437,7 @@ namespace Dao {
                                             "'" + carMasterVo.RegistrationNumber2 + "'," +
                                             "'" + carMasterVo.RegistrationNumber3 + "'," +
                                             "'" + carMasterVo.RegistrationNumber4 + "'," +
-                                             "" + carMasterVo.GarageCode + "," +
+                                             "" + carMasterVo.ManagedSpace + "," +
                                              "" + carMasterVo.DoorNumber + "," +
                                             "'" + carMasterVo.RegistrationDate + "'," +
                                             "'" + carMasterVo.FirstRegistrationDate + "'," +
@@ -512,7 +512,7 @@ namespace Dao {
                                          "RegistrationNumber2 = '" + carMasterVo.RegistrationNumber2 + "'," +
                                          "RegistrationNumber3 = '" + carMasterVo.RegistrationNumber3 + "'," +
                                          "RegistrationNumber4 = '" + carMasterVo.RegistrationNumber4 + "'," +
-                                         "GarageCode = " + carMasterVo.GarageCode + "," +
+                                         "GarageCode = " + carMasterVo.ManagedSpace + "," +
                                          "DoorNumber = " + carMasterVo.DoorNumber + "," +
                                          "RegistrationDate = '" + carMasterVo.RegistrationDate + "'," +
                                          "FirstRegistrationDate = '" + carMasterVo.FirstRegistrationDate + "'," +

@@ -257,7 +257,7 @@ namespace StockBox {
         /// <returns></returns>
         public CarLabel GetOneCarLabel(CarMasterVo carMasterVo) {
             CarLabel carLabel = new(carMasterVo);
-            carLabel.CarGarageCode = carMasterVo.GarageCode;
+            carLabel.CarGarageCode = carMasterVo.ManagedSpace;
             carLabel.ClassificationCode = carMasterVo.ClassificationCode;               // CarMasterの値を使用する
             carLabel.EmergencyVehicleFlag = carMasterVo.EmergencyVehicleFlag;           // CarMasterの値を使用する
             carLabel.Memo = string.Empty;

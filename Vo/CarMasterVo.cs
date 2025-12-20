@@ -13,7 +13,7 @@
         private string _registrationNumber2;
         private string _registrationNumber3;
         private string _registrationNumber4;
-        private int _garageCode;
+        private int _managedSpace;
         private int _doorNumber;
         private DateTime _registrationDate;
         private DateTime _firstRegistrationDate;
@@ -75,7 +75,7 @@
             _registrationNumber2 = string.Empty;
             _registrationNumber3 = string.Empty;
             _registrationNumber4 = string.Empty;
-            _garageCode = default;
+            _managedSpace = default;
             _doorNumber = default;
             _registrationDate = _defaultDateTime;
             _firstRegistrationDate = _defaultDateTime;
@@ -181,9 +181,9 @@
         /// 車庫地
         /// 1:足立 2:三郷
         /// </summary>
-        public int GarageCode {
-            get => _garageCode;
-            set => _garageCode = value;
+        public int ManagedSpace {
+            get => _managedSpace;
+            set => _managedSpace = value;
         }
         /// <summary>
         /// ドア番号

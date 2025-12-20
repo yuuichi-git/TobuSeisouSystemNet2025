@@ -22,7 +22,7 @@ namespace Dao {
             _connectionVo = connectionVo;
         }
 
-        public List<ClassificationMasterVo> SelectAllClassificationMasterVo() {
+        public List<ClassificationMasterVo> SelectAllClassificationMaster() {
             List<ClassificationMasterVo> listClassificationMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +

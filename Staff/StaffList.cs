@@ -100,6 +100,10 @@ namespace Staff {
             this.InitializeSheetView(SheetViewDriver);
             this.InitializeSheetView(SheetViewToukanpo);
             /*
+             * StatusStrip
+             */
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            /*
              * Eventを登録する
              */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;

@@ -143,7 +143,7 @@ namespace Car {
             /*
              * Dictionary
              */
-            foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMasterVo())
+            foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())
                 _dictionaryClassification.Add(classificationMasterVo.Code, classificationMasterVo.Name);
             /*
              * InitializeControl
@@ -163,6 +163,10 @@ namespace Car {
 
             this.InitializeSheetViewList1(this.SheetViewList);
             this.InitializeSheetViewList2(this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金);
+            /*
+             * StatusStrip
+             */
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
              * Eventを登録する
              */
@@ -199,7 +203,7 @@ namespace Car {
                 _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.DeleteFlag == false);
             }
             SpreadList.SuspendLayout();                                                                                                                                                 // 非活性化
-            spreadListTopRow1 = SpreadList.GetViewportTopRow(0);                                                                                                                         // 先頭行（列）インデックスを取得
+            spreadListTopRow1 = SpreadList.GetViewportTopRow(0);                                                                                                                        // 先頭行（列）インデックスを取得
             if (sheetView.Rows.Count > 0)                                                                                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
 
@@ -226,7 +230,7 @@ namespace Car {
                 sheetView.Cells[i, _colRegistrationNumber2].Text = carMasterVo.RegistrationNumber4.ToString();
                 sheetView.Cells[i, _colDoorNumber].Text = carMasterVo.DoorNumber.ToString("###");
                 sheetView.Cells[i, _colClassificationName].Text = _dictionaryClassification[carMasterVo.ClassificationCode];
-                sheetView.Cells[i, _colGarageName].Text = _dictionaryGarageName[carMasterVo.GarageCode];
+                sheetView.Cells[i, _colGarageName].Text = _dictionaryGarageName[carMasterVo.ManagedSpace];
                 sheetView.Cells[i, _colDisguiseKind_1].Text = carMasterVo.DisguiseKind1;
                 sheetView.Cells[i, _colDisguiseKind_2].Text = carMasterVo.DisguiseKind2;
                 sheetView.Cells[i, _colDisguiseKind_3].Text = carMasterVo.DisguiseKind3;
@@ -353,10 +357,7 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
-            /*
-             * ヘッダーのDoubleClickを回避
-             */
-            if (e.Row < 0)
+            if (e.ColumnHeader)                                                                                         // ヘッダーのDoubleClickを回避
                 return;
             /*
              * ActiveSheetにより処理を変更

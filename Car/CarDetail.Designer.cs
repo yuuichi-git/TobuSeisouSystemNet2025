@@ -46,7 +46,7 @@
             this.NumericUpDownExVehicleWeight = new ControlEx.NumericUpDownEx();
             this.NumericUpDownExMaximumLoadCapacity = new ControlEx.NumericUpDownEx();
             this.NumericUpDownExCapacity = new ControlEx.NumericUpDownEx();
-            this.ComboBoxExShapeCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExShapeMaster = new ControlEx.ComboBoxEx();
             this.ComboBoxExOtherCode = new ControlEx.ComboBoxEx();
             this.ComboBoxExCarUse = new ControlEx.ComboBoxEx();
             this.ComboBoxExCarKindCode = new ControlEx.ComboBoxEx();
@@ -103,7 +103,7 @@
             this.ComboBoxExDisguiseKind3 = new ControlEx.ComboBoxEx();
             this.ComboBoxExDisguiseKind2 = new ControlEx.ComboBoxEx();
             this.ComboBoxExDisguiseKind1 = new ControlEx.ComboBoxEx();
-            this.ComboBoxExGarageCode = new ControlEx.ComboBoxEx();
+            this.ComboBoxExManagedSpace = new ControlEx.ComboBoxEx();
             this.ComboBoxExClassificationCode = new ControlEx.ComboBoxEx();
             this.TextBoxExRegistrationNumber4 = new ControlEx.TextBoxEx();
             this.TextBoxExRegistrationNumber3 = new ControlEx.TextBoxEx();
@@ -251,7 +251,7 @@
             this.groupBoxEx4.Controls.Add(this.NumericUpDownExVehicleWeight);
             this.groupBoxEx4.Controls.Add(this.NumericUpDownExMaximumLoadCapacity);
             this.groupBoxEx4.Controls.Add(this.NumericUpDownExCapacity);
-            this.groupBoxEx4.Controls.Add(this.ComboBoxExShapeCode);
+            this.groupBoxEx4.Controls.Add(this.ComboBoxExShapeMaster);
             this.groupBoxEx4.Controls.Add(this.ComboBoxExOtherCode);
             this.groupBoxEx4.Controls.Add(this.ComboBoxExCarUse);
             this.groupBoxEx4.Controls.Add(this.ComboBoxExCarKindCode);
@@ -444,15 +444,14 @@
             this.NumericUpDownExCapacity.TextAlign = HorizontalAlignment.Right;
             this.NumericUpDownExCapacity.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
-            // ComboBoxExShapeCode
+            // ComboBoxExShapeMaster
             // 
-            this.ComboBoxExShapeCode.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExShapeCode.FormattingEnabled = true;
-            this.ComboBoxExShapeCode.Items.AddRange(new object[] { "キャブオーバー", "塵芥車", "ダンプ", "コンテナ専用", "脱着装置付コンテナ専用車", "粉粒体運搬車", "糞尿車", "清掃車", "バン", "ステーションワゴン" });
-            this.ComboBoxExShapeCode.Location = new Point(188, 188);
-            this.ComboBoxExShapeCode.Name = "ComboBoxExShapeCode";
-            this.ComboBoxExShapeCode.Size = new Size(164, 23);
-            this.ComboBoxExShapeCode.TabIndex = 30;
+            this.ComboBoxExShapeMaster.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExShapeMaster.FormattingEnabled = true;
+            this.ComboBoxExShapeMaster.Location = new Point(188, 188);
+            this.ComboBoxExShapeMaster.Name = "ComboBoxExShapeMaster";
+            this.ComboBoxExShapeMaster.Size = new Size(164, 23);
+            this.ComboBoxExShapeMaster.TabIndex = 30;
             // 
             // ComboBoxExOtherCode
             // 
@@ -930,7 +929,7 @@
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind3);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind2);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExDisguiseKind1);
-            this.groupBoxEx1.Controls.Add(this.ComboBoxExGarageCode);
+            this.groupBoxEx1.Controls.Add(this.ComboBoxExManagedSpace);
             this.groupBoxEx1.Controls.Add(this.ComboBoxExClassificationCode);
             this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber4);
             this.groupBoxEx1.Controls.Add(this.TextBoxExRegistrationNumber3);
@@ -1013,21 +1012,19 @@
             this.ComboBoxExDisguiseKind1.Size = new Size(164, 23);
             this.ComboBoxExDisguiseKind1.TabIndex = 19;
             // 
-            // ComboBoxExGarageCode
+            // ComboBoxExManagedSpace
             // 
-            this.ComboBoxExGarageCode.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExGarageCode.FormattingEnabled = true;
-            this.ComboBoxExGarageCode.Items.AddRange(new object[] { "足立", "三郷" });
-            this.ComboBoxExGarageCode.Location = new Point(188, 104);
-            this.ComboBoxExGarageCode.Name = "ComboBoxExGarageCode";
-            this.ComboBoxExGarageCode.Size = new Size(164, 23);
-            this.ComboBoxExGarageCode.TabIndex = 18;
+            this.ComboBoxExManagedSpace.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExManagedSpace.FormattingEnabled = true;
+            this.ComboBoxExManagedSpace.Location = new Point(188, 104);
+            this.ComboBoxExManagedSpace.Name = "ComboBoxExManagedSpace";
+            this.ComboBoxExManagedSpace.Size = new Size(164, 23);
+            this.ComboBoxExManagedSpace.TabIndex = 18;
             // 
             // ComboBoxExClassificationCode
             // 
             this.ComboBoxExClassificationCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExClassificationCode.FormattingEnabled = true;
-            this.ComboBoxExClassificationCode.Items.AddRange(new object[] { "雇上", "区契", "臨時", "清掃工場", "社内", "一般", "社用車", "水物", "指定なし" });
             this.ComboBoxExClassificationCode.Location = new Point(188, 76);
             this.ComboBoxExClassificationCode.Name = "ComboBoxExClassificationCode";
             this.ComboBoxExClassificationCode.Size = new Size(164, 23);
@@ -1166,7 +1163,7 @@
             this.labelEx4.Name = "labelEx4";
             this.labelEx4.Size = new Size(176, 16);
             this.labelEx4.TabIndex = 3;
-            this.labelEx4.Text = "車庫地";
+            this.labelEx4.Text = "車両管理地";
             this.labelEx4.TextAlign = ContentAlignment.MiddleRight;
             // 
             // labelEx3
@@ -1364,7 +1361,7 @@
         private ControlEx.TextBoxEx TextBoxExRegistrationNumber3;
         private ControlEx.TextBoxEx TextBoxExRegistrationNumber2;
         private ControlEx.ComboBoxEx ComboBoxExRegistrationNumber1;
-        private ControlEx.ComboBoxEx ComboBoxExGarageCode;
+        private ControlEx.ComboBoxEx ComboBoxExManagedSpace;
         private ControlEx.ComboBoxEx ComboBoxExClassificationCode;
         private ControlEx.ComboBoxEx ComboBoxExDisguiseKind3;
         private ControlEx.ComboBoxEx ComboBoxExDisguiseKind2;
@@ -1389,7 +1386,7 @@
         private ControlEx.NumericUpDownEx NumericUpDownExVehicleWeight;
         private ControlEx.NumericUpDownEx NumericUpDownExMaximumLoadCapacity;
         private ControlEx.NumericUpDownEx NumericUpDownExCapacity;
-        private ControlEx.ComboBoxEx ComboBoxExShapeCode;
+        private ControlEx.ComboBoxEx ComboBoxExShapeMaster;
         private ControlEx.ComboBoxEx ComboBoxExOtherCode;
         private ControlEx.ComboBoxEx ComboBoxExCarUse;
         private ControlEx.ComboBoxEx ComboBoxExCarKindCode;

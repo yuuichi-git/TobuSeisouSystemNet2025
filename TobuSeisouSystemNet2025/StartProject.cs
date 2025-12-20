@@ -29,6 +29,8 @@ using RollCall;
 
 using Seisou;
 
+using Set;
+
 using Staff;
 
 using StatusOfResidence;
@@ -111,17 +113,22 @@ namespace TobuSeisouSystemNet2025 {
              * TabControlExConnect
              */
             switch (new Network().GetConnectLocation()) {
-                case "システム管理":                                        // TabPage[0]
+                
+                case "事務":                                              // TabPage[0]
                     break;
-                case "事務":                                              // TabPage[1]
+                case "本社":                                              // TabPage[1]
                     break;
-                case "本社":                                              // TabPage[2]
+                case "三郷":                                              // TabPage[2]
                     break;
-                case "三郷":                                              // TabPage[3]
+                case "廃棄物":                                            // TabPage[3]
                     break;
                 case "２丁目事務所":                                       // TabPage[]
                     break;
                 case "中間処理場":                                         // TabPage[]
+                    break;
+                case "マスター管理":                                       // TabPage[4]
+                    break;
+                case "清掃システム":                                       // TabPage[5]
                     break;
                 default:
                     break;
@@ -348,6 +355,11 @@ namespace TobuSeisouSystemNet2025 {
                             WasteList wasteList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                                  // 廃棄物
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wasteList);
                             wasteList.Show();
+                            break;
+                        case "SetList":
+                            SetList setList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);                                      // 配車先マスター
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, setList);
+                            setList.Show();
                             break;
                     }
                     break;

@@ -105,7 +105,7 @@
             // 
             this.SpreadDriversReportPaper.AccessibleDescription = "SpreadDriversReportPaper, Sheet1, Row 0, Column 0";
             this.SpreadDriversReportPaper.Dock = DockStyle.Fill;
-            this.SpreadDriversReportPaper.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadDriversReportPaper.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadDriversReportPaper.Location = new Point(3, 87);
             this.SpreadDriversReportPaper.Name = "SpreadDriversReportPaper";
             this.SpreadDriversReportPaper.Size = new Size(1168, 847);
