@@ -30,8 +30,8 @@ namespace Dao {
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<ManagedSpaceVo> SelectAllManagedSpace() {
-            List<ManagedSpaceVo> listManagedSpaceVo = new();
+        public List<ManagedSpaceMasterVo> SelectAllManagedSpace() {
+            List<ManagedSpaceMasterVo> listManagedSpaceVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
                                             "Name," +
@@ -45,7 +45,7 @@ namespace Dao {
                                      "FROM H_ManagedSpaceMaster";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
-                    ManagedSpaceVo managedSpaceVo = new();
+                    ManagedSpaceMasterVo managedSpaceVo = new();
                     managedSpaceVo.Code = _defaultValue.GetDefaultValue<int>(sqlDataReader["Code"]);
                     managedSpaceVo.Name = _defaultValue.GetDefaultValue<string>(sqlDataReader["Name"]);
                     managedSpaceVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);

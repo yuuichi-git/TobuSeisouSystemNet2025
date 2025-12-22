@@ -43,8 +43,8 @@ namespace Dao {
             using (var sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     FareMasterVo fareMasterVo = new();
-                    fareMasterVo.FareCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["FareCode"]);
-                    fareMasterVo.FareName = _defaultValue.GetDefaultValue<string>(sqlDataReader["FareName"]);
+                    fareMasterVo.Code = _defaultValue.GetDefaultValue<int>(sqlDataReader["FareCode"]);
+                    fareMasterVo.Name = _defaultValue.GetDefaultValue<string>(sqlDataReader["FareName"]);
                     fareMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     fareMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     fareMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);

@@ -9,6 +9,7 @@ using Vo;
 
 namespace Dao {
     public class SetMasterDao {
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DefaultValue _defaultValue = new();
         /*
          * Vo
@@ -24,6 +25,42 @@ namespace Dao {
              * Vo
              */
             _connectionVo = connectionVo;
+        }
+
+        /// <summary>
+        /// ExistenceHSetMaster
+        /// true:該当レコードあり false:該当レコードなし
+        /// </summary>
+        /// <param name="setCode"></param>
+        /// <returns></returns>
+        public bool ExistenceHSetMaster(int setCode) {
+            int count;
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(SetCode) " +
+                                     "FROM H_SetMaster " +
+                                     "WHERE SetCode = " + setCode;
+            try {
+                count = (int)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
+            return count != 0 ? true : false;
+        }
+
+        /// <summary>
+        /// 新規SetCodeを採番
+        /// </summary>
+        /// <returns>SetCodeの最大値</returns>
+        public int GetSetCode(int wordCode) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT MAX(SetCode) " +
+                                     "FROM H_SetMaster " +
+                                     "WHERE WordCode = " + wordCode;
+            try {
+                return (int)sqlCommand.ExecuteScalar();
+            } catch {
+                throw;
+            }
         }
 
         /// <summary>
@@ -154,6 +191,102 @@ namespace Dao {
                 }
             }
             return setMasterVo;
+        }
+
+        /// <summary>
+        /// INSERT
+        /// </summary>
+        /// <param name="setMasterVo"></param>
+        public void InsertOneSetMasterVo(SetMasterVo setMasterVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_SetMaster(SetCode," +
+                                                             "WordCode," +
+                                                             "SetName," +
+                                                             "SetName1," +
+                                                             "SetName2," +
+                                                             "FareCode," +
+                                                             "ManagedSpaceCode," +
+                                                             "ClassificationCode," +
+                                                             "ContactMethod," +
+                                                             "NumberOfPeople," +
+                                                             "SpareOfPeople," +
+                                                             "WorkingDays," +
+                                                             "FiveLap," +
+                                                             "MoveFlag," +
+                                                             "Remarks," +
+                                                             "TelephoneNumber," +
+                                                             "FaxNumber," +
+                                                             "InsertPcName," +
+                                                             "InsertYmdHms," +
+                                                             "UpdatePcName," +
+                                                             "UpdateYmdHms," +
+                                                             "DeletePcName," +
+                                                             "DeleteYmdHms," +
+                                                             "DeleteFlag) " +
+                                     "VALUES ('" + _defaultValue.GetDefaultValue<int>(setMasterVo.SetCode) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.WordCode) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName1) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName2) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.FareCode) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.ManagedSpaceCode) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.ClassificationCode) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.ContactMethod) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<int>(setMasterVo.NumberOfPeople) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<bool>(setMasterVo.SpareOfPeople) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.WorkingDays) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<bool>(setMasterVo.FiveLap) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<bool>(setMasterVo.MoveFlag) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.Remarks) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.TelephoneNumber) + "'," +
+                                             "'" + _defaultValue.GetDefaultValue<string>(setMasterVo.FaxNumber) + "'," +
+                                             "'" + Environment.MachineName + "'," +
+                                             "'" + DateTime.Now + "'," +
+                                             "''," +
+                                             "'" + _defaultDateTime + "'," +
+                                             "''," +
+                                             "'" + _defaultDateTime + "'," +
+                                             "'False'" +
+                                             ");";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// UPDATE
+        /// </summary>
+        /// <param name="setMasterVo"></param>
+        public void UpdateOneSetMasterVo(SetMasterVo setMasterVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_SetMaster " +
+                                     "SET SetCode = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.SetCode) + "'," +
+                                         "WordCode = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.WordCode) + "'," +
+                                         "SetName = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName) + "'," +
+                                         "SetName1 = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName1) + "'," +
+                                         "SetName2 = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.SetName2) + "'," +
+                                         "FareCode = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.FareCode) + "'," +
+                                         "ManagedSpaceCode = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.ManagedSpaceCode) + "'," +
+                                         "ClassificationCode = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.ClassificationCode) + "'," +
+                                         "ContactMethod = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.ContactMethod) + "'," +
+                                         "NumberOfPeople = '" + _defaultValue.GetDefaultValue<int>(setMasterVo.NumberOfPeople) + "'," +
+                                         "SpareOfPeople = '" + _defaultValue.GetDefaultValue<bool>(setMasterVo.SpareOfPeople) + "'," +
+                                         "WorkingDays = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.WorkingDays) + "'," +
+                                         "FiveLap = '" + _defaultValue.GetDefaultValue<bool>(setMasterVo.FiveLap) + "'," +
+                                         "MoveFlag = '" + _defaultValue.GetDefaultValue<bool>(setMasterVo.MoveFlag) + "'," +
+                                         "Remarks = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.Remarks) + "'," +
+                                         "TelephoneNumber = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.TelephoneNumber) + "'," +
+                                         "FaxNumber = '" + _defaultValue.GetDefaultValue<string>(setMasterVo.FaxNumber) + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "WHERE SetCode = '" + setMasterVo.SetCode.ToString() + "'";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
         }
     }
 }

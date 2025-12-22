@@ -4,8 +4,8 @@
 namespace Vo {
     public class FareMasterVo {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
-        private int _fareCode;
-        private string _fareName;
+        private int _code;
+        private string _name;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -18,8 +18,8 @@ namespace Vo {
         /// コンストラクター
         /// </summary>
         public FareMasterVo() {
-            _fareCode = 0;
-            _fareName = string.Empty;
+            _code = 0;
+            _name = string.Empty;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -32,16 +32,16 @@ namespace Vo {
         /// <summary>
         /// 運賃コード
         /// </summary>
-        public int FareCode {
-            get => _fareCode;
-            set => _fareCode = value;
+        public int Code {
+            get => _code;
+            set => _code = value;
         }
         /// <summary>
         /// 運賃名
         /// </summary>
-        public string FareName {
-            get => _fareName;
-            set => _fareName = value;
+        public string Name {
+            get => _name;
+            set => _name = value;
         }
         public string InsertPcName {
             get => _insertPcName;

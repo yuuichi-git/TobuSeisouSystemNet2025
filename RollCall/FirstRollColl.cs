@@ -326,25 +326,25 @@ namespace RollCall {
              * 解析１
              */
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
-            foreach (FareMasterVo fareMasterVo in _listFareMasterVo.OrderBy(x => x.FareCode)) {
+            foreach (FareMasterVo fareMasterVo in _listFareMasterVo.OrderBy(x => x.Code)) {
                 blockRowCount = 0;
                 foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.OrderBy(x => x.CellNumber)) {
                     /*
                      * 配車表に表示する条件
                      * SetCode > 0
                      */
-                    if (vehicleDispatchDetailVo.SetCode > 0 && _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).FareCode == fareMasterVo.FareCode) {
+                    if (vehicleDispatchDetailVo.SetCode > 0 && _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).FareCode == fareMasterVo.Code) {
                         /*
                          * 区分セルを作成する
                          */
                         if (blockRowCount == 0)
-                            CreateSpan(GetNextCellPosition(), fareMasterVo.FareName);
+                            CreateSpan(GetNextCellPosition(), fareMasterVo.Name);
                         entryCellPosition = GetNextCellPosition();
                         /*
                          * 列が”AA"に変わった場合はBlockNameを挿入する
                          */
                         if (entryCellPosition != null && entryCellPosition.Row == _startRow && entryCellPosition.Col == _dictionaryColNumber[1]) {
-                            CreateSpan(entryCellPosition, fareMasterVo.FareName);
+                            CreateSpan(entryCellPosition, fareMasterVo.Name);
                             entryCellPosition.Row++;
                         }
                         /*

@@ -34,7 +34,7 @@ namespace Car {
          */
         private readonly Dictionary<int, ClassificationMasterVo> _dictionaryClassificationMaster = new();                       // 2025-12-18修正
 
-        private readonly Dictionary<int, ManagedSpaceVo> _dictionaryManagedSpaceMaster = new();
+        private readonly Dictionary<int, ManagedSpaceMasterVo> _dictionaryManagedSpaceMaster = new();
 
         private readonly Dictionary<string, int> _dictionaryCarKindCode = new() { { "軽自動車", 10 }, { "小型", 11 }, { "普通", 12 } };
         private readonly Dictionary<int, string> _dictionaryCarKindName = new() { { 10, "軽自動車" }, { 11, "小型" }, { 12, "普通" } };
@@ -68,7 +68,7 @@ namespace Car {
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
+            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
             foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
@@ -117,7 +117,7 @@ namespace Car {
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
+            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
             foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
@@ -549,10 +549,10 @@ namespace Car {
         /// 車両管理地
         /// </summary>
         /// <param name="listManagedSpaceVo"></param>
-        public void SetItems(List<ManagedSpaceVo> listManagedSpaceVo) {
+        public void SetItems(List<ManagedSpaceMasterVo> listManagedSpaceVo) {
             this.ComboBoxExManagedSpace.DisplayMember = "Name";                                                                                                                     // 表示するプロパティ名
             this.ComboBoxExManagedSpace.ValueMember = "ManagedSpaceVo";                                                                                                             // 値となるプロパティ名
-            foreach (ManagedSpaceVo managedSpaceVo in listManagedSpaceVo) {
+            foreach (ManagedSpaceMasterVo managedSpaceVo in listManagedSpaceVo) {
                 this.ComboBoxExManagedSpace.Items.Add(new ComboBoxExManagedSpaceVo(managedSpaceVo.Code, managedSpaceVo.Name, managedSpaceVo));
             }
         }
@@ -603,9 +603,9 @@ namespace Car {
         private class ComboBoxExManagedSpaceVo {
             int _code;
             string _name;
-            ManagedSpaceVo _managedSpaceVo;
+            ManagedSpaceMasterVo _managedSpaceVo;
 
-            public ComboBoxExManagedSpaceVo(int code, string name, ManagedSpaceVo managedSpaceVo) {
+            public ComboBoxExManagedSpaceVo(int code, string name, ManagedSpaceMasterVo managedSpaceVo) {
                 _code = code;
                 _name = name;
                 _managedSpaceVo = managedSpaceVo;
@@ -619,7 +619,7 @@ namespace Car {
                 get => this._name;
                 set => this._name = value;
             }
-            public ManagedSpaceVo ManagedSpaceVo {
+            public ManagedSpaceMasterVo ManagedSpaceVo {
                 get => this._managedSpaceVo;
                 set => this._managedSpaceVo = value;
             }

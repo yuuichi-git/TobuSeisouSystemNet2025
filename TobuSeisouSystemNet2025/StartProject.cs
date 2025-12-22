@@ -332,12 +332,12 @@ namespace TobuSeisouSystemNet2025 {
                             statusOfResidenceList.Show();
                             break;
                         case "RollCallRecordSheet":
-                            RollCallRecordSheet rollCallRecordSheet = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);             // 点呼記録簿
+                            RollCallRecordSheet rollCallRecordSheet = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);              // 点呼記録簿
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, rollCallRecordSheet);
                             rollCallRecordSheet.Show();
                             break;
                         case "LegalTwelveItemList":
-                            LegalTwelveItemList legalTwelveItemList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);             // 法定１２項目の講習
+                            LegalTwelveItemList legalTwelveItemList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);              // 法定１２項目の講習
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, legalTwelveItemList);
                             legalTwelveItemList.Show();
                             break;

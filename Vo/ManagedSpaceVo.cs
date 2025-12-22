@@ -2,7 +2,7 @@
  * 2025-12-16
  */
 namespace Vo {
-    public class ManagedSpaceVo {
+    public class ManagedSpaceMasterVo {
         private DateTime _defaultDateTime = new(1900, 01, 01);
         private int _code;
         private string _name;
@@ -17,7 +17,7 @@ namespace Vo {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ManagedSpaceVo() {
+        public ManagedSpaceMasterVo() {
             _code = 0;
             _name = string.Empty;
             _insertPcName = string.Empty;

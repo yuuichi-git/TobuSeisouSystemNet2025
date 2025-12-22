@@ -128,8 +128,8 @@ namespace Set {
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())
                 _dictionaryClassificationCode.Add(classificationMasterVo.Code, classificationMasterVo.Name);
             foreach (FareMasterVo fareMasterVo in _fareMasterDao.SelectAllFareMasterVo())
-                _dictionaryFareCode.Add(fareMasterVo.FareCode, fareMasterVo.FareName);
-            foreach (ManagedSpaceVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())
+                _dictionaryFareCode.Add(fareMasterVo.Code, fareMasterVo.Name);
+            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())
                 _dictionaryManagedSpaceCode.Add(managedSpaceVo.Code, managedSpaceVo.Name);
             foreach (WordMasterVo wordMasterVo in _wordMasterDao.SelectAllWordMaster())
                 _dictionaryWordCode.Add(wordMasterVo.Code, wordMasterVo.Name);

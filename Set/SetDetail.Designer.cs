@@ -120,7 +120,6 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Enabled = false;
             this.ButtonExUpdate.Location = new Point(506, 10);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -176,6 +175,7 @@
             // 
             // TextBoxExRemarks
             // 
+            this.TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
             this.TextBoxExRemarks.Location = new Point(224, 412);
             this.TextBoxExRemarks.Multiline = true;
             this.TextBoxExRemarks.Name = "TextBoxExRemarks";
@@ -332,6 +332,7 @@
             // 
             // NumericUpDownExNumberOfPeople
             // 
+            this.NumericUpDownExNumberOfPeople.ImeMode = ImeMode.Off;
             this.NumericUpDownExNumberOfPeople.Location = new Point(224, 272);
             this.NumericUpDownExNumberOfPeople.Name = "NumericUpDownExNumberOfPeople";
             this.NumericUpDownExNumberOfPeople.Size = new Size(112, 23);
@@ -422,6 +423,7 @@
             // 
             // TextBoxExSetName2
             // 
+            this.TextBoxExSetName2.ImeMode = ImeMode.Hiragana;
             this.TextBoxExSetName2.Location = new Point(224, 132);
             this.TextBoxExSetName2.Name = "TextBoxExSetName2";
             this.TextBoxExSetName2.Size = new Size(304, 23);
@@ -439,6 +441,7 @@
             // 
             // TextBoxExSetName1
             // 
+            this.TextBoxExSetName1.ImeMode = ImeMode.Hiragana;
             this.TextBoxExSetName1.Location = new Point(224, 104);
             this.TextBoxExSetName1.Name = "TextBoxExSetName1";
             this.TextBoxExSetName1.Size = new Size(304, 23);
@@ -456,6 +459,7 @@
             // 
             // TextBoxExSetName
             // 
+            this.TextBoxExSetName.ImeMode = ImeMode.Hiragana;
             this.TextBoxExSetName.Location = new Point(224, 76);
             this.TextBoxExSetName.Name = "TextBoxExSetName";
             this.TextBoxExSetName.Size = new Size(304, 23);
@@ -518,6 +522,7 @@
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "SetDetail";
             this.Text = "SetDetail";
+            this.FormClosing += this.SetDetail_FormClosing;
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
