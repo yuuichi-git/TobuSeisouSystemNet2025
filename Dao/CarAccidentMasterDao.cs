@@ -35,12 +35,12 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <param name="occurrenceYmdHms"></param>
         /// <returns></returns>
-        public bool ExistenceCarAccidentMaster(int staffCode, DateTime occurrenceYmdHms) {
+        public bool ExistenceCarAccidentMaster(int staffCode, DateTime insertYmdHms) {
             int count;
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_CarAccidentMaster " +
-                                     "WHERE StaffCode = " + staffCode + " AND OccurrenceYmdHms = '" + occurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                                     "WHERE StaffCode = " + staffCode + " AND InsertYmdHms = '" + insertYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             try {
                 count = (int)sqlCommand.ExecuteScalar();
             } catch {
@@ -156,7 +156,7 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <param name="occurrenceYmdHms"></param>
         /// <returns></returns>
-        public CarAccidentMasterVo SelectOneCarAccidentMaster(int staffCode, DateTime occurrenceYmdHms) {
+        public CarAccidentMasterVo SelectOneCarAccidentMaster(int staffCode, DateTime insertYmdHms) {
             CarAccidentMasterVo carAccidentMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
@@ -191,7 +191,7 @@ namespace Dao {
                                             "DeleteYmdHms," +
                                             "DeleteFlag " +
                                      "FROM H_CarAccidentMaster " +
-                                     "WHERE StaffCode = " + staffCode + " AND OccurrenceYmdHms = '" + occurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                                     "WHERE StaffCode = " + staffCode + " AND InsertYmdHms = '" + insertYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             using (var sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     carAccidentMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
@@ -431,7 +431,7 @@ namespace Dao {
                                          "Picture5 = @member_picture5," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
-                                     "WHERE StaffCode = " + carAccidentMasterVo.StaffCode + " AND OccurrenceYmdHms = '" + carAccidentMasterVo.OccurrenceYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                                     "WHERE StaffCode = " + carAccidentMasterVo.StaffCode + " AND InsertYmdHms = '" + carAccidentMasterVo.InsertYmdHms.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             try {
                 if (carAccidentMasterVo.Picture1 is not null)
                     sqlCommand.Parameters.Add("@member_picture1", SqlDbType.Image, carAccidentMasterVo.Picture1.Length).Value = carAccidentMasterVo.Picture1;

@@ -550,7 +550,7 @@
             // 
             this.ComboBoxExOccurrenceCause.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExOccurrenceCause.FormattingEnabled = true;
-            this.ComboBoxExOccurrenceCause.Items.AddRange(new object[] { "前方不確認", "後方不確認", "左方不確認", "右方不確認", "運転操作ミス", "一時停止不履行", "被害者なので原因なし" });
+            this.ComboBoxExOccurrenceCause.Items.AddRange(new object[] { "前方不確認", "後方不確認", "左方不確認", "右方不確認", "運転操作ミス", "一時停止不履行", "被害者なので原因なし", "確認不足(作業事故)" });
             this.ComboBoxExOccurrenceCause.Location = new Point(112, 100);
             this.ComboBoxExOccurrenceCause.Name = "ComboBoxExOccurrenceCause";
             this.ComboBoxExOccurrenceCause.Size = new Size(148, 23);
@@ -568,7 +568,7 @@
             // ComboBoxExCarStatic
             // 
             this.ComboBoxExCarStatic.FormattingEnabled = true;
-            this.ComboBoxExCarStatic.Items.AddRange(new object[] { "前進時", "直進時", "後退時", "Uターン時", "停車時", "右折時", "左折時" });
+            this.ComboBoxExCarStatic.Items.AddRange(new object[] { "前進時", "直進時", "後退時", "Uターン時", "停車時", "右折時", "左折時", "なし" });
             this.ComboBoxExCarStatic.Location = new Point(112, 72);
             this.ComboBoxExCarStatic.Name = "ComboBoxExCarStatic";
             this.ComboBoxExCarStatic.Size = new Size(148, 23);

@@ -7,9 +7,9 @@ using Vo;
 
 namespace Set {
     public partial class SetDetail : Form {
+        private string _constructorFlag = string.Empty;
         private ErrorProvider _errorProvider;
         private int _setCode;
-        private string _constructorFlag = string.Empty;
         /*
          * Dao
          */
@@ -346,8 +346,8 @@ namespace Set {
             if (this.CheckBoxExSun.Checked)
                 _workingDays += "日";
             setMasterVo.WorkingDays = _workingDays;
-            setMasterVo.FiveLap = this.ComboBoxExFiveLap.Text == "稼働する" ? true : false;                                                                                             // 第五週稼働フラグ
-            setMasterVo.MoveFlag = this.ComboBoxExMoveFlag.Text == "可能" ? true : false;                                                                                          // 移動可能フラグ
+            setMasterVo.FiveLap = this.ComboBoxExFiveLap.Text == "稼働する" ? true : false;                                                                                              // 第五週稼働フラグ
+            setMasterVo.MoveFlag = this.ComboBoxExMoveFlag.Text == "可能" ? true : false;                                                                                               // 移動可能フラグ
             setMasterVo.Remarks = this.TextBoxExRemarks.Text;                                                                                                                          // 備考
             return setMasterVo;
         }

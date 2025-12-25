@@ -11,19 +11,18 @@ using Vo;
 
 namespace RollCall {
     public partial class LastRollCall : Form {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DateUtility _dateUtility = new();
-        private SetControl _setControl;
+        private readonly SetControl _setControl;
         /*
          * Dao
          */
-        private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
-        private LastRollCallDao _lastRollCallDao;
+        private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
+        private readonly LastRollCallDao _lastRollCallDao;
         /*
          * Vo
          */
-        private ConnectionVo _connectionVo;
-        private LastRollCallVo? _beforeLastRollCallVo;
+        private LastRollCallVo _beforeLastRollCallVo;
 
         /// <summary>
         /// 
@@ -43,7 +42,6 @@ namespace RollCall {
             /*
              * Vo
              */
-            _connectionVo = connectionVo;
             _beforeLastRollCallVo = null;
             /*
              * InitializeControl
@@ -66,30 +64,21 @@ namespace RollCall {
         private void InitializeControl() {
             this.LabelExSetName.Text = string.Concat(((SetLabel)_setControl.DeployedSetLabel).SetMasterVo.SetName, " の帰庫点呼入力");
             this.DateTimePickerExOperationDate.SetValue(_setControl.OperationDate);
-
             this.MaskedTextBoxExFirstRollCallTime.Mask = "90:00";
             this.MaskedTextBoxExFirstRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExFirstRollCallTime.ValidatingType = typeof(DateTime); // 入力値の検証タイプを設定
+            this.MaskedTextBoxExFirstRollCallTime.ValidatingType = typeof(DateTime);                                                                                                // 入力値の検証タイプを設定
             this.MaskedTextBoxExFirstRollCallTime.Text = _vehicleDispatchDetailDao.GetStaffRollCallYmdHms1(_setControl.CellNumber, _setControl.OperationDate).ToString("HH:mm");
-
             this.NumericUpDownExLastPlantCount.Value = 0;
-
             this.ComboBoxExLastPlantName.SelectedIndex = -1;
-
             this.MaskedTextBoxExLastPlantTime.Mask = "90:00";
             this.MaskedTextBoxExLastPlantTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExLastPlantTime.ValidatingType = typeof(DateTime); // 入力値の検証タイプを設定
-
+            this.MaskedTextBoxExLastPlantTime.ValidatingType = typeof(DateTime);                                                                                                    // 入力値の検証タイプを設定
             this.MaskedTextBoxExLastRollCallTime.Mask = "90:00";
             this.MaskedTextBoxExLastRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExLastRollCallTime.ValidatingType = typeof(DateTime); // 入力値の検証タイプを設定
-
+            this.MaskedTextBoxExLastRollCallTime.ValidatingType = typeof(DateTime);                                                                                                 // 入力値の検証タイプを設定
             this.NumericUpDownExFirstOdoMeter.Value = 0;
-
             this.NumericUpDownExLastOdoMeter.Value = 0;
-
             this.NumericUpDownExOilAmount.Value = 0;
-
             this.CheckBoxExDelete.Checked = false;
         }
 
@@ -152,7 +141,9 @@ namespace RollCall {
                     try {
                         setLabel.LastRollCallFlag = true;
                         setLabel.LastRollCallYmdHms = newLastRollCallTime;
-                        // VehicleDispatchDetailVoを書き換える
+                        /*
+                         * VehicleDispatchDetailVoを書き換える
+                         */
                         _vehicleDispatchDetailDao.UpdateOneLastRollCall(true, setControl.CellNumber, this.SetVo(newLastRollCallTime));
                         _lastRollCallDao.UpdateOneLastRollCall(((SetLabel)_setControl.DeployedSetLabel).SetMasterVo.SetCode, setControl.OperationDate, oldLastRollCallTime, this.SetVo(newLastRollCallTime));
                     } catch (Exception exception) {
@@ -162,7 +153,9 @@ namespace RollCall {
                     try {
                         setLabel.LastRollCallFlag = true;
                         setLabel.LastRollCallYmdHms = newLastRollCallTime;
-                        // VehicleDispatchDetailVoを書き換える
+                        /*
+                         * VehicleDispatchDetailVoを書き換える
+                         */
                         _vehicleDispatchDetailDao.UpdateOneLastRollCall(true, setControl.CellNumber, this.SetVo(newLastRollCallTime));
                         _lastRollCallDao.InsertOneLastRollCall(this.SetVo(newLastRollCallTime));
                     } catch (Exception exception) {
@@ -173,7 +166,9 @@ namespace RollCall {
                 try {
                     setLabel.LastRollCallFlag = false;
                     setLabel.LastRollCallYmdHms = _defaultDateTime;
-                    // VehicleDispatchDetailVoを書き換える
+                    /*
+                     * VehicleDispatchDetailVoを書き換える
+                     */
                     _vehicleDispatchDetailDao.DeleteOneLastRollCall(setControl.CellNumber, this.SetVo(oldLastRollCallTime));
                     _lastRollCallDao.DeleteOneLastRollCall(setControl.SetCode, setControl.OperationDate, oldLastRollCallTime);
                 } catch (Exception exception) {
@@ -191,10 +186,8 @@ namespace RollCall {
         private void LastRollCall_KeyDown(object sender, KeyEventArgs e) {
             bool forward;
             if (e.KeyCode == Keys.Enter) {
-                // Shiftキーが押されているかの判定
-                forward = e.Modifiers != Keys.Shift;
-                // タブオーダー順で次のコントロールにフォーカスを移動
-                this.SelectNextControl(this.ActiveControl, forward, true, true, true);
+                forward = e.Modifiers != Keys.Shift;                                                                // Shiftキーが押されているかの判定
+                this.SelectNextControl(this.ActiveControl, forward, true, true, true);                              // タブオーダー順で次のコントロールにフォーカスを移動
             }
         }
 

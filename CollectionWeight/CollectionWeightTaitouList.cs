@@ -127,7 +127,7 @@ namespace Collection {
                     this.SheetViewList.Cells[rowNumber, 6].Value = collectionWeightTaitouVo.Weight3Total;
                     this.SheetViewList.Cells[rowNumber, 7].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310604).ToString("HH:mm");
                     this.SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight4Total;
-
+                    this.SheetViewList.Cells[rowNumber, 9].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310608).ToString("HH:mm");
                     this.SheetViewList.Cells[rowNumber, 10].Value = collectionWeightTaitouVo.Weight6Total;
                     this.SheetViewList.Cells[rowNumber, 11].Value = collectionWeightTaitouVo.Weight7Total;
                     this.SheetViewList.Cells[rowNumber, 12].Value = collectionWeightTaitouVo.Weight8Total;

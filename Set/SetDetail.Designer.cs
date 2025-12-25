@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
@@ -65,6 +66,7 @@
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.TextBoxExSetCode = new ControlEx.TextBoxEx();
+            this.ToolTip1 = new ToolTip(this.components);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
@@ -88,23 +90,24 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(705, 610);
+            this.TableLayoutPanelExBase.Size = new Size(537, 614);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             this.MenuStripEx1.Location = new Point(1, 1);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(703, 24);
+            this.MenuStripEx1.Size = new Size(535, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(1, 587);
+            this.StatusStripEx1.Location = new Point(1, 591);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(703, 22);
+            this.StatusStripEx1.Size = new Size(535, 22);
+            this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -114,13 +117,13 @@
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(4, 29);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(697, 54);
+            this.PanelExUp.Size = new Size(529, 54);
             this.PanelExUp.TabIndex = 2;
             // 
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Location = new Point(506, 10);
+            this.ButtonExUpdate.Location = new Point(338, 10);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(160, 32);
@@ -170,13 +173,13 @@
             this.PanelExMiddle.Dock = DockStyle.Fill;
             this.PanelExMiddle.Location = new Point(4, 90);
             this.PanelExMiddle.Name = "PanelExMiddle";
-            this.PanelExMiddle.Size = new Size(697, 491);
+            this.PanelExMiddle.Size = new Size(529, 495);
             this.PanelExMiddle.TabIndex = 3;
             // 
             // TextBoxExRemarks
             // 
             this.TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExRemarks.Location = new Point(224, 412);
+            this.TextBoxExRemarks.Location = new Point(148, 412);
             this.TextBoxExRemarks.Multiline = true;
             this.TextBoxExRemarks.Name = "TextBoxExRemarks";
             this.TextBoxExRemarks.Size = new Size(304, 56);
@@ -186,7 +189,7 @@
             // labelEx15
             // 
             this.labelEx15.AutoSize = true;
-            this.labelEx15.Location = new Point(128, 416);
+            this.labelEx15.Location = new Point(52, 416);
             this.labelEx15.Name = "labelEx15";
             this.labelEx15.Size = new Size(31, 15);
             this.labelEx15.TabIndex = 35;
@@ -197,15 +200,16 @@
             this.ComboBoxExMoveFlag.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExMoveFlag.FormattingEnabled = true;
             this.ComboBoxExMoveFlag.Items.AddRange(new object[] { "可能", "不可能" });
-            this.ComboBoxExMoveFlag.Location = new Point(224, 384);
+            this.ComboBoxExMoveFlag.Location = new Point(148, 384);
             this.ComboBoxExMoveFlag.Name = "ComboBoxExMoveFlag";
             this.ComboBoxExMoveFlag.Size = new Size(112, 23);
             this.ComboBoxExMoveFlag.TabIndex = 34;
+            this.ToolTip1.SetToolTip(this.ComboBoxExMoveFlag, "配車先パネルをドラッグ＆ドロップで移動可能かどうか");
             // 
             // labelEx14
             // 
             this.labelEx14.AutoSize = true;
-            this.labelEx14.Location = new Point(128, 388);
+            this.labelEx14.Location = new Point(52, 388);
             this.labelEx14.Name = "labelEx14";
             this.labelEx14.Size = new Size(80, 15);
             this.labelEx14.TabIndex = 33;
@@ -216,7 +220,7 @@
             this.ComboBoxExFiveLap.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExFiveLap.FormattingEnabled = true;
             this.ComboBoxExFiveLap.Items.AddRange(new object[] { "稼働する", "稼働しない" });
-            this.ComboBoxExFiveLap.Location = new Point(224, 356);
+            this.ComboBoxExFiveLap.Location = new Point(148, 356);
             this.ComboBoxExFiveLap.Name = "ComboBoxExFiveLap";
             this.ComboBoxExFiveLap.Size = new Size(112, 23);
             this.ComboBoxExFiveLap.TabIndex = 32;
@@ -224,7 +228,7 @@
             // labelEx13
             // 
             this.labelEx13.AutoSize = true;
-            this.labelEx13.Location = new Point(128, 360);
+            this.labelEx13.Location = new Point(52, 360);
             this.labelEx13.Name = "labelEx13";
             this.labelEx13.Size = new Size(92, 15);
             this.labelEx13.TabIndex = 31;
@@ -234,7 +238,7 @@
             // 
             this.CheckBoxExSun.AutoSize = true;
             this.CheckBoxExSun.ForeColor = Color.Red;
-            this.CheckBoxExSun.Location = new Point(512, 328);
+            this.CheckBoxExSun.Location = new Point(436, 328);
             this.CheckBoxExSun.Name = "CheckBoxExSun";
             this.CheckBoxExSun.Size = new Size(38, 19);
             this.CheckBoxExSun.TabIndex = 30;
@@ -245,7 +249,7 @@
             // 
             this.CheckBoxExSat.AutoSize = true;
             this.CheckBoxExSat.ForeColor = Color.Blue;
-            this.CheckBoxExSat.Location = new Point(464, 328);
+            this.CheckBoxExSat.Location = new Point(388, 328);
             this.CheckBoxExSat.Name = "CheckBoxExSat";
             this.CheckBoxExSat.Size = new Size(38, 19);
             this.CheckBoxExSat.TabIndex = 29;
@@ -255,7 +259,7 @@
             // CheckBoxExFri
             // 
             this.CheckBoxExFri.AutoSize = true;
-            this.CheckBoxExFri.Location = new Point(416, 328);
+            this.CheckBoxExFri.Location = new Point(340, 328);
             this.CheckBoxExFri.Name = "CheckBoxExFri";
             this.CheckBoxExFri.Size = new Size(38, 19);
             this.CheckBoxExFri.TabIndex = 28;
@@ -265,7 +269,7 @@
             // CheckBoxExThu
             // 
             this.CheckBoxExThu.AutoSize = true;
-            this.CheckBoxExThu.Location = new Point(368, 328);
+            this.CheckBoxExThu.Location = new Point(292, 328);
             this.CheckBoxExThu.Name = "CheckBoxExThu";
             this.CheckBoxExThu.Size = new Size(38, 19);
             this.CheckBoxExThu.TabIndex = 27;
@@ -275,7 +279,7 @@
             // CheckBoxExWed
             // 
             this.CheckBoxExWed.AutoSize = true;
-            this.CheckBoxExWed.Location = new Point(320, 328);
+            this.CheckBoxExWed.Location = new Point(244, 328);
             this.CheckBoxExWed.Name = "CheckBoxExWed";
             this.CheckBoxExWed.Size = new Size(38, 19);
             this.CheckBoxExWed.TabIndex = 26;
@@ -285,7 +289,7 @@
             // CheckBoxExTue
             // 
             this.CheckBoxExTue.AutoSize = true;
-            this.CheckBoxExTue.Location = new Point(272, 328);
+            this.CheckBoxExTue.Location = new Point(196, 328);
             this.CheckBoxExTue.Name = "CheckBoxExTue";
             this.CheckBoxExTue.Size = new Size(38, 19);
             this.CheckBoxExTue.TabIndex = 25;
@@ -295,7 +299,7 @@
             // CheckBoxExMon
             // 
             this.CheckBoxExMon.AutoSize = true;
-            this.CheckBoxExMon.Location = new Point(224, 328);
+            this.CheckBoxExMon.Location = new Point(148, 328);
             this.CheckBoxExMon.Name = "CheckBoxExMon";
             this.CheckBoxExMon.Size = new Size(38, 19);
             this.CheckBoxExMon.TabIndex = 24;
@@ -305,7 +309,7 @@
             // labelEx12
             // 
             this.labelEx12.AutoSize = true;
-            this.labelEx12.Location = new Point(128, 332);
+            this.labelEx12.Location = new Point(52, 332);
             this.labelEx12.Name = "labelEx12";
             this.labelEx12.Size = new Size(55, 15);
             this.labelEx12.TabIndex = 23;
@@ -316,7 +320,7 @@
             this.ComboBoxExSpareOfPeople.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExSpareOfPeople.FormattingEnabled = true;
             this.ComboBoxExSpareOfPeople.Items.AddRange(new object[] { "True", "False" });
-            this.ComboBoxExSpareOfPeople.Location = new Point(224, 300);
+            this.ComboBoxExSpareOfPeople.Location = new Point(148, 300);
             this.ComboBoxExSpareOfPeople.Name = "ComboBoxExSpareOfPeople";
             this.ComboBoxExSpareOfPeople.Size = new Size(112, 23);
             this.ComboBoxExSpareOfPeople.TabIndex = 22;
@@ -324,7 +328,7 @@
             // labelEx11
             // 
             this.labelEx11.AutoSize = true;
-            this.labelEx11.Location = new Point(128, 304);
+            this.labelEx11.Location = new Point(52, 304);
             this.labelEx11.Name = "labelEx11";
             this.labelEx11.Size = new Size(60, 15);
             this.labelEx11.TabIndex = 21;
@@ -333,7 +337,8 @@
             // NumericUpDownExNumberOfPeople
             // 
             this.NumericUpDownExNumberOfPeople.ImeMode = ImeMode.Off;
-            this.NumericUpDownExNumberOfPeople.Location = new Point(224, 272);
+            this.NumericUpDownExNumberOfPeople.Location = new Point(148, 272);
+            this.NumericUpDownExNumberOfPeople.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
             this.NumericUpDownExNumberOfPeople.Name = "NumericUpDownExNumberOfPeople";
             this.NumericUpDownExNumberOfPeople.Size = new Size(112, 23);
             this.NumericUpDownExNumberOfPeople.TabIndex = 20;
@@ -342,7 +347,7 @@
             // labelEx10
             // 
             this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(128, 276);
+            this.labelEx10.Location = new Point(52, 276);
             this.labelEx10.Name = "labelEx10";
             this.labelEx10.Size = new Size(55, 15);
             this.labelEx10.TabIndex = 19;
@@ -353,7 +358,7 @@
             this.ComboBoxExContactMethod.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExContactMethod.FormattingEnabled = true;
             this.ComboBoxExContactMethod.Items.AddRange(new object[] { "TEL", "FAX", "しない", "TEL/FAX" });
-            this.ComboBoxExContactMethod.Location = new Point(224, 244);
+            this.ComboBoxExContactMethod.Location = new Point(148, 244);
             this.ComboBoxExContactMethod.Name = "ComboBoxExContactMethod";
             this.ComboBoxExContactMethod.Size = new Size(112, 23);
             this.ComboBoxExContactMethod.TabIndex = 18;
@@ -361,7 +366,7 @@
             // labelEx9
             // 
             this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(128, 248);
+            this.labelEx9.Location = new Point(52, 248);
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(79, 15);
             this.labelEx9.TabIndex = 17;
@@ -371,7 +376,7 @@
             // 
             this.ComboBoxExClassificationCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExClassificationCode.FormattingEnabled = true;
-            this.ComboBoxExClassificationCode.Location = new Point(224, 216);
+            this.ComboBoxExClassificationCode.Location = new Point(148, 216);
             this.ComboBoxExClassificationCode.Name = "ComboBoxExClassificationCode";
             this.ComboBoxExClassificationCode.Size = new Size(112, 23);
             this.ComboBoxExClassificationCode.TabIndex = 16;
@@ -379,7 +384,7 @@
             // labelEx8
             // 
             this.labelEx8.AutoSize = true;
-            this.labelEx8.Location = new Point(128, 220);
+            this.labelEx8.Location = new Point(52, 220);
             this.labelEx8.Name = "labelEx8";
             this.labelEx8.Size = new Size(43, 15);
             this.labelEx8.TabIndex = 15;
@@ -389,7 +394,7 @@
             // 
             this.ComboBoxExManagedSpaceCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExManagedSpaceCode.FormattingEnabled = true;
-            this.ComboBoxExManagedSpaceCode.Location = new Point(224, 188);
+            this.ComboBoxExManagedSpaceCode.Location = new Point(148, 188);
             this.ComboBoxExManagedSpaceCode.Name = "ComboBoxExManagedSpaceCode";
             this.ComboBoxExManagedSpaceCode.Size = new Size(112, 23);
             this.ComboBoxExManagedSpaceCode.TabIndex = 14;
@@ -397,7 +402,7 @@
             // labelEx7
             // 
             this.labelEx7.AutoSize = true;
-            this.labelEx7.Location = new Point(128, 192);
+            this.labelEx7.Location = new Point(52, 192);
             this.labelEx7.Name = "labelEx7";
             this.labelEx7.Size = new Size(67, 15);
             this.labelEx7.TabIndex = 13;
@@ -407,7 +412,7 @@
             // 
             this.ComboBoxExFareCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExFareCode.FormattingEnabled = true;
-            this.ComboBoxExFareCode.Location = new Point(224, 160);
+            this.ComboBoxExFareCode.Location = new Point(148, 160);
             this.ComboBoxExFareCode.Name = "ComboBoxExFareCode";
             this.ComboBoxExFareCode.Size = new Size(304, 23);
             this.ComboBoxExFareCode.TabIndex = 12;
@@ -415,7 +420,7 @@
             // labelEx6
             // 
             this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(128, 164);
+            this.labelEx6.Location = new Point(52, 164);
             this.labelEx6.Name = "labelEx6";
             this.labelEx6.Size = new Size(55, 15);
             this.labelEx6.TabIndex = 11;
@@ -424,7 +429,7 @@
             // TextBoxExSetName2
             // 
             this.TextBoxExSetName2.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExSetName2.Location = new Point(224, 132);
+            this.TextBoxExSetName2.Location = new Point(148, 132);
             this.TextBoxExSetName2.Name = "TextBoxExSetName2";
             this.TextBoxExSetName2.Size = new Size(304, 23);
             this.TextBoxExSetName2.TabIndex = 10;
@@ -433,7 +438,7 @@
             // labelEx5
             // 
             this.labelEx5.AutoSize = true;
-            this.labelEx5.Location = new Point(128, 136);
+            this.labelEx5.Location = new Point(52, 136);
             this.labelEx5.Name = "labelEx5";
             this.labelEx5.Size = new Size(79, 15);
             this.labelEx5.TabIndex = 9;
@@ -442,7 +447,7 @@
             // TextBoxExSetName1
             // 
             this.TextBoxExSetName1.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExSetName1.Location = new Point(224, 104);
+            this.TextBoxExSetName1.Location = new Point(148, 104);
             this.TextBoxExSetName1.Name = "TextBoxExSetName1";
             this.TextBoxExSetName1.Size = new Size(304, 23);
             this.TextBoxExSetName1.TabIndex = 8;
@@ -451,7 +456,7 @@
             // labelEx4
             // 
             this.labelEx4.AutoSize = true;
-            this.labelEx4.Location = new Point(128, 108);
+            this.labelEx4.Location = new Point(52, 108);
             this.labelEx4.Name = "labelEx4";
             this.labelEx4.Size = new Size(79, 15);
             this.labelEx4.TabIndex = 7;
@@ -460,16 +465,17 @@
             // TextBoxExSetName
             // 
             this.TextBoxExSetName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExSetName.Location = new Point(224, 76);
+            this.TextBoxExSetName.Location = new Point(148, 76);
             this.TextBoxExSetName.Name = "TextBoxExSetName";
             this.TextBoxExSetName.Size = new Size(304, 23);
             this.TextBoxExSetName.TabIndex = 6;
             this.TextBoxExSetName.Text = "東武リサイクルセンター";
+            this.ToolTip1.SetToolTip(this.TextBoxExSetName, "配車先名のフルネームを入力してください。");
             // 
             // labelEx3
             // 
             this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(128, 80);
+            this.labelEx3.Location = new Point(52, 80);
             this.labelEx3.Name = "labelEx3";
             this.labelEx3.Size = new Size(55, 15);
             this.labelEx3.TabIndex = 5;
@@ -479,15 +485,16 @@
             // 
             this.ComboBoxExWordCode.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExWordCode.FormattingEnabled = true;
-            this.ComboBoxExWordCode.Location = new Point(224, 48);
+            this.ComboBoxExWordCode.Location = new Point(148, 48);
             this.ComboBoxExWordCode.Name = "ComboBoxExWordCode";
             this.ComboBoxExWordCode.Size = new Size(112, 23);
             this.ComboBoxExWordCode.TabIndex = 4;
+            this.ToolTip1.SetToolTip(this.ComboBoxExWordCode, "配車先の区を選択してください。");
             // 
             // labelEx2
             // 
             this.labelEx2.AutoSize = true;
-            this.labelEx2.Location = new Point(128, 52);
+            this.labelEx2.Location = new Point(52, 52);
             this.labelEx2.Name = "labelEx2";
             this.labelEx2.Size = new Size(67, 15);
             this.labelEx2.TabIndex = 2;
@@ -496,7 +503,7 @@
             // labelEx1
             // 
             this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(128, 24);
+            this.labelEx1.Location = new Point(52, 24);
             this.labelEx1.Name = "labelEx1";
             this.labelEx1.Size = new Size(67, 15);
             this.labelEx1.TabIndex = 1;
@@ -504,22 +511,25 @@
             // 
             // TextBoxExSetCode
             // 
-            this.TextBoxExSetCode.Location = new Point(224, 20);
+            this.TextBoxExSetCode.Location = new Point(148, 20);
             this.TextBoxExSetCode.Name = "TextBoxExSetCode";
             this.TextBoxExSetCode.ReadOnly = true;
             this.TextBoxExSetCode.Size = new Size(60, 23);
             this.TextBoxExSetCode.TabIndex = 0;
             this.TextBoxExSetCode.Text = "8888888";
             this.TextBoxExSetCode.TextAlign = HorizontalAlignment.Center;
+            this.ToolTip1.SetToolTip(this.TextBoxExSetCode, "配車先CDは自動採番します。");
             // 
             // SetDetail
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(705, 610);
+            this.ClientSize = new Size(537, 614);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SetDetail";
             this.Text = "SetDetail";
             this.FormClosing += this.SetDetail_FormClosing;
@@ -576,5 +586,6 @@
         private ControlEx.LabelEx labelEx14;
         private ControlEx.TextBoxEx TextBoxExRemarks;
         private ControlEx.LabelEx labelEx15;
+        private ToolTip ToolTip1;
     }
 }

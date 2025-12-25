@@ -74,21 +74,23 @@
             // 
             this.DateTimePickerExOperationDate.CultureFlag = false;
             this.DateTimePickerExOperationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.DateTimePickerExOperationDate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             this.DateTimePickerExOperationDate.Format = DateTimePickerFormat.Custom;
             this.DateTimePickerExOperationDate.ImeMode = ImeMode.Off;
             this.DateTimePickerExOperationDate.Location = new Point(148, 56);
             this.DateTimePickerExOperationDate.Name = "DateTimePickerExOperationDate";
-            this.DateTimePickerExOperationDate.Size = new Size(196, 23);
+            this.DateTimePickerExOperationDate.Size = new Size(196, 25);
             this.DateTimePickerExOperationDate.TabIndex = 0;
             this.DateTimePickerExOperationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // MaskedTextBoxExFirstRollCallTime
             // 
+            this.MaskedTextBoxExFirstRollCallTime.Font = new Font("Yu Gothic UI", 9.75F);
             this.MaskedTextBoxExFirstRollCallTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExFirstRollCallTime.Location = new Point(148, 84);
+            this.MaskedTextBoxExFirstRollCallTime.Location = new Point(148, 88);
             this.MaskedTextBoxExFirstRollCallTime.Name = "MaskedTextBoxExFirstRollCallTime";
             this.MaskedTextBoxExFirstRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExFirstRollCallTime.Size = new Size(104, 23);
+            this.MaskedTextBoxExFirstRollCallTime.Size = new Size(104, 25);
             this.MaskedTextBoxExFirstRollCallTime.TabIndex = 1;
             this.MaskedTextBoxExFirstRollCallTime.TextAlign = HorizontalAlignment.Right;
             this.MaskedTextBoxExFirstRollCallTime.ValidatingType = typeof(DateTime);
@@ -96,7 +98,7 @@
             // labelEx3
             // 
             this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(88, 88);
+            this.labelEx3.Location = new Point(88, 92);
             this.labelEx3.Name = "labelEx3";
             this.labelEx3.Size = new Size(55, 15);
             this.labelEx3.TabIndex = 4;
@@ -105,7 +107,7 @@
             // labelEx4
             // 
             this.labelEx4.AutoSize = true;
-            this.labelEx4.Location = new Point(64, 144);
+            this.labelEx4.Location = new Point(64, 156);
             this.labelEx4.Name = "labelEx4";
             this.labelEx4.Size = new Size(79, 15);
             this.labelEx4.TabIndex = 5;
@@ -114,7 +116,7 @@
             // labelEx5
             // 
             this.labelEx5.AutoSize = true;
-            this.labelEx5.Location = new Point(88, 116);
+            this.labelEx5.Location = new Point(88, 124);
             this.labelEx5.Name = "labelEx5";
             this.labelEx5.Size = new Size(55, 15);
             this.labelEx5.TabIndex = 6;
@@ -123,7 +125,7 @@
             // labelEx6
             // 
             this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(64, 172);
+            this.labelEx6.Location = new Point(64, 188);
             this.labelEx6.Name = "labelEx6";
             this.labelEx6.Size = new Size(79, 15);
             this.labelEx6.TabIndex = 7;
@@ -132,7 +134,7 @@
             // labelEx7
             // 
             this.labelEx7.AutoSize = true;
-            this.labelEx7.Location = new Point(88, 200);
+            this.labelEx7.Location = new Point(88, 220);
             this.labelEx7.Name = "labelEx7";
             this.labelEx7.Size = new Size(55, 15);
             this.labelEx7.TabIndex = 8;
@@ -141,7 +143,7 @@
             // labelEx8
             // 
             this.labelEx8.AutoSize = true;
-            this.labelEx8.Location = new Point(64, 228);
+            this.labelEx8.Location = new Point(64, 252);
             this.labelEx8.Name = "labelEx8";
             this.labelEx8.Size = new Size(76, 15);
             this.labelEx8.TabIndex = 9;
@@ -150,7 +152,7 @@
             // labelEx9
             // 
             this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(64, 256);
+            this.labelEx9.Location = new Point(64, 284);
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(76, 15);
             this.labelEx9.TabIndex = 10;
@@ -159,7 +161,7 @@
             // labelEx10
             // 
             this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(96, 284);
+            this.labelEx10.Location = new Point(96, 316);
             this.labelEx10.Name = "labelEx10";
             this.labelEx10.Size = new Size(43, 15);
             this.labelEx10.TabIndex = 11;
@@ -168,7 +170,7 @@
             // CheckBoxExDelete
             // 
             this.CheckBoxExDelete.AutoSize = true;
-            this.CheckBoxExDelete.Location = new Point(148, 324);
+            this.CheckBoxExDelete.Location = new Point(148, 356);
             this.CheckBoxExDelete.Name = "CheckBoxExDelete";
             this.CheckBoxExDelete.Size = new Size(107, 19);
             this.CheckBoxExDelete.TabIndex = 9;
@@ -178,10 +180,10 @@
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Location = new Point(264, 316);
+            this.ButtonExUpdate.Location = new Point(280, 352);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(144, 36);
+            this.ButtonExUpdate.Size = new Size(136, 28);
             this.ButtonExUpdate.TabIndex = 10;
             this.ButtonExUpdate.Text = "UPDATE";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
@@ -189,72 +191,79 @@
             // 
             // NumericUpDownExLastPlantCount
             // 
+            this.NumericUpDownExLastPlantCount.Font = new Font("Yu Gothic UI", 9.75F);
             this.NumericUpDownExLastPlantCount.ImeMode = ImeMode.Off;
-            this.NumericUpDownExLastPlantCount.Location = new Point(148, 112);
+            this.NumericUpDownExLastPlantCount.Location = new Point(148, 120);
             this.NumericUpDownExLastPlantCount.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.NumericUpDownExLastPlantCount.Name = "NumericUpDownExLastPlantCount";
-            this.NumericUpDownExLastPlantCount.Size = new Size(104, 23);
+            this.NumericUpDownExLastPlantCount.Size = new Size(104, 25);
             this.NumericUpDownExLastPlantCount.TabIndex = 2;
             this.NumericUpDownExLastPlantCount.TextAlign = HorizontalAlignment.Right;
             // 
             // MaskedTextBoxExLastPlantTime
             // 
+            this.MaskedTextBoxExLastPlantTime.Font = new Font("Yu Gothic UI", 9.75F);
             this.MaskedTextBoxExLastPlantTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExLastPlantTime.Location = new Point(148, 168);
+            this.MaskedTextBoxExLastPlantTime.Location = new Point(148, 184);
             this.MaskedTextBoxExLastPlantTime.Name = "MaskedTextBoxExLastPlantTime";
-            this.MaskedTextBoxExLastPlantTime.Size = new Size(104, 23);
+            this.MaskedTextBoxExLastPlantTime.Size = new Size(104, 25);
             this.MaskedTextBoxExLastPlantTime.TabIndex = 4;
             this.MaskedTextBoxExLastPlantTime.TextAlign = HorizontalAlignment.Right;
             this.MaskedTextBoxExLastPlantTime.ValidatingType = typeof(DateTime);
             // 
             // ComboBoxExLastPlantName
             // 
+            this.ComboBoxExLastPlantName.Font = new Font("Yu Gothic UI", 9.75F);
             this.ComboBoxExLastPlantName.FormattingEnabled = true;
             this.ComboBoxExLastPlantName.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExLastPlantName.Location = new Point(148, 140);
+            this.ComboBoxExLastPlantName.Location = new Point(148, 152);
             this.ComboBoxExLastPlantName.Name = "ComboBoxExLastPlantName";
-            this.ComboBoxExLastPlantName.Size = new Size(196, 23);
+            this.ComboBoxExLastPlantName.Size = new Size(196, 25);
             this.ComboBoxExLastPlantName.TabIndex = 3;
             // 
             // MaskedTextBoxExLastRollCallTime
             // 
+            this.MaskedTextBoxExLastRollCallTime.Font = new Font("Yu Gothic UI", 9.75F);
             this.MaskedTextBoxExLastRollCallTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExLastRollCallTime.Location = new Point(148, 196);
+            this.MaskedTextBoxExLastRollCallTime.Location = new Point(148, 216);
             this.MaskedTextBoxExLastRollCallTime.Name = "MaskedTextBoxExLastRollCallTime";
-            this.MaskedTextBoxExLastRollCallTime.Size = new Size(104, 23);
+            this.MaskedTextBoxExLastRollCallTime.Size = new Size(104, 25);
             this.MaskedTextBoxExLastRollCallTime.TabIndex = 5;
             this.MaskedTextBoxExLastRollCallTime.TextAlign = HorizontalAlignment.Right;
             this.MaskedTextBoxExLastRollCallTime.ValidatingType = typeof(DateTime);
             // 
             // NumericUpDownExFirstOdoMeter
             // 
+            this.NumericUpDownExFirstOdoMeter.Font = new Font("Yu Gothic UI", 9.75F);
             this.NumericUpDownExFirstOdoMeter.ImeMode = ImeMode.Off;
-            this.NumericUpDownExFirstOdoMeter.Location = new Point(148, 224);
+            this.NumericUpDownExFirstOdoMeter.Location = new Point(148, 248);
             this.NumericUpDownExFirstOdoMeter.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.NumericUpDownExFirstOdoMeter.Name = "NumericUpDownExFirstOdoMeter";
-            this.NumericUpDownExFirstOdoMeter.Size = new Size(104, 23);
+            this.NumericUpDownExFirstOdoMeter.Size = new Size(104, 25);
             this.NumericUpDownExFirstOdoMeter.TabIndex = 6;
             this.NumericUpDownExFirstOdoMeter.TabStop = false;
             this.NumericUpDownExFirstOdoMeter.TextAlign = HorizontalAlignment.Right;
             // 
             // NumericUpDownExLastOdoMeter
             // 
+            this.NumericUpDownExLastOdoMeter.Font = new Font("Yu Gothic UI", 9.75F);
             this.NumericUpDownExLastOdoMeter.ImeMode = ImeMode.Off;
-            this.NumericUpDownExLastOdoMeter.Location = new Point(148, 252);
+            this.NumericUpDownExLastOdoMeter.Location = new Point(148, 280);
             this.NumericUpDownExLastOdoMeter.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.NumericUpDownExLastOdoMeter.Name = "NumericUpDownExLastOdoMeter";
-            this.NumericUpDownExLastOdoMeter.Size = new Size(104, 23);
+            this.NumericUpDownExLastOdoMeter.Size = new Size(104, 25);
             this.NumericUpDownExLastOdoMeter.TabIndex = 7;
             this.NumericUpDownExLastOdoMeter.TabStop = false;
             this.NumericUpDownExLastOdoMeter.TextAlign = HorizontalAlignment.Right;
             // 
             // NumericUpDownExOilAmount
             // 
+            this.NumericUpDownExOilAmount.Font = new Font("Yu Gothic UI", 9.75F);
             this.NumericUpDownExOilAmount.ImeMode = ImeMode.Off;
-            this.NumericUpDownExOilAmount.Location = new Point(148, 280);
+            this.NumericUpDownExOilAmount.Location = new Point(148, 312);
             this.NumericUpDownExOilAmount.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.NumericUpDownExOilAmount.Name = "NumericUpDownExOilAmount";
-            this.NumericUpDownExOilAmount.Size = new Size(104, 23);
+            this.NumericUpDownExOilAmount.Size = new Size(104, 25);
             this.NumericUpDownExOilAmount.TabIndex = 8;
             this.NumericUpDownExOilAmount.TabStop = false;
             this.NumericUpDownExOilAmount.TextAlign = HorizontalAlignment.Right;
@@ -263,7 +272,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(432, 372);
+            this.ClientSize = new Size(433, 409);
             this.Controls.Add(this.NumericUpDownExOilAmount);
             this.Controls.Add(this.NumericUpDownExLastOdoMeter);
             this.Controls.Add(this.NumericUpDownExFirstOdoMeter);

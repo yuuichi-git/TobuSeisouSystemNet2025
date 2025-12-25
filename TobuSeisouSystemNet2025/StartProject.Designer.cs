@@ -94,7 +94,7 @@
             TreeNode treeNode69 = new TreeNode("14　教育実施計画");
             TreeNode treeNode70 = new TreeNode("15　運転記録証明書又は無事故無違反証明書");
             TreeNode treeNode71 = new TreeNode("16　乗務員指導記録簿");
-            TreeNode treeNode72 = new TreeNode("17　適性診断受診結果票");
+            TreeNode treeNode72 = new TreeNode("17　適性診断受診結果票及び指導記録");
             TreeNode treeNode73 = new TreeNode("18　適性診断受診計画表");
             TreeNode treeNode74 = new TreeNode("19　事故記録簿");
             TreeNode treeNode75 = new TreeNode("20　自動車事故報告書");
@@ -137,21 +137,6 @@
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.TabControlEx1 = new ControlEx.TabControlEx();
-            this.TabPageSeisouSystem = new TabPage();
-            this.labelEx49 = new ControlEx.LabelEx();
-            this.GroupBoxEx1 = new ControlEx.GroupBoxEx();
-            this.labelEx50 = new ControlEx.LabelEx();
-            this.LabelExServerVersion = new ControlEx.LabelEx();
-            this.labelEx51 = new ControlEx.LabelEx();
-            this.ButtonExDisConnectOracle = new ControlEx.ButtonEx();
-            this.LabelExStatusOracle = new ControlEx.LabelEx();
-            this.LabelExDataBaseNameOracle = new ControlEx.LabelEx();
-            this.LabelExServerNameOracle = new ControlEx.LabelEx();
-            this.ButtonExConnectOracle = new ControlEx.ButtonEx();
-            this.labelEx48 = new ControlEx.LabelEx();
-            this.TabPageSystem = new TabPage();
-            this.labelEx54 = new ControlEx.LabelEx();
-            this.labelEx55 = new ControlEx.LabelEx();
             this.TabPageOffice = new TabPage();
             this.labelEx52 = new ControlEx.LabelEx();
             this.labelEx53 = new ControlEx.LabelEx();
@@ -182,7 +167,9 @@
             this.labelEx6 = new ControlEx.LabelEx();
             this.labelEx7 = new ControlEx.LabelEx();
             this.TabPageAdachi = new TabPage();
+            this.labelEx54 = new ControlEx.LabelEx();
             this.labelEx36 = new ControlEx.LabelEx();
+            this.labelEx55 = new ControlEx.LabelEx();
             this.labelEx37 = new ControlEx.LabelEx();
             this.labelEx34 = new ControlEx.LabelEx();
             this.labelEx35 = new ControlEx.LabelEx();
@@ -202,16 +189,27 @@
             this.TabPageHaikibutu = new TabPage();
             this.labelEx46 = new ControlEx.LabelEx();
             this.labelEx47 = new ControlEx.LabelEx();
+            this.TabPageSeisouSystem = new TabPage();
+            this.labelEx49 = new ControlEx.LabelEx();
+            this.GroupBoxEx1 = new ControlEx.GroupBoxEx();
+            this.labelEx50 = new ControlEx.LabelEx();
+            this.LabelExServerVersion = new ControlEx.LabelEx();
+            this.labelEx51 = new ControlEx.LabelEx();
+            this.ButtonExDisConnectOracle = new ControlEx.ButtonEx();
+            this.LabelExStatusOracle = new ControlEx.LabelEx();
+            this.LabelExDataBaseNameOracle = new ControlEx.LabelEx();
+            this.LabelExServerNameOracle = new ControlEx.LabelEx();
+            this.ButtonExConnectOracle = new ControlEx.ButtonEx();
+            this.labelEx48 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
             this.TabControlEx1.SuspendLayout();
-            this.TabPageSeisouSystem.SuspendLayout();
-            this.GroupBoxEx1.SuspendLayout();
-            this.TabPageSystem.SuspendLayout();
             this.TabPageOffice.SuspendLayout();
             this.TabPageAdachi.SuspendLayout();
             this.TabPageHaikibutu.SuspendLayout();
+            this.TabPageSeisouSystem.SuspendLayout();
+            this.GroupBoxEx1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -413,7 +411,7 @@
             treeNode71.Name = "NodeRik16";
             treeNode71.Text = "16　乗務員指導記録簿";
             treeNode72.Name = "NodeRik17";
-            treeNode72.Text = "17　適性診断受診結果票";
+            treeNode72.Text = "17　適性診断受診結果票及び指導記録";
             treeNode73.Name = "NodeRik18";
             treeNode73.Text = "18　適性診断受診計画表";
             treeNode74.Name = "NodeRik19";
@@ -605,194 +603,17 @@
             // 
             // TabControlEx1
             // 
-            this.TabControlEx1.Controls.Add(this.TabPageSeisouSystem);
-            this.TabControlEx1.Controls.Add(this.TabPageSystem);
             this.TabControlEx1.Controls.Add(this.TabPageOffice);
             this.TabControlEx1.Controls.Add(this.TabPageAdachi);
             this.TabControlEx1.Controls.Add(this.TabPageMisato);
             this.TabControlEx1.Controls.Add(this.TabPageHaikibutu);
+            this.TabControlEx1.Controls.Add(this.TabPageSeisouSystem);
             this.TabControlEx1.Location = new Point(8, 164);
             this.TabControlEx1.Name = "TabControlEx1";
             this.TabControlEx1.SelectedIndex = 0;
             this.TabControlEx1.Size = new Size(760, 492);
             this.TabControlEx1.SizeMode = TabSizeMode.Fixed;
             this.TabControlEx1.TabIndex = 0;
-            // 
-            // TabPageSeisouSystem
-            // 
-            this.TabPageSeisouSystem.Controls.Add(this.labelEx49);
-            this.TabPageSeisouSystem.Controls.Add(this.GroupBoxEx1);
-            this.TabPageSeisouSystem.Location = new Point(4, 24);
-            this.TabPageSeisouSystem.Name = "TabPageSeisouSystem";
-            this.TabPageSeisouSystem.Padding = new Padding(3);
-            this.TabPageSeisouSystem.Size = new Size(752, 464);
-            this.TabPageSeisouSystem.TabIndex = 0;
-            this.TabPageSeisouSystem.Text = "清掃システム";
-            this.TabPageSeisouSystem.UseVisualStyleBackColor = true;
-            // 
-            // labelEx49
-            // 
-            this.labelEx49.AutoSize = true;
-            this.labelEx49.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            this.labelEx49.ForeColor = Color.Red;
-            this.labelEx49.Location = new Point(12, 16);
-            this.labelEx49.Name = "labelEx49";
-            this.labelEx49.Size = new Size(319, 15);
-            this.labelEx49.TabIndex = 1;
-            this.labelEx49.Text = "※清掃システムタブは触らないで下さい。DBが不安定になります。";
-            // 
-            // GroupBoxEx1
-            // 
-            this.GroupBoxEx1.Controls.Add(this.labelEx50);
-            this.GroupBoxEx1.Controls.Add(this.LabelExServerVersion);
-            this.GroupBoxEx1.Controls.Add(this.labelEx51);
-            this.GroupBoxEx1.Controls.Add(this.ButtonExDisConnectOracle);
-            this.GroupBoxEx1.Controls.Add(this.LabelExStatusOracle);
-            this.GroupBoxEx1.Controls.Add(this.LabelExDataBaseNameOracle);
-            this.GroupBoxEx1.Controls.Add(this.LabelExServerNameOracle);
-            this.GroupBoxEx1.Controls.Add(this.ButtonExConnectOracle);
-            this.GroupBoxEx1.Controls.Add(this.labelEx48);
-            this.GroupBoxEx1.Location = new Point(8, 40);
-            this.GroupBoxEx1.Name = "GroupBoxEx1";
-            this.GroupBoxEx1.Size = new Size(736, 412);
-            this.GroupBoxEx1.TabIndex = 0;
-            this.GroupBoxEx1.TabStop = false;
-            this.GroupBoxEx1.Text = "Oracle19c(清掃トータルシステム)";
-            // 
-            // labelEx50
-            // 
-            this.labelEx50.ForeColor = Color.DimGray;
-            this.labelEx50.Location = new Point(12, 188);
-            this.labelEx50.Name = "labelEx50";
-            this.labelEx50.Size = new Size(344, 20);
-            this.labelEx50.TabIndex = 17;
-            this.labelEx50.Text = "　作成済テーブル一覧を表示します";
-            this.labelEx50.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // LabelExServerVersion
-            // 
-            this.LabelExServerVersion.ForeColor = Color.DimGray;
-            this.LabelExServerVersion.Location = new Point(12, 76);
-            this.LabelExServerVersion.Name = "LabelExServerVersion";
-            this.LabelExServerVersion.Size = new Size(332, 20);
-            this.LabelExServerVersion.TabIndex = 12;
-            this.LabelExServerVersion.Text = "ServerVersion：";
-            this.LabelExServerVersion.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelEx51
-            // 
-            this.labelEx51.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
-            this.labelEx51.ForeColor = Color.Black;
-            this.labelEx51.Location = new Point(12, 168);
-            this.labelEx51.Name = "labelEx51";
-            this.labelEx51.Size = new Size(344, 20);
-            this.labelEx51.TabIndex = 16;
-            this.labelEx51.Tag = "OracleAllTable";
-            this.labelEx51.Text = "Oracle Table View";
-            this.labelEx51.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx51.Click += this.Label_Oracle_Click;
-            this.labelEx51.MouseEnter += this.Label_MouseEnter;
-            this.labelEx51.MouseLeave += this.Label_MouseLeave;
-            // 
-            // ButtonExDisConnectOracle
-            // 
-            this.ButtonExDisConnectOracle.Enabled = false;
-            this.ButtonExDisConnectOracle.ForeColor = Color.Blue;
-            this.ButtonExDisConnectOracle.Location = new Point(548, 64);
-            this.ButtonExDisConnectOracle.Name = "ButtonExDisConnectOracle";
-            this.ButtonExDisConnectOracle.SetTextDirectionVertical = "";
-            this.ButtonExDisConnectOracle.Size = new Size(144, 28);
-            this.ButtonExDisConnectOracle.TabIndex = 11;
-            this.ButtonExDisConnectOracle.Text = "DisConnect";
-            this.ButtonExDisConnectOracle.UseVisualStyleBackColor = true;
-            this.ButtonExDisConnectOracle.Click += this.ButtonEx_Click;
-            // 
-            // LabelExStatusOracle
-            // 
-            this.LabelExStatusOracle.ForeColor = Color.DimGray;
-            this.LabelExStatusOracle.Location = new Point(12, 124);
-            this.LabelExStatusOracle.Name = "LabelExStatusOracle";
-            this.LabelExStatusOracle.Size = new Size(332, 20);
-            this.LabelExStatusOracle.TabIndex = 10;
-            this.LabelExStatusOracle.Text = "状態：";
-            this.LabelExStatusOracle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // LabelExDataBaseNameOracle
-            // 
-            this.LabelExDataBaseNameOracle.ForeColor = Color.DimGray;
-            this.LabelExDataBaseNameOracle.Location = new Point(12, 100);
-            this.LabelExDataBaseNameOracle.Name = "LabelExDataBaseNameOracle";
-            this.LabelExDataBaseNameOracle.Size = new Size(332, 20);
-            this.LabelExDataBaseNameOracle.TabIndex = 9;
-            this.LabelExDataBaseNameOracle.Text = "接続先データベース：";
-            this.LabelExDataBaseNameOracle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // LabelExServerNameOracle
-            // 
-            this.LabelExServerNameOracle.ForeColor = Color.DimGray;
-            this.LabelExServerNameOracle.Location = new Point(12, 52);
-            this.LabelExServerNameOracle.Name = "LabelExServerNameOracle";
-            this.LabelExServerNameOracle.Size = new Size(332, 20);
-            this.LabelExServerNameOracle.TabIndex = 8;
-            this.LabelExServerNameOracle.Text = "接続先サーバー：";
-            this.LabelExServerNameOracle.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ButtonExConnectOracle
-            // 
-            this.ButtonExConnectOracle.ForeColor = Color.Blue;
-            this.ButtonExConnectOracle.Location = new Point(548, 24);
-            this.ButtonExConnectOracle.Name = "ButtonExConnectOracle";
-            this.ButtonExConnectOracle.SetTextDirectionVertical = "";
-            this.ButtonExConnectOracle.Size = new Size(144, 36);
-            this.ButtonExConnectOracle.TabIndex = 1;
-            this.ButtonExConnectOracle.Text = "Connect";
-            this.ButtonExConnectOracle.UseVisualStyleBackColor = true;
-            this.ButtonExConnectOracle.Click += this.ButtonEx_Click;
-            // 
-            // labelEx48
-            // 
-            this.labelEx48.AutoSize = true;
-            this.labelEx48.Location = new Point(12, 24);
-            this.labelEx48.Name = "labelEx48";
-            this.labelEx48.Size = new Size(101, 15);
-            this.labelEx48.TabIndex = 0;
-            this.labelEx48.Text = "Oracleへ接続テスト";
-            // 
-            // TabPageSystem
-            // 
-            this.TabPageSystem.Controls.Add(this.labelEx54);
-            this.TabPageSystem.Controls.Add(this.labelEx55);
-            this.TabPageSystem.Location = new Point(4, 24);
-            this.TabPageSystem.Name = "TabPageSystem";
-            this.TabPageSystem.Size = new Size(752, 464);
-            this.TabPageSystem.TabIndex = 5;
-            this.TabPageSystem.Text = "マスター管理";
-            this.TabPageSystem.UseVisualStyleBackColor = true;
-            // 
-            // labelEx54
-            // 
-            this.labelEx54.ForeColor = Color.DimGray;
-            this.labelEx54.Location = new Point(16, 32);
-            this.labelEx54.Name = "labelEx54";
-            this.labelEx54.Size = new Size(344, 20);
-            this.labelEx54.TabIndex = 17;
-            this.labelEx54.Text = "　配車先の作成・修正・検索";
-            this.labelEx54.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelEx55
-            // 
-            this.labelEx55.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
-            this.labelEx55.ForeColor = Color.Black;
-            this.labelEx55.Location = new Point(16, 12);
-            this.labelEx55.Name = "labelEx55";
-            this.labelEx55.Size = new Size(344, 20);
-            this.labelEx55.TabIndex = 16;
-            this.labelEx55.Tag = "SetList";
-            this.labelEx55.Text = "配車先マスター";
-            this.labelEx55.TextAlign = ContentAlignment.MiddleLeft;
-            this.labelEx55.Click += this.Label_SqlServer_Click;
-            this.labelEx55.MouseEnter += this.Label_MouseEnter;
-            this.labelEx55.MouseLeave += this.Label_MouseLeave;
             // 
             // TabPageOffice
             // 
@@ -1183,7 +1004,9 @@
             // 
             // TabPageAdachi
             // 
+            this.TabPageAdachi.Controls.Add(this.labelEx54);
             this.TabPageAdachi.Controls.Add(this.labelEx36);
+            this.TabPageAdachi.Controls.Add(this.labelEx55);
             this.TabPageAdachi.Controls.Add(this.labelEx37);
             this.TabPageAdachi.Controls.Add(this.labelEx34);
             this.TabPageAdachi.Controls.Add(this.labelEx35);
@@ -1207,21 +1030,46 @@
             this.TabPageAdachi.Text = "本社";
             this.TabPageAdachi.UseVisualStyleBackColor = true;
             // 
+            // labelEx54
+            // 
+            this.labelEx54.ForeColor = Color.DimGray;
+            this.labelEx54.Location = new Point(16, 128);
+            this.labelEx54.Name = "labelEx54";
+            this.labelEx54.Size = new Size(344, 20);
+            this.labelEx54.TabIndex = 17;
+            this.labelEx54.Text = "　配車先の作成・修正・検索";
+            this.labelEx54.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // labelEx36
             // 
             this.labelEx36.ForeColor = Color.DimGray;
-            this.labelEx36.Location = new Point(376, 128);
+            this.labelEx36.Location = new Point(372, 80);
             this.labelEx36.Name = "labelEx36";
             this.labelEx36.Size = new Size(344, 20);
             this.labelEx36.TabIndex = 45;
             this.labelEx36.Text = "　陸運局";
             this.labelEx36.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // labelEx55
+            // 
+            this.labelEx55.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.labelEx55.ForeColor = Color.Black;
+            this.labelEx55.Location = new Point(16, 108);
+            this.labelEx55.Name = "labelEx55";
+            this.labelEx55.Size = new Size(344, 20);
+            this.labelEx55.TabIndex = 16;
+            this.labelEx55.Tag = "SetList";
+            this.labelEx55.Text = "配車先台帳";
+            this.labelEx55.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx55.Click += this.Label_SqlServer_Click;
+            this.labelEx55.MouseEnter += this.Label_MouseEnter;
+            this.labelEx55.MouseLeave += this.Label_MouseLeave;
+            // 
             // labelEx37
             // 
             this.labelEx37.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
             this.labelEx37.ForeColor = Color.Black;
-            this.labelEx37.Location = new Point(376, 108);
+            this.labelEx37.Location = new Point(372, 60);
             this.labelEx37.Name = "labelEx37";
             this.labelEx37.Size = new Size(344, 20);
             this.labelEx37.TabIndex = 44;
@@ -1235,7 +1083,7 @@
             // labelEx34
             // 
             this.labelEx34.ForeColor = Color.DimGray;
-            this.labelEx34.Location = new Point(376, 80);
+            this.labelEx34.Location = new Point(372, 32);
             this.labelEx34.Name = "labelEx34";
             this.labelEx34.Size = new Size(344, 20);
             this.labelEx34.TabIndex = 43;
@@ -1246,7 +1094,7 @@
             // 
             this.labelEx35.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
             this.labelEx35.ForeColor = Color.Black;
-            this.labelEx35.Location = new Point(376, 60);
+            this.labelEx35.Location = new Point(372, 12);
             this.labelEx35.Name = "labelEx35";
             this.labelEx35.Size = new Size(344, 20);
             this.labelEx35.TabIndex = 42;
@@ -1260,7 +1108,7 @@
             // labelEx40
             // 
             this.labelEx40.ForeColor = Color.DimGray;
-            this.labelEx40.Location = new Point(376, 32);
+            this.labelEx40.Location = new Point(372, 128);
             this.labelEx40.Name = "labelEx40";
             this.labelEx40.Size = new Size(344, 20);
             this.labelEx40.TabIndex = 41;
@@ -1271,7 +1119,7 @@
             // 
             this.labelEx41.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
             this.labelEx41.ForeColor = Color.Black;
-            this.labelEx41.Location = new Point(376, 12);
+            this.labelEx41.Location = new Point(372, 108);
             this.labelEx41.Name = "labelEx41";
             this.labelEx41.Size = new Size(344, 20);
             this.labelEx41.TabIndex = 40;
@@ -1285,7 +1133,7 @@
             // labelEx22
             // 
             this.labelEx22.ForeColor = Color.DimGray;
-            this.labelEx22.Location = new Point(16, 224);
+            this.labelEx22.Location = new Point(16, 272);
             this.labelEx22.Name = "labelEx22";
             this.labelEx22.Size = new Size(344, 20);
             this.labelEx22.TabIndex = 21;
@@ -1296,7 +1144,7 @@
             // 
             this.labelEx23.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
             this.labelEx23.ForeColor = Color.Black;
-            this.labelEx23.Location = new Point(16, 204);
+            this.labelEx23.Location = new Point(16, 252);
             this.labelEx23.Name = "labelEx23";
             this.labelEx23.Size = new Size(344, 20);
             this.labelEx23.TabIndex = 20;
@@ -1360,7 +1208,7 @@
             // labelEx10
             // 
             this.labelEx10.ForeColor = Color.DimGray;
-            this.labelEx10.Location = new Point(16, 128);
+            this.labelEx10.Location = new Point(16, 224);
             this.labelEx10.Name = "labelEx10";
             this.labelEx10.Size = new Size(344, 20);
             this.labelEx10.TabIndex = 15;
@@ -1371,7 +1219,7 @@
             // 
             this.labelEx11.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
             this.labelEx11.ForeColor = Color.Black;
-            this.labelEx11.Location = new Point(16, 108);
+            this.labelEx11.Location = new Point(16, 204);
             this.labelEx11.Name = "labelEx11";
             this.labelEx11.Size = new Size(344, 20);
             this.labelEx11.TabIndex = 14;
@@ -1413,7 +1261,7 @@
             this.TabPageMisato.Name = "TabPageMisato";
             this.TabPageMisato.Size = new Size(752, 464);
             this.TabPageMisato.TabIndex = 2;
-            this.TabPageMisato.Text = "三郷";
+            this.TabPageMisato.Text = "三郷車庫";
             this.TabPageMisato.UseVisualStyleBackColor = true;
             // 
             // TabPageHaikibutu
@@ -1453,6 +1301,146 @@
             this.labelEx47.MouseEnter += this.Label_MouseEnter;
             this.labelEx47.MouseLeave += this.Label_MouseLeave;
             // 
+            // TabPageSeisouSystem
+            // 
+            this.TabPageSeisouSystem.Controls.Add(this.labelEx49);
+            this.TabPageSeisouSystem.Controls.Add(this.GroupBoxEx1);
+            this.TabPageSeisouSystem.Location = new Point(4, 24);
+            this.TabPageSeisouSystem.Name = "TabPageSeisouSystem";
+            this.TabPageSeisouSystem.Padding = new Padding(3);
+            this.TabPageSeisouSystem.Size = new Size(752, 464);
+            this.TabPageSeisouSystem.TabIndex = 0;
+            this.TabPageSeisouSystem.Text = "清掃システム";
+            this.TabPageSeisouSystem.UseVisualStyleBackColor = true;
+            // 
+            // labelEx49
+            // 
+            this.labelEx49.AutoSize = true;
+            this.labelEx49.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            this.labelEx49.ForeColor = Color.Red;
+            this.labelEx49.Location = new Point(12, 16);
+            this.labelEx49.Name = "labelEx49";
+            this.labelEx49.Size = new Size(319, 15);
+            this.labelEx49.TabIndex = 1;
+            this.labelEx49.Text = "※清掃システムタブは触らないで下さい。DBが不安定になります。";
+            // 
+            // GroupBoxEx1
+            // 
+            this.GroupBoxEx1.Controls.Add(this.labelEx50);
+            this.GroupBoxEx1.Controls.Add(this.LabelExServerVersion);
+            this.GroupBoxEx1.Controls.Add(this.labelEx51);
+            this.GroupBoxEx1.Controls.Add(this.ButtonExDisConnectOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExStatusOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExDataBaseNameOracle);
+            this.GroupBoxEx1.Controls.Add(this.LabelExServerNameOracle);
+            this.GroupBoxEx1.Controls.Add(this.ButtonExConnectOracle);
+            this.GroupBoxEx1.Controls.Add(this.labelEx48);
+            this.GroupBoxEx1.Location = new Point(8, 40);
+            this.GroupBoxEx1.Name = "GroupBoxEx1";
+            this.GroupBoxEx1.Size = new Size(736, 412);
+            this.GroupBoxEx1.TabIndex = 0;
+            this.GroupBoxEx1.TabStop = false;
+            this.GroupBoxEx1.Text = "Oracle19c(清掃トータルシステム)";
+            // 
+            // labelEx50
+            // 
+            this.labelEx50.ForeColor = Color.DimGray;
+            this.labelEx50.Location = new Point(12, 188);
+            this.labelEx50.Name = "labelEx50";
+            this.labelEx50.Size = new Size(344, 20);
+            this.labelEx50.TabIndex = 17;
+            this.labelEx50.Text = "　作成済テーブル一覧を表示します";
+            this.labelEx50.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LabelExServerVersion
+            // 
+            this.LabelExServerVersion.ForeColor = Color.DimGray;
+            this.LabelExServerVersion.Location = new Point(12, 76);
+            this.LabelExServerVersion.Name = "LabelExServerVersion";
+            this.LabelExServerVersion.Size = new Size(332, 20);
+            this.LabelExServerVersion.TabIndex = 12;
+            this.LabelExServerVersion.Text = "ServerVersion：";
+            this.LabelExServerVersion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx51
+            // 
+            this.labelEx51.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.labelEx51.ForeColor = Color.Black;
+            this.labelEx51.Location = new Point(12, 168);
+            this.labelEx51.Name = "labelEx51";
+            this.labelEx51.Size = new Size(344, 20);
+            this.labelEx51.TabIndex = 16;
+            this.labelEx51.Tag = "OracleAllTable";
+            this.labelEx51.Text = "Oracle Table View";
+            this.labelEx51.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx51.Click += this.Label_Oracle_Click;
+            this.labelEx51.MouseEnter += this.Label_MouseEnter;
+            this.labelEx51.MouseLeave += this.Label_MouseLeave;
+            // 
+            // ButtonExDisConnectOracle
+            // 
+            this.ButtonExDisConnectOracle.Enabled = false;
+            this.ButtonExDisConnectOracle.ForeColor = Color.Blue;
+            this.ButtonExDisConnectOracle.Location = new Point(548, 64);
+            this.ButtonExDisConnectOracle.Name = "ButtonExDisConnectOracle";
+            this.ButtonExDisConnectOracle.SetTextDirectionVertical = "";
+            this.ButtonExDisConnectOracle.Size = new Size(144, 28);
+            this.ButtonExDisConnectOracle.TabIndex = 11;
+            this.ButtonExDisConnectOracle.Text = "DisConnect";
+            this.ButtonExDisConnectOracle.UseVisualStyleBackColor = true;
+            this.ButtonExDisConnectOracle.Click += this.ButtonEx_Click;
+            // 
+            // LabelExStatusOracle
+            // 
+            this.LabelExStatusOracle.ForeColor = Color.DimGray;
+            this.LabelExStatusOracle.Location = new Point(12, 124);
+            this.LabelExStatusOracle.Name = "LabelExStatusOracle";
+            this.LabelExStatusOracle.Size = new Size(332, 20);
+            this.LabelExStatusOracle.TabIndex = 10;
+            this.LabelExStatusOracle.Text = "状態：";
+            this.LabelExStatusOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LabelExDataBaseNameOracle
+            // 
+            this.LabelExDataBaseNameOracle.ForeColor = Color.DimGray;
+            this.LabelExDataBaseNameOracle.Location = new Point(12, 100);
+            this.LabelExDataBaseNameOracle.Name = "LabelExDataBaseNameOracle";
+            this.LabelExDataBaseNameOracle.Size = new Size(332, 20);
+            this.LabelExDataBaseNameOracle.TabIndex = 9;
+            this.LabelExDataBaseNameOracle.Text = "接続先データベース：";
+            this.LabelExDataBaseNameOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LabelExServerNameOracle
+            // 
+            this.LabelExServerNameOracle.ForeColor = Color.DimGray;
+            this.LabelExServerNameOracle.Location = new Point(12, 52);
+            this.LabelExServerNameOracle.Name = "LabelExServerNameOracle";
+            this.LabelExServerNameOracle.Size = new Size(332, 20);
+            this.LabelExServerNameOracle.TabIndex = 8;
+            this.LabelExServerNameOracle.Text = "接続先サーバー：";
+            this.LabelExServerNameOracle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ButtonExConnectOracle
+            // 
+            this.ButtonExConnectOracle.ForeColor = Color.Blue;
+            this.ButtonExConnectOracle.Location = new Point(548, 24);
+            this.ButtonExConnectOracle.Name = "ButtonExConnectOracle";
+            this.ButtonExConnectOracle.SetTextDirectionVertical = "";
+            this.ButtonExConnectOracle.Size = new Size(144, 36);
+            this.ButtonExConnectOracle.TabIndex = 1;
+            this.ButtonExConnectOracle.Text = "Connect";
+            this.ButtonExConnectOracle.UseVisualStyleBackColor = true;
+            this.ButtonExConnectOracle.Click += this.ButtonEx_Click;
+            // 
+            // labelEx48
+            // 
+            this.labelEx48.AutoSize = true;
+            this.labelEx48.Location = new Point(12, 24);
+            this.labelEx48.Name = "labelEx48";
+            this.labelEx48.Size = new Size(101, 15);
+            this.labelEx48.TabIndex = 0;
+            this.labelEx48.Text = "Oracleへ接続テスト";
+            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1471,14 +1459,13 @@
             this.PanelExLeft.ResumeLayout(false);
             this.PanelExRight.ResumeLayout(false);
             this.TabControlEx1.ResumeLayout(false);
+            this.TabPageOffice.ResumeLayout(false);
+            this.TabPageAdachi.ResumeLayout(false);
+            this.TabPageHaikibutu.ResumeLayout(false);
             this.TabPageSeisouSystem.ResumeLayout(false);
             this.TabPageSeisouSystem.PerformLayout();
             this.GroupBoxEx1.ResumeLayout(false);
             this.GroupBoxEx1.PerformLayout();
-            this.TabPageSystem.ResumeLayout(false);
-            this.TabPageOffice.ResumeLayout(false);
-            this.TabPageAdachi.ResumeLayout(false);
-            this.TabPageHaikibutu.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -1565,7 +1552,6 @@
         private ControlEx.LabelEx labelEx51;
         private ControlEx.LabelEx labelEx52;
         private ControlEx.LabelEx labelEx53;
-        private TabPage TabPageSystem;
         private ControlEx.LabelEx labelEx54;
         private ControlEx.LabelEx labelEx55;
     }

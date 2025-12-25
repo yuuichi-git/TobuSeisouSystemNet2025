@@ -113,22 +113,13 @@ namespace TobuSeisouSystemNet2025 {
              * TabControlExConnect
              */
             switch (new Network().GetConnectLocation()) {
-                
-                case "事務":                                              // TabPage[0]
+                case "本社":                                              // TabPage[]
                     break;
-                case "本社":                                              // TabPage[1]
-                    break;
-                case "三郷":                                              // TabPage[2]
-                    break;
-                case "廃棄物":                                            // TabPage[3]
+                case "三郷車庫":                                           // TabPage[]
                     break;
                 case "２丁目事務所":                                       // TabPage[]
                     break;
-                case "中間処理場":                                         // TabPage[]
-                    break;
-                case "マスター管理":                                       // TabPage[4]
-                    break;
-                case "清掃システム":                                       // TabPage[5]
+                case "リサイクルセンター":                                   // TabPage[]
                     break;
                 default:
                     break;
@@ -546,9 +537,11 @@ namespace TobuSeisouSystemNet2025 {
                         break;
                     case "NodeRik16": // 16　乗務員指導記録簿
                         break;
-                    case "NodeRik17": // 17　適性診断受診結果票
+                    case "NodeRik17": // 17　適性診断受診結果票及び指導記録
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\17　適性診断受診結果票及び指導記録");
                         break;
                     case "NodeRik18": // 18　適性診断受診計画表
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\18　適性診断受診計画表");
                         break;
                     case "NodeRik19": // 19　事故記録簿
                         break;

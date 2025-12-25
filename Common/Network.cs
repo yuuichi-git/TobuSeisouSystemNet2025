@@ -36,6 +36,8 @@ namespace Common {
             switch (ipAddress) {
                 case "192.168.1":
                     return "本社";
+                case "192.168.10":
+                    return "三郷車庫";
                 default:
                     return string.Empty;
             }

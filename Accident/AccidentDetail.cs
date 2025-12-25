@@ -19,6 +19,10 @@ namespace Accident {
         private readonly CarAccidentMasterDao _carAccidentMasterDao;
         private readonly CarMasterDao _carMasterDao;
         private readonly StaffMasterDao _staffMasterDao;
+        /*
+         * Vo
+         */
+        private CarAccidentMasterVo _carAccidentMasterVo;
 
         /// <summary>
         /// 
@@ -33,6 +37,10 @@ namespace Accident {
             _carAccidentMasterDao = new(connectionVo);
             _carMasterDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
+            /*
+             * Vo
+             */
+            _carAccidentMasterVo = carAccidentMasterVo;
             /*
              * InitializeControl
              */
@@ -51,7 +59,7 @@ namespace Accident {
              * 新規・修正の処理
              */
             if (carAccidentMasterVo is not null) {
-                this.PutControl(_carAccidentMasterDao.SelectOneCarAccidentMaster(carAccidentMasterVo.StaffCode, carAccidentMasterVo.OccurrenceYmdHms));
+                this.PutControl(_carAccidentMasterDao.SelectOneCarAccidentMaster(carAccidentMasterVo.StaffCode, carAccidentMasterVo.InsertYmdHms));
             } else {
                 this.InitializeControl();
             }
@@ -161,12 +169,12 @@ namespace Accident {
              * INSERT / UPDATE
              */
             CarAccidentMasterVo carAccidentMasterVo = SetVo();
-            if (_carAccidentMasterDao.ExistenceCarAccidentMaster(carAccidentMasterVo.StaffCode, carAccidentMasterVo.OccurrenceYmdHms)) {
+            if (_carAccidentMasterDao.ExistenceCarAccidentMaster(carAccidentMasterVo.StaffCode, carAccidentMasterVo.InsertYmdHms)) {
                 _carAccidentMasterDao.UpdateOneCarAccidentMaster(carAccidentMasterVo);
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "INSERT SUCCESS";
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "UPDATE SUCCESS";
             } else {
                 _carAccidentMasterDao.InsertOneCarAccidentMaster(carAccidentMasterVo);
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "UPDATE SUCCESS";
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "INSERT SUCCESS";
             }
             this.Close();
         }
@@ -176,12 +184,9 @@ namespace Accident {
         /// </summary>
         /// <returns></returns>
         private CarAccidentMasterVo SetVo() {
-            // ComboBox.SelectItemからVoを取得する
-            StaffMasterVo staffMasterVo = ((ComboBoxExDisplayNameVo)ComboBoxExDisplayName.SelectedItem).StaffMasterVo;
-
+            StaffMasterVo staffMasterVo = ((ComboBoxExDisplayNameVo)ComboBoxExDisplayName.SelectedItem).StaffMasterVo;// ComboBox.SelectItemからVoを取得する
             CarAccidentMasterVo carAccidentMasterVo = new();
-            // 集計
-            switch (ComboBoxExTotallingFlag.Text) {
+            switch (ComboBoxExTotallingFlag.Text) {// 集計
                 case "反映する":
                     carAccidentMasterVo.TotallingFlag = true;
                     break;
@@ -189,59 +194,37 @@ namespace Accident {
                     carAccidentMasterVo.TotallingFlag = false;
                     break;
             }
-            // 事故発生年月日
-            carAccidentMasterVo.OccurrenceYmdHms = new DateTime(DateTimePickerExOccurrence.Value.Year,
+            carAccidentMasterVo.OccurrenceYmdHms = new DateTime(DateTimePickerExOccurrence.Value.Year,                              // 事故発生年月日
                                                                 DateTimePickerExOccurrence.Value.Month,
                                                                 DateTimePickerExOccurrence.Value.Day,
                                                                 int.Parse(MaskedTextBoxExTime.Text.Substring(0, 2)),
                                                                 int.Parse(MaskedTextBoxExTime.Text.Substring(2, 2)),
                                                                 0);
-            // 天候
-            carAccidentMasterVo.Weather = this.ComboBoxExWeather.Text;
-            // 事故の種別 
-            carAccidentMasterVo.AccidentKind = this.ComboBoxExAccidentKind.Text;
-            // 車両の静動
-            carAccidentMasterVo.CarStatic = this.ComboBoxExCarStatic.Text;
-            // 事故の発生原因　
-            carAccidentMasterVo.OccurrenceCause = this.ComboBoxExOccurrenceCause.Text;
-            // 過失の有無 
-            carAccidentMasterVo.Negligence = this.ComboBoxExNegligence.Text;
-            // 人身事故の詳細　
-            carAccidentMasterVo.PersonalInjury = this.ComboBoxExPersonalInjury.Text;
-            // 事故の状態
-            carAccidentMasterVo.PropertyAccident1 = this.ComboBoxExPropertyAccident1.Text;
-            // 事故の相手
-            carAccidentMasterVo.PropertyAccident2 = this.ComboBoxExPropertyAccident2.Text;
-            // 事故の発生場所
-            carAccidentMasterVo.OccurrenceAddress = this.TextBoxExOccurrenceAddress.Text;
-            // 運転手・作業員の氏名
-            if (staffMasterVo is not null) {
+            carAccidentMasterVo.Weather = this.ComboBoxExWeather.Text;                                                              // 天候
+            carAccidentMasterVo.AccidentKind = this.ComboBoxExAccidentKind.Text;                                                    // 事故の種別 
+            carAccidentMasterVo.CarStatic = this.ComboBoxExCarStatic.Text;                                                          // 車両の静動
+            carAccidentMasterVo.OccurrenceCause = this.ComboBoxExOccurrenceCause.Text;                                              // 事故の発生原因　
+            carAccidentMasterVo.Negligence = this.ComboBoxExNegligence.Text;                                                        // 過失の有無
+            carAccidentMasterVo.PersonalInjury = this.ComboBoxExPersonalInjury.Text;                                                // 人身事故の詳細　
+            carAccidentMasterVo.PropertyAccident1 = this.ComboBoxExPropertyAccident1.Text;                                          // 事故の状態
+            carAccidentMasterVo.PropertyAccident2 = this.ComboBoxExPropertyAccident2.Text;                                          // 事故の相手
+            carAccidentMasterVo.OccurrenceAddress = this.TextBoxExOccurrenceAddress.Text;                                           // 事故の発生場所
+            if (staffMasterVo is not null) {                                                                                        // 運転手・作業員の氏名
                 carAccidentMasterVo.StaffCode = staffMasterVo.StaffCode;
                 carAccidentMasterVo.DisplayName = staffMasterVo.DisplayName;
-                // 免許証番号
-                carAccidentMasterVo.LicenseNumber = staffMasterVo.LicenseMasterVo.LicenseNumber;
+                carAccidentMasterVo.LicenseNumber = staffMasterVo.LicenseMasterVo.LicenseNumber;                                    // 免許証番号
             }
-            // 運転手・作業員の別 
-            carAccidentMasterVo.WorkKind = this.ComboBoxExWorkKind.Text;
-            // 車両登録番号
-            carAccidentMasterVo.CarRegistrationNumber = this.ComboBoxExCarRegistrationNumber.Text;
-            // 事故概要
-            carAccidentMasterVo.AccidentSummary = this.TextBoxExAccidentSummary.Text;
-            // 事故詳細
-            carAccidentMasterVo.AccidentDetail = this.TextBoxExAccidentDetail.Text;
-            // 事故後の指導
-            carAccidentMasterVo.Guide = this.TextBoxExGuide.Text;
-            // PictureBoxPicture1
-            carAccidentMasterVo.Picture1 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx1.Image, typeof(byte[]));
-            // PictureBoxPicture2
-            carAccidentMasterVo.Picture2 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx2.Image, typeof(byte[]));
-            // PictureBoxPicture3
-            carAccidentMasterVo.Picture3 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx3.Image, typeof(byte[]));
-            // PictureBoxPicture4
-            carAccidentMasterVo.Picture4 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx4.Image, typeof(byte[]));
-            // PictureBoxPicture5
-            carAccidentMasterVo.Picture5 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx5.Image, typeof(byte[]));
-
+            carAccidentMasterVo.WorkKind = this.ComboBoxExWorkKind.Text;                                                            // 運転手・作業員の別 
+            carAccidentMasterVo.CarRegistrationNumber = this.ComboBoxExCarRegistrationNumber.Text;                                  // 車両登録番号
+            carAccidentMasterVo.AccidentSummary = this.TextBoxExAccidentSummary.Text;                                               // 事故概要
+            carAccidentMasterVo.AccidentDetail = this.TextBoxExAccidentDetail.Text;                                                 // 事故詳細
+            carAccidentMasterVo.Guide = this.TextBoxExGuide.Text;                                                                   // 事故後の指導
+            carAccidentMasterVo.Picture1 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx1.Image, typeof(byte[]));             // PictureBoxPicture1
+            carAccidentMasterVo.Picture2 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx2.Image, typeof(byte[]));             // PictureBoxPicture2
+            carAccidentMasterVo.Picture3 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx3.Image, typeof(byte[]));             // PictureBoxPicture3
+            carAccidentMasterVo.Picture4 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx4.Image, typeof(byte[]));             // PictureBoxPicture4
+            carAccidentMasterVo.Picture5 = (byte[])new ImageConverter().ConvertTo(PictureBoxEx5.Image, typeof(byte[]));             // PictureBoxPicture5
+            carAccidentMasterVo.InsertYmdHms = _carAccidentMasterVo is not null ? _carAccidentMasterVo.InsertYmdHms : new DateTime(1900, 01, 01);// 登録日時
             return carAccidentMasterVo;
         }
 
