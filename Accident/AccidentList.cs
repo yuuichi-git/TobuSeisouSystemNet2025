@@ -62,8 +62,6 @@ namespace Accident {
          * Dao
          */
         private readonly CarAccidentMasterDao _carAccidentMasterDao;
-        private readonly CarMasterDao _carMasterDao;
-        private readonly StaffMasterDao _staffMasterDao;
         /*
          * Vo
          */
@@ -79,8 +77,6 @@ namespace Accident {
              * Dao 
              */
             _carAccidentMasterDao = new(connectionVo);
-            _carMasterDao = new(connectionVo);
-            _staffMasterDao = new(connectionVo);
             /*
              * Vo
              */
