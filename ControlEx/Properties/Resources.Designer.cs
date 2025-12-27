@@ -22,7 +22,7 @@ namespace ControlEx.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ControlEx.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ControlEx.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ControlEx.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] CarLabelImage {
+        public static byte[] CarLabelImage {
             get {
                 object obj = ResourceManager.GetObject("CarLabelImage", resourceCulture);
                 return ((byte[])(obj));
@@ -73,7 +73,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] CarLabelImageEmergency {
+        public static byte[] CarLabelImageEmergency {
             get {
                 object obj = ResourceManager.GetObject("CarLabelImageEmergency", resourceCulture);
                 return ((byte[])(obj));
@@ -83,7 +83,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] CarLabelImageK {
+        public static byte[] CarLabelImageK {
             get {
                 object obj = ResourceManager.GetObject("CarLabelImageK", resourceCulture);
                 return ((byte[])(obj));
@@ -93,7 +93,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] CarLabelImageY {
+        public static byte[] CarLabelImageY {
             get {
                 object obj = ResourceManager.GetObject("CarLabelImageY", resourceCulture);
                 return ((byte[])(obj));
@@ -103,7 +103,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Fax {
+        public static byte[] Fax {
             get {
                 object obj = ResourceManager.GetObject("Fax", resourceCulture);
                 return ((byte[])(obj));
@@ -113,7 +113,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] FaxRed {
+        public static byte[] FaxRed {
             get {
                 object obj = ResourceManager.GetObject("FaxRed", resourceCulture);
                 return ((byte[])(obj));
@@ -123,7 +123,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Filter {
+        public static byte[] Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
                 return ((byte[])(obj));
@@ -133,7 +133,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Memo {
+        public static byte[] Memo {
             get {
                 object obj = ResourceManager.GetObject("Memo", resourceCulture);
                 return ((byte[])(obj));
@@ -143,7 +143,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Misato {
+        public static byte[] Misato {
             get {
                 object obj = ResourceManager.GetObject("Misato", resourceCulture);
                 return ((byte[])(obj));
@@ -153,7 +153,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Operation {
+        public static byte[] Operation {
             get {
                 object obj = ResourceManager.GetObject("Operation", resourceCulture);
                 return ((byte[])(obj));
@@ -163,7 +163,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Proxy {
+        public static byte[] Proxy {
             get {
                 object obj = ResourceManager.GetObject("Proxy", resourceCulture);
                 return ((byte[])(obj));
@@ -173,7 +173,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelImage {
+        public static byte[] SetLabelImage {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImage", resourceCulture);
                 return ((byte[])(obj));
@@ -183,7 +183,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelImageContactInfomation {
+        public static byte[] SetLabelImageContactInfomation {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImageContactInfomation", resourceCulture);
                 return ((byte[])(obj));
@@ -193,7 +193,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelImageK {
+        public static byte[] SetLabelImageK {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImageK", resourceCulture);
                 return ((byte[])(obj));
@@ -203,7 +203,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelImageTenko {
+        public static byte[] SetLabelImageTenko {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImageTenko", resourceCulture);
                 return ((byte[])(obj));
@@ -213,7 +213,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] SetLabelImageY {
+        public static byte[] SetLabelImageY {
             get {
                 object obj = ResourceManager.GetObject("SetLabelImageY", resourceCulture);
                 return ((byte[])(obj));
@@ -223,7 +223,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImage {
+        public static byte[] StaffLabelImage {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImage", resourceCulture);
                 return ((byte[])(obj));
@@ -233,7 +233,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImagePartTime {
+        public static byte[] StaffLabelImagePartTime {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImagePartTime", resourceCulture);
                 return ((byte[])(obj));
@@ -243,7 +243,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImageSagyouin {
+        public static byte[] StaffLabelImageSagyouin {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageSagyouin", resourceCulture);
                 return ((byte[])(obj));
@@ -253,7 +253,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImageShortTime {
+        public static byte[] StaffLabelImageShortTime {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageShortTime", resourceCulture);
                 return ((byte[])(obj));
@@ -263,7 +263,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImageSyonin {
+        public static byte[] StaffLabelImageSyonin {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageSyonin", resourceCulture);
                 return ((byte[])(obj));
@@ -273,7 +273,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImageTekirei {
+        public static byte[] StaffLabelImageTekirei {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageTekirei", resourceCulture);
                 return ((byte[])(obj));
@@ -283,7 +283,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] StaffLabelImageTenko {
+        public static byte[] StaffLabelImageTenko {
             get {
                 object obj = ResourceManager.GetObject("StaffLabelImageTenko", resourceCulture);
                 return ((byte[])(obj));
@@ -293,7 +293,7 @@ namespace ControlEx.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static byte[] Tel {
+        public static byte[] Tel {
             get {
                 object obj = ResourceManager.GetObject("Tel", resourceCulture);
                 return ((byte[])(obj));

@@ -78,7 +78,7 @@ namespace VehicleDispatch {
             _connectionVo = connectionVo;
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
-            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
+            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, null);                      // 第四パラメータをnullにすることで退職者も含めて取得する
             _listStaffProperVo = _staffProperDao.SelectAllStaffProperMaster();
             /*
              * InitializeControl
@@ -183,7 +183,7 @@ namespace VehicleDispatch {
                                                         vehicleDispatchDetailVo,
                                                         _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                         _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
-                                                        ConvertStaffMasterVo(vehicleDispatchDetailVo),
+                                                        this.ConvertStaffMasterVo(vehicleDispatchDetailVo),
                                                         _listStaffProperVo);
                             }
                             cellNumber++;
@@ -443,7 +443,7 @@ namespace VehicleDispatch {
         /// <param name="staffCode"></param>
         /// <returns></returns>
         private StaffMasterVo GetStaffMasterVo(int staffCode) {
-            StaffMasterVo? staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
+            StaffMasterVo staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
             if (staffMasterVo is not null) {
                 // 検索で見つかったVoを返す
                 return staffMasterVo;

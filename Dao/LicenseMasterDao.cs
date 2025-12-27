@@ -189,42 +189,43 @@ namespace Dao {
         public List<LicenseMasterVo> SelectAllLicenseMaster() {
             List<LicenseMasterVo> listLicenseMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT StaffCode," +
-                                            "NameKana," +
-                                            "Name," +
-                                            "BirthDate," +
-                                            "CurrentAddress," +
-                                            "DeliveryDate," +
-                                            "ExpirationDate," +
-                                            "LicenseCondition," +
-                                            "LicenseNumber," +
-                                            "GetDate1," +
-                                            "GetDate2," +
-                                            "GetDate3," +
-                                            //"PictureHead," +
-                                            //"PictureTail," +
-                                            "Large," +
-                                            "Medium," +
-                                            "QuasiMedium," +
-                                            "Ordinary," +
-                                            "BigSpecial," +
-                                            "BigAutoBike," +
-                                            "OrdinaryAutoBike," +
-                                            "SmallSpecial," +
-                                            "WithARaw," +
-                                            "BigTwo," +
-                                            "MediumTwo," +
-                                            "OrdinaryTwo," +
-                                            "BigSpecialTwo," +
-                                            "Traction," +
-                                            "InsertPcName," +
-                                            "InsertYmdHms," +
-                                            "UpdatePcName," +
-                                            "UpdateYmdHms," +
-                                            "DeletePcName," +
-                                            "DeleteYmdHms," +
-                                            "DeleteFlag " +
-                                     "FROM H_LicenseMaster";
+            sqlCommand.CommandText = "SELECT H_LicenseMaster.StaffCode," +
+                                            "H_LicenseMaster.NameKana," +
+                                            "H_LicenseMaster.Name," +
+                                            "H_LicenseMaster.BirthDate," +
+                                            "H_LicenseMaster.CurrentAddress," +
+                                            "H_LicenseMaster.DeliveryDate," +
+                                            "H_LicenseMaster.ExpirationDate," +
+                                            "H_LicenseMaster.LicenseCondition," +
+                                            "H_LicenseMaster.LicenseNumber," +
+                                            "H_LicenseMaster.GetDate1," +
+                                            "H_LicenseMaster.GetDate2," +
+                                            "H_LicenseMaster.GetDate3," +
+                                            //"H_LicenseMaster.PictureHead," +
+                                            //"H_LicenseMaster.PictureTail," +
+                                            "H_LicenseMaster.Large," +
+                                            "H_LicenseMaster.Medium," +
+                                            "H_LicenseMaster.QuasiMedium," +
+                                            "H_LicenseMaster.Ordinary," +
+                                            "H_LicenseMaster.BigSpecial," +
+                                            "H_LicenseMaster.BigAutoBike," +
+                                            "H_LicenseMaster.OrdinaryAutoBike," +
+                                            "H_LicenseMaster.SmallSpecial," +
+                                            "H_LicenseMaster.WithARaw," +
+                                            "H_LicenseMaster.BigTwo," +
+                                            "H_LicenseMaster.MediumTwo," +
+                                            "H_LicenseMaster.OrdinaryTwo," +
+                                            "H_LicenseMaster.BigSpecialTwo," +
+                                            "H_LicenseMaster.Traction," +
+                                            "H_LicenseMaster.InsertPcName," +
+                                            "H_LicenseMaster.InsertYmdHms," +
+                                            "H_LicenseMaster.UpdatePcName," +
+                                            "H_LicenseMaster.UpdateYmdHms," +
+                                            "H_LicenseMaster.DeletePcName," +
+                                            "H_LicenseMaster.DeleteYmdHms," +
+                                            "H_StaffMaster.RetirementFlag " +                                                       // StaffMasterの退職フラグを取得
+                                     "FROM H_LicenseMaster " +
+                                     "LEFT OUTER JOIN H_StaffMaster ON H_LicenseMaster.StaffCode = H_StaffMaster.StaffCode";
             using (var sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     LicenseMasterVo licenseMasterVo = new();
@@ -262,7 +263,7 @@ namespace Dao {
                     licenseMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
                     licenseMasterVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
                     licenseMasterVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
-                    licenseMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    licenseMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);              // StaffMasterの退職フラグを取得
                     listLicenseMasterVo.Add(licenseMasterVo);
                 }
             }

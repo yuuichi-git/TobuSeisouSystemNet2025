@@ -356,9 +356,9 @@ namespace License {
         /// <param name="listLicenseMasterVo"></param>
         private void SetSheetViewToukaidenshi(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
             // Spread 非活性化
-            SpreadList.SuspendLayout();
+            this.SpreadList.SuspendLayout();
             // 先頭行（列）インデックスを取得
-            spreadListTopRow = SpreadList.GetViewportTopRow(0);
+            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
             int row = 0;
@@ -434,9 +434,9 @@ namespace License {
             sheetView.Cells[row, _colTNameKana].Text = "テンケンヨウ";
 
             // 先頭行（列）インデックスをセット
-            SpreadList.SetViewportTopRow(0, spreadListTopRow);
+            this.SpreadList.SetViewportTopRow(0, spreadListTopRow);
             // Spread 活性化
-            SpreadList.ResumeLayout();
+            this.SpreadList.ResumeLayout();
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
         }
 

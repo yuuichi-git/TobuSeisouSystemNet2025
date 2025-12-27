@@ -51,7 +51,7 @@ namespace RollCall {
              */
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
-            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
+            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, null);                                                  // 第四パラメータをNullにすることで、退職者も含めて取得する
             _listVehicleDispatchDetailVo = new();
             _firstRollCallVo = new();
             _lastRollCallVo = new();
