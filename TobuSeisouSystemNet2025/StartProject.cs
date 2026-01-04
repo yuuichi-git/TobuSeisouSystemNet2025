@@ -52,7 +52,7 @@ namespace TobuSeisouSystemNet2025 {
         /*
          * Vo
          */
-        private ConnectionVo _connectionVo = new();
+        private readonly ConnectionVo _connectionVo = new();
 
         /// <summary>
         /// コンストラクター
@@ -105,21 +105,21 @@ namespace TobuSeisouSystemNet2025 {
             }
             // ComboBoxにデータをバインド
             this.ComboBoxExMonitor.DataSource = listComboBoxItem;
-            this.ComboBoxExMonitor.DisplayMember = "DisplayName"; // 表示名を設定
-            this.ComboBoxExMonitor.ValueMember = "Screen"; // 値を設定
+            this.ComboBoxExMonitor.DisplayMember = "DisplayName";                                           // 表示名を設定
+            this.ComboBoxExMonitor.ValueMember = "Screen";                                                  // 値を設定
             // PrimaryScreenをセット
             this.ComboBoxExMonitor.SelectedIndex = primaryScreenNumber;
             /*
              * TabControlExConnect
              */
             switch (new Network().GetConnectLocation()) {
-                case "本社":                                              // TabPage[]
+                case "本社":                                                                                // TabPage[]
                     break;
-                case "三郷車庫":                                           // TabPage[]
+                case "三郷車庫":                                                                             // TabPage[]
                     break;
-                case "２丁目事務所":                                       // TabPage[]
+                case "２丁目事務所":                                                                          // TabPage[]
                     break;
-                case "リサイクルセンター":                                   // TabPage[]
+                case "リサイクルセンター":                                                                     // TabPage[]
                     break;
                 default:
                     break;

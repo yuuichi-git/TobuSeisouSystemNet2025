@@ -542,7 +542,7 @@
             // ButtonExConnectSqlServer
             // 
             this.ButtonExConnectSqlServer.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
-            this.ButtonExConnectSqlServer.Location = new Point(568, 44);
+            this.ButtonExConnectSqlServer.Location = new Point(568, 40);
             this.ButtonExConnectSqlServer.Name = "ButtonExConnectSqlServer";
             this.ButtonExConnectSqlServer.SetTextDirectionVertical = "";
             this.ButtonExConnectSqlServer.Size = new Size(144, 36);

@@ -41,6 +41,9 @@ namespace Vo {
         private DateTime _deleteYmdHms;
         private bool _deleteFlag;
 
+        private int _unionCode;                 // 2026-01-04追加
+        private bool _retirementFlag;           // 2026-01-04追加
+
         /// <summary>
         /// コンストラクター
         /// </summary>
@@ -80,6 +83,9 @@ namespace Vo {
             _deletePcName = string.Empty;
             _deleteYmdHms = _defaultDateTime;
             _deleteFlag = false;
+
+            _unionCode = 0;
+            _retirementFlag = false;
         }
 
         /// <summary>
@@ -305,6 +311,20 @@ namespace Vo {
         public bool DeleteFlag {
             get => _deleteFlag;
             set => _deleteFlag = value;
+        }
+        /// <summary>
+        /// 組合コード
+        /// </summary>
+        public int UnionCode {
+            get => this._unionCode;
+            set => this._unionCode = value;
+        }
+        /// <summary>
+        /// 退職フラグ
+        /// </summary>
+        public bool RetirementFlag {
+            get => this._retirementFlag;
+            set => this._retirementFlag = value;
         }
     }
 }

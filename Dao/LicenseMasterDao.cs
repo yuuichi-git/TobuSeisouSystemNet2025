@@ -45,7 +45,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns>有効期限を返す。存在しない場合はstring.Emptyを返す</returns>
-        public string GetExpirationDate(int staffCode) {
+        public string? GetExpirationDate(int staffCode) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 ExpirationDate FROM H_LicenseMaster WHERE StaffCode = " + staffCode + "";
             var data = sqlCommand.ExecuteScalar();
@@ -223,7 +223,9 @@ namespace Dao {
                                             "H_LicenseMaster.UpdateYmdHms," +
                                             "H_LicenseMaster.DeletePcName," +
                                             "H_LicenseMaster.DeleteYmdHms," +
-                                            "H_StaffMaster.RetirementFlag " +                                                       // StaffMasterの退職フラグを取得
+                                            "H_LicenseMaster.DeleteFlag," +
+                                            "H_StaffMaster.UnionCode," +                                                            // StaffMasterの組合コードを取得(LicenseListで使ってる)
+                                            "H_StaffMaster.RetirementFlag " +                                                       // StaffMasterの退職フラグを取得(LicenseListで使ってる)
                                      "FROM H_LicenseMaster " +
                                      "LEFT OUTER JOIN H_StaffMaster ON H_LicenseMaster.StaffCode = H_StaffMaster.StaffCode";
             using (var sqlDataReader = sqlCommand.ExecuteReader()) {
@@ -263,7 +265,9 @@ namespace Dao {
                     licenseMasterVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
                     licenseMasterVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
                     licenseMasterVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
-                    licenseMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);              // StaffMasterの退職フラグを取得
+                    licenseMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    licenseMasterVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
+                    licenseMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
                     listLicenseMasterVo.Add(licenseMasterVo);
                 }
             }

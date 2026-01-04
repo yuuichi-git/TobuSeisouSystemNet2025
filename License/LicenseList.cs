@@ -319,11 +319,11 @@ namespace License {
             };
             // 削除済のレコードも表示
             if (!CheckBoxExRetirementFlag.Checked)
-                _listLicenseMasterVo = _listLicenseMasterVo.FindAll(x => x.DeleteFlag == false);
+                _listLicenseMasterVo = _listLicenseMasterVo.FindAll(x => x.RetirementFlag == false);
             foreach (LicenseMasterVo licenseMasterVo in _listLicenseMasterVo.OrderBy(x => x.NameKana)) {
                 sheetView.Rows.Add(row, 1);
                 sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                    // Rowヘッダ
-                sheetView.Rows[row].ForeColor = licenseMasterVo.DeleteFlag ? Color.Red : Color.Black;                           // 退職済のレコードのForeColorをセット
+                sheetView.Rows[row].ForeColor = licenseMasterVo.RetirementFlag ? Color.Red : Color.Black;                       // 退職済のレコードのForeColorをセット
                 sheetView.Rows[row].Height = 20;                                                                                // Rowの高さ
                 sheetView.Rows[row].Resizable = false;                                                                          // RowのResizableを禁止
                 sheetView.Rows[row].Tag = licenseMasterVo;
@@ -361,61 +361,65 @@ namespace License {
             this.spreadListTopRow = SpreadList.GetViewportTopRow(0);
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            int row = 0;
-
-            foreach (LicenseMasterVo licenseMasterVo in listLicenseMasterVo) {
-                /*
-                 * 245番は予備で使用するので空けておく処理
-                 */
-                if (row + 1 == 245) {
-                    /*
-                     * 245番の予備を追加する
-                     */
-                    sheetView.Rows.Add(row, 1);
-                    sheetView.RowHeader.Columns[0].Label = (row + 1).ToString(); // Rowヘッダ
-                    sheetView.Rows[row].Height = 22; // Rowの高さ
-                    sheetView.Rows[row].Resizable = false; // RowのResizableを禁止
-                    sheetView.Cells[row, _colTId].Text = "245";
-                    sheetView.Cells[row, _colTName].Text = "予備";
-                    sheetView.Cells[row, _colTLicenseNumber].Text = string.Empty;
-                    sheetView.Cells[row, _colTLicenseExpirationDate].Text = DateTime.Now.AddYears(2).ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTIssuanceDate].Text = DateTime.Now.AddYears(-1).ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTLicenseType].Text = "";
-                    sheetView.Cells[row, _colTPin].Text = "無";
-                    sheetView.Cells[row, _colTPicture].Text = "無";
-                    sheetView.Cells[row, _colTNameKana].Text = "ヨビ";
-
-                    row++;
-                    sheetView.Rows.Add(row, 1);
-                    sheetView.RowHeader.Columns[0].Label = (row + 1).ToString(); // Rowヘッダ
-                    sheetView.Rows[row].Height = 22; // Rowの高さ
-                    sheetView.Rows[row].Resizable = false; // RowのResizableを禁止
-                    sheetView.Cells[row, _colTId].Text = string.Concat(row + 1);
-                    sheetView.Cells[row, _colTName].Text = licenseMasterVo.Name;
-                    sheetView.Cells[row, _colTLicenseNumber].Text = licenseMasterVo.LicenseNumber;
-                    sheetView.Cells[row, _colTLicenseExpirationDate].Text = licenseMasterVo.ExpirationDate.ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTIssuanceDate].Text = licenseMasterVo.DeliveryDate.ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTLicenseType].Text = string.Empty;
-                    sheetView.Cells[row, _colTPin].Text = "無";
-                    sheetView.Cells[row, _colTPicture].Text = "無";
-                    sheetView.Cells[row, _colTNameKana].Text = licenseMasterVo.NameKana;
-                } else {
-                    sheetView.Rows.Add(row, 1);
-                    sheetView.RowHeader.Columns[0].Label = (row + 1).ToString(); // Rowヘッダ
-                    sheetView.Rows[row].Height = 22; // Rowの高さ
-                    sheetView.Rows[row].Resizable = false; // RowのResizableを禁止
-                    sheetView.Cells[row, _colTId].Text = string.Concat(row + 1);
-                    sheetView.Cells[row, _colTName].Text = licenseMasterVo.Name;
-                    sheetView.Cells[row, _colTLicenseNumber].Text = licenseMasterVo.LicenseNumber;
-                    sheetView.Cells[row, _colTLicenseExpirationDate].Text = licenseMasterVo.ExpirationDate.ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTIssuanceDate].Text = licenseMasterVo.DeliveryDate.ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colTLicenseType].Text = string.Empty;
-                    sheetView.Cells[row, _colTPin].Text = "無";
-                    sheetView.Cells[row, _colTPicture].Text = "無";
-                    sheetView.Cells[row, _colTNameKana].Text = licenseMasterVo.NameKana;
+            int row = 0;                                                                                                                    // Rowインデックス
+            int id = 1;                                                                                                                     // ALC-RECでの通しID(245番、9999番を除く)
+            int lastId = listLicenseMasterVo.Max(x => x.UnionCode) + 1;                                                                     // 最終ID(245番を含ませる)
+            foreach (LicenseMasterVo licenseMasterVo in listLicenseMasterVo.OrderBy(x => x.UnionCode)) {
+                switch (licenseMasterVo.UnionCode) {
+                    case 0:
+                    case 254:                                                                                                               // 0番、254番のUnionCodeは未設定なので通しID(使用済UnionCodeの次から)をセットする
+                        sheetView.Rows.Add(row, 1);
+                        sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                        // Rowヘッダ
+                        sheetView.Rows[row].Height = 22;                                                                                    // Rowの高さ
+                        sheetView.Rows[row].Resizable = false;                                                                              // RowのResizableを禁止
+                        sheetView.Cells[row, _colTId].Text = lastId.ToString();
+                        sheetView.Cells[row, _colTName].Text = licenseMasterVo.Name;
+                        sheetView.Cells[row, _colTLicenseNumber].Text = licenseMasterVo.LicenseNumber;
+                        sheetView.Cells[row, _colTLicenseExpirationDate].Text = licenseMasterVo.ExpirationDate.ToString("yyyy/MM/dd");
+                        sheetView.Cells[row, _colTIssuanceDate].Text = licenseMasterVo.DeliveryDate.ToString("yyyy/MM/dd");
+                        sheetView.Cells[row, _colTLicenseType].Text = string.Empty;
+                        sheetView.Cells[row, _colTPin].Text = "無";
+                        sheetView.Cells[row, _colTPicture].Text = "無";
+                        sheetView.Cells[row, _colTNameKana].Text = licenseMasterVo.NameKana;
+                        row++;
+                        lastId++;
+                        break;
+                    default:
+                        sheetView.Rows.Add(row, 1);
+                        sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                        // Rowヘッダ
+                        sheetView.Rows[row].Height = 22;                                                                                    // Rowの高さ
+                        sheetView.Rows[row].Resizable = false;                                                                              // RowのResizableを禁止
+                        sheetView.Cells[row, _colTId].Text = string.Concat(licenseMasterVo.UnionCode);
+                        sheetView.Cells[row, _colTName].Text = licenseMasterVo.Name;
+                        sheetView.Cells[row, _colTLicenseNumber].Text = licenseMasterVo.LicenseNumber;
+                        sheetView.Cells[row, _colTLicenseExpirationDate].Text = licenseMasterVo.ExpirationDate.ToString("yyyy/MM/dd");
+                        sheetView.Cells[row, _colTIssuanceDate].Text = licenseMasterVo.DeliveryDate.ToString("yyyy/MM/dd");
+                        sheetView.Cells[row, _colTLicenseType].Text = string.Empty;
+                        sheetView.Cells[row, _colTPin].Text = "無";
+                        sheetView.Cells[row, _colTPicture].Text = "無";
+                        sheetView.Cells[row, _colTNameKana].Text = licenseMasterVo.NameKana;
+                        row++;
+                        break;
                 }
-                row++;
             }
+
+            /*
+             * 245番の予備を追加する
+             */
+            sheetView.Rows.Add(row, 1);
+            sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();
+            sheetView.Rows[row].Height = 22;
+            sheetView.Rows[row].Resizable = false;
+            sheetView.Cells[row, _colTId].Text = "245";
+            sheetView.Cells[row, _colTName].Text = "予備";
+            sheetView.Cells[row, _colTLicenseNumber].Text = string.Empty;
+            sheetView.Cells[row, _colTLicenseExpirationDate].Text = DateTime.Now.AddYears(2).ToString("yyyy/MM/dd");
+            sheetView.Cells[row, _colTIssuanceDate].Text = DateTime.Now.AddYears(-1).ToString("yyyy/MM/dd");
+            sheetView.Cells[row, _colTLicenseType].Text = "";
+            sheetView.Cells[row, _colTPin].Text = "無";
+            sheetView.Cells[row, _colTPicture].Text = "無";
+            sheetView.Cells[row, _colTNameKana].Text = "ヨビ";
+            row++;
             /*
              * 9999番の予備(点検用)を追加する
              */

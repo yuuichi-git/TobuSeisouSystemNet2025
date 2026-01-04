@@ -14,7 +14,7 @@ namespace Vo {
         private OracleConnection _oracleConnection;
         private readonly Ping _ping;
         private PingReply? _pingReply;
-        private string _serverName = "(Local)";
+        private string _serverName = string.Empty;
 
         /// <summary>
         /// コンストラクター
@@ -26,32 +26,39 @@ namespace Vo {
             _pingReply = null;
         }
 
-        /// <summary>
+        /// <summary> 
         /// ConnectSqlServer
         /// </summary>
-        /// <param name="localDbFlag">true:Localに接続 false:Networkに接続</param>
+        /// <param name="localDbConnectionFlag">true:Localに接続 false:Networkに接続</param>
         /// <returns>true:成功 false:失敗</returns>
-        public bool ConnectSqlServer(bool localDbFlag) {
-            switch (Environment.MachineName) {
-                case "LAPTOP-5J3QGU8A":
-                    if (!localDbFlag) {
-                        _pingReply = _ping.Send("192.168.1.20");
-                        if (_pingReply.Status == IPStatus.Success)
-                            _serverName = @"192.168.1.20";
-                    }
-                    break;
-                default:
-                    _serverName = @"192.168.1.20";
-                    break;
+        public bool ConnectSqlServer(bool localDbConnectionFlag) {
+            try {
+                switch (Environment.MachineName) {
+                    case "TSUJINOTE":                                                                           // 自分のPCの場合
+                        if (!localDbConnectionFlag) {
+                            _pingReply = _ping.Send("192.168.1.20");
+                            if (_pingReply.Status == IPStatus.Success)
+                                _serverName = @"192.168.1.20";
+                        } else {
+                            _serverName = @"(Local)";
+                        }
+                            break;
+                    default:                                                                                    // TSUJINOTE以外のPCは強制的にNetwork接続
+                        _serverName = @"192.168.1.20";
+                        break;
+                }
+            } catch (Exception exception) {
+                MessageBox.Show(exception.Message);                                                             // Pingでエラーが発生した場合
             }
+
             string connectionString = "Data Source = " + _serverName + ";"
                                     + "Initial Catalog = " + Resources.DataBaseName + ";"
                                     + "User ID = " + Resources.UserName + ";"
                                     + "Password = " + Resources.UserPassword + ";"
                                     + "MultipleActiveResultSets = True";
-            SqlServerConnection = new(connectionString);
+            this.SqlServerConnection = new(connectionString);
             try {
-                SqlServerConnection.Open();
+                this.SqlServerConnection.Open();
                 return true;
             } catch {
                 return false;
@@ -65,8 +72,8 @@ namespace Vo {
         /// <returns></returns>
         public bool DisConnectSqlServer() {
             try {
-                SqlServerConnection.Close();
-                SqlServerConnection.Dispose();
+                this.SqlServerConnection.Close();
+                this.SqlServerConnection.Dispose();
                 return true;
             } catch {
                 return false;
