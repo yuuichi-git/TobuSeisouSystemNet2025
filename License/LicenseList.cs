@@ -6,6 +6,7 @@ using Common;
 using Dao;
 
 using FarPoint.Win.Spread;
+using FarPoint.Win.Spread.Model;
 
 using Vo;
 
@@ -144,6 +145,16 @@ namespace License {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.MenuStripEx1.ChangeEnable(listString);
+
             this.InitializeSheetView(this.SheetViewList);
             this.InitializeSheetView(this.SheetViewToukaidenshi);
 
@@ -188,7 +199,7 @@ namespace License {
                     //アクティブシート上の全データをcsv形式ファイルに保存します
                     SheetViewToukaidenshi.SaveTextFile(new Directry().GetExcelDesktopPassCsv(fileName),
                                                        TextFileFlags.None,
-                                                       FarPoint.Win.Spread.Model.IncludeHeaders.ColumnHeadersCustomOnly,
+                                                       IncludeHeaders.ColumnHeadersCustomOnly,
                                                        Environment.NewLine,
                                                        ",",
                                                        "");
@@ -236,7 +247,7 @@ namespace License {
                         "ToolStripMenuItemHelp"
                      };
                     this.MenuStripEx1.ChangeEnable(listStringSheetViewList);
-                    this.TabControlExKana.Enabled = true;                                       // TabControlを有効にする
+                    this.TabControlExKana.Enabled = true;                                                                                   // TabControlを有効にする
                     break;
                 case "ToukaiDenshiCSV":
                     /*
@@ -250,7 +261,7 @@ namespace License {
                         "ToolStripMenuItemHelp"
                         };
                     this.MenuStripEx1.ChangeEnable(listStringSheetViewToukaidenshi);
-                    this.TabControlExKana.Enabled = false;                                      // TabControlを無効にする
+                    this.TabControlExKana.Enabled = false;                                                                                  // TabControlを無効にする
                     break;
             }
         }
@@ -261,17 +272,17 @@ namespace License {
         /// <param name="sheetView"></param>
         /// <returns>SheetView</returns>
         private SheetView InitializeSheetView(SheetView sheetView) {
-            SpreadList.AllowDragDrop = false;                                                   // DrugDropを禁止する
-            SpreadList.PaintSelectionHeader = false;                                            // ヘッダの選択状態をしない
+            SpreadList.AllowDragDrop = false;                                                                                               // DrugDropを禁止する
+            SpreadList.PaintSelectionHeader = false;                                                                                        // ヘッダの選択状態をしない
             SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
-            sheetView.AlternatingRows.Count = 2;                                                // 行スタイルを２行単位とします
-            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                          // 1行目の背景色を設定します
-            sheetView.AlternatingRows[1].BackColor = Color.White;                               // 2行目の背景色を設定します
-            sheetView.ColumnHeader.Rows[0].Height = 26;                                         // Columnヘッダの高さ
+            sheetView.AlternatingRows.Count = 2;                                                                                            // 行スタイルを２行単位とします
+            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                                                                      // 1行目の背景色を設定します
+            sheetView.AlternatingRows[1].BackColor = Color.White;                                                                           // 2行目の背景色を設定します
+            sheetView.ColumnHeader.Rows[0].Height = 26;                                                                                     // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = Color.White;
             sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
-            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                  // 行ヘッダのFont
-            sheetView.RowHeader.Columns[0].Width = 48;                                          // 行ヘッダの幅を変更します
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                                              // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 48;                                                                                      // 行ヘッダの幅を変更します
             sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
             sheetView.RemoveRows(0, sheetView.Rows.Count);
             return sheetView;
@@ -322,30 +333,30 @@ namespace License {
                 _listLicenseMasterVo = _listLicenseMasterVo.FindAll(x => x.RetirementFlag == false);
             foreach (LicenseMasterVo licenseMasterVo in _listLicenseMasterVo.OrderBy(x => x.NameKana)) {
                 sheetView.Rows.Add(row, 1);
-                sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                    // Rowヘッダ
-                sheetView.Rows[row].ForeColor = licenseMasterVo.RetirementFlag ? Color.Red : Color.Black;                       // 退職済のレコードのForeColorをセット
-                sheetView.Rows[row].Height = 20;                                                                                // Rowの高さ
-                sheetView.Rows[row].Resizable = false;                                                                          // RowのResizableを禁止
+                sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                                // Rowヘッダ
+                sheetView.Rows[row].ForeColor = licenseMasterVo.RetirementFlag ? Color.Red : Color.Black;                                   // 退職済のレコードのForeColorをセット
+                sheetView.Rows[row].Height = 20;                                                                                            // Rowの高さ
+                sheetView.Rows[row].Resizable = false;                                                                                      // RowのResizableを禁止
                 sheetView.Rows[row].Tag = licenseMasterVo;
-                sheetView.Cells[row, _colStaffCode].Text = licenseMasterVo.StaffCode.ToString("#####");                         // 社員コード
-                sheetView.Cells[row, _colName].Text = licenseMasterVo.Name;                                                     // 氏名
-                sheetView.Cells[row, _colDeliveryDate].Value = licenseMasterVo.DeliveryDate.Date;                               // 交付年月日
-                sheetView.Cells[row, _colExpirationDate].Value = licenseMasterVo.ExpirationDate.Date;                           // 有効期限
-                sheetView.Cells[row, _colLicenseCondition].Text = licenseMasterVo.LicenseCondition;                             // 条件等
-                sheetView.Cells[row, _colLicenseNumber].Text = licenseMasterVo.LicenseNumber;                                   // 免許証番号
-                sheetView.Cells[row, _colLarge].Text = licenseMasterVo.Large ? "○" : string.Empty;                            // 大型
-                sheetView.Cells[row, _colMedium].Text = licenseMasterVo.Medium ? "○" : string.Empty;                          // 中型
-                sheetView.Cells[row, _colQuasiMedium].Text = licenseMasterVo.QuasiMedium ? "○" : string.Empty;                // 準中型
-                sheetView.Cells[row, _colOrdinary].Text = licenseMasterVo.Ordinary ? "○" : string.Empty;                      // 普通
-                sheetView.Cells[row, _colBigSpecial].Text = licenseMasterVo.BigSpecial ? "○" : string.Empty;                  // 大特
-                sheetView.Cells[row, _colBigAutoBike].Text = licenseMasterVo.BigAutoBike ? "○" : string.Empty;                // 大自二
-                sheetView.Cells[row, _colOrdinaryAutoBike].Text = licenseMasterVo.OrdinaryAutoBike ? "○" : string.Empty;      // 普自二
-                sheetView.Cells[row, _colSmallSpecial].Text = licenseMasterVo.SmallSpecial ? "○" : string.Empty;              // 小特
-                sheetView.Cells[row, _colWithARaw].Text = licenseMasterVo.WithARaw ? "○" : string.Empty;                      // 原付
+                sheetView.Cells[row, _colStaffCode].Text = licenseMasterVo.StaffCode.ToString("#####");                                     // 社員コード
+                sheetView.Cells[row, _colName].Text = licenseMasterVo.Name;                                                                 // 氏名
+                sheetView.Cells[row, _colDeliveryDate].Value = licenseMasterVo.DeliveryDate.Date;                                           // 交付年月日
+                sheetView.Cells[row, _colExpirationDate].Value = licenseMasterVo.ExpirationDate.Date;                                       // 有効期限
+                sheetView.Cells[row, _colLicenseCondition].Text = licenseMasterVo.LicenseCondition;                                         // 条件等
+                sheetView.Cells[row, _colLicenseNumber].Text = licenseMasterVo.LicenseNumber;                                               // 免許証番号
+                sheetView.Cells[row, _colLarge].Text = licenseMasterVo.Large ? "○" : string.Empty;                                          // 大型
+                sheetView.Cells[row, _colMedium].Text = licenseMasterVo.Medium ? "○" : string.Empty;                                        // 中型
+                sheetView.Cells[row, _colQuasiMedium].Text = licenseMasterVo.QuasiMedium ? "○" : string.Empty;                              // 準中型
+                sheetView.Cells[row, _colOrdinary].Text = licenseMasterVo.Ordinary ? "○" : string.Empty;                                    // 普通
+                sheetView.Cells[row, _colBigSpecial].Text = licenseMasterVo.BigSpecial ? "○" : string.Empty;                                // 大特
+                sheetView.Cells[row, _colBigAutoBike].Text = licenseMasterVo.BigAutoBike ? "○" : string.Empty;                              // 大自二
+                sheetView.Cells[row, _colOrdinaryAutoBike].Text = licenseMasterVo.OrdinaryAutoBike ? "○" : string.Empty;                    // 普自二
+                sheetView.Cells[row, _colSmallSpecial].Text = licenseMasterVo.SmallSpecial ? "○" : string.Empty;                            // 小特
+                sheetView.Cells[row, _colWithARaw].Text = licenseMasterVo.WithARaw ? "○" : string.Empty;                                    // 原付
                 row++;
             }
-            SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                  // 先頭行（列）インデックスをセット
-            SpreadList.ResumeLayout();                                                                                          // Spread 活性化
+            SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                              // 先頭行（列）インデックスをセット
+            SpreadList.ResumeLayout();                                                                                                      // Spread 活性化
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
         }
 

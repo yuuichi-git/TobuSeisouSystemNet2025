@@ -7,7 +7,7 @@ using Vo;
 
 namespace ControlEx {
     public partial class ComboBoxExCarMaster : ComboBox {
-        private List<ComboBoxExCarMasterVo> _listComboBoxExCarMasterVo;
+        private readonly List<ComboBoxExCarMasterVo> _listComboBoxExCarMasterVo;
 
         /// <summary>
         /// コンストラクター
@@ -29,10 +29,10 @@ namespace ControlEx {
         /// <param name="listCarMasterVo"></param>
         /// <param name="doorFlag">true:Door番号を表示する false:Door番号を表示しない</param>
         public void SetItems(List<CarMasterVo> listCarMasterVo, bool doorFlag) {
-            this.AutoCompleteMode = AutoCompleteMode.SuggestAppend;                                                         // オートコンプリートモードを設定
-            this.AutoCompleteSource = AutoCompleteSource.ListItems;                                                         // オートコンプリートソースを設定
-            this.DisplayMember = "RegistrationNumber";                                                                      // 表示するプロパティ名
-            this.ValueMember = "CarMasterVo";                                                                               // 値となるプロパティ名
+            this.AutoCompleteMode = AutoCompleteMode.SuggestAppend;                                                                 // オートコンプリートモードを設定
+            this.AutoCompleteSource = AutoCompleteSource.ListItems;                                                                 // オートコンプリートソースを設定
+            this.DisplayMember = "RegistrationNumber";                                                                              // 表示するプロパティ名
+            this.ValueMember = "CarMasterVo";                                                                                       // 値となるプロパティ名
 
             foreach (CarMasterVo carMasterVo in listCarMasterVo) {
                 ComboBoxExCarMasterVo comboBoxExCarMasterVo = null;
