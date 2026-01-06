@@ -106,27 +106,29 @@ namespace Dao {
         public List<StatusOfResidenceMasterVo> SelectAllStatusOfResidenceMaster() {
             List<StatusOfResidenceMasterVo> listStatusOfResidenceMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT StaffCode," +
-                                            "StaffNameKana," +
-                                            "StaffName," +
-                                            "BirthDate," +
-                                            "Gender," +
-                                            "Nationality," +
-                                            "Address," +
-                                            "StatusOfResidence," +
-                                            "WorkLimit," +
-                                            "PeriodDate," +
-                                            "DeadlineDate," +
-                                            //"PictureHead," +
-                                            //"PictureTail," +
-                                            "InsertPcName," +
-                                            "InsertYmdHms," +
-                                            "UpdatePcName," +
-                                            "UpdateYmdHms," +
-                                            "DeletePcName," +
-                                            "DeleteYmdHms," +
-                                            "DeleteFlag " +
-                                     "FROM H_StatusOfResidenceMaster";
+            sqlCommand.CommandText = "SELECT H_StatusOfResidenceMaster.StaffCode," +
+                                            "H_StatusOfResidenceMaster.StaffNameKana," +
+                                            "H_StatusOfResidenceMaster.StaffName," +
+                                            "H_StatusOfResidenceMaster.BirthDate," +
+                                            "H_StatusOfResidenceMaster.Gender," +
+                                            "H_StatusOfResidenceMaster.Nationality," +
+                                            "H_StatusOfResidenceMaster.Address," +
+                                            "H_StatusOfResidenceMaster.StatusOfResidence," +
+                                            "H_StatusOfResidenceMaster.WorkLimit," +
+                                            "H_StatusOfResidenceMaster.PeriodDate," +
+                                            "H_StatusOfResidenceMaster.DeadlineDate," +
+                                            //"H_StatusOfResidenceMaster.PictureHead," +
+                                            //"H_StatusOfResidenceMaster.PictureTail," +
+                                            "H_StatusOfResidenceMaster.InsertPcName," +
+                                            "H_StatusOfResidenceMaster.InsertYmdHms," +
+                                            "H_StatusOfResidenceMaster.UpdatePcName," +
+                                            "H_StatusOfResidenceMaster.UpdateYmdHms," +
+                                            "H_StatusOfResidenceMaster.DeletePcName," +
+                                            "H_StatusOfResidenceMaster.DeleteYmdHms," +
+                                            "H_StatusOfResidenceMaster.DeleteFlag," +
+                                            "H_StaffMaster.RetirementFlag " +                                                       // StaffMasterの退職フラグを取得(StatusOfResidenceListで使ってる)
+                                     "FROM H_StatusOfResidenceMaster " +
+                                     "LEFT OUTER JOIN H_StaffMaster ON H_StatusOfResidenceMaster.StaffCode = H_StaffMaster.StaffCode";
             using (var sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
@@ -150,6 +152,7 @@ namespace Dao {
                     statusOfResidenceMasterVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
                     statusOfResidenceMasterVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
                     statusOfResidenceMasterVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    statusOfResidenceMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
                     listStatusOfResidenceMasterVo.Add(statusOfResidenceMasterVo);
                 }
             }

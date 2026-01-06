@@ -13,8 +13,6 @@ using Vo;
 
 namespace StatusOfResidence {
     public partial class StatusOfResidenceList : Form {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
-        private readonly DateUtility _dateUtility = new();
         private readonly ScreenForm _screenForm = new();
         /*
          * Dao
@@ -81,7 +79,7 @@ namespace StatusOfResidence {
              */
             _connectionVo = connectionVo;
             /*
-             * 
+             * InitializeControl
              */
             InitializeComponent();
             /*
@@ -152,19 +150,19 @@ namespace StatusOfResidence {
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
             foreach (StatusOfResidenceMasterVo statusOfResidenceMasterVo in listStatusOfResidenceMasterVo.OrderBy(x => x.DeadlineDate)) {
                 this.SheetViewList.Rows.Add(rowCount, 1);
-                this.SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                      // Rowヘッダ
-                this.SheetViewList.Rows[rowCount].ForeColor = statusOfResidenceMasterVo.DeleteFlag ? Color.Red : Color.Black;   // 退職済のレコードのForeColorをセット
+                this.SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                          // Rowヘッダ
+                this.SheetViewList.Rows[rowCount].ForeColor = statusOfResidenceMasterVo.RetirementFlag ? Color.Red : Color.Black;   // 退職済のレコードのForeColorをセット
                 this.SheetViewList.Rows[rowCount].Tag = statusOfResidenceMasterVo;
-                this.SheetViewList.Cells[rowCount, _colStaffName].Text = statusOfResidenceMasterVo.StaffName;                   // 従事者名
-                this.SheetViewList.Cells[rowCount, _colStaffNameKana].Text = statusOfResidenceMasterVo.StaffNameKana;           // 従事者名カナ
-                this.SheetViewList.Cells[rowCount, _colBirthDate].Value = statusOfResidenceMasterVo.BirthDate;                  // 生年月日
-                this.SheetViewList.Cells[rowCount, _colGender].Text = statusOfResidenceMasterVo.Gender;                         // 性別
-                this.SheetViewList.Cells[rowCount, _colNationality].Text = statusOfResidenceMasterVo.Nationality;               // 国籍・地域
-                this.SheetViewList.Cells[rowCount, _colAddress].Text = statusOfResidenceMasterVo.Address;                       // 住居地
-                this.SheetViewList.Cells[rowCount, _colStatusOfResidence].Text = statusOfResidenceMasterVo.StatusOfResidence;   // 在留資格
-                this.SheetViewList.Cells[rowCount, _colWorkLimit].Text = statusOfResidenceMasterVo.WorkLimit;                   // 就労制限の有無
-                this.SheetViewList.Cells[rowCount, _colPeriodDate].Value = statusOfResidenceMasterVo.PeriodDate;                // 在留期間
-                this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;            // 有効期限
+                this.SheetViewList.Cells[rowCount, _colStaffName].Text = statusOfResidenceMasterVo.StaffName;                       // 従事者名
+                this.SheetViewList.Cells[rowCount, _colStaffNameKana].Text = statusOfResidenceMasterVo.StaffNameKana;               // 従事者名カナ
+                this.SheetViewList.Cells[rowCount, _colBirthDate].Value = statusOfResidenceMasterVo.BirthDate;                      // 生年月日
+                this.SheetViewList.Cells[rowCount, _colGender].Text = statusOfResidenceMasterVo.Gender;                             // 性別
+                this.SheetViewList.Cells[rowCount, _colNationality].Text = statusOfResidenceMasterVo.Nationality;                   // 国籍・地域
+                this.SheetViewList.Cells[rowCount, _colAddress].Text = statusOfResidenceMasterVo.Address;                           // 住居地
+                this.SheetViewList.Cells[rowCount, _colStatusOfResidence].Text = statusOfResidenceMasterVo.StatusOfResidence;       // 在留資格
+                this.SheetViewList.Cells[rowCount, _colWorkLimit].Text = statusOfResidenceMasterVo.WorkLimit;                       // 就労制限の有無
+                this.SheetViewList.Cells[rowCount, _colPeriodDate].Value = statusOfResidenceMasterVo.PeriodDate;                    // 在留期間
+                this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;                // 有効期限
                 rowCount++;
             }
 
