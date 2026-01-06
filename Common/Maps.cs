@@ -17,7 +17,7 @@ namespace Common {
             var addressSplit = new AddressSplit(selectedAddress);
             var address = string.Concat(addressSplit.PrefecturesAddress, addressSplit.CityAddress, addressSplit.OtherAddress);
 
-            var processStartInfo = new ProcessStartInfo();
+            ProcessStartInfo processStartInfo = new();
             processStartInfo.FileName = "https://www.google.co.jp/maps/search/" + address;
             processStartInfo.UseShellExecute = true;
             try {

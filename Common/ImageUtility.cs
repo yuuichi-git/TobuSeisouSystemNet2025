@@ -10,8 +10,11 @@ namespace Common {
         /// <returns></returns>
         public static Image ByteArrayToImage(byte[] arrayByte) {
             ImageConverter imgconv = new ImageConverter();
-            Image img = (Image)imgconv.ConvertFrom(arrayByte);
-            return img;
+            object? obj = imgconv.ConvertFrom(arrayByte);
+            if (obj is Image img) {
+                return img;
+            }
+            throw new InvalidOperationException("バイト配列から画像への変換に失敗しました。");
         }
 
         /// <summary>
@@ -21,8 +24,11 @@ namespace Common {
         /// <returns></returns>
         public static byte[] ImageToByteArray(Image image) {
             ImageConverter imgconv = new ImageConverter();
-            byte[] b = (byte[])imgconv.ConvertTo(image, typeof(byte[]));
-            return b;
+            object? obj = imgconv.ConvertTo(image, typeof(byte[]));
+            if (obj is byte[] b) {
+                return b;
+            }
+            throw new InvalidOperationException("画像からバイト配列への変換に失敗しました。");
         }
     }
 }

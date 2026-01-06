@@ -25,7 +25,7 @@ namespace Common {
                         objectValue = 0;
                         break;
                     case "String":
-                        objectValue = "";
+                        objectValue = string.Empty;
                         break;
                     case "Decimal":
                         objectValue = 0.0;

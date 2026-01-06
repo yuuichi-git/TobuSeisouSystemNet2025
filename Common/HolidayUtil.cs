@@ -3,7 +3,6 @@
  * 内閣府のデータから祝日一覧を取得する
  * https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv
  */
-using System.Net;
 using System.Text;
 
 namespace Common {

@@ -4,11 +4,11 @@
 using System.Data.SqlClient;
 
 using Common;
+
 using Vo;
 
 namespace Dao {
     public class BelongsMasterDao {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DefaultValue _defaultValue = new();
         /*
          * Vo

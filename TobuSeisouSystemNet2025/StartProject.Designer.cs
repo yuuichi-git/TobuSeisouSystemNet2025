@@ -270,7 +270,7 @@
             this.TreeViewEx1.Name = "TreeViewEx1";
             treeNode1.Name = "NodeISO0000";
             treeNode1.Text = "ファイル及びデータへのショートカット";
-            treeNode2.Name = "ノード4";
+            treeNode2.Name = "NodeISO0000";
             treeNode2.Text = "　　環境マネジメントマニュアル";
             treeNode3.Name = "NodeISO0100";
             treeNode3.Text = "１　適用規格";

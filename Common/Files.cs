@@ -22,7 +22,7 @@ namespace Common {
         /// </summary>
         /// <param name="filePath"></param>
         public void OpenFolder(string filePath) {
-            var processStartInfo = new ProcessStartInfo();
+            ProcessStartInfo processStartInfo = new ();
             processStartInfo.UseShellExecute = true;
             processStartInfo.FileName = filePath;
             Process.Start(processStartInfo);

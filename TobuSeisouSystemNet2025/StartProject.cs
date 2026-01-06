@@ -601,8 +601,10 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0400": // 組織の状況
                         break;
                     case "NodeISO0410": // 組織及びその状況の理解
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\④組織の状況");
                         break;
                     case "NodeISO0420": // 利害関係者のニーズ及び期待の理解
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\④組織の状況\④-2 利害関係者のニーズ及び期待の理解");
                         break;
                     case "NodeISO0430": // 環境マネジメントシステムの適用範囲の決定
                         break;
@@ -613,6 +615,7 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0510": // リーダーシップ及びコミットメント
                         break;
                     case "NodeISO0520": // 環境方針
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑤リーダーシップ\⑤-2 環境方針");
                         break;
                     case "NodeISO0530": // 組織の役割、責任及び権限
                         break;
@@ -672,8 +675,10 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0820": // 緊急事態への準備及び対応
                         break;
                     case "NodeISO0900": // パフォーマンス評価
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価");
                         break;
                     case "NodeISO0910": // 監視、測定、分析及び評価
+                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価");
                         break;
                     case "NodeISO0911": // 一般
                         files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価\⑨-1-1 一般");
