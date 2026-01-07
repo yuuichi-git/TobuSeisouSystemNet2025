@@ -223,6 +223,11 @@ namespace TobuSeisouSystemNet2025 {
             }
         }
 
+        /*
+         * 多重起動をコントロールするためのフィールド
+         */
+        private VehicleDispatchBoard vehicleDispatchBoard = null;
+
         /// <summary>
         /// 接続先がSQLServerの場合
         /// </summary>
@@ -233,9 +238,13 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
                     switch ((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
-                            VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
-                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
-                            vehicleDispatchBoard.Show();
+                            if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
+                                vehicleDispatchBoard = new(_connectionVo);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
+                                vehicleDispatchBoard.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（VehicleDispatchBoard）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                             break;
                         case "FirstRollColl":                                                                                                   // 配車表
                             FirstRollColl firstRollColl = new(_connectionVo);

@@ -25,7 +25,6 @@ namespace StockBox {
         /*
          * Vo
          */
-        private readonly ConnectionVo _connectionVo;
         private List<SetMasterVo> _listSetMasterVoForMasterData;
         private List<CarMasterVo> _listCarMasterVoForMasterData;
         private List<StaffMasterVo> _listStaffMasterVoForMasterData;
@@ -50,7 +49,6 @@ namespace StockBox {
             /*
              * Vo
              */
-            _connectionVo = connectionVo;
             _listSetMasterVoForMasterData = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVoForMasterData = _carMasterDao.SelectAllCarMaster();
             _listStaffMasterVoForMasterData = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
@@ -70,7 +68,7 @@ namespace StockBox {
                 "ToolStripMenuItemExit",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
             /*
              * StockBoxPanelBase
              */
@@ -84,7 +82,7 @@ namespace StockBox {
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
