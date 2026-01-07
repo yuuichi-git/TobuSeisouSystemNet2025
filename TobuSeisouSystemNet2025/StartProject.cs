@@ -227,6 +227,7 @@ namespace TobuSeisouSystemNet2025 {
          * 多重起動をコントロールするためのフィールド
          */
         private VehicleDispatchBoard vehicleDispatchBoard = null;
+        private CarList carList = null;
         private StaffList staffList = null;
 
         /// <summary>
@@ -262,9 +263,13 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CarList":                                                                                                         // 車両台帳
-                            CarList carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
-                            carList.Show();
+                            if (carList is null || carList.IsDisposed) {
+                                carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
+                                carList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（CarList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                             break;
                         case "CarWorkingDays":                                                                                                  // 車両稼働一覧
                             CarWorkingDays carWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
