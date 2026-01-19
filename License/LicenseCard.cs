@@ -13,20 +13,12 @@ namespace License {
          * Dao
          */
         private readonly LicenseMasterDao _licenseMasterDao;
-        /*
-         * Vo
-         */
-        private readonly ConnectionVo _connectionVo;
 
         public LicenseCard(ConnectionVo connectionVo, int staffCode) {
             /*
              * Dao
              */
             _licenseMasterDao = new(connectionVo);
-            /*
-             * Vo
-             */
-            _connectionVo = connectionVo;
             /*
              * InitializeControl
              */
@@ -41,7 +33,7 @@ namespace License {
                 "ToolStripMenuItemPrintB5",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.ChangeEnable(listString);
 
             this.PutPictureHead(_licenseMasterDao.SelectOnePictureHead(staffCode));
             this.PutPictureTail(_licenseMasterDao.SelectOnePictureTail(staffCode));
@@ -50,7 +42,7 @@ namespace License {
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>

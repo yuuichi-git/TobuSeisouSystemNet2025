@@ -34,8 +34,8 @@ namespace Staff {
          * Vo
          */
         private readonly ConnectionVo _connectionVo;
-        private List<StaffMasterVo>? _listStaffMasterVo;
-        private List<StaffMasterVo>? _findListStaffMasterVo;
+        private List<StaffMasterVo> _listStaffMasterVo;
+        private List<StaffMasterVo> _findListStaffMasterVo;
         /*
          * Dictionary
          */
@@ -334,7 +334,7 @@ namespace Staff {
             // Rowを削除する
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo>? _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
                 "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
@@ -404,7 +404,7 @@ namespace Staff {
             // Rowを削除する
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo>? _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
                 "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
@@ -473,7 +473,7 @@ namespace Staff {
             // Rowを削除する
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo>? _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
+            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
                 "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
@@ -527,7 +527,7 @@ namespace Staff {
             // Rowを削除する
             if (sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo>? _findListStaffMasterVo = this.TabControlEx1.SelectedTab.Text switch {
+            List<StaffMasterVo> _findListStaffMasterVo = this.TabControlEx1.SelectedTab.Text switch {
                 "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
                 "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
                 "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),

@@ -521,8 +521,8 @@ namespace Staff {
             TextBoxExRemarks.Text = staffMasterVo.Remarks;
             TextBoxExTelephoneNumber.Text = staffMasterVo.TelephoneNumber;
             TextBoxExCellphoneNumber.Text = staffMasterVo.CellphoneNumber;
-            PictureBoxExStaff.Image = staffMasterVo.Picture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(staffMasterVo.Picture) : null;
-            PictureBoxExStamp.Image = staffMasterVo.StampPicture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(staffMasterVo.StampPicture) : null;
+            PictureBoxExStaff.Image = staffMasterVo.Picture.Length != 0 ? (Image)new ImageConverter().ConvertFrom(staffMasterVo.Picture) : null;
+            PictureBoxExStamp.Image = staffMasterVo.StampPicture.Length != 0 ? (Image)new ImageConverter().ConvertFrom(staffMasterVo.StampPicture) : null;
             /*
              * HGroupBoxExDrive
              * 運転に関する情報

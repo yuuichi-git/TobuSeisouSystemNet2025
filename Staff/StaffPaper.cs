@@ -221,7 +221,7 @@ namespace Staff {
             sheetView.Cells[15, 5].Text = _staffMasterVo.Remarks; // 変更後住所
             sheetView.Cells[17, 7].Text = _staffMasterVo.TelephoneNumber; // 電話番号
             sheetView.Cells[17, 21].Text = _staffMasterVo.CellphoneNumber; // 携帯電話
-            sheetView.Cells[10, 32].Value = _staffMasterVo.Picture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(_staffMasterVo.Picture) : null;
+            sheetView.Cells[10, 32].Value = _staffMasterVo.Picture.Length != 0 ? (Image)new ImageConverter().ConvertFrom(_staffMasterVo.Picture) : null;
             sheetView.Cells[19, 35].Text = _staffMasterVo.BloodType;//血液型
             sheetView.Cells[21, 9].Value = _staffMasterVo.SelectionDate.Date != _defaultDateTime.Date ? _staffMasterVo.SelectionDate.Date : null;//運転者に選任された日
             sheetView.Cells[23, 9].Value = _staffMasterVo.NotSelectionDate.Date != _defaultDateTime.Date ? _staffMasterVo.NotSelectionDate.Date : null;//運転者でなくなった日
@@ -236,7 +236,7 @@ namespace Staff {
             }
             sheetView.Cells[27, 7].Text = _licenseMasterVo.LicenseNumber;//免許証番号
             sheetView.Cells[27, 17].Text = _licenseMasterVo.LicenseCondition;//条件等
-            string? kind = null;
+            string kind = null;
             if (_licenseMasterVo.Large)
                 kind += "(大型)";
             if (_licenseMasterVo.Medium)

@@ -881,9 +881,10 @@ namespace VehicleDispatch {
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffPaper);
                     staffPaper.ShowDialog(this);
                     break;
+                // 免許証
                 case "ToolStripMenuItemStaffLicense":
                     LicenseCard licenseCard = new(_connectionVo, ((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.StaffCode);
-                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), licenseCard);
+                    _screenForm.SetPositionInScreen(licenseCard);
                     licenseCard.ShowDialog(this);
                     break;
                 // 代番

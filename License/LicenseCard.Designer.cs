@@ -103,6 +103,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LicenseCard";
+            this.StartPosition = FormStartPosition.Manual;
             this.Text = "LicenseCard";
             this.FormClosing += this.LicenseCard_FormClosing;
             this.TableLayoutPanelExBase.ResumeLayout(false);

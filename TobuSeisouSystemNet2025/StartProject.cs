@@ -263,7 +263,7 @@ namespace TobuSeisouSystemNet2025 {
                             if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
                                 vehicleDispatchBoard = new(_connectionVo);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
-                                vehicleDispatchBoard.Show(this);
+                                vehicleDispatchBoard.Show();
                             } else {
                                 MessageBox.Show("このプログラム（VehicleDispatchBoard）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
@@ -277,7 +277,7 @@ namespace TobuSeisouSystemNet2025 {
                             if (staffList is null || staffList.IsDisposed) {
                                 staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
-                                staffList.Show(this);
+                                staffList.Show();
                             } else {
                                 MessageBox.Show("このプログラム（StaffList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
@@ -286,7 +286,7 @@ namespace TobuSeisouSystemNet2025 {
                             if (carList is null || carList.IsDisposed) {
                                 carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
-                                carList.Show(this);
+                                carList.Show();
                             } else {
                                 MessageBox.Show("このプログラム（CarList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
