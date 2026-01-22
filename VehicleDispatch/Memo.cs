@@ -15,13 +15,9 @@ namespace VehicleDispatch {
          * Dao
          */
         private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
-        /*
-         * Vo
-         */
-        private ConnectionVo _connectionVo;
 
         /// <summary>
-        /// 
+        /// コンストラクタ
         /// </summary>
         public Memo(ConnectionVo connectionVo, Control control) {
             _control = control;
@@ -29,11 +25,6 @@ namespace VehicleDispatch {
              * Dao
              */
             _vehicleDispatchDetailDao = new(connectionVo);
-            /*
-             * Vo
-             */
-            _connectionVo = connectionVo;
-
             /*
              * InitializeControl
              */
@@ -99,9 +90,9 @@ namespace VehicleDispatch {
         /// <param name="e"></param>
         private void ButtonExTimeStamp_Click(object sender, EventArgs e) {
             if (this.TextBoxExMemo.Text.Length > 0) {
-                TextBoxExMemo.Text += DateTime.Now.ToString(Environment.NewLine + "yyyy年MM月dd日 HH時mm分ss秒：");
+                this.TextBoxExMemo.Text += DateTime.Now.ToString(Environment.NewLine + "yyyy年MM月dd日 HH時mm分ss秒：");
             } else {
-                TextBoxExMemo.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時mm分ss秒：");
+                this.TextBoxExMemo.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時mm分ss秒：");
             }
         }
 

@@ -7,7 +7,7 @@ namespace Vo {
      */
     [Serializable] // ←DeepCopyする場合には必要
     public class StaffMasterVo {
-        private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
 
         private int _staffCode;
         private int _unionCode;

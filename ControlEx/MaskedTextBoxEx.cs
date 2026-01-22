@@ -7,10 +7,6 @@ namespace ControlEx {
             InitializeComponent();
         }
 
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -23,6 +19,10 @@ namespace ControlEx {
             SendKeys.Send("+{END}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e) {
             switch (e.KeyCode) {
                 case Keys.Enter:

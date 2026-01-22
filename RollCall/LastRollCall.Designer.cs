@@ -26,7 +26,6 @@
             this.LabelExSetName = new ControlEx.LabelEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
-            this.MaskedTextBoxExFirstRollCallTime = new ControlEx.MaskedTextBoxEx();
             this.labelEx3 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.labelEx5 = new ControlEx.LabelEx();
@@ -38,12 +37,13 @@
             this.CheckBoxExDelete = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.ButtonEx();
             this.NumericUpDownExLastPlantCount = new ControlEx.NumericUpDownEx();
-            this.MaskedTextBoxExLastPlantTime = new ControlEx.MaskedTextBoxEx();
             this.ComboBoxExLastPlantName = new ControlEx.ComboBoxEx();
-            this.MaskedTextBoxExLastRollCallTime = new ControlEx.MaskedTextBoxEx();
             this.NumericUpDownExFirstOdoMeter = new ControlEx.NumericUpDownEx();
             this.NumericUpDownExLastOdoMeter = new ControlEx.NumericUpDownEx();
             this.NumericUpDownExOilAmount = new ControlEx.NumericUpDownEx();
+            this.CcTimeFirstRollCallTime = new ControlEx.CcTime();
+            this.CcTimeLastPlantTime = new ControlEx.CcTime();
+            this.CcTimeLastRollCallTime = new ControlEx.CcTime();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLastPlantCount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFirstOdoMeter).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLastOdoMeter).BeginInit();
@@ -82,18 +82,6 @@
             this.DateTimePickerExOperationDate.Size = new Size(196, 25);
             this.DateTimePickerExOperationDate.TabIndex = 0;
             this.DateTimePickerExOperationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // MaskedTextBoxExFirstRollCallTime
-            // 
-            this.MaskedTextBoxExFirstRollCallTime.Font = new Font("Yu Gothic UI", 9.75F);
-            this.MaskedTextBoxExFirstRollCallTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExFirstRollCallTime.Location = new Point(148, 88);
-            this.MaskedTextBoxExFirstRollCallTime.Name = "MaskedTextBoxExFirstRollCallTime";
-            this.MaskedTextBoxExFirstRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExFirstRollCallTime.Size = new Size(104, 25);
-            this.MaskedTextBoxExFirstRollCallTime.TabIndex = 1;
-            this.MaskedTextBoxExFirstRollCallTime.TextAlign = HorizontalAlignment.Right;
-            this.MaskedTextBoxExFirstRollCallTime.ValidatingType = typeof(DateTime);
             // 
             // labelEx3
             // 
@@ -200,17 +188,6 @@
             this.NumericUpDownExLastPlantCount.TabIndex = 2;
             this.NumericUpDownExLastPlantCount.TextAlign = HorizontalAlignment.Right;
             // 
-            // MaskedTextBoxExLastPlantTime
-            // 
-            this.MaskedTextBoxExLastPlantTime.Font = new Font("Yu Gothic UI", 9.75F);
-            this.MaskedTextBoxExLastPlantTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExLastPlantTime.Location = new Point(148, 184);
-            this.MaskedTextBoxExLastPlantTime.Name = "MaskedTextBoxExLastPlantTime";
-            this.MaskedTextBoxExLastPlantTime.Size = new Size(104, 25);
-            this.MaskedTextBoxExLastPlantTime.TabIndex = 4;
-            this.MaskedTextBoxExLastPlantTime.TextAlign = HorizontalAlignment.Right;
-            this.MaskedTextBoxExLastPlantTime.ValidatingType = typeof(DateTime);
-            // 
             // ComboBoxExLastPlantName
             // 
             this.ComboBoxExLastPlantName.Font = new Font("Yu Gothic UI", 9.75F);
@@ -220,17 +197,6 @@
             this.ComboBoxExLastPlantName.Name = "ComboBoxExLastPlantName";
             this.ComboBoxExLastPlantName.Size = new Size(196, 25);
             this.ComboBoxExLastPlantName.TabIndex = 3;
-            // 
-            // MaskedTextBoxExLastRollCallTime
-            // 
-            this.MaskedTextBoxExLastRollCallTime.Font = new Font("Yu Gothic UI", 9.75F);
-            this.MaskedTextBoxExLastRollCallTime.ImeMode = ImeMode.Off;
-            this.MaskedTextBoxExLastRollCallTime.Location = new Point(148, 216);
-            this.MaskedTextBoxExLastRollCallTime.Name = "MaskedTextBoxExLastRollCallTime";
-            this.MaskedTextBoxExLastRollCallTime.Size = new Size(104, 25);
-            this.MaskedTextBoxExLastRollCallTime.TabIndex = 5;
-            this.MaskedTextBoxExLastRollCallTime.TextAlign = HorizontalAlignment.Right;
-            this.MaskedTextBoxExLastRollCallTime.ValidatingType = typeof(DateTime);
             // 
             // NumericUpDownExFirstOdoMeter
             // 
@@ -261,24 +227,62 @@
             this.NumericUpDownExOilAmount.Font = new Font("Yu Gothic UI", 9.75F);
             this.NumericUpDownExOilAmount.ImeMode = ImeMode.Off;
             this.NumericUpDownExOilAmount.Location = new Point(148, 312);
-            this.NumericUpDownExOilAmount.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             this.NumericUpDownExOilAmount.Name = "NumericUpDownExOilAmount";
             this.NumericUpDownExOilAmount.Size = new Size(104, 25);
             this.NumericUpDownExOilAmount.TabIndex = 8;
-            this.NumericUpDownExOilAmount.TabStop = false;
             this.NumericUpDownExOilAmount.TextAlign = HorizontalAlignment.Right;
+            // 
+            // CcTimeFirstRollCallTime
+            // 
+            this.CcTimeFirstRollCallTime.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTimeFirstRollCallTime.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            this.CcTimeFirstRollCallTime.Location = new Point(148, 88);
+            this.CcTimeFirstRollCallTime.Mask = "00:00";
+            this.CcTimeFirstRollCallTime.Name = "CcTimeFirstRollCallTime";
+            this.CcTimeFirstRollCallTime.RejectInputOnFirstFailure = true;
+            this.CcTimeFirstRollCallTime.Size = new Size(104, 25);
+            this.CcTimeFirstRollCallTime.TabIndex = 1;
+            this.CcTimeFirstRollCallTime.TextAlign = HorizontalAlignment.Right;
+            this.CcTimeFirstRollCallTime.ValidatingType = typeof(DateTime);
+            // 
+            // CcTimeLastPlantTime
+            // 
+            this.CcTimeLastPlantTime.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTimeLastPlantTime.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            this.CcTimeLastPlantTime.Location = new Point(148, 184);
+            this.CcTimeLastPlantTime.Mask = "00:00";
+            this.CcTimeLastPlantTime.Name = "CcTimeLastPlantTime";
+            this.CcTimeLastPlantTime.RejectInputOnFirstFailure = true;
+            this.CcTimeLastPlantTime.Size = new Size(104, 25);
+            this.CcTimeLastPlantTime.TabIndex = 12;
+            this.CcTimeLastPlantTime.TextAlign = HorizontalAlignment.Right;
+            this.CcTimeLastPlantTime.ValidatingType = typeof(DateTime);
+            // 
+            // CcTimeLastRollCallTime
+            // 
+            this.CcTimeLastRollCallTime.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTimeLastRollCallTime.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            this.CcTimeLastRollCallTime.Location = new Point(148, 216);
+            this.CcTimeLastRollCallTime.Mask = "00:00";
+            this.CcTimeLastRollCallTime.Name = "CcTimeLastRollCallTime";
+            this.CcTimeLastRollCallTime.RejectInputOnFirstFailure = true;
+            this.CcTimeLastRollCallTime.Size = new Size(104, 25);
+            this.CcTimeLastRollCallTime.TabIndex = 13;
+            this.CcTimeLastRollCallTime.TextAlign = HorizontalAlignment.Right;
+            this.CcTimeLastRollCallTime.ValidatingType = typeof(DateTime);
             // 
             // LastRollCall
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(433, 409);
+            this.Controls.Add(this.CcTimeLastRollCallTime);
+            this.Controls.Add(this.CcTimeLastPlantTime);
+            this.Controls.Add(this.CcTimeFirstRollCallTime);
             this.Controls.Add(this.NumericUpDownExOilAmount);
             this.Controls.Add(this.NumericUpDownExLastOdoMeter);
             this.Controls.Add(this.NumericUpDownExFirstOdoMeter);
-            this.Controls.Add(this.MaskedTextBoxExLastRollCallTime);
             this.Controls.Add(this.ComboBoxExLastPlantName);
-            this.Controls.Add(this.MaskedTextBoxExLastPlantTime);
             this.Controls.Add(this.NumericUpDownExLastPlantCount);
             this.Controls.Add(this.ButtonExUpdate);
             this.Controls.Add(this.CheckBoxExDelete);
@@ -290,7 +294,6 @@
             this.Controls.Add(this.labelEx5);
             this.Controls.Add(this.labelEx4);
             this.Controls.Add(this.labelEx3);
-            this.Controls.Add(this.MaskedTextBoxExFirstRollCallTime);
             this.Controls.Add(this.DateTimePickerExOperationDate);
             this.Controls.Add(this.labelEx2);
             this.Controls.Add(this.LabelExSetName);
@@ -314,7 +317,6 @@
         private ControlEx.LabelEx LabelExSetName;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
-        private ControlEx.MaskedTextBoxEx MaskedTextBoxExFirstRollCallTime;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.LabelEx labelEx4;
         private ControlEx.LabelEx labelEx5;
@@ -326,11 +328,12 @@
         private ControlEx.CheckBoxEx CheckBoxExDelete;
         private ControlEx.ButtonEx ButtonExUpdate;
         private ControlEx.NumericUpDownEx NumericUpDownExLastPlantCount;
-        private ControlEx.MaskedTextBoxEx MaskedTextBoxExLastPlantTime;
         private ControlEx.ComboBoxEx ComboBoxExLastPlantName;
-        private ControlEx.MaskedTextBoxEx MaskedTextBoxExLastRollCallTime;
         private ControlEx.NumericUpDownEx NumericUpDownExFirstOdoMeter;
         private ControlEx.NumericUpDownEx NumericUpDownExLastOdoMeter;
         private ControlEx.NumericUpDownEx NumericUpDownExOilAmount;
+        private ControlEx.CcTime CcTimeFirstRollCallTime;
+        private ControlEx.CcTime CcTimeLastPlantTime;
+        private ControlEx.CcTime CcTimeLastRollCallTime;
     }
 }

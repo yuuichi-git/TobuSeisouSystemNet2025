@@ -224,7 +224,7 @@ namespace TobuSeisouSystemNet2025 {
         }
 
         /*
-         * 多重起動をコントロールするためのフィールド
+         * 多重起動をコントロールするためのフィールド(is null || IsDisposed)
          */
         private VehicleDispatchBoard vehicleDispatchBoard = null;
         private CarList carList = null;

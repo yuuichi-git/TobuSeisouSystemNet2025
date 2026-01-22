@@ -50,11 +50,15 @@ namespace RollCall {
             /*
              * SQL
              */
-            if (_lastRollCallDao.ExistenceLastRollCall(_setControl.SetCode, _setControl.OperationDate, _setControl.LastRollCallYmdHms)) {
-                _beforeLastRollCallVo = _lastRollCallDao.SelectOneLastRollCall(_setControl.SetCode, _setControl.OperationDate, _setControl.LastRollCallYmdHms);
-                this.SetControl(_beforeLastRollCallVo);
-            } else {
-                this.InitializeControl();
+            try {
+                if (_lastRollCallDao.ExistenceLastRollCall(_setControl.SetCode, _setControl.OperationDate, _setControl.LastRollCallYmdHms)) {
+                    _beforeLastRollCallVo = _lastRollCallDao.SelectOneLastRollCall(_setControl.SetCode, _setControl.OperationDate, _setControl.LastRollCallYmdHms);
+                    this.SetControl(_beforeLastRollCallVo);
+                } else {
+                    this.InitializeControl();
+                }
+            } catch (Exception exception) {
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -64,18 +68,9 @@ namespace RollCall {
         private void InitializeControl() {
             this.LabelExSetName.Text = string.Concat(((SetLabel)_setControl.DeployedSetLabel).SetMasterVo.SetName, " の帰庫点呼入力");
             this.DateTimePickerExOperationDate.SetValue(_setControl.OperationDate);
-            this.MaskedTextBoxExFirstRollCallTime.Mask = "90:00";
-            this.MaskedTextBoxExFirstRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExFirstRollCallTime.ValidatingType = typeof(DateTime);                                                                                                // 入力値の検証タイプを設定
-            this.MaskedTextBoxExFirstRollCallTime.Text = _vehicleDispatchDetailDao.GetStaffRollCallYmdHms1(_setControl.CellNumber, _setControl.OperationDate).ToString("HH:mm");
+            this.CcTimeFirstRollCallTime.Text = _vehicleDispatchDetailDao.GetStaffRollCallYmdHms1(_setControl.CellNumber, _setControl.OperationDate).ToString("HH:mm");
             this.NumericUpDownExLastPlantCount.Value = 0;
             this.ComboBoxExLastPlantName.SelectedIndex = -1;
-            this.MaskedTextBoxExLastPlantTime.Mask = "90:00";
-            this.MaskedTextBoxExLastPlantTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExLastPlantTime.ValidatingType = typeof(DateTime);                                                                                                    // 入力値の検証タイプを設定
-            this.MaskedTextBoxExLastRollCallTime.Mask = "90:00";
-            this.MaskedTextBoxExLastRollCallTime.RejectInputOnFirstFailure = true;
-            this.MaskedTextBoxExLastRollCallTime.ValidatingType = typeof(DateTime);                                                                                                 // 入力値の検証タイプを設定
             this.NumericUpDownExFirstOdoMeter.Value = 0;
             this.NumericUpDownExLastOdoMeter.Value = 0;
             this.NumericUpDownExOilAmount.Value = 0;
@@ -89,11 +84,11 @@ namespace RollCall {
         private void SetControl(LastRollCallVo lastRollCallVo) {
             this.LabelExSetName.Text = string.Concat(((SetLabel)_setControl.DeployedSetLabel).SetMasterVo.SetName, " の帰庫点呼入力");
             this.DateTimePickerExOperationDate.SetValueJp(lastRollCallVo.OperationDate.Date);
-            this.MaskedTextBoxExFirstRollCallTime.Text = lastRollCallVo.FirstRollCallYmdHms.ToString("HH:mm");
+            this.CcTimeFirstRollCallTime.Text = lastRollCallVo.FirstRollCallYmdHms.ToString("HH:mm");
             this.NumericUpDownExLastPlantCount.Value = lastRollCallVo.LastPlantCount;
             this.ComboBoxExLastPlantName.Text = lastRollCallVo.LastPlantName;
-            this.MaskedTextBoxExLastPlantTime.Text = lastRollCallVo.LastPlantYmdHms.ToString("HH:mm");
-            this.MaskedTextBoxExLastRollCallTime.Text = lastRollCallVo.LastRollCallYmdHms.ToString("HH:mm");
+            this.CcTimeLastPlantTime.Text = lastRollCallVo.LastPlantYmdHms.ToString("HH:mm");
+            this.CcTimeLastRollCallTime.Text = lastRollCallVo.LastRollCallYmdHms.ToString("HH:mm");
             this.NumericUpDownExFirstOdoMeter.Value = lastRollCallVo.FirstOdoMeter;
             this.NumericUpDownExLastOdoMeter.Value = lastRollCallVo.LastOdoMeter;
             this.NumericUpDownExOilAmount.Value = lastRollCallVo.OilAmount;
@@ -108,10 +103,10 @@ namespace RollCall {
             LastRollCallVo newLastRollCallVo = new();
             newLastRollCallVo.SetCode = _setControl.SetCode;
             newLastRollCallVo.OperationDate = this.DateTimePickerExOperationDate.GetValue().Date;
-            newLastRollCallVo.FirstRollCallYmdHms = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.MaskedTextBoxExFirstRollCallTime.Text);
+            newLastRollCallVo.FirstRollCallYmdHms = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.CcTimeFirstRollCallTime.Text);
             newLastRollCallVo.LastPlantCount = (int)this.NumericUpDownExLastPlantCount.Value;
             newLastRollCallVo.LastPlantName = this.ComboBoxExLastPlantName.Text;
-            newLastRollCallVo.LastPlantYmdHms = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.MaskedTextBoxExLastPlantTime.Text);
+            newLastRollCallVo.LastPlantYmdHms = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.CcTimeLastPlantTime.Text);
             newLastRollCallVo.LastRollCallYmdHms = dateTime;
             newLastRollCallVo.FirstOdoMeter = this.NumericUpDownExFirstOdoMeter.Value;
             newLastRollCallVo.LastOdoMeter = this.NumericUpDownExLastOdoMeter.Value;
@@ -135,7 +130,7 @@ namespace RollCall {
             SetControl setControl = _setControl;
             SetLabel setLabel = (SetLabel)_setControl.DeployedSetLabel;
             DateTime oldLastRollCallTime = setLabel.LastRollCallYmdHms;
-            DateTime newLastRollCallTime = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.MaskedTextBoxExLastRollCallTime.Text);
+            DateTime newLastRollCallTime = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.CcTimeLastRollCallTime.Text);
             if (!this.CheckBoxExDelete.Checked) {
                 if (_lastRollCallDao.ExistenceLastRollCall(setControl.SetCode, setControl.OperationDate, oldLastRollCallTime)) {
                     try {
