@@ -616,8 +616,8 @@ namespace Staff {
         /// 職業履歴
         /// </summary>
         private void ScreenOutputGroupBoxExHistory(List<StaffHistoryVo> listStaffHistoryVo) {
-            Dictionary<int, DateTimePickerEx> dictionaryHistoryDate = new() { { 0, DateTimeExHistoryDate1 }, { 1, DateTimeExHistoryDate2 }, { 2, DateTimeExHistoryDate3 } };
-            Dictionary<int, TextBoxEx> dictionaryHistoryNote = new() { { 0, TextBoxExCompanyName1 }, { 1, TextBoxExCompanyName2 }, { 2, TextBoxExCompanyName3 } };
+            Dictionary<int, CcDateTime> dictionaryHistoryDate = new() { { 0, DateTimeExHistoryDate1 }, { 1, DateTimeExHistoryDate2 }, { 2, DateTimeExHistoryDate3 } };
+            Dictionary<int, CcTextBox> dictionaryHistoryNote = new() { { 0, TextBoxExCompanyName1 }, { 1, TextBoxExCompanyName2 }, { 2, TextBoxExCompanyName3 } };
             DateTimeExHistoryDate.SetClear();
             TextBoxExCompanyName.Text = string.Empty;
             int countGroupBoxExHistory = 0;
@@ -635,9 +635,9 @@ namespace Staff {
         /// </summary>
         private void ScreenOutputGroupBoxExExperience(List<StaffExperienceVo> listStaffExperienceVo) {
             Dictionary<int, ComboBoxEx> dictionaryExperienceKind = new() { { 0, ComboBoxExExperienceKind1 }, { 1, ComboBoxExExperienceKind2 }, { 2, ComboBoxExExperienceKind3 } };
-            Dictionary<int, TextBoxEx> dictionaryExperienceLoad = new() { { 0, TextBoxExExperienceLoad1 }, { 1, TextBoxExExperienceLoad2 }, { 2, TextBoxExExperienceLoad3 } };
-            Dictionary<int, TextBoxEx> dictionaryExperienceDuration = new() { { 0, TextBoxExExperienceDuration1 }, { 1, TextBoxExExperienceDuration2 }, { 2, TextBoxExExperienceDuration3 } };
-            Dictionary<int, TextBoxEx> dictionaryExperienceNote = new() { { 0, TextBoxExExperienceNote1 }, { 1, TextBoxExExperienceNote2 }, { 2, TextBoxExExperienceNote3 } };
+            Dictionary<int, CcTextBox> dictionaryExperienceLoad = new() { { 0, TextBoxExExperienceLoad1 }, { 1, TextBoxExExperienceLoad2 }, { 2, TextBoxExExperienceLoad3 } };
+            Dictionary<int, CcTextBox> dictionaryExperienceDuration = new() { { 0, TextBoxExExperienceDuration1 }, { 1, TextBoxExExperienceDuration2 }, { 2, TextBoxExExperienceDuration3 } };
+            Dictionary<int, CcTextBox> dictionaryExperienceNote = new() { { 0, TextBoxExExperienceNote1 }, { 1, TextBoxExExperienceNote2 }, { 2, TextBoxExExperienceNote3 } };
             ComboBoxExExperienceKind.SelectedIndex = -1;
             TextBoxExExperienceLoad.Text = string.Empty;
             TextBoxExExperienceDuration.Text = string.Empty;
@@ -658,8 +658,8 @@ namespace Staff {
         /// 家族構成
         /// </summary>
         private void ScreenOutputGroupBoxExFamily(List<StaffFamilyVo> listStaffFamilyVo) {
-            Dictionary<int, TextBoxEx> dictionaryFamilyName = new() { { 0, TextBoxExFamilyName1 }, { 1, TextBoxExFamilyName2 }, { 2, TextBoxExFamilyName3 } };
-            Dictionary<int, DateTimePickerEx> dictionaryFamilyBirthDate = new() { { 0, DateTimeExFamilyBirthDate1 }, { 1, DateTimeExFamilyBirthDate2 }, { 2, DateTimeExFamilyBirthDate3 } };
+            Dictionary<int, CcTextBox> dictionaryFamilyName = new() { { 0, TextBoxExFamilyName1 }, { 1, TextBoxExFamilyName2 }, { 2, TextBoxExFamilyName3 } };
+            Dictionary<int, CcDateTime> dictionaryFamilyBirthDate = new() { { 0, DateTimeExFamilyBirthDate1 }, { 1, DateTimeExFamilyBirthDate2 }, { 2, DateTimeExFamilyBirthDate3 } };
             Dictionary<int, ComboBoxEx> dictionaryFamilyRelationship = new() { { 0, ComboBoxExFamilyRelationship1 }, { 1, ComboBoxExFamilyRelationship2 }, { 2, ComboBoxExFamilyRelationship3 } };
             TextBoxExFamilyName.Text = string.Empty;
             DateTimeExFamilyBirthDate.SetClear();
@@ -680,9 +680,9 @@ namespace Staff {
         /// 健康状態(健康診断等の実施結果による特記すべき事項)　※運転の可否に十分に留意すること
         /// </summary>
         private void ScreenOutputGroupBoxExMedical(List<StaffMedicalExaminationVo> listStaffMedicalExaminationVo) {
-            Dictionary<int, DateTimePickerEx> dictionaryMedicalDate = new() { { 0, DateTimeExMedicalExaminationDate1 }, { 1, DateTimeExMedicalExaminationDate2 }, { 2, DateTimeExMedicalExaminationDate3 } };
+            Dictionary<int, CcDateTime> dictionaryMedicalDate = new() { { 0, DateTimeExMedicalExaminationDate1 }, { 1, DateTimeExMedicalExaminationDate2 }, { 2, DateTimeExMedicalExaminationDate3 } };
             Dictionary<int, ComboBoxEx> dictionaryMedicalName = new() { { 0, ComboBoxExMedicalInstitutionName1 }, { 1, ComboBoxExMedicalInstitutionName2 }, { 2, ComboBoxExMedicalInstitutionName3 } };
-            Dictionary<int, TextBoxEx> dictionaryMedicalNote = new() { { 0, TextBoxExMedicalExaminationNote1 }, { 1, TextBoxExMedicalExaminationNote2 }, { 2, TextBoxExMedicalExaminationNote3 } };
+            Dictionary<int, CcTextBox> dictionaryMedicalNote = new() { { 0, TextBoxExMedicalExaminationNote1 }, { 1, TextBoxExMedicalExaminationNote2 }, { 2, TextBoxExMedicalExaminationNote3 } };
             DateTimeExMedicalExaminationDate.SetClear();
             ComboBoxExMedicalInstitutionName.SelectedIndex = -1;
             TextBoxExMedicalExaminationNote.Text = string.Empty;
@@ -701,9 +701,9 @@ namespace Staff {
         /// 業務上の交通違反歴
         /// </summary>
         private void ScreenOutputGroupBoxExCarViolate(List<StaffCarViolateVo> listStaffCarViolateVo) {
-            Dictionary<int, DateTimePickerEx> dictionaryCarViolateDate = new() { { 0, DateTimeExCarViolateDate1 }, { 1, DateTimeExCarViolateDate2 }, { 2, DateTimeExCarViolateDate3 } };
+            Dictionary<int, CcDateTime> dictionaryCarViolateDate = new() { { 0, DateTimeExCarViolateDate1 }, { 1, DateTimeExCarViolateDate2 }, { 2, DateTimeExCarViolateDate3 } };
             Dictionary<int, ComboBoxEx> dictionaryCarViolateContent = new() { { 0, ComboBoxExCarViolateContent1 }, { 1, ComboBoxExCarViolateContent2 }, { 2, ComboBoxExCarViolateContent3 } };
-            Dictionary<int, TextBoxEx> dictionaryCarViolatePlace = new() { { 0, TextBoxExCarViolatePlace1 }, { 1, TextBoxExCarViolatePlace2 }, { 2, TextBoxExCarViolatePlace3 } };
+            Dictionary<int, CcTextBox> dictionaryCarViolatePlace = new() { { 0, TextBoxExCarViolatePlace1 }, { 1, TextBoxExCarViolatePlace2 }, { 2, TextBoxExCarViolatePlace3 } };
             DateTimeExCarViolateDate.SetClear();
             ComboBoxExCarViolateContent.SelectedIndex = -1;
             TextBoxExCarViolatePlace.Text = string.Empty;
@@ -722,7 +722,7 @@ namespace Staff {
         /// 社内教育の実施記録
         /// </summary>
         private void ScreenOutputGroupBoxEducate(List<StaffEducateVo> listStaffEducateVo) {
-            Dictionary<int, DateTimePickerEx> dictionaryEducateDate = new() { { 0, DateTimeExEducateDate1 }, { 1, DateTimeExEducateDate2 }, { 2, DateTimeExEducateDate3 } };
+            Dictionary<int, CcDateTime> dictionaryEducateDate = new() { { 0, DateTimeExEducateDate1 }, { 1, DateTimeExEducateDate2 }, { 2, DateTimeExEducateDate3 } };
             Dictionary<int, ComboBoxEx> dictionaryEducateName = new() { { 0, ComboBoxExEducateName1 }, { 1, ComboBoxExEducateName2 }, { 2, ComboBoxExEducateName3 } };
             DateTimeExEducateDate.SetClear();
             ComboBoxExEducateName.SelectedIndex = -1;
@@ -741,8 +741,8 @@ namespace Staff {
         /// </summary>
         private void ScreenOutputGroupBoxProper(List<StaffProperVo> listStaffProperVo) {
             Dictionary<int, ComboBoxEx> dictionaryProperKind = new() { { 0, ComboBoxExProperKind1 }, { 1, ComboBoxExProperKind2 }, { 2, ComboBoxExProperKind3 } };
-            Dictionary<int, DateTimePickerEx> dictionaryProperDate = new() { { 0, DateTimeExProperDate1 }, { 1, DateTimeExProperDate2 }, { 2, DateTimeExProperDate3 } };
-            Dictionary<int, TextBoxEx> dictionaryProperNote = new() { { 0, TextBoxExProperNote1 }, { 1, TextBoxExProperNote2 }, { 2, TextBoxExProperNote3 } };
+            Dictionary<int, CcDateTime> dictionaryProperDate = new() { { 0, DateTimeExProperDate1 }, { 1, DateTimeExProperDate2 }, { 2, DateTimeExProperDate3 } };
+            Dictionary<int, CcTextBox> dictionaryProperNote = new() { { 0, TextBoxExProperNote1 }, { 1, TextBoxExProperNote2 }, { 2, TextBoxExProperNote3 } };
             ComboBoxExProperKind.SelectedIndex = -1;
             DateTimeExProperDate.SetClear();
             TextBoxExProperNote.Text = string.Empty;
@@ -761,7 +761,7 @@ namespace Staff {
         /// 賞罰・譴責
         /// </summary>
         private void ScreenOutputGroupBoxExPunishment(List<StaffPunishmentVo> listStaffPunishmentVo) {
-            Dictionary<int, DateTimePickerEx> dictionaryPunishmentDate = new() { { 0, DateTimeExPunishmentDate1 }, { 1, DateTimeExPunishmentDate2 }, { 2, DateTimeExPunishmentDate3 } };
+            Dictionary<int, CcDateTime> dictionaryPunishmentDate = new() { { 0, DateTimeExPunishmentDate1 }, { 1, DateTimeExPunishmentDate2 }, { 2, DateTimeExPunishmentDate3 } };
             Dictionary<int, ComboBoxEx> dictionaryPunishmentNote = new() { { 0, ComboBoxExPunishmentNote1 }, { 1, ComboBoxExPunishmentNote2 }, { 2, ComboBoxExPunishmentNote3 } };
             DateTimeExPunishmentDate.SetClear();
             ComboBoxExPunishmentNote.Text = string.Empty;

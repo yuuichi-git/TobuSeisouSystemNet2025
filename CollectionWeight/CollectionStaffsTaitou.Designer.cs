@@ -27,11 +27,11 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
+            this.PanelExTop = new ControlEx.CcPanel();
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.NumericUpDownExYear = new ControlEx.NumericUpDownEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -167,9 +167,9 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExTop;
+        private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.NumericUpDownEx NumericUpDownExYear;

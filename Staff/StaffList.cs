@@ -115,7 +115,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(CreateArray(GroupBoxExBelongs), CreateArray(GroupBoxExJobForm), CreateArray(GroupBoxExOccupation), this.CheckBoxExRetirementFlag.Checked);
                     switch (this.SpreadList.ActiveSheet.SheetName) {

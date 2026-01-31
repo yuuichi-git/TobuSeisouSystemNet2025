@@ -1,0 +1,168 @@
+﻿/*
+ * 2026-01-26
+ */
+using System.Data.SqlClient;
+
+using Common;
+
+using Vo;
+
+namespace Dao {
+    public class WasteCollectionHeadDao {
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
+        private readonly DefaultValue _defaultValue = new();
+        /*
+         * Vo
+         */
+        private readonly ConnectionVo _connectionVo;
+
+        public WasteCollectionHeadDao(ConnectionVo connectionVo) {
+            /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+        }
+
+        /// <summary>
+        /// Idに等しいレコードの存在を確認する
+        /// </summary>
+        /// <param name="targetId"></param>
+        /// <returns>true:該当レコードあり false:該当レコードなし</returns>
+        public bool ExistenceWasteCollectionHeadVo(string targetId) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(Id) " +
+                                     "FROM H_WasteCollectionHead " +
+                                     "WHERE Id = '" + targetId + "'";
+            try {
+                return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public WasteCollectionHeadVo SelectOneWasteCollectionHeadVo(string id) {
+            WasteCollectionHeadVo wasteCollectionHeadVo = new();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT H_WasteCollectionHead.Id," +
+                                            "H_WasteCollectionHead.OfficeQuotationDate," +
+                                            "H_WasteCollectionHead.OfficeRequestWord," +
+                                            "H_WordMaster.Name AS OfficeRequestWordName," +
+                                            "H_WasteCollectionHead.OfficeCompanyName," +
+                                            "H_WasteCollectionHead.OfficeContactPerson," +
+                                            "H_WasteCollectionHead.OfficeAddress," +
+                                            "H_WasteCollectionHead.OfficeTelephoneNumber," +
+                                            "H_WasteCollectionHead.OfficeCellphoneNumber," +
+                                            "H_WasteCollectionHead.WorkSiteLocation," +
+                                            "H_WasteCollectionHead.WorkSiteAddress," +
+                                            "H_WasteCollectionHead.PickupDate," +
+                                            "H_WasteCollectionHead.Remarks," +
+                                            "H_WasteCollectionHead.MainPicture," +
+                                            "H_WasteCollectionHead.SubPicture," +
+                                            "H_WasteCollectionHead.InsertPcName," +
+                                            "H_WasteCollectionHead.InsertYmdHms," +
+                                            "H_WasteCollectionHead.UpdatePcName," +
+                                            "H_WasteCollectionHead.UpdateYmdHms," +
+                                            "H_WasteCollectionHead.DeletePcName," +
+                                            "H_WasteCollectionHead.DeleteYmdHms," +
+                                            "H_WasteCollectionHead.DeleteFlag " +
+                                     "FROM H_WasteCollectionHead " +
+                                     "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code " +
+                                     "WHERE Id = '" + id + "'";
+
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionHeadVo.OfficeQuotationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OfficeQuotationDate"]);
+                    wasteCollectionHeadVo.OfficeRequestWord = _defaultValue.GetDefaultValue<int>(sqlDataReader["OfficeRequestWord"]);
+                    wasteCollectionHeadVo.OfficeRequestWordName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeRequestWordName"]);
+                    wasteCollectionHeadVo.OfficeCompanyName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeCompanyName"]);
+                    wasteCollectionHeadVo.OfficeContactPerson = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeContactPerson"]);
+                    wasteCollectionHeadVo.OfficeAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeAddress"]);
+                    wasteCollectionHeadVo.OfficeTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeTelephoneNumber"]);
+                    wasteCollectionHeadVo.OfficeCellphoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeCellphoneNumber"]);
+                    wasteCollectionHeadVo.WorkSiteLocation = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkSiteLocation"]);
+                    wasteCollectionHeadVo.WorkSiteAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkSiteAddress"]);
+                    wasteCollectionHeadVo.PickupDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PickupDate"]);
+                    wasteCollectionHeadVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
+                    wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
+                    wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    wasteCollectionHeadVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    wasteCollectionHeadVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    wasteCollectionHeadVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    wasteCollectionHeadVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    wasteCollectionHeadVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    wasteCollectionHeadVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    wasteCollectionHeadVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                }
+            }
+            return wasteCollectionHeadVo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<WasteCollectionHeadVo> SelectAllWasteCollectionHeadVo() {
+            List<WasteCollectionHeadVo> listWasteCollectionHeadVo = new();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT H_WasteCollectionHead.Id," +
+                                            "H_WasteCollectionHead.OfficeQuotationDate," +
+                                            "H_WasteCollectionHead.OfficeRequestWord," +
+                                            "H_WordMaster.Name AS OfficeRequestWordName," +
+                                            "H_WasteCollectionHead.OfficeCompanyName," +
+                                            "H_WasteCollectionHead.OfficeContactPerson," +
+                                            "H_WasteCollectionHead.OfficeAddress," +
+                                            "H_WasteCollectionHead.OfficeTelephoneNumber," +
+                                            "H_WasteCollectionHead.OfficeCellphoneNumber," +
+                                            "H_WasteCollectionHead.WorkSiteLocation," +
+                                            "H_WasteCollectionHead.WorkSiteAddress," +
+                                            "H_WasteCollectionHead.PickupDate," +
+                                            "H_WasteCollectionHead.Remarks," +
+                                            "H_WasteCollectionHead.MainPicture," +
+                                            "H_WasteCollectionHead.SubPicture," +
+                                            "H_WasteCollectionHead.InsertPcName," +
+                                            "H_WasteCollectionHead.InsertYmdHms," +
+                                            "H_WasteCollectionHead.UpdatePcName," +
+                                            "H_WasteCollectionHead.UpdateYmdHms," +
+                                            "H_WasteCollectionHead.DeletePcName," +
+                                            "H_WasteCollectionHead.DeleteYmdHms," +
+                                            "H_WasteCollectionHead.DeleteFlag " +
+                                     "FROM H_WasteCollectionHead " +
+                                     "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    WasteCollectionHeadVo wasteCollectionHeadVo = new();
+                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionHeadVo.OfficeQuotationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OfficeQuotationDate"]);
+                    wasteCollectionHeadVo.OfficeRequestWord = _defaultValue.GetDefaultValue<int>(sqlDataReader["OfficeRequestWord"]);
+                    wasteCollectionHeadVo.OfficeRequestWordName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeRequestWordName"]);
+                    wasteCollectionHeadVo.OfficeCompanyName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeCompanyName"]);
+                    wasteCollectionHeadVo.OfficeContactPerson = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeContactPerson"]);
+                    wasteCollectionHeadVo.OfficeAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeAddress"]);
+                    wasteCollectionHeadVo.OfficeTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeTelephoneNumber"]);
+                    wasteCollectionHeadVo.OfficeCellphoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeCellphoneNumber"]);
+                    wasteCollectionHeadVo.WorkSiteLocation = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkSiteLocation"]);
+                    wasteCollectionHeadVo.WorkSiteAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkSiteAddress"]);
+                    wasteCollectionHeadVo.PickupDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PickupDate"]);
+                    wasteCollectionHeadVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
+                    wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
+                    wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    wasteCollectionHeadVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    wasteCollectionHeadVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    wasteCollectionHeadVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    wasteCollectionHeadVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    wasteCollectionHeadVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    wasteCollectionHeadVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    wasteCollectionHeadVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    listWasteCollectionHeadVo.Add(wasteCollectionHeadVo);
+                }
+            }
+            return listWasteCollectionHeadVo;
+        }
+    }
+}

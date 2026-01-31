@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class DateTimePickerEx {
+    partial class CcDateTime {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

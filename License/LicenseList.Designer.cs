@@ -39,9 +39,9 @@
             this.tabPage11 = new TabPage();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
+            this.PanelExUp = new ControlEx.CcPanel();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewToukaidenshi = this.SpreadList.GetSheet(1);
@@ -279,9 +279,9 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.TabControlEx TabControlExKana;
         private TabPage tabPage1;
         private TabPage tabPage2;

@@ -2,7 +2,7 @@
  * 2024-09-24
  */
 namespace ControlEx {
-    public partial class ButtonEx : Button {
+    public partial class CcButton : Button {
         /*
          * Fontの定義
          */
@@ -17,7 +17,7 @@ namespace ControlEx {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ButtonEx() {
+        public CcButton() {
             /* 
              * ダブルバッファリングを有効にする
              */

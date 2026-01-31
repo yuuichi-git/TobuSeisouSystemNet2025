@@ -28,15 +28,15 @@
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
+            this.PanelExUp = new ControlEx.CcPanel();
             this.CheckBoxExAbsence = new ControlEx.CheckBoxEx();
             this.labelEx3 = new ControlEx.LabelEx();
             this.ComboBoxExStaffName = new ControlEx.ComboBoxEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate2 = new ControlEx.DateTimePickerEx();
-            this.DateTimePickerExOperationDate1 = new ControlEx.DateTimePickerEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
+            this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.GroupBoxExOccupation = new ControlEx.GroupBoxEx();
             this.checkBoxEx10 = new ControlEx.CheckBoxEx();
             this.checkBoxEx14 = new ControlEx.CheckBoxEx();
@@ -509,7 +509,7 @@
 
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.GroupBoxEx GroupBoxExBelongs;
@@ -531,11 +531,11 @@
         private ControlEx.CheckBoxEx checkBoxEx9;
         private ControlEx.CheckBoxEx checkBoxEx11;
         private ControlEx.CheckBoxEx checkBoxEx13;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate2;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate1;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate2;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate1;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExStaffName;
         private ControlEx.CheckBoxEx CheckBoxExAbsence;

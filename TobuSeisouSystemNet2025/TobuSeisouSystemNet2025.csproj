@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Toukanpo\Toukanpo.csproj" />
     <ProjectReference Include="..\VehicleDispatch\VehicleDispatch.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
+    <ProjectReference Include="..\WastCollection\WastCollection.csproj" />
     <ProjectReference Include="..\Waste\Waste.csproj" />
   </ItemGroup>
   <ItemGroup>

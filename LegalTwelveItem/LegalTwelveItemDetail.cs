@@ -26,9 +26,9 @@ namespace LegalTwelveItem {
          * Control用の配列を確保
          */
         private CheckBoxEx[] _arrayCheckBoxEx = new CheckBoxEx[12];
-        private DateTimePickerEx[] _arrayDateTimePickerEx = new DateTimePickerEx[12];
+        private CcDateTime[] _arrayDateTimePickerEx = new CcDateTime[12];
         private ComboBoxEx[] _arrayComboBoxEx = new ComboBoxEx[12];
-        private TextBoxEx[] _arrayTextBoxEx = new TextBoxEx[12];
+        private CcTextBox[] _arrayTextBoxEx = new CcTextBox[12];
         private PictureBoxEx[] _arrayPictureBoxEx = new PictureBoxEx[3];
 
         /// <summary>

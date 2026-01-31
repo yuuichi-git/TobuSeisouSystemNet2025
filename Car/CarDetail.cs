@@ -68,7 +68,7 @@ namespace Car {
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
+            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
             foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
@@ -87,7 +87,7 @@ namespace Car {
             this.MenuStripEx1.ChangeEnable(listString);
 
             this.InitializeControl();
-            this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                        // 新規での車両コード採番
+            this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                                    // 新規での車両コード採番
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
             /*
              * Eventを登録する
@@ -117,7 +117,7 @@ namespace Car {
              */
             foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                                 // 車両管理地
+            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
             foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
@@ -267,8 +267,8 @@ namespace Car {
             carMasterVo.VersionDesignateNumber = this.TextBoxExVersionDesignateNumber.Text;                                                                 // 型式指定番号
             carMasterVo.CategoryDistinguishNumber = this.TextBoxExCategoryDistinguishNumber.Text;                                                           // 類別区分番号
             carMasterVo.Remarks = this.TextBoxExRemarks.Text;                                                                                               // 備考
-            carMasterVo.MainPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExMainPicture.Image, typeof(byte[]));                          // 車検証
-            carMasterVo.SubPicture = (byte[]?)new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));                            // 自動車検査証記録事項
+            carMasterVo.MainPicture = (byte[])new ImageConverter().ConvertTo(this.PictureBoxExMainPicture.Image, typeof(byte[]));                           // 車検証
+            carMasterVo.SubPicture = (byte[])new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));                             // 自動車検査証記録事項
             carMasterVo.EmergencyVehicleFlag = this.CheckBoxExEmergencyVehicleFlag.Checked;                                                                 // 緊急車両登録フラグ
             carMasterVo.EmergencyVehicleDate = this.DateTimePickerExEmergencyVehicleDate.GetValue();                                                        // 緊急車両登録期限
             carMasterVo.DigitalTachographFlag = this.CheckBoxExDigitalTachographFlag.Checked;                                                               // デジタコ装着フラグ
@@ -425,11 +425,11 @@ namespace Car {
             this.TextBoxExRemarks.Text = carMasterVo.Remarks;                                                                                               // 備考
             if (carMasterVo.MainPicture.Length != 0) {
                 ImageConverter imageConverter = new();
-                this.PictureBoxExMainPicture.Image = (Image?)imageConverter.ConvertFrom(carMasterVo.MainPicture);                                           // 写真
+                this.PictureBoxExMainPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.MainPicture);                                            // 写真
             }
             if (carMasterVo.SubPicture.Length != 0) {
                 ImageConverter imageConverter = new();
-                this.PictureBoxExSubPicture.Image = (Image?)imageConverter.ConvertFrom(carMasterVo.SubPicture);                                             // 写真
+                this.PictureBoxExSubPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.SubPicture);                                              // 写真
             }
         }
 
@@ -453,7 +453,7 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PictureBoxEx_DoubleClick(object sender, EventArgs e) {
-            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((PictureBoxEx)sender).Image);
+            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((PictureBoxEx)sender).Image, ((PictureBoxEx)sender).Name);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carVehicleInspectionView);
             carVehicleInspectionView.ShowDialog(this);
         }

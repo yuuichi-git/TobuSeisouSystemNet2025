@@ -129,7 +129,7 @@ namespace Collection {
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate_ValueChanged(object sender, EventArgs e) {
             this.InitializeControl();
-            if (_CollectionWeightTaitouDao.ExistenceCollectionWeightTaitou(((DateTimePickerEx)sender).GetDate())) {
+            if (_CollectionWeightTaitouDao.ExistenceCollectionWeightTaitou(((CcDateTime)sender).GetDate())) {
                 try {
                     _collectionWeightTaitouVo = _CollectionWeightTaitouDao.SelectOneCollectionWeightTaitou(this.DateTimePickerExOperationDate.GetDate());
                     this.NumericUpDownEx1.Value = _collectionWeightTaitouVo.Weight1Total;

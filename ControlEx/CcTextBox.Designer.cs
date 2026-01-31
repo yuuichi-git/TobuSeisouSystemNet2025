@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class ComboBoxExCarMaster {
+    partial class CcTextBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

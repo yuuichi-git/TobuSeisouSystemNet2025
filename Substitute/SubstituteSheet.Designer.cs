@@ -27,9 +27,9 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExPrint2 = new ControlEx.ButtonEx();
-            this.ButtonExPrint1 = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExPrint2 = new ControlEx.CcButton();
+            this.ButtonExPrint1 = new ControlEx.CcButton();
             this.LabelExFaxNumber = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
@@ -180,15 +180,15 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadSubstitute;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
         private ControlEx.LabelEx LabelExFaxNumber;
-        private ControlEx.ButtonEx ButtonExPrint1;
+        private ControlEx.CcButton ButtonExPrint1;
         private FarPoint.Win.Spread.SheetView SheetView1;
         private FarPoint.Win.Spread.SheetView SheetView2;
         private FarPoint.Win.Spread.SheetView SheetView3;
-        private ControlEx.ButtonEx ButtonExPrint2;
+        private ControlEx.CcButton ButtonExPrint2;
     }
 }

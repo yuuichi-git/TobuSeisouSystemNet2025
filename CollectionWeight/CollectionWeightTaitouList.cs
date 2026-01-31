@@ -224,13 +224,13 @@ namespace Collection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerEx1_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value > this.DateTimePickerEx2.GetValue()) {
-                this.DateTimePickerEx2.SetValueJp(_dateUtility.GetEndOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value > this.DateTimePickerEx2.GetValue()) {
+                this.DateTimePickerEx2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
         private void DateTimePickerEx2_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value < this.DateTimePickerEx1.GetValue()) {
-                this.DateTimePickerEx1.SetValueJp(_dateUtility.GetBeginOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value < this.DateTimePickerEx1.GetValue()) {
+                this.DateTimePickerEx1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 

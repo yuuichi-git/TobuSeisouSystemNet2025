@@ -121,16 +121,16 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExLeft = new ControlEx.PanelEx();
+            this.PanelExLeft = new ControlEx.CcPanel();
             this.TreeViewEx1 = new ControlEx.TreeViewEx();
             this.LabelExLocation = new ControlEx.LabelEx();
             this.LabelExIpAddress = new ControlEx.LabelEx();
             this.LabelExPcName = new ControlEx.LabelEx();
-            this.PanelExRight = new ControlEx.PanelEx();
+            this.PanelExRight = new ControlEx.CcPanel();
             this.ComboBoxExMonitor = new ControlEx.ComboBoxEx();
             this.labelEx3 = new ControlEx.LabelEx();
-            this.ButtonExDisConnectSqlServer = new ControlEx.ButtonEx();
-            this.ButtonExConnectSqlServer = new ControlEx.ButtonEx();
+            this.ButtonExDisConnectSqlServer = new ControlEx.CcButton();
+            this.ButtonExConnectSqlServer = new ControlEx.CcButton();
             this.LabelExStatusSqlServer = new ControlEx.LabelEx();
             this.LabelExDataBaseNameSqlServer = new ControlEx.LabelEx();
             this.LabelExServerNameSqlServer = new ControlEx.LabelEx();
@@ -187,6 +187,8 @@
             this.labelEx4 = new ControlEx.LabelEx();
             this.TabPageMisato = new TabPage();
             this.TabPageHaikibutu = new TabPage();
+            this.labelEx56 = new ControlEx.LabelEx();
+            this.labelEx57 = new ControlEx.LabelEx();
             this.labelEx46 = new ControlEx.LabelEx();
             this.labelEx47 = new ControlEx.LabelEx();
             this.TabPageSeisouSystem = new TabPage();
@@ -195,11 +197,11 @@
             this.labelEx50 = new ControlEx.LabelEx();
             this.LabelExServerVersion = new ControlEx.LabelEx();
             this.labelEx51 = new ControlEx.LabelEx();
-            this.ButtonExDisConnectOracle = new ControlEx.ButtonEx();
+            this.ButtonExDisConnectOracle = new ControlEx.CcButton();
             this.LabelExStatusOracle = new ControlEx.LabelEx();
             this.LabelExDataBaseNameOracle = new ControlEx.LabelEx();
             this.LabelExServerNameOracle = new ControlEx.LabelEx();
-            this.ButtonExConnectOracle = new ControlEx.ButtonEx();
+            this.ButtonExConnectOracle = new ControlEx.CcButton();
             this.labelEx48 = new ControlEx.LabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
@@ -1266,6 +1268,8 @@
             // 
             // TabPageHaikibutu
             // 
+            this.TabPageHaikibutu.Controls.Add(this.labelEx56);
+            this.TabPageHaikibutu.Controls.Add(this.labelEx57);
             this.TabPageHaikibutu.Controls.Add(this.labelEx46);
             this.TabPageHaikibutu.Controls.Add(this.labelEx47);
             this.TabPageHaikibutu.Location = new Point(4, 24);
@@ -1275,6 +1279,31 @@
             this.TabPageHaikibutu.TabIndex = 4;
             this.TabPageHaikibutu.Text = "廃棄物";
             this.TabPageHaikibutu.UseVisualStyleBackColor = true;
+            // 
+            // labelEx56
+            // 
+            this.labelEx56.ForeColor = Color.DimGray;
+            this.labelEx56.Location = new Point(16, 80);
+            this.labelEx56.Name = "labelEx56";
+            this.labelEx56.Size = new Size(344, 20);
+            this.labelEx56.TabIndex = 17;
+            this.labelEx56.Text = "　顧客の見積もり・回収管理";
+            this.labelEx56.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelEx57
+            // 
+            this.labelEx57.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.labelEx57.ForeColor = Color.Black;
+            this.labelEx57.Location = new Point(16, 60);
+            this.labelEx57.Name = "labelEx57";
+            this.labelEx57.Size = new Size(344, 20);
+            this.labelEx57.TabIndex = 16;
+            this.labelEx57.Tag = "WastCollectionList";
+            this.labelEx57.Text = "廃棄物スポット見積リスト";
+            this.labelEx57.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelEx57.Click += this.Label_SqlServer_Click;
+            this.labelEx57.MouseEnter += this.Label_MouseEnter;
+            this.labelEx57.MouseLeave += this.Label_MouseLeave;
             // 
             // labelEx46
             // 
@@ -1474,8 +1503,8 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExLeft;
-        private ControlEx.PanelEx PanelExRight;
+        private ControlEx.CcPanel PanelExLeft;
+        private ControlEx.CcPanel PanelExRight;
         private ControlEx.TabControlEx TabControlEx1;
         private TabPage TabPageSeisouSystem;
         private TabPage TabPageAdachi;
@@ -1487,8 +1516,8 @@
         private ControlEx.LabelEx LabelExDataBaseNameSqlServer;
         private ControlEx.LabelEx LabelExServerNameSqlServer;
         private ControlEx.LabelEx labelEx2;
-        private ControlEx.ButtonEx ButtonExConnectSqlServer;
-        private ControlEx.ButtonEx ButtonExDisConnectSqlServer;
+        private ControlEx.CcButton ButtonExConnectSqlServer;
+        private ControlEx.CcButton ButtonExDisConnectSqlServer;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExMonitor;
         private ControlEx.LabelEx LabelExLocation;
@@ -1540,12 +1569,12 @@
         private ControlEx.LabelEx labelEx47;
         private ControlEx.TreeViewEx TreeViewEx1;
         private ControlEx.GroupBoxEx GroupBoxEx1;
-        private ControlEx.ButtonEx ButtonExConnectOracle;
+        private ControlEx.CcButton ButtonExConnectOracle;
         private ControlEx.LabelEx labelEx48;
         private ControlEx.LabelEx LabelExStatusOracle;
         private ControlEx.LabelEx LabelExDataBaseNameOracle;
         private ControlEx.LabelEx LabelExServerNameOracle;
-        private ControlEx.ButtonEx ButtonExDisConnectOracle;
+        private ControlEx.CcButton ButtonExDisConnectOracle;
         private ControlEx.LabelEx LabelExServerVersion;
         private ControlEx.LabelEx labelEx49;
         private ControlEx.LabelEx labelEx50;
@@ -1554,5 +1583,7 @@
         private ControlEx.LabelEx labelEx53;
         private ControlEx.LabelEx labelEx54;
         private ControlEx.LabelEx labelEx55;
+        private ControlEx.LabelEx labelEx56;
+        private ControlEx.LabelEx labelEx57;
     }
 }

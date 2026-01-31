@@ -106,7 +106,7 @@ namespace StockBox {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExSet":
                     _selectedPanelName = "SetLabel";
                     try {

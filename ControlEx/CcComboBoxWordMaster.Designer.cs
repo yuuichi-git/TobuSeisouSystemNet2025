@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class PanelEx {
+    partial class CcComboBoxWordMaster {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

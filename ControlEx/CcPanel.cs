@@ -2,11 +2,11 @@
  * 2024-09-23
  */
 namespace ControlEx {
-    public partial class PanelEx : Panel {
+    public partial class CcPanel : Panel {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public PanelEx() {
+        public CcPanel() {
             /* 
              * ダブルバッファリングを有効にする
              */

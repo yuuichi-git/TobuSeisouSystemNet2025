@@ -29,8 +29,8 @@
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.TabControlEx1 = new ControlEx.TabControlEx();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
@@ -267,7 +267,7 @@
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private ControlEx.TabControlEx TabControlEx1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -280,7 +280,7 @@
         private TabPage tabPage9;
         private TabPage tabPage10;
         private TabPage tabPage11;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

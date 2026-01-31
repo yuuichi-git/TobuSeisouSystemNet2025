@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.LabelExSetName = new ControlEx.LabelEx();
             this.labelEx2 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
+            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.labelEx3 = new ControlEx.LabelEx();
             this.labelEx4 = new ControlEx.LabelEx();
             this.labelEx5 = new ControlEx.LabelEx();
@@ -35,7 +35,7 @@
             this.labelEx9 = new ControlEx.LabelEx();
             this.labelEx10 = new ControlEx.LabelEx();
             this.CheckBoxExDelete = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.NumericUpDownExLastPlantCount = new ControlEx.NumericUpDownEx();
             this.ComboBoxExLastPlantName = new ControlEx.ComboBoxEx();
             this.NumericUpDownExFirstOdoMeter = new ControlEx.NumericUpDownEx();
@@ -254,7 +254,7 @@
             this.CcTimeLastPlantTime.Name = "CcTimeLastPlantTime";
             this.CcTimeLastPlantTime.RejectInputOnFirstFailure = true;
             this.CcTimeLastPlantTime.Size = new Size(104, 25);
-            this.CcTimeLastPlantTime.TabIndex = 12;
+            this.CcTimeLastPlantTime.TabIndex = 4;
             this.CcTimeLastPlantTime.TextAlign = HorizontalAlignment.Right;
             this.CcTimeLastPlantTime.ValidatingType = typeof(DateTime);
             // 
@@ -267,7 +267,7 @@
             this.CcTimeLastRollCallTime.Name = "CcTimeLastRollCallTime";
             this.CcTimeLastRollCallTime.RejectInputOnFirstFailure = true;
             this.CcTimeLastRollCallTime.Size = new Size(104, 25);
-            this.CcTimeLastRollCallTime.TabIndex = 13;
+            this.CcTimeLastRollCallTime.TabIndex = 5;
             this.CcTimeLastRollCallTime.TextAlign = HorizontalAlignment.Right;
             this.CcTimeLastRollCallTime.ValidatingType = typeof(DateTime);
             // 
@@ -316,7 +316,7 @@
 
         private ControlEx.LabelEx LabelExSetName;
         private ControlEx.LabelEx labelEx2;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.LabelEx labelEx4;
         private ControlEx.LabelEx labelEx5;
@@ -326,7 +326,7 @@
         private ControlEx.LabelEx labelEx9;
         private ControlEx.LabelEx labelEx10;
         private ControlEx.CheckBoxEx CheckBoxExDelete;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.NumericUpDownEx NumericUpDownExLastPlantCount;
         private ControlEx.ComboBoxEx ComboBoxExLastPlantName;
         private ControlEx.NumericUpDownEx NumericUpDownExFirstOdoMeter;

@@ -27,8 +27,8 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.CheckBoxEx1 = new ControlEx.CheckBoxEx();
             this.groupBoxEx2 = new ControlEx.GroupBoxEx();
             this.ComboBoxEx8 = new ControlEx.ComboBoxEx();
@@ -48,7 +48,7 @@
             this.labelEx3 = new ControlEx.LabelEx();
             this.ComboBoxEx1 = new ControlEx.ComboBoxEx();
             this.labelEx2 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
+            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.labelEx1 = new ControlEx.LabelEx();
             this.SpreadFirstRollCall = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewFirstRollCall = this.SpreadFirstRollCall.GetSheet(0);
@@ -379,11 +379,11 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadFirstRollCall;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.GroupBoxEx groupBoxEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.GroupBoxEx groupBoxEx2;
         private ControlEx.ComboBoxEx ComboBoxExWeather;
         private ControlEx.LabelEx labelEx7;
@@ -401,7 +401,7 @@
         private ControlEx.ComboBoxEx ComboBoxEx7;
         private ControlEx.LabelEx labelEx9;
         private ControlEx.LabelEx labelEx8;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxEx1;
         private FarPoint.Win.Spread.SheetView SheetViewFirstRollCall;
         private FarPoint.Win.Spread.SheetView SheetViewPartTimeStaff;

@@ -1,0 +1,90 @@
+﻿/*
+ * 2026-01-26
+ */
+using System.Data.SqlClient;
+
+using Common;
+
+using Vo;
+
+namespace Dao {
+    public class WasteCollectionBodyDao {
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
+        private readonly DefaultValue _defaultValue = new();
+        /*
+         * Vo
+         */
+        private readonly ConnectionVo _connectionVo;
+
+        public WasteCollectionBodyDao(ConnectionVo connectionVo) {
+            /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+        }
+
+        /// <summary>
+        /// Idに等しいレコードの存在を確認する
+        /// </summary>
+        /// <param name="targetId"></param>
+        /// <returns>true:該当レコードあり false:該当レコードなし</returns>
+        public bool ExistenceWasteCollectionBodyVo(string targetId) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(Id) " +
+                                     "FROM H_WasteCollectionBody " +
+                                     "WHERE Id = '" + targetId + "'";
+            try {
+                return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<WasteCollectionBodyVo> SelectAllWasteCollectionBodyVo(string id) {
+            List<WasteCollectionBodyVo> listWasteCollectionBodyVo = new();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT H_WasteCollectionBody.Id," +
+                                            "H_WasteCollectionBody.NumberOfRow," +
+                                            "H_WasteCollectionBody.ItemName," +
+                                            "H_WasteCollectionBody.ItemSize," +
+                                            "H_WasteCollectionBody.NumberOfUnits," +
+                                            "H_WasteCollectionBody.UnitPrice," +
+                                            "H_WasteCollectionBody.Others," +
+                                            "H_WasteCollectionBody.InsertPcName," +
+                                            "H_WasteCollectionBody.InsertYmdHms," +
+                                            "H_WasteCollectionBody.UpdatePcName," +
+                                            "H_WasteCollectionBody.UpdateYmdHms," +
+                                            "H_WasteCollectionBody.DeletePcName," +
+                                            "H_WasteCollectionBody.DeleteYmdHms," +
+                                            "H_WasteCollectionBody.DeleteFlag " +
+                                     "FROM H_WasteCollectionBody " +
+                                     "WHERE H_WasteCollectionBody.Id = '" + id + "'";
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read() == true) {
+                    WasteCollectionBodyVo wasteCollectionBodyVo = new();
+                    wasteCollectionBodyVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionBodyVo.NumberOfRow = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfRow"]);
+                    wasteCollectionBodyVo.ItemName = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemName"]);
+                    wasteCollectionBodyVo.ItemSize = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemSize"]);
+                    wasteCollectionBodyVo.NumberOfUnits = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfUnits"]);
+                    wasteCollectionBodyVo.UnitPrice = _defaultValue.GetDefaultValue<decimal>(sqlDataReader["UnitPrice"]);
+                    wasteCollectionBodyVo.Others = _defaultValue.GetDefaultValue<string>(sqlDataReader["Others"]);
+                    wasteCollectionBodyVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
+                    wasteCollectionBodyVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
+                    wasteCollectionBodyVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    wasteCollectionBodyVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+                    wasteCollectionBodyVo.DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]);
+                    wasteCollectionBodyVo.DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]);
+                    wasteCollectionBodyVo.DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"]);
+                    listWasteCollectionBodyVo.Add(wasteCollectionBodyVo);
+                }
+            }
+            return listWasteCollectionBodyVo;
+        }
+    }
+}

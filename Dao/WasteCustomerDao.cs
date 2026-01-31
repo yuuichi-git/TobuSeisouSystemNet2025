@@ -22,7 +22,7 @@ namespace Dao {
         /// <param name="connectionVo"></param>
         public WasteCustomerDao(ConnectionVo connectionVo) {
             /*
-             * 
+             * Vo
              */
             _connectionVo = connectionVo;
         }

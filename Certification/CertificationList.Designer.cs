@@ -27,8 +27,8 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExTop = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.labelEx2 = new ControlEx.LabelEx();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
@@ -151,11 +151,11 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExTop;
+        private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
     }
 }

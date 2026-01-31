@@ -41,6 +41,8 @@ using VehicleDispatch;
 
 using Vo;
 
+using WastCollection;
+
 using Waste;
 
 namespace TobuSeisouSystemNet2025 {
@@ -137,7 +139,7 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExConnectSqlServer":
                     try {
                         _connectionVo.ConnectSqlServer(this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag);
@@ -248,7 +250,8 @@ namespace TobuSeisouSystemNet2025 {
         private CertificationList certificationList = null;
         private AccidentList accidentList = null;
         private WasteList wasteList = null;
-        private SetList setList = null;
+        private WastCollectionList wastCollectionList = null;                                                                                   // 廃棄物顧客リスト
+        private SetList setList = null;                                                                                                         // 廃棄物スポット見積リスト
 
         /// <summary>
         /// 接続先がSQLServerの場合
@@ -453,11 +456,20 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（AccidentList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
-                        case "WasteList":                                                                                                       // 廃棄物
+                        case "WasteList":                                                                                                       // 廃棄物顧客リスト
                             if (wasteList is null || wasteList.IsDisposed) {
                                 wasteList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wasteList);
                                 wasteList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（WasteList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "WastCollectionList":                                                                                               // 廃棄物スポット見積リスト
+                            if (wastCollectionList is null || wastCollectionList.IsDisposed) {
+                                wastCollectionList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wastCollectionList);
+                                wastCollectionList.Show(this);
                             } else {
                                 MessageBox.Show("このプログラム（WasteList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }

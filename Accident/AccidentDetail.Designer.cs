@@ -27,15 +27,15 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
+            this.PanelExTop = new ControlEx.CcPanel();
             this.ComboBoxExTotallingFlag = new ControlEx.ComboBoxEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.MaskedTextBoxExTime = new ControlEx.MaskedTextBoxEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExOccurrence = new ControlEx.DateTimePickerEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
-            this.PanelExMiddle = new ControlEx.PanelEx();
-            this.ButtonExMap = new ControlEx.ButtonEx();
+            this.DateTimePickerExOccurrence = new ControlEx.CcDateTime();
+            this.ButtonExUpdate = new ControlEx.CcButton();
+            this.PanelExMiddle = new ControlEx.CcPanel();
+            this.ButtonExMap = new ControlEx.CcButton();
             this.PictureBoxEx5 = new ControlEx.PictureBoxEx();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
@@ -44,11 +44,11 @@
             this.PictureBoxEx3 = new ControlEx.PictureBoxEx();
             this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
             this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
-            this.TextBoxExGuide = new ControlEx.TextBoxEx();
+            this.TextBoxExGuide = new ControlEx.CcTextBox();
             this.labelEx17 = new ControlEx.LabelEx();
-            this.TextBoxExAccidentDetail = new ControlEx.TextBoxEx();
+            this.TextBoxExAccidentDetail = new ControlEx.CcTextBox();
             this.labelEx16 = new ControlEx.LabelEx();
-            this.TextBoxExAccidentSummary = new ControlEx.TextBoxEx();
+            this.TextBoxExAccidentSummary = new ControlEx.CcTextBox();
             this.labelEx15 = new ControlEx.LabelEx();
             this.ComboBoxExCarRegistrationNumber = new ControlEx.ComboBoxEx();
             this.labelEx14 = new ControlEx.LabelEx();
@@ -56,7 +56,7 @@
             this.labelEx13 = new ControlEx.LabelEx();
             this.ComboBoxExDisplayName = new ControlEx.ComboBoxEx();
             this.labelEx12 = new ControlEx.LabelEx();
-            this.TextBoxExOccurrenceAddress = new ControlEx.TextBoxEx();
+            this.TextBoxExOccurrenceAddress = new ControlEx.CcTextBox();
             this.labelEx11 = new ControlEx.LabelEx();
             this.ComboBoxExPropertyAccident2 = new ControlEx.ComboBoxEx();
             this.labelEx10 = new ControlEx.LabelEx();
@@ -651,9 +651,9 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExTop;
-        private ControlEx.ButtonEx ButtonExUpdate;
-        private ControlEx.DateTimePickerEx DateTimePickerExOccurrence;
+        private ControlEx.CcPanel PanelExTop;
+        private ControlEx.CcButton ButtonExUpdate;
+        private ControlEx.CcDateTime DateTimePickerExOccurrence;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.MaskedTextBoxEx MaskedTextBoxExTime;
         private ControlEx.ComboBoxEx ComboBoxExTotallingFlag;
@@ -661,7 +661,7 @@
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
-        private ControlEx.PanelEx PanelExMiddle;
+        private ControlEx.CcPanel PanelExMiddle;
         private ControlEx.ComboBoxEx ComboBoxExWeather;
         private ControlEx.LabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExAccidentKind;
@@ -678,7 +678,7 @@
         private ControlEx.LabelEx labelEx10;
         private ControlEx.ComboBoxEx ComboBoxExPropertyAccident1;
         private ControlEx.LabelEx labelEx9;
-        private ControlEx.TextBoxEx TextBoxExOccurrenceAddress;
+        private ControlEx.CcTextBox TextBoxExOccurrenceAddress;
         private ControlEx.LabelEx labelEx11;
         private ControlEx.ComboBoxEx ComboBoxExDisplayName;
         private ControlEx.LabelEx labelEx12;
@@ -686,17 +686,17 @@
         private ControlEx.LabelEx labelEx13;
         private ControlEx.ComboBoxEx ComboBoxExCarRegistrationNumber;
         private ControlEx.LabelEx labelEx14;
-        private ControlEx.TextBoxEx TextBoxExAccidentSummary;
+        private ControlEx.CcTextBox TextBoxExAccidentSummary;
         private ControlEx.LabelEx labelEx15;
-        private ControlEx.TextBoxEx TextBoxExGuide;
+        private ControlEx.CcTextBox TextBoxExGuide;
         private ControlEx.LabelEx labelEx17;
-        private ControlEx.TextBoxEx TextBoxExAccidentDetail;
+        private ControlEx.CcTextBox TextBoxExAccidentDetail;
         private ControlEx.LabelEx labelEx16;
         private ControlEx.PictureBoxEx PictureBoxEx1;
         private ControlEx.PictureBoxEx PictureBoxEx5;
         private ControlEx.PictureBoxEx PictureBoxEx4;
         private ControlEx.PictureBoxEx PictureBoxEx3;
         private ControlEx.PictureBoxEx PictureBoxEx2;
-        private ControlEx.ButtonEx ButtonExMap;
+        private ControlEx.CcButton ButtonExMap;
     }
 }

@@ -26,11 +26,11 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.labelEx10 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
-            this.PanelExMiddle = new ControlEx.PanelEx();
+            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
+            this.PanelExMiddle = new ControlEx.CcPanel();
             this.groupBoxEx2 = new ControlEx.GroupBoxEx();
             this.NumericUpDownEx8 = new ControlEx.NumericUpDownEx();
             this.NumericUpDownEx7 = new ControlEx.NumericUpDownEx();
@@ -425,8 +425,8 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
-        private ControlEx.PanelEx PanelExMiddle;
+        private ControlEx.CcPanel PanelExUp;
+        private ControlEx.CcPanel PanelExMiddle;
         private ControlEx.NumericUpDownEx NumericUpDownEx4;
         private ControlEx.NumericUpDownEx NumericUpDownEx3;
         private ControlEx.NumericUpDownEx NumericUpDownEx2;
@@ -447,8 +447,8 @@
         private ControlEx.LabelEx labelEx6;
         private ControlEx.LabelEx labelEx7;
         private ControlEx.GroupBoxEx groupBoxEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.LabelEx labelEx10;
     }
 }

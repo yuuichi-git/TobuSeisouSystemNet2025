@@ -32,8 +32,8 @@
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExTop = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.tableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
@@ -190,8 +190,8 @@
         private ControlEx.PictureBoxEx PictureBoxEx2;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.PanelEx PanelExTop;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcPanel PanelExTop;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;

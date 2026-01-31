@@ -105,7 +105,7 @@ namespace EmploymentAgreement {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
                         if (!_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
@@ -455,10 +455,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutExpiration(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExExpirationStartDate } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExExpirationEndDate } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExExpirationMemo } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExExpirationPicture } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExExpirationStartDate } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExExpirationEndDate } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExExpirationMemo } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExExpirationPicture } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 21).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -484,10 +484,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationPartTimeJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationPartTimeJobStartDate1 }, { 1, DTPExContractExpirationPartTimeJobStartDate2 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationPartTimeJobEndDate1 }, { 1, DTPExContractExpirationPartTimeJobEndDate2 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationPartTimeJobMemo1 }, { 1, TextBoxExContractExpirationPartTimeJobMemo2 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationPartTimeJobPicture1 }, { 1, BTNExContractExpirationPartTimeJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationPartTimeJobStartDate1 }, { 1, DTPExContractExpirationPartTimeJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationPartTimeJobEndDate1 }, { 1, DTPExContractExpirationPartTimeJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationPartTimeJobMemo1 }, { 1, TextBoxExContractExpirationPartTimeJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationPartTimeJobPicture1 }, { 1, BTNExContractExpirationPartTimeJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 20).OrderByDescending(x => x.StartDate).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -505,10 +505,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationLongJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationLongJobStartDate1 }, { 1, DTPExContractExpirationLongJobStartDate2 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationLongJobEndDate1 }, { 1, DTPExContractExpirationLongJobEndDate2 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationLongJobMemo1 }, { 1, TextBoxExContractExpirationLongJobMemo2 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationLongJobPicture1 }, { 1, BTNExContractExpirationLongJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationLongJobStartDate1 }, { 1, DTPExContractExpirationLongJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationLongJobEndDate1 }, { 1, DTPExContractExpirationLongJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLongJobMemo1 }, { 1, TextBoxExContractExpirationLongJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLongJobPicture1 }, { 1, BTNExContractExpirationLongJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 10).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -526,10 +526,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationShortJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationShortJobStartDate1 }, { 1, DTPExContractExpirationShortJobStartDate2 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationShortJobEndDate1 }, { 1, DTPExContractExpirationShortJobEndDate2 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationShortJobMemo1 }, { 1, TextBoxExContractExpirationShortJobMemo2 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationShortJobPicture1 }, { 1, BTNExContractExpirationShortJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationShortJobStartDate1 }, { 1, DTPExContractExpirationShortJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationShortJobEndDate1 }, { 1, DTPExContractExpirationShortJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationShortJobMemo1 }, { 1, TextBoxExContractExpirationShortJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationShortJobPicture1 }, { 1, BTNExContractExpirationShortJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 11).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -547,10 +547,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationWrittenPledge(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationWrittenPledgeStartDate1 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationWrittenPledgeEndDate1 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationWrittenPledgeMemo1 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationWrittenPledgePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationWrittenPledgeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationWrittenPledgeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationWrittenPledgeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationWrittenPledgePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 30).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -568,10 +568,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationLossWrittenPledge(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeStartDate1 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeEndDate1 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationLossWrittenPledgeMemo1 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationLossWrittenPledgePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLossWrittenPledgeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLossWrittenPledgePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 40).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -589,10 +589,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationNotice(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, DateTimePickerEx> _dicStartDate = new() { { 0, DTPExContractExpirationNoticeStartDate1 } };
-            Dictionary<int, DateTimePickerEx> _dicEndDate = new() { { 0, DTPExContractExpirationNoticeEndDate1 } };
-            Dictionary<int, TextBoxEx> _dicMemo = new() { { 0, TextBoxExContractExpirationNoticeMemo1 } };
-            Dictionary<int, ButtonEx> _dicPicture = new() { { 0, BTNExContractExpirationNoticePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationNoticeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationNoticeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationNoticeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationNoticePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 50).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);

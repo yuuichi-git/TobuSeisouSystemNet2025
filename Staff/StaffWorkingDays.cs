@@ -102,7 +102,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
                         this.SetSheetView(this.SheetViewList, _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
@@ -214,8 +214,8 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate1_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value > this.DateTimePickerExOperationDate2.GetValue()) {
-                this.DateTimePickerExOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value > this.DateTimePickerExOperationDate2.GetValue()) {
+                this.DateTimePickerExOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 
@@ -225,8 +225,8 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate2_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
-                this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
+                this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 

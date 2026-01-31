@@ -103,7 +103,7 @@ namespace Waste {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     _errorProvider.Clear();                                                         // ErrorProviderÇÉNÉäÉAÇµÇ‹Ç∑ÅB
                     /*

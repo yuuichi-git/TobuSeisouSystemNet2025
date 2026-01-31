@@ -4,7 +4,7 @@
 using System.Globalization;
 
 namespace ControlEx {
-    public partial class DateTimePickerEx : DateTimePicker {
+    public partial class CcDateTime : DateTimePicker {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly CultureInfo _cultureInfo = new("ja-JP");
         private bool _cultureFlag = false;
@@ -12,7 +12,7 @@ namespace ControlEx {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public DateTimePickerEx() {
+        public CcDateTime() {
             /*
              * InitializeControl
              */

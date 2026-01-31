@@ -64,19 +64,8 @@ namespace ControlEx {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnGotFocus(EventArgs e) {
-            /*
-             * 全選択
-             */
-            SendKeys.Send("{HOME}");
-            SendKeys.Send("+{END}");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs paintEventArgs) {
-            base.OnPaint(paintEventArgs);
+            base.OnGotFocus(e);
+            this.BeginInvoke((Action)(() => this.SelectAll()));     // BeginInvoke は 「今すぐじゃなくて、UI の処理が一段落した後に実行して」という意味の非同期呼び出し。
         }
     }
 }

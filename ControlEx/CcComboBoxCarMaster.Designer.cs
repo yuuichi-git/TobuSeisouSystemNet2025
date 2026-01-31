@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class InputTime {
+    partial class CcComboBoxCarMaster {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

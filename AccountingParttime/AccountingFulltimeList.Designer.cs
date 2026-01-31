@@ -27,10 +27,10 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExTop = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
+            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -152,11 +152,11 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx;
-        private ControlEx.PanelEx PanelExTop;
+        private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate;
+        private ControlEx.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

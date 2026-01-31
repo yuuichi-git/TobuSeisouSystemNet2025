@@ -27,9 +27,9 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
+            this.PanelExUp = new ControlEx.CcPanel();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.GroupBoxExOccupation = new ControlEx.GroupBoxEx();
             this.CheckBoxEx18 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx17 = new ControlEx.CheckBoxEx();
@@ -595,7 +595,7 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private ControlEx.TabControlEx TabControlEx1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -621,7 +621,7 @@
         private ControlEx.CheckBoxEx CheckBoxEx17;
         private ControlEx.CheckBoxEx checkBoxEx8;
         private ControlEx.CheckBoxEx checkBoxEx11;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
         private TabPage tabPage3;
         private TabPage tabPage4;

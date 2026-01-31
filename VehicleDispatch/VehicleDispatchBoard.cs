@@ -133,26 +133,31 @@ namespace VehicleDispatch {
             this.TableLayoutPanelExBase.Controls.Add(_board, 1, 2);
         }
 
-        private StockBoxs stockBoxs = null;
+        private StockBoxs _stockBoxs = null;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((ButtonEx)sender).Name) {
+        private async void ButtonEx_Click(object sender, EventArgs e) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
+                    ((CcButton)sender).Enabled = false;                                                             // 多重クリック防止
+                    this.Cursor = Cursors.WaitCursor;                                                               // カーソルを砂時計に変更
                     try {
                         this.AddControls(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(DateTimePickerExOperationDate.GetDate()));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
+                    } finally {
+                        this.Cursor = Cursors.Default;                                                              // カーソルを元に戻す
+                        ((CcButton)sender).Enabled = true;                                                          // 多重クリック防止解除
                     }
                     break;
                 case "ButtonExStockBoxOpen":
-                    if (stockBoxs is null || stockBoxs.IsDisposed) {
-                        stockBoxs = new(_connectionVo, _board);
-                        _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), stockBoxs);
-                        stockBoxs.Show(this);
+                    if (_stockBoxs is null || _stockBoxs.IsDisposed) {
+                        _stockBoxs = new(_connectionVo, _board);
+                        _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), _stockBoxs);
+                        _stockBoxs.Show(this);
                     } else {
                         MessageBox.Show("このプログラム（Stock-Boxs）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }

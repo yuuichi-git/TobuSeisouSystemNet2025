@@ -27,11 +27,11 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
+            this.PanelExUp = new ControlEx.CcPanel();
             this.ComboBoxExPrinter = new ControlEx.ComboBoxEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.PanelExLeft = new ControlEx.PanelEx();
+            this.PanelExLeft = new ControlEx.CcPanel();
             this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
             this.LabelExCurrentAddress = new ControlEx.LabelEx();
             this.labelEx3 = new ControlEx.LabelEx();
@@ -122,7 +122,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, アルバイト契約, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, パートタイマー, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(403, 67);
@@ -204,9 +204,9 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.PanelEx PanelExLeft;
+        private ControlEx.CcPanel PanelExLeft;
         private FarPoint.Win.Spread.SheetView SpreadList_アルバイト契約;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.LabelEx LabelExCurrentAddress;

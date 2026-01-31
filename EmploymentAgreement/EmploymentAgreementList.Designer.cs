@@ -42,10 +42,10 @@
             this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.PanelExTop = new ControlEx.PanelEx();
+            this.PanelExTop = new ControlEx.CcPanel();
             this.labelEx1 = new ControlEx.LabelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -259,8 +259,8 @@
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.PanelEx PanelExTop;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcPanel PanelExTop;
+        private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemExpiration;

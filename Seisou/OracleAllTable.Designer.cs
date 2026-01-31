@@ -27,7 +27,7 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
+            this.PanelExTop = new ControlEx.CcPanel();
             this.TreeViewEx1 = new ControlEx.TreeViewEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
@@ -123,7 +123,7 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.PanelEx PanelExTop;
+        private ControlEx.CcPanel PanelExTop;
         private ControlEx.TreeViewEx TreeViewEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;

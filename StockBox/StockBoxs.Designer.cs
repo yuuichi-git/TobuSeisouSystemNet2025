@@ -26,14 +26,14 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExDispatch = new ControlEx.ButtonEx();
-            this.ButtonExShortTime = new ControlEx.ButtonEx();
-            this.ButtonExLongTime = new ControlEx.ButtonEx();
-            this.ButtonExPartTime = new ControlEx.ButtonEx();
-            this.ButtonExFullTime = new ControlEx.ButtonEx();
-            this.ButtonExCar = new ControlEx.ButtonEx();
-            this.ButtonExSet = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExDispatch = new ControlEx.CcButton();
+            this.ButtonExShortTime = new ControlEx.CcButton();
+            this.ButtonExLongTime = new ControlEx.CcButton();
+            this.ButtonExPartTime = new ControlEx.CcButton();
+            this.ButtonExFullTime = new ControlEx.CcButton();
+            this.ButtonExCar = new ControlEx.CcButton();
+            this.ButtonExSet = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.SuspendLayout();
@@ -187,13 +187,13 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
-        private ControlEx.ButtonEx ButtonExSet;
-        private ControlEx.ButtonEx ButtonExDispatch;
-        private ControlEx.ButtonEx ButtonExShortTime;
-        private ControlEx.ButtonEx ButtonExLongTime;
-        private ControlEx.ButtonEx ButtonExPartTime;
-        private ControlEx.ButtonEx ButtonExFullTime;
-        private ControlEx.ButtonEx ButtonExCar;
+        private ControlEx.CcPanel PanelExUp;
+        private ControlEx.CcButton ButtonExSet;
+        private ControlEx.CcButton ButtonExDispatch;
+        private ControlEx.CcButton ButtonExShortTime;
+        private ControlEx.CcButton ButtonExLongTime;
+        private ControlEx.CcButton ButtonExPartTime;
+        private ControlEx.CcButton ButtonExFullTime;
+        private ControlEx.CcButton ButtonExCar;
     }
 }

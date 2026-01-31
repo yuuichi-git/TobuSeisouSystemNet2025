@@ -33,8 +33,8 @@
             this.ToolStripMenuItemRemove = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
-            this.PanelExUp = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExUp = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -169,9 +169,9 @@
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private ControlEx.CheckBoxEx CheckBoxExDeleteFlag;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;

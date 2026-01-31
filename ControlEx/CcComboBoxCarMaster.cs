@@ -6,13 +6,16 @@ using System.Text.RegularExpressions;
 using Vo;
 
 namespace ControlEx {
-    public partial class ComboBoxExCarMaster : ComboBox {
+    public partial class CcComboBoxCarMaster : ComboBox {
+        /*
+         * Vo
+         */
         private readonly List<ComboBoxExCarMasterVo> _listComboBoxExCarMasterVo;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ComboBoxExCarMaster() {
+        public CcComboBoxCarMaster() {
             /*
              * Vo初期化
              */

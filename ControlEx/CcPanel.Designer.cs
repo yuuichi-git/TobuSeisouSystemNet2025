@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class ButtonEx {
+    partial class CcPanel {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

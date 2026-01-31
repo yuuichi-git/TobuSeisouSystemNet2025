@@ -27,12 +27,12 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExUp = new ControlEx.PanelEx();
+            this.PanelExUp = new ControlEx.CcPanel();
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate2 = new ControlEx.DateTimePickerEx();
-            this.DateTimePickerExOperationDate1 = new ControlEx.DateTimePickerEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
+            this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -176,13 +176,13 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExUp;
+        private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate2;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate1;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate2;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate1;
+        private ControlEx.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

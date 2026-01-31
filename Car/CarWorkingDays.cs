@@ -249,8 +249,8 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerEx1_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value > this.DateTimePickerExOperationDate2.GetValue()) {
-                this.DateTimePickerExOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value > this.DateTimePickerExOperationDate2.GetValue()) {
+                this.DateTimePickerExOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 
@@ -260,8 +260,8 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerEx2_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
-                this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((DateTimePickerEx)sender).GetValue()));
+            if (((CcDateTime)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
+                this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 

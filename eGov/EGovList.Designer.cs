@@ -26,8 +26,8 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExTop = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             this.SuspendLayout();
@@ -113,7 +113,7 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExTop;
-        private ControlEx.ButtonEx ButtonExUpdate;
+        private ControlEx.CcPanel PanelExTop;
+        private ControlEx.CcButton ButtonExUpdate;
     }
 }

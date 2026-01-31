@@ -2,8 +2,8 @@
  * 2024-11-05
  */
 namespace ControlEx {
-    public partial class TextBoxEx : TextBox {
-        public TextBoxEx() {
+    public partial class CcTextBox : TextBox {
+        public CcTextBox() {
             InitializeComponent();
         }
 

@@ -26,12 +26,12 @@
             this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PanelExTop = new ControlEx.PanelEx();
-            this.ButtonExUpdate = new ControlEx.ButtonEx();
+            this.PanelExTop = new ControlEx.CcPanel();
+            this.ButtonExUpdate = new ControlEx.CcButton();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.DateTimePickerExOperationDate = new ControlEx.DateTimePickerEx();
-            this.PanelExLeft = new ControlEx.PanelEx();
-            this.ButtonExStockBoxOpen = new ControlEx.ButtonEx();
+            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
+            this.PanelExLeft = new ControlEx.CcPanel();
+            this.ButtonExStockBoxOpen = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
@@ -166,11 +166,11 @@
         private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PanelEx PanelExTop;
-        private ControlEx.DateTimePickerEx DateTimePickerExOperationDate;
+        private ControlEx.CcPanel PanelExTop;
+        private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.LabelEx labelEx1;
-        private ControlEx.PanelEx PanelExLeft;
-        private ControlEx.ButtonEx ButtonExUpdate;
-        private ControlEx.ButtonEx ButtonExStockBoxOpen;
+        private ControlEx.CcPanel PanelExLeft;
+        private ControlEx.CcButton ButtonExUpdate;
+        private ControlEx.CcButton ButtonExStockBoxOpen;
     }
 }

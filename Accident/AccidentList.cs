@@ -222,7 +222,7 @@ namespace Accident {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate1_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value > DateTimePickerExOperationDate2.Value) {
+            if (((CcDateTime)sender).Value > DateTimePickerExOperationDate2.Value) {
                 DateTimePickerExOperationDate2.Value = DateTimePickerExOperationDate1.Value;
             }
         }
@@ -233,7 +233,7 @@ namespace Accident {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate2_ValueChanged(object sender, EventArgs e) {
-            if (((DateTimePickerEx)sender).Value < DateTimePickerExOperationDate1.Value) {
+            if (((CcDateTime)sender).Value < DateTimePickerExOperationDate1.Value) {
                 DateTimePickerExOperationDate1.Value = DateTimePickerExOperationDate2.Value;
             }
         }
