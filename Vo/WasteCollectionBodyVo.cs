@@ -4,7 +4,7 @@
 namespace Vo {
     public class WasteCollectionBodyVo {
         private DateTime _defaultDateTime = new(1900, 01, 01);
-        private string _id;
+        private int _id;
         private int _numberOfRow;
         private string _itemName;
         private string _itemSize;
@@ -23,7 +23,7 @@ namespace Vo {
         /// コンストラクター
         /// </summary>
         public WasteCollectionBodyVo() {
-            this._id = string.Empty;
+            this._id = 0;
             this._numberOfRow = 0;
             this._itemName = string.Empty;
             this._itemSize = string.Empty;
@@ -42,7 +42,7 @@ namespace Vo {
         /// <summary>
         /// ID
         /// </summary>
-        public string Id {
+        public int Id {
             get => this._id;
             set => this._id = value;
         }

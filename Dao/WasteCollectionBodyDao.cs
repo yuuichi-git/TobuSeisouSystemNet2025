@@ -32,7 +32,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCollectionBody " +
-                                     "WHERE Id = '" + targetId + "'";
+                                     "WHERE Id = " + targetId + "";
             try {
                 return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
             } catch {
@@ -45,7 +45,7 @@ namespace Dao {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<WasteCollectionBodyVo> SelectAllWasteCollectionBodyVo(string id) {
+        public List<WasteCollectionBodyVo> SelectAllWasteCollectionBodyVo(int id) {
             List<WasteCollectionBodyVo> listWasteCollectionBodyVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_WasteCollectionBody.Id," +
@@ -63,11 +63,11 @@ namespace Dao {
                                             "H_WasteCollectionBody.DeleteYmdHms," +
                                             "H_WasteCollectionBody.DeleteFlag " +
                                      "FROM H_WasteCollectionBody " +
-                                     "WHERE H_WasteCollectionBody.Id = '" + id + "'";
+                                     "WHERE H_WasteCollectionBody.Id = " + id + "";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     WasteCollectionBodyVo wasteCollectionBodyVo = new();
-                    wasteCollectionBodyVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionBodyVo.Id = _defaultValue.GetDefaultValue<int>(sqlDataReader["Id"]);
                     wasteCollectionBodyVo.NumberOfRow = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfRow"]);
                     wasteCollectionBodyVo.ItemName = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemName"]);
                     wasteCollectionBodyVo.ItemSize = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemSize"]);

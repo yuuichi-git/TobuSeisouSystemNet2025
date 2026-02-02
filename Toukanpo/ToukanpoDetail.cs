@@ -187,10 +187,10 @@ namespace Toukanpo {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemClip":                                                                           // Picture Clip
-                    ((PictureBoxEx)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    ((CcPictureBox)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
                     break;
                 case "ToolStripMenuItemDelete":                                                                         // Picture Delete
-                    ((PictureBoxEx)_sourceControl).Image = null;
+                    ((CcPictureBox)_sourceControl).Image = null;
                     break;
                 /*
                  * アプリケーションを終了する

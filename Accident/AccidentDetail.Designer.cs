@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccidentDetail));
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExTop = new ControlEx.CcPanel();
@@ -36,14 +36,14 @@
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.PanelExMiddle = new ControlEx.CcPanel();
             this.ButtonExMap = new ControlEx.CcButton();
-            this.PictureBoxEx5 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx5 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx4 = new ControlEx.PictureBoxEx();
-            this.PictureBoxEx3 = new ControlEx.PictureBoxEx();
-            this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx4 = new ControlEx.CcPictureBox();
+            this.PictureBoxEx3 = new ControlEx.CcPictureBox();
+            this.PictureBoxEx2 = new ControlEx.CcPictureBox();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.TextBoxExGuide = new ControlEx.CcTextBox();
             this.labelEx17 = new ControlEx.LabelEx();
             this.TextBoxExAccidentDetail = new ControlEx.CcTextBox();
@@ -648,7 +648,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
@@ -692,11 +692,11 @@
         private ControlEx.LabelEx labelEx17;
         private ControlEx.CcTextBox TextBoxExAccidentDetail;
         private ControlEx.LabelEx labelEx16;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
-        private ControlEx.PictureBoxEx PictureBoxEx5;
-        private ControlEx.PictureBoxEx PictureBoxEx4;
-        private ControlEx.PictureBoxEx PictureBoxEx3;
-        private ControlEx.PictureBoxEx PictureBoxEx2;
+        private ControlEx.CcPictureBox PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx5;
+        private ControlEx.CcPictureBox PictureBoxEx4;
+        private ControlEx.CcPictureBox PictureBoxEx3;
+        private ControlEx.CcPictureBox PictureBoxEx2;
         private ControlEx.CcButton ButtonExMap;
     }
 }

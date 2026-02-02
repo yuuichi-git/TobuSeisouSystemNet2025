@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OracleAllTable));
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.PanelExTop = new ControlEx.CcPanel();
@@ -120,7 +120,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.CcPanel PanelExTop;

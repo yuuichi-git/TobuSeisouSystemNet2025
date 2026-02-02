@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelEx1 = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelEx1 = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.CcPanel();
@@ -46,11 +46,11 @@
             this.CheckBoxExQuasiMedium = new ControlEx.CheckBoxEx();
             this.CheckBoxExMedium = new ControlEx.CheckBoxEx();
             this.CheckBoxExLarge = new ControlEx.CheckBoxEx();
-            this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx2 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.DateTimePickerExGetDate3 = new ControlEx.CcDateTime();
             this.DateTimePickerExGetDate2 = new ControlEx.CcDateTime();
             this.DateTimePickerExGetDate1 = new ControlEx.CcDateTime();
@@ -662,7 +662,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelEx1;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelEx1;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
@@ -695,8 +695,8 @@
         private ControlEx.ComboBoxEx ComboBoxExLicenseCondition;
         private ControlEx.CcDateTime DateTimePickerExExpirationDate;
         private ControlEx.CcDateTime DateTimePickerExDeliveryDate;
-        private ControlEx.PictureBoxEx PictureBoxEx2;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx2;
+        private ControlEx.CcPictureBox PictureBoxEx1;
         private ControlEx.CheckBoxEx CheckBoxExLarge;
         private ControlEx.CheckBoxEx CheckBoxExOrdinaryAutoBike;
         private ControlEx.CheckBoxEx CheckBoxExBigAutoBike;

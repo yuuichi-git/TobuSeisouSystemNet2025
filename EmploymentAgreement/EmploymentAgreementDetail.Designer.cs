@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.CcPanel();
@@ -81,7 +81,7 @@
             this.labelEx40 = new ControlEx.LabelEx();
             this.NUDExContractExpirationPeriod = new ControlEx.NumericUpDownEx();
             this.labelEx39 = new ControlEx.LabelEx();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
             this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
@@ -1828,7 +1828,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
@@ -1910,7 +1910,7 @@
         private ControlEx.CcDateTime DTPExContractExpirationNoticeEndDate1;
         private ControlEx.LabelEx labelEx28;
         private ControlEx.CcTextBox TextBoxExContractExpirationNoticeMemo1;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx1;
         private ControlEx.LabelEx LabelExDisplayName;
         private ControlEx.LabelEx LabelExBelongs;
         private ControlEx.LabelEx LabelExOccupation;

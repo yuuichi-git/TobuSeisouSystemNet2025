@@ -23,17 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.PanelExCenter = new ControlEx.CcPanel();
-            this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx2 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.labelEx14 = new ControlEx.LabelEx();
             this.labelEx13 = new ControlEx.LabelEx();
             this.labelEx12 = new ControlEx.LabelEx();
@@ -467,7 +467,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
@@ -497,8 +497,8 @@
         private ControlEx.LabelEx labelEx7;
         private ControlEx.LabelEx labelEx6;
         private ControlEx.LabelEx labelEx5;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
-        private ControlEx.PictureBoxEx PictureBoxEx2;
+        private ControlEx.CcPictureBox PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx2;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;

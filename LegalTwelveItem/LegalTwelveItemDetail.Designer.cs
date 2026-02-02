@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExTop = new ControlEx.CcPanel();
@@ -35,12 +35,12 @@
             this.labelEx9 = new ControlEx.LabelEx();
             this.labelEx8 = new ControlEx.LabelEx();
             this.labelEx7 = new ControlEx.LabelEx();
-            this.PictureBoxEx3 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx3 = new ControlEx.CcPictureBox();
             this.ContextMenuStrip1 = new ContextMenuStrip(this.components);
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx2 = new ControlEx.PictureBoxEx();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx2 = new ControlEx.CcPictureBox();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.TextBoxEx9 = new ControlEx.CcTextBox();
             this.TextBoxEx10 = new ControlEx.CcTextBox();
             this.TextBoxEx11 = new ControlEx.CcTextBox();
@@ -918,7 +918,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
@@ -978,9 +978,9 @@
         private ControlEx.CcTextBox TextBoxEx4;
         private ControlEx.CcTextBox TextBoxEx3;
         private ControlEx.CcTextBox TextBoxEx2;
-        private ControlEx.PictureBoxEx PictureBoxEx3;
-        private ControlEx.PictureBoxEx PictureBoxEx2;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx3;
+        private ControlEx.CcPictureBox PictureBoxEx2;
+        private ControlEx.CcPictureBox PictureBoxEx1;
         private ControlEx.LabelEx labelEx9;
         private ControlEx.LabelEx labelEx8;
         private ControlEx.LabelEx labelEx7;

@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.CcPanel();
@@ -98,11 +98,11 @@
             this.DateTimeExSelectionDate = new ControlEx.CcDateTime();
             this.labelEx18 = new ControlEx.LabelEx();
             this.labelEx17 = new ControlEx.LabelEx();
-            this.PictureBoxExStamp = new ControlEx.PictureBoxEx();
+            this.PictureBoxExStamp = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx2 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemStampClip = new ToolStripMenuItem();
             this.ToolStripMenuItemStampDelete = new ToolStripMenuItem();
-            this.PictureBoxExStaff = new ControlEx.PictureBoxEx();
+            this.PictureBoxExStaff = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
             this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
@@ -1445,7 +1445,7 @@
             this.labelEx5.AutoSize = true;
             this.labelEx5.Location = new Point(352, 248);
             this.labelEx5.Name = "labelEx5";
-            this.labelEx5.Size = new Size(98, 15);
+            this.labelEx5.Size = new Size(97, 15);
             this.labelEx5.TabIndex = 11;
             this.labelEx5.Text = "フリガナ(スペース入)";
             // 
@@ -1463,7 +1463,7 @@
             this.labelEx3.AutoSize = true;
             this.labelEx3.Location = new Point(32, 248);
             this.labelEx3.Name = "labelEx3";
-            this.labelEx3.Size = new Size(42, 15);
+            this.labelEx3.Size = new Size(41, 15);
             this.labelEx3.TabIndex = 9;
             this.labelEx3.Text = "フリガナ";
             // 
@@ -3294,7 +3294,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
@@ -3355,8 +3355,8 @@
         private ControlEx.LabelEx labelEx15;
         private ControlEx.CcTextBox TextBoxExTelephoneNumber;
         private ControlEx.LabelEx labelEx17;
-        private ControlEx.PictureBoxEx PictureBoxExStamp;
-        private ControlEx.PictureBoxEx PictureBoxExStaff;
+        private ControlEx.CcPictureBox PictureBoxExStamp;
+        private ControlEx.CcPictureBox PictureBoxExStaff;
         private ControlEx.GroupBoxEx GroupBoxExDrive;
         private ControlEx.CcDateTime DateTimeExSelectionDate;
         private ControlEx.LabelEx labelEx18;

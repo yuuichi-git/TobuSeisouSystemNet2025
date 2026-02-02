@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class TableLayoutPanelEx {
+    partial class CcPictureBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

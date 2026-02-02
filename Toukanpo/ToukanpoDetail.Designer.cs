@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExMiddle = new ControlEx.CcPanel();
@@ -34,7 +34,7 @@
             this.labelEx3 = new ControlEx.LabelEx();
             this.LabelExCompany = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
@@ -218,12 +218,12 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExMiddle;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.PictureBoxEx PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx1;
         private ControlEx.LabelEx labelEx1;
         private ControlEx.LabelEx LabelExCompany;
         private ControlEx.LabelEx labelEx3;

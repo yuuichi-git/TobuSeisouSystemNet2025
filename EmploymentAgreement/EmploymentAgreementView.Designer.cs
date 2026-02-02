@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.PictureBoxEx1 = new ControlEx.PictureBoxEx();
+            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +52,6 @@
 
         #endregion
 
-        private ControlEx.PictureBoxEx PictureBoxEx1;
+        private ControlEx.CcPictureBox PictureBoxEx1;
     }
 }

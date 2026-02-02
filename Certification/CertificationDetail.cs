@@ -137,13 +137,13 @@ namespace Certification {
                  * Picture クリップボード
                  */
                 case "ToolStripMenuItemClip":
-                    ((PictureBoxEx)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    ((CcPictureBox)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
                     break;
                 /*
                  * Picture 削除
                  */
                 case "ToolStripMenuItemDelete":
-                    ((PictureBoxEx)_sourceControl).Image = null;
+                    ((CcPictureBox)_sourceControl).Image = null;
                     break;
                 /*
                  * アプリケーションを終了する

@@ -453,7 +453,7 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PictureBoxEx_DoubleClick(object sender, EventArgs e) {
-            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((PictureBoxEx)sender).Image, ((PictureBoxEx)sender).Name);
+            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((CcPictureBox)sender).Image, ((CcPictureBox)sender).Name);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carVehicleInspectionView);
             carVehicleInspectionView.ShowDialog(this);
         }
@@ -652,6 +652,5 @@ namespace Car {
                 set => this._shapeMasterVo = value;
             }
         }
-
     }
 }

@@ -50,9 +50,9 @@ namespace ControlEx {
          * Timer
          */
         private Timer _timerControl = new();
-        bool _doubleClickFlag = false; // シングルとダブルクリックの判別用
-        private int _clickTime = 0;// クリック間の時間を保持
-        private int _doubleClickInterval = SystemInformation.DoubleClickTime;// ダブルクリックが有効な時間間隔(初期値500)
+        bool _doubleClickFlag = false;                                                              // シングルとダブルクリックの判別用
+        private int _clickTime = 0;                                                                 // クリック間の時間を保持
+        private int _doubleClickInterval = SystemInformation.DoubleClickTime;                       // ダブルクリックが有効な時間間隔(初期値500)
 
         /// <summary>
         /// Constractor

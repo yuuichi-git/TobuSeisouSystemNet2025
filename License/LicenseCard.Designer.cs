@@ -23,11 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
-            this.PictureBoxExHead = new ControlEx.PictureBoxEx();
-            this.PictureBoxExTail = new ControlEx.PictureBoxEx();
+            this.PictureBoxExHead = new ControlEx.CcPictureBox();
+            this.PictureBoxExTail = new ControlEx.CcPictureBox();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExHead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExTail).BeginInit();
@@ -115,10 +115,10 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
-        private ControlEx.PictureBoxEx PictureBoxExHead;
-        private ControlEx.PictureBoxEx PictureBoxExTail;
+        private ControlEx.CcPictureBox PictureBoxExHead;
+        private ControlEx.CcPictureBox PictureBoxExTail;
     }
 }

@@ -29,7 +29,7 @@ namespace LegalTwelveItem {
         private CcDateTime[] _arrayDateTimePickerEx = new CcDateTime[12];
         private ComboBoxEx[] _arrayComboBoxEx = new ComboBoxEx[12];
         private CcTextBox[] _arrayTextBoxEx = new CcTextBox[12];
-        private PictureBoxEx[] _arrayPictureBoxEx = new PictureBoxEx[3];
+        private CcPictureBox[] _arrayPictureBoxEx = new CcPictureBox[3];
 
         /// <summary>
         /// 
@@ -278,10 +278,10 @@ namespace LegalTwelveItem {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemClip":                                                                           // Picture Clip
-                    ((PictureBoxEx)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    ((CcPictureBox)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
                     break;
                 case "ToolStripMenuItemDelete":                                                                         // Picture Delete
-                    ((PictureBoxEx)_sourceControl).Image = null;
+                    ((CcPictureBox)_sourceControl).Image = null;
                     break;
                 case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する
                     this.Close();

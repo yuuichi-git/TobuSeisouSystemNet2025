@@ -12,7 +12,7 @@ using Vo;
 namespace Accident {
     public partial class AccidentDetail : Form {
         private ErrorProvider _errorProvider = new();
-        private PictureBoxEx[] _arrayPictureBoxEx = new PictureBoxEx[5];
+        private CcPictureBox[] _arrayPictureBoxEx = new CcPictureBox[5];
         /*
          * Dao
          */
@@ -313,13 +313,13 @@ namespace Accident {
                  * Picture Clip
                  */
                 case "ToolStripMenuItemClip":
-                    ((PictureBoxEx)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                    ((CcPictureBox)_sourceControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
                     break;
                 /*
                  * Picture Delete
                  */
                 case "ToolStripMenuItemDelete":
-                    ((PictureBoxEx)_sourceControl).Image = null;
+                    ((CcPictureBox)_sourceControl).Image = null;
                     break;
                 /*
                  * アプリケーションを終了する

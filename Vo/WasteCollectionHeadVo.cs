@@ -4,7 +4,7 @@
 namespace Vo {
     public class WasteCollectionHeadVo {
         private DateTime _defaultDateTime = new(1900, 01, 01);
-        private string _id;
+        private int _id;
         private DateTime _officeQuotationDate;
         private int _officeRequestWord;
         private string _officeRequestWordName;
@@ -31,7 +31,7 @@ namespace Vo {
         /// コンストラクター
         /// </summary>
         public WasteCollectionHeadVo() {
-            this._id = string.Empty;
+            this._id = 0;
             this._officeQuotationDate = this._defaultDateTime;
             this._officeRequestWord = 0;
             this._officeRequestWordName = string.Empty;                                 // H_WordMaster
@@ -58,7 +58,7 @@ namespace Vo {
         /// <summary>
         /// ID
         /// </summary>
-        public string Id {
+        public int Id {
             get => this._id;
             set => this._id = value;
         }

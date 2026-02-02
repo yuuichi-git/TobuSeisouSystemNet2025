@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExUp = new ControlEx.CcPanel();
@@ -122,11 +122,11 @@
             this.labelEx3 = new ControlEx.LabelEx();
             this.labelEx2 = new ControlEx.LabelEx();
             this.labelEx1 = new ControlEx.LabelEx();
-            this.PictureBoxExMainPicture = new ControlEx.PictureBoxEx();
+            this.PictureBoxExMainPicture = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemMainPictureClip = new ToolStripMenuItem();
             this.ToolStripMenuItemMainPictureDelete = new ToolStripMenuItem();
-            this.PictureBoxExSubPicture = new ControlEx.PictureBoxEx();
+            this.PictureBoxExSubPicture = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx2 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemSubPictureClip = new ToolStripMenuItem();
             this.ToolStripMenuItemSubPictureDelete = new ToolStripMenuItem();
@@ -1301,13 +1301,13 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private ControlEx.CcPanel PanelExLeft;
-        private ControlEx.PictureBoxEx PictureBoxExMainPicture;
-        private ControlEx.PictureBoxEx PictureBoxExSubPicture;
+        private ControlEx.CcPictureBox PictureBoxExMainPicture;
+        private ControlEx.CcPictureBox PictureBoxExSubPicture;
         private ControlEx.GroupBoxEx groupBoxEx1;
         private ControlEx.LabelEx labelEx2;
         private ControlEx.LabelEx labelEx1;

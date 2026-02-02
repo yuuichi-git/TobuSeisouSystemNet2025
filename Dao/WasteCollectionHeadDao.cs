@@ -1,6 +1,7 @@
 ﻿/*
  * 2026-01-26
  */
+using System.Data;
 using System.Data.SqlClient;
 
 using Common;
@@ -32,7 +33,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCollectionHead " +
-                                     "WHERE Id = '" + targetId + "'";
+                                     "WHERE Id = " + targetId + "";
             try {
                 return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
             } catch {
@@ -43,9 +44,24 @@ namespace Dao {
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        public int GetNewId() {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT MAX(Id) " +
+                                     "FROM H_WasteCollectionHead";
+            try {
+                return (int)sqlCommand.ExecuteScalar() + 1;
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public WasteCollectionHeadVo SelectOneWasteCollectionHeadVo(string id) {
+        public WasteCollectionHeadVo SelectOneWasteCollectionHeadVo(int id) {
             WasteCollectionHeadVo wasteCollectionHeadVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_WasteCollectionHead.Id," +
@@ -72,11 +88,11 @@ namespace Dao {
                                             "H_WasteCollectionHead.DeleteFlag " +
                                      "FROM H_WasteCollectionHead " +
                                      "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code " +
-                                     "WHERE Id = '" + id + "'";
+                                     "WHERE Id = " + id + "";
 
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
-                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<int>(sqlDataReader["Id"]);
                     wasteCollectionHeadVo.OfficeQuotationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OfficeQuotationDate"]);
                     wasteCollectionHeadVo.OfficeRequestWord = _defaultValue.GetDefaultValue<int>(sqlDataReader["OfficeRequestWord"]);
                     wasteCollectionHeadVo.OfficeRequestWordName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeRequestWordName"]);
@@ -123,8 +139,8 @@ namespace Dao {
                                             "H_WasteCollectionHead.WorkSiteAddress," +
                                             "H_WasteCollectionHead.PickupDate," +
                                             "H_WasteCollectionHead.Remarks," +
-                                            "H_WasteCollectionHead.MainPicture," +
-                                            "H_WasteCollectionHead.SubPicture," +
+                                            //"H_WasteCollectionHead.MainPicture," +
+                                            //"H_WasteCollectionHead.SubPicture," +
                                             "H_WasteCollectionHead.InsertPcName," +
                                             "H_WasteCollectionHead.InsertYmdHms," +
                                             "H_WasteCollectionHead.UpdatePcName," +
@@ -137,7 +153,7 @@ namespace Dao {
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     WasteCollectionHeadVo wasteCollectionHeadVo = new();
-                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<string>(sqlDataReader["Id"]);
+                    wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<int>(sqlDataReader["Id"]);
                     wasteCollectionHeadVo.OfficeQuotationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OfficeQuotationDate"]);
                     wasteCollectionHeadVo.OfficeRequestWord = _defaultValue.GetDefaultValue<int>(sqlDataReader["OfficeRequestWord"]);
                     wasteCollectionHeadVo.OfficeRequestWordName = _defaultValue.GetDefaultValue<string>(sqlDataReader["OfficeRequestWordName"]);
@@ -150,8 +166,8 @@ namespace Dao {
                     wasteCollectionHeadVo.WorkSiteAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["WorkSiteAddress"]);
                     wasteCollectionHeadVo.PickupDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PickupDate"]);
                     wasteCollectionHeadVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
-                    wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
-                    wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    //wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
+                    //wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
                     wasteCollectionHeadVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     wasteCollectionHeadVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     wasteCollectionHeadVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -163,6 +179,64 @@ namespace Dao {
                 }
             }
             return listWasteCollectionHeadVo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="wasteCollectionHeadVo"></param>
+        public void InsertOneWasteCollectionHead(WasteCollectionHeadVo wasteCollectionHeadVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_WasteCollectionHead(Id," +
+                                                                       "OfficeQuotationDate," +
+                                                                       "OfficeRequestWord," +
+                                                                       "OfficeCompanyName," +
+                                                                       "OfficeContactPerson," +
+                                                                       "OfficeAddress," +
+                                                                       "OfficeTelephoneNumber," +
+                                                                       "OfficeCellphoneNumber," +
+                                                                       "WorkSiteLocation," +
+                                                                       "WorkSiteAddress," +
+                                                                       "PickupDate," +
+                                                                       "Remarks," +
+                                                                       "MainPicture," +
+                                                                       "SubPicture," +
+                                                                       "InsertPcName," +
+                                                                       "InsertYmdHms," +
+                                                                       "UpdatePcName," +
+                                                                       "UpdateYmdHms," +
+                                                                       "DeletePcName," +
+                                                                       "DeleteYmdHms," +
+                                                                       "DeleteFlag) " +
+                                     "VALUES (" + wasteCollectionHeadVo.Id + "," +
+                                            "'" + wasteCollectionHeadVo.OfficeQuotationDate + "'," +
+                                             "" + wasteCollectionHeadVo.OfficeRequestWord + "," +
+                                            "'" + wasteCollectionHeadVo.OfficeCompanyName + "'," +
+                                            "'" + wasteCollectionHeadVo.OfficeContactPerson + "'," +
+                                            "'" + wasteCollectionHeadVo.OfficeAddress + "'," +
+                                            "'" + wasteCollectionHeadVo.OfficeTelephoneNumber + "'," +
+                                            "'" + wasteCollectionHeadVo.OfficeCellphoneNumber + "'," +
+                                            "'" + wasteCollectionHeadVo.WorkSiteLocation + "'," +
+                                            "'" + wasteCollectionHeadVo.WorkSiteAddress + "'," +
+                                            "'" + wasteCollectionHeadVo.PickupDate + "'," +
+                                            "'" + wasteCollectionHeadVo.Remarks + "'," +
+                                            "@member_MainPicture," +
+                                            "@member_SubPicture," +
+                                            "'" + Environment.MachineName + "'," +
+                                            "'" + DateTime.Now + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                             "'false'" +
+                                             ");";
+            try {
+                sqlCommand.Parameters.Add("@member_MainPicture", SqlDbType.Image, wasteCollectionHeadVo.MainPicture.Length).Value = wasteCollectionHeadVo.MainPicture;
+                sqlCommand.Parameters.Add("@member_SubPicture", SqlDbType.Image, wasteCollectionHeadVo.SubPicture.Length).Value = wasteCollectionHeadVo.SubPicture;
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
         }
     }
 }

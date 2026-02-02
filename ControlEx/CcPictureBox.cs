@@ -2,8 +2,8 @@
  * 2024-11-05
  */
 namespace ControlEx {
-    public partial class PictureBoxEx : PictureBox {
-        public PictureBoxEx() {
+    public partial class CcPictureBox : PictureBox {
+        public CcPictureBox() {
             InitializeComponent();
         }
 

@@ -53,7 +53,7 @@ namespace Dao {
         /// </summary>
         /// <returns>CarCodeの最大値</returns>
         public int GetCarCode() {
-            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(CarCode) " +
                                      "FROM H_CarMaster";
             try {

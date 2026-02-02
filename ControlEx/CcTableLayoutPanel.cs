@@ -2,11 +2,11 @@
  * 2024-09-23
  */
 namespace ControlEx {
-    public partial class TableLayoutPanelEx : TableLayoutPanel {
+    public partial class CcTableLayoutPanel : TableLayoutPanel {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public TableLayoutPanelEx() {
+        public CcTableLayoutPanel() {
             /* 
              * ダブルバッファリングを有効にする
              */

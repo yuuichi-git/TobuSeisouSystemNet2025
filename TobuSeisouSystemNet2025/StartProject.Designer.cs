@@ -118,7 +118,7 @@
             TreeNode treeNode93 = new TreeNode("38　健康保険加入台帳・厚生年金加入台帳");
             TreeNode treeNode94 = new TreeNode("陸運局", new TreeNode[] { treeNode55, treeNode56, treeNode57, treeNode58, treeNode59, treeNode60, treeNode61, treeNode62, treeNode63, treeNode64, treeNode65, treeNode66, treeNode67, treeNode68, treeNode69, treeNode70, treeNode71, treeNode72, treeNode73, treeNode74, treeNode75, treeNode76, treeNode77, treeNode78, treeNode79, treeNode80, treeNode81, treeNode82, treeNode83, treeNode84, treeNode85, treeNode86, treeNode87, treeNode88, treeNode89, treeNode90, treeNode91, treeNode92, treeNode93 });
             TreeNode treeNode95 = new TreeNode("労働基準監督署");
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.PanelExLeft = new ControlEx.CcPanel();
@@ -1500,7 +1500,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.StatusStripEx StatusStripEx1;
         private ControlEx.CcPanel PanelExLeft;

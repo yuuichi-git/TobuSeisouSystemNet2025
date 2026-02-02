@@ -24,15 +24,26 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionDetail));
-            this.TableLayoutPanelExBase = new ControlEx.TableLayoutPanelEx();
+            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
             this.MenuStripEx1 = new ControlEx.MenuStripEx();
             this.PanelExUp = new ControlEx.CcPanel();
+            this.labelEx18 = new ControlEx.LabelEx();
             this.CcButtonUpdate = new ControlEx.CcButton();
+            this.CcTextBoxId = new ControlEx.CcTextBox();
             this.PanelExMiddle = new ControlEx.CcPanel();
+            this.TabControlEx1 = new ControlEx.TabControlEx();
+            this.TabPage1 = new TabPage();
+            this.CcPictureBox1 = new ControlEx.CcPictureBox();
+            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemPaste = new ToolStripMenuItem();
+            this.ToolStripMenuItemDetail = new ToolStripMenuItem();
+            this.TabPage2 = new TabPage();
+            this.CcPictureBox2 = new ControlEx.CcPictureBox();
+            this.ccPanel1 = new ControlEx.CcPanel();
+            this.CcDateTimePickupDate = new ControlEx.CcDateTime();
             this.labelEx9 = new ControlEx.LabelEx();
             this.labelEx8 = new ControlEx.LabelEx();
             this.CcTextBoxRemarks = new ControlEx.CcTextBox();
-            this.CcDateTimePickupDate = new ControlEx.CcDateTime();
             this.groupBoxEx2 = new ControlEx.GroupBoxEx();
             this.labelEx10 = new ControlEx.LabelEx();
             this.CcTextBoxWorkSiteAddress = new ControlEx.CcTextBox();
@@ -55,6 +66,7 @@
             this.CcDateTimeOfficeQuotationDate = new ControlEx.CcDateTime();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.CcPanelDown = new ControlEx.CcPanel();
             this.CcButtonDelete = new ControlEx.CcButton();
             this.CcButtonOk = new ControlEx.CcButton();
@@ -71,10 +83,16 @@
             this.CcNumericUpDownNumberOfUnits = new ControlEx.NumericUpDownEx();
             this.CcTextBoxItemSize = new ControlEx.CcTextBox();
             this.CcComboBoxItemName = new ControlEx.CcComboBoxWordMaster();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
+            this.TabControlEx1.SuspendLayout();
+            this.TabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox1).BeginInit();
+            this.ContextMenuStripEx1.SuspendLayout();
+            this.TabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox2).BeginInit();
+            this.ccPanel1.SuspendLayout();
             this.groupBoxEx2.SuspendLayout();
             this.groupBoxEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -101,36 +119,47 @@
             this.TableLayoutPanelExBase.RowCount = 6;
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 350F));
+            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 354F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1094, 861);
+            this.TableLayoutPanelExBase.Size = new Size(1125, 861);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             this.MenuStripEx1.Location = new Point(2, 2);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1090, 24);
+            this.MenuStripEx1.Size = new Size(1121, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // PanelExUp
             // 
+            this.PanelExUp.Controls.Add(this.labelEx18);
             this.PanelExUp.Controls.Add(this.CcButtonUpdate);
+            this.PanelExUp.Controls.Add(this.CcTextBoxId);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(5, 31);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1084, 54);
+            this.PanelExUp.Size = new Size(1115, 54);
             this.PanelExUp.TabIndex = 1;
+            // 
+            // labelEx18
+            // 
+            this.labelEx18.AutoSize = true;
+            this.labelEx18.Location = new Point(32, 18);
+            this.labelEx18.Name = "labelEx18";
+            this.labelEx18.Size = new Size(17, 15);
+            this.labelEx18.TabIndex = 20;
+            this.labelEx18.Text = "Id";
             // 
             // CcButtonUpdate
             // 
             this.CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.CcButtonUpdate.Location = new Point(885, 10);
+            this.CcButtonUpdate.Location = new Point(916, 10);
             this.CcButtonUpdate.Name = "CcButtonUpdate";
             this.CcButtonUpdate.SetTextDirectionVertical = "";
             this.CcButtonUpdate.Size = new Size(160, 32);
@@ -140,12 +169,24 @@
             this.CcButtonUpdate.UseVisualStyleBackColor = true;
             this.CcButtonUpdate.Click += this.CcButton_Click;
             // 
+            // CcTextBoxId
+            // 
+            this.CcTextBoxId.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxId.Enabled = false;
+            this.CcTextBoxId.Location = new Point(56, 14);
+            this.CcTextBoxId.Name = "CcTextBoxId";
+            this.CcTextBoxId.Size = new Size(84, 23);
+            this.CcTextBoxId.TabIndex = 15;
+            this.CcTextBoxId.Text = "12345678901";
+            this.CcTextBoxId.TextAlign = HorizontalAlignment.Right;
+            // 
             // PanelExMiddle
             // 
+            this.PanelExMiddle.Controls.Add(this.TabControlEx1);
+            this.PanelExMiddle.Controls.Add(this.ccPanel1);
             this.PanelExMiddle.Controls.Add(this.labelEx9);
             this.PanelExMiddle.Controls.Add(this.labelEx8);
             this.PanelExMiddle.Controls.Add(this.CcTextBoxRemarks);
-            this.PanelExMiddle.Controls.Add(this.CcDateTimePickupDate);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx2);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx1);
             this.PanelExMiddle.Controls.Add(this.labelEx2);
@@ -155,13 +196,111 @@
             this.PanelExMiddle.Dock = DockStyle.Fill;
             this.PanelExMiddle.Location = new Point(5, 93);
             this.PanelExMiddle.Name = "PanelExMiddle";
-            this.PanelExMiddle.Size = new Size(1084, 344);
+            this.PanelExMiddle.Size = new Size(1115, 348);
             this.PanelExMiddle.TabIndex = 2;
+            // 
+            // TabControlEx1
+            // 
+            this.TabControlEx1.Controls.Add(this.TabPage1);
+            this.TabControlEx1.Controls.Add(this.TabPage2);
+            this.TabControlEx1.Location = new Point(884, 8);
+            this.TabControlEx1.Name = "TabControlEx1";
+            this.TabControlEx1.SelectedIndex = 0;
+            this.TabControlEx1.Size = new Size(220, 332);
+            this.TabControlEx1.TabIndex = 19;
+            // 
+            // TabPage1
+            // 
+            this.TabPage1.Controls.Add(this.CcPictureBox1);
+            this.TabPage1.Location = new Point(4, 24);
+            this.TabPage1.Name = "TabPage1";
+            this.TabPage1.Padding = new Padding(3);
+            this.TabPage1.Size = new Size(212, 304);
+            this.TabPage1.TabIndex = 0;
+            this.TabPage1.Text = "メモ１";
+            this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CcPictureBox1
+            // 
+            this.CcPictureBox1.ContextMenuStrip = this.ContextMenuStripEx1;
+            this.CcPictureBox1.Dock = DockStyle.Fill;
+            this.CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
+            this.CcPictureBox1.Location = new Point(3, 3);
+            this.CcPictureBox1.Name = "CcPictureBox1";
+            this.CcPictureBox1.Size = new Size(206, 298);
+            this.CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            this.CcPictureBox1.TabIndex = 0;
+            this.CcPictureBox1.TabStop = false;
+            this.CcPictureBox1.DoubleClick += this.CcPictureBox_DoubleClick;
+            // 
+            // ContextMenuStripEx1
+            // 
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPaste, this.ToolStripMenuItemDetail });
+            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            this.ContextMenuStripEx1.Opened += this.ContextMenuStripEx1_Opened;
+            this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx1_ItemClicked;
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            this.ToolStripMenuItemPaste.Size = new Size(107, 22);
+            this.ToolStripMenuItemPaste.Text = "Paste";
+            // 
+            // ToolStripMenuItemDetail
+            // 
+            this.ToolStripMenuItemDetail.Name = "ToolStripMenuItemDetail";
+            this.ToolStripMenuItemDetail.Size = new Size(107, 22);
+            this.ToolStripMenuItemDetail.Text = "Delete";
+            // 
+            // TabPage2
+            // 
+            this.TabPage2.Controls.Add(this.CcPictureBox2);
+            this.TabPage2.Location = new Point(4, 24);
+            this.TabPage2.Name = "TabPage2";
+            this.TabPage2.Padding = new Padding(3);
+            this.TabPage2.Size = new Size(212, 304);
+            this.TabPage2.TabIndex = 1;
+            this.TabPage2.Text = "メモ２";
+            this.TabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CcPictureBox2
+            // 
+            this.CcPictureBox2.ContextMenuStrip = this.ContextMenuStripEx1;
+            this.CcPictureBox2.Dock = DockStyle.Fill;
+            this.CcPictureBox2.Image = (Image)resources.GetObject("CcPictureBox2.Image");
+            this.CcPictureBox2.Location = new Point(3, 3);
+            this.CcPictureBox2.Name = "CcPictureBox2";
+            this.CcPictureBox2.Size = new Size(206, 298);
+            this.CcPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            this.CcPictureBox2.TabIndex = 0;
+            this.CcPictureBox2.TabStop = false;
+            this.CcPictureBox2.DoubleClick += this.CcPictureBox_DoubleClick;
+            // 
+            // ccPanel1
+            // 
+            this.ccPanel1.BackColor = Color.Red;
+            this.ccPanel1.Controls.Add(this.CcDateTimePickupDate);
+            this.ccPanel1.Location = new Point(116, 232);
+            this.ccPanel1.Name = "ccPanel1";
+            this.ccPanel1.Size = new Size(192, 32);
+            this.ccPanel1.TabIndex = 18;
+            // 
+            // CcDateTimePickupDate
+            // 
+            this.CcDateTimePickupDate.CultureFlag = false;
+            this.CcDateTimePickupDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePickupDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePickupDate.Location = new Point(4, 4);
+            this.CcDateTimePickupDate.Name = "CcDateTimePickupDate";
+            this.CcDateTimePickupDate.Size = new Size(184, 23);
+            this.CcDateTimePickupDate.TabIndex = 2;
+            this.CcDateTimePickupDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx9
             // 
             this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(80, 268);
+            this.labelEx9.Location = new Point(80, 276);
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(31, 15);
             this.labelEx9.TabIndex = 12;
@@ -179,23 +318,12 @@
             // CcTextBoxRemarks
             // 
             this.CcTextBoxRemarks.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxRemarks.Location = new Point(116, 264);
+            this.CcTextBoxRemarks.Location = new Point(116, 272);
             this.CcTextBoxRemarks.Multiline = true;
             this.CcTextBoxRemarks.Name = "CcTextBoxRemarks";
             this.CcTextBoxRemarks.Size = new Size(760, 68);
             this.CcTextBoxRemarks.TabIndex = 3;
             this.CcTextBoxRemarks.Text = "✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗";
-            // 
-            // CcDateTimePickupDate
-            // 
-            this.CcDateTimePickupDate.CultureFlag = false;
-            this.CcDateTimePickupDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimePickupDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimePickupDate.Location = new Point(116, 236);
-            this.CcDateTimePickupDate.Name = "CcDateTimePickupDate";
-            this.CcDateTimePickupDate.Size = new Size(184, 23);
-            this.CcDateTimePickupDate.TabIndex = 2;
-            this.CcDateTimePickupDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // groupBoxEx2
             // 
@@ -397,7 +525,7 @@
             // 
             this.StatusStripEx1.Location = new Point(2, 837);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1090, 22);
+            this.StatusStripEx1.Size = new Size(1121, 22);
             this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 5;
             this.StatusStripEx1.Text = "statusStripEx1";
@@ -407,9 +535,9 @@
             this.SpreadList.AccessibleDescription = "fpSpread1, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(5, 445);
+            this.SpreadList.Location = new Point(5, 449);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1084, 303);
+            this.SpreadList.Size = new Size(1115, 299);
             this.SpreadList.TabIndex = 3;
             this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
             // 
@@ -433,13 +561,13 @@
             this.CcPanelDown.Dock = DockStyle.Fill;
             this.CcPanelDown.Location = new Point(5, 756);
             this.CcPanelDown.Name = "CcPanelDown";
-            this.CcPanelDown.Size = new Size(1084, 74);
+            this.CcPanelDown.Size = new Size(1115, 74);
             this.CcPanelDown.TabIndex = 4;
             // 
             // CcButtonDelete
             // 
             this.CcButtonDelete.ForeColor = Color.Red;
-            this.CcButtonDelete.Location = new Point(1056, 36);
+            this.CcButtonDelete.Location = new Point(1080, 36);
             this.CcButtonDelete.Name = "CcButtonDelete";
             this.CcButtonDelete.SetTextDirectionVertical = "";
             this.CcButtonDelete.Size = new Size(24, 24);
@@ -451,7 +579,7 @@
             // CcButtonOk
             // 
             this.CcButtonOk.ForeColor = Color.FromArgb(0, 192, 0);
-            this.CcButtonOk.Location = new Point(1032, 36);
+            this.CcButtonOk.Location = new Point(1056, 36);
             this.CcButtonOk.Name = "CcButtonOk";
             this.CcButtonOk.SetTextDirectionVertical = "";
             this.CcButtonOk.Size = new Size(24, 24);
@@ -462,7 +590,10 @@
             // 
             // CcNumericUpDownAmount
             // 
+            this.CcNumericUpDownAmount.DecimalPlaces = 1;
+            this.CcNumericUpDownAmount.ImeMode = ImeMode.Off;
             this.CcNumericUpDownAmount.Location = new Point(580, 36);
+            this.CcNumericUpDownAmount.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             this.CcNumericUpDownAmount.Name = "CcNumericUpDownAmount";
             this.CcNumericUpDownAmount.ReadOnly = true;
             this.CcNumericUpDownAmount.Size = new Size(80, 23);
@@ -473,7 +604,7 @@
             // 
             this.labelEx17.Location = new Point(668, 8);
             this.labelEx17.Name = "labelEx17";
-            this.labelEx17.Size = new Size(356, 24);
+            this.labelEx17.Size = new Size(380, 24);
             this.labelEx17.TabIndex = 5;
             this.labelEx17.Text = "そ　　の　　他";
             this.labelEx17.TextAlign = ContentAlignment.MiddleCenter;
@@ -526,6 +657,8 @@
             // CcTextBoxNumber
             // 
             this.CcTextBoxNumber.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxNumber.Enabled = false;
+            this.CcTextBoxNumber.ImeMode = ImeMode.Off;
             this.CcTextBoxNumber.Location = new Point(4, 36);
             this.CcTextBoxNumber.Name = "CcTextBoxNumber";
             this.CcTextBoxNumber.Size = new Size(20, 23);
@@ -536,15 +669,19 @@
             // CcTextBoxOthers
             // 
             this.CcTextBoxOthers.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxOthers.ImeMode = ImeMode.Hiragana;
             this.CcTextBoxOthers.Location = new Point(664, 36);
             this.CcTextBoxOthers.Name = "CcTextBoxOthers";
-            this.CcTextBoxOthers.Size = new Size(364, 23);
+            this.CcTextBoxOthers.Size = new Size(388, 23);
             this.CcTextBoxOthers.TabIndex = 11;
             this.CcTextBoxOthers.Text = "〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇";
             // 
             // CcNumericUpDownUnitPrice
             // 
+            this.CcNumericUpDownUnitPrice.DecimalPlaces = 1;
+            this.CcNumericUpDownUnitPrice.ImeMode = ImeMode.Off;
             this.CcNumericUpDownUnitPrice.Location = new Point(496, 36);
+            this.CcNumericUpDownUnitPrice.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             this.CcNumericUpDownUnitPrice.Name = "CcNumericUpDownUnitPrice";
             this.CcNumericUpDownUnitPrice.Size = new Size(80, 23);
             this.CcNumericUpDownUnitPrice.TabIndex = 9;
@@ -552,6 +689,7 @@
             // 
             // CcNumericUpDownNumberOfUnits
             // 
+            this.CcNumericUpDownNumberOfUnits.ImeMode = ImeMode.Off;
             this.CcNumericUpDownNumberOfUnits.Location = new Point(412, 36);
             this.CcNumericUpDownNumberOfUnits.Name = "CcNumericUpDownNumberOfUnits";
             this.CcNumericUpDownNumberOfUnits.Size = new Size(80, 23);
@@ -561,6 +699,7 @@
             // CcTextBoxItemSize
             // 
             this.CcTextBoxItemSize.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxItemSize.ImeMode = ImeMode.Off;
             this.CcTextBoxItemSize.Location = new Point(248, 36);
             this.CcTextBoxItemSize.Name = "CcTextBoxItemSize";
             this.CcTextBoxItemSize.Size = new Size(160, 23);
@@ -570,6 +709,7 @@
             // CcComboBoxItemName
             // 
             this.CcComboBoxItemName.FormattingEnabled = true;
+            this.CcComboBoxItemName.ImeMode = ImeMode.Hiragana;
             this.CcComboBoxItemName.Location = new Point(28, 36);
             this.CcComboBoxItemName.Name = "CcComboBoxItemName";
             this.CcComboBoxItemName.Size = new Size(216, 23);
@@ -580,7 +720,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1094, 861);
+            this.ClientSize = new Size(1125, 861);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
@@ -592,8 +732,16 @@
             this.TableLayoutPanelExBase.ResumeLayout(false);
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
+            this.PanelExUp.PerformLayout();
             this.PanelExMiddle.ResumeLayout(false);
             this.PanelExMiddle.PerformLayout();
+            this.TabControlEx1.ResumeLayout(false);
+            this.TabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox1).EndInit();
+            this.ContextMenuStripEx1.ResumeLayout(false);
+            this.TabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox2).EndInit();
+            this.ccPanel1.ResumeLayout(false);
             this.groupBoxEx2.ResumeLayout(false);
             this.groupBoxEx2.PerformLayout();
             this.groupBoxEx1.ResumeLayout(false);
@@ -609,7 +757,7 @@
 
         #endregion
 
-        private ControlEx.TableLayoutPanelEx TableLayoutPanelExBase;
+        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
         private ControlEx.MenuStripEx MenuStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private ControlEx.CcPanel PanelExMiddle;
@@ -657,5 +805,16 @@
         private ControlEx.CcButton CcButtonDelete;
         private ControlEx.CcButton CcButtonOk;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private ControlEx.CcPanel ccPanel1;
+        private ControlEx.TabControlEx TabControlEx1;
+        private TabPage TabPage1;
+        private TabPage TabPage2;
+        private ControlEx.CcPictureBox CcPictureBox1;
+        private ControlEx.CcPictureBox CcPictureBox2;
+        private ControlEx.LabelEx labelEx18;
+        private ControlEx.CcTextBox CcTextBoxId;
+        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
+        private ToolStripMenuItem ToolStripMenuItemDetail;
     }
 }

@@ -135,7 +135,7 @@ namespace WastCollection {
             if (e.ColumnHeader)                                                                                                         // ヘッダーのDoubleClickを回避
                 return;
             /*
-             * CarDetailを表示する
+             * WastCollectionDetailを表示する
              */
             WastCollectionDetail wastCollectionDetail = new(_connectionVo, ((WasteCollectionHeadVo)SheetViewList.Rows[e.Row].Tag).Id);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionDetail);
@@ -219,7 +219,12 @@ namespace WastCollection {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する
+                case "ToolStripMenuItemInsertNewRecord":                                                                                 // 新規登録画面を表示する
+                    WastCollectionDetail wastCollectionDetail = new(_connectionVo);
+                    _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionDetail);
+                    wastCollectionDetail.ShowDialog(this);
+                    break;
+                case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
             }
