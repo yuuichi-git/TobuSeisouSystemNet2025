@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionPaper));
             this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.CcPictureBox1 = new ControlEx.CcPictureBox();
@@ -46,14 +47,14 @@
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.CcTableLayoutPanelBase.Size = new Size(654, 861);
+            this.CcTableLayoutPanelBase.Size = new Size(575, 861);
             this.CcTableLayoutPanelBase.TabIndex = 0;
             // 
             // StatusStripEx1
             // 
             this.StatusStripEx1.Location = new Point(0, 839);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(654, 22);
+            this.StatusStripEx1.Size = new Size(575, 22);
             this.StatusStripEx1.TabIndex = 2;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -61,9 +62,10 @@
             // 
             this.CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
             this.CcPictureBox1.Dock = DockStyle.Fill;
+            this.CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
             this.CcPictureBox1.Location = new Point(3, 27);
             this.CcPictureBox1.Name = "CcPictureBox1";
-            this.CcPictureBox1.Size = new Size(648, 807);
+            this.CcPictureBox1.Size = new Size(569, 807);
             this.CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             this.CcPictureBox1.TabIndex = 0;
             this.CcPictureBox1.TabStop = false;
@@ -72,7 +74,7 @@
             // 
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(654, 24);
+            this.MenuStripEx1.Size = new Size(575, 24);
             this.MenuStripEx1.TabIndex = 1;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
@@ -81,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(654, 861);
+            this.ClientSize = new Size(575, 861);
             this.Controls.Add(this.CcTableLayoutPanelBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;

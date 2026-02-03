@@ -23,10 +23,19 @@ namespace WastCollection {
         private const int _colUnitPrice = 4;
         private const int _colTotalPrice = 5;
         private const int _colOthers = 6;
+        /// <summary>
+        /// DoubleClickしたRowIndexを保存
+        /// </summary>
+        private int _doubleClickRowIndex = 0;
+        /// <summary>
+        /// true:Updateモード false:Insertモード
+        /// </summary>
+        private bool _rowUpdateFlag = false;
         /*
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
+        private int _id = 0;
         /*
          * Dao
          */
@@ -38,7 +47,7 @@ namespace WastCollection {
          */
         private readonly ConnectionVo _connectionVo;
         /// <summary>
-        /// コンストラクター
+        /// コンストラクター(新規登録)
         /// </summary>
         /// <param name="connectionVo"></param>
         public WastCollectionDetail(ConnectionVo connectionVo) {
@@ -52,6 +61,10 @@ namespace WastCollection {
              * Vo
              */
             _connectionVo = connectionVo;
+            /*
+             * Idを取得
+             */
+            _id = _wasteCollectionHeadDao.GetNewId();
             /*
              * InitializeControl
              */
@@ -69,7 +82,7 @@ namespace WastCollection {
              * Control
              */
             this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
-            this.CcTextBoxId.SetEmpty();
+            this.CcTextBoxId.Text = _id.ToString();                                                                                          // Idをセット
             this.InitializeControl();
             /*
              * FpSpread/Viewを初期化
@@ -86,7 +99,7 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// コンストラクター
+        /// コンストラクター(修正登録)
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="id"></param>
@@ -101,6 +114,10 @@ namespace WastCollection {
              * Vo
              */
             _connectionVo = connectionVo;
+            /*
+             * Idを取得
+             */
+            _id = id;
             /*
              * InitializeControl
              */
@@ -135,8 +152,8 @@ namespace WastCollection {
             /*
              * データを表示する
              */
-            this.SetHeadControl(_wasteCollectionHeadDao.SelectOneWasteCollectionHeadVo(id));
-            this.SetBodyControl(this.SheetViewList, _wasteCollectionBodyDao.SelectAllWasteCollectionBodyVo(id));
+            this.SetHeadControl(_wasteCollectionHeadDao.SelectOneWasteCollectionHead(id));
+            this.SetBodyControl(this.SheetViewList, _wasteCollectionBodyDao.SelectAllWasteCollectionBody(id));
             this.InitializeMsiControls();
         }
 
@@ -148,20 +165,50 @@ namespace WastCollection {
         private void CcButton_Click(object sender, EventArgs e) {
             switch (((CcButton)sender).Name) {
                 case "CcButtonUpdate":
-
-
-
+                    /*
+                     * HEADの更新・追加
+                     */
+                    if (_wasteCollectionHeadDao.ExistenceWasteCollectionHead(_id)) {
+                        try {
+                            _wasteCollectionHeadDao.UpdateOneWasteCollectionHead(this.GetWasteCollectionHeadVo());
+                        } catch (Exception exception) {
+                            MessageBox.Show(string.Concat("WasteCollectionHeadのUPDATEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    } else {
+                        try {
+                            _wasteCollectionHeadDao.InsertOneWasteCollectionHead(this.GetWasteCollectionHeadVo());
+                        } catch (Exception exception) {
+                            MessageBox.Show(string.Concat("WasteCollectionHeadのINSERTに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    this.Close();
                     break;
                 case "CcButtonOk":
-                    if (_rowUpdateFlag) {                                                                                                   // 行の更新の場合
-                        this.AddUpdateRow(this.SheetViewList, _doubleClickRowIndex, this.GetWasteCollectionBodyVo());
-                        this.InitializeMsiControls();
-                        _rowUpdateFlag = false;                                                                                             // Updateモードを解除
-                    } else {                                                                                                                // 行の追加の場合
-                        this.CcTextBoxNumber.Text = (this.SheetViewList.RowCount + 1).ToString();                                           // 新規行番号をセット
-                        this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo());
-                        this.SheetViewListMsiNoReset(this.SheetViewList);
-                        this.InitializeMsiControls();
+                    switch (_rowUpdateFlag) {
+                        case false:                                                                                                         // Insertモード
+                            this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
+                            this.SheetViewListMsiNoReset(this.SheetViewList);
+                            this.InitializeMsiControls();
+                            try {
+                                _wasteCollectionBodyDao.InsertOneWasteCollectionBody(_id, this.SheetViewList.RowCount, (WasteCollectionBodyVo)this.SheetViewList.Rows[this.SheetViewList.RowCount - 1].Tag);
+                            } catch (Exception exception) {
+                                MessageBox.Show(string.Concat("WasteCollectionBodyのINSERTに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            break;
+                        case true:                                                                                                          // Updateモード
+                            this.AddUpdateRow(this.SheetViewList, _doubleClickRowIndex, this.GetWasteCollectionBodyVo(_id, _doubleClickRowIndex));
+                            this.SheetViewListMsiNoReset(this.SheetViewList);
+                            this.InitializeMsiControls();
+                            try {
+                                _wasteCollectionBodyDao.UpdateOneWasteCollectionBody(_id, _doubleClickRowIndex + 1, (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag);
+                            } catch (Exception exception) {
+                                MessageBox.Show(string.Concat("WasteCollectionBodyのUPDATEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            break;
                     }
                     break;
                 case "CcButtonDelete":                                                                                                      // 行の削除ってことはUpdateモードで行呼び出ししてるよね
@@ -173,8 +220,6 @@ namespace WastCollection {
             }
         }
 
-        private int _doubleClickRowIndex = 0;
-        private bool _rowUpdateFlag = false;
         /// <summary>
         /// 
         /// </summary>
@@ -212,6 +257,15 @@ namespace WastCollection {
 
             this.CcDateTimePickupDate.Value = wasteCollectionHeadVo.PickupDate;
             this.CcTextBoxRemarks.Text = wasteCollectionHeadVo.Remarks;
+
+            if (wasteCollectionHeadVo.MainPicture.Length != 0) {
+                ImageConverter imageConverter = new();
+                this.CcPictureBox1.Image = (Image)imageConverter.ConvertFrom(wasteCollectionHeadVo.MainPicture);
+            }
+            if (wasteCollectionHeadVo.SubPicture.Length != 0) {
+                ImageConverter imageConverter = new();
+                this.CcPictureBox2.Image = (Image)imageConverter.ConvertFrom(wasteCollectionHeadVo.SubPicture);
+            }
         }
 
         /// <summary>
@@ -251,21 +305,6 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// Voのデータを明細入力項目にセットする
-        /// </summary>
-        /// <param name="wasteCollectionBodyVo">Vo</param>
-        private void SetMsiControls(WasteCollectionBodyVo wasteCollectionBodyVo) {
-            this.CcTextBoxNumber.Text = wasteCollectionBodyVo.NumberOfRow.ToString();
-            this.CcComboBoxItemName.Text = wasteCollectionBodyVo.ItemName;
-            this.CcTextBoxItemSize.Text = wasteCollectionBodyVo.ItemSize;
-            this.CcNumericUpDownNumberOfUnits.Value = wasteCollectionBodyVo.NumberOfUnits;
-            this.CcNumericUpDownUnitPrice.Value = wasteCollectionBodyVo.UnitPrice;
-            this.CcNumericUpDownAmount.Value = wasteCollectionBodyVo.NumberOfUnits * wasteCollectionBodyVo.UnitPrice;
-            this.CcTextBoxOthers.Text = wasteCollectionBodyVo.Others;
-            this.CcButtonDelete.Enabled = true;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sheetView"></param>
@@ -293,6 +332,8 @@ namespace WastCollection {
         /// <param name="rowIndex"></param>
         /// <param name="wasteCollectionBodyVo"></param>
         private void AddUpdateRow(SheetView sheetView, int rowIndex, WasteCollectionBodyVo wasteCollectionBodyVo) {
+            sheetView.Rows[rowIndex].Tag = wasteCollectionBodyVo;
+
             sheetView.Cells[rowIndex, _colNumberOfRow].Value = wasteCollectionBodyVo.NumberOfRow;
             sheetView.Cells[rowIndex, _colItemName].Text = wasteCollectionBodyVo.ItemName;
             sheetView.Cells[rowIndex, _colItemSize].Text = wasteCollectionBodyVo.ItemSize;
@@ -309,8 +350,8 @@ namespace WastCollection {
             WasteCollectionHeadVo wasteCollectionHeadVo = new();
             wasteCollectionHeadVo.Id = int.Parse(this.CcTextBoxId.Text);
             wasteCollectionHeadVo.OfficeQuotationDate = this.CcDateTimeOfficeQuotationDate.GetDate();
-            wasteCollectionHeadVo.OfficeRequestWord = ((WasteCollectionHeadVo)this.CcComboBoxWordName.SelectedValue).OfficeRequestWord;
-            wasteCollectionHeadVo.OfficeRequestWordName = ((WasteCollectionHeadVo)this.CcComboBoxWordName.SelectedValue).OfficeRequestWordName;
+            wasteCollectionHeadVo.OfficeRequestWord = ((WordMasterVo)this.CcComboBoxWordName.SelectedValue).Code;
+            wasteCollectionHeadVo.OfficeRequestWordName = ((WordMasterVo)this.CcComboBoxWordName.SelectedValue).Name;
             wasteCollectionHeadVo.OfficeCompanyName = this.CcComboBoxOfficeCompanyName.Text;
             wasteCollectionHeadVo.OfficeContactPerson = this.CcTextBoxOfficeContactPerson.Text;
             wasteCollectionHeadVo.OfficeAddress = this.CcTextBoxOfficeAddress.Text;
@@ -336,10 +377,10 @@ namespace WastCollection {
         /// 各明細入力値をVoにセットする
         /// </summary>
         /// <returns></returns>
-        private WasteCollectionBodyVo GetWasteCollectionBodyVo() {
+        private WasteCollectionBodyVo GetWasteCollectionBodyVo(int id, int numberOfRow) {
             WasteCollectionBodyVo wasteCollectionBodyVo = new();
-            wasteCollectionBodyVo.Id = int.Parse(this.CcTextBoxId.Text);
-            wasteCollectionBodyVo.NumberOfRow = int.Parse(this.CcTextBoxNumber.Text);
+            wasteCollectionBodyVo.Id = id;
+            wasteCollectionBodyVo.NumberOfRow = numberOfRow;
             wasteCollectionBodyVo.ItemName = this.CcComboBoxItemName.Text;
             wasteCollectionBodyVo.ItemSize = this.CcTextBoxItemSize.Text;
             wasteCollectionBodyVo.NumberOfUnits = Convert.ToInt32(this.CcNumericUpDownNumberOfUnits.Value);
@@ -356,15 +397,6 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private List<WasteCollectionBodyVo> GetListWasteCollectionBodyVo() {
-
-            return new();
-        }
-
-        /// <summary>
         /// 明細の項目№を付け変える
         /// </summary>
         /// <param name="sheetView"></param>
@@ -373,32 +405,13 @@ namespace WastCollection {
                 sheetView.Cells[rowIndex, _colNumberOfRow].Value = rowIndex + 1;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sheetView"></param>
-        /// <returns></returns>
-        private SheetView InitializeSheetViewList(SheetView sheetView) {
-            this.SpreadList.AllowDragDrop = false;                                                                                      // DrugDropを禁止する
-            this.SpreadList.PaintSelectionHeader = false;                                                                               // ヘッダの選択状態をしない
-            sheetView.ColumnHeader.Rows[0].Height = 30;                                                                                 // Columnヘッダの高さ
-            sheetView.GrayAreaBackColor = Color.White;
-            sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
-            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                                          // 行ヘッダのFont
-            sheetView.RowHeader.Columns[0].Width = 50;                                                                                  // 行ヘッダの幅を変更します
-            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
-            sheetView.RemoveRows(0, sheetView.Rows.Count);
-            return sheetView;
-        }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
-
+            this.Dispose();
         }
 
         /// <summary>
@@ -451,6 +464,24 @@ namespace WastCollection {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <returns></returns>
+        private SheetView InitializeSheetViewList(SheetView sheetView) {
+            this.SpreadList.AllowDragDrop = false;                                                                                      // DrugDropを禁止する
+            this.SpreadList.PaintSelectionHeader = false;                                                                               // ヘッダの選択状態をしない
+            sheetView.ColumnHeader.Rows[0].Height = 30;                                                                                 // Columnヘッダの高さ
+            sheetView.GrayAreaBackColor = Color.White;
+            sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                                          // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 50;                                                                                  // 行ヘッダの幅を変更します
+            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
+            sheetView.RemoveRows(0, sheetView.Rows.Count);
+            return sheetView;
+        }
+
+        /// <summary>
         /// コントロールを初期化する
         /// </summary>
         private void InitializeControl() {
@@ -464,6 +495,9 @@ namespace WastCollection {
             this.CcTextBoxOfficeAddress.SetEmpty();
             this.CcTextBoxOfficeTelephoneNumber.SetEmpty();
             this.CcTextBoxOfficeCellphoneNumber.SetEmpty();
+
+            this.CcPictureBox1.Image = null;
+            this.CcPictureBox2.Image = null;
             /*
              * 現場(回収場所)
              */
@@ -500,7 +534,7 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// 
+        /// CcPictureBox_DoubleClick
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

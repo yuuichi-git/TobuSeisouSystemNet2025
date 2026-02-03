@@ -203,10 +203,10 @@
             // 
             this.TabControlEx1.Controls.Add(this.TabPage1);
             this.TabControlEx1.Controls.Add(this.TabPage2);
-            this.TabControlEx1.Location = new Point(884, 8);
+            this.TabControlEx1.Location = new Point(876, 4);
             this.TabControlEx1.Name = "TabControlEx1";
             this.TabControlEx1.SelectedIndex = 0;
-            this.TabControlEx1.Size = new Size(220, 332);
+            this.TabControlEx1.Size = new Size(228, 340);
             this.TabControlEx1.TabIndex = 19;
             // 
             // TabPage1
@@ -215,19 +215,20 @@
             this.TabPage1.Location = new Point(4, 24);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new Padding(3);
-            this.TabPage1.Size = new Size(212, 304);
+            this.TabPage1.Size = new Size(220, 312);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "メモ１";
             this.TabPage1.UseVisualStyleBackColor = true;
             // 
             // CcPictureBox1
             // 
+            this.CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
             this.CcPictureBox1.ContextMenuStrip = this.ContextMenuStripEx1;
             this.CcPictureBox1.Dock = DockStyle.Fill;
             this.CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
             this.CcPictureBox1.Location = new Point(3, 3);
             this.CcPictureBox1.Name = "CcPictureBox1";
-            this.CcPictureBox1.Size = new Size(206, 298);
+            this.CcPictureBox1.Size = new Size(214, 306);
             this.CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             this.CcPictureBox1.TabIndex = 0;
             this.CcPictureBox1.TabStop = false;
@@ -259,19 +260,20 @@
             this.TabPage2.Location = new Point(4, 24);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new Padding(3);
-            this.TabPage2.Size = new Size(212, 304);
+            this.TabPage2.Size = new Size(220, 312);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "メモ２";
             this.TabPage2.UseVisualStyleBackColor = true;
             // 
             // CcPictureBox2
             // 
+            this.CcPictureBox2.BorderStyle = BorderStyle.Fixed3D;
             this.CcPictureBox2.ContextMenuStrip = this.ContextMenuStripEx1;
             this.CcPictureBox2.Dock = DockStyle.Fill;
             this.CcPictureBox2.Image = (Image)resources.GetObject("CcPictureBox2.Image");
             this.CcPictureBox2.Location = new Point(3, 3);
             this.CcPictureBox2.Name = "CcPictureBox2";
-            this.CcPictureBox2.Size = new Size(206, 298);
+            this.CcPictureBox2.Size = new Size(214, 306);
             this.CcPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             this.CcPictureBox2.TabIndex = 0;
             this.CcPictureBox2.TabStop = false;
@@ -291,6 +293,7 @@
             this.CcDateTimePickupDate.CultureFlag = false;
             this.CcDateTimePickupDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimePickupDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePickupDate.ImeMode = ImeMode.Off;
             this.CcDateTimePickupDate.Location = new Point(4, 4);
             this.CcDateTimePickupDate.Name = "CcDateTimePickupDate";
             this.CcDateTimePickupDate.Size = new Size(184, 23);
@@ -318,10 +321,11 @@
             // CcTextBoxRemarks
             // 
             this.CcTextBoxRemarks.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxRemarks.ImeMode = ImeMode.Hiragana;
             this.CcTextBoxRemarks.Location = new Point(116, 272);
             this.CcTextBoxRemarks.Multiline = true;
             this.CcTextBoxRemarks.Name = "CcTextBoxRemarks";
-            this.CcTextBoxRemarks.Size = new Size(760, 68);
+            this.CcTextBoxRemarks.Size = new Size(736, 68);
             this.CcTextBoxRemarks.TabIndex = 3;
             this.CcTextBoxRemarks.Text = "✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗";
             // 
@@ -333,7 +337,7 @@
             this.groupBoxEx2.Controls.Add(this.CcComboBoxWorkSiteLocation);
             this.groupBoxEx2.Location = new Point(28, 140);
             this.groupBoxEx2.Name = "groupBoxEx2";
-            this.groupBoxEx2.Size = new Size(844, 88);
+            this.groupBoxEx2.Size = new Size(828, 88);
             this.groupBoxEx2.TabIndex = 15;
             this.groupBoxEx2.TabStop = false;
             this.groupBoxEx2.Text = "現場(回収場所)";
@@ -350,9 +354,10 @@
             // CcTextBoxWorkSiteAddress
             // 
             this.CcTextBoxWorkSiteAddress.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxWorkSiteAddress.ImeMode = ImeMode.Hiragana;
             this.CcTextBoxWorkSiteAddress.Location = new Point(88, 52);
             this.CcTextBoxWorkSiteAddress.Name = "CcTextBoxWorkSiteAddress";
-            this.CcTextBoxWorkSiteAddress.Size = new Size(336, 23);
+            this.CcTextBoxWorkSiteAddress.Size = new Size(524, 23);
             this.CcTextBoxWorkSiteAddress.TabIndex = 1;
             this.CcTextBoxWorkSiteAddress.Text = "ラーメン東武";
             // 
@@ -368,9 +373,10 @@
             // CcComboBoxWorkSiteLocation
             // 
             this.CcComboBoxWorkSiteLocation.FormattingEnabled = true;
+            this.CcComboBoxWorkSiteLocation.ImeMode = ImeMode.Hiragana;
             this.CcComboBoxWorkSiteLocation.Location = new Point(88, 24);
             this.CcComboBoxWorkSiteLocation.Name = "CcComboBoxWorkSiteLocation";
-            this.CcComboBoxWorkSiteLocation.Size = new Size(336, 23);
+            this.CcComboBoxWorkSiteLocation.Size = new Size(524, 23);
             this.CcComboBoxWorkSiteLocation.TabIndex = 0;
             this.CcComboBoxWorkSiteLocation.Text = "世田谷区";
             // 
@@ -388,7 +394,7 @@
             this.groupBoxEx1.Controls.Add(this.CcComboBoxOfficeCompanyName);
             this.groupBoxEx1.Location = new Point(28, 44);
             this.groupBoxEx1.Name = "groupBoxEx1";
-            this.groupBoxEx1.Size = new Size(844, 88);
+            this.groupBoxEx1.Size = new Size(828, 88);
             this.groupBoxEx1.TabIndex = 4;
             this.groupBoxEx1.TabStop = false;
             this.groupBoxEx1.Text = "本社(依頼主)";
@@ -405,6 +411,7 @@
             // CcTextBoxOfficeCellphoneNumber
             // 
             this.CcTextBoxOfficeCellphoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxOfficeCellphoneNumber.ImeMode = ImeMode.Off;
             this.CcTextBoxOfficeCellphoneNumber.Location = new Point(672, 52);
             this.CcTextBoxOfficeCellphoneNumber.Name = "CcTextBoxOfficeCellphoneNumber";
             this.CcTextBoxOfficeCellphoneNumber.Size = new Size(128, 23);
@@ -423,6 +430,7 @@
             // CcTextBoxOfficeTelephoneNumber
             // 
             this.CcTextBoxOfficeTelephoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxOfficeTelephoneNumber.ImeMode = ImeMode.Off;
             this.CcTextBoxOfficeTelephoneNumber.Location = new Point(484, 52);
             this.CcTextBoxOfficeTelephoneNumber.Name = "CcTextBoxOfficeTelephoneNumber";
             this.CcTextBoxOfficeTelephoneNumber.Size = new Size(128, 23);
@@ -441,6 +449,7 @@
             // CcTextBoxOfficeAddress
             // 
             this.CcTextBoxOfficeAddress.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxOfficeAddress.ImeMode = ImeMode.Hiragana;
             this.CcTextBoxOfficeAddress.Location = new Point(88, 52);
             this.CcTextBoxOfficeAddress.Name = "CcTextBoxOfficeAddress";
             this.CcTextBoxOfficeAddress.Size = new Size(336, 23);
@@ -459,6 +468,7 @@
             // CcTextBoxOfficeContactPerson
             // 
             this.CcTextBoxOfficeContactPerson.BorderStyle = BorderStyle.FixedSingle;
+            this.CcTextBoxOfficeContactPerson.ImeMode = ImeMode.Hiragana;
             this.CcTextBoxOfficeContactPerson.Location = new Point(484, 24);
             this.CcTextBoxOfficeContactPerson.Name = "CcTextBoxOfficeContactPerson";
             this.CcTextBoxOfficeContactPerson.Size = new Size(128, 23);
@@ -477,6 +487,7 @@
             // CcComboBoxOfficeCompanyName
             // 
             this.CcComboBoxOfficeCompanyName.FormattingEnabled = true;
+            this.CcComboBoxOfficeCompanyName.ImeMode = ImeMode.Hiragana;
             this.CcComboBoxOfficeCompanyName.Location = new Point(88, 24);
             this.CcComboBoxOfficeCompanyName.Name = "CcComboBoxOfficeCompanyName";
             this.CcComboBoxOfficeCompanyName.Size = new Size(336, 23);
@@ -504,6 +515,7 @@
             // CcComboBoxWordName
             // 
             this.CcComboBoxWordName.FormattingEnabled = true;
+            this.CcComboBoxWordName.ImeMode = ImeMode.Off;
             this.CcComboBoxWordName.Location = new Point(388, 12);
             this.CcComboBoxWordName.Name = "CcComboBoxWordName";
             this.CcComboBoxWordName.Size = new Size(184, 23);
@@ -515,6 +527,7 @@
             this.CcDateTimeOfficeQuotationDate.CultureFlag = false;
             this.CcDateTimeOfficeQuotationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeOfficeQuotationDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimeOfficeQuotationDate.ImeMode = ImeMode.Off;
             this.CcDateTimeOfficeQuotationDate.Location = new Point(116, 12);
             this.CcDateTimeOfficeQuotationDate.Name = "CcDateTimeOfficeQuotationDate";
             this.CcDateTimeOfficeQuotationDate.Size = new Size(184, 23);

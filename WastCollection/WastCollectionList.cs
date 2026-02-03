@@ -157,7 +157,7 @@ namespace WastCollection {
             if (sheetView.Rows.Count > 0)                                                                                               // RowÇçÌèúÇ∑ÇÈ
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
             try {
-                foreach (WasteCollectionHeadVo wasteCollectionHeadVo in _wasteCollectionHeadDao.SelectAllWasteCollectionHeadVo()) {
+                foreach (WasteCollectionHeadVo wasteCollectionHeadVo in _wasteCollectionHeadDao.SelectAllWasteCollectionHead()) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                                   // RowÉwÉbÉ_
                     sheetView.Rows[rowCount].Height = 20;                                                                               // RowÇÃçÇÇ≥

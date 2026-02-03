@@ -26,13 +26,13 @@ namespace Dao {
         /// <summary>
         /// Idに等しいレコードの存在を確認する
         /// </summary>
-        /// <param name="targetId"></param>
+        /// <param name="id"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
-        public bool ExistenceWasteCollectionBodyVo(string targetId) {
+        public bool ExistenceWasteCollectionBody(int id, int rowIndex) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCollectionBody " +
-                                     "WHERE Id = " + targetId + "";
+                                     "WHERE Id = " + id + " AND NumberOfRow = " + rowIndex + "";
             try {
                 return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
             } catch {
@@ -45,7 +45,7 @@ namespace Dao {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<WasteCollectionBodyVo> SelectAllWasteCollectionBodyVo(int id) {
+        public List<WasteCollectionBodyVo> SelectAllWasteCollectionBody(int id) {
             List<WasteCollectionBodyVo> listWasteCollectionBodyVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_WasteCollectionBody.Id," +
@@ -86,5 +86,73 @@ namespace Dao {
             }
             return listWasteCollectionBodyVo;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="wasteCollectionBodyVo"></param>
+        public void InsertOneWasteCollectionBody(int id, int numberOfRow, WasteCollectionBodyVo wasteCollectionBodyVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "INSERT INTO H_WasteCollectionBody(Id," +
+                                                                       "NumberOfRow," +
+                                                                       "ItemName," +
+                                                                       "ItemSize," +
+                                                                       "NumberOfUnits," +
+                                                                       "UnitPrice," +
+                                                                       "Others," +
+                                                                       "InsertPcName," +
+                                                                       "InsertYmdHms," +
+                                                                       "UpdatePcName," +
+                                                                       "UpdateYmdHms," +
+                                                                       "DeletePcName," +
+                                                                       "DeleteYmdHms," +
+                                                                       "DeleteFlag) " +
+                                     "VALUES (" + id + "," +
+                                             "" + numberOfRow + "," +
+                                            "'" + wasteCollectionBodyVo.ItemName + "'," +
+                                            "'" + wasteCollectionBodyVo.ItemSize + "'," +
+                                            "'" + wasteCollectionBodyVo.NumberOfUnits + "'," +
+                                            "'" + wasteCollectionBodyVo.UnitPrice + "'," +
+                                            "'" + wasteCollectionBodyVo.Others + "'," +
+                                            "'" + Environment.MachineName + "'," +
+                                            "'" + DateTime.Now + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                            "'" + string.Empty + "'," +
+                                            "'" + _defaultDateTime + "'," +
+                                             "'false'" +
+                                             ");";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="numberOfRow"></param>
+        /// <param name="wasteCollectionBodyVo"></param>
+        public void UpdateOneWasteCollectionBody(int id, int numberOfRow, WasteCollectionBodyVo wasteCollectionBodyVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_WasteCollectionBody " +
+                                     "SET ItemName = '" + wasteCollectionBodyVo.ItemName + "'," +
+                                         "ItemSize = '" + wasteCollectionBodyVo.ItemSize + "'," +
+                                         "NumberOfUnits = " + wasteCollectionBodyVo.NumberOfUnits + "," +
+                                         "UnitPrice = " + wasteCollectionBodyVo.UnitPrice + "," +
+                                         "Others = '" + wasteCollectionBodyVo.Others + "'," +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "WHERE Id = " + id + " AND NumberOfRow = " + numberOfRow + "";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+
     }
 }
