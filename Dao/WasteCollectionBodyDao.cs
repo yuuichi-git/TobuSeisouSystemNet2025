@@ -153,6 +153,23 @@ namespace Dao {
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="numberOfRow"></param>
+        public void DeleteOneWasteCollectionBody(int id, int numberOfRow) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_WasteCollectionBody " +
+                                     "SET DeletePcName = '" + Environment.MachineName + "'," +
+                                         "DeleteYmdHms = '" + DateTime.Now + "'," +
+                                         "DeleteFlag = 'True' " +
+                                     "WHERE Id = " + id + " AND NumberOfRow = " + numberOfRow + "";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
     }
 }

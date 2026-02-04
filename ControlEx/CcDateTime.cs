@@ -67,6 +67,7 @@ namespace ControlEx {
              * 
              */
             if (e.KeyCode == Keys.Escape) {
+                this.Value = _defaultDateTime;
                 this.CustomFormat = " ";
                 this.Refresh();
             }
@@ -110,8 +111,8 @@ namespace ControlEx {
         /// 
         /// </summary>
         public void SetEmpty() {
-            this.CustomFormat = " ";
             this.Value = _defaultDateTime;
+            this.CustomFormat = " ";
             this.Refresh();
         }
 

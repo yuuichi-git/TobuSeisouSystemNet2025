@@ -24,18 +24,21 @@ namespace WastCollection {
         private const int _colTotalPrice = 5;
         private const int _colOthers = 6;
         /// <summary>
-        /// DoubleClickしたRowIndexを保存
+        /// DoubleClickしたRowIndexを保持
         /// </summary>
         private int _doubleClickRowIndex = 0;
         /// <summary>
         /// true:Updateモード false:Insertモード
         /// </summary>
         private bool _rowUpdateFlag = false;
+        /// <summary>
+        /// コンストラクター(修正登録)で使用するIdを保持
+        /// </summary>
+        private int _id = 0;
         /*
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
-        private int _id = 0;
         /*
          * Dao
          */
@@ -152,8 +155,8 @@ namespace WastCollection {
             /*
              * データを表示する
              */
-            this.SetHeadControl(_wasteCollectionHeadDao.SelectOneWasteCollectionHead(id));
-            this.SetBodyControl(this.SheetViewList, _wasteCollectionBodyDao.SelectAllWasteCollectionBody(id));
+            this.SetHeadControls(_wasteCollectionHeadDao.SelectOneWasteCollectionHead(id));
+            this.SetBodyControls(this.SheetViewList, _wasteCollectionBodyDao.SelectAllWasteCollectionBody(id));
             this.InitializeMsiControls();
         }
 
@@ -185,12 +188,12 @@ namespace WastCollection {
                     }
                     this.Close();
                     break;
+
                 case "CcButtonOk":
+                    this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
+                    //this.SheetViewListMsiNoReset(this.SheetViewList);
                     switch (_rowUpdateFlag) {
                         case false:                                                                                                         // Insertモード
-                            this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
-                            this.SheetViewListMsiNoReset(this.SheetViewList);
-                            this.InitializeMsiControls();
                             try {
                                 _wasteCollectionBodyDao.InsertOneWasteCollectionBody(_id, this.SheetViewList.RowCount, (WasteCollectionBodyVo)this.SheetViewList.Rows[this.SheetViewList.RowCount - 1].Tag);
                             } catch (Exception exception) {
@@ -200,7 +203,7 @@ namespace WastCollection {
                             break;
                         case true:                                                                                                          // Updateモード
                             this.AddUpdateRow(this.SheetViewList, _doubleClickRowIndex, this.GetWasteCollectionBodyVo(_id, _doubleClickRowIndex));
-                            this.SheetViewListMsiNoReset(this.SheetViewList);
+                            //this.SheetViewListMsiNoReset(this.SheetViewList);
                             this.InitializeMsiControls();
                             try {
                                 _wasteCollectionBodyDao.UpdateOneWasteCollectionBody(_id, _doubleClickRowIndex + 1, (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag);
@@ -210,12 +213,29 @@ namespace WastCollection {
                             }
                             break;
                     }
-                    break;
-                case "CcButtonDelete":                                                                                                      // 行の削除ってことはUpdateモードで行呼び出ししてるよね
-                    this.SheetViewList.RemoveRows(_doubleClickRowIndex, 1);
-                    this.SheetViewListMsiNoReset(this.SheetViewList);
                     this.InitializeMsiControls();
                     _rowUpdateFlag = false;                                                                                                 // Updateモードを解除
+                    break;
+
+                case "CcButtonDelete":                                                                                                      // 行の削除ってことはUpdateモードで行呼び出ししてるよね
+                    this.SheetViewList.RemoveRows(_doubleClickRowIndex, 1);
+                    //this.SheetViewListMsiNoReset(this.SheetViewList);
+                    try {
+                        _wasteCollectionBodyDao.DeleteOneWasteCollectionBody(_id, _doubleClickRowIndex + 1);
+                    } catch (Exception exception) {
+                        MessageBox.Show(string.Concat("WasteCollectionBodyのDELETEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    this.InitializeMsiControls();
+                    _rowUpdateFlag = false;                                                                                                 // Updateモードを解除
+                    break;
+
+                case "CcButtonMaps1":
+                    new Maps().MapOpen(this.CcTextBoxOfficeAddress.Text);
+                    break;
+
+                case "CcButtonMaps2":
+                    new Maps().MapOpen(this.CcTextBoxWorkSiteAddress.Text);
                     break;
             }
         }
@@ -226,19 +246,26 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
-            if (e.ColumnHeader)                                                                                                             // ヘッダーのDoubleClickを回避
-                return;
             _doubleClickRowIndex = e.Row;                                                                                                   // DoubleClickしたRowIndexを保存
             _rowUpdateFlag = true;                                                                                                          // Updateモードに変更
+
+            if (e.ColumnHeader)                                                                                                             // ヘッダーのDoubleClickを回避
+                return;
+
+            WasteCollectionBodyVo wasteCollectionBodyVo = (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag;
+            if (wasteCollectionBodyVo is null || wasteCollectionBodyVo.DeleteFlag == true) {
+                this.CcButtonDelete.Enabled = false;                                                                                        // 削除済みのレコードの場合、削除ボタンを無効化
+            } else {
+                this.CcButtonDelete.Enabled = true;                                                                                         // 削除ボタンを有効化
+            }
             this.SetMsiControls(this.SheetViewList, e.Row);
-            this.CcButtonDelete.Enabled = true;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="wasteCollectionHeadVo"></param>
-        private void SetHeadControl(WasteCollectionHeadVo wasteCollectionHeadVo) {
+        private void SetHeadControls(WasteCollectionHeadVo wasteCollectionHeadVo) {
             this.CcDateTimeOfficeQuotationDate.Value = wasteCollectionHeadVo.OfficeQuotationDate;
             this.CcComboBoxWordName.Text = wasteCollectionHeadVo.OfficeRequestWordName;
             /*
@@ -272,7 +299,7 @@ namespace WastCollection {
         /// 
         /// </summary>
         /// <param name="listWasteCollectionBodyVo"></param>
-        private void SetBodyControl(SheetView sheetView, List<WasteCollectionBodyVo> listWasteCollectionBodyVo) {
+        private void SetBodyControls(SheetView sheetView, List<WasteCollectionBodyVo> listWasteCollectionBodyVo) {
             int rowIndex = 0;
             if (sheetView.Rows.Count > 0)                                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
@@ -301,7 +328,6 @@ namespace WastCollection {
             this.CcNumericUpDownUnitPrice.Value = Convert.ToDecimal(sheetView.Cells[rowIndex, _colUnitPrice].Value);
             this.CcNumericUpDownAmount.Value = Convert.ToDecimal(sheetView.Cells[rowIndex, _colNumberOfUnits].Value) * Convert.ToDecimal(sheetView.Cells[rowIndex, _colUnitPrice].Value);
             this.CcTextBoxOthers.Text = sheetView.Cells[rowIndex, _colOthers].Text;
-            this.CcButtonDelete.Enabled = true;
         }
 
         /// <summary>
@@ -313,6 +339,7 @@ namespace WastCollection {
         private void AddNewRow(SheetView sheetView, int rowIndex, WasteCollectionBodyVo wasteCollectionBodyVo) {
             sheetView.Rows.Add(rowIndex, 1);
             sheetView.RowHeader.Columns[0].Label = (rowIndex + 1).ToString();                                                           // Rowヘッダ
+            sheetView.Rows[rowIndex].ForeColor = wasteCollectionBodyVo.DeleteFlag ? Color.DarkGray : Color.Black;                       // 削除済のレコードのForeColorをセット
             sheetView.Rows[rowIndex].Height = 20;                                                                                       // Rowの高さ
             sheetView.Rows[rowIndex].Resizable = false;                                                                                 // RowのResizableを禁止
             sheetView.Rows[rowIndex].Tag = wasteCollectionBodyVo;
@@ -349,7 +376,7 @@ namespace WastCollection {
         private WasteCollectionHeadVo GetWasteCollectionHeadVo() {
             WasteCollectionHeadVo wasteCollectionHeadVo = new();
             wasteCollectionHeadVo.Id = int.Parse(this.CcTextBoxId.Text);
-            wasteCollectionHeadVo.OfficeQuotationDate = this.CcDateTimeOfficeQuotationDate.GetDate();
+            wasteCollectionHeadVo.OfficeQuotationDate = this.CcDateTimeOfficeQuotationDate.GetValue();
             wasteCollectionHeadVo.OfficeRequestWord = ((WordMasterVo)this.CcComboBoxWordName.SelectedValue).Code;
             wasteCollectionHeadVo.OfficeRequestWordName = ((WordMasterVo)this.CcComboBoxWordName.SelectedValue).Name;
             wasteCollectionHeadVo.OfficeCompanyName = this.CcComboBoxOfficeCompanyName.Text;
@@ -359,7 +386,7 @@ namespace WastCollection {
             wasteCollectionHeadVo.OfficeCellphoneNumber = this.CcTextBoxOfficeCellphoneNumber.Text;
             wasteCollectionHeadVo.WorkSiteLocation = this.CcComboBoxWorkSiteLocation.Text;
             wasteCollectionHeadVo.WorkSiteAddress = this.CcTextBoxWorkSiteAddress.Text;
-            wasteCollectionHeadVo.PickupDate = this.CcDateTimePickupDate.GetDate();
+            wasteCollectionHeadVo.PickupDate = this.CcDateTimePickupDate.GetValue();
             wasteCollectionHeadVo.Remarks = this.CcTextBoxRemarks.Text;
             wasteCollectionHeadVo.MainPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBox1.Image, typeof(byte[]));
             wasteCollectionHeadVo.SubPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBox2.Image, typeof(byte[]));
@@ -394,24 +421,6 @@ namespace WastCollection {
             //wasteCollectionBodyVo.DeleteYmdHms = ;
             //wasteCollectionBodyVo.DeleteFlag = ;
             return wasteCollectionBodyVo;
-        }
-
-        /// <summary>
-        /// 明細の項目№を付け変える
-        /// </summary>
-        /// <param name="sheetView"></param>
-        private void SheetViewListMsiNoReset(SheetView sheetView) {
-            for (int rowIndex = 0; rowIndex < sheetView.RowCount; rowIndex++)
-                sheetView.Cells[rowIndex, _colNumberOfRow].Value = rowIndex + 1;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
-            this.Dispose();
         }
 
         /// <summary>
@@ -457,7 +466,7 @@ namespace WastCollection {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                                                               // アプリケーションを終了する
+                case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
             }
@@ -473,7 +482,7 @@ namespace WastCollection {
             this.SpreadList.PaintSelectionHeader = false;                                                                               // ヘッダの選択状態をしない
             sheetView.ColumnHeader.Rows[0].Height = 30;                                                                                 // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = Color.White;
-            sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
+            sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
             sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                                          // 行ヘッダのFont
             sheetView.RowHeader.Columns[0].Width = 50;                                                                                  // 行ヘッダの幅を変更します
             sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
@@ -486,7 +495,7 @@ namespace WastCollection {
         /// </summary>
         private void InitializeControl() {
             this.CcDateTimeOfficeQuotationDate.SetToday();
-            this.CcComboBoxWordName.SelectedIndex = 20;                                                                                     // 足立区
+            this.CcComboBoxWordName.SelectedIndex = 20;                                                                                 // 足立区
             /*
              * 本社(依頼主)
              */
@@ -504,7 +513,7 @@ namespace WastCollection {
             this.CcComboBoxWorkSiteLocation.DisplayClear();
             this.CcTextBoxWorkSiteAddress.SetEmpty();
 
-            this.CcDateTimePickupDate.SetToday();
+            this.CcDateTimePickupDate.SetEmpty();
             this.CcTextBoxRemarks.SetEmpty();
             /*
              * 入力項目
@@ -517,6 +526,8 @@ namespace WastCollection {
             this.CcNumericUpDownAmount.Value = 0;
             this.CcTextBoxOthers.SetEmpty();
             this.CcButtonDelete.Enabled = false;
+
+            this.CcDateTimeOfficeQuotationDate.Focus();
         }
 
         /// <summary>
@@ -542,6 +553,15 @@ namespace WastCollection {
             WastCollectionPaper wastCollectionPaper = new(_connectionVo, ((CcPictureBox)sender).Image);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionPaper);
             wastCollectionPaper.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// WastCollectionDetail_FormClosing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
+            this.Dispose();
         }
     }
 }
