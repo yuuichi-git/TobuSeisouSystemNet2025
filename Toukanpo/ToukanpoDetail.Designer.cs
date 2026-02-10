@@ -24,16 +24,16 @@
         /// </summary>
         private void InitializeComponent() {
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExMiddle = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.DateTimePickerExCertificationDate = new ControlEx.CcDateTime();
-            this.labelEx4 = new ControlEx.LabelEx();
+            this.labelEx4 = new ControlEx.CcLabelEx();
             this.ComboBoxExSelectName = new ControlEx.ComboBoxEx();
-            this.labelEx3 = new ControlEx.LabelEx();
-            this.LabelExCompany = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx3 = new ControlEx.CcLabelEx();
+            this.LabelExCompany = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
@@ -219,16 +219,16 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExMiddle;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CcPictureBox PictureBoxEx1;
-        private ControlEx.LabelEx labelEx1;
-        private ControlEx.LabelEx LabelExCompany;
-        private ControlEx.LabelEx labelEx3;
+        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabelEx LabelExCompany;
+        private ControlEx.CcLabelEx labelEx3;
         private ControlEx.CcDateTime DateTimePickerExCertificationDate;
-        private ControlEx.LabelEx labelEx4;
+        private ControlEx.CcLabelEx labelEx4;
         private ControlEx.ComboBoxEx ComboBoxExSelectName;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;

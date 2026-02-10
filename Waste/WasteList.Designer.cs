@@ -25,10 +25,10 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WasteList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.TextBoxExEmissionPlaceNameSearch = new ControlEx.CcTextBox();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
@@ -150,12 +150,12 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx1;
         private ControlEx.CcTextBox TextBoxExEmissionPlaceNameSearch;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

@@ -2,7 +2,7 @@
  * 2024-09-23
  */
 namespace ControlEx {
-    public partial class MenuStripEx : MenuStrip {
+    public partial class CcMenuStrip : MenuStrip {
         /*
          * デリゲート
          */
@@ -41,7 +41,7 @@ namespace ControlEx {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public MenuStripEx() {
+        public CcMenuStrip() {
             /*
              * Initialize
              */

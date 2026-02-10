@@ -25,8 +25,8 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
@@ -166,8 +166,8 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcPanel PanelExUp;
         private ControlEx.CheckBoxEx CheckBoxExDeleteFlag;

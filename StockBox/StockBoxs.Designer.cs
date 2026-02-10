@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
             this.ButtonExDispatch = new ControlEx.CcButton();
             this.ButtonExShortTime = new ControlEx.CcButton();
@@ -185,8 +185,8 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private ControlEx.CcButton ButtonExSet;
         private ControlEx.CcButton ButtonExDispatch;

@@ -37,8 +37,8 @@
             this.tabPage9 = new TabPage();
             this.tabPage10 = new TabPage();
             this.tabPage11 = new TabPage();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.CcButton();
@@ -277,8 +277,8 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcButton ButtonExUpdate;

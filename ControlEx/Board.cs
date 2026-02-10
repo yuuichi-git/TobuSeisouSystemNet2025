@@ -137,7 +137,7 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// Boardに配置されているLabelを走査する
+        /// Boardに配置されているSetLabelを走査する
         /// </summary>
         /// <returns></returns>
         public List<SetMasterVo> GetAllSetLabel() {
@@ -151,7 +151,7 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// Boardに配置されているLabelを走査する
+        /// Boardに配置されているCarLabelを走査する
         /// </summary>
         /// <returns></returns>
         public List<CarMasterVo> GetAllCarLabel() {
@@ -165,7 +165,7 @@ namespace ControlEx {
         }
 
         /// <summary>
-        /// Boardに配置されているLabelを走査する
+        /// Boardに配置されているStaffLabelを走査する
         /// </summary>
         /// <returns></returns>
         public List<StaffMasterVo> GetAllStaffLabel() {

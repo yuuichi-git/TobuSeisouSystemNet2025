@@ -26,14 +26,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarWorkingDays));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ComboBoxExCarMaster1 = new ControlEx.CcComboBoxCarMaster();
-            this.labelEx4 = new ControlEx.LabelEx();
+            this.labelEx4 = new ControlEx.CcLabelEx();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx2 = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx2 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
             this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
@@ -199,16 +199,16 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.LabelEx labelEx2;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx2;
+        private ControlEx.CcLabelEx labelEx1;
         private ControlEx.CcDateTime DateTimePickerExOperationDate2;
         private ControlEx.CcDateTime DateTimePickerExOperationDate1;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.LabelEx labelEx4;
+        private ControlEx.CcLabelEx labelEx4;
         private ControlEx.CcComboBoxCarMaster ComboBoxExCarMaster1;
         private ToolTip ToolTip1;
         private FarPoint.Win.Spread.SheetView SheetViewList;

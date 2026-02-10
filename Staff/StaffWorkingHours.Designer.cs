@@ -25,13 +25,13 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWorkingHours));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
-            this.labelEx3 = new ControlEx.LabelEx();
+            this.labelEx3 = new ControlEx.CcLabelEx();
             this.ComboBoxExStaffDisplayName = new ControlEx.ComboBoxEx();
-            this.labelEx2 = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx2 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
             this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
             this.ButtonExUpdate = new ControlEx.CcButton();
@@ -198,16 +198,16 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CcDateTime DateTimePickerExOperationDate1;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx1;
         private ControlEx.CcDateTime DateTimePickerExOperationDate2;
-        private ControlEx.LabelEx labelEx2;
-        private ControlEx.LabelEx labelEx3;
+        private ControlEx.CcLabelEx labelEx2;
+        private ControlEx.CcLabelEx labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExStaffDisplayName;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

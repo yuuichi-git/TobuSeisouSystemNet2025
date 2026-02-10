@@ -25,11 +25,11 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CertificationList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx2 = new ControlEx.LabelEx();
+            this.labelEx2 = new ControlEx.CcLabelEx();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
@@ -149,12 +149,12 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
-        private ControlEx.LabelEx labelEx2;
+        private ControlEx.CcLabelEx labelEx2;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
         private ControlEx.CcButton ButtonExUpdate;
     }

@@ -25,11 +25,11 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingFulltimeList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
@@ -150,11 +150,11 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx;
         private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx1;
         private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;

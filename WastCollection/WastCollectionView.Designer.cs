@@ -25,9 +25,9 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionView));
             this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.CcPictureBox1 = new ControlEx.CcPictureBox();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
             this.CcTableLayoutPanelBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.CcPictureBox1).BeginInit();
             this.SuspendLayout();
@@ -100,8 +100,8 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel CcTableLayoutPanelBase;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPictureBox CcPictureBox1;
-        private ControlEx.MenuStripEx MenuStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
     }
 }

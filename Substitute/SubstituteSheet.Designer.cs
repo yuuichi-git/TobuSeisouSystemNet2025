@@ -25,13 +25,13 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubstituteSheet));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
             this.ButtonExPrint2 = new ControlEx.CcButton();
             this.ButtonExPrint1 = new ControlEx.CcButton();
-            this.LabelExFaxNumber = new ControlEx.LabelEx();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.LabelExFaxNumber = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView1 = this.SpreadSubstitute.GetSheet(0);
@@ -178,13 +178,13 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadSubstitute;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
-        private ControlEx.LabelEx LabelExFaxNumber;
+        private ControlEx.CcLabelEx LabelExFaxNumber;
         private ControlEx.CcButton ButtonExPrint1;
         private FarPoint.Win.Spread.SheetView SheetView1;
         private FarPoint.Win.Spread.SheetView SheetView2;

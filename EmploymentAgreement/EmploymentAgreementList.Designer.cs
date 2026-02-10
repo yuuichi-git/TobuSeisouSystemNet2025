@@ -25,8 +25,8 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmploymentAgreementList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemExpiration = new ToolStripMenuItem();
@@ -43,7 +43,7 @@
             this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.LabelEx();
+            this.labelEx1 = new ControlEx.CcLabelEx();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -256,8 +256,8 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcPanel PanelExTop;
         private ControlEx.CcButton ButtonExUpdate;
@@ -275,7 +275,7 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労運転士;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
         private FarPoint.Win.Spread.SheetView SheetViewList;
-        private ControlEx.LabelEx labelEx1;
+        private ControlEx.CcLabelEx labelEx1;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationNoticeBicycle;
     }
 }

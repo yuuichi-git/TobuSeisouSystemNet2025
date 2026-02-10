@@ -25,16 +25,16 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.MenuStripEx();
-            this.StatusStripEx1 = new ControlEx.StatusStripEx();
+            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
+            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.PanelExMiddle = new ControlEx.CcPanel();
             this.ComboBoxExBase = new ControlEx.ComboBoxEx();
             this.DateTimePickerExBase = new ControlEx.CcDateTime();
-            this.labelEx9 = new ControlEx.LabelEx();
-            this.labelEx8 = new ControlEx.LabelEx();
-            this.labelEx7 = new ControlEx.LabelEx();
+            this.labelEx9 = new ControlEx.CcLabelEx();
+            this.labelEx8 = new ControlEx.CcLabelEx();
+            this.labelEx7 = new ControlEx.CcLabelEx();
             this.PictureBoxEx3 = new ControlEx.CcPictureBox();
             this.ContextMenuStrip1 = new ContextMenuStrip(this.components);
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
@@ -77,9 +77,9 @@
             this.DateTimePickerEx3 = new ControlEx.CcDateTime();
             this.DateTimePickerEx2 = new ControlEx.CcDateTime();
             this.DateTimePickerEx1 = new ControlEx.CcDateTime();
-            this.labelEx6 = new ControlEx.LabelEx();
-            this.labelEx5 = new ControlEx.LabelEx();
-            this.labelEx4 = new ControlEx.LabelEx();
+            this.labelEx6 = new ControlEx.CcLabelEx();
+            this.labelEx5 = new ControlEx.CcLabelEx();
+            this.labelEx4 = new ControlEx.CcLabelEx();
             this.CheckBoxEx12 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx11 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx10 = new ControlEx.CheckBoxEx();
@@ -92,9 +92,9 @@
             this.CheckBoxEx3 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx2 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx1 = new ControlEx.CheckBoxEx();
-            this.labelEx3 = new ControlEx.LabelEx();
-            this.LabelExName = new ControlEx.LabelEx();
-            this.LabelExStaffCode = new ControlEx.LabelEx();
+            this.labelEx3 = new ControlEx.CcLabelEx();
+            this.LabelExName = new ControlEx.CcLabelEx();
+            this.LabelExStaffCode = new ControlEx.CcLabelEx();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
@@ -919,13 +919,13 @@
         #endregion
 
         private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.MenuStripEx MenuStripEx1;
-        private ControlEx.StatusStripEx StatusStripEx1;
+        private ControlEx.CcMenuStrip MenuStripEx1;
+        private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
         private ControlEx.CcPanel PanelExMiddle;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.LabelEx LabelExStaffCode;
-        private ControlEx.LabelEx LabelExName;
+        private ControlEx.CcLabelEx LabelExStaffCode;
+        private ControlEx.CcLabelEx LabelExName;
         private ControlEx.CheckBoxEx CheckBoxEx12;
         private ControlEx.CheckBoxEx CheckBoxEx11;
         private ControlEx.CheckBoxEx CheckBoxEx10;
@@ -938,10 +938,10 @@
         private ControlEx.CheckBoxEx CheckBoxEx3;
         private ControlEx.CheckBoxEx CheckBoxEx2;
         private ControlEx.CheckBoxEx CheckBoxEx1;
-        private ControlEx.LabelEx labelEx3;
-        private ControlEx.LabelEx labelEx6;
-        private ControlEx.LabelEx labelEx5;
-        private ControlEx.LabelEx labelEx4;
+        private ControlEx.CcLabelEx labelEx3;
+        private ControlEx.CcLabelEx labelEx6;
+        private ControlEx.CcLabelEx labelEx5;
+        private ControlEx.CcLabelEx labelEx4;
         private ControlEx.CcDateTime DateTimePickerEx1;
         private ControlEx.ComboBoxEx ComboBoxEx4;
         private ControlEx.ComboBoxEx ComboBoxEx3;
@@ -981,9 +981,9 @@
         private ControlEx.CcPictureBox PictureBoxEx3;
         private ControlEx.CcPictureBox PictureBoxEx2;
         private ControlEx.CcPictureBox PictureBoxEx1;
-        private ControlEx.LabelEx labelEx9;
-        private ControlEx.LabelEx labelEx8;
-        private ControlEx.LabelEx labelEx7;
+        private ControlEx.CcLabelEx labelEx9;
+        private ControlEx.CcLabelEx labelEx8;
+        private ControlEx.CcLabelEx labelEx7;
         private ContextMenuStrip ContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;

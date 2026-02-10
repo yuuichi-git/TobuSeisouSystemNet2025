@@ -2,7 +2,7 @@
  * 2024-09-23
  */
 namespace ControlEx {
-    public partial class StatusStripEx : StatusStrip {
+    public partial class CcStatusStrip : StatusStrip {
         /*
          * プロパティ
          */
@@ -12,7 +12,7 @@ namespace ControlEx {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public StatusStripEx() {
+        public CcStatusStrip() {
             /* 
              * ダブルバッファリングを有効にする
              */

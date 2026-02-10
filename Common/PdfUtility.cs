@@ -6,36 +6,6 @@ using Windows.Storage.Streams;
 
 namespace Common {
     public class PdfUtility {
-
-        /// <summary>
-        /// 単一の PDF ページを画像に変換する
-        /// </summary>
-        /// <param name="pdfPath">PDF ファイルのパス</param>
-        /// <returns>1ページ目の Bitmap（呼び出し側で Dispose 必須）</returns>
-        public async Task<Bitmap> ConvertOnePdfToImage(string pdfPath) {
-            using FileStream fileStream = File.OpenRead(pdfPath);
-            IRandomAccessStream iRandomAccessStream = fileStream.AsRandomAccessStream();
-            PdfDocument pdfDocument = await PdfDocument.LoadFromStreamAsync(iRandomAccessStream);
-
-            // 1ページ目を取得（0固定）
-            using PdfPage pdfPage = pdfDocument.GetPage(0);
-
-            PdfPageRenderOptions pdfPageRenderOptions = new() {
-                DestinationWidth = 2480,  // A4 300dpi
-                DestinationHeight = 3508
-            };
-
-            using InMemoryRandomAccessStream inMemoryRandomAccessStream = new();
-            await pdfPage.RenderToStreamAsync(inMemoryRandomAccessStream, pdfPageRenderOptions);
-
-            inMemoryRandomAccessStream.Seek(0);
-
-            // 呼び出し側で Dispose する必要あり
-            Bitmap bitmap = new(inMemoryRandomAccessStream.AsStream());
-
-            return bitmap;
-        }
-
         /// <summary>
         /// 単一の PDF ページを Bitmap に変換する
         /// </summary>

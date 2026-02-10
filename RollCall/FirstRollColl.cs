@@ -964,11 +964,11 @@ namespace RollCall {
 
             foreach (StaffMasterVo staffMasterVo in _listStaffMasterVo.FindAll(x => x.Belongs == 12 && x.VehicleDispatchTarget == true && x.RetirementFlag == false).OrderBy(x => x.EmploymentDate)) {
                 this.SheetViewPartTimeStaff.Cells[startRow, startCol].Text = staffMasterVo.DisplayName;
-                VehicleDispatchDetailVo? vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
-                                                                                                          x.StaffCode2 == staffMasterVo.StaffCode ||
-                                                                                                          x.StaffCode3 == staffMasterVo.StaffCode ||
-                                                                                                          x.StaffCode4 == staffMasterVo.StaffCode) &&
-                                                                                                          x.OperationDate == this.DateTimePickerExOperationDate.GetValue().Date);
+                VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode2 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode3 == staffMasterVo.StaffCode ||
+                                                                                                         x.StaffCode4 == staffMasterVo.StaffCode) &&
+                                                                                                         x.OperationDate == this.DateTimePickerExOperationDate.GetValue().Date);
                 /*
                  * 配車先が設定されてなくてStaffLabelExだけ置いてある場合処理をしない
                  * ”vehicleDispatchDetailVo.Set_code > 0” → この部分

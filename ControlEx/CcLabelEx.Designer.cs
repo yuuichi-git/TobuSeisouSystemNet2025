@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class MenuStripEx {
+    partial class CcLabelEx {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
