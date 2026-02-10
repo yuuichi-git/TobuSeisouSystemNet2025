@@ -178,7 +178,7 @@ namespace Staff {
                 case "ToolStripMenuItemExportExcel":
                     //xls形式ファイルをエクスポートします
                     string fileName = string.Concat("出勤日数表(", DateTimePickerExOperationDate1.GetDate().ToString("yyyy年MM月dd日"), " ～ ", DateTimePickerExOperationDate2.GetDate().ToString("yyyy年MM月dd日"));
-                    SpreadList.SaveExcel(new Directry().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
+                    SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
                     MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case "ToolStripMenuItemExit":

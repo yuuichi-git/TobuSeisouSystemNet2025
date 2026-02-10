@@ -4,7 +4,7 @@
 using System.Diagnostics;
 
 namespace Common {
-    public class Maps {
+    public class MapUtility {
         /// <summary>
         /// MapOpen
         /// URLエンコーディング
@@ -14,7 +14,7 @@ namespace Common {
         /// </summary>
         /// <param name="selectedAddress"></param>
         public void MapOpen(string selectedAddress) {
-            var addressSplit = new AddressSplit(selectedAddress);
+            var addressSplit = new AddressSplitUtility(selectedAddress);
             var address = string.Concat(addressSplit.PrefecturesAddress, addressSplit.CityAddress, addressSplit.OtherAddress);
 
             ProcessStartInfo processStartInfo = new();
@@ -34,8 +34,8 @@ namespace Common {
         /// <param name="startAddress"></param>
         /// <param name="endAddress"></param>
         public void RouteMapOpen(string startAddress, string endAddress) {
-            AddressSplit startAddressSplit = new(startAddress);
-            AddressSplit endAddressSplit = new(endAddress);
+            AddressSplitUtility startAddressSplit = new(startAddress);
+            AddressSplitUtility endAddressSplit = new(endAddress);
             String address1 = string.Concat(startAddressSplit.PrefecturesAddress, startAddressSplit.CityAddress, startAddressSplit.OtherAddress);
             String address2 = string.Concat(endAddressSplit.PrefecturesAddress, endAddressSplit.CityAddress, endAddressSplit.OtherAddress);
 

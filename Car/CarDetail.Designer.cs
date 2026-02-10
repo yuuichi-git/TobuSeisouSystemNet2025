@@ -124,12 +124,10 @@
             this.labelEx1 = new ControlEx.LabelEx();
             this.PictureBoxExMainPicture = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
-            this.ToolStripMenuItemMainPictureClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemMainPictureDelete = new ToolStripMenuItem();
+            this.ToolStripMenuItemOpen = new ToolStripMenuItem();
+            this.ToolStripMenuItemPaste = new ToolStripMenuItem();
+            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.PictureBoxExSubPicture = new ControlEx.CcPictureBox();
-            this.ContextMenuStripEx2 = new ControlEx.ContextMenuStripEx();
-            this.ToolStripMenuItemSubPictureClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemSubPictureDelete = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
@@ -152,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).BeginInit();
-            this.ContextMenuStripEx2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -1208,28 +1205,33 @@
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemMainPictureClip, this.ToolStripMenuItemMainPictureDelete });
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDelete });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            this.ContextMenuStripEx1.Size = new Size(133, 70);
+            this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
             // 
-            // ToolStripMenuItemMainPictureClip
+            // ToolStripMenuItemOpen
             // 
-            this.ToolStripMenuItemMainPictureClip.Name = "ToolStripMenuItemMainPictureClip";
-            this.ToolStripMenuItemMainPictureClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemMainPictureClip.Text = "Clip";
-            this.ToolStripMenuItemMainPictureClip.Click += this.ToolStripMenuItem_Click;
+            this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
+            this.ToolStripMenuItemOpen.Text = "Open(PDF)";
             // 
-            // ToolStripMenuItemMainPictureDelete
+            // ToolStripMenuItemPaste
             // 
-            this.ToolStripMenuItemMainPictureDelete.Name = "ToolStripMenuItemMainPictureDelete";
-            this.ToolStripMenuItemMainPictureDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemMainPictureDelete.Text = "Delete";
-            this.ToolStripMenuItemMainPictureDelete.Click += this.ToolStripMenuItem_Click;
+            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
+            this.ToolStripMenuItemPaste.Text = "Paste";
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            this.ToolStripMenuItemDelete.Size = new Size(180, 22);
+            this.ToolStripMenuItemDelete.Text = "Delete";
             // 
             // PictureBoxExSubPicture
             // 
             this.PictureBoxExSubPicture.BorderStyle = BorderStyle.Fixed3D;
-            this.PictureBoxExSubPicture.ContextMenuStrip = this.ContextMenuStripEx2;
+            this.PictureBoxExSubPicture.ContextMenuStrip = this.ContextMenuStripEx1;
             this.PictureBoxExSubPicture.Dock = DockStyle.Fill;
             this.PictureBoxExSubPicture.Location = new Point(803, 460);
             this.PictureBoxExSubPicture.Name = "PictureBoxExSubPicture";
@@ -1238,26 +1240,6 @@
             this.PictureBoxExSubPicture.TabIndex = 5;
             this.PictureBoxExSubPicture.TabStop = false;
             this.PictureBoxExSubPicture.DoubleClick += this.PictureBoxEx_DoubleClick;
-            // 
-            // ContextMenuStripEx2
-            // 
-            this.ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemSubPictureClip, this.ToolStripMenuItemSubPictureDelete });
-            this.ContextMenuStripEx2.Name = "ContextMenuStripEx2";
-            this.ContextMenuStripEx2.Size = new Size(108, 48);
-            // 
-            // ToolStripMenuItemSubPictureClip
-            // 
-            this.ToolStripMenuItemSubPictureClip.Name = "ToolStripMenuItemSubPictureClip";
-            this.ToolStripMenuItemSubPictureClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemSubPictureClip.Text = "Clip";
-            this.ToolStripMenuItemSubPictureClip.Click += this.ToolStripMenuItem_Click;
-            // 
-            // ToolStripMenuItemSubPictureDelete
-            // 
-            this.ToolStripMenuItemSubPictureDelete.Name = "ToolStripMenuItemSubPictureDelete";
-            this.ToolStripMenuItemSubPictureDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemSubPictureDelete.Text = "Delete";
-            this.ToolStripMenuItemSubPictureDelete.Click += this.ToolStripMenuItem_Click;
             // 
             // CarDetail
             // 
@@ -1295,7 +1277,6 @@
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExMainPicture).EndInit();
             this.ContextMenuStripEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExSubPicture).EndInit();
-            this.ContextMenuStripEx2.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -1400,13 +1381,11 @@
         private ControlEx.ComboBoxEx ComboBoxExTypesOfFuel;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
-        private ControlEx.ContextMenuStripEx ContextMenuStripEx2;
-        private ToolStripMenuItem ToolStripMenuItemMainPictureClip;
-        private ToolStripMenuItem ToolStripMenuItemMainPictureDelete;
-        private ToolStripMenuItem ToolStripMenuItemSubPictureClip;
-        private ToolStripMenuItem ToolStripMenuItemSubPictureDelete;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
+        private ToolStripMenuItem ToolStripMenuItemDelete;
         private ControlEx.LabelEx labelEx41;
         private ControlEx.ComboBoxEx ComboBoxExDigitalTachographType;
         private ControlEx.CheckBoxEx CheckBoxExDigitalTachographFlag;
+        private ToolStripMenuItem ToolStripMenuItemOpen;
     }
 }

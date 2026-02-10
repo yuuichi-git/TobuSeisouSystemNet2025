@@ -5,13 +5,13 @@
 using System.Diagnostics;
 
 namespace Common {
-    public class Files {
+    public class FilesUtility {
         /// <summary>
         /// MicrosoftAccess
         /// </summary>
         /// <param name="filePath"></param>
         public void MicrosoftAccess(string filePath) {
-            var processStartInfo = new ProcessStartInfo();
+            ProcessStartInfo processStartInfo = new();
             processStartInfo.UseShellExecute = true;
             processStartInfo.FileName = filePath;
             Process.Start(processStartInfo);
@@ -22,7 +22,7 @@ namespace Common {
         /// </summary>
         /// <param name="filePath"></param>
         public void OpenFolder(string filePath) {
-            ProcessStartInfo processStartInfo = new ();
+            ProcessStartInfo processStartInfo = new();
             processStartInfo.UseShellExecute = true;
             processStartInfo.FileName = filePath;
             Process.Start(processStartInfo);

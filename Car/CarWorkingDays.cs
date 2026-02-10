@@ -187,7 +187,7 @@ namespace Car {
                 case "ToolStripMenuItemExportExcel":
                     //xlsx形式ファイルをエクスポートします
                     string fileName = string.Concat("車両別　稼働実績表", DateTime.Now.ToString("MM月dd日"), "作成");
-                    this.SpreadList.SaveExcel(new Directry().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
+                    this.SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
                     MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 /*

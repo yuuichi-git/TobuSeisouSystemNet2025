@@ -271,5 +271,23 @@ namespace Dao {
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteOneWasteCollectionHead(int id) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE H_WasteCollectionHead " +
+                                     "SET DeletePcName = '" + Environment.MachineName + "'," +
+                                         "DeleteYmdHms = '" + DateTime.Now + "'," +
+                                         "DeleteFlag = 'True' " +
+                                     "WHERE Id = " + id + "";
+            try {
+                sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
     }
 }

@@ -13,8 +13,11 @@ using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementDetail : Form {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
+        /*
+         * インスタンス作成
+         */
         private readonly DateUtility _dateUtility = new();
+        private readonly PdfUtility _pdfUtility = new();
         /*
          * Dao
          */
@@ -97,6 +100,10 @@ namespace EmploymentAgreement {
                 this.PutControlInitializeBody();
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "基本台帳が存在しません。新規登録します。";
             }
+            /*
+             * Eventを登録する
+             */
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -757,28 +764,46 @@ namespace EmploymentAgreement {
         }
 
         /// <summary>
-        /// ToolStripMenuItem_Click
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if (sender is not ContextMenuStrip contextMenuStrip)
+                return;
+
+            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+                return;
+
+            switch (e.ClickedItem.Name) {
+                case "ToolStripMenuItemOpen":
+                    Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
+                    if (bitmap is not null) {
+                        ccPictureBox.Image = bitmap;
+                    }
+                    break;
+
+                case "ToolStripMenuItemPaste":
+                    IDataObject data = Clipboard.GetDataObject();
+                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
+                        ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
+                    }
+                    break;
+
+                case "ToolStripMenuItemDelete":
+                    ccPictureBox.Image = null;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                /*
-                 * Picture クリップボード
-                 */
-                case "ToolStripMenuItemPictureClip":
-                    PictureBoxEx1.Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
-                    break;
-                /*
-                 * Picture 削除
-                 */
-                case "ToolStripMenuItemPictureDelete":
-                    PictureBoxEx1.Image = null;
-                    break;
-                /*
-                 * アプリケーションを終了する
-                 */
-                case "ToolStripMenuItemExit":
+                case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
             }

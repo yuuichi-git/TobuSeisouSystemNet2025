@@ -337,7 +337,7 @@ namespace Accident {
         /// <param name="e"></param>
         private void ButtonExMap_Click(object sender, EventArgs e) {
             // GoogleMaps表示
-            new Maps().MapOpen(this.TextBoxExOccurrenceAddress.Text);
+            new MapUtility().MapOpen(this.TextBoxExOccurrenceAddress.Text);
         }
 
         /// <summary>

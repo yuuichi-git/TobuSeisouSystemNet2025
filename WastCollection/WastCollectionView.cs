@@ -6,8 +6,8 @@ using System.Drawing.Printing;
 using Vo;
 
 namespace WastCollection {
-    public partial class WastCollectionPaper : Form {
-        public WastCollectionPaper(ConnectionVo connectionVo, Image image) {
+    public partial class WastCollectionView : Form {
+        public WastCollectionView(ConnectionVo connectionVo, Image image) {
             /*
              * InitializeControl
              */

@@ -151,7 +151,7 @@ namespace Collection {
                 case "ToolStripMenuItemExportExcel":
                     //xlsx形式ファイルをエクスポートします
                     string fileName = string.Concat("台東古紙　収集量", DateTime.Now.ToString("MM月dd日"), "作成");
-                    SpreadList.SaveExcel(new Directry().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
+                    SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
                     MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 /*

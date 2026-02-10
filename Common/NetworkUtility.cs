@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 
 namespace Common {
-    public class Network {
+    public class NetworkUtility {
         /// <summary>
         /// IPアドレスを取得
         /// </summary>

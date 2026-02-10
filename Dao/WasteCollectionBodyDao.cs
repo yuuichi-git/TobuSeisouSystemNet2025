@@ -33,11 +33,7 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCollectionBody " +
                                      "WHERE Id = " + id + " AND NumberOfRow = " + rowIndex + "";
-            try {
-                return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
-            } catch {
-                throw;
-            }
+            return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
         }
 
         /// <summary>
@@ -122,11 +118,8 @@ namespace Dao {
                                             "'" + _defaultDateTime + "'," +
                                              "'false'" +
                                              ");";
-            try {
-                sqlCommand.ExecuteNonQuery();
-            } catch {
-                throw;
-            }
+
+            sqlCommand.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -146,11 +139,8 @@ namespace Dao {
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE Id = " + id + " AND NumberOfRow = " + numberOfRow + "";
-            try {
-                sqlCommand.ExecuteNonQuery();
-            } catch {
-                throw;
-            }
+
+            sqlCommand.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -165,11 +155,7 @@ namespace Dao {
                                          "DeleteYmdHms = '" + DateTime.Now + "'," +
                                          "DeleteFlag = 'True' " +
                                      "WHERE Id = " + id + " AND NumberOfRow = " + numberOfRow + "";
-            try {
-                sqlCommand.ExecuteNonQuery();
-            } catch {
-                throw;
-            }
+            sqlCommand.ExecuteNonQuery();
         }
     }
 }

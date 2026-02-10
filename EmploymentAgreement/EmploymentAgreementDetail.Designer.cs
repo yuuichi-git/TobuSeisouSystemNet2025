@@ -83,7 +83,8 @@
             this.labelEx39 = new ControlEx.LabelEx();
             this.PictureBoxEx1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
-            this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
+            this.ToolStripMenuItemOpen = new ToolStripMenuItem();
+            this.ToolStripMenuItemPaste = new ToolStripMenuItem();
             this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
             this.groupBoxEx6 = new ControlEx.GroupBoxEx();
             this.BTNExContractExpirationNoticePicture1 = new ControlEx.CcButton();
@@ -854,23 +855,28 @@
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPictureClip, this.ToolStripMenuItemPictureDelete });
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemPictureDelete });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            this.ContextMenuStripEx1.Size = new Size(133, 70);
+            this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
             // 
-            // ToolStripMenuItemPictureClip
+            // ToolStripMenuItemOpen
             // 
-            this.ToolStripMenuItemPictureClip.Name = "ToolStripMenuItemPictureClip";
-            this.ToolStripMenuItemPictureClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemPictureClip.Text = "Clip";
-            this.ToolStripMenuItemPictureClip.Click += this.ToolStripMenuItem_Click;
+            this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
+            this.ToolStripMenuItemOpen.Text = "Open(PDF)";
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
+            this.ToolStripMenuItemPaste.Text = "Paste";
             // 
             // ToolStripMenuItemPictureDelete
             // 
             this.ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
-            this.ToolStripMenuItemPictureDelete.Size = new Size(107, 22);
+            this.ToolStripMenuItemPictureDelete.Size = new Size(180, 22);
             this.ToolStripMenuItemPictureDelete.Text = "Delete";
-            this.ToolStripMenuItemPictureDelete.Click += this.ToolStripMenuItem_Click;
             // 
             // groupBoxEx6
             // 
@@ -1925,7 +1931,7 @@
         private ControlEx.LabelEx labelEx40;
         private ControlEx.NumericUpDownEx NUDExContractExpirationPeriod;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
-        private ToolStripMenuItem ToolStripMenuItemPictureClip;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemPictureDelete;
         private ControlEx.CcButton BTNExExpirationPicture;
         private ControlEx.CcButton BTNExContractExpirationNoticePicture1;
@@ -1972,5 +1978,6 @@
         private ControlEx.NumericUpDownEx NumericUpDownExBonusSummerPay;
         private ControlEx.LabelEx labelEx27;
         private ControlEx.LabelEx labelEx29;
+        private ToolStripMenuItem ToolStripMenuItemOpen;
     }
 }

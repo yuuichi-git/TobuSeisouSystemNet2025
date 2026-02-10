@@ -139,7 +139,7 @@ namespace WastCollection {
              */
             WastCollectionDetail wastCollectionDetail = new(_connectionVo, ((WasteCollectionHeadVo)SheetViewList.Rows[e.Row].Tag).Id);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionDetail);
-            wastCollectionDetail.ShowDialog(this);
+            wastCollectionDetail.ShowDialog();
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace WastCollection {
                 case "ToolStripMenuItemInsertNewRecord":                                                                                 // 新規登録画面を表示する
                     WastCollectionDetail wastCollectionDetail = new(_connectionVo);
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionDetail);
-                    wastCollectionDetail.ShowDialog(this);
+                    wastCollectionDetail.ShowDialog();
                     break;
                 case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();

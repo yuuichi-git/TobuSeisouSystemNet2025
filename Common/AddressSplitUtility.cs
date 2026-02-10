@@ -4,12 +4,12 @@
 using System.Text.RegularExpressions;
 
 namespace Common {
-    public class AddressSplit {
+    public class AddressSplitUtility {
         private Match _prefecturesAddress;//都道府県    
         private Match _cityAddress;//市町村       
         private Match _otherAddress;//他住所
 
-        public AddressSplit(string address) {
+        public AddressSplitUtility(string address) {
             Regex stringSeikiWord;//正規表現を格納する変数
             var targetString = address;//正規表現によって切り出された文字を格納する変数
             if (targetString.IndexOf("／") != -1)

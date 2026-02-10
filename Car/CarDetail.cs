@@ -18,6 +18,7 @@ namespace Car {
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
+        private readonly PdfUtility _pdfUtility = new();
         /*
          * Dao
          */
@@ -180,20 +181,41 @@ namespace Car {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if (sender is not ContextMenuStrip contextMenuStrip)
+                return;
+
+            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+                return;
+
+            switch (e.ClickedItem.Name) {
+                case "ToolStripMenuItemOpen":
+                    Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
+                    if (bitmap is not null) {
+                        ccPictureBox.Image = bitmap;
+                    }
+                    break;
+
+                case "ToolStripMenuItemPaste":
+                    IDataObject data = Clipboard.GetDataObject();
+                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
+                        ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
+                    }
+                    break;
+
+                case "ToolStripMenuItemDelete":
+                    ccPictureBox.Image = null;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemMainPictureClip":                                                                                                    // MainPicture クリップボード
-                    PictureBoxExMainPicture.Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
-                    break;
-                case "ToolStripMenuItemMainPictureDelete":                                                                                                  // MainPicture 削除
-                    PictureBoxExMainPicture.Image = null;
-                    break;
-                case "ToolStripMenuItemSubPictureClip":                                                                                                     // SubPicture クリップボード
-                    PictureBoxExSubPicture.Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
-                    break;
-                case "ToolStripMenuItemSubPictureDelete":                                                                                                   // SubPicture 削除
-                    PictureBoxExSubPicture.Image = null;
-                    break;
                 case "ToolStripMenuItemExit":                                                                                                               // アプロケーションを終了する
                     this.Close();
                     break;

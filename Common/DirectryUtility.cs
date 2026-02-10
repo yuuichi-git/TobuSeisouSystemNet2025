@@ -1,5 +1,5 @@
 ﻿namespace Common {
-    public class Directry {
+    public class DirectryUtility {
 
         /// <summary>
         /// GetPdfDesktopPass

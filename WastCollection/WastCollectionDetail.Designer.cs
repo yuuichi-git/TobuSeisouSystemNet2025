@@ -39,6 +39,7 @@
             this.TabPage1 = new TabPage();
             this.CcPictureBox1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemPaste = new ToolStripMenuItem();
             this.ToolStripMenuItemDetail = new ToolStripMenuItem();
             this.TabPage2 = new TabPage();
@@ -173,9 +174,10 @@
             // 
             this.CcTextBoxId.BorderStyle = BorderStyle.FixedSingle;
             this.CcTextBoxId.Enabled = false;
+            this.CcTextBoxId.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             this.CcTextBoxId.Location = new Point(56, 14);
             this.CcTextBoxId.Name = "CcTextBoxId";
-            this.CcTextBoxId.Size = new Size(84, 23);
+            this.CcTextBoxId.Size = new Size(84, 25);
             this.CcTextBoxId.TabIndex = 0;
             this.CcTextBoxId.Text = "12345678901";
             this.CcTextBoxId.TextAlign = HorizontalAlignment.Right;
@@ -283,22 +285,28 @@
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPaste, this.ToolStripMenuItemDetail });
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDetail });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
-            this.ContextMenuStripEx1.Opened += this.ContextMenuStripEx1_Opened;
+            this.ContextMenuStripEx1.Size = new Size(133, 70);
             this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx1_ItemClicked;
+            // 
+            // ToolStripMenuItemOpen
+            // 
+            this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
+            this.ToolStripMenuItemOpen.Text = "Open(PDF)";
+            this.ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
             // 
             // ToolStripMenuItemPaste
             // 
             this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new Size(107, 22);
+            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
             this.ToolStripMenuItemPaste.Text = "Paste";
             // 
             // ToolStripMenuItemDetail
             // 
             this.ToolStripMenuItemDetail.Name = "ToolStripMenuItemDetail";
-            this.ToolStripMenuItemDetail.Size = new Size(107, 22);
+            this.ToolStripMenuItemDetail.Size = new Size(132, 22);
             this.ToolStripMenuItemDetail.Text = "Delete";
             // 
             // TabPage2
@@ -558,7 +566,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "fpSpread1, Sheet1, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(5, 495);
@@ -827,7 +835,6 @@
         private ControlEx.NumericUpDownEx CcNumericUpDownAmount;
         private ControlEx.CcButton CcButtonDelete;
         private ControlEx.CcButton CcButtonOk;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private ControlEx.CcPanel ccPanel1;
         private ControlEx.TabControlEx TabControlEx1;
         private TabPage TabPage1;
@@ -842,5 +849,7 @@
         private ControlEx.CcButton CcButtonMaps1;
         private ControlEx.CcButton CcButtonMaps2;
         private ToolTip ToolTip1;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
+        private ToolStripMenuItem ToolStripMenuItemOpen;
     }
 }

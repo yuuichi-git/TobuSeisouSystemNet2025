@@ -1,5 +1,5 @@
 ﻿/*
- * 2026-01\28
+ * 2026-01-28
  */
 using Common;
 
@@ -16,13 +16,35 @@ namespace WastCollection {
         /*
          * Column Index
          */
+        /// <summary>
+        /// 明細№
+        /// </summary>
         private const int _colNumberOfRow = 0;
+        /// <summary>
+        /// 品名
+        /// </summary>
         private const int _colItemName = 1;
+        /// <summary>
+        /// サイズ
+        /// </summary>
         private const int _colItemSize = 2;
+        /// <summary>
+        /// 数量
+        /// </summary>
         private const int _colNumberOfUnits = 3;
+        /// <summary>
+        /// 単価
+        /// </summary>
         private const int _colUnitPrice = 4;
+        /// <summary>
+        /// 金額
+        /// </summary>
         private const int _colTotalPrice = 5;
+        /// <summary>
+        /// 備考
+        /// </summary>
         private const int _colOthers = 6;
+
         /// <summary>
         /// DoubleClickしたRowIndexを保持
         /// </summary>
@@ -39,6 +61,7 @@ namespace WastCollection {
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
+        private readonly PdfUtility _pdfUtility = new();
         /*
          * Dao
          */
@@ -190,10 +213,10 @@ namespace WastCollection {
                     break;
 
                 case "CcButtonOk":
-                    this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
-                    //this.SheetViewListMsiNoReset(this.SheetViewList);
                     switch (_rowUpdateFlag) {
                         case false:                                                                                                         // Insertモード
+                            this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
+                            //this.SheetViewListMsiNoReset(this.SheetViewList);
                             try {
                                 _wasteCollectionBodyDao.InsertOneWasteCollectionBody(_id, this.SheetViewList.RowCount, (WasteCollectionBodyVo)this.SheetViewList.Rows[this.SheetViewList.RowCount - 1].Tag);
                             } catch (Exception exception) {
@@ -231,11 +254,11 @@ namespace WastCollection {
                     break;
 
                 case "CcButtonMaps1":
-                    new Maps().MapOpen(this.CcTextBoxOfficeAddress.Text);
+                    new MapUtility().MapOpen(this.CcTextBoxOfficeAddress.Text);
                     break;
 
                 case "CcButtonMaps2":
-                    new Maps().MapOpen(this.CcTextBoxWorkSiteAddress.Text);
+                    new MapUtility().MapOpen(this.CcTextBoxWorkSiteAddress.Text);
                     break;
             }
         }
@@ -348,7 +371,10 @@ namespace WastCollection {
             sheetView.Cells[rowIndex, _colItemName].Text = wasteCollectionBodyVo.ItemName;
             sheetView.Cells[rowIndex, _colItemSize].Text = wasteCollectionBodyVo.ItemSize;
             sheetView.Cells[rowIndex, _colNumberOfUnits].Value = wasteCollectionBodyVo.NumberOfUnits;
+            sheetView.Cells[rowIndex, _colUnitPrice].ForeColor = Color.Blue;
             sheetView.Cells[rowIndex, _colUnitPrice].Value = wasteCollectionBodyVo.UnitPrice;
+            sheetView.Cells[rowIndex, _colTotalPrice].ForeColor = Color.Red;
+            sheetView.Cells[rowIndex, _colTotalPrice].Value = wasteCollectionBodyVo.NumberOfUnits * wasteCollectionBodyVo.UnitPrice;
             sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Others;
         }
 
@@ -365,7 +391,10 @@ namespace WastCollection {
             sheetView.Cells[rowIndex, _colItemName].Text = wasteCollectionBodyVo.ItemName;
             sheetView.Cells[rowIndex, _colItemSize].Text = wasteCollectionBodyVo.ItemSize;
             sheetView.Cells[rowIndex, _colNumberOfUnits].Value = wasteCollectionBodyVo.NumberOfUnits;
+            sheetView.Cells[rowIndex, _colUnitPrice].ForeColor = Color.Blue;
             sheetView.Cells[rowIndex, _colUnitPrice].Value = wasteCollectionBodyVo.UnitPrice;
+            sheetView.Cells[rowIndex, _colTotalPrice].ForeColor = Color.Red;
+            sheetView.Cells[rowIndex, _colTotalPrice].Value = wasteCollectionBodyVo.NumberOfUnits * wasteCollectionBodyVo.UnitPrice;
             sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Others;
         }
 
@@ -424,37 +453,34 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// ContextMenuStripEx_Openedの際に設定される
-        /// </summary>
-        private Control _contextMenuStripExOpendControl;
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ContextMenuStripEx1_Opened(object sender, EventArgs e) {
-            switch (((ContextMenuStripEx)sender).SourceControl.Name) {
-                case "CcPictureBox1":
-                    _contextMenuStripExOpendControl = this.CcPictureBox1;
-                    break;
-                case "CcPictureBox2":
-                    _contextMenuStripExOpendControl = this.CcPictureBox2;
-                    break;
-            }
-        }
+        private async void ContextMenuStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if (sender is not ContextMenuStrip contextMenuStrip)
+                return;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContextMenuStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+                return;
+
             switch (e.ClickedItem.Name) {
-                case "ToolStripMenuItemPaste":
-                    ((CcPictureBox)_contextMenuStripExOpendControl).Image = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap);
+                case "ToolStripMenuItemOpen":
+                    Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
+                    if (bitmap is not null) {
+                        ccPictureBox.Image = bitmap;
+                    }
                     break;
-                case "ToolStripMenuItemDetail":
-                    ((CcPictureBox)_contextMenuStripExOpendControl).Image = null;
+
+                case "ToolStripMenuItemPaste":
+                    IDataObject data = Clipboard.GetDataObject();
+                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
+                        ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
+                    }
+                    break;
+
+                case "ToolStripMenuItemDelete":
+                    ccPictureBox.Image = null;
                     break;
             }
         }
@@ -550,7 +576,7 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcPictureBox_DoubleClick(object sender, EventArgs e) {
-            WastCollectionPaper wastCollectionPaper = new(_connectionVo, ((CcPictureBox)sender).Image);
+            WastCollectionView wastCollectionPaper = new(_connectionVo, ((CcPictureBox)sender).Image);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionPaper);
             wastCollectionPaper.ShowDialog(this);
         }

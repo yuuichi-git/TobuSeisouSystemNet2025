@@ -1,5 +1,5 @@
 ﻿namespace WastCollection {
-    partial class WastCollectionPaper {
+    partial class WastCollectionView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionPaper));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionView));
             this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
             this.StatusStripEx1 = new ControlEx.StatusStripEx();
             this.CcPictureBox1 = new ControlEx.CcPictureBox();
@@ -79,7 +79,7 @@
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // WastCollectionPaper
+            // WastCollectionView
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
@@ -88,8 +88,8 @@
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "WastCollectionPaper";
-            this.Text = "WastCollectionPaper";
+            this.Name = "WastCollectionView";
+            this.Text = "WastCollectionView";
             this.FormClosing += this.WastCollectionPaper_FormClosing;
             this.CcTableLayoutPanelBase.ResumeLayout(false);
             this.CcTableLayoutPanelBase.PerformLayout();

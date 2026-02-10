@@ -197,7 +197,7 @@ namespace License {
                     //csv形式ファイルをエクスポートします
                     string fileName = string.Concat("東海電子免許証データ", DateTime.Now.ToString("MM月dd日"), "作成");
                     //アクティブシート上の全データをcsv形式ファイルに保存します
-                    SheetViewToukaidenshi.SaveTextFile(new Directry().GetExcelDesktopPassCsv(fileName),
+                    SheetViewToukaidenshi.SaveTextFile(new DirectryUtility().GetExcelDesktopPassCsv(fileName),
                                                        TextFileFlags.None,
                                                        IncludeHeaders.ColumnHeadersCustomOnly,
                                                        Environment.NewLine,

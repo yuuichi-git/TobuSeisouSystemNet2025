@@ -235,7 +235,7 @@ namespace RollCall {
                 case "ToolStripMenuItemExportExcel":
                     //xls形式ファイルをエクスポートします
                     string fileName = string.Concat("配車当日", DateTime.Now.ToString("MM月dd日"), "作成");
-                    SpreadFirstRollCall.SaveExcel(new Directry().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
+                    SpreadFirstRollCall.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
                     MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case "ToolStripMenuItemExit":

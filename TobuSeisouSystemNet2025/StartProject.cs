@@ -81,8 +81,8 @@ namespace TobuSeisouSystemNet2025 {
             this.MenuStripEx1.ChangeEnable(listString);
 
             this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
-            this.LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new Network().GetIpAddress());
-            this.LabelExLocation.Text = string.Concat("〇 NW-Location：", new Network().GetConnectLocation(), "からの接続");
+            this.LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new NetworkUtility().GetIpAddress());
+            this.LabelExLocation.Text = string.Concat("〇 NW-Location：", new NetworkUtility().GetConnectLocation(), "からの接続");
             /*
              * TreeViewEx
              */
@@ -114,7 +114,7 @@ namespace TobuSeisouSystemNet2025 {
             /*
              * TabControlExConnect
              */
-            switch (new Network().GetConnectLocation()) {
+            switch (new NetworkUtility().GetConnectLocation()) {
                 case "本社":                                                                                // TabPage[]
                     break;
                 case "三郷車庫":                                                                             // TabPage[]
@@ -610,7 +610,7 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TreeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
-            Files files = new();
+            FilesUtility files = new();
             if (_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
                 switch (e.Node.Name) {
                     /*
