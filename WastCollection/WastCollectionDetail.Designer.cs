@@ -41,7 +41,7 @@
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemPaste = new ToolStripMenuItem();
-            this.ToolStripMenuItemDetail = new ToolStripMenuItem();
+            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.TabPage2 = new TabPage();
             this.CcPictureBox2 = new ControlEx.CcPictureBox();
             this.CcTextBoxWorkSiteAddress = new ControlEx.CcTextBox();
@@ -67,7 +67,7 @@
             this.CcComboBoxWordName = new ControlEx.CcComboBoxWordMaster();
             this.CcDateTimeOfficeQuotationDate = new ControlEx.CcDateTime();
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.CcPanelDown = new ControlEx.CcPanel();
             this.CcButtonDelete = new ControlEx.CcButton();
@@ -285,7 +285,7 @@
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDetail });
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDelete });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
             this.ContextMenuStripEx1.Size = new Size(133, 70);
             this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx1_ItemClicked;
@@ -293,21 +293,21 @@
             // ToolStripMenuItemOpen
             // 
             this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
+            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
             this.ToolStripMenuItemOpen.Text = "Open(PDF)";
             this.ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
             // 
             // ToolStripMenuItemPaste
             // 
             this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
+            this.ToolStripMenuItemPaste.Size = new Size(180, 22);
             this.ToolStripMenuItemPaste.Text = "Paste";
             // 
-            // ToolStripMenuItemDetail
+            // ToolStripMenuItemDelete
             // 
-            this.ToolStripMenuItemDetail.Name = "ToolStripMenuItemDetail";
-            this.ToolStripMenuItemDetail.Size = new Size(132, 22);
-            this.ToolStripMenuItemDetail.Text = "Delete";
+            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            this.ToolStripMenuItemDelete.Size = new Size(180, 22);
+            this.ToolStripMenuItemDelete.Text = "Delete";
             // 
             // TabPage2
             // 
@@ -845,11 +845,11 @@
         private ControlEx.CcTextBox CcTextBoxId;
         private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemPaste;
-        private ToolStripMenuItem ToolStripMenuItemDetail;
+        private ToolStripMenuItem ToolStripMenuItemDelete;
         private ControlEx.CcButton CcButtonMaps1;
         private ControlEx.CcButton CcButtonMaps2;
         private ToolTip ToolTip1;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private ToolStripMenuItem ToolStripMenuItemOpen;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

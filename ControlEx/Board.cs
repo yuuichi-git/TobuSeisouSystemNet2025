@@ -28,9 +28,9 @@ namespace ControlEx {
         /*
          * Cellの数
          */
-        private const int _columnNumber = 50; // Column数
-        private const int _rowNumber = 4; // SetControlを配置出来るRow数(0,2,4,6)
-        private const int _rowAllNumber = 8; // ダミーを含めたRow数(0,2,4,6はダミー)
+        private const int _columnNumber = 50;                       // Column数
+        private const int _rowNumber = 4;                           // SetControlを配置出来るRow数(0,2,4,6)
+        private const int _rowAllNumber = 8;                        // ダミーを含めたRow数(0,2,4,6はダミー)
         /*
          * Cellのサイズ
          */
@@ -142,10 +142,11 @@ namespace ControlEx {
         /// <returns></returns>
         public List<SetMasterVo> GetAllSetLabel() {
             List<SetMasterVo> listSetMasterVo = new();
-            foreach (SetControl setControl in this.Controls) {
-                SetLabel setLabel = (SetLabel)setControl.DeployedSetLabel;
-                if (setLabel is not null)
-                    listSetMasterVo.Add(setLabel.SetMasterVo);
+            foreach (Control control in this.Controls) {
+                if (control is SetControl setControl) {
+                    if (setControl.DeployedSetLabel is SetLabel setLabel)
+                        listSetMasterVo.Add(setLabel.SetMasterVo);
+                }
             }
             return listSetMasterVo;
         }
@@ -156,12 +157,14 @@ namespace ControlEx {
         /// <returns></returns>
         public List<CarMasterVo> GetAllCarLabel() {
             List<CarMasterVo> listCarMasterVo = new();
-            foreach (SetControl setControl in this.Controls) {
-                CarLabel carLabel = (CarLabel)setControl.DeployedCarLabel;
-                if (carLabel is not null)
-                    listCarMasterVo.Add(carLabel.CarMasterVo);
+            foreach (Control control in this.Controls) {
+                if (control is SetControl setControl) {
+                    if (setControl.DeployedCarLabel is CarLabel carLabel)
+                        listCarMasterVo.Add(carLabel.CarMasterVo);
+                }
             }
             return listCarMasterVo;
+
         }
 
         /// <summary>
@@ -170,23 +173,15 @@ namespace ControlEx {
         /// <returns></returns>
         public List<StaffMasterVo> GetAllStaffLabel() {
             List<StaffMasterVo> listStaffMasterVo = new();
-            foreach (SetControl setControl in this.Controls) {
-                // (運転手)
-                StaffLabel staffLabel0 = (StaffLabel)setControl.DeployedStaffLabel1;
-                if (staffLabel0 is not null)
-                    listStaffMasterVo.Add(staffLabel0.StaffMasterVo);
-                // (作業員1)
-                StaffLabel staffLabel1 = (StaffLabel)setControl.DeployedStaffLabel2;
-                if (staffLabel1 is not null)
-                    listStaffMasterVo.Add(staffLabel1.StaffMasterVo);
-                // (作業員2)
-                StaffLabel staffLabel2 = (StaffLabel)setControl.DeployedStaffLabel3;
-                if (staffLabel2 is not null)
-                    listStaffMasterVo.Add(staffLabel2.StaffMasterVo);
-                // (作業員3)
-                StaffLabel staffLabel3 = (StaffLabel)setControl.DeployedStaffLabel4;
-                if (staffLabel3 is not null)
-                    listStaffMasterVo.Add(staffLabel3.StaffMasterVo);
+            foreach (Control control in this.Controls) {
+                if (control is SetControl setControl) {
+                    // DeployedStaffLabel1〜4 をまとめて処理
+                    Control[] controls = new[] { setControl.DeployedStaffLabel1, setControl.DeployedStaffLabel2, setControl.DeployedStaffLabel3, setControl.DeployedStaffLabel4 };
+                    foreach (Control label in controls) {
+                        if (label is StaffLabel staffLabel)
+                            listStaffMasterVo.Add(staffLabel.StaffMasterVo);
+                    }
+                }
             }
             return listStaffMasterVo;
         }

@@ -13,6 +13,7 @@ using Vo;
 
 namespace WastCollection {
     public partial class WastCollectionDetail : Form {
+        private DateTime _defaultDateTime = new(1900, 1, 1);
         /*
          * Column Index
          */
@@ -90,7 +91,11 @@ namespace WastCollection {
             /*
              * Idを取得
              */
-            _id = _wasteCollectionHeadDao.GetNewId();
+            try {
+                _id = _wasteCollectionHeadDao.GetNewId();
+            } catch (Exception ex) {
+                MessageBox.Show(string.Concat("データの取得に失敗しました。", Environment.NewLine, ex.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             /*
              * InitializeControl
              */
@@ -304,8 +309,14 @@ namespace WastCollection {
              */
             this.CcComboBoxWorkSiteLocation.Text = wasteCollectionHeadVo.WorkSiteLocation;
             this.CcTextBoxWorkSiteAddress.Text = wasteCollectionHeadVo.WorkSiteAddress;
-
-            this.CcDateTimePickupDate.Value = wasteCollectionHeadVo.PickupDate;
+            /*
+             * 回収日
+             */
+            if (wasteCollectionHeadVo.PickupDate.Date != _defaultDateTime.Date) {
+                this.CcDateTimePickupDate.Value = wasteCollectionHeadVo.PickupDate;
+            } else {
+                this.CcDateTimePickupDate.SetEmpty();
+            }
             this.CcTextBoxRemarks.Text = wasteCollectionHeadVo.Remarks;
 
             if (wasteCollectionHeadVo.MainPicture.Length != 0) {
@@ -375,7 +386,7 @@ namespace WastCollection {
             sheetView.Cells[rowIndex, _colUnitPrice].Value = wasteCollectionBodyVo.UnitPrice;
             sheetView.Cells[rowIndex, _colTotalPrice].ForeColor = Color.Red;
             sheetView.Cells[rowIndex, _colTotalPrice].Value = wasteCollectionBodyVo.NumberOfUnits * wasteCollectionBodyVo.UnitPrice;
-            sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Others;
+            sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Remarks;
         }
 
         /// <summary>
@@ -395,7 +406,7 @@ namespace WastCollection {
             sheetView.Cells[rowIndex, _colUnitPrice].Value = wasteCollectionBodyVo.UnitPrice;
             sheetView.Cells[rowIndex, _colTotalPrice].ForeColor = Color.Red;
             sheetView.Cells[rowIndex, _colTotalPrice].Value = wasteCollectionBodyVo.NumberOfUnits * wasteCollectionBodyVo.UnitPrice;
-            sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Others;
+            sheetView.Cells[rowIndex, _colOthers].Text = wasteCollectionBodyVo.Remarks;
         }
 
         /// <summary>
@@ -441,7 +452,7 @@ namespace WastCollection {
             wasteCollectionBodyVo.ItemSize = this.CcTextBoxItemSize.Text;
             wasteCollectionBodyVo.NumberOfUnits = Convert.ToInt32(this.CcNumericUpDownNumberOfUnits.Value);
             wasteCollectionBodyVo.UnitPrice = this.CcNumericUpDownUnitPrice.Value;
-            wasteCollectionBodyVo.Others = this.CcTextBoxOthers.Text;
+            wasteCollectionBodyVo.Remarks = this.CcTextBoxOthers.Text;
             //wasteCollectionBodyVo.InsertPcName = ;
             //wasteCollectionBodyVo.InsertYmdHms = ;
             //wasteCollectionBodyVo.UpdatePcName = ;
@@ -587,7 +598,16 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
-            this.Dispose();
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
         }
     }
 }

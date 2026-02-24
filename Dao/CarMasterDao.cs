@@ -35,17 +35,13 @@ namespace Dao {
         /// <param name="carCode"></param>
         /// <returns></returns>
         public bool ExistenceHCarMaster(int carCode) {
-            int count;
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CarCode) " +
                                      "FROM H_CarMaster " +
-                                     "WHERE CarCode = " + carCode;
-            try {
-                count = (int)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
-            return count != 0 ? true : false;
+                                     "WHERE CarCode = @CarCode";
+            sqlCommand.Parameters.AddWithValue("@CarCode", carCode);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
@@ -53,14 +49,11 @@ namespace Dao {
         /// </summary>
         /// <returns>CarCodeの最大値</returns>
         public int GetCarCode() {
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(CarCode) " +
                                      "FROM H_CarMaster";
-            try {
-                return (int)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
+            object result = sqlCommand.ExecuteScalar();
+            return (int)result;
         }
 
         /// <summary>

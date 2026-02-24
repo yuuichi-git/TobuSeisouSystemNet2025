@@ -95,7 +95,7 @@ namespace Staff {
                 "ToolStripMenuItemPrintA4",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.CcMenuStrip1.ChangeEnable(listString);
 
             this.InitializeSpreadStaffRegisterHead(this.SheetViewHead);
             this.InitializeSpreadStaffRegisterTail(this.SheetViewTail);
@@ -106,7 +106,7 @@ namespace Staff {
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -654,8 +654,7 @@ namespace Staff {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemPrintA4":
-                    PrintDocument _printDocument;
-                    _printDocument = new PrintDocument();
+                    PrintDocument _printDocument = new();
                     _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
                     // 出力先プリンタを指定します。
                     //printDocument.PrinterSettings.PrinterName = "(PrinterName)";
@@ -678,7 +677,7 @@ namespace Staff {
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
             if (curPageNumber == 0) {
                 // 印刷ページ（1ページ目）の描画を行う
-                Rectangle rectangle = new Rectangle(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
+                Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
                 // 使用するページ数を計算
                 //int cnt = SpreadStaffRegisterHead.GetOwnerPrintPageCount(e.Graphics, rectangle, 0);
                 // e.Graphicsへ出力

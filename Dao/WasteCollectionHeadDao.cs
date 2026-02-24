@@ -30,15 +30,13 @@ namespace Dao {
         /// <param name="id"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceWasteCollectionHead(int id) {
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(Id) " +
                                      "FROM H_WasteCollectionHead " +
-                                     "WHERE Id = " + id + "";
-            try {
-                return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
-            } catch {
-                throw;
-            }
+                                     "WHERE Id = @Id";
+            sqlCommand.Parameters.AddWithValue("@Id", id);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;                                                                 // COUNT は 0 以上の整数なので、Convert.ToInt32 で安全に変換できる
         }
 
         /// <summary>
@@ -46,14 +44,21 @@ namespace Dao {
         /// </summary>
         /// <returns></returns>
         public int GetNewId() {
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT MAX(Id) " +
-                                     "FROM H_WasteCollectionHead";
-            try {
-                return sqlCommand.ExecuteScalar() is DBNull ? 1 : ((int)sqlCommand.ExecuteScalar() + 1);
-            } catch {
-                throw;
-            }
+            /*
+             * 旧型
+             */
+            //SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            //sqlCommand.CommandText = "SELECT MAX(Id) " +
+            //                         "FROM H_WasteCollectionHead";
+            //try {
+            //    return sqlCommand.ExecuteScalar() is DBNull ? 1 : ((int)sqlCommand.ExecuteScalar() + 1);
+            //} catch {
+            //    throw;
+            //}
+
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT MAX(Id) FROM H_WasteCollectionHead";
+            return (int)sqlCommand.ExecuteScalar() + 1;
         }
 
         /// <summary>

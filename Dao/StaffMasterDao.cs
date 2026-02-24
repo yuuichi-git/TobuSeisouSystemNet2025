@@ -58,17 +58,28 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns></returns>
         public bool ExistenceStaffMaster(int staffCode) {
-            int count;
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            /*
+             * 旧コード(SQLインジェクション対策なし)
+             */
+            //int count;
+            //SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            //sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
+            //                         "FROM H_StaffMaster " +
+            //                         "WHERE StaffCode = " + staffCode;
+            //try {
+            //    count = (int)sqlCommand.ExecuteScalar();
+            //} catch {
+            //    throw;
+            //}
+            //return count != 0 ? true : false;
+
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_StaffMaster " +
-                                     "WHERE StaffCode = " + staffCode;
-            try {
-                count = (int)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
-            return count != 0 ? true : false;
+                                     "WHERE StaffCode = @StaffCode";
+            sqlCommand.Parameters.AddWithValue("@StaffCode", staffCode);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
         }
 
         /// <summary>

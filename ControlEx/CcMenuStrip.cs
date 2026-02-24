@@ -140,13 +140,28 @@ namespace ControlEx {
 
         /// <summary>
         /// ToolStripMenuItemのEnableを設定
+        /// 2026-02-11 修正
         /// </summary>
         /// <param name="listString"></param>
         public void ChangeEnable(List<string> listString) {
-            foreach (ToolStripMenuItem item in this.Items) {
-                item.Visible = listString.Contains(item.Name);
-                foreach (ToolStripMenuItem dropDownItem in item.DropDownItems) {
-                    dropDownItem.Enabled = listString.Contains(dropDownItem.Name);
+            foreach (ToolStripItem parentItem in this.Items) {
+                if (parentItem is not ToolStripMenuItem parentMenu)
+                    continue;
+                /*
+                 * 親メニューの表示・活性制御
+                 */
+                bool parentVisible = listString.Contains(parentMenu.Name);
+                parentMenu.Visible = parentVisible;
+
+                foreach (ToolStripItem childItem in parentMenu.DropDownItems) {
+                    if (childItem is not ToolStripMenuItem childMenu)
+                        continue;
+                    /*
+                     * 子メニューの表示・活性制御
+                     */
+                    bool childEnabled = listString.Contains(childMenu.Name);
+                    childMenu.Visible = childEnabled;
+                    childMenu.Enabled = childEnabled;
                 }
             }
         }

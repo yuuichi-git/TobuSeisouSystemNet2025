@@ -34,17 +34,14 @@ namespace Dao {
         /// <param name="operationDate"></param>
         /// <returns></returns>
         public bool ExistenceEmploymentAgreement(int cellNumber, DateTime operationDate) {
-            int count;
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
-                                     "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
-            try {
-                count = (int)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
-            return count != 0 ? true : false;
+                                     "WHERE CellNumber = @CellNumber AND OperationDate = @OperationDate";
+            sqlCommand.Parameters.AddWithValue("@CellNumber", cellNumber);
+            sqlCommand.Parameters.AddWithValue("@OperationDate", operationDate);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
@@ -54,17 +51,13 @@ namespace Dao {
         /// <param name="operationDate"></param>
         /// <returns></returns>
         public bool ExistenceVehicleDispatchDetail(DateTime operationDate) {
-            int count;
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(CellNumber) " +
                                      "FROM H_VehicleDispatchDetail " +
-                                     "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
-            try {
-                count = (int)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
-            return count != 0 ? true : false;
+                                     "WHERE OperationDate = @OperationDate";
+            sqlCommand.Parameters.AddWithValue("@OperationDate", operationDate);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
@@ -474,15 +467,15 @@ namespace Dao {
         /// <param name="operationDate"></param>
         /// <returns>StaffRollCallYmdHms1</returns>
         public DateTime GetStaffRollCallYmdHms1(int cellNumber, DateTime operationDate) {
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffRollCallYmdHms1 " +
                                      "FROM H_VehicleDispatchDetail " +
-                                     "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
-            try {
-                return (DateTime)sqlCommand.ExecuteScalar();
-            } catch {
-                throw;
-            }
+                                     "WHERE CellNumber = @CellNumber AND OperationDate = @OperationDate";
+            sqlCommand.Parameters.AddWithValue("@CellNumber", cellNumber);
+            sqlCommand.Parameters.AddWithValue("@OperationDate", operationDate);
+            object result = sqlCommand.ExecuteScalar();
+            return (DateTime)result;
+
         }
 
         /// <summary>

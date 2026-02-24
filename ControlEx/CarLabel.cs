@@ -44,6 +44,10 @@ namespace ControlEx {
          */
         private const float _panelWidth = 70;
         private const float _panelHeight = 116;
+        /*
+         * Fontの定義
+         */
+        private readonly Font fontCarLabel = new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
         // ToolTip
         private ToolTip _toolTip = new();
         /*
@@ -196,7 +200,6 @@ namespace ControlEx {
             /*
              * 文字(車両)を描画
              */
-            Font fontCarLabel = new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
             Rectangle rectangle = new(0, 0, Width, Height);
             StringFormat stringFormat = new();
             stringFormat.LineAlignment = StringAlignment.Center;

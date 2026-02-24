@@ -10,7 +10,7 @@ namespace Vo {
         private string _itemSize;
         private int _numberOfUnits;
         private decimal _unitPrice;
-        private string _others;
+        private string _remarks;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -29,7 +29,7 @@ namespace Vo {
             this._itemSize = string.Empty;
             this._numberOfUnits = 0;
             this._unitPrice = 0;
-            this._others = string.Empty;
+            this._remarks = string.Empty;
             this._insertPcName = string.Empty;
             this._insertYmdHms = this._defaultDateTime;
             this._updatePcName = string.Empty;
@@ -84,9 +84,9 @@ namespace Vo {
         /// <summary>
         /// 備考
         /// </summary>
-        public string Others {
-            get => this._others;
-            set => this._others = value;
+        public string Remarks {
+            get => this._remarks;
+            set => this._remarks = value;
         }
         public string InsertPcName {
             get => this._insertPcName;

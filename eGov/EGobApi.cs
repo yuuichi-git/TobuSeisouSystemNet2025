@@ -2,8 +2,6 @@
  * 2025-08-28
  * e-Gov 法令API
  */
-using System.Web;
-
 using Newtonsoft.Json;
 
 using Vo;

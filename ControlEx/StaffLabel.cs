@@ -47,6 +47,12 @@ namespace ControlEx {
          */
         private const float _panelWidth = 70;
         private const float _panelHeight = 116;
+        /*
+         * Fontの定義
+         */
+        private readonly Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
+
+
         // ToolTip
         private ToolTip _toolTip = new();
         /*
@@ -95,24 +101,24 @@ namespace ControlEx {
          */
         ContextMenuStrip contextMenuStrip = new();
         ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
-        public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
-        ToolStripMenuItem toolStripMenuItem02 = new("代番処理"); // 親アイテム
-        ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する"); // 子アイテム１
-        ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する"); // 子アイテム２
-        ToolStripMenuItem toolStripMenuItem03 = new("職種設定"); // 親アイテム
-        ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)"); // 子アイテム１
-        ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする"); // 子アイテム２
-        ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)"); // 親アイテム
-        ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済"); // 子アイテム１
-        ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認"); // 子アイテム２
+        public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");// 外部参照しているのでPublicにしている
+        ToolStripMenuItem toolStripMenuItem02 = new("代番処理");// 親アイテム
+        ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");// 子アイテム１
+        ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");// 子アイテム２
+        ToolStripMenuItem toolStripMenuItem03 = new("職種設定");// 親アイテム
+        ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)");// 子アイテム１
+        ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする");// 子アイテム２
+        ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)");// 親アイテム
+        ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済");// 子アイテム１
+        ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認");// 子アイテム２
         ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
         ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
         private void CreateContextMenuStrip() {
-            contextMenuStrip.Name = "ContextMenuStripHStaffLabel";
-            contextMenuStrip.Opened += this.ContextMenuStrip_Opened;
+            this.contextMenuStrip.Name = "ContextMenuStripHStaffLabel";
+            this.contextMenuStrip.Opened += this.ContextMenuStrip_Opened;
             this.ContextMenuStrip = contextMenuStrip;
             /*
              * 従事者台帳を表示する
@@ -183,15 +189,92 @@ namespace ControlEx {
         /// <summary>
         /// 
         /// </summary>
+        static class Cache {
+            public static readonly Image PartTime = ByteArrayToImage(Resources.StaffLabelImagePartTime);
+            public static readonly Image Normal = ByteArrayToImage(Resources.StaffLabelImage);
+            public static readonly Image ShortTime = ByteArrayToImage(Resources.StaffLabelImageShortTime);
+            public static readonly Image Memo = ByteArrayToImage(Resources.Memo);
+            public static readonly Image Proxy = ByteArrayToImage(Resources.Proxy);
+            public static readonly Image Sagyouin = ByteArrayToImage(Resources.StaffLabelImageSagyouin);
+            public static readonly Image Tenko = ByteArrayToImage(Resources.StaffLabelImageTenko);
+            public static readonly Image Syonin = ByteArrayToImage(Resources.StaffLabelImageSyonin);
+            public static readonly Image Tekirei = ByteArrayToImage(Resources.StaffLabelImageTekirei);
+            public static readonly Image Filter = ByteArrayToImage(Resources.Filter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
             /*
-             * 背景画像
+             * 旧型
              */
+            //base.OnPaint(pe);
+            ///*
+            // * 背景画像
+            // */
+            //switch (this.StaffMasterVo.Belongs) {
+            //    case 12:
+            //        pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImagePartTime), 0, 0, Width, Height);
+            //        break;
+            //    case 20:
+            //    case 21:
+            //    case 22:
+            //        switch (this.StaffMasterVo.JobForm) {
+            //            case 20:
+            //            case 22:
+            //                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
+            //                break;
+            //            case 21:
+            //            case 23:
+            //                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageShortTime), 0, 0, Width, Height);
+            //                break;
+            //        }
+            //        break;
+            //    default:
+            //        pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
+            //        break;
+            //}
+            //if (MemoFlag)                                                                                                                       // メモ
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
+            //if (ProxyFlag)                                                                                                                      // 代車
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            //if (OccupationCode == 11)                                                                                                           // 職種
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSagyouin), 0, 0, Width, Height);
+            //if (!RollCallFlag)                                                                                                                  // 出庫点呼
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
+            //if (SyoninFlag)                                                                                                                     // 初任診断
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSyonin), 0, 0, Width, Height);
+            //if (TekireiFlag)                                                                                                                    // 適齢診断
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTekirei), 0, 0, Width, Height);
+            //if (CursorEnterFlag)                                                                                                                // カーソル関係
+            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+            ///*
+            // * 氏名を描画
+            // */
+            //Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
+            //Rectangle rectangle = new(0, 0, Width, Height);
+            //StringFormat stringFormat = new();
+            //stringFormat.Alignment = StringAlignment.Center;
+            //stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+            //stringFormat.LineAlignment = StringAlignment.Center;
+            //if (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) {
+            //    pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Red, rectangle, stringFormat);
+            //} else {
+            //    pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
+            //}
+
+            /*
+             * 2026-02-13
+             * AIによる画像キャッシュ対応
+             */
+            base.OnPaint(pe);
+
+            // 背景画像
             switch (this.StaffMasterVo.Belongs) {
                 case 12:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImagePartTime), 0, 0, Width, Height);
+                    pe.Graphics.DrawImage(Cache.PartTime, 0, 0, Width, Height);
                     break;
                 case 20:
                 case 21:
@@ -199,47 +282,53 @@ namespace ControlEx {
                     switch (this.StaffMasterVo.JobForm) {
                         case 20:
                         case 22:
-                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
+                            pe.Graphics.DrawImage(Cache.Normal, 0, 0, Width, Height);
                             break;
                         case 21:
                         case 23:
-                            pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageShortTime), 0, 0, Width, Height);
+                            pe.Graphics.DrawImage(Cache.ShortTime, 0, 0, Width, Height);
                             break;
                     }
                     break;
                 default:
-                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
+                    pe.Graphics.DrawImage(Cache.Normal, 0, 0, Width, Height);
                     break;
             }
-            if (MemoFlag)                                                                                                                       // メモ
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
-            if (ProxyFlag)                                                                                                                      // 代車
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
-            if (OccupationCode == 11)                                                                                                           // 職種
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSagyouin), 0, 0, Width, Height);
-            if (!RollCallFlag)                                                                                                                  // 出庫点呼
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
-            if (SyoninFlag)                                                                                                                     // 初任診断
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSyonin), 0, 0, Width, Height);
-            if (TekireiFlag)                                                                                                                    // 適齢診断
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTekirei), 0, 0, Width, Height);
-            if (CursorEnterFlag)                                                                                                                // カーソル関係
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
-            /*
-             * 氏名を描画
-             */
-            Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
-            Rectangle rectangle = new(0, 0, Width, Height);
-            StringFormat stringFormat = new();
-            stringFormat.Alignment = StringAlignment.Center;
-            stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
-            stringFormat.LineAlignment = StringAlignment.Center;
-            if (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) {
-                pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Red, rectangle, stringFormat);
-            } else {
-                pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
-            }
 
+            // オーバーレイ
+            if (MemoFlag)
+                pe.Graphics.DrawImage(Cache.Memo, 0, 0, Width, Height);
+
+            if (ProxyFlag)
+                pe.Graphics.DrawImage(Cache.Proxy, 0, 0, Width, Height);
+
+            if (OccupationCode == 11)
+                pe.Graphics.DrawImage(Cache.Sagyouin, 0, 0, Width, Height);
+
+            if (!RollCallFlag)
+                pe.Graphics.DrawImage(Cache.Tenko, 0, 0, Width, Height);
+
+            if (SyoninFlag)
+                pe.Graphics.DrawImage(Cache.Syonin, 0, 0, Width, Height);
+
+            if (TekireiFlag)
+                pe.Graphics.DrawImage(Cache.Tekirei, 0, 0, Width, Height);
+
+            if (CursorEnterFlag)
+                pe.Graphics.DrawImage(Cache.Filter, 0, 0, Width, Height);
+
+            // 氏名描画
+            Rectangle rectangle = new(0, 0, Width, Height);
+            StringFormat stringFormat = new() {
+                Alignment = StringAlignment.Center,
+                FormatFlags = StringFormatFlags.DirectionVertical,
+                LineAlignment = StringAlignment.Center
+            };
+            Brush brush = (StaffMasterVo.BirthDate.Month == DateTime.Now.Month &&
+                           StaffMasterVo.BirthDate.Day == DateTime.Now.Day)
+                           ? Brushes.Red
+                           : Brushes.Black;
+            pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, brush, rectangle, stringFormat);
         }
 
         /// <summary>
@@ -247,9 +336,10 @@ namespace ControlEx {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
-        private Image ByteArrayToImage(byte[] arrayByte) {
-            ImageConverter imageConverter = new();
-            return (Image)imageConverter.ConvertFrom(arrayByte);
+        private static Image ByteArrayToImage(byte[] arrayByte) {
+            using MemoryStream memoryStream = new(arrayByte);
+            return Image.FromStream(memoryStream);
+
         }
 
         /*

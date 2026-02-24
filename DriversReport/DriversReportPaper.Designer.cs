@@ -70,6 +70,7 @@
             this.StatusStripEx1.Location = new Point(0, 939);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1174, 22);
+            this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -117,6 +118,7 @@
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(1174, 961);
             this.Controls.Add(this.TableLayoutPanelExBase);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

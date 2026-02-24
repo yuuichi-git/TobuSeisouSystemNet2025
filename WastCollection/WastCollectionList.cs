@@ -61,6 +61,7 @@ namespace WastCollection {
         /*
          * インスタンス作成
          */
+        private readonly DateTime _defaultDateTime = new(1900, 1, 1);
         private readonly ScreenForm _screenForm = new();
         /*
          * Object
@@ -134,6 +135,13 @@ namespace WastCollection {
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
             if (e.ColumnHeader)                                                                                                         // ヘッダーのDoubleClickを回避
                 return;
+
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {                                                                            // Shiftキーが押された場合
+                WastCollectionPaper wastCollectionPaper = new(_connectionVo, ((WasteCollectionHeadVo)SheetViewList.Rows[e.Row].Tag).Id);
+                _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionPaper);
+                wastCollectionPaper.ShowDialog();
+                return;
+            }
             /*
              * WastCollectionDetailを表示する
              */
@@ -173,7 +181,11 @@ namespace WastCollection {
                     sheetView.Cells[rowCount, _colOfficeCellphoneNumber].Text = wasteCollectionHeadVo.OfficeCellphoneNumber;
                     sheetView.Cells[rowCount, _colWorkSiteLocation].Text = wasteCollectionHeadVo.WorkSiteLocation;
                     sheetView.Cells[rowCount, _colWorkSiteAddress].Text = wasteCollectionHeadVo.WorkSiteAddress;
-                    sheetView.Cells[rowCount, _colPickupDate].Value = wasteCollectionHeadVo.PickupDate;
+                    if (wasteCollectionHeadVo.PickupDate != _defaultDateTime) {
+                        sheetView.Cells[rowCount, _colPickupDate].Value = wasteCollectionHeadVo.PickupDate;
+                    } else {
+                        sheetView.Cells[rowCount, _colPickupDate].Text = string.Empty;
+                    }
                     sheetView.Cells[rowCount, _colRemarks].Text = wasteCollectionHeadVo.Remarks;
 
                     rowCount++;

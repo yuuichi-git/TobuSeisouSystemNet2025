@@ -9,7 +9,6 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace ControlEx {
     public partial class SetLabel : Label {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * デリゲート
          */
@@ -53,7 +52,7 @@ namespace ControlEx {
         /*
          * Fontの定義
          */
-        private readonly Font _drawFontSetLabel = new("Yu Gothic UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
+        private readonly Font _drawFontSetLabel = new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel);
         // ToolTip
         private ToolTip _toolTip = new();
         /*
@@ -347,15 +346,15 @@ namespace ControlEx {
                 // 番手コード
                 switch (this.ShiftCode) {
                     case 1:
-                        pe.Graphics.DrawString("早番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
+                        pe.Graphics.DrawString("早番", _drawFontSetLabel, Brushes.Red, new Point(7, 90));
                         break;
                     case 2:
-                        pe.Graphics.DrawString("遅番", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(7, 90));
+                        pe.Graphics.DrawString("遅番", _drawFontSetLabel, Brushes.Red, new Point(7, 90));
                         break;
                 }
                 // 待機フラグ
                 if (this.StandByFlag)
-                    pe.Graphics.DrawString("待機", new("Yu Gothic UI", 11, FontStyle.Regular, GraphicsUnit.Pixel), Brushes.Red, new Point(37, 90));
+                    pe.Graphics.DrawString("待機", _drawFontSetLabel, Brushes.Red, new Point(37, 90));
                 // カーソル関係
                 if (this.CursorEnterFlag)
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);

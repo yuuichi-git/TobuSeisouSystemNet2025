@@ -29,11 +29,15 @@ namespace Dao {
         /// <param name="id"></param>
         /// <returns>true:該当レコードあり false:該当レコードなし</returns>
         public bool ExistenceWasteCollectionBody(int id, int rowIndex) {
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT COUNT(Id) " +
-                                     "FROM H_WasteCollectionBody " +
-                                     "WHERE Id = " + id + " AND NumberOfRow = " + rowIndex + "";
-            return (int)sqlCommand.ExecuteScalar() != 0 ? true : false;
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText =
+                "SELECT COUNT(Id) " +
+                "FROM H_WasteCollectionBody " +
+                "WHERE Id = @Id AND NumberOfRow = @RowIndex";
+            sqlCommand.Parameters.AddWithValue("@Id", id);
+            sqlCommand.Parameters.AddWithValue("@RowIndex", rowIndex);
+            object result = sqlCommand.ExecuteScalar();
+            return Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
@@ -69,7 +73,7 @@ namespace Dao {
                     wasteCollectionBodyVo.ItemSize = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemSize"]);
                     wasteCollectionBodyVo.NumberOfUnits = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfUnits"]);
                     wasteCollectionBodyVo.UnitPrice = _defaultValue.GetDefaultValue<decimal>(sqlDataReader["UnitPrice"]);
-                    wasteCollectionBodyVo.Others = _defaultValue.GetDefaultValue<string>(sqlDataReader["Others"]);
+                    wasteCollectionBodyVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Others"]);
                     wasteCollectionBodyVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     wasteCollectionBodyVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     wasteCollectionBodyVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -109,7 +113,7 @@ namespace Dao {
                                             "'" + wasteCollectionBodyVo.ItemSize + "'," +
                                             "'" + wasteCollectionBodyVo.NumberOfUnits + "'," +
                                             "'" + wasteCollectionBodyVo.UnitPrice + "'," +
-                                            "'" + wasteCollectionBodyVo.Others + "'," +
+                                            "'" + wasteCollectionBodyVo.Remarks + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -135,7 +139,7 @@ namespace Dao {
                                          "ItemSize = '" + wasteCollectionBodyVo.ItemSize + "'," +
                                          "NumberOfUnits = " + wasteCollectionBodyVo.NumberOfUnits + "," +
                                          "UnitPrice = " + wasteCollectionBodyVo.UnitPrice + "," +
-                                         "Others = '" + wasteCollectionBodyVo.Others + "'," +
+                                         "Others = '" + wasteCollectionBodyVo.Remarks + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE Id = " + id + " AND NumberOfRow = " + numberOfRow + "";
