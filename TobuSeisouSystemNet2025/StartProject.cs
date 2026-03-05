@@ -78,7 +78,7 @@ namespace TobuSeisouSystemNet2025 {
                 "ToolStripMenuItemDataBaseLocal",
                 "ToolStripMenuItemHelp"
             };
-            this.MenuStripEx1.ChangeEnable(listString);
+            this.CcMenuStrip1.ChangeEnable(listString);
 
             this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
             this.LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new NetworkUtility().GetIpAddress());
@@ -130,7 +130,7 @@ namespace TobuSeisouSystemNet2025 {
             /*
              * Event
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace TobuSeisouSystemNet2025 {
             switch (((CcButton)sender).Name) {
                 case "ButtonExConnectSqlServer":
                     try {
-                        _connectionVo.ConnectSqlServer(this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag);
+                        _connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag);
                         this.ButtonExConnectSqlServer.Enabled = false;
                         this.ButtonExDisConnectSqlServer.Enabled = true;
                         this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
@@ -217,7 +217,7 @@ namespace TobuSeisouSystemNet2025 {
                     this.Close();
                     break;
                 case "ToolStripMenuItemDataBaseLocal":
-                    this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = ((ToolStripMenuItem)sender).Checked;
+                    this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = ((ToolStripMenuItem)sender).Checked;
                     break;
                 default:
                     MessageBox.Show("ToolStripMenuItemが登録されていません", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -762,9 +762,9 @@ namespace TobuSeisouSystemNet2025 {
                         /*
                          * Formを表示する
                          */
-                        EGovList eGovList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                        _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, eGovList);
-                        eGovList.Show(this);
+                        LawList lawView = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                        _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, lawView);
+                        lawView.Show();
                         break;
                     case "NodeISO0614": // 取組みの計画策定
                         break;

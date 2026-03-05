@@ -1,0 +1,65 @@
+﻿using Common;
+
+using FarPoint.Win.Spread;
+
+using Vo;
+
+namespace EGov {
+    public partial class LawList : Form {
+        private const int _colLawNo = 0;
+        private const int _colLawName = 1;
+        private const int _colLawTitle = 2;
+        private const int _colLawArticle = 3;
+        private const int _colLawlawId = 4;
+        private const int _colLawArticle1 = 5;
+        private const int _colLawparagraph = 6;
+        /*
+         * Screen
+         */
+        private readonly ScreenForm _screenForm = new();
+        private Screen _screen;
+        /*
+         * コンストラクタ
+         */
+        public LawList(ConnectionVo connectionVo, Screen screen) {
+            /*
+             * Screen
+             */
+            _screen = screen;
+            /*
+             * Initialize
+             */
+            InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.CcMenuStrip1.ChangeEnable(listString);
+            /*
+             * StatusStrip
+             */
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
+        }
+
+        private async void CcButtonUpdate_Click(object sender, EventArgs e) {
+
+        }
+
+
+        private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            // ヘッダーのDoubleClickを回避
+            if (e.ColumnHeader)
+                return;
+
+            LawView lawView = new(SheetViewList.Cells[e.Row, _colLawTitle].Text,
+                                  SheetViewList.Cells[e.Row, _colLawArticle1].Text,
+                                  SheetViewList.Cells[e.Row, _colLawparagraph].Text);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lawView);
+            lawView.Show(this);
+        }
+    }
+}

@@ -62,6 +62,7 @@ namespace VehicleDispatch {
         /// <summary>
         /// コンストラクター
         /// </summary>
+        /// <param name="connectionVo"></param>
         public VehicleDispatchBoard(ConnectionVo connectionVo) {
             /*
              * Dao
