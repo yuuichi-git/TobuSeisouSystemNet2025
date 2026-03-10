@@ -30,8 +30,8 @@
             this.PanelExUp = new ControlEx.CcPanel();
             this.ButtonExPrint2 = new ControlEx.CcButton();
             this.ButtonExPrint1 = new ControlEx.CcButton();
-            this.LabelExFaxNumber = new ControlEx.CcLabelEx();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.LabelExFaxNumber = new ControlEx.CcLabel();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView1 = this.SpreadSubstitute.GetSheet(0);
@@ -182,9 +182,9 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadSubstitute;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
-        private ControlEx.CcLabelEx LabelExFaxNumber;
+        private ControlEx.CcLabel LabelExFaxNumber;
         private ControlEx.CcButton ButtonExPrint1;
         private FarPoint.Win.Spread.SheetView SheetView1;
         private FarPoint.Win.Spread.SheetView SheetView2;

@@ -28,7 +28,7 @@
             this.MenuStripEx1 = new ControlEx.CcMenuStrip();
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
             this.SpreadDriversReportPaper = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewDriversReport = this.SpreadDriversReportPaper.GetSheet(0);
@@ -140,7 +140,7 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadDriversReportPaper;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.ComboBoxEx ComboBoxExPrinterName;
         private FarPoint.Win.Spread.SheetView SheetViewDriversReport;
     }

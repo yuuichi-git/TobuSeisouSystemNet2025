@@ -28,7 +28,7 @@
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.PanelExLeft = new ControlEx.CcPanel();
             this.ButtonExStockBoxOpen = new ControlEx.CcButton();
@@ -168,7 +168,7 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExTop;
         private ControlEx.CcDateTime DateTimePickerExOperationDate;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.CcPanel PanelExLeft;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CcButton ButtonExStockBoxOpen;

@@ -2,12 +2,12 @@
  * 2025-07-31
  */
 namespace ControlEx {
-    public partial class TreeViewEx : TreeView {
+    public partial class CcTreeView : TreeView {
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public TreeViewEx() {
+        public CcTreeView() {
             /*
              * InitializeControl
              */

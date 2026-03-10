@@ -2,11 +2,11 @@
  * 2024-09-23
  */
 namespace ControlEx {
-    public partial class CcLabelEx : Label {
+    public partial class CcLabel : Label {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public CcLabelEx() {
+        public CcLabel() {
             /* 
              * ダブルバッファリングを有効にする
              */

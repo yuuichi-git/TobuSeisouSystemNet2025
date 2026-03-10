@@ -28,7 +28,7 @@
             this.MenuStripEx1 = new ControlEx.CcMenuStrip();
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExTop = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.TextBoxExEmissionPlaceNameSearch = new ControlEx.CcTextBox();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
@@ -155,7 +155,7 @@
         private ControlEx.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.CcTextBox TextBoxExEmissionPlaceNameSearch;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

@@ -43,7 +43,7 @@
             this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -275,7 +275,7 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労運転士;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
         private FarPoint.Win.Spread.SheetView SheetViewList;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationNoticeBicycle;
     }
 }

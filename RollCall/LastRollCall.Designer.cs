@@ -23,17 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.LabelExSetName = new ControlEx.CcLabelEx();
-            this.labelEx2 = new ControlEx.CcLabelEx();
+            this.LabelExSetName = new ControlEx.CcLabel();
+            this.labelEx2 = new ControlEx.CcLabel();
             this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
-            this.labelEx3 = new ControlEx.CcLabelEx();
-            this.labelEx4 = new ControlEx.CcLabelEx();
-            this.labelEx5 = new ControlEx.CcLabelEx();
-            this.labelEx6 = new ControlEx.CcLabelEx();
-            this.labelEx7 = new ControlEx.CcLabelEx();
-            this.labelEx8 = new ControlEx.CcLabelEx();
-            this.labelEx9 = new ControlEx.CcLabelEx();
-            this.labelEx10 = new ControlEx.CcLabelEx();
+            this.labelEx3 = new ControlEx.CcLabel();
+            this.labelEx4 = new ControlEx.CcLabel();
+            this.labelEx5 = new ControlEx.CcLabel();
+            this.labelEx6 = new ControlEx.CcLabel();
+            this.labelEx7 = new ControlEx.CcLabel();
+            this.labelEx8 = new ControlEx.CcLabel();
+            this.labelEx9 = new ControlEx.CcLabel();
+            this.labelEx10 = new ControlEx.CcLabel();
             this.CheckBoxExDelete = new ControlEx.CheckBoxEx();
             this.ButtonExUpdate = new ControlEx.CcButton();
             this.NumericUpDownExLastPlantCount = new ControlEx.NumericUpDownEx();
@@ -314,17 +314,17 @@
 
         #endregion
 
-        private ControlEx.CcLabelEx LabelExSetName;
-        private ControlEx.CcLabelEx labelEx2;
+        private ControlEx.CcLabel LabelExSetName;
+        private ControlEx.CcLabel labelEx2;
         private ControlEx.CcDateTime DateTimePickerExOperationDate;
-        private ControlEx.CcLabelEx labelEx3;
-        private ControlEx.CcLabelEx labelEx4;
-        private ControlEx.CcLabelEx labelEx5;
-        private ControlEx.CcLabelEx labelEx6;
-        private ControlEx.CcLabelEx labelEx7;
-        private ControlEx.CcLabelEx labelEx8;
-        private ControlEx.CcLabelEx labelEx9;
-        private ControlEx.CcLabelEx labelEx10;
+        private ControlEx.CcLabel labelEx3;
+        private ControlEx.CcLabel labelEx4;
+        private ControlEx.CcLabel labelEx5;
+        private ControlEx.CcLabel labelEx6;
+        private ControlEx.CcLabel labelEx7;
+        private ControlEx.CcLabel labelEx8;
+        private ControlEx.CcLabel labelEx9;
+        private ControlEx.CcLabel labelEx10;
         private ControlEx.CheckBoxEx CheckBoxExDelete;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.NumericUpDownEx NumericUpDownExLastPlantCount;

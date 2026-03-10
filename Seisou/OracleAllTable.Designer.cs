@@ -28,7 +28,7 @@
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.MenuStripEx1 = new ControlEx.CcMenuStrip();
             this.PanelExTop = new ControlEx.CcPanel();
-            this.TreeViewEx1 = new ControlEx.TreeViewEx();
+            this.TreeViewEx1 = new ControlEx.CcTreeView();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -124,7 +124,7 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcMenuStrip MenuStripEx1;
         private ControlEx.CcPanel PanelExTop;
-        private ControlEx.TreeViewEx TreeViewEx1;
+        private ControlEx.CcTreeView TreeViewEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

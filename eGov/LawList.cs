@@ -6,13 +6,13 @@ using Vo;
 
 namespace EGov {
     public partial class LawList : Form {
-        private const int _colLawNo = 0;
-        private const int _colLawName = 1;
-        private const int _colLawTitle = 2;
+        private const int _colNo = 0;
+        private const int _colLawTitle = 1;
+        private const int _colLawNum = 2;
         private const int _colLawArticle = 3;
         private const int _colLawlawId = 4;
-        private const int _colLawArticle1 = 5;
-        private const int _colLawparagraph = 6;
+        private const int _colJyou = 5;
+        private const int _colKou = 6;
         /*
          * Screen
          */
@@ -56,8 +56,8 @@ namespace EGov {
                 return;
 
             LawView lawView = new(SheetViewList.Cells[e.Row, _colLawTitle].Text,
-                                  SheetViewList.Cells[e.Row, _colLawArticle1].Text,
-                                  SheetViewList.Cells[e.Row, _colLawparagraph].Text);
+                                  SheetViewList.Cells[e.Row, _colJyou].Text,
+                                  SheetViewList.Cells[e.Row, _colKou].Text);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lawView);
             lawView.Show(this);
         }

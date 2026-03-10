@@ -30,10 +30,10 @@
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
             this.CheckBoxExAbsence = new ControlEx.CheckBoxEx();
-            this.labelEx3 = new ControlEx.CcLabelEx();
+            this.labelEx3 = new ControlEx.CcLabel();
             this.ComboBoxExStaffName = new ControlEx.ComboBoxEx();
-            this.labelEx2 = new ControlEx.CcLabelEx();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx2 = new ControlEx.CcLabel();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
             this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
             this.ButtonExUpdate = new ControlEx.CcButton();
@@ -532,11 +532,11 @@
         private ControlEx.CheckBoxEx checkBoxEx11;
         private ControlEx.CheckBoxEx checkBoxEx13;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcLabelEx labelEx2;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx2;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.CcDateTime DateTimePickerExOperationDate2;
         private ControlEx.CcDateTime DateTimePickerExOperationDate1;
-        private ControlEx.CcLabelEx labelEx3;
+        private ControlEx.CcLabel labelEx3;
         private ControlEx.ComboBoxEx ComboBoxExStaffName;
         private ControlEx.CheckBoxEx CheckBoxExAbsence;
         private FarPoint.Win.Spread.SheetView SheetViewList;

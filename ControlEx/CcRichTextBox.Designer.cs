@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class CcLabelEx {
+    partial class CcRichTextBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class TreeViewEx {
+    partial class CcLabel {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

@@ -2,8 +2,8 @@
  * 2025-1-11
  */
 namespace ControlEx {
-    public partial class FlowLayoutPanelEx : FlowLayoutPanel {
-        public FlowLayoutPanelEx() {
+    public partial class CcFlowLayoutPanel : FlowLayoutPanel {
+        public CcFlowLayoutPanel() {
             InitializeComponent();
         }
 

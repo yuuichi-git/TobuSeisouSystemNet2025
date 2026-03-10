@@ -28,11 +28,11 @@
             this.MenuStripEx1 = new ControlEx.CcMenuStrip();
             this.StatusStripEx1 = new ControlEx.CcStatusStrip();
             this.PanelExUp = new ControlEx.CcPanel();
-            this.labelEx4 = new ControlEx.CcLabelEx();
-            this.labelEx3 = new ControlEx.CcLabelEx();
+            this.labelEx4 = new ControlEx.CcLabel();
+            this.labelEx3 = new ControlEx.CcLabel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx2 = new ControlEx.CcLabelEx();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx2 = new ControlEx.CcLabel();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.DateTimePickerEx2 = new ControlEx.CcDateTime();
             this.DateTimePickerEx1 = new ControlEx.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
@@ -226,12 +226,12 @@
         private FarPoint.Win.Spread.FpSpread SpreadAggregate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewAggregate;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.CcDateTime DateTimePickerEx2;
         private ControlEx.CcDateTime DateTimePickerEx1;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcLabelEx labelEx2;
-        private ControlEx.CcLabelEx labelEx4;
-        private ControlEx.CcLabelEx labelEx3;
+        private ControlEx.CcLabel labelEx2;
+        private ControlEx.CcLabel labelEx4;
+        private ControlEx.CcLabel labelEx3;
     }
 }

@@ -31,7 +31,7 @@
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExTop = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx1 = new ControlEx.CcLabelEx();
+            this.labelEx1 = new ControlEx.CcLabel();
             this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -154,7 +154,7 @@
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private ControlEx.CcPanel PanelExTop;
-        private ControlEx.CcLabelEx labelEx1;
+        private ControlEx.CcLabel labelEx1;
         private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.CcButton ButtonExUpdate;
     }
