@@ -102,7 +102,7 @@
             this.SpreadList.Name = "SpreadList";
             this.SpreadList.Size = new Size(1319, 639);
             this.SpreadList.TabIndex = 3;
-            this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
+            this.SpreadList.CellDoubleClick += this.SheetViewList_CellDoubleClick;
             // 
             // LawList
             // 

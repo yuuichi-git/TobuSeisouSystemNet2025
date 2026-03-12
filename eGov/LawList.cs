@@ -50,16 +50,22 @@ namespace EGov {
         }
 
 
-        private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
-            // ヘッダーのDoubleClickを回避
-            if (e.ColumnHeader)
-                return;
+        private async void SheetViewList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            // ① UI から法令名・条・項を取得
+            string lawName = SheetViewList.Cells[e.Row, _colLawTitle].Text;
+            string lawArticle = SheetViewList.Cells[e.Row, _colJyou].Text;
+            string lawParagraph = SheetViewList.Cells[e.Row, _colKou].Text;
 
-            LawView lawView = new(SheetViewList.Cells[e.Row, _colLawTitle].Text,
-                                  SheetViewList.Cells[e.Row, _colJyou].Text,
-                                  SheetViewList.Cells[e.Row, _colKou].Text);
+            if (string.IsNullOrWhiteSpace(lawName)) {
+                MessageBox.Show("法令名が空です。");
+                return;
+            }
+
+            // ④ LawView を開く（あなたの既存コードに合わせる）
+            LawView lawView = new(lawName, lawArticle, lawParagraph);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lawView);
             lawView.Show(this);
         }
+
     }
 }

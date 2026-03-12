@@ -28,10 +28,12 @@
             this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
             this.CcStatusStrip1 = new ControlEx.CcStatusStrip();
             this.CcPanel1 = new ControlEx.CcPanel();
+            this.CcLabelLawId = new ControlEx.CcLabel();
+            this.CcLabelLawNum = new ControlEx.CcLabel();
+            this.CcLabelLawArticle = new ControlEx.CcLabel();
             this.CcLabelLawType = new ControlEx.CcLabel();
             this.CcLabelLawTitle = new ControlEx.CcLabel();
             this.CcMenuStrip1 = new ControlEx.CcMenuStrip();
-            this.CcLabelLawArticle = new ControlEx.CcLabel();
             this.CcTableLayoutPanelBase.SuspendLayout();
             this.CcPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +88,8 @@
             // CcPanel1
             // 
             this.CcTableLayoutPanelBase.SetColumnSpan(this.CcPanel1, 2);
+            this.CcPanel1.Controls.Add(this.CcLabelLawId);
+            this.CcPanel1.Controls.Add(this.CcLabelLawNum);
             this.CcPanel1.Controls.Add(this.CcLabelLawArticle);
             this.CcPanel1.Controls.Add(this.CcLabelLawType);
             this.CcPanel1.Controls.Add(this.CcLabelLawTitle);
@@ -95,23 +99,51 @@
             this.CcPanel1.Size = new Size(1214, 54);
             this.CcPanel1.TabIndex = 3;
             // 
+            // CcLabelLawId
+            // 
+            this.CcLabelLawId.AutoSize = true;
+            this.CcLabelLawId.Location = new Point(12, 8);
+            this.CcLabelLawId.Name = "CcLabelLawId";
+            this.CcLabelLawId.Size = new Size(50, 15);
+            this.CcLabelLawId.TabIndex = 4;
+            this.CcLabelLawId.Text = "LawId：";
+            // 
+            // CcLabelLawNum
+            // 
+            this.CcLabelLawNum.AutoSize = true;
+            this.CcLabelLawNum.Location = new Point(12, 32);
+            this.CcLabelLawNum.Name = "CcLabelLawNum";
+            this.CcLabelLawNum.Size = new Size(66, 15);
+            this.CcLabelLawNum.TabIndex = 3;
+            this.CcLabelLawNum.Text = "LawNum：";
+            // 
+            // CcLabelLawArticle
+            // 
+            this.CcLabelLawArticle.AutoSize = true;
+            this.CcLabelLawArticle.Location = new Point(616, 8);
+            this.CcLabelLawArticle.Name = "CcLabelLawArticle";
+            this.CcLabelLawArticle.Size = new Size(44, 15);
+            this.CcLabelLawArticle.TabIndex = 2;
+            this.CcLabelLawArticle.Text = "条№：";
+            // 
             // CcLabelLawType
             // 
+            this.CcLabelLawType.AutoEllipsis = true;
             this.CcLabelLawType.AutoSize = true;
-            this.CcLabelLawType.Location = new Point(20, 20);
+            this.CcLabelLawType.Location = new Point(316, 8);
             this.CcLabelLawType.Name = "CcLabelLawType";
-            this.CcLabelLawType.Size = new Size(43, 15);
+            this.CcLabelLawType.Size = new Size(64, 15);
             this.CcLabelLawType.TabIndex = 1;
-            this.CcLabelLawType.Text = "種別：";
+            this.CcLabelLawType.Text = "LawType：";
             // 
             // CcLabelLawTitle
             // 
             this.CcLabelLawTitle.AutoSize = true;
-            this.CcLabelLawTitle.Location = new Point(192, 20);
+            this.CcLabelLawTitle.Location = new Point(316, 32);
             this.CcLabelLawTitle.Name = "CcLabelLawTitle";
-            this.CcLabelLawTitle.Size = new Size(55, 15);
+            this.CcLabelLawTitle.Size = new Size(62, 15);
             this.CcLabelLawTitle.TabIndex = 0;
-            this.CcLabelLawTitle.Text = "法令名：";
+            this.CcLabelLawTitle.Text = "LawTitle：";
             // 
             // CcMenuStrip1
             // 
@@ -122,15 +154,6 @@
             this.CcMenuStrip1.TabIndex = 4;
             this.CcMenuStrip1.Text = "ccMenuStrip1";
             this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
-            // 
-            // CcLabelLawArticle
-            // 
-            this.CcLabelLawArticle.AutoSize = true;
-            this.CcLabelLawArticle.Location = new Point(480, 20);
-            this.CcLabelLawArticle.Name = "CcLabelLawArticle";
-            this.CcLabelLawArticle.Size = new Size(44, 15);
-            this.CcLabelLawArticle.TabIndex = 2;
-            this.CcLabelLawArticle.Text = "条№：";
             // 
             // LawView
             // 
@@ -158,5 +181,7 @@
         private ControlEx.CcStatusStrip CcStatusStrip1;
         private ControlEx.CcMenuStrip CcMenuStrip1;
         private ControlEx.CcLabel CcLabelLawArticle;
+        private ControlEx.CcLabel CcLabelLawId;
+        private ControlEx.CcLabel CcLabelLawNum;
     }
 }
