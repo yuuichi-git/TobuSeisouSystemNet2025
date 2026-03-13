@@ -52,9 +52,9 @@ namespace EGov {
 
         private async void SheetViewList_CellDoubleClick(object sender, CellClickEventArgs e) {
             // ① UI から法令名・条・項を取得
-            string lawName = SheetViewList.Cells[e.Row, _colLawTitle].Text;
-            string lawArticle = SheetViewList.Cells[e.Row, _colJyou].Text;
-            string lawParagraph = SheetViewList.Cells[e.Row, _colKou].Text;
+            string lawName = this.SheetViewList.Cells[e.Row, _colLawTitle].Text;
+            string lawArticle = this.SheetViewList.Cells[e.Row, _colJyou].Text;
+            string lawParagraph = this.SheetViewList.Cells[e.Row, _colKou].Text;
 
             if (string.IsNullOrWhiteSpace(lawName)) {
                 MessageBox.Show("法令名が空です。");

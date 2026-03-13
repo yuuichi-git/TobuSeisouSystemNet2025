@@ -28,6 +28,11 @@
             this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
             this.CcStatusStrip1 = new ControlEx.CcStatusStrip();
             this.CcPanel1 = new ControlEx.CcPanel();
+            this.CcTextBoxLawTitle = new ControlEx.CcTextBox();
+            this.CcTextBoxLawType = new ControlEx.CcTextBox();
+            this.CcTextBoxLawArticle = new ControlEx.CcTextBox();
+            this.CcTextBoxLawNum = new ControlEx.CcTextBox();
+            this.CcTextBoxLawId = new ControlEx.CcTextBox();
             this.CcLabelLawId = new ControlEx.CcLabel();
             this.CcLabelLawNum = new ControlEx.CcLabel();
             this.CcLabelLawArticle = new ControlEx.CcLabel();
@@ -41,17 +46,18 @@
             // CcTreeView1
             // 
             this.CcTreeView1.Dock = DockStyle.Fill;
-            this.CcTreeView1.Location = new Point(3, 87);
+            this.CcTreeView1.Location = new Point(3, 127);
             this.CcTreeView1.Name = "CcTreeView1";
-            this.CcTreeView1.Size = new Size(604, 574);
+            this.CcTreeView1.Size = new Size(604, 534);
             this.CcTreeView1.TabIndex = 1;
+            this.CcTreeView1.AfterSelect += this.CcTreeView1_AfterSelect;
             // 
             // CcRichTextBox1
             // 
             this.CcRichTextBox1.Dock = DockStyle.Fill;
-            this.CcRichTextBox1.Location = new Point(613, 87);
+            this.CcRichTextBox1.Location = new Point(613, 127);
             this.CcRichTextBox1.Name = "CcRichTextBox1";
-            this.CcRichTextBox1.Size = new Size(604, 574);
+            this.CcRichTextBox1.Size = new Size(604, 534);
             this.CcRichTextBox1.TabIndex = 2;
             this.CcRichTextBox1.Text = "";
             // 
@@ -70,7 +76,7 @@
             this.CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
             this.CcTableLayoutPanelBase.RowCount = 4;
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             this.CcTableLayoutPanelBase.Size = new Size(1220, 688);
@@ -88,6 +94,11 @@
             // CcPanel1
             // 
             this.CcTableLayoutPanelBase.SetColumnSpan(this.CcPanel1, 2);
+            this.CcPanel1.Controls.Add(this.CcTextBoxLawTitle);
+            this.CcPanel1.Controls.Add(this.CcTextBoxLawType);
+            this.CcPanel1.Controls.Add(this.CcTextBoxLawArticle);
+            this.CcPanel1.Controls.Add(this.CcTextBoxLawNum);
+            this.CcPanel1.Controls.Add(this.CcTextBoxLawId);
             this.CcPanel1.Controls.Add(this.CcLabelLawId);
             this.CcPanel1.Controls.Add(this.CcLabelLawNum);
             this.CcPanel1.Controls.Add(this.CcLabelLawArticle);
@@ -96,54 +107,89 @@
             this.CcPanel1.Dock = DockStyle.Fill;
             this.CcPanel1.Location = new Point(3, 27);
             this.CcPanel1.Name = "CcPanel1";
-            this.CcPanel1.Size = new Size(1214, 54);
+            this.CcPanel1.Size = new Size(1214, 94);
             this.CcPanel1.TabIndex = 3;
+            // 
+            // CcTextBoxLawTitle
+            // 
+            this.CcTextBoxLawTitle.Location = new Point(476, 32);
+            this.CcTextBoxLawTitle.Name = "CcTextBoxLawTitle";
+            this.CcTextBoxLawTitle.Size = new Size(280, 23);
+            this.CcTextBoxLawTitle.TabIndex = 9;
+            // 
+            // CcTextBoxLawType
+            // 
+            this.CcTextBoxLawType.Location = new Point(476, 4);
+            this.CcTextBoxLawType.Name = "CcTextBoxLawType";
+            this.CcTextBoxLawType.Size = new Size(280, 23);
+            this.CcTextBoxLawType.TabIndex = 8;
+            // 
+            // CcTextBoxLawArticle
+            // 
+            this.CcTextBoxLawArticle.Location = new Point(96, 60);
+            this.CcTextBoxLawArticle.Name = "CcTextBoxLawArticle";
+            this.CcTextBoxLawArticle.Size = new Size(280, 23);
+            this.CcTextBoxLawArticle.TabIndex = 7;
+            // 
+            // CcTextBoxLawNum
+            // 
+            this.CcTextBoxLawNum.Location = new Point(96, 32);
+            this.CcTextBoxLawNum.Name = "CcTextBoxLawNum";
+            this.CcTextBoxLawNum.Size = new Size(280, 23);
+            this.CcTextBoxLawNum.TabIndex = 6;
+            // 
+            // CcTextBoxLawId
+            // 
+            this.CcTextBoxLawId.Location = new Point(96, 4);
+            this.CcTextBoxLawId.Name = "CcTextBoxLawId";
+            this.CcTextBoxLawId.Size = new Size(280, 23);
+            this.CcTextBoxLawId.TabIndex = 5;
             // 
             // CcLabelLawId
             // 
-            this.CcLabelLawId.AutoSize = true;
             this.CcLabelLawId.Location = new Point(12, 8);
             this.CcLabelLawId.Name = "CcLabelLawId";
-            this.CcLabelLawId.Size = new Size(50, 15);
+            this.CcLabelLawId.Size = new Size(80, 15);
             this.CcLabelLawId.TabIndex = 4;
             this.CcLabelLawId.Text = "LawId：";
+            this.CcLabelLawId.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CcLabelLawNum
             // 
-            this.CcLabelLawNum.AutoSize = true;
-            this.CcLabelLawNum.Location = new Point(12, 32);
+            this.CcLabelLawNum.Location = new Point(12, 36);
             this.CcLabelLawNum.Name = "CcLabelLawNum";
-            this.CcLabelLawNum.Size = new Size(66, 15);
+            this.CcLabelLawNum.Size = new Size(80, 15);
             this.CcLabelLawNum.TabIndex = 3;
             this.CcLabelLawNum.Text = "LawNum：";
+            this.CcLabelLawNum.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CcLabelLawArticle
             // 
-            this.CcLabelLawArticle.AutoSize = true;
-            this.CcLabelLawArticle.Location = new Point(616, 8);
+            this.CcLabelLawArticle.Location = new Point(12, 64);
             this.CcLabelLawArticle.Name = "CcLabelLawArticle";
-            this.CcLabelLawArticle.Size = new Size(44, 15);
+            this.CcLabelLawArticle.Size = new Size(80, 15);
             this.CcLabelLawArticle.TabIndex = 2;
-            this.CcLabelLawArticle.Text = "条№：";
+            this.CcLabelLawArticle.Text = "LawArticle：";
+            this.CcLabelLawArticle.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CcLabelLawType
             // 
             this.CcLabelLawType.AutoEllipsis = true;
-            this.CcLabelLawType.AutoSize = true;
-            this.CcLabelLawType.Location = new Point(316, 8);
+            this.CcLabelLawType.Location = new Point(392, 8);
             this.CcLabelLawType.Name = "CcLabelLawType";
-            this.CcLabelLawType.Size = new Size(64, 15);
+            this.CcLabelLawType.Size = new Size(80, 15);
             this.CcLabelLawType.TabIndex = 1;
             this.CcLabelLawType.Text = "LawType：";
+            this.CcLabelLawType.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CcLabelLawTitle
             // 
-            this.CcLabelLawTitle.AutoSize = true;
-            this.CcLabelLawTitle.Location = new Point(316, 32);
+            this.CcLabelLawTitle.Location = new Point(392, 36);
             this.CcLabelLawTitle.Name = "CcLabelLawTitle";
-            this.CcLabelLawTitle.Size = new Size(62, 15);
+            this.CcLabelLawTitle.Size = new Size(80, 15);
             this.CcLabelLawTitle.TabIndex = 0;
             this.CcLabelLawTitle.Text = "LawTitle：";
+            this.CcLabelLawTitle.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CcMenuStrip1
             // 
@@ -183,5 +229,10 @@
         private ControlEx.CcLabel CcLabelLawArticle;
         private ControlEx.CcLabel CcLabelLawId;
         private ControlEx.CcLabel CcLabelLawNum;
+        private ControlEx.CcTextBox CcTextBoxLawTitle;
+        private ControlEx.CcTextBox CcTextBoxLawType;
+        private ControlEx.CcTextBox CcTextBoxLawArticle;
+        private ControlEx.CcTextBox CcTextBoxLawNum;
+        private ControlEx.CcTextBox CcTextBoxLawId;
     }
 }

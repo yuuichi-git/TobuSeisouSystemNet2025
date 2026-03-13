@@ -2,6 +2,7 @@
  * string url = $"https://laws.e-gov.go.jp/api/2/keyword?keyword={Uri.EscapeDataString(lawName)}&response_format=xml"; 大麻草の栽培の規制に関する法律
  * string url = $"https://laws.e-gov.go.jp/api/2/law_data/{lawId}?response_format=xml"; 322AC0000000067
  */
+using System.Globalization;
 using System.Xml.Linq;
 
 using Vo;
@@ -9,18 +10,11 @@ using Vo;
 namespace EGov {
 
     public class EGobApi {
-        private readonly HttpClient _httpClient;
-
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public EGobApi() {
-            _httpClient = new HttpClient();
-        }
+        private readonly HttpClient _httpClient = new();
 
         /*
          * 
-         * keyword
+         * keyword検索
          * 
          */
         public async Task<KeywordResponse> GetLawInfoAsync(string lawName) {
@@ -115,14 +109,12 @@ namespace EGov {
             return keywordResponse;
         }
 
-
         /*
          * 
-         * law_data
-         * string lawId, string lawArticle = null, string lawParagraph = null
+         * law_data検索
          * 
          */
-        public async Task<LawDataResponse> GetLawDataAsync(string lawId, string lawArticle = null, string lawParagraph = null) {
+        public async Task<LawDataResponse> GetLawDataAsync(string lawId, string? lawArticle = null, string? lawParagraph = null) {
             if (string.IsNullOrWhiteSpace(lawId))
                 throw new ArgumentException("lawId is required.", nameof(lawId));
 
@@ -135,57 +127,22 @@ namespace EGov {
             if (string.IsNullOrWhiteSpace(xml))
                 throw new Exception("API returned empty XML.");
 
-            XDocument doc = XDocument.Parse(xml);
-            XElement root = doc.Root!; // <law_data_response>
+            // ★ ここが重要：LawBody を探す
+            var doc = XDocument.Parse(xml);
 
-            LawDataResponse result = new LawDataResponse();
+            var lawBodyElem = doc
+                .Descendants()
+                .FirstOrDefault(e => e.Name.LocalName == "LawBody");
 
-            // -------------------------
-            // law_info → LawDataResponse
-            // -------------------------
-            XElement? lawInfo = root.Element("law_info");
-            if (lawInfo != null) {
-                result.LawNum = (string?)lawInfo.Element("law_num") ?? "";
-                result.LawTitle = (string?)root.Element("revision_info")?.Element("law_title") ?? "";
-                result.LawTitleKana = (string?)root.Element("revision_info")?.Element("law_title_kana") ?? "";
+            if (lawBodyElem == null)
+                throw new Exception("LawBody element not found in XML.");
 
-                result.PromulgationDate = ParseDate(lawInfo.Element("promulgation_date")?.Value);
-            }
+            // ★ LawBody 専用の入口でパース
+            var lawDataResponse = LawDataConverter.FromLawBody(lawBodyElem);
 
-            // -------------------------
-            // law_full_text → LawBody
-            // -------------------------
-            XElement? fullText = root.Element("law_full_text");
-            if (fullText != null) {
-                XElement? lawElem = fullText.Element("Law");
-                if (lawElem != null) {
-                    XElement? bodyElem = lawElem.Element("LawBody");
-                    if (bodyElem != null) {
-                        LawBody body = new();
-                        result.LawBody = body;
-
-                        // ★ LawBody の中身をすべてパース（Chapter / Article / Paragraph / Item / Sentence）
-                        this.ParseLawBody(bodyElem, body);
-                    }
-                }
-            }
-
-            return result;
+            return lawDataResponse;
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private DateTime? ParseDate(string? value) {
             if (string.IsNullOrWhiteSpace(value))
@@ -197,157 +154,279 @@ namespace EGov {
             return null;
         }
 
-        /*
-         * 
-         * パーサー
-         * 
-         */
 
-        private void ParseLawBody(XElement bodyElem, LawBody body) {
-            // -------------------------
-            // 前文（LawTitle の後にある場合もある）
-            // -------------------------
-            XElement? prefaceElem = bodyElem.Element("Preface");
-            if (prefaceElem != null) {
-                body.Preface = new LawPreface {
-                    Text = (string?)prefaceElem.Value ?? ""
+
+
+
+
+        public static class LawDataConverter {
+            // ============================================================
+            // 入口：LawBody を直接パースする
+            // ============================================================
+            public static LawDataResponse FromLawBody(XElement lawBodyElem) {
+                if (lawBodyElem == null)
+                    throw new ArgumentNullException(nameof(lawBodyElem));
+
+                var res = new LawDataResponse();
+
+                // -----------------------------
+                // LawTitle（本文タイトル）
+                // -----------------------------
+                var titleElem = lawBodyElem.Elements()
+                    .FirstOrDefault(e => e.Name.LocalName == "LawTitle");
+
+                if (titleElem != null) {
+                    res.LawTitle = titleElem.Value.Trim();
+                    res.LawTitleKana = (string?)titleElem.Attribute("Kana") ?? "";
+                }
+
+                // -----------------------------
+                // LawNum（法律番号）
+                // LawBody の親（Law）にある
+                // -----------------------------
+                var lawElem = lawBodyElem.Parent;
+                if (lawElem != null) {
+                    var lawNumElem = lawElem.Elements()
+                        .FirstOrDefault(e => e.Name.LocalName == "LawNum");
+
+                    if (lawNumElem != null)
+                        res.LawNum = lawNumElem.Value.Trim();
+                }
+
+                // -----------------------------
+                // PromulgationDate（公布日）
+                // Law の属性 Year / PromulgateMonth / PromulgateDay
+                // -----------------------------
+                if (lawElem != null) {
+                    var year = (string?)lawElem.Attribute("Year");
+                    var month = (string?)lawElem.Attribute("PromulgateMonth");
+                    var day = (string?)lawElem.Attribute("PromulgateDay");
+
+                    if (int.TryParse(year, out var y) &&
+                        int.TryParse(month, out var m) &&
+                        int.TryParse(day, out var d)) {
+                        // 昭和23 → 1948 などの元号変換は後で必要なら追加
+                        res.PromulgationDate = new DateTime(y + 1925, m, d);
+                    }
+                }
+
+                // -----------------------------
+                // 本文パース
+                // -----------------------------
+                res.LawBody = ParseLawBody(lawBodyElem);
+
+                return res;
+            }
+
+            // ============================================================
+            // LawBody のパース
+            // ============================================================
+            private static LawBody ParseLawBody(XElement lawBodyElem) {
+                var body = new LawBody();
+
+                // -----------------------------
+                // Preface（前文）
+                // -----------------------------
+                var prefaceElem = lawBodyElem.Elements()
+                    .FirstOrDefault(e => e.Name.LocalName == "Preface");
+
+                if (prefaceElem != null) {
+                    body.Preface = new LawPreface {
+                        Text = ExtractAllText(prefaceElem)
+                    };
+                }
+
+                // -----------------------------
+                // MainProvision（本文）
+                // -----------------------------
+                var main = lawBodyElem.Elements()
+                    .FirstOrDefault(e => e.Name.LocalName == "MainProvision");
+
+                if (main != null) {
+                    foreach (var child in main.Elements()) {
+                        switch (child.Name.LocalName) {
+                            case "Chapter":
+                                body.Chapters.Add(ParseChapter(child));
+                                break;
+
+                            case "Section":
+                                body.Sections.Add(ParseSection(child));
+                                break;
+
+                            case "Subsection":
+                                body.Subsections.Add(ParseSubsection(child));
+                                break;
+
+                            case "Division":
+                                body.Divisions.Add(ParseDivision(child));
+                                break;
+
+                            case "Article":
+                                body.Articles.Add(ParseArticle(child));
+                                break;
+                        }
+                    }
+                }
+
+                // -----------------------------
+                // SupplProvision（附則）
+                // -----------------------------
+                var suppl = lawBodyElem.Elements()
+                    .FirstOrDefault(e => e.Name.LocalName == "SupplProvision");
+
+                if (suppl != null) {
+                    body.SupplProvision = ParseSupplProvision(suppl);
+                }
+
+                return body;
+            }
+
+            // ============================================================
+            // Chapter / Section / Subsection / Division / Article
+            // ============================================================
+            private static LawChapter ParseChapter(XElement elem) {
+                var chapter = new LawChapter {
+                    ChapterNum = (string?)elem.Attribute("Num") ?? "",
+                    ChapterTitle = GetChildValue(elem, "ChapterTitle"),
+                };
+
+                // ★ Section を拾う
+                foreach (var sec in elem.Elements().Where(e => e.Name.LocalName == "Section"))
+                    chapter.Sections.Add(ParseSection(sec));
+
+                // 章直下の Article（ある場合）
+                foreach (var art in elem.Elements().Where(e => e.Name.LocalName == "Article"))
+                    chapter.Articles.Add(ParseArticle(art));
+
+                return chapter;
+            }
+
+            private static LawSection ParseSection(XElement elem) {
+                var section = new LawSection {
+                    SectionNum = (string?)elem.Attribute("Num") ?? "",
+                    SectionTitle = GetChildValue(elem, "SectionTitle"),
+                };
+
+                foreach (var art in elem.Elements().Where(e => e.Name.LocalName == "Article"))
+                    section.Articles.Add(ParseArticle(art));
+
+                return section;
+            }
+
+
+            private static LawSubsection ParseSubsection(XElement elem) {
+                var subsection = new LawSubsection {
+                    SubsectionNum = GetChildValue(elem, "SubsectionNum"),
+                    SubsectionTitle = GetChildValue(elem, "SubsectionTitle"),
+                };
+
+                foreach (var art in elem.Elements().Where(e => e.Name.LocalName == "Article"))
+                    subsection.Articles.Add(ParseArticle(art));
+
+                return subsection;
+            }
+
+            private static LawDivision ParseDivision(XElement elem) {
+                var division = new LawDivision {
+                    DivisionNum = GetChildValue(elem, "DivisionNum"),
+                    DivisionTitle = GetChildValue(elem, "DivisionTitle"),
+                };
+
+                foreach (var art in elem.Elements().Where(e => e.Name.LocalName == "Article"))
+                    division.Articles.Add(ParseArticle(art));
+
+                return division;
+            }
+
+            private static LawArticle ParseArticle(XElement elem) {
+                var article = new LawArticle {
+                    ArticleTitle = GetChildValue(elem, "ArticleTitle"),
+                };
+
+                // Paragraph を読み込む
+                foreach (var paraElem in elem.Elements().Where(e => e.Name.LocalName == "Paragraph"))
+                    article.Paragraphs.Add(ParseParagraph(paraElem));
+
+                return article;
+            }
+
+
+            // ============================================================
+            // Paragraph / Item
+            // ============================================================
+            private static LawParagraph ParseParagraph(XElement elem) {
+                var para = new LawParagraph {
+                    ParagraphNum = GetChildValue(elem, "ParagraphNum"),
+                    Text = ExtractParagraphText(elem),
+                };
+
+                foreach (var item in elem.Elements().Where(e => e.Name.LocalName == "Item"))
+                    para.Items.Add(ParseItem(item));
+
+                return para;
+            }
+
+            private static LawItem ParseItem(XElement elem) {
+                return new LawItem {
+                    ItemNum = GetChildValue(elem, "ItemTitle"),
+                    Text = ExtractItemText(elem),
                 };
             }
 
-            // -------------------------
-            // MainProvision（本文）
-            // -------------------------
-            XElement? mainProvision = bodyElem.Element("MainProvision");
-            if (mainProvision != null) {
-                foreach (XElement chapterElem in mainProvision.Elements("Chapter")) {
-                    LawChapter chapter = ParseChapter(chapterElem);
-                    body.Chapters.Add(chapter);
-                }
+            // ============================================================
+            // SupplProvision（附則）
+            // ============================================================
+            private static LawSupplProvision ParseSupplProvision(XElement elem) {
+                var suppl = new LawSupplProvision();
 
-                // 附則
-                XElement? supplElem = mainProvision.Element("SupplProvision");
-                if (supplElem != null) {
-                    body.SupplProvision = ParseSupplProvision(supplElem);
-                }
-            }
-        }
-
-        /*
-         * -----------------------------------------
-         * Chapter（章）
-         * -----------------------------------------
-         */
-        private LawChapter ParseChapter(XElement chapterElem) {
-            LawChapter chapter = new LawChapter {
-                ChapterNum = (string?)chapterElem.Attribute("Num") ?? "",
-                ChapterTitle = (string?)chapterElem.Element("ChapterTitle") ?? ""
-            };
-
-            foreach (XElement articleElem in chapterElem.Elements("Article")) {
-                LawArticle article = ParseArticle(articleElem);
-                chapter.Articles.Add(article);
-            }
-
-            return chapter;
-        }
-
-
-        /*
-         * -----------------------------------------
-         * Article（条）
-         * -----------------------------------------
-         */
-        private LawArticle ParseArticle(XElement articleElem) {
-            LawArticle article = new LawArticle {
-                ArticleNum = (string?)articleElem.Attribute("Num") ?? "",
-                ArticleTitle = (string?)articleElem.Element("ArticleTitle") ?? ""
-            };
-
-            foreach (XElement paragraphElem in articleElem.Elements("Paragraph")) {
-                LawParagraph paragraph = ParseParagraph(paragraphElem);
-                article.Paragraphs.Add(paragraph);
-            }
-
-            return article;
-        }
-
-
-        /*
-         * -----------------------------------------
-         * Paragraph（項）
-         * -----------------------------------------
-         */
-        private LawParagraph ParseParagraph(XElement paragraphElem) {
-            LawParagraph paragraph = new LawParagraph {
-                ParagraphNum = (string?)paragraphElem.Element("ParagraphNum") ?? "",
-                Text = "" // Sentence が複数あるのでここでは空
-            };
-
-            // ParagraphSentence → Sentence
-            XElement? sentenceContainer = paragraphElem.Element("ParagraphSentence");
-            if (sentenceContainer != null) {
-                foreach (XElement sentenceElem in sentenceContainer.Elements("Sentence")) {
-                    string text = (string?)sentenceElem.Value ?? "";
-                    paragraph.Items.Add(new LawItem {
-                        ItemNum = "", // ParagraphSentence 直下の Sentence は号ではない
-                        Text = text
+                foreach (var para in elem.Elements().Where(e => e.Name.LocalName == "Paragraph")) {
+                    suppl.Paragraphs.Add(new LawSupplParagraph {
+                        ParagraphNum = GetChildValue(para, "ParagraphNum"),
+                        Text = ExtractParagraphText(para),
                     });
                 }
+
+                return suppl;
             }
 
-            // Item（号）
-            foreach (XElement itemElem in paragraphElem.Elements("Item")) {
-                LawItem item = ParseItem(itemElem);
-                paragraph.Items.Add(item);
+            // ============================================================
+            // テキスト抽出
+            // ============================================================
+            private static string ExtractParagraphText(XElement elem) {
+                var sentences = elem
+                    .Descendants()
+                    .Where(e => e.Name.LocalName == "Sentence")
+                    .Select(e => e.Value)
+                    .ToList();
+
+                return string.Join("", sentences);
             }
 
-            return paragraph;
+            private static string ExtractItemText(XElement elem) {
+                var sentences = elem
+                    .Descendants()
+                    .Where(e => e.Name.LocalName == "Sentence")
+                    .Select(e => e.Value)
+                    .ToList();
+
+                return string.Join("", sentences);
+            }
+
+            private static string ExtractAllText(XElement elem) {
+                return string.Concat(elem
+                    .DescendantNodes()
+                    .OfType<XText>()
+                    .Select(t => t.Value));
+            }
+
+            // ============================================================
+            // ユーティリティ
+            // ============================================================
+            private static string GetChildValue(XElement parent, string localName) {
+                var e = parent.Elements().FirstOrDefault(x => x.Name.LocalName == localName);
+                return e != null ? e.Value.Trim() : "";
+            }
         }
-
-
-        /*
-         * -----------------------------------------
-         * Item（号）
-         * -----------------------------------------
-         */
-        private LawItem ParseItem(XElement itemElem) {
-            LawItem item = new LawItem {
-                ItemNum = (string?)itemElem.Attribute("Num") ?? "",
-                Text = ""
-            };
-
-            XElement? itemSentence = itemElem.Element("ItemSentence");
-            if (itemSentence != null) {
-                XElement? sentenceElem = itemSentence.Element("Sentence");
-                if (sentenceElem != null) {
-                    item.Text = (string?)sentenceElem.Value ?? "";
-                }
-            }
-
-            return item;
-        }
-
-        /*
-         * -----------------------------------------
-         * SupplProvision（附則）
-         * -----------------------------------------
-         */
-        private LawSupplProvision ParseSupplProvision(XElement supplElem) {
-            LawSupplProvision sp = new LawSupplProvision();
-
-            foreach (XElement paraElem in supplElem.Elements("Paragraph")) {
-                LawSupplParagraph p = new LawSupplParagraph {
-                    ParagraphNum = (string?)paraElem.Element("ParagraphNum") ?? "",
-                    Text = (string?)paraElem.Element("ParagraphSentence")?.Element("Sentence")?.Value ?? ""
-                };
-
-                sp.Paragraphs.Add(p);
-            }
-
-            return sp;
-        }
-
-
 
 
 
