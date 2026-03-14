@@ -1,8 +1,8 @@
 ﻿/*
  * string url = $"https://laws.e-gov.go.jp/api/2/keyword?keyword={Uri.EscapeDataString(lawName)}&response_format=xml"; 大麻草の栽培の規制に関する法律
  * string url = $"https://laws.e-gov.go.jp/api/2/law_data/{lawId}?response_format=xml"; 322AC0000000067
+ * https://laws.e-gov.go.jp/api/2/law_data/323AC0000000124?article=3;response_format=xml
  */
-using System.Globalization;
 using System.Xml.Linq;
 
 using Vo;
@@ -11,7 +11,6 @@ namespace EGov {
 
     public class EGobApi {
         private readonly HttpClient _httpClient = new();
-
         /*
          * 
          * keyword検索
@@ -215,8 +214,14 @@ namespace EGov {
                 // -----------------------------
                 res.LawBody = ParseLawBody(lawBodyElem);
 
+                // ★ 改正履歴（今はまだ空。後で law_data の revision_info から埋める）
+                // res.Revisions = ParseRevisions(lawElem);  // ← 後で実装するイメージ
+
                 return res;
             }
+
+            // ★ 将来ここに revision_info パースを生やすイメージ
+            // private static List<LawRevisionInfo> ParseRevisions(XElement lawElem) { ... }
 
             // ============================================================
             // LawBody のパース
@@ -245,6 +250,9 @@ namespace EGov {
                 if (main != null) {
                     foreach (var child in main.Elements()) {
                         switch (child.Name.LocalName) {
+                            case "Part":
+                                body.Parts.Add(ParsePart(child));
+                                break;
                             case "Chapter":
                                 body.Chapters.Add(ParseChapter(child));
                                 break;
@@ -264,6 +272,8 @@ namespace EGov {
                             case "Article":
                                 body.Articles.Add(ParseArticle(child));
                                 break;
+
+
                         }
                     }
                 }
@@ -279,6 +289,23 @@ namespace EGov {
                 }
 
                 return body;
+            }
+
+            private static LawPart ParsePart(XElement elem) {
+                var part = new LawPart {
+                    PartNum = (string?)elem.Attribute("Num") ?? "",
+                    PartTitle = GetChildValue(elem, "PartTitle"),
+                };
+
+                // Part → Chapter
+                foreach (var ch in elem.Elements().Where(e => e.Name.LocalName == "Chapter"))
+                    part.Chapters.Add(ParseChapter(ch));
+
+                // Part → Article（まれにある）
+                foreach (var art in elem.Elements().Where(e => e.Name.LocalName == "Article"))
+                    part.Articles.Add(ParseArticle(art));
+
+                return part;
             }
 
             // ============================================================
@@ -313,7 +340,6 @@ namespace EGov {
                 return section;
             }
 
-
             private static LawSubsection ParseSubsection(XElement elem) {
                 var subsection = new LawSubsection {
                     SubsectionNum = GetChildValue(elem, "SubsectionNum"),
@@ -340,16 +366,16 @@ namespace EGov {
 
             private static LawArticle ParseArticle(XElement elem) {
                 var article = new LawArticle {
+                    ArticleNum = ((string?)elem.Attribute("Num") ?? "").Trim(),
                     ArticleTitle = GetChildValue(elem, "ArticleTitle"),
+                    ArticleCaption = GetChildValue(elem, "ArticleCaption"),   // ★ 追加
                 };
 
-                // Paragraph を読み込む
                 foreach (var paraElem in elem.Elements().Where(e => e.Name.LocalName == "Paragraph"))
                     article.Paragraphs.Add(ParseParagraph(paraElem));
 
                 return article;
             }
-
 
             // ============================================================
             // Paragraph / Item
@@ -427,6 +453,7 @@ namespace EGov {
                 return e != null ? e.Value.Trim() : "";
             }
         }
+
 
 
 

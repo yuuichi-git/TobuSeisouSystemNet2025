@@ -48,24 +48,24 @@
             this.CcTreeView1.Dock = DockStyle.Fill;
             this.CcTreeView1.Location = new Point(3, 127);
             this.CcTreeView1.Name = "CcTreeView1";
-            this.CcTreeView1.Size = new Size(604, 534);
+            this.CcTreeView1.Size = new Size(444, 887);
             this.CcTreeView1.TabIndex = 1;
             this.CcTreeView1.AfterSelect += this.CcTreeView1_AfterSelect;
             // 
             // CcRichTextBox1
             // 
             this.CcRichTextBox1.Dock = DockStyle.Fill;
-            this.CcRichTextBox1.Location = new Point(613, 127);
+            this.CcRichTextBox1.Location = new Point(453, 127);
             this.CcRichTextBox1.Name = "CcRichTextBox1";
-            this.CcRichTextBox1.Size = new Size(604, 534);
+            this.CcRichTextBox1.Size = new Size(1448, 887);
             this.CcRichTextBox1.TabIndex = 2;
             this.CcRichTextBox1.Text = "";
             // 
             // CcTableLayoutPanelBase
             // 
             this.CcTableLayoutPanelBase.ColumnCount = 2;
-            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 450F));
+            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.Controls.Add(this.CcTreeView1, 0, 2);
             this.CcTableLayoutPanelBase.Controls.Add(this.CcRichTextBox1, 1, 2);
             this.CcTableLayoutPanelBase.Controls.Add(this.CcStatusStrip1, 0, 3);
@@ -79,15 +79,15 @@
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.CcTableLayoutPanelBase.Size = new Size(1220, 688);
+            this.CcTableLayoutPanelBase.Size = new Size(1904, 1041);
             this.CcTableLayoutPanelBase.TabIndex = 3;
             // 
             // CcStatusStrip1
             // 
             this.CcTableLayoutPanelBase.SetColumnSpan(this.CcStatusStrip1, 2);
-            this.CcStatusStrip1.Location = new Point(0, 666);
+            this.CcStatusStrip1.Location = new Point(0, 1019);
             this.CcStatusStrip1.Name = "CcStatusStrip1";
-            this.CcStatusStrip1.Size = new Size(1220, 22);
+            this.CcStatusStrip1.Size = new Size(1904, 22);
             this.CcStatusStrip1.TabIndex = 5;
             this.CcStatusStrip1.Text = "ccStatusStrip1";
             // 
@@ -107,7 +107,7 @@
             this.CcPanel1.Dock = DockStyle.Fill;
             this.CcPanel1.Location = new Point(3, 27);
             this.CcPanel1.Name = "CcPanel1";
-            this.CcPanel1.Size = new Size(1214, 94);
+            this.CcPanel1.Size = new Size(1898, 94);
             this.CcPanel1.TabIndex = 3;
             // 
             // CcTextBoxLawTitle
@@ -196,7 +196,7 @@
             this.CcTableLayoutPanelBase.SetColumnSpan(this.CcMenuStrip1, 2);
             this.CcMenuStrip1.Location = new Point(0, 0);
             this.CcMenuStrip1.Name = "CcMenuStrip1";
-            this.CcMenuStrip1.Size = new Size(1220, 24);
+            this.CcMenuStrip1.Size = new Size(1904, 24);
             this.CcMenuStrip1.TabIndex = 4;
             this.CcMenuStrip1.Text = "ccMenuStrip1";
             this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1220, 688);
+            this.ClientSize = new Size(1904, 1041);
             this.Controls.Add(this.CcTableLayoutPanelBase);
             this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "LawView";
