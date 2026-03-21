@@ -1,463 +1,362 @@
 ﻿/*
  * 2026-03-05
+ * 注意点：法令IDは枝番が存在する。だから法令番号で指定する。
  */
+using System.Diagnostics;
 using System.Text;
+using System.Xml.Linq;
 
-using ControlEx;
+using Common;
 
 using Vo;
 
 namespace EGov {
     public partial class LawView : Form {
-        private EGobApi _egobApi = new();
-
-        private readonly string _lawName;
-        private readonly string _lawArticle;
-        private readonly string _lawParagraph;
-
-        private readonly Dictionary<string, string> _dictionaryLawTypeMap = new(){
+        private readonly Dictionary<string, string> _dictionaryLawType = new()
+        {
             { "Constitution",        "憲法" },
             { "Act",                 "法律" },
             { "CabinetOrder",        "政令" },
             { "ImperialOrder",       "勅令" },
             { "MinisterialOrdinance","府省令" },
             { "Rule",                "規則" },
-            { "Misc",                "その他" }};
+            { "Misc",                "その他" }
+        };
 
-        private void ApplyStatusToNodes(ILawNode node, LawStatus status) {
-            // ★ 法令全体のステータスを適用
-            switch (node) {
-                case LawPart p:
-                    p.Status = status;
-                    break;
-                case LawChapter c:
-                    c.Status = status;
-                    break;
-                case LawSection s:
-                    s.Status = status;
-                    break;
-                case LawSubsection ss:
-                    ss.Status = status;
-                    break;
-                case LawDivision d:
-                    d.Status = status;
-                    break;
-                case LawArticle a:
-                    // ★ 条文削除の個別判定
-                    if (a.Paragraphs.Count == 1 &&
-                        a.Paragraphs[0].Text.Trim() == "削除") {
-                        a.Status = LawStatus.Repealed;
-                    } else {
-                        a.Status = status;
-                    }
-                    break;
+        private readonly string _lawTitle;
+        private readonly string _lawNum;
+        private readonly string? _lawArticle;
+        private readonly string? _lawParagraph;
 
-                case LawParagraph pa:
-                    pa.Status = status;
-                    break;
-
-                case LawItem i:
-                    i.Status = status;
-                    break;
-
-                case LawSupplProvision sp:
-                    sp.Status = status;
-                    break;
-
-                case LawSupplParagraph spp:
-                    spp.Status = status;
-                    break;
-            }
-
-            foreach (var child in node.Children)
-                ApplyStatusToNodes(child, status);
-        }
-
-        public LawView(string lawName, string lawArticle, string lawParagraph) {
-            _lawName = lawName;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lawTitle"></param>
+        /// <param name="lawNum"></param>
+        /// <param name="lawArticle"></param>
+        /// <param name="lawParagraph"></param>
+        public LawView(string lawTitle, string lawNum, string? lawArticle = null, string? lawParagraph = null) {
+            _lawTitle = lawTitle;
+            _lawNum = LawNumberConverter.ConvertLawNotation(lawNum);
             _lawArticle = lawArticle;
             _lawParagraph = lawParagraph;
-            /*
-             * 
-             */
+
             InitializeComponent();
+
             this.CcTextBoxLawId.Text = string.Empty;
             this.CcTextBoxLawNum.Text = string.Empty;
+            this.CcTextBoxLawArticle.Text = string.Empty;
+            this.CcTextBoxLawParagraph.Text = string.Empty;
             this.CcTextBoxLawType.Text = string.Empty;
             this.CcTextBoxLawTitle.Text = string.Empty;
-            this.CcTextBoxLawArticle.Text = string.Empty;
 
-            // フォームロード後に API を叩く
-            this.Load += async (_, __) => await LoadLawAsync();
-        }
-
-        private async Task LoadLawAsync() {
-            // ① KeyWord検索 API で KeywordItem を取得
-            KeywordResponse keywordResponse = await _egobApi.GetLawInfoAsync(_lawName);
-
-            if (keywordResponse == null) {
-                MessageBox.Show("法令が見つかりませんでした。");
-                return;
-            }
-
-            // ② law_id を取得
-            string? lawId = keywordResponse.Items.FirstOrDefault()?.LawInfo.LawId;
-
-            if (string.IsNullOrWhiteSpace(lawId)) {
-                MessageBox.Show("法令IDが取得できませんでした。");
-                return;
-            }
-
-            // ③ Controlに出力
-            this.CcTextBoxLawId.Text = keywordResponse.Items.FirstOrDefault()?.LawInfo.LawId ?? "";
-            this.CcTextBoxLawNum.Text = keywordResponse.Items.FirstOrDefault()?.LawInfo.LawNum ?? "";
-            this.CcTextBoxLawType.Text = _dictionaryLawTypeMap[keywordResponse.Items.FirstOrDefault()?.RevisionInfo.LawType];
-            this.CcTextBoxLawTitle.Text = keywordResponse.Items.FirstOrDefault()?.RevisionInfo.LawTitle ?? "";
-            this.CcTextBoxLawArticle.Text = _lawArticle;
-
-            // ④ 法令APIで法令の内容を取得
-            LawDataResponse lawDataResponse = await _egobApi.GetLawDataAsync(lawId);
-
-            if (lawDataResponse?.LawBody == null) {
-                MessageBox.Show("法令本文が取得できませんでした。");
-                return;
-            }
-
-            // ★ ⑤ 改正履歴を LawDataResponse に統合
-            lawDataResponse.Revisions = keywordResponse.Items
-                .Select(x => new LawRevisionInfo {
-                    AmendmentLawId = x.RevisionInfo.AmendmentLawId,
-                    AmendmentLawNum = x.RevisionInfo.AmendmentLawNum,
-                    AmendmentLawTitle = x.RevisionInfo.AmendmentLawTitle,
-                    AmendmentPromulgateDate = x.RevisionInfo.AmendmentPromulgateDate,
-                    AmendmentEnforcementDate = x.RevisionInfo.AmendmentEnforcementDate,
-                    AmendmentEnforcementComment = x.RevisionInfo.AmendmentEnforcementComment,
-                    AmendmentType = x.RevisionInfo.AmendmentType
-                })
-                .Where(r => !string.IsNullOrWhiteSpace(r.AmendmentLawNum))
-                .ToList();
-
-            // ★ ⑥ 法令全体のステータスを判定
-            var status = LawStatusEvaluator.Evaluate(lawDataResponse);
-
-            // ★ ⑦ 全ノードにステータスを適用（LawBody は ILawNode ではないので注意）
-            if (lawDataResponse.LawBody != null) {
-                foreach (var part in lawDataResponse.LawBody.Parts)
-                    ApplyStatusToNodes(part, status);
-
-                foreach (var chapter in lawDataResponse.LawBody.Chapters)
-                    ApplyStatusToNodes(chapter, status);
-
-                foreach (var art in lawDataResponse.LawBody.Articles)
-                    ApplyStatusToNodes(art, status);
-
-                if (lawDataResponse.LawBody.SupplProvision != null)
-                    ApplyStatusToNodes(lawDataResponse.LawBody.SupplProvision, status);
-            }
-
-            // ⑧ TreeView に全文構造を表示
-            this.LoadLawTree(lawDataResponse.LawBody);
-
-            // ⑨ 改正履歴ノードを TreeView に追加
-            this.AddRevisionTree(lawDataResponse.Revisions);
-
-            // 指定条文まで自動展開
-            this.ExpandToTarget(CcTreeView1, _lawArticle, _lawParagraph);
-        }
-
-        public static class LawStatusEvaluator {
-            public static LawStatus Evaluate(LawDataResponse law) {
-                // ① 廃止判定（e-Gov の AmendmentType=9 が廃止）
-                if (law.Revisions.Any(r => r.AmendmentType == 9))
-                    return LawStatus.Repealed;
-
-                // ② 未施行判定（施行日が未来）
-                if (law.EnforcementDate.HasValue &&
-                    law.EnforcementDate.Value > DateTime.Today)
-                    return LawStatus.NotYetEnforced;
-
-                // ③ 上記以外は有効
-                return LawStatus.Active;
-            }
-        }
-
-        private void AddRevisionTree(List<LawRevisionInfo> revisions) {
-            if (revisions == null || revisions.Count == 0)
-                return;
-
-            var root = CcTreeView1.Nodes.Add("改正履歴");
-
-            foreach (var rev in revisions) {
-                string label =
-                    $"{rev.AmendmentLawNum}  " +
-                    $"（公布：{rev.AmendmentPromulgateDate?.ToString("yyyy/MM/dd") ?? "不明"}" +
-                    $" / 施行：{rev.AmendmentEnforcementDate?.ToString("yyyy/MM/dd") ?? "不明"}）";
-
-                var node = root.Nodes.Add(label);
-                node.Tag = rev;
-            }
+            // TreeView の選択イベントを登録（UI スレッドで安全に）
+            this.CcTreeView1.AfterSelect += CcTreeView1_AfterSelect;
         }
 
         /// <summary>
-        /// 
+        /// LawListからインスタンス化した後に呼び出す。
         /// </summary>
-        /// <param name="lawBody"></param>
-        private void LoadLawTree(LawBody lawBody) {
-            CcTreeView1.BeginUpdate();
-            CcTreeView1.Nodes.Clear();
-
-            // -----------------------------------------
-            // ① 前文（Preface）
-            // -----------------------------------------
-            if (lawBody.Preface != null && !string.IsNullOrWhiteSpace(lawBody.Preface.Text)) {
-                var prefaceNode = CcTreeView1.Nodes.Add("前文");
-                prefaceNode.Nodes.Add(lawBody.Preface.Text);
-            }
-
-            // -----------------------------------------
-            // ② 編（Part）
-            // -----------------------------------------
-            foreach (var part in lawBody.Parts)
-                AddNode(CcTreeView1.Nodes, part);
-
-            // -----------------------------------------
-            // ③ Part が無い法令（民法など）
-            // -----------------------------------------
-            foreach (var chapter in lawBody.Chapters)
-                AddNode(CcTreeView1.Nodes, chapter);
-
-            // -----------------------------------------
-            // ④ 章に属さない条（Article）
-            // -----------------------------------------
-            foreach (var art in lawBody.Articles)
-                AddNode(CcTreeView1.Nodes, art);
-
-            // -----------------------------------------
-            // ⑤ 附則（SupplProvision）
-            // -----------------------------------------
-            if (lawBody.SupplProvision != null)
-                AddNode(CcTreeView1.Nodes, lawBody.SupplProvision);
-
-            CcTreeView1.EndUpdate();
-        }
-
-        private void AddNode(TreeNodeCollection parent, ILawNode node) {
-            // ノード作成
-            var tn = parent.Add(node.DisplayTitle);
-            tn.Tag = node;
-
-            // ★ ステータス色反映（統合）
-            switch (node.Status) {
-                case LawStatus.Active:
-                    tn.ForeColor = Color.Black;
-                    break;
-
-                case LawStatus.NotYetEnforced:
-                    tn.ForeColor = Color.Blue;
-                    break;
-
-                case LawStatus.Repealed:
-                    tn.ForeColor = Color.Red;
-                    break;
-            }
-
-            // 子ノードを再帰的に追加
-            foreach (var child in node.Children)
-                AddNode(tn.Nodes, child);
-        }
-
-        private void CcTreeView1_AfterSelect(object sender, TreeViewEventArgs e) {
-            if (e.Node?.Tag is not ILawNode node) {
-                CcRichTextBox1.Clear();
-                return;
-            }
-
-            ShowNodeContent(node);
-        }
-
-        private void ShowNodeContent(ILawNode node) {
-            StringBuilder sb = new();
-
-            // 自分自身のタイトル
-            sb.AppendLine(node.DisplayTitle);
-            sb.AppendLine();
-
-            // 子ノードを階層に応じて表示
-            foreach (var child in node.Children) {
-                sb.AppendLine($"{Indent(1)}{child.DisplayTitle}");
-
-                // 条 → 見出し（ArticleCaption）
-                if (child is LawArticle art && !string.IsNullOrWhiteSpace(art.ArticleCaption)) {
-                    sb.AppendLine($"{Indent(2)}{art.ArticleCaption}");
-                }
-
-                // 項 → 本文
-                if (child is LawParagraph para && !string.IsNullOrWhiteSpace(para.Text)) {
-                    sb.AppendLine($"{Indent(2)}{para.Text}");
-                }
-
-                // 号 → 本文
-                if (child is LawItem item && !string.IsNullOrWhiteSpace(item.Text)) {
-                    sb.AppendLine($"{Indent(2)}{item.Text}");
-                }
-
-                sb.AppendLine();
-            }
-
-            CcRichTextBox1.Text = sb.ToString();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="level"></param>
         /// <returns></returns>
-        private string Indent(int level) {
-            return new string(' ', level * 2); // 1階層 = 半角2スペース
+        public async Task InitializeAsync() {
+            LawDataResponse lawDataResponse = await this.GetLawDataAsync(_lawNum);
+            string lawId = lawDataResponse.LawInfo.LawId;
+            string lawNum = lawDataResponse.LawInfo.LawNum;
+            string? lawArticle = _lawArticle;
+            string? lawParagraph = _lawParagraph;
+            string lawTitle = lawDataResponse.RevisionInfo.LawTitle;
+            string lawType = _dictionaryLawType[lawDataResponse.LawInfo.LawType];
+
+            this.CcTextBoxLawId.Text = lawId;
+            this.CcTextBoxLawNum.Text = lawNum;
+            this.CcTextBoxLawArticle.Text = lawArticle ?? string.Empty;
+            this.CcTextBoxLawParagraph.Text = lawParagraph ?? string.Empty;
+            this.CcTextBoxLawType.Text = lawType;
+            this.CcTextBoxLawTitle.Text = lawTitle;
+
         }
 
-        /* 
-         * TreeViewの展開
-         *
-         */
-        public void ExpandToTarget(CcTreeView tree, string? lawArticle = null, string? lawParagraph = null) {
-            if (string.IsNullOrWhiteSpace(lawArticle))
-                return;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lawNum">法令番号</param>
+        /// <returns>Task<LawDataResponse></returns>
+        private async Task<LawDataResponse> GetLawDataAsync(string lawNum) {
+            XDocument? xDocument = await LawApiClient.GetLawDataXmlByLawNumAsync(lawNum);
+            if (xDocument == null || xDocument.Root == null) {
+                Debug.WriteLine("GetLawDataAsync: xDocument or Root is null");
+                return null;
+            }
 
-            var articleList = lawArticle
-                .Split(',')
-                .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToList();
+            try {
+                LawDataResponse lawDataResponse = MapFromXDocument(xDocument);
+                if (lawDataResponse == null)
+                    Debug.WriteLine("MapFromXDocument returned null");
+                return lawDataResponse;
+            } catch (Exception ex) {
+                Debug.WriteLine($"GetLawDataAsync: MapFromXDocument threw: {ex}");
+                return null;
+            }
+        }
 
-            string? paragraphNum = NormalizeParagraphNum(lawParagraph);
+        private void CcTreeView1_AfterSelect(object? sender, TreeViewEventArgs e) {
 
-            TreeNode? firstMatchedNode = null;
 
-            foreach (var articleNum in articleList) {
-                foreach (TreeNode root in tree.Nodes) {
-                    var matched = FindAndExpand(root, articleNum, paragraphNum, tree);
 
-                    if (matched != null) {
-                        if (firstMatchedNode == null)
-                            firstMatchedNode = matched;
+        }
 
-                        break;
+
+        // -----------------------------
+        //
+        // XDocument → LawDataResponse のマッピング
+        //
+        // -----------------------------
+        private LawDataResponse MapFromXDocument(XDocument xDocument) {
+            LawDataResponse lawDataResponse = new();
+            if (xDocument?.Root == null)
+                return null;
+
+            var root = xDocument.Root;
+
+            // attached_files_info
+            var attached = root.Element("attached_files_info");
+            if (attached != null) {
+                var attachedFilesInfo = new AttachedFilesInfo {
+                    ImageData = (string?)attached.Element("image_data") ?? string.Empty
+                };
+
+                var attachedFilesNode = attached.Element("attached_files");
+                if (attachedFilesNode != null) {
+                    foreach (var af in attachedFilesNode.Elements("attached_file")) {
+                        attachedFilesInfo.AttachedFiles.Add(new AttachedFile {
+                            LawRevisionId = (string?)af.Element("law_revision_id") ?? string.Empty,
+                            Src = (string?)af.Element("src") ?? string.Empty,
+                            Updated = (string?)af.Element("updated") ?? string.Empty
+                        });
                     }
                 }
+
+                lawDataResponse.AttachedFilesInfo = attachedFilesInfo;
             }
 
-            if (firstMatchedNode != null) {
-                HighlightNode(tree, firstMatchedNode, paragraphNum);
-                tree.SelectedNode = firstMatchedNode;
+            // law_info
+            var lawInfoNode = root.Element("law_info");
+            if (lawInfoNode != null) {
+                lawDataResponse.LawInfo = new LawInfo {
+                    LawType = (string?)lawInfoNode.Element("law_type") ?? string.Empty,
+                    LawId = (string?)lawInfoNode.Element("law_id") ?? string.Empty,
+                    LawNum = (string?)lawInfoNode.Element("law_num") ?? string.Empty,
+                    LawNumEra = (string?)lawInfoNode.Element("law_num_era") ?? string.Empty,
+                    LawNumYear = (string?)lawInfoNode.Element("law_num_year") ?? string.Empty,
+                    LawNumType = (string?)lawInfoNode.Element("law_num_type") ?? string.Empty,
+                    LawNumNum = (string?)lawInfoNode.Element("law_num_num") ?? string.Empty,
+                    PromulgationDate = (string?)lawInfoNode.Element("promulgation_date") ?? string.Empty
+                };
             }
-        }
 
-        private void HighlightNode(TreeView tree, TreeNode target, string? paragraphNum) {
-            ResetNodeBackColor(tree.Nodes);
-
-            // ★ 項指定なし → 条だけ黄色
-            if (string.IsNullOrWhiteSpace(paragraphNum)) {
-                target.BackColor = Color.Yellow;
-                return;
+            // revision_info
+            var revNode = root.Element("revision_info");
+            if (revNode != null) {
+                lawDataResponse.RevisionInfo = new RevisionInfo {
+                    LawRevisionId = (string?)revNode.Element("law_revision_id") ?? string.Empty,
+                    LawType = (string?)revNode.Element("law_type") ?? string.Empty,
+                    LawTitle = (string?)revNode.Element("law_title") ?? string.Empty,
+                    LawTitleKana = (string?)revNode.Element("law_title_kana") ?? string.Empty,
+                    Abbrev = (string?)revNode.Element("abbrev") ?? string.Empty,
+                    Category = (string?)revNode.Element("category") ?? string.Empty,
+                    Updated = (string?)revNode.Element("updated") ?? string.Empty,
+                    AmendmentPromulgateDate = (string?)revNode.Element("amendment_promulgate_date") ?? string.Empty,
+                    AmendmentEnforcementDate = (string?)revNode.Element("amendment_enforcement_date") ?? string.Empty,
+                    AmendmentEnforcementComment = (string?)revNode.Element("amendment_enforcement_comment") ?? string.Empty,
+                    AmendmentScheduledEnforcementDate = (string?)revNode.Element("amendment_scheduled_enforcement_date") ?? string.Empty,
+                    AmendmentLawId = (string?)revNode.Element("amendment_law_id") ?? string.Empty,
+                    AmendmentLawTitle = (string?)revNode.Element("amendment_law_title") ?? string.Empty,
+                    AmendmentLawTitleKana = (string?)revNode.Element("amendment_law_title_kana") ?? string.Empty,
+                    AmendmentLawNum = (string?)revNode.Element("amendment_law_num") ?? string.Empty,
+                    AmendmentType = (string?)revNode.Element("amendment_type") ?? string.Empty,
+                    RepealStatus = (string?)revNode.Element("repeal_status") ?? string.Empty,
+                    RepealDate = (string?)revNode.Element("repeal_date") ?? string.Empty,
+                    RemainInForce = (string?)revNode.Element("remain_in_force") ?? string.Empty,
+                    Mission = (string?)revNode.Element("mission") ?? string.Empty,
+                    CurrentRevisionStatus = (string?)revNode.Element("current_revision_status") ?? string.Empty
+                };
             }
 
-            // ★ 項指定あり → 条も黄色
-            target.BackColor = Color.Yellow;
+            // law_full_text -> Law
+            var fullTextNode = root.Element("law_full_text")?.Element("Law");
+            if (fullTextNode != null) {
+                var law = new Law {
+                    Era = (string?)fullTextNode.Attribute("Era") ?? string.Empty,
+                    Lang = (string?)fullTextNode.Attribute("Lang") ?? string.Empty,
+                    LawType = (string?)fullTextNode.Attribute("LawType") ?? string.Empty,
+                    Num = (string?)fullTextNode.Attribute("Num") ?? string.Empty,
+                    PromulgateDay = (string?)fullTextNode.Attribute("PromulgateDay") ?? string.Empty,
+                    PromulgateMonth = (string?)fullTextNode.Attribute("PromulgateMonth") ?? string.Empty,
+                    Year = (string?)fullTextNode.Attribute("Year") ?? string.Empty,
+                    LawNum = (string?)fullTextNode.Element("LawNum") ?? string.Empty
+                };
 
-            string targetPara = NormalizeParagraphNum(paragraphNum);
-
-            // ★ 項ノードを黄色にする
-            foreach (TreeNode child in target.Nodes) {
-                if (child.Tag is LawParagraph para) {
-                    if (NormalizeParagraphNum(para.ParagraphNum) == targetPara) {
-                        child.BackColor = Color.Yellow;
-                        return;
-                    }
-                }
-            }
-        }
-
-        private void ResetNodeBackColor(TreeNodeCollection nodes) {
-            foreach (TreeNode node in nodes) {
-                node.BackColor = Color.White; // デフォルト背景色
-                ResetNodeBackColor(node.Nodes);
-            }
-        }
-
-        private TreeNode? FindAndExpand(TreeNode node, string articleNum, string? paragraphNum, TreeView tree) {
-            // ★ Article ノードか？
-            if (node.Tag is LawArticle art) {
-                if (art.ArticleNum == articleNum) {
-                    node.Expand();
-
-                    // ★ 項指定なし → 条ノードを返す
-                    if (string.IsNullOrWhiteSpace(paragraphNum))
-                        return node;
-
-                    string targetPara = NormalizeParagraphNum(paragraphNum);
-
-                    // ★ 項指定あり → 子ノードから探す
-                    foreach (TreeNode child in node.Nodes) {
-                        if (child.Tag is LawParagraph para) {
-                            if (NormalizeParagraphNum(para.ParagraphNum) == targetPara) {
-                                child.Expand();
-                                return child; // ★ 項ノードを返す
+                var body = fullTextNode.Element("LawBody");
+                if (body != null) {
+                    var titleNode = body.Element("LawTitle");
+                    if (titleNode != null) {
+                        law.LawBody = new LawBody {
+                            LawTitle = new LawTitle {
+                                Abbrev = (string?)titleNode.Attribute("Abbrev") ?? string.Empty,
+                                AbbrevKana = (string?)titleNode.Attribute("AbbrevKana") ?? string.Empty,
+                                Kana = (string?)titleNode.Attribute("Kana") ?? string.Empty,
+                                Text = titleNode.Value ?? string.Empty
                             }
-                        }
+                        };
                     }
 
-                    // 項が見つからない → 条ノードを返す
-                    return node;
+                    // MainProvision -> Articles
+                    var main = body.Element("MainProvision");
+                    if (main != null) {
+                        var mp = new MainProvision();
+                        foreach (var artNode in main.Elements("Article")) {
+                            var art = new Article {
+                                Num = (string?)artNode.Attribute("Num") ?? string.Empty,
+                                Delete = (string?)artNode.Attribute("Delete") ?? string.Empty,
+                                Hide = (string?)artNode.Attribute("Hide") ?? string.Empty,
+                                ArticleCaption = (string?)artNode.Element("ArticleCaption") ?? string.Empty,
+                                ArticleTitle = (string?)artNode.Element("ArticleTitle") ?? string.Empty
+                            };
+
+                            foreach (var pNode in artNode.Elements("Paragraph")) {
+                                var para = new Paragraph {
+                                    Num = (string?)pNode.Attribute("Num") ?? string.Empty,
+                                    Hide = (string?)pNode.Attribute("Hide") ?? string.Empty,
+                                    ParagraphCaption = (string?)pNode.Element("ParagraphCaption") ?? string.Empty,
+                                    ParagraphNum = (string?)pNode.Element("ParagraphNum") ?? string.Empty
+                                };
+
+                                var ps = pNode.Element("ParagraphSentence");
+                                if (ps != null) {
+                                    var pSentence = new ParagraphSentence();
+                                    foreach (var sNode in ps.Elements("Sentence")) {
+                                        var sent = new Sentence {
+                                            Num = (string?)sNode.Attribute("Num") ?? string.Empty,
+                                            WritingMode = (string?)sNode.Attribute("WritingMode") ?? string.Empty,
+                                            Function = (string?)sNode.Attribute("Function") ?? string.Empty,
+                                            Text = ExtractMixedText(sNode)
+                                        };
+                                        pSentence.Sentences.Add(sent);
+                                    }
+                                    para.ParagraphSentence = pSentence;
+                                }
+
+                                // Items
+                                foreach (var itemNode in pNode.Elements("Item")) {
+                                    var item = new Item {
+                                        Num = (string?)itemNode.Attribute("Num") ?? string.Empty,
+                                        ItemTitle = (string?)itemNode.Element("ItemTitle") ?? string.Empty
+                                    };
+
+                                    var isNode = itemNode.Element("ItemSentence");
+                                    if (isNode != null) {
+                                        var isent = new ItemSentence();
+                                        foreach (var sNode in isNode.Elements("Sentence")) {
+                                            isent.Sentences.Add(new Sentence {
+                                                Num = (string?)sNode.Attribute("Num") ?? string.Empty,
+                                                WritingMode = (string?)sNode.Attribute("WritingMode") ?? string.Empty,
+                                                Function = (string?)sNode.Attribute("Function") ?? string.Empty,
+                                                Text = ExtractMixedText(sNode)
+                                            });
+                                        }
+                                        item.ItemSentence = isent;
+                                    }
+
+                                    para.Items.Add(item);
+                                }
+
+                                art.Paragraphs.Add(para);
+                            }
+
+                            mp.Articles.Add(art);
+                        }
+
+                        law.LawBody.MainProvision = mp;
+                    }
+
+                    // SupplProvision
+                    var suppl = body.Element("SupplProvision");
+                    if (suppl != null) {
+                        var sp = new SupplProvision {
+                            SupplProvisionLabel = (string?)suppl.Element("SupplProvisionLabel") ?? string.Empty
+                        };
+
+                        foreach (var aNode in suppl.Elements("Article")) {
+                            var a = new Article {
+                                Num = (string?)aNode.Attribute("Num") ?? string.Empty,
+                                ArticleCaption = (string?)aNode.Element("ArticleCaption") ?? string.Empty,
+                                ArticleTitle = (string?)aNode.Element("ArticleTitle") ?? string.Empty
+                            };
+
+                            foreach (var pNode in aNode.Elements("Paragraph")) {
+                                var p = new Paragraph {
+                                    Num = (string?)pNode.Attribute("Num") ?? string.Empty,
+                                    ParagraphCaption = (string?)pNode.Element("ParagraphCaption") ?? string.Empty,
+                                    ParagraphNum = (string?)pNode.Element("ParagraphNum") ?? string.Empty
+                                };
+
+                                var ps = pNode.Element("ParagraphSentence");
+                                if (ps != null) {
+                                    var pSentence = new ParagraphSentence();
+                                    foreach (var sNode in ps.Elements("Sentence")) {
+                                        pSentence.Sentences.Add(new Sentence {
+                                            Num = (string?)sNode.Attribute("Num") ?? string.Empty,
+                                            WritingMode = (string?)sNode.Attribute("WritingMode") ?? string.Empty,
+                                            Function = (string?)sNode.Attribute("Function") ?? string.Empty,
+                                            Text = ExtractMixedText(sNode)
+                                        });
+                                    }
+                                    p.ParagraphSentence = pSentence;
+                                }
+
+                                a.Paragraphs.Add(p);
+                            }
+
+                            sp.Articles.Add(a);
+                        }
+
+                        law.LawBody.SupplProvision = sp;
+                    }
                 }
+
+                lawDataResponse.LawFullText = new LawFullText { Law = law };
             }
 
-            // ★ 子ノードを探索
-            foreach (TreeNode child in node.Nodes) {
-                var result = FindAndExpand(child, articleNum, paragraphNum, tree);
-                if (result != null) {
-                    node.Expand();
-                    return result;
+            return lawDataResponse;
+        }
+
+        private string ExtractMixedText(XElement sentenceElement) {
+            if (sentenceElement == null)
+                return string.Empty;
+
+            StringBuilder stringBuilder = new();
+            foreach (XNode xNode in sentenceElement.Nodes()) {
+                if (xNode is XText txt) {
+                    stringBuilder.Append(txt.Value);
+                } else if (xNode is XElement el) {
+                    if (string.Equals(el.Name.LocalName, "Ruby", StringComparison.OrdinalIgnoreCase)) {
+                        // Ruby の本文テキスト（ルビ以外のテキスト）と Rt を括弧で付ける例
+                        var rt = (string?)el.Element("Rt") ?? string.Empty;
+                        // Ruby の直下のテキストノードを取得
+                        var baseText = string.Concat(el.Nodes().OfType<XText>().Select(t => t.Value)).Trim();
+                        if (!string.IsNullOrEmpty(baseText)) {
+                            stringBuilder.Append(baseText);
+                            if (!string.IsNullOrEmpty(rt))
+                                stringBuilder.Append($"({rt})");
+                        } else {
+                            stringBuilder.Append(el.Value);
+                        }
+                    } else {
+                        stringBuilder.Append(el.Value);
+                    }
                 }
             }
-
-            return null;
+            return stringBuilder.ToString().Trim();
         }
-
-        private string NormalizeParagraphNum(string? raw) {
-            if (string.IsNullOrWhiteSpace(raw))
-                return "";
-
-            string s = raw;
-
-            // 全角 → 半角
-            s = s.Normalize(NormalizationForm.FormKC);
-
-            // 「項」を除去
-            s = s.Replace("項", "");
-
-            // 不可視文字除去
-            s = s
-                .Replace("\u200B", "")
-                .Replace("\u200C", "")
-                .Replace("\u200D", "")
-                .Replace("\uFEFF", "");
-
-            // 漢数字 → アラビア数字
-            s = s
-                .Replace("一", "1")
-                .Replace("二", "2")
-                .Replace("三", "3")
-                .Replace("四", "4")
-                .Replace("五", "5")
-                .Replace("六", "6")
-                .Replace("七", "7")
-                .Replace("八", "8")
-                .Replace("九", "9")
-                .Replace("十", "10");
-
-            return s.Trim();
-        }
-
     }
 }

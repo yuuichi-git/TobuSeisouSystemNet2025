@@ -371,7 +371,18 @@ namespace Staff {
                             break;
                     }
                     sheetView.Cells[rowCount, 0].Value = rowCount + 1;                                                                                              // 通しナンバー
-                    sheetView.Cells[rowCount, 1].Text = staffMasterVo.Belongs.ToString("0000");                                                                     // 所属CD
+                    if (staffMasterVo.Belongs != 22) {                                                                                                              // 所属CD
+                        sheetView.Cells[rowCount, 1].Text = staffMasterVo.Belongs.ToString("0000");
+                    } else {
+                        switch (staffMasterVo.JobForm) {
+                            case 20 or 21:
+                                sheetView.Cells[rowCount, 1].Text = "0022"; // 所属CDが22で雇用形態が新運転の場合は0022をセットする
+                                break;
+                            case 22 or 23:
+                                sheetView.Cells[rowCount, 1].Text = "0023"; // 所属CDが22で雇用形態が自運労の場合は0023をセットする
+                                break;
+                        }
+                    }
                     sheetView.Cells[rowCount, 2].Text = string.Concat(_dictionaryBelongs[staffMasterVo.Belongs], unionName);                                        // 所属名
                     sheetView.Cells[rowCount, 3].Text = staffMasterVo.Name;                                                                                         // 氏名(全角)
                     sheetView.Cells[rowCount, 4].Text = Strings.StrConv(staffMasterVo.OtherNameKana, VbStrConv.Narrow);                                             // カナ(半角)
