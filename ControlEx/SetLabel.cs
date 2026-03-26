@@ -3,12 +3,14 @@
  */
 using ControlEx.Properties;
 
+using Interfaces;
+
 using Vo;
 
 using Timer = System.Windows.Forms.Timer;
 
 namespace ControlEx {
-    public partial class SetLabel : Label {
+    public partial class SetLabel : Label, IControls {
         /*
          * デリゲート
          */
@@ -544,6 +546,7 @@ namespace ControlEx {
             }
         }
         /// <summary>
+        /// 管理地域コード
         /// 0:該当なし 1:足立 2:三郷
         /// </summary>
         public int ManagedSpaceCode {

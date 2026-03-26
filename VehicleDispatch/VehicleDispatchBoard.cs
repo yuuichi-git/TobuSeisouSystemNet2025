@@ -35,10 +35,12 @@ namespace VehicleDispatch {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly ScreenForm _screenForm = new();
         private readonly DateUtility _dateUtility = new();
+        private readonly System.Windows.Forms.Timer _timer;
         /*
          * プロパティ
          */
         private SetControl _dragParentControl;
+        private DateTime _lastUpdateDateTime = DateTime.Now;
         /*
          * Dao
          */
@@ -64,7 +66,7 @@ namespace VehicleDispatch {
         /// </summary>
         /// <param name="connectionVo"></param>
         public VehicleDispatchBoard(ConnectionVo connectionVo) {
-            /*
+            /*ssssss
              * Dao
              */
             _setMasterDao = new(connectionVo);
@@ -85,19 +87,39 @@ namespace VehicleDispatch {
              * InitializeControl
              */
             InitializeComponent();
-            /*
-             * MenuStrip
-             */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemEdit",
-                "ToolStripMenuItemUpdateTaitou",
-                "ToolStripMenuItemInitialize",
-                "ToolStripMenuItemInitializeBord",
-                "ToolStripMenuItemHelp"
-            };
-            this.MenuStripEx1.ChangeEnable(listString);
+
+            List<string> listString;
+            switch (_connectionVo.ConnectionLocation) {
+                case "本社":
+                    /*
+                     * MenuStrip
+                     */
+                    listString = new() {"ToolStripMenuItemFile",
+                                        "ToolStripMenuItemExit",
+                                        "ToolStripMenuItemEdit",
+                                        "ToolStripMenuItemUpdateTaitou",
+                                        "ToolStripMenuItemInitialize",
+                                        "ToolStripMenuItemInitializeBord",
+                                        "ToolStripMenuItemHelp"};
+                    this.MenuStripEx1.ChangeEnable(listString);
+                    this.MenuStripEx1.BackColor = Color.Empty;
+                    break;
+                case "三郷車庫":
+                    /*
+                     * MenuStrip
+                     */
+                    listString = new() {"ToolStripMenuItemFile",
+                                        "ToolStripMenuItemExit",
+                                        "ToolStripMenuItemHelp"};
+                    this.MenuStripEx1.ChangeEnable(listString);
+                    this.MenuStripEx1.BackColor = Color.LightSteelBlue;
+                    this.ButtonExStockBoxOpen.Enabled = false; // 三郷車庫はStock-Boxsを使用しないため、ButtonExStockBoxOpenを無効化する
+                    break;
+                default:
+                    this.MenuStripEx1.BackColor = Color.Empty;
+                    break;
+            }
+
 
             this.DateTimePickerExOperationDate.SetToday();                                                          // DateTimePickerExOperationDateを初期化
             this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";                                      // ButtonExStockBoxOpenを初期化
@@ -107,6 +129,16 @@ namespace VehicleDispatch {
              * Eventを登録する
              */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            /*
+             * Timerを初期化する
+             */
+            _timer = new System.Windows.Forms.Timer {
+                Interval = 60 * 1000 // 1分（ミリ秒）
+            };
+            _timer.Tick += Timer_Tick;      // イベントハンドラ登録
+
+            // タイマー開始
+            _timer.Start();
         }
 
         /// <summary>
@@ -152,6 +184,7 @@ namespace VehicleDispatch {
                     } finally {
                         this.Cursor = Cursors.Default;                                                              // カーソルを元に戻す
                         ((CcButton)sender).Enabled = true;                                                          // 多重クリック防止解除
+                        _lastUpdateDateTime = DateTime.Now;                                                         // 最終更新日時を更新
                     }
                     break;
                 case "ButtonExStockBoxOpen":
@@ -823,7 +856,7 @@ namespace VehicleDispatch {
                  */
                 case "ToolStripMenuItemCarWarehouseAdachi": // 0:該当なし 1:足立 2:三郷
                     try {
-                        ((CarLabel)_contextMenuStripExOpendControl).CarGarageCode = 1;
+                        ((CarLabel)_contextMenuStripExOpendControl).ManagedSpaceCode = 1;
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).CarGarageCode = 1;              // SetControlのフラグをセット
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
@@ -834,7 +867,7 @@ namespace VehicleDispatch {
                     break;
                 case "ToolStripMenuItemCarWarehouseMisato": // 0:該当なし 1:足立 2:三郷
                     try {
-                        ((CarLabel)_contextMenuStripExOpendControl).CarGarageCode = 2;
+                        ((CarLabel)_contextMenuStripExOpendControl).ManagedSpaceCode = 2;
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).CarGarageCode = 2;              // SetControlのフラグをセット
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
@@ -1182,6 +1215,14 @@ namespace VehicleDispatch {
                      */
                     switch (((SetControl)sender).DragControl) {
                         case SetLabel setLabel:
+                            /*
+                             * 接続場所が三郷車庫の場合は処理を禁止する
+                             */
+                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
+                                MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+
                             ((SetControl)sender).Controls.Add(setLabel, cellPoint.X, cellPoint.Y);                                                              // SetLabelを移動する
                             /*
                              * Drag側のSetControlの処理
@@ -1205,6 +1246,14 @@ namespace VehicleDispatch {
                             }
                             break;
                         case CarLabel carLabel:
+                            /*
+                             * 接続場所が三郷車庫の場合は処理を禁止する
+                             */
+                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
+                                MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+
                             ((SetControl)sender).Controls.Add(carLabel, cellPoint.X, cellPoint.Y);                                                              // CarLabelを移動する
                             /*
                              * Drag側のSetControlの処理
@@ -1230,6 +1279,14 @@ namespace VehicleDispatch {
                             }
                             break;
                         case StaffLabel staffLabel:
+                            /*
+                             * 接続場所が三郷車庫の場合は処理を禁止する
+                             */
+                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal) && (dragParentControl.ManagedSpaceCode != 2 || ((SetControl)sender).ManagedSpaceCode != 2)) {
+                                MessageBox.Show("三郷車庫に配置されているStaff間の操作以外は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+
                             ((SetControl)sender).Controls.Add(staffLabel, cellPoint.X, cellPoint.Y);                                                            // StaffLabelを移動する
                             /*
                              * Drag側のSetControlの処理
@@ -1439,6 +1496,39 @@ namespace VehicleDispatch {
         /// <param name="e"></param>
         private void OnMouseUp(object sender, MouseEventArgs e) {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly CcToolTip _ccToolTipUpdateMark = new();
+        /// <summary>
+        /// 更新されたSetControlを監視してマークする
+        /// </summary>
+        /// 
+        private void Timer_Tick(object sender, EventArgs e) {
+            // DBから当日の必要データを取得（タプル版）
+            List<(int CellNumber, int SetCode, string UpdatePcName, DateTime UpdateYmdHms)> list = _vehicleDispatchDetailDao.SelectAllUpdateMark(this.DateTimePickerExOperationDate.GetDate());
+
+            foreach (Control control in _board.Controls) {
+                if (control is SetControl setControl) {
+                    // DB側の同じCellNumberのレコードを取得
+                    var record = list.FirstOrDefault(x => x.CellNumber == setControl.CellNumber);
+
+                    // SetCode が 0 の場合はスキップ
+                    if (record.UpdatePcName == Environment.MachineName || record.SetCode == 0)
+                        continue;
+
+                    // DBの更新日時とSetControlの更新日時を比較
+                    if (_lastUpdateDateTime < record.UpdateYmdHms) {
+                        _board.SetUpdateMark(_ccToolTipUpdateMark, setControl.CellNumber, record.UpdatePcName, record.UpdateYmdHms);
+
+                        Debug.WriteLine(
+                            $"SetControl更新マーク → Cell:{setControl.CellNumber}  " +
+                            $"SetCode:{record.SetCode}  DB:{record.UpdateYmdHms}  UI:{setControl.UpdateYmdHms}");
+                    }
+                }
+            }
         }
 
         /*

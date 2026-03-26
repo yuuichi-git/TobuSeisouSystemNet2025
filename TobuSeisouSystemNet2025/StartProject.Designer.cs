@@ -124,7 +124,7 @@
             this.PanelExLeft = new ControlEx.CcPanel();
             this.TreeViewEx1 = new ControlEx.CcTreeView();
             this.LabelExLocation = new ControlEx.CcLabel();
-            this.LabelExIpAddress = new ControlEx.CcLabel();
+            this.CcLabelIpAddress = new ControlEx.CcLabel();
             this.LabelExPcName = new ControlEx.CcLabel();
             this.PanelExRight = new ControlEx.CcPanel();
             this.ComboBoxExMonitor = new ControlEx.ComboBoxEx();
@@ -136,7 +136,7 @@
             this.LabelExServerNameSqlServer = new ControlEx.CcLabel();
             this.labelEx2 = new ControlEx.CcLabel();
             this.labelEx1 = new ControlEx.CcLabel();
-            this.TabControlEx1 = new ControlEx.TabControlEx();
+            this.CcTabControl1 = new ControlEx.CcTabControl();
             this.TabPageOffice = new TabPage();
             this.labelEx52 = new ControlEx.CcLabel();
             this.labelEx53 = new ControlEx.CcLabel();
@@ -186,6 +186,8 @@
             this.labelEx5 = new ControlEx.CcLabel();
             this.labelEx4 = new ControlEx.CcLabel();
             this.TabPageMisato = new TabPage();
+            this.ccLabel1 = new ControlEx.CcLabel();
+            this.ccLabel2 = new ControlEx.CcLabel();
             this.TabPageHaikibutu = new TabPage();
             this.labelEx56 = new ControlEx.CcLabel();
             this.labelEx57 = new ControlEx.CcLabel();
@@ -203,12 +205,14 @@
             this.LabelExServerNameOracle = new ControlEx.CcLabel();
             this.ButtonExConnectOracle = new ControlEx.CcButton();
             this.labelEx48 = new ControlEx.CcLabel();
+            this.CcLabelDefaultGatewey = new ControlEx.CcLabel();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
             this.PanelExRight.SuspendLayout();
-            this.TabControlEx1.SuspendLayout();
+            this.CcTabControl1.SuspendLayout();
             this.TabPageOffice.SuspendLayout();
             this.TabPageAdachi.SuspendLayout();
+            this.TabPageMisato.SuspendLayout();
             this.TabPageHaikibutu.SuspendLayout();
             this.TabPageSeisouSystem.SuspendLayout();
             this.GroupBoxEx1.SuspendLayout();
@@ -256,9 +260,10 @@
             // 
             // PanelExLeft
             // 
+            this.PanelExLeft.Controls.Add(this.CcLabelDefaultGatewey);
             this.PanelExLeft.Controls.Add(this.TreeViewEx1);
             this.PanelExLeft.Controls.Add(this.LabelExLocation);
-            this.PanelExLeft.Controls.Add(this.LabelExIpAddress);
+            this.PanelExLeft.Controls.Add(this.CcLabelIpAddress);
             this.PanelExLeft.Controls.Add(this.LabelExPcName);
             this.PanelExLeft.Dock = DockStyle.Fill;
             this.PanelExLeft.Location = new Point(4, 29);
@@ -268,7 +273,7 @@
             // 
             // TreeViewEx1
             // 
-            this.TreeViewEx1.Location = new Point(8, 96);
+            this.TreeViewEx1.Location = new Point(8, 148);
             this.TreeViewEx1.Name = "TreeViewEx1";
             treeNode96.Name = "NodeISO0000";
             treeNode96.Text = "ファイル及びデータへのショートカット";
@@ -461,27 +466,27 @@
             treeNode190.Name = "ノード3";
             treeNode190.Text = "労働基準監督署";
             this.TreeViewEx1.Nodes.AddRange(new TreeNode[] { treeNode96, treeNode149, treeNode189, treeNode190 });
-            this.TreeViewEx1.Size = new Size(312, 560);
+            this.TreeViewEx1.Size = new Size(312, 508);
             this.TreeViewEx1.TabIndex = 4;
             this.TreeViewEx1.NodeMouseDoubleClick += this.TreeView1_NodeMouseDoubleClick;
             // 
             // LabelExLocation
             // 
-            this.LabelExLocation.Location = new Point(12, 68);
+            this.LabelExLocation.Location = new Point(12, 96);
             this.LabelExLocation.Name = "LabelExLocation";
             this.LabelExLocation.Size = new Size(304, 20);
             this.LabelExLocation.TabIndex = 3;
             this.LabelExLocation.Text = "○ NW-Location : 本社より接続";
             this.LabelExLocation.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // LabelExIpAddress
+            // CcLabelIpAddress
             // 
-            this.LabelExIpAddress.Location = new Point(12, 40);
-            this.LabelExIpAddress.Name = "LabelExIpAddress";
-            this.LabelExIpAddress.Size = new Size(304, 20);
-            this.LabelExIpAddress.TabIndex = 2;
-            this.LabelExIpAddress.Text = "○ IPAddress : 192.168.000.000";
-            this.LabelExIpAddress.TextAlign = ContentAlignment.MiddleLeft;
+            this.CcLabelIpAddress.Location = new Point(12, 40);
+            this.CcLabelIpAddress.Name = "CcLabelIpAddress";
+            this.CcLabelIpAddress.Size = new Size(304, 20);
+            this.CcLabelIpAddress.TabIndex = 2;
+            this.CcLabelIpAddress.Text = "○ IPAddress : 192.168.000.000";
+            this.CcLabelIpAddress.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // LabelExPcName
             // 
@@ -503,7 +508,7 @@
             this.PanelExRight.Controls.Add(this.LabelExServerNameSqlServer);
             this.PanelExRight.Controls.Add(this.labelEx2);
             this.PanelExRight.Controls.Add(this.labelEx1);
-            this.PanelExRight.Controls.Add(this.TabControlEx1);
+            this.PanelExRight.Controls.Add(this.CcTabControl1);
             this.PanelExRight.Dock = DockStyle.Fill;
             this.PanelExRight.Location = new Point(339, 29);
             this.PanelExRight.Name = "PanelExRight";
@@ -532,6 +537,7 @@
             // ButtonExDisConnectSqlServer
             // 
             this.ButtonExDisConnectSqlServer.Enabled = false;
+            this.ButtonExDisConnectSqlServer.ForeColor = SystemColors.ControlText;
             this.ButtonExDisConnectSqlServer.Location = new Point(568, 84);
             this.ButtonExDisConnectSqlServer.Name = "ButtonExDisConnectSqlServer";
             this.ButtonExDisConnectSqlServer.SetTextDirectionVertical = "";
@@ -544,6 +550,7 @@
             // ButtonExConnectSqlServer
             // 
             this.ButtonExConnectSqlServer.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.ButtonExConnectSqlServer.ForeColor = SystemColors.ControlText;
             this.ButtonExConnectSqlServer.Location = new Point(568, 40);
             this.ButtonExConnectSqlServer.Name = "ButtonExConnectSqlServer";
             this.ButtonExConnectSqlServer.SetTextDirectionVertical = "";
@@ -603,19 +610,19 @@
             this.labelEx1.TabIndex = 3;
             this.labelEx1.Text = "SQLServer";
             // 
-            // TabControlEx1
+            // CcTabControl1
             // 
-            this.TabControlEx1.Controls.Add(this.TabPageOffice);
-            this.TabControlEx1.Controls.Add(this.TabPageAdachi);
-            this.TabControlEx1.Controls.Add(this.TabPageMisato);
-            this.TabControlEx1.Controls.Add(this.TabPageHaikibutu);
-            this.TabControlEx1.Controls.Add(this.TabPageSeisouSystem);
-            this.TabControlEx1.Location = new Point(8, 164);
-            this.TabControlEx1.Name = "TabControlEx1";
-            this.TabControlEx1.SelectedIndex = 0;
-            this.TabControlEx1.Size = new Size(760, 492);
-            this.TabControlEx1.SizeMode = TabSizeMode.Fixed;
-            this.TabControlEx1.TabIndex = 0;
+            this.CcTabControl1.Controls.Add(this.TabPageOffice);
+            this.CcTabControl1.Controls.Add(this.TabPageAdachi);
+            this.CcTabControl1.Controls.Add(this.TabPageMisato);
+            this.CcTabControl1.Controls.Add(this.TabPageHaikibutu);
+            this.CcTabControl1.Controls.Add(this.TabPageSeisouSystem);
+            this.CcTabControl1.Location = new Point(8, 164);
+            this.CcTabControl1.Name = "CcTabControl1";
+            this.CcTabControl1.SelectedIndex = 0;
+            this.CcTabControl1.Size = new Size(760, 492);
+            this.CcTabControl1.SizeMode = TabSizeMode.Fixed;
+            this.CcTabControl1.TabIndex = 0;
             // 
             // TabPageOffice
             // 
@@ -1259,12 +1266,39 @@
             // 
             // TabPageMisato
             // 
+            this.TabPageMisato.Controls.Add(this.ccLabel1);
+            this.TabPageMisato.Controls.Add(this.ccLabel2);
             this.TabPageMisato.Location = new Point(4, 24);
             this.TabPageMisato.Name = "TabPageMisato";
             this.TabPageMisato.Size = new Size(752, 464);
             this.TabPageMisato.TabIndex = 2;
             this.TabPageMisato.Text = "三郷車庫";
             this.TabPageMisato.UseVisualStyleBackColor = true;
+            // 
+            // ccLabel1
+            // 
+            this.ccLabel1.ForeColor = Color.DimGray;
+            this.ccLabel1.Location = new Point(16, 32);
+            this.ccLabel1.Name = "ccLabel1";
+            this.ccLabel1.Size = new Size(344, 20);
+            this.ccLabel1.TabIndex = 15;
+            this.ccLabel1.Text = "　ドラッグ＆ドロップによるUI配車システム";
+            this.ccLabel1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ccLabel2
+            // 
+            this.ccLabel2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.ccLabel2.ForeColor = Color.Black;
+            this.ccLabel2.Location = new Point(16, 12);
+            this.ccLabel2.Name = "ccLabel2";
+            this.ccLabel2.Size = new Size(344, 20);
+            this.ccLabel2.TabIndex = 14;
+            this.ccLabel2.Tag = "VehicleDispatchBoardMisato";
+            this.ccLabel2.Text = "配車システム";
+            this.ccLabel2.TextAlign = ContentAlignment.MiddleLeft;
+            this.ccLabel2.Click += this.Label_SqlServer_Click;
+            this.ccLabel2.MouseEnter += this.Label_MouseEnter;
+            this.ccLabel2.MouseLeave += this.Label_MouseLeave;
             // 
             // TabPageHaikibutu
             // 
@@ -1470,6 +1504,15 @@
             this.labelEx48.TabIndex = 0;
             this.labelEx48.Text = "Oracleへ接続テスト";
             // 
+            // CcLabelDefaultGatewey
+            // 
+            this.CcLabelDefaultGatewey.Location = new Point(12, 68);
+            this.CcLabelDefaultGatewey.Name = "CcLabelDefaultGatewey";
+            this.CcLabelDefaultGatewey.Size = new Size(304, 20);
+            this.CcLabelDefaultGatewey.TabIndex = 5;
+            this.CcLabelDefaultGatewey.Text = "○ IPAddress : 192.168.000.000";
+            this.CcLabelDefaultGatewey.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // StartProject
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1487,9 +1530,10 @@
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExLeft.ResumeLayout(false);
             this.PanelExRight.ResumeLayout(false);
-            this.TabControlEx1.ResumeLayout(false);
+            this.CcTabControl1.ResumeLayout(false);
             this.TabPageOffice.ResumeLayout(false);
             this.TabPageAdachi.ResumeLayout(false);
+            this.TabPageMisato.ResumeLayout(false);
             this.TabPageHaikibutu.ResumeLayout(false);
             this.TabPageSeisouSystem.ResumeLayout(false);
             this.TabPageSeisouSystem.PerformLayout();
@@ -1505,12 +1549,12 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExLeft;
         private ControlEx.CcPanel PanelExRight;
-        private ControlEx.TabControlEx TabControlEx1;
+        private ControlEx.CcTabControl CcTabControl1;
         private TabPage TabPageSeisouSystem;
         private TabPage TabPageAdachi;
         private TabPage TabPageMisato;
         private ControlEx.CcLabel LabelExPcName;
-        private ControlEx.CcLabel LabelExIpAddress;
+        private ControlEx.CcLabel CcLabelIpAddress;
         private ControlEx.CcLabel labelEx1;
         private ControlEx.CcLabel LabelExStatusSqlServer;
         private ControlEx.CcLabel LabelExDataBaseNameSqlServer;
@@ -1585,5 +1629,8 @@
         private ControlEx.CcLabel labelEx55;
         private ControlEx.CcLabel labelEx56;
         private ControlEx.CcLabel labelEx57;
+        private ControlEx.CcLabel ccLabel1;
+        private ControlEx.CcLabel ccLabel2;
+        private ControlEx.CcLabel CcLabelDefaultGatewey;
     }
 }

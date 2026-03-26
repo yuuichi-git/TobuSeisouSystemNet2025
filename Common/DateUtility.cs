@@ -17,22 +17,36 @@ namespace Common {
         }
 
         /// <summary>
-        /// 年齢を計算
+        /// 年齢を計算する
         /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-        public int GetAge(DateTime dateTime) {
-            int age = _todayDate.Year - dateTime.Year;
-            if (dateTime.Date != _defaultDateTime.Date) {
-                //誕生日がまだ来ていなければ、1引く
-                if (_todayDate.Month < dateTime.Month || (_todayDate.Month == dateTime.Month && _todayDate.Day < dateTime.Day)) {
-                    age--;
-                }
-            } else {
-                age = 0;
-            }
-            return age;
+        /// <param name="birthDate">生年月日（null または default(DateTime) は未設定扱い）</param>
+        /// <param name="today">計算基準日（省略時は DateTime.Today）</param>
+        /// <param name="defaultDate">未設定を示す既定日（省略時は default(DateTime)）</param>
+        /// <returns>年齢（未設定や未来日付の場合は 0）</returns>
+        public int GetAge(DateTime? birthDate, DateTime? today = null, DateTime? defaultDate = null) {
+            // 基準日と既定日を決定
+            DateTime todayDate = (today ?? DateTime.Today).Date;
+            DateTime defaultDt = defaultDate ?? default(DateTime);
+
+            // 生年月日が null または既定値なら未設定扱い
+            if (!birthDate.HasValue || birthDate.Value.Date == defaultDt)
+                return 0;
+
+            DateTime b = birthDate.Value.Date;
+
+            // 生年月日が未来なら 0 を返す（要件に応じて例外に変更可）
+            if (b > todayDate)
+                return 0;
+
+            int age = todayDate.Year - b.Year;
+
+            // 誕生日がまだ来ていなければ 1 引く
+            if (todayDate.Month < b.Month || (todayDate.Month == b.Month && todayDate.Day < b.Day))
+                age--;
+
+            return Math.Max(age, 0);
         }
+
 
         /// <summary>
         /// 誕生日

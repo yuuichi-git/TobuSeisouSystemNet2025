@@ -5,12 +5,14 @@ using System.Diagnostics;
 
 using ControlEx.Properties;
 
+using Interfaces;
+
 using Vo;
 
 using Timer = System.Windows.Forms.Timer;
 
 namespace ControlEx {
-    public partial class StaffLabel : Label {
+    public partial class StaffLabel : Label, IControls {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * デリゲート
@@ -38,6 +40,7 @@ namespace ControlEx {
         private string _memo = string.Empty;
         private bool _syoninFlag = false;
         private bool _tekireiFlag = false;
+        private int _managedSpaceCode = 0;
         /*
          * Vo
          */
@@ -208,64 +211,6 @@ namespace ControlEx {
         /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
             /*
-             * 旧型
-             */
-            //base.OnPaint(pe);
-            ///*
-            // * 背景画像
-            // */
-            //switch (this.StaffMasterVo.Belongs) {
-            //    case 12:
-            //        pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImagePartTime), 0, 0, Width, Height);
-            //        break;
-            //    case 20:
-            //    case 21:
-            //    case 22:
-            //        switch (this.StaffMasterVo.JobForm) {
-            //            case 20:
-            //            case 22:
-            //                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
-            //                break;
-            //            case 21:
-            //            case 23:
-            //                pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageShortTime), 0, 0, Width, Height);
-            //                break;
-            //        }
-            //        break;
-            //    default:
-            //        pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImage), 0, 0, Width, Height);
-            //        break;
-            //}
-            //if (MemoFlag)                                                                                                                       // メモ
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
-            //if (ProxyFlag)                                                                                                                      // 代車
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
-            //if (OccupationCode == 11)                                                                                                           // 職種
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSagyouin), 0, 0, Width, Height);
-            //if (!RollCallFlag)                                                                                                                  // 出庫点呼
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTenko), 0, 0, Width, Height);
-            //if (SyoninFlag)                                                                                                                     // 初任診断
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageSyonin), 0, 0, Width, Height);
-            //if (TekireiFlag)                                                                                                                    // 適齢診断
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.StaffLabelImageTekirei), 0, 0, Width, Height);
-            //if (CursorEnterFlag)                                                                                                                // カーソル関係
-            //    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
-            ///*
-            // * 氏名を描画
-            // */
-            //Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
-            //Rectangle rectangle = new(0, 0, Width, Height);
-            //StringFormat stringFormat = new();
-            //stringFormat.Alignment = StringAlignment.Center;
-            //stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
-            //stringFormat.LineAlignment = StringAlignment.Center;
-            //if (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) {
-            //    pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Red, rectangle, stringFormat);
-            //} else {
-            //    pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, Brushes.Black, rectangle, stringFormat);
-            //}
-
-            /*
              * 2026-02-13
              * AIによる画像キャッシュ対応
              */
@@ -337,9 +282,11 @@ namespace ControlEx {
         /// <param name="arrayByte"></param>
         /// <returns></returns>
         private static Image ByteArrayToImage(byte[] arrayByte) {
-            using MemoryStream memoryStream = new(arrayByte);
-            return Image.FromStream(memoryStream);
-
+            using var ms = new MemoryStream(arrayByte);
+            // Image.FromStream はストリームを保持する可能性があるため、
+            // Clone してストリームから独立させる
+            using var img = Image.FromStream(ms, useEmbeddedColorManagement: false, validateImageData: false);
+            return (Image)img.Clone();
         }
 
         /*
@@ -555,6 +502,14 @@ namespace ControlEx {
         public bool TekireiFlag {
             get => this._tekireiFlag;
             set => this._tekireiFlag = value;
+        }
+        /// <summary>
+        /// 管理地域コード
+        /// 0:該当なし 1:足立 2:三郷
+        /// </summary>
+        public int ManagedSpaceCode {
+            get => this._managedSpaceCode;
+            set => this._managedSpaceCode = value;
         }
     }
 }

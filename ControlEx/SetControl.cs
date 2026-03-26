@@ -3,11 +3,13 @@
  */
 using System.Diagnostics;
 
+using Interfaces;
+
 using Vo;
 
 namespace ControlEx {
 
-    public partial class SetControl : TableLayoutPanel {
+    public partial class SetControl : TableLayoutPanel, IControls {
         /*
          * デリゲート
          */
@@ -276,7 +278,7 @@ namespace ControlEx {
             CarLabel carLabel = new(carMasterVo);
             carLabel.ParentControl = this;
 
-            carLabel.CarGarageCode = this.CarGarageCode;
+            carLabel.ManagedSpaceCode = this.CarGarageCode;
             carLabel.ClassificationCode = carMasterVo.ClassificationCode;               // CarMasterの値を使用する
             carLabel.EmergencyVehicleFlag = carMasterVo.EmergencyVehicleFlag;           // CarMasterの値を使用する
             carLabel.Memo = this.CarMemo;
@@ -1127,7 +1129,7 @@ namespace ControlEx {
                 this._deployedCarLabel = value;
                 if (this.DeployedCarLabel is not null) {
                     this.CarCode = ((CarLabel)this.DeployedCarLabel).CarMasterVo.CarCode;
-                    this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).CarGarageCode;
+                    this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).ManagedSpaceCode;
                     this.CarProxyFlag = ((CarLabel)this.DeployedCarLabel).ProxyFlag;
                     this.CarMemoFlag = ((CarLabel)this.DeployedCarLabel).MemoFlag;
                     this.CarMemo = ((CarLabel)this.DeployedCarLabel).Memo;
@@ -1314,7 +1316,7 @@ namespace ControlEx {
             set => _setCode = value;
         }
         /// <summary>
-        /// 管理地
+        /// 管理地域コード
         /// 0:該当なし 1:足立 2:三郷
         /// </summary>
         public int ManagedSpaceCode {

@@ -48,6 +48,10 @@ using Waste;
 namespace TobuSeisouSystemNet2025 {
     public partial class StartProject : Form {
         /*
+         * アクセス場所を保持
+         */
+        private string _connectionLocation = string.Empty;
+        /*
          * インスタンス作成
          */
         private readonly ScreenForm _screenForm = new();
@@ -60,6 +64,7 @@ namespace TobuSeisouSystemNet2025 {
         /// コンストラクター
         /// </summary>
         public StartProject() {
+            this.ConnectionLocation = NetworkUtility.GetConnectLocation();                            // 接続場所をフィールドにセット
             /*
              * Initialize
              */
@@ -79,10 +84,10 @@ namespace TobuSeisouSystemNet2025 {
                 "ToolStripMenuItemHelp"
             };
             this.CcMenuStrip1.ChangeEnable(listString);
-
             this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
-            this.LabelExIpAddress.Text = string.Concat("〇 IP-Address：", new NetworkUtility().GetIpAddress());
-            this.LabelExLocation.Text = string.Concat("〇 NW-Location：", new NetworkUtility().GetConnectLocation(), "からの接続");
+            this.CcLabelIpAddress.Text = string.Concat("〇 IpAddress：", NetworkUtility.GetIpAddress());
+            this.CcLabelDefaultGatewey.Text = string.Concat("〇 DefaultGatewey：", NetworkUtility.GetDefaultGatewayAddress());
+            this.LabelExLocation.Text = string.Concat("〇 NW-Location：", this.ConnectionLocation, "からの接続");
             /*
              * TreeViewEx
              */
@@ -112,16 +117,23 @@ namespace TobuSeisouSystemNet2025 {
             // PrimaryScreenをセット
             this.ComboBoxExMonitor.SelectedIndex = primaryScreenNumber;
             /*
-             * TabControlExConnect
+             * CcTabControl
              */
-            switch (new NetworkUtility().GetConnectLocation()) {
-                case "本社":                                                                                // TabPage[]
+            switch (this.ConnectionLocation) {
+                case "事務":
                     break;
-                case "三郷車庫":                                                                             // TabPage[]
+                case "本社":
                     break;
-                case "２丁目事務所":                                                                          // TabPage[]
+                case "三郷車庫":
+                    this.CcTabControl1.SetActiveTabPages("TabPageMisato");
                     break;
-                case "リサイクルセンター":                                                                     // TabPage[]
+                case "２丁目事務所":
+                    break;
+                case "リサイクルセンター":
+                    break;
+                case "廃棄物":
+                    break;
+                case "清掃システム":
                     break;
                 default:
                     break;
@@ -143,13 +155,20 @@ namespace TobuSeisouSystemNet2025 {
                 case "ButtonExConnectSqlServer":
                     try {
                         _connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag);
+                        _connectionVo.ConnectionLocation = this.ConnectionLocation;                         // 接続場所をVoにセット
                         this.ButtonExConnectSqlServer.Enabled = false;
                         this.ButtonExDisConnectSqlServer.Enabled = true;
                         this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
                         this.LabelExDataBaseNameSqlServer.Text = string.Concat("接続先データベース：" + _connectionVo.SqlServerConnection.Database);
                         this.LabelExStatusSqlServer.Text = string.Concat("状態：" + _connectionVo.SqlServerConnection.State);
-
-                        this.TreeViewEx1.Enabled = true;
+                        switch (this.ConnectionLocation) {
+                            case "三郷車庫":
+                                this.TreeViewEx1.Enabled = false;
+                                break;
+                            default:
+                                this.TreeViewEx1.Enabled = true;
+                                break;
+                        }
                         this.GroupBoxEx1.Enabled = true;
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -162,6 +181,7 @@ namespace TobuSeisouSystemNet2025 {
                     } else {
                         try {
                             _connectionVo.DisConnectSqlServer();
+                            _connectionVo.ConnectionLocation = string.Empty;                                // 接続場所をVoからクリア
                             this.ButtonExConnectSqlServer.Enabled = true;
                             this.ButtonExDisConnectSqlServer.Enabled = false;
                             this.LabelExServerNameSqlServer.Text = "接続先サーバー：";
@@ -264,6 +284,17 @@ namespace TobuSeisouSystemNet2025 {
                     switch ((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
                             if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
+                                _connectionVo.ConnectionLocation = "本社";
+                                vehicleDispatchBoard = new(_connectionVo);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
+                                vehicleDispatchBoard.Show();
+                            } else {
+                                MessageBox.Show("このプログラム（VehicleDispatchBoard）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "VehicleDispatchBoardMisato":                                                                                      // 配車パネル（三郷車庫専用）
+                            if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
+                                _connectionVo.ConnectionLocation = "三郷車庫";
                                 vehicleDispatchBoard = new(_connectionVo);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                                 vehicleDispatchBoard.Show();
@@ -840,5 +871,11 @@ namespace TobuSeisouSystemNet2025 {
             } else {
             }
         }
+
+        private void ccLabel2_Click(object sender, EventArgs e) {
+
+        }
+
+        public string ConnectionLocation { get => this._connectionLocation; set => this._connectionLocation = value; }
     }
 }

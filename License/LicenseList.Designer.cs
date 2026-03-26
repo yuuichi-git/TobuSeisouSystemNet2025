@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenseList));
             this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.TabControlExKana = new ControlEx.TabControlEx();
+            this.TabControlExKana = new ControlEx.CcTabControl();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
             this.tabPage3 = new TabPage();
@@ -282,7 +282,7 @@
         private ControlEx.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.TabControlEx TabControlExKana;
+        private ControlEx.CcTabControl TabControlExKana;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;

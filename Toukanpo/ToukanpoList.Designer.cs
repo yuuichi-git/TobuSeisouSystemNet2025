@@ -31,7 +31,7 @@
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.PanelExUp = new ControlEx.CcPanel();
             this.ButtonExUpdate = new ControlEx.CcButton();
-            this.TabControlEx1 = new ControlEx.TabControlEx();
+            this.TabControlEx1 = new ControlEx.CcTabControl();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
             this.tabPage3 = new TabPage();
@@ -268,7 +268,7 @@
         private ControlEx.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private ControlEx.CcPanel PanelExUp;
-        private ControlEx.TabControlEx TabControlEx1;
+        private ControlEx.CcTabControl TabControlEx1;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;

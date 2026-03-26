@@ -11,7 +11,6 @@ using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementPaper : Form {
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * インスタンス作成
          */
@@ -27,7 +26,6 @@ namespace EmploymentAgreement {
         /*
          * Vo
          */
-        private ConnectionVo _connectionVo;
         private EmploymentAgreementVo _employmentAgreementVo;
         private StaffMasterVo _staffMasterVo;
         /*
@@ -52,7 +50,6 @@ namespace EmploymentAgreement {
             /*
              * Vo
              */
-            _connectionVo = connectionVo;
             _staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
             _employmentAgreementVo = employmentAgreementVo;
             /*
@@ -313,12 +310,12 @@ namespace EmploymentAgreement {
             // 氏名カナ
             this.SheetView長期雇用契約新産別.Cells[1, 1].Text = _staffMasterVo.OtherNameKana;
             // 契約期間
-            this.SheetView長期雇用契約新産別.Cells[25, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
+            this.SheetView長期雇用契約新産別.Cells[28, 12].Text = _employmentAgreementVo.ContractExpirationPeriodString;
             // 契約日
-            this.SheetView長期雇用契約新産別.Cells[28, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
+            this.SheetView長期雇用契約新産別.Cells[31, 2].Text = _dateUtility.GetDateTimeNowJp(DateTime.Now.Date);
 
             // 印影
-            this.SheetView長期雇用契約新産別.Cells[45, 28].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
+            this.SheetView長期雇用契約新産別.Cells[48, 28].Value = _stampUtility.CreateStamp(_staffMasterVo.StampPicture);
         }
 
         /// <summary>

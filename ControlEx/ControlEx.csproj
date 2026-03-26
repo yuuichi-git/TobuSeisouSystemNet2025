@@ -8,6 +8,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
   </ItemGroup>
   <ItemGroup>

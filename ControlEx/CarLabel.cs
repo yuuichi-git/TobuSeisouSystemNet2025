@@ -5,12 +5,14 @@ using System.Diagnostics;
 
 using ControlEx.Properties;
 
+using Interfaces;
+
 using Vo;
 
 using Timer = System.Windows.Forms.Timer;
 
 namespace ControlEx {
-    public partial class CarLabel : Label {
+    public partial class CarLabel : Label, IControls {
         /*
          * デリゲート
          */
@@ -30,7 +32,7 @@ namespace ControlEx {
         private bool _cursorEnterFlag = false;
         private int _classificationCode = 0;
 
-        private int _carGarageCode = 0;
+        private int _managedSpaceCode = 0;
         private bool _proxyFlag = false;
         private bool _memoFlag = false;
         private string _memo = string.Empty;
@@ -180,7 +182,7 @@ namespace ControlEx {
                     break;
             }
             // 三郷車庫
-            if (CarGarageCode == 2)
+            if (ManagedSpaceCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
             // メモ
             if (MemoFlag)
@@ -207,6 +209,8 @@ namespace ControlEx {
             string number = string.Concat(CarMasterVo.RegistrationNumber1, CarMasterVo.RegistrationNumber2, "\r\n",
                                           CarMasterVo.RegistrationNumber3, CarMasterVo.RegistrationNumber4, "\r\n",
                                           CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n", " ");
+                                          //CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n",
+                                          //CarMasterVo.CarCode);
             if (CarMasterVo.ExpirationDate < DateTime.Now.Date) {
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Red), rectangle, stringFormat);
             } else {
@@ -371,12 +375,13 @@ namespace ControlEx {
             set => this._cursorEnterFlag = value;
         }
         /// <summary>
+        /// 管理地域コード
         /// 0:該当なし 1:足立 2:三郷
         /// </summary>
-        public int CarGarageCode {
-            get => this._carGarageCode;
+        public int ManagedSpaceCode {
+            get => this._managedSpaceCode;
             set {
-                this._carGarageCode = value;
+                this._managedSpaceCode = value;
                 Refresh();
             }
         }

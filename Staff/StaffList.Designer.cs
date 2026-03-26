@@ -51,7 +51,7 @@
             this.CheckBoxEx3 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx2 = new ControlEx.CheckBoxEx();
             this.CheckBoxEx1 = new ControlEx.CheckBoxEx();
-            this.TabControlEx1 = new ControlEx.TabControlEx();
+            this.TabControlEx1 = new ControlEx.CcTabControl();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
             this.tabPage3 = new TabPage();
@@ -144,6 +144,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1696, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = null;
@@ -596,7 +597,7 @@
         private ControlEx.CcMenuStrip MenuStripEx1;
         private ControlEx.CcStatusStrip StatusStripEx1;
         private ControlEx.CcPanel PanelExUp;
-        private ControlEx.TabControlEx TabControlEx1;
+        private ControlEx.CcTabControl TabControlEx1;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private FarPoint.Win.Spread.FpSpread SpreadList;

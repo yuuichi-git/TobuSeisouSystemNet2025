@@ -16,6 +16,8 @@ namespace Vo {
         private PingReply? _pingReply;
         private string _serverName = string.Empty;
 
+        private string _connectionLocation = string.Empty;
+
         /// <summary>
         /// コンストラクター
         /// </summary>
@@ -42,7 +44,7 @@ namespace Vo {
                         } else {
                             _serverName = @"(Local)";
                         }
-                            break;
+                        break;
                     default:                                                                                    // TSUJINOTE以外のPCは強制的にNetwork接続
                         _serverName = @"192.168.1.20";
                         break;
@@ -121,18 +123,16 @@ namespace Vo {
          * 
          */
         /// <summary>
-        /// 接続を保持
+        /// SqlServer 接続を保持
         /// </summary>
-        public SqlConnection SqlServerConnection {
-            get => this._sqlConnection;
-            set => this._sqlConnection = value;
-        }
+        public SqlConnection SqlServerConnection { get => this._sqlConnection; set => this._sqlConnection = value; }
         /// <summary>
-        /// 接続を保持
+        /// Oracle 接続を保持
         /// </summary>
-        public OracleConnection OracleConnection {
-            get => this._oracleConnection;
-            set => this._oracleConnection = value;
-        }
+        public OracleConnection OracleConnection { get => this._oracleConnection; set => this._oracleConnection = value; }
+        /// <summary>
+        /// 接続地区を保持
+        /// </summary>
+        public string ConnectionLocation { get => this._connectionLocation; set => this._connectionLocation = value; }
     }
 }

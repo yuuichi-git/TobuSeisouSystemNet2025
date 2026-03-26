@@ -194,6 +194,35 @@ namespace Dao {
         }
 
         /// <summary>
+        /// UpdateMarkに必要なデータを取得
+        /// </summary>
+        /// <param name="operationDate"></param>
+        /// <returns></returns>
+        public List<(int CellNumber, int SetCode, string UpdatePcName, DateTime UpdateYmdHms)>
+            SelectAllUpdateMark(DateTime operationDate) {
+            List<(int, int, string, DateTime)> list = new();
+
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText =
+                "SELECT CellNumber, SetCode, UpdatePcName, UpdateYmdHms " +
+                "FROM H_VehicleDispatchDetail " +
+                "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
+
+            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while (sqlDataReader.Read()) {
+                    int cellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
+                    int setCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["SetCode"]);
+                    string updatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
+                    DateTime updateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
+
+                    list.Add((cellNumber, setCode, updatePcName, updateYmdHms));
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// 指定日のデータを取得(期間)
         /// </summary>
         /// <param name="operationDate1"></param>

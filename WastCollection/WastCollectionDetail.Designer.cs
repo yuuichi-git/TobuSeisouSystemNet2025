@@ -35,7 +35,7 @@
             this.CcButtonMaps2 = new ControlEx.CcButton();
             this.CcButtonMaps1 = new ControlEx.CcButton();
             this.labelEx10 = new ControlEx.CcLabel();
-            this.TabControlEx1 = new ControlEx.TabControlEx();
+            this.TabControlEx1 = new ControlEx.CcTabControl();
             this.TabPage1 = new TabPage();
             this.CcPictureBox1 = new ControlEx.CcPictureBox();
             this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
@@ -836,7 +836,7 @@
         private ControlEx.CcButton CcButtonDelete;
         private ControlEx.CcButton CcButtonOk;
         private ControlEx.CcPanel ccPanel1;
-        private ControlEx.TabControlEx TabControlEx1;
+        private ControlEx.CcTabControl TabControlEx1;
         private TabPage TabPage1;
         private TabPage TabPage2;
         private ControlEx.CcPictureBox CcPictureBox1;

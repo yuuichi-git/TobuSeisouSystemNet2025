@@ -29,8 +29,13 @@ namespace ControlEx {
          * Cellの数
          */
         private const int _columnNumber = 50;                       // Column数
-        private const int _rowNumber = 4;                           // SetControlを配置出来るRow数(0,2,4,6)
+        private const int _rowNumber = 4;                           // SetControlを配置出来るRow数(1,3,5,7)
         private const int _rowAllNumber = 8;                        // ダミーを含めたRow数(0,2,4,6はダミー)
+        /*
+         * UpdateMarkのサイズ
+         */
+        private const float _updateMarkWidth = 74;
+        private const float _updateMarkHeight = 18;
         /*
          * Cellのサイズ
          */
@@ -356,22 +361,6 @@ namespace ControlEx {
             this.Cursor = Cursors.Default;
         }
 
-        /// <summary>
-        /// OnPaint
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnCellPaint(TableLayoutCellPaintEventArgs e) {
-
-        }
-
         /*
          * プロパティー
          */
@@ -395,5 +384,62 @@ namespace ControlEx {
         /// Board Cell Height
         /// </summary>
         public float CellHeight => _cellHeight;
+
+        /// <summary>
+        /// 指定セルの上（ダミー行）に更新マークを表示する
+        /// 既に同じセルに更新マークがある場合は置き換える
+        /// </summary>
+        /// <param name="ccToolTip">CcToolTip</param>
+        /// <param name="cellNumber"></param>
+        /// <param name="updatePcName"></param>
+        /// <param name="updateYmdHms"></param>
+        public void SetUpdateMark(CcToolTip ccToolTip, int cellNumber, string updatePcName, DateTime updateYmdHms) {
+            Point point = GetCellPoint(cellNumber); // SetControlが配置されているCellのPointを取得
+            int col = point.X;
+            int markRow = point.Y - 1; // 更新マークはSetControlの上のダミー行に表示
+
+            if (markRow < 0 || col < 0 || col >= this.ColumnCount || markRow >= this.RowCount)
+                return;
+
+            // 既存の更新マークを同じセルから削除（Tagで識別）
+            Control control = this.Controls.Cast<Control>().FirstOrDefault(c => {
+                var pos = this.GetPositionFromControl(c);
+                return pos.Column == col && pos.Row == markRow && c.Tag is string t && t == "UpdateMark";
+            });
+            if (control is not null) {
+                control.Dispose();
+            }
+
+            // マーク用パネルを作成
+            Panel panel = new() {
+                Width = (int)_updateMarkWidth,
+                Height = (int)_updateMarkHeight,
+                BackColor = Color.OrangeRed, // 見やすい色に変更可
+                Tag = "UpdateMark",
+                Margin = new Padding(2, 2, 2, 2),
+                Anchor = AnchorStyles.Top
+            };
+
+            // 必要ならラベルを追加してテキスト表示
+            CcLabel ccLabel = new() {
+                Text = "更新",
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill,
+                ForeColor = Color.White,
+                Font = new Font(this.Font.FontFamily, 9, FontStyle.Bold),
+                BackColor = Color.Transparent
+            };
+            panel.Controls.Add(ccLabel);
+
+            // ★ ToolTip を設定
+            ccToolTip.SetToolTip(ccLabel, string.Concat("更新PC名：", updatePcName, "\r\n",
+                                                        "更新時刻：", updateYmdHms.ToString("yyyy/MM/dd HH:mm:ss")));
+
+            // TableLayoutPanel に追加
+            this.Controls.Add(panel, col, markRow);
+
+            // 列幅が固定（Absolute）なので、中央寄せは Margin で調整している
+        }
     }
 }

@@ -1,46 +1,66 @@
 ﻿using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
 namespace Common {
-    public class NetworkUtility {
+    public static class NetworkUtility {
         /// <summary>
-        /// IPアドレスを取得
+        /// IPv4 アドレスを取得
         /// </summary>
-        /// <returns>IPアドレス</returns>
-        public string GetIpAddress() {
-            //IPアドレス用変数
-            string ip = string.Empty;
+        public static string GetIpAddress() {
+            var ip = Dns.GetHostAddresses(Dns.GetHostName())
+                        .FirstOrDefault(addr => addr.AddressFamily == AddressFamily.InterNetwork);
+            return ip?.ToString() ?? string.Empty;
+        }
 
-            //自身のIPアドレスの一覧を取得する
-            string hostname = Dns.GetHostName();
-            IPAddress[] ips = Dns.GetHostAddresses(hostname);
-
-            //一覧からIPv4アドレスのみ抽出する
-            foreach (IPAddress iPAddress in ips) {
-                //IPv4を対象とする
-                if (iPAddress.AddressFamily.Equals(AddressFamily.InterNetwork)) {
-                    ip = iPAddress.ToString();
-                    break;
-                }
-            }
-            return ip;
+        /// <summary>
+        /// デフォルトゲートウェイアドレスを取得
+        /// </summary>
+        public static string GetDefaultGatewayAddress() {
+            return NetworkInterface.GetAllNetworkInterfaces()
+                .Where(nic =>
+                    nic.OperationalStatus == OperationalStatus.Up &&
+                    nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                .SelectMany(nic => nic.GetIPProperties()?.GatewayAddresses)
+                .Select(g => g?.Address?.ToString())
+                .FirstOrDefault(addr => !string.IsNullOrWhiteSpace(addr))
+                ?? string.Empty;
         }
 
         /// <summary>
         /// 接続場所を取得
         /// </summary>
-        /// <returns></returns>
-        public string GetConnectLocation() {
-            string[] arrayIpAddress = GetIpAddress().Split('.');
-            string ipAddress = string.Concat(arrayIpAddress[0], ".", arrayIpAddress[1], ".", arrayIpAddress[2]);
-            switch (ipAddress) {
-                case "192.168.1":
-                    return "本社";
-                case "192.168.10":
-                    return "三郷車庫";
-                default:
-                    return string.Empty;
-            }
+        public static string GetConnectLocation() {
+            //string[] parts = GetIpAddress().Split('.');
+            //if (parts.Length < 3)
+            //    return string.Empty;
+
+            //string ipAddress = string.Join(".", parts[..3]);
+
+            //return ipAddress switch {
+            //    "192.168.1" => "本社",
+            //    "192.168.10" => "三郷車庫",
+            //    _ => string.Empty
+            //};
+            // デフォルトゲートウェイ取得
+            string? gateway = NetworkInterface.GetAllNetworkInterfaces()
+                .Where(nic =>
+                    nic.OperationalStatus == OperationalStatus.Up &&
+                    nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                .SelectMany(nic => nic.GetIPProperties()?.GatewayAddresses)
+                .Select(g => g?.Address?.ToString())
+                .FirstOrDefault(addr => !string.IsNullOrWhiteSpace(addr));
+
+            if (string.IsNullOrWhiteSpace(gateway))
+                return string.Empty;
+
+            // 完全一致で判定（第四オクテットまで）
+            return gateway switch {
+                "192.168.1.5" => "本社",
+                "192.168.10.1" => "三郷車庫",
+                "192.168.11.1" => "リサイクルセンター",
+                _ => string.Empty
+            };
         }
     }
 }

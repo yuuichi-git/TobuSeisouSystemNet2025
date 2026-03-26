@@ -1,5 +1,5 @@
 ﻿namespace ControlEx {
-    partial class TabControlEx {
+    partial class CcToolTip {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
