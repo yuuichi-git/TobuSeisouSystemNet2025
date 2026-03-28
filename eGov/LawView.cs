@@ -59,7 +59,7 @@ namespace EGov {
         /// </summary>
         /// <returns></returns>
         public async Task InitializeAsync() {
-            LawDataResponse lawDataResponse = await this.GetLawDataAsync(_lawNum);
+            LawDataResponse? lawDataResponse = await this.GetLawDataAsync(_lawNum);
             string lawId = lawDataResponse.LawInfo.LawId;
             string lawNum = lawDataResponse.LawInfo.LawNum;
             string? lawArticle = _lawArticle;
@@ -74,6 +74,19 @@ namespace EGov {
             this.CcTextBoxLawType.Text = lawType;
             this.CcTextBoxLawTitle.Text = lawTitle;
 
+
+
+        }
+
+        private void InitializeTreeView(LawDataResponse lawDataResponse) {
+
+
+        }
+
+        private void CcTreeView1_AfterSelect(object? sender, TreeViewEventArgs e) {
+
+
+
         }
 
         /// <summary>
@@ -81,7 +94,7 @@ namespace EGov {
         /// </summary>
         /// <param name="lawNum">法令番号</param>
         /// <returns>Task<LawDataResponse></returns>
-        private async Task<LawDataResponse> GetLawDataAsync(string lawNum) {
+        private async Task<LawDataResponse?> GetLawDataAsync(string lawNum) {
             XDocument? xDocument = await LawApiClient.GetLawDataXmlByLawNumAsync(lawNum);
             if (xDocument == null || xDocument.Root == null) {
                 Debug.WriteLine("GetLawDataAsync: xDocument or Root is null");
@@ -98,13 +111,6 @@ namespace EGov {
                 return null;
             }
         }
-
-        private void CcTreeView1_AfterSelect(object? sender, TreeViewEventArgs e) {
-
-
-
-        }
-
 
         // -----------------------------
         //

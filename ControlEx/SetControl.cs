@@ -108,21 +108,30 @@ namespace ControlEx {
          * SetMasterVoのNumberOfPeopleを退避
          */
         private int _numberOfPeople;
+
         /*
          * Cellのサイズ
          */
         private const float _cellWidth = 74;
         private const float _cellHeight = 120;
+
         /*
          * Cellの数
          */
         private const int _columnCount = 1; // Columnの数
         private const int _rowCount = 4; // Rowの数
+
         /*
          * 
          */
         private bool _oldOnCursorFlag = false;
         private bool _newOnCursorFlag = false;
+
+        /// <summary>
+        /// SetControlのUpdateMark用フラグ
+        /// True:更新あり False:更新なし
+        /// </summary>
+        private bool _updateMarkFlag = false;
 
         /// <summary>
         /// コンストラクタ
@@ -138,6 +147,9 @@ namespace ControlEx {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * SetControlのプロパティをセットする
+             */
             this.AllowDrop = true;
             this.Dock = DockStyle.Fill;
             this.Margin = new Padding(0);
@@ -148,21 +160,13 @@ namespace ControlEx {
              */
             switch (this.PurposeFlag) {
                 case true: // ２列
-                    // Size
                     this.Size = new Size((int)CellWidth * _columnCount * 2, (int)CellHeight * _rowCount);
-                    /*
-                     * Column作成
-                     */
                     this.ColumnCount = _columnCount + 1;
                     this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
                     this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
                     break;
                 case false: // １列
-                    // Size
                     this.Size = new Size((int)CellWidth * _columnCount, (int)CellHeight * _rowCount);
-                    /*
-                     * Column作成
-                     */
                     this.ColumnCount = _columnCount;
                     this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, CellWidth));
                     break;
@@ -175,6 +179,7 @@ namespace ControlEx {
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
             this.RowStyles.Add(new RowStyle(SizeType.Absolute, CellHeight));
+
             // ContextMenuStripを初期化
             this.CreateContextMenuStrip();
             /*
@@ -1697,6 +1702,11 @@ namespace ControlEx {
             get => this._numberOfPeople;
             set => this._numberOfPeople = value;
         }
+        /// <summary>
+        /// SetControlのUpdateMark用フラグ
+        /// True:更新あり False:更新なし
+        /// </summary>
+        public bool UpdateMarkFlag { get => this._updateMarkFlag; set => this._updateMarkFlag = value; }
     }
 }
 

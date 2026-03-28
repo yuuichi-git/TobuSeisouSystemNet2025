@@ -1113,56 +1113,10 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// SetControlの形状をDoubleに変更する
-        /// </summary>
-        private void SetControlChengeDouble() {
-            switch (((SetControl)_contextMenuStripExOpendControl).CellNumber) {
-                case int cellNumber when cellNumber >= 0 && cellNumber < 43:
-
-                    break;
-                case int targetCellNumber when targetCellNumber >= 50 && targetCellNumber < 93:
-                    try {
-                        // ①CellNumber93を削除する
-                        VehicleDispatchDetailVo blankVehicleDispatchDetailVo = new();
-                        if (_vehicleDispatchDetailDao.DeleteOneVehicleDispatchDetail(93, this.DateTimePickerExOperationDate.GetDate()) == 0) {
-                            MessageBox.Show("CellNumber93番を削除できません。処理を中断します。");
-                            break;
-                        }
-
-                        // ②各CellNumberをデクリメントする
-                        for (int i = 92; i >= targetCellNumber + 1; i--) {
-                            if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberが飛ぶから存在確認が必要
-                                blankVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
-                                blankVehicleDispatchDetailVo.CellNumber++;
-                                _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, blankVehicleDispatchDetailVo);
-                            } else {
-                                continue;
-                            }
-                        }
-
-                        // ③対象SetControlのプロパティを変更する(Doubleに変更する)
-                        VehicleDispatchDetailVo targetVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(targetCellNumber, this.DateTimePickerExOperationDate.GetDate());
-                        targetVehicleDispatchDetailVo.CellNumber = targetCellNumber;
-                        targetVehicleDispatchDetailVo.PurposeFlag = true;
-                        _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(targetCellNumber, targetVehicleDispatchDetailVo);
-                        Debug.WriteLine(string.Concat("CellNumber=", targetCellNumber, "のPurposeFlagをTrueに変更しました"));
-                    } catch (Exception e) {
-                        MessageBox.Show(e.Message);
-                    }
-                    break;
-                case int cellNumber when cellNumber >= 100 && cellNumber < 143:
-
-                    break;
-                case int cellNumber when cellNumber >= 150 && cellNumber < 193:
-
-                    break;
-            }
-        }
-
-        /// <summary>
         /// DragされているControl
         /// </summary>
         private Control _dragEnterObject;
+
         /// <summary>
         /// オブジェクトがコントロールの境界内にドラッグされると一度だけ発生します。
         /// </summary>
@@ -1208,7 +1162,13 @@ namespace VehicleDispatch {
              * DropされたObjectのParentによって処理を分岐する
              */
             switch (((SetControl)sender).DragParentControl) {
+                // Drug元のSetControlをdragParentControlとして取得する
                 case SetControl dragParentControl:
+                    /*
+                     * Drop先のSetControlを取得する
+                     */
+                    SetControl dropParent = (SetControl)sender;
+
                     /*
                      * Drop処理
                      * Controlを追加する
@@ -1216,14 +1176,20 @@ namespace VehicleDispatch {
                     switch (((SetControl)sender).DragControl) {
                         case SetLabel setLabel:
                             /*
+                             * 更新マークが付いている場合は処理を禁止する
+                             */
+                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                                MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                            /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
                             if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
                                 MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
-
-                            ((SetControl)sender).Controls.Add(setLabel, cellPoint.X, cellPoint.Y);                                                              // SetLabelを移動する
+                            dropParent.Controls.Add(setLabel, cellPoint.X, cellPoint.Y);                                                                        // SetLabelを移動する
                             /*
                              * Drag側のSetControlの処理
                              */
@@ -1247,14 +1213,20 @@ namespace VehicleDispatch {
                             break;
                         case CarLabel carLabel:
                             /*
+                             * 更新マークが付いている場合は処理を禁止する
+                             */
+                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                                MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                            /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
                             if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
                                 MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
-
-                            ((SetControl)sender).Controls.Add(carLabel, cellPoint.X, cellPoint.Y);                                                              // CarLabelを移動する
+                            dropParent.Controls.Add(carLabel, cellPoint.X, cellPoint.Y);                                                                        // CarLabelを移動する
                             /*
                              * Drag側のSetControlの処理
                              */
@@ -1280,14 +1252,20 @@ namespace VehicleDispatch {
                             break;
                         case StaffLabel staffLabel:
                             /*
+                             * 更新マークが付いている場合は処理を禁止する
+                             */
+                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                                MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                            /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
                             if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal) && (dragParentControl.ManagedSpaceCode != 2 || ((SetControl)sender).ManagedSpaceCode != 2)) {
                                 MessageBox.Show("三郷車庫に配置されているStaff間の操作以外は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
-
-                            ((SetControl)sender).Controls.Add(staffLabel, cellPoint.X, cellPoint.Y);                                                            // StaffLabelを移動する
+                            dropParent.Controls.Add(staffLabel, cellPoint.X, cellPoint.Y);                                                                      // StaffLabelを移動する
                             /*
                              * Drag側のSetControlの処理
                              */
@@ -1515,17 +1493,16 @@ namespace VehicleDispatch {
                     // DB側の同じCellNumberのレコードを取得
                     var record = list.FirstOrDefault(x => x.CellNumber == setControl.CellNumber);
 
-                    // SetCode が 0 の場合はスキップ
-                    if (record.UpdatePcName == Environment.MachineName || record.SetCode == 0)
+                    // 自分自身が更新したSetControlにはマークを付けないようにする
+                    if (record.UpdatePcName == Environment.MachineName)
                         continue;
 
                     // DBの更新日時とSetControlの更新日時を比較
                     if (_lastUpdateDateTime < record.UpdateYmdHms) {
                         _board.SetUpdateMark(_ccToolTipUpdateMark, setControl.CellNumber, record.UpdatePcName, record.UpdateYmdHms);
+                        setControl.UpdateMarkFlag = true; // SetControlに更新マークフラグをセット
 
-                        Debug.WriteLine(
-                            $"SetControl更新マーク → Cell:{setControl.CellNumber}  " +
-                            $"SetCode:{record.SetCode}  DB:{record.UpdateYmdHms}  UI:{setControl.UpdateYmdHms}");
+                        Debug.WriteLine($"SetControl更新マーク → Cell:{setControl.CellNumber}  " + $"SetCode:{record.SetCode}  DB:{record.UpdateYmdHms}  UI:{setControl.UpdateYmdHms}");
                     }
                 }
             }

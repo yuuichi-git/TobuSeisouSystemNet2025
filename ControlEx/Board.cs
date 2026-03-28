@@ -389,10 +389,6 @@ namespace ControlEx {
         /// 指定セルの上（ダミー行）に更新マークを表示する
         /// 既に同じセルに更新マークがある場合は置き換える
         /// </summary>
-        /// <param name="ccToolTip">CcToolTip</param>
-        /// <param name="cellNumber"></param>
-        /// <param name="updatePcName"></param>
-        /// <param name="updateYmdHms"></param>
         public void SetUpdateMark(CcToolTip ccToolTip, int cellNumber, string updatePcName, DateTime updateYmdHms) {
             Point point = GetCellPoint(cellNumber); // SetControlが配置されているCellのPointを取得
             int col = point.X;
@@ -401,26 +397,31 @@ namespace ControlEx {
             if (markRow < 0 || col < 0 || col >= this.ColumnCount || markRow >= this.RowCount)
                 return;
 
-            // 既存の更新マークを同じセルから削除（Tagで識別）
+            // ★ 既存の更新マークを削除（Timer も停止）
             Control control = this.Controls.Cast<Control>().FirstOrDefault(c => {
                 var pos = this.GetPositionFromControl(c);
-                return pos.Column == col && pos.Row == markRow && c.Tag is string t && t == "UpdateMark";
+                return pos.Column == col && pos.Row == markRow &&
+                       c.Tag is UpdateMarkTag;
             });
+
             if (control is not null) {
+                if (control.Tag is UpdateMarkTag tag) {
+                    tag.Timer.Stop();
+                    tag.Timer.Dispose();
+                }
                 control.Dispose();
             }
 
-            // マーク用パネルを作成
+            // ★ マーク用パネルを作成
             Panel panel = new() {
                 Width = (int)_updateMarkWidth,
                 Height = (int)_updateMarkHeight,
-                BackColor = Color.OrangeRed, // 見やすい色に変更可
-                Tag = "UpdateMark",
-                Margin = new Padding(2, 2, 2, 2),
+                BackColor = Color.OrangeRed,
+                Margin = new Padding(2),
                 Anchor = AnchorStyles.Top
             };
 
-            // 必要ならラベルを追加してテキスト表示
+            // ★ ラベル
             CcLabel ccLabel = new() {
                 Text = "更新",
                 AutoSize = false,
@@ -432,14 +433,51 @@ namespace ControlEx {
             };
             panel.Controls.Add(ccLabel);
 
-            // ★ ToolTip を設定
-            ccToolTip.SetToolTip(ccLabel, string.Concat("更新PC名：", updatePcName, "\r\n",
-                                                        "更新時刻：", updateYmdHms.ToString("yyyy/MM/dd HH:mm:ss")));
+            // ★ ToolTip
+            ccToolTip.SetToolTip(ccLabel, $"更新PC名：{updatePcName}\r\n更新時刻：{updateYmdHms:yyyy/MM/dd HH:mm:ss}");
 
-            // TableLayoutPanel に追加
+            // ★ フェード点滅用 Timer
+            var fadeTimer = new System.Windows.Forms.Timer {
+                Interval = 20 // 20msごと → なめらか
+            };
+
+            int alpha = 255;
+            int delta = -10; // 透明度の増減
+
+            fadeTimer.Tick += (_, _) => {
+                alpha += delta;
+
+                // 透明度の上下限で反転
+                if (alpha <= 50 || alpha >= 255)
+                    delta = -delta;
+
+                panel.BackColor = Color.FromArgb(alpha, Color.OrangeRed);
+            };
+
+            // ★ Panel が破棄されたら Timer も止める
+            panel.Disposed += (_, _) => {
+                fadeTimer.Stop();
+                fadeTimer.Dispose();
+            };
+
+            fadeTimer.Start();
+
+            // ★ Panel に Timer を紐づける（Tag を専用クラスに）
+            panel.Tag = new UpdateMarkTag(fadeTimer);
+
+            // ★ TableLayoutPanel に追加
             this.Controls.Add(panel, col, markRow);
+        }
 
-            // 列幅が固定（Absolute）なので、中央寄せは Margin で調整している
+        /// <summary>
+        /// UpdateMark の Tag 用クラス（Timer を保持）
+        /// </summary>
+        private sealed class UpdateMarkTag {
+            public System.Windows.Forms.Timer Timer { get; }
+
+            public UpdateMarkTag(System.Windows.Forms.Timer timer) {
+                Timer = timer;
+            }
         }
     }
 }
