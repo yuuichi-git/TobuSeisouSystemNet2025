@@ -120,16 +120,30 @@ namespace ControlEx {
             this.SetColumnSpan(setControl, vehicleDispatchDetailVo.PurposeFlag ? 2 : 1);
         }
 
-        /// <summary>
-        /// 配置されている全てのControlを解放する
-        /// </summary>
+        /*
+         * WM_SETREDRAW で描画そのものを止める
+         * 配置されている全てのControlを解放する
+         * メソッドをClear呼び出してもコントロール ハンドルはメモリから削除されません。 メモリリークを回避するにはメソッドをDispose明示的に呼び出す必要があります。
+         * ※後ろから解放している点が重要らしい。
+         */
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, bool wParam, int lParam);
+
+        private const int WM_SETREDRAW = 0x000B;
+
         public void RemoveAllControls() {
-            /*
-             * メソッドをClear呼び出してもコントロール ハンドルはメモリから削除されません。 メモリリークを回避するにはメソッドをDispose明示的に呼び出す必要があります。
-             * ※後ろから解放している点が重要らしい。
-             */
-            for (int i = this.Controls.Count - 1; 0 <= i; i--)
-                this.Controls[i].Dispose();
+            // 描画停止
+            SendMessage(this.Handle, WM_SETREDRAW, false, 0);
+
+            try {
+                for (int i = this.Controls.Count - 1; 0 <= i; i--)
+                    this.Controls[i].Dispose();
+            } finally {
+                // 描画再開
+                SendMessage(this.Handle, WM_SETREDRAW, true, 0);
+                this.Invalidate();
+                this.Update();
+            }
         }
 
         /// <summary>

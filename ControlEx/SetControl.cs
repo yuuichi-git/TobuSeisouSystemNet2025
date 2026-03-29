@@ -1066,14 +1066,6 @@ namespace ControlEx {
             SetControl_OnMouseUp.Invoke(sender, e);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
-        }
-
         /*
          * 
          * プロパティー

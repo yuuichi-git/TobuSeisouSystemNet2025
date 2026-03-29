@@ -84,6 +84,7 @@
             // 
             // CcButtonUpdate
             // 
+            this.CcButtonUpdate.ForeColor = SystemColors.ControlText;
             this.CcButtonUpdate.Location = new Point(1100, 10);
             this.CcButtonUpdate.Name = "CcButtonUpdate";
             this.CcButtonUpdate.SetTextDirectionVertical = "";

@@ -29,7 +29,7 @@ namespace Vo {
 
         [XmlArray("attached_files")]
         [XmlArrayItem("attached_file")]
-        public List<AttachedFile> AttachedFiles { get; set; } = new List<AttachedFile>();
+        public List<AttachedFile> AttachedFiles { get; set; } = new();
     }
 
     public class AttachedFile {
@@ -145,14 +145,13 @@ namespace Vo {
     // -----------------------------
     public class LawFullText {
         [XmlElement("Law")]
-        public Law Law { get; set; } = new Law();
+        public Law Law { get; set; } = new();
     }
 
     // -----------------------------
     // Law
     // -----------------------------
     public class Law {
-        // 属性名は XML 生データに合わせる（例: Year, PromulgateMonth, PromulgateDay, Num, LawType, Lang, Era）
         [XmlAttribute("Year")]
         public string Year { get; set; } = "";
 
@@ -178,20 +177,19 @@ namespace Vo {
         public string LawNum { get; set; } = "";
 
         [XmlElement("LawBody")]
-        public LawBody LawBody { get; set; } = new LawBody();
+        public LawBody LawBody { get; set; } = new();
     }
 
     public class LawBody {
         [XmlElement("LawTitle")]
-        public LawTitle LawTitle { get; set; } = new LawTitle();
+        public LawTitle LawTitle { get; set; } = new();
 
         [XmlElement("MainProvision")]
-        public MainProvision MainProvision { get; set; } = new MainProvision();
+        public MainProvision MainProvision { get; set; } = new();
 
         [XmlElement("SupplProvision")]
-        public SupplProvision SupplProvision { get; set; } = new SupplProvision();
+        public SupplProvision SupplProvision { get; set; } = new();
 
-        // 任意の付録要素（別記等）をそのまま保持したい場合
         [XmlAnyElement]
         public XmlElement[]? OtherElements { get; set; }
     }
@@ -211,15 +209,74 @@ namespace Vo {
     }
 
     // -----------------------------
-    // MainProvision -> Article[]
+    // MainProvision
     // -----------------------------
     public class MainProvision {
+        [XmlElement("Chapter")]
+        public List<Chapter> Chapters { get; set; } = new();
+
         [XmlElement("Article")]
-        public List<Article> Articles { get; set; } = new List<Article>();
+        public List<Article> Articles { get; set; } = new();
     }
 
+    // -----------------------------
+    // Chapter（章）
+    // -----------------------------
+    public class Chapter {
+        [XmlAttribute("Num")]
+        public string Num { get; set; } = "";
+
+        [XmlElement("ChapterTitle")]
+        public string ChapterTitle { get; set; } = "";
+
+        [XmlElement("Section")]
+        public List<Section> Sections { get; set; } = new();
+
+        // ★ 追加：章直下に款が来る可能性に備える
+        [XmlElement("Subsection")]
+        public List<Subsection> Subsections { get; set; } = new();
+
+        [XmlElement("Article")]
+        public List<Article> Articles { get; set; } = new();
+    }
+
+    // -----------------------------
+    // Section（節）
+    // -----------------------------
+    public class Section {
+        [XmlAttribute("Num")]
+        public string Num { get; set; } = "";
+
+        [XmlElement("SectionTitle")]
+        public string SectionTitle { get; set; } = "";
+
+        // ★ 追加：節の下に款
+        [XmlElement("Subsection")]
+        public List<Subsection> Subsections { get; set; } = new();
+
+        // ★ 節直下に条が来る場合もある
+        [XmlElement("Article")]
+        public List<Article> Articles { get; set; } = new();
+    }
+
+    // -----------------------------
+    // Subsection（款）
+    // -----------------------------
+    public class Subsection {
+        [XmlAttribute("Num")]
+        public string Num { get; set; } = "";
+
+        [XmlElement("SubsectionTitle")]
+        public string SubsectionTitle { get; set; } = "";
+
+        [XmlElement("Article")]
+        public List<Article> Articles { get; set; } = new();
+    }
+
+    // -----------------------------
+    // Article（条）
+    // -----------------------------
     public class Article {
-        // XML 生データの属性名に合わせる（例: Num, Delete, Hide）
         [XmlAttribute("Num")]
         public string Num { get; set; } = "";
 
@@ -236,9 +293,12 @@ namespace Vo {
         public string ArticleTitle { get; set; } = "";
 
         [XmlElement("Paragraph")]
-        public List<Paragraph> Paragraphs { get; set; } = new List<Paragraph>();
+        public List<Paragraph> Paragraphs { get; set; } = new();
     }
 
+    // -----------------------------
+    // Paragraph（項）
+    // -----------------------------
     public class Paragraph {
         [XmlAttribute("Num")]
         public string Num { get; set; } = "";
@@ -246,7 +306,6 @@ namespace Vo {
         [XmlAttribute("Hide")]
         public string Hide { get; set; } = "";
 
-        // XML に存在する属性を追加（例: OldStyle）
         [XmlAttribute("OldStyle")]
         public string OldStyle { get; set; } = "";
 
@@ -257,17 +316,20 @@ namespace Vo {
         public string ParagraphNum { get; set; } = "";
 
         [XmlElement("ParagraphSentence")]
-        public ParagraphSentence ParagraphSentence { get; set; } = new ParagraphSentence();
+        public ParagraphSentence ParagraphSentence { get; set; } = new();
 
         [XmlElement("Item")]
-        public List<Item> Items { get; set; } = new List<Item>();
+        public List<Item> Items { get; set; } = new();
     }
 
     public class ParagraphSentence {
         [XmlElement("Sentence")]
-        public List<Sentence> Sentences { get; set; } = new List<Sentence>();
+        public List<Sentence> Sentences { get; set; } = new();
     }
 
+    // -----------------------------
+    // Sentence（文）
+    // -----------------------------
     public class Sentence {
         [XmlAttribute("Num")]
         public string Num { get; set; } = "";
@@ -278,7 +340,6 @@ namespace Vo {
         [XmlAttribute("Function")]
         public string Function { get; set; } = "";
 
-        // 混在コンテンツ（ルビ等）をそのまま保持したい場合は XmlAnyElement を使う
         [XmlAnyElement]
         public XmlElement[]? AnyElements { get; set; }
 
@@ -287,7 +348,7 @@ namespace Vo {
     }
 
     // -----------------------------
-    // ★ 号（Item）
+    // Item（号）
     // -----------------------------
     public class Item {
         [XmlAttribute("Num")]
@@ -297,22 +358,22 @@ namespace Vo {
         public string ItemTitle { get; set; } = "";
 
         [XmlElement("ItemSentence")]
-        public ItemSentence ItemSentence { get; set; } = new ItemSentence();
+        public ItemSentence ItemSentence { get; set; } = new();
     }
 
     public class ItemSentence {
         [XmlElement("Sentence")]
-        public List<Sentence> Sentences { get; set; } = new List<Sentence>();
+        public List<Sentence> Sentences { get; set; } = new();
     }
 
     // -----------------------------
-    // ★ 附則（SupplProvision）
+    // SupplProvision（附則）
     // -----------------------------
     public class SupplProvision {
         [XmlElement("SupplProvisionLabel")]
         public string SupplProvisionLabel { get; set; } = "";
 
         [XmlElement("Article")]
-        public List<Article> Articles { get; set; } = new List<Article>();
+        public List<Article> Articles { get; set; } = new();
     }
 }

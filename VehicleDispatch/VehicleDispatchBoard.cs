@@ -463,10 +463,10 @@ namespace VehicleDispatch {
         }
 
         /// <summary>
-        /// VehicleDispatchDetailVoをList<StaffMasterVo>に変換する
+        /// VehicleDispatchDetailVoをList<StaffMasterVo> に変換する
         /// </summary>
-        /// <param name="vehicleDispatchDetailVo"></param>
-        /// <returns></returns>
+        /// <param name = "vehicleDispatchDetailVo" ></ param >
+        /// < returns ></ returns >
         private List<StaffMasterVo> ConvertStaffMasterVo(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
             List<StaffMasterVo> listStaffMasterVo = new();
             listStaffMasterVo.Add(GetStaffMasterVo(vehicleDispatchDetailVo.StaffCode1));
