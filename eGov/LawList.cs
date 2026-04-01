@@ -13,6 +13,7 @@ namespace EGov {
         private const int _col2 = 4;
         private const int _colLawArticle = 5;
         private const int _colLawParagraph = 6;
+        private const int _colLawItem = 7;
         /*
          * Screen
          */
@@ -56,6 +57,7 @@ namespace EGov {
             string lawNum = this.SheetViewList.Cells[e.Row, _colLawNum].Text;
             string lawArticle = this.SheetViewList.Cells[e.Row, _colLawArticle].Text;
             string lawParagraph = this.SheetViewList.Cells[e.Row, _colLawParagraph].Text;
+            string lawItem = this.SheetViewList.Cells[e.Row, _colLawItem].Text;
 
             if (string.IsNullOrWhiteSpace(lawTitle)) {
                 MessageBox.Show("法令名が空です。");
@@ -63,7 +65,7 @@ namespace EGov {
             }
 
             // ④ LawView を開く（あなたの既存コードに合わせる）
-            LawView lawView = new(lawTitle, lawNum, lawArticle, lawParagraph);
+            LawView lawView = new(lawTitle, lawNum, lawArticle, lawParagraph, lawItem);
             await lawView.InitializeAsync();
 
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lawView);

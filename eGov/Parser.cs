@@ -1,6 +1,9 @@
-﻿using System.Xml.Linq;
+﻿using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 using Vo;
+
+using static EGov.LawView;
 
 namespace EGov {
 
@@ -258,20 +261,19 @@ namespace EGov {
     }
 
     public sealed class ArticleParser : IParser<XElement, Article> {
-        private readonly ArticleNumNormalizer _numNormalizer = new();
-
         public Article Parse(XElement node) {
-            // ★ 条番号の正規化を適用
-            node = _numNormalizer.Normalize(node);
-
             var article = new Article {
                 Num = AttributeNormalizer.Get(node, "Num"),
                 Delete = AttributeNormalizer.Get(node, "Delete"),
                 Hide = AttributeNormalizer.Get(node, "Hide"),
                 ArticleCaption = ElementNormalizer.Get(node, "ArticleCaption"),
-                ArticleTitle = ElementNormalizer.Get(node, "ArticleTitle") // ← 正規化済み
+                ArticleTitle = ElementNormalizer.Get(node, "ArticleTitle")
             };
 
+            // ★ Num の揺れを完全吸収（ここが最重要）
+            article.Num = NormalizeArticleNum(article.Num, article.ArticleTitle);
+
+            // ★ Paragraph パース
             foreach (var pNode in node.Elements("Paragraph")) {
                 var para = new ParagraphParser().Parse(pNode);
                 article.Paragraphs.Add(para);
@@ -279,65 +281,229 @@ namespace EGov {
 
             return article;
         }
+
+        // ============================================================
+        // ★ Num 抽出ロジック（壊れない・揺れゼロ）
+        // ============================================================
+        private string NormalizeArticleNum(string? rawNum, string? articleTitle) {
+            // 1. XML の Num 属性がある場合（最優先）
+            if (!string.IsNullOrWhiteSpace(rawNum)) {
+                // 50_2 → 50-2
+                if (rawNum.Contains("_"))
+                    return rawNum.Replace("_", "-");
+
+                return rawNum;
+            }
+
+            // 2. Num 属性が無い場合 → ArticleTitle から抽出
+            if (string.IsNullOrWhiteSpace(articleTitle))
+                return "";
+
+            // 例：第五十条の二
+            var m = Regex.Match(articleTitle, @"第(.+?)条(?:の(.+))?");
+            if (!m.Success)
+                return "";
+
+            var left = m.Groups[1].Value;   // 五十
+            var right = m.Groups[2].Value;  // 二（存在しない場合もある）
+
+            if (string.IsNullOrWhiteSpace(right)) {
+                // 第五十条 → 50
+                return NumberConverter.KanjiOrNumberToInt(left).ToString();
+            } else {
+                // 第五十条の二 → 50-2
+                return $"{NumberConverter.KanjiOrNumberToInt(left)}-{NumberConverter.KanjiOrNumberToInt(right)}";
+            }
+        }
+    }
+
+    public sealed class ChapterParser : IParser<XElement, Chapter> {
+        public Chapter Parse(XElement node) {
+            var chapter = new Chapter {
+                Num = AttributeNormalizer.Get(node, "Num"),
+                ChapterTitle = ElementNormalizer.Get(node, "ChapterTitle")
+            };
+
+            chapter.Num = NormalizeChapterNum(chapter.Num, chapter.ChapterTitle);
+
+            foreach (var sNode in node.Elements("Section")) {
+                var section = new SectionParser().Parse(sNode);
+                chapter.Sections.Add(section);
+            }
+
+            foreach (var aNode in node.Elements("Article")) {
+                var article = new ArticleParser().Parse(aNode);
+                chapter.Articles.Add(article);
+            }
+
+            return chapter;
+        }
+
+        private string NormalizeChapterNum(string? rawNum, string? title) {
+            if (!string.IsNullOrWhiteSpace(rawNum))
+                return rawNum;
+
+            if (string.IsNullOrWhiteSpace(title))
+                return "";
+
+            // 例：第三章
+            var m = Regex.Match(title, @"第(.+?)章");
+            if (!m.Success)
+                return "";
+
+            return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
+        }
+    }
+
+    public sealed class SectionParser : IParser<XElement, Section> {
+        public Section Parse(XElement node) {
+            var section = new Section {
+                Num = AttributeNormalizer.Get(node, "Num"),
+                SectionTitle = ElementNormalizer.Get(node, "SectionTitle")
+            };
+
+            section.Num = NormalizeSectionNum(section.Num, section.SectionTitle);
+
+            foreach (var ssNode in node.Elements("Subsection")) {
+                var subsection = new SubsectionParser().Parse(ssNode);
+                section.Subsections.Add(subsection);
+            }
+
+            foreach (var aNode in node.Elements("Article")) {
+                var article = new ArticleParser().Parse(aNode);
+                section.Articles.Add(article);
+            }
+
+            return section;
+        }
+
+        private string NormalizeSectionNum(string? rawNum, string? title) {
+            if (!string.IsNullOrWhiteSpace(rawNum))
+                return rawNum;
+
+            if (string.IsNullOrWhiteSpace(title))
+                return "";
+
+            // 例：第一節
+            var m = Regex.Match(title, @"第(.+?)節");
+            if (!m.Success)
+                return "";
+
+            return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
+        }
+    }
+
+    public sealed class SubsectionParser : IParser<XElement, Subsection> {
+        public Subsection Parse(XElement node) {
+            var subsection = new Subsection {
+                Num = AttributeNormalizer.Get(node, "Num"),
+                SubsectionTitle = ElementNormalizer.Get(node, "SubsectionTitle")
+            };
+
+            subsection.Num = NormalizeSubsectionNum(subsection.Num, subsection.SubsectionTitle);
+
+            foreach (var aNode in node.Elements("Article")) {
+                var article = new ArticleParser().Parse(aNode);
+                subsection.Articles.Add(article);
+            }
+
+            return subsection;
+        }
+
+        private string NormalizeSubsectionNum(string? rawNum, string? title) {
+            if (!string.IsNullOrWhiteSpace(rawNum))
+                return rawNum;
+
+            if (string.IsNullOrWhiteSpace(title))
+                return "";
+
+            // 例：第一款
+            var m = Regex.Match(title, @"第(.+?)款");
+            if (!m.Success)
+                return "";
+
+            return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
+        }
     }
 
     public sealed class ParagraphParser : IParser<XElement, Paragraph> {
-        private readonly ParagraphNumNormalizer _numNormalizer = new();
-
         public Paragraph Parse(XElement node) {
-            // ★ ParagraphNumNormalizer を適用（XElement を正規化）
-            node = _numNormalizer.Normalize(node);
-
             var para = new Paragraph {
                 Num = AttributeNormalizer.Get(node, "Num"),
-                Hide = AttributeNormalizer.Get(node, "Hide"),
-                OldStyle = AttributeNormalizer.Get(node, "OldStyle"),
-                ParagraphCaption = ElementNormalizer.Get(node, "ParagraphCaption"),
-                ParagraphNum = ElementNormalizer.Get(node, "ParagraphNum")  // ← 正規化済み
+                ParagraphNum = ElementNormalizer.Get(node, "ParagraphNum")
             };
 
-            var ps = node.Element("ParagraphSentence");
-            if (ps != null) {
-                var pSentence = new ParagraphSentence();
-                foreach (var sNode in ps.Elements("Sentence")) {
-                    var sent = new SentenceParser().Parse(sNode);
-                    pSentence.Sentences.Add(sent);
-                }
-                para.ParagraphSentence = pSentence;
+            para.Num = NormalizeParagraphNum(para.Num, para.ParagraphNum);
+
+            foreach (var sNode in node.Elements("ParagraphSentence")) {
+                var sentence = new ParagraphSentenceParser().Parse(sNode);
+                para.ParagraphSentence = sentence;
             }
 
-            foreach (var itemNode in node.Elements("Item")) {
-                var item = new ItemParser().Parse(itemNode);
+            foreach (var iNode in node.Elements("Item")) {
+                var item = new ItemParser().Parse(iNode);
                 para.Items.Add(item);
             }
 
             return para;
         }
+
+        private string NormalizeParagraphNum(string? rawNum, string? title) {
+            if (!string.IsNullOrWhiteSpace(rawNum))
+                return rawNum;
+
+            if (string.IsNullOrWhiteSpace(title))
+                return "";
+
+            // 例：２
+            return NumberConverter.KanjiOrNumberToInt(title).ToString();
+        }
+    }
+
+    public sealed class ParagraphSentenceParser : IParser<XElement, ParagraphSentence> {
+        public ParagraphSentence Parse(XElement node) {
+            var ps = new ParagraphSentence();
+
+            // 1. 直接 Sentence がある場合
+            foreach (var sNode in node.Elements("Sentence")) {
+                var sent = new SentenceParser().Parse(sNode);
+                ps.Sentences.Add(sent);
+            }
+
+            // 2. Column の中に Sentence がある場合
+            foreach (var col in node.Elements("Column")) {
+                foreach (var sNode in col.Elements("Sentence")) {
+                    var sent = new SentenceParser().Parse(sNode);
+                    ps.Sentences.Add(sent);
+                }
+            }
+
+            return ps;
+        }
     }
 
     public sealed class ItemParser : IParser<XElement, Item> {
-        private readonly ItemNumNormalizer _numNormalizer = new();
-
         public Item Parse(XElement node) {
-            // ★ 号番号の正規化
-            node = _numNormalizer.Normalize(node);
-
             var item = new Item {
                 Num = AttributeNormalizer.Get(node, "Num"),
                 ItemTitle = ElementNormalizer.Get(node, "ItemTitle")
             };
 
+            // ★ Num の揺れを完全吸収
+            item.Num = NormalizeItemNum(item.Num, item.ItemTitle);
+
+            // ★ ItemSentence パース（Column 対応）
             var isNode = node.Element("ItemSentence");
             if (isNode != null) {
                 var isent = new ItemSentence();
 
-                // ★ 1. 直接 Sentence がある場合（普通の法令XML）
+                // 1. 直接 Sentence
                 foreach (var sNode in isNode.Elements("Sentence")) {
                     var sent = new SentenceParser().Parse(sNode);
                     isent.Sentences.Add(sent);
                 }
 
-                // ★ 2. Column の中に Sentence がある場合（災害対策基本法など）
+                // 2. Column の中の Sentence
                 foreach (var col in isNode.Elements("Column")) {
                     foreach (var sNode in col.Elements("Sentence")) {
                         var sent = new SentenceParser().Parse(sNode);
@@ -349,6 +515,22 @@ namespace EGov {
             }
 
             return item;
+        }
+
+        // ============================================================
+        // ★ Num 抽出ロジック（壊れない・揺れゼロ）
+        // ============================================================
+        private string NormalizeItemNum(string? rawNum, string? title) {
+            // 1. XML の Num 属性がある場合（最優先）
+            if (!string.IsNullOrWhiteSpace(rawNum))
+                return rawNum;
+
+            // 2. Num が無い場合 → ItemTitle から抽出
+            if (string.IsNullOrWhiteSpace(title))
+                return "";
+
+            // 例：一 → 1
+            return NumberConverter.KanjiOrNumberToInt(title).ToString();
         }
     }
 
@@ -364,6 +546,4 @@ namespace EGov {
             return sentence;
         }
     }
-
-
 }

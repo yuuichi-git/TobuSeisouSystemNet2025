@@ -203,47 +203,6 @@ namespace EGov {
         }
     }
 
-    public sealed class ArticleNumNormalizer : INormalizer<XElement, XElement> {
-        public XElement Normalize(XElement article) {
-            if (article == null)
-                return new XElement("Article");
-
-            string raw = (string?)article.Element("ArticleTitle") ?? "";
-            string numAttr = (string?)article.Attribute("Num") ?? "0";
-
-            int num = int.TryParse(numAttr, out var n) ? n : 0;
-
-            string normalized = NormalizeArticleNum(raw, num);
-
-            article.SetElementValue("ArticleTitle", normalized);
-
-            return article;
-        }
-
-        private string NormalizeArticleNum(string raw, int num) {
-            // 空 → 第n条
-            if (string.IsNullOrWhiteSpace(raw))
-                return $"第{num}条";
-
-            // 「第○条」形式 → そのまま
-            if (Regex.IsMatch(raw, @"^第[一二三四五六七八九十百千0-9０-９]+条$"))
-                return raw;
-
-            // 全角数字 → 半角数字
-            string half = Microsoft.VisualBasic.Strings.StrConv(raw, Microsoft.VisualBasic.VbStrConv.Narrow);
-
-            // 数字だけ → 第n条
-            if (Regex.IsMatch(half, @"^[0-9]+$"))
-                return $"第{half}条";
-
-            // 漢数字だけ → 第n条
-            if (Regex.IsMatch(raw, @"^[一二三四五六七八九十百千]+$"))
-                return $"第{raw}条";
-
-            return raw;
-        }
-    }
-
     public sealed class ItemNumNormalizer : INormalizer<XElement, XElement> {
         public XElement Normalize(XElement item) {
             if (item == null)
@@ -281,6 +240,5 @@ namespace EGov {
             return raw;
         }
     }
-
 
 }
