@@ -190,12 +190,15 @@ namespace EGov {
                 // ArticleTitle が空の場合は「第○条」を生成する。
                 // 附則の場合は prefix を付けて「附則 第○条」にする。
                 // ============================================================
-                string articleTitle =
-                    string.IsNullOrEmpty(article.ArticleTitle)
-                        ? $"{prefix}第{ToKanjiFlexible(article.Num)}条"
-                        : $"{prefix}{article.ArticleTitle}";
+                string articleTitle = string.IsNullOrEmpty(article.ArticleTitle)
+                                        ? $"{prefix}第{ToKanjiFlexible(article.Num)}条"
+                                        : $"{prefix}{article.ArticleTitle}";
 
                 var articleNode = CreateNode(articleTitle, article);
+
+                // ★ 正規化キーを設定（117_2_2 → 117-2-2）
+                articleNode.Name = NormalizeArticleLoose(article.Num);
+
                 parent.Nodes.Add(articleNode);
 
                 // ============================================================
@@ -219,6 +222,7 @@ namespace EGov {
                     }
 
                     var paraNode = CreateNode(paraTitle, para);
+                    paraNode.Name = NormalizeParagraphLoose(para.Num);       // ★追加
                     articleNode.Nodes.Add(paraNode);
 
                     // ============================================================
@@ -236,6 +240,7 @@ namespace EGov {
                         string itemTitle = ToKanjiFlexible(item.Num, isItem: true);
 
                         var itemNode = CreateNode(itemTitle, item);
+                        itemNode.Name = NormalizeItemLoose(item.Num);            // ★追加
                         paraNode.Nodes.Add(itemNode);
 
                         foreach (var s in item.ItemSentence.Sentences)
@@ -469,7 +474,7 @@ namespace EGov {
             if (paragraphNode == null)
                 return;
             // ハイライト＋展開
-            SelectAndHighlight(paragraphNode);
+            SelectAndHighlight(articleNode);
 
             // ★ 号が指定されていない場合 → 項だけハイライトして終了
             if (_lawItem == null)
@@ -484,23 +489,20 @@ namespace EGov {
         }
 
         private TreeNode? FindArticleNodeStrict(TreeNodeCollection nodes, string target) {
-            // ★ target を揺れゼロ化（50, 50-2 など）
             string normalizedTarget = NormalizeArticleLoose(target);
 
             foreach (TreeNode node in nodes) {
-                if (IsArticleNode(node)) {
-                    // ★ node.Text も揺れゼロ化
-                    string normalizedNode = NormalizeArticleLoose(node.Text);
-
-                    if (normalizedNode == normalizedTarget)
+                // ★ 条ノード判定は Tag でやる
+                if (node.Tag is Article) {
+                    // ★ Text を正規化するのではなく、Name（＝正規化キー）と比較する
+                    if (node.Name == normalizedTarget)
                         return node;
                 }
 
                 // 項・号はスキップ（条の下だけ検索）
-                if (IsParagraphNode(node) || IsItemNode(node))
+                if (node.Tag is Paragraph || node.Tag is Item)
                     continue;
 
-                // 再帰
                 var child = FindArticleNodeStrict(node.Nodes, normalizedTarget);
                 if (child != null)
                     return child;
@@ -528,27 +530,31 @@ namespace EGov {
             // 全角数字 → 半角数字
             s = ToHalfWidthDigits(s);
 
-            // 「の」で枝番を分離（例：五十の二）
+            // 「の」で枝番をすべて分離（例：百十七の二の二）
             if (s.Contains("の")) {
                 var parts = s.Split('の');
-                return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
+                var normalizedParts = parts.Select(p => NormalizeNumber(p));
+                return string.Join("-", normalizedParts);
             }
 
-            // アンダースコア（50_2）
+            // アンダースコア（117_2_2）
             if (s.Contains("_")) {
                 var parts = s.Split('_');
-                return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
+                var normalizedParts = parts.Select(p => NormalizeNumber(p));
+                return string.Join("-", normalizedParts);
             }
 
-            // ハイフン（50-2）
+            // ハイフン（117-2-2）
             if (s.Contains("-")) {
                 var parts = s.Split('-');
-                return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
+                var normalizedParts = parts.Select(p => NormalizeNumber(p));
+                return string.Join("-", normalizedParts);
             }
 
             // 単独の条番号
             return NormalizeNumber(s);
         }
+
 
         private string NormalizeNumber(string s) {
             // 数字ならそのまま
@@ -560,17 +566,13 @@ namespace EGov {
         }
 
         private TreeNode? FindParagraphNodeStrict(TreeNode articleNode, string targetParagraph) {
-            // ★ targetParagraph を揺れゼロ化（数字だけにする）
             string normalizedTarget = NormalizeParagraphLoose(targetParagraph);
 
             foreach (TreeNode node in articleNode.Nodes) {
-                if (!IsParagraphNode(node))
+                if (node.Tag is not Paragraph)
                     continue;
 
-                // ★ node.Text も揺れゼロ化
-                string normalizedNode = NormalizeParagraphLoose(node.Text);
-
-                if (normalizedNode == normalizedTarget)
+                if (node.Name == normalizedTarget)
                     return node;
             }
 
@@ -581,12 +583,10 @@ namespace EGov {
             string normalizedTarget = NormalizeItemLoose(targetItem);
 
             foreach (TreeNode node in paragraphNode.Nodes) {
-                if (!IsItemNode(node))
+                if (node.Tag is not Item)
                     continue;
 
-                string normalizedNode = NormalizeItemLoose(node.Text);
-
-                if (normalizedNode == normalizedTarget)
+                if (node.Name == normalizedTarget)
                     return node;
             }
 
