@@ -75,6 +75,8 @@ namespace Collection {
             collectionWeightTaitouVo.Weight7Total = (int)this.NumericUpDownEx7.Value;
             collectionWeightTaitouVo.Weight8Total = (int)this.NumericUpDownEx8.Value;
             collectionWeightTaitouVo.Weight9Total = (int)this.NumericUpDownEx9.Value;
+            collectionWeightTaitouVo.Weight10Total = (int)this.NumericUpDownEx10.Value;
+            collectionWeightTaitouVo.Weight11Total = (int)this.NumericUpDownEx11.Value;
             if (_CollectionWeightTaitouDao.ExistenceCollectionWeightTaitou(this.DateTimePickerExOperationDate.GetDate())) {
                 try {
                     int count = _CollectionWeightTaitouDao.UpdateOneCollectionWeightTaitou(collectionWeightTaitouVo);
@@ -120,6 +122,8 @@ namespace Collection {
             this.NumericUpDownEx7.Value = 0;
             this.NumericUpDownEx8.Value = 0;
             this.NumericUpDownEx9.Value = 0;
+            this.NumericUpDownEx10.Value = 0;
+            this.NumericUpDownEx11.Value = 0;
         }
 
         /// <summary>
@@ -141,6 +145,8 @@ namespace Collection {
                     this.NumericUpDownEx7.Value = _collectionWeightTaitouVo.Weight7Total;
                     this.NumericUpDownEx8.Value = _collectionWeightTaitouVo.Weight8Total;
                     this.NumericUpDownEx9.Value = _collectionWeightTaitouVo.Weight9Total;
+                    this.NumericUpDownEx10.Value = _collectionWeightTaitouVo.Weight10Total;
+                    this.NumericUpDownEx11.Value = _collectionWeightTaitouVo.Weight11Total;
                 } catch (Exception exception) {
                     MessageBox.Show(exception.Message);
                 }

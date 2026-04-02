@@ -120,17 +120,26 @@ namespace Collection {
                         break;
                 }
                 if (collectionWeightTaitouVo is not null) {
+                    // 東武１
                     this.SheetViewList.Cells[rowNumber, 2].Value = collectionWeightTaitouVo.Weight1Total;
                     this.SheetViewList.Cells[rowNumber, 3].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310602).ToString("HH:mm");
+                    // 東武２
                     this.SheetViewList.Cells[rowNumber, 4].Value = collectionWeightTaitouVo.Weight2Total;
                     this.SheetViewList.Cells[rowNumber, 5].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310603).ToString("HH:mm");
-                    this.SheetViewList.Cells[rowNumber, 6].Value = collectionWeightTaitouVo.Weight3Total;
-                    this.SheetViewList.Cells[rowNumber, 7].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310604).ToString("HH:mm");
-                    this.SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight4Total;
-                    this.SheetViewList.Cells[rowNumber, 9].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310608).ToString("HH:mm");
+                    // 東武臨時１
+                    this.SheetViewList.Cells[rowNumber, 6].Value = collectionWeightTaitouVo.Weight4Total;
+                    this.SheetViewList.Cells[rowNumber, 7].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310609).ToString("HH:mm");
+                    // 東武臨時２
+                    this.SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight5Total;
+                    this.SheetViewList.Cells[rowNumber, 9].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310610).ToString("HH:mm");
+                    // 三東
                     this.SheetViewList.Cells[rowNumber, 10].Value = collectionWeightTaitouVo.Weight6Total;
                     this.SheetViewList.Cells[rowNumber, 11].Value = collectionWeightTaitouVo.Weight7Total;
                     this.SheetViewList.Cells[rowNumber, 12].Value = collectionWeightTaitouVo.Weight8Total;
+                    this.SheetViewList.Cells[rowNumber, 13].Value = collectionWeightTaitouVo.Weight9Total;
+                    //　高嶺
+                    this.SheetViewList.Cells[rowNumber, 14].Value = collectionWeightTaitouVo.Weight10Total;
+                    this.SheetViewList.Cells[rowNumber, 15].Value = collectionWeightTaitouVo.Weight11Total;
                 }
                 rowNumber++;
             }
@@ -199,11 +208,19 @@ namespace Collection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
-            // 印刷ページ（1ページ目）の描画を行う
-            Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-            // e.Graphicsへ出力(page パラメータは、０からではなく１から始まります)
-            this.SpreadList.OwnerPrintDraw(e.Graphics, rectangle, 0, 1);
-            // 印刷終了を指定
+            // 印刷可能領域（余白を除いた領域）を使う
+            RectangleF printable = e.PageSettings.PrintableArea;
+
+            Rectangle rect = new Rectangle(
+                (int)printable.X,
+                (int)printable.Y,
+                (int)printable.Width,
+                (int)printable.Height
+            );
+
+            // Spread を A4 横いっぱいに描画
+            this.SpreadList.OwnerPrintDraw(e.Graphics, rect, 0, 1);
+
             e.HasMorePages = false;
         }
 
@@ -215,7 +232,7 @@ namespace Collection {
         private void InitializeSheetView(SheetView sheetView) {
             this.SpreadList.AllowDragDrop = false;                              // DrugDropを禁止する
             this.SpreadList.PaintSelectionHeader = false;                       // ヘッダの選択状態をしない
-            this.SheetViewList.ClearRange(1, 0, 31, 13, true);                  // Cell範囲をClear
+            this.SheetViewList.ClearRange(1, 0, 31, 16, true);                  // Cell範囲をClear
         }
 
         /// <summary>

@@ -95,9 +95,9 @@
             this.labelEx2.AutoSize = true;
             this.labelEx2.Location = new Point(156, 20);
             this.labelEx2.Name = "labelEx2";
-            this.labelEx2.Size = new Size(31, 15);
+            this.labelEx2.Size = new Size(43, 15);
             this.labelEx2.TabIndex = 9;
-            this.labelEx2.Text = "年分";
+            this.labelEx2.Text = "年度分";
             // 
             // labelEx1
             // 
@@ -111,17 +111,18 @@
             // NumericUpDownExYear
             // 
             this.NumericUpDownExYear.Location = new Point(104, 16);
-            this.NumericUpDownExYear.Maximum = new decimal(new int[] { 2029, 0, 0, 0 });
-            this.NumericUpDownExYear.Minimum = new decimal(new int[] { 2024, 0, 0, 0 });
+            this.NumericUpDownExYear.Maximum = new decimal(new int[] { 2027, 0, 0, 0 });
+            this.NumericUpDownExYear.Minimum = new decimal(new int[] { 2025, 0, 0, 0 });
             this.NumericUpDownExYear.Name = "NumericUpDownExYear";
             this.NumericUpDownExYear.Size = new Size(50, 23);
             this.NumericUpDownExYear.TabIndex = 7;
             this.NumericUpDownExYear.TextAlign = HorizontalAlignment.Right;
-            this.NumericUpDownExYear.Value = new decimal(new int[] { 2025, 0, 0, 0 });
+            this.NumericUpDownExYear.Value = new decimal(new int[] { 2026, 0, 0, 0 });
             // 
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(656, 10);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";

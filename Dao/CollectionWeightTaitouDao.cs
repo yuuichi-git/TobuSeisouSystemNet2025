@@ -62,6 +62,8 @@ namespace Dao {
                                             "Weight7Total," +
                                             "Weight8Total," +
                                             "Weight9Total," +
+                                            "Weight10Total," +
+                                            "Weight11Total," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -85,6 +87,8 @@ namespace Dao {
                         hCollectionWeightTaitouVo.Weight7Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight7Total"]);
                         hCollectionWeightTaitouVo.Weight8Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight8Total"]);
                         hCollectionWeightTaitouVo.Weight9Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight9Total"]);
+                        hCollectionWeightTaitouVo.Weight10Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight10Total"]);
+                        hCollectionWeightTaitouVo.Weight11Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight11Total"]);
                         hCollectionWeightTaitouVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                         hCollectionWeightTaitouVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                         hCollectionWeightTaitouVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -119,6 +123,8 @@ namespace Dao {
                                             "Weight7Total," +
                                             "Weight8Total," +
                                             "Weight9Total," +
+                                            "Weight10Total," +
+                                            "Weight11Total," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -142,6 +148,8 @@ namespace Dao {
                         hCollectionWeightTaitouVo.Weight7Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight7Total"]);
                         hCollectionWeightTaitouVo.Weight8Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight8Total"]);
                         hCollectionWeightTaitouVo.Weight9Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight9Total"]);
+                        hCollectionWeightTaitouVo.Weight10Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight10Total"]);
+                        hCollectionWeightTaitouVo.Weight11Total = _defaultValue.GetDefaultValue<int>(sqlDataReader["Weight11Total"]);
                         hCollectionWeightTaitouVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                         hCollectionWeightTaitouVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                         hCollectionWeightTaitouVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -175,6 +183,8 @@ namespace Dao {
                                                                           "Weight7Total," +
                                                                           "Weight8Total," +
                                                                           "Weight9Total," +
+                                                                          "Weight10Total," +
+                                                                          "Weight11Total," +
                                                                           "InsertPcName," +
                                                                           "InsertYmdHms," +
                                                                           "UpdatePcName," +
@@ -192,6 +202,8 @@ namespace Dao {
                                               "" + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight7Total) + "," +
                                               "" + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight8Total) + "," +
                                               "" + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight9Total) + "," +
+                                              "" + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight10Total) + "," +
+                                              "" + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight11Total) + "," +
                                              "'" + Environment.MachineName + "'," +
                                              "'" + DateTime.Today + "'," +
                                              "'" + string.Empty + "'," +
@@ -225,6 +237,8 @@ namespace Dao {
                                          "Weight7Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight7Total) + "," +
                                          "Weight8Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight8Total) + "," +
                                          "Weight9Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight9Total) + "," +
+                                         "Weight10Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight10Total) + "," +
+                                         "Weight11Total = " + _defaultValue.GetDefaultValue<int>(collectionWeightTaitouVo.Weight11Total) + "," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Today + "' " +
                                      "WHERE OperationDate = '" + collectionWeightTaitouVo.OperationDate.Date + "'";
@@ -280,8 +294,9 @@ namespace Dao {
             /*
              * 1310602 台東資源1
              * 1310603 台東資源2
-             * 1310604 台東資源4
-             * 1310606 台東資源臨
+             * 1310604 台東資源4(2026年度から高嶺に移行した)
+             * 1310609 台東資源臨１
+             * 1310610 台東資源臨２
              */
             DateTime targetYmd = new DateTime(year, month, 01);
             string staYmd = string.Concat(targetYmd.Year, "/", targetYmd.Month, "/01");

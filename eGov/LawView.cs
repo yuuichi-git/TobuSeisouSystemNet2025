@@ -15,22 +15,19 @@ namespace EGov {
         private const string INDENT1 = "    ";
         private const string INDENT2 = "        ";
 
-        private readonly Dictionary<string, string> _dictionaryLawType = new()
-        {
-            { "Constitution",        "憲法" },
-            { "Act",                 "法律" },
-            { "CabinetOrder",        "政令" },
-            { "ImperialOrder",       "勅令" },
-            { "MinisterialOrdinance","府省令" },
-            { "Rule",                "規則" },
-            { "Misc",                "その他" }
-        };
-
         private readonly string _lawTitle;
         private readonly string _lawNum;
         private readonly string? _lawArticle;
         private readonly string? _lawParagraph;
         private readonly string? _lawItem;
+
+        private readonly Dictionary<string, string> _dictionaryLawType = new(){{ "Constitution",        "憲法" },
+                                                                               { "Act",                 "法律" },
+                                                                               { "CabinetOrder",        "政令" },
+                                                                               { "ImperialOrder",       "勅令" },
+                                                                               { "MinisterialOrdinance","府省令" },
+                                                                               { "Rule",                "規則" },
+                                                                               { "Misc",                "その他" }};
 
         // ============================================================
         // ★ コンストラクタ
@@ -42,17 +39,20 @@ namespace EGov {
             _lawParagraph = lawParagraph;
             _lawItem = lawItem;
 
+            /*
+             * InitializeControl
+             */
             InitializeComponent();
 
-            CcTextBoxLawId.Text = "";
-            CcTextBoxLawNum.Text = "";
-            CcTextBoxLawArticle.Text = "";
-            CcTextBoxLawParagraph.Text = "";
-            CcTextBoxLawType.Text = "";
-            CcTextBoxLawTitle.Text = "";
-            CcTextBoxLawItem.Text = "";
+            this.CcTextBoxLawId.Text = "";
+            this.CcTextBoxLawNum.Text = "";
+            this.CcTextBoxLawArticle.Text = "";
+            this.CcTextBoxLawParagraph.Text = "";
+            this.CcTextBoxLawType.Text = "";
+            this.CcTextBoxLawTitle.Text = "";
+            this.CcTextBoxLawItem.Text = "";
 
-            CcTreeView1.AfterSelect += CcTreeView1_AfterSelect;
+            this.CcTreeView1.AfterSelect += CcTreeView1_AfterSelect;
         }
 
         // ============================================================
@@ -67,38 +67,39 @@ namespace EGov {
 
             var lawDataResponse = new LawParser().Parse(xDocument);
 
-            CcTextBoxLawId.Text = lawDataResponse.LawInfo.LawId;
-            CcTextBoxLawNum.Text = lawDataResponse.LawInfo.LawNum;
-            CcTextBoxLawArticle.Text = _lawArticle ?? "";
-            CcTextBoxLawParagraph.Text = _lawParagraph ?? "";
-            CcTextBoxLawItem.Text = _lawItem ?? "";
-            CcTextBoxLawType.Text = _dictionaryLawType[lawDataResponse.LawInfo.LawType];
-            CcTextBoxLawTitle.Text = lawDataResponse.RevisionInfo.LawTitle;
+            this.CcTextBoxLawId.Text = lawDataResponse.LawInfo.LawId;
+            this.CcTextBoxLawNum.Text = lawDataResponse.LawInfo.LawNum;
+            this.CcTextBoxLawArticle.Text = _lawArticle ?? "";
+            this.CcTextBoxLawParagraph.Text = _lawParagraph ?? "";
+            this.CcTextBoxLawItem.Text = _lawItem ?? "";
+            this.CcTextBoxLawType.Text = _dictionaryLawType[lawDataResponse.LawInfo.LawType];
+            this.CcTextBoxLawTitle.Text = lawDataResponse.RevisionInfo.LawTitle;
 
-            InitializeTreeView(lawDataResponse);
-            JumpToInitialPosition();
+            this.InitializeTreeView(lawDataResponse);
+            this.JumpToInitialPosition();
         }
 
         // ============================================================
         // ★ TreeView 初期化
         // ============================================================
         private void InitializeTreeView(LawDataResponse lawDataResponse) {
-            CcTreeView1.BeginUpdate();
-            CcTreeView1.Nodes.Clear();
+            this.CcTreeView1.BeginUpdate();
+            this.CcTreeView1.Nodes.Clear();
 
-            TreeNode root = new TreeNode(lawDataResponse.RevisionInfo.LawTitle) {
-                Tag = lawDataResponse
-            };
-            CcTreeView1.Nodes.Add(root);
+            /*
+             * RootNodeを作成
+             */
+            TreeNode rootNode = new(lawDataResponse.RevisionInfo.LawTitle);
+            rootNode.Tag = lawDataResponse;
+            this.CcTreeView1.Nodes.Add(rootNode);
 
             var law = lawDataResponse.LawFullText.Law;
             var body = law.LawBody;
 
             // 本文
-            TreeNode mainNode = new TreeNode("本文") {
-                Tag = body.MainProvision
-            };
-            root.Nodes.Add(mainNode);
+            TreeNode mainNode = new("本文");
+            mainNode.Tag = body.MainProvision;
+            rootNode.Nodes.Add(mainNode);
 
             AddMainProvision(mainNode, body.MainProvision);
 
@@ -108,41 +109,37 @@ namespace EGov {
                     ? "附則"
                     : body.SupplProvision.SupplProvisionLabel;
 
-                TreeNode supplNode = new TreeNode(supplLabel) {
-                    Tag = body.SupplProvision
-                };
-                root.Nodes.Add(supplNode);
+                TreeNode supplNode = new(supplLabel);
+                supplNode.Tag = body.SupplProvision;
+                rootNode.Nodes.Add(supplNode);
 
                 AddArticles(supplNode, body.SupplProvision.Articles);
             }
 
-            root.Expand();
-            CcTreeView1.EndUpdate();
+            rootNode.Expand();
+            this.CcTreeView1.EndUpdate();
         }
 
-        // ============================================================
-        // ★ AddMainProvision（章・節・款・条を追加）
-        // ============================================================
+        /// <summary>
+        /// 本則
+        /// AddMainProvision（章・節・款・条を追加）
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="main"></param>
         private void AddMainProvision(TreeNode parent, MainProvision main) {
             foreach (var chapter in main.Chapters) {
-                var chapterNode = CreateNode(
-                    $"第{ToKanjiFlexible(chapter.Num)}章 {chapter.ChapterTitle}",
-                    chapter
-                );
+                var chapterTitle = $"{chapter.ChapterTitle}";
+                var chapterNode = CreateNode(chapterTitle, chapter);
                 parent.Nodes.Add(chapterNode);
 
                 foreach (var section in chapter.Sections) {
-                    var sectionNode = CreateNode(
-                        $"第{ToKanjiFlexible(section.Num)}節 {section.SectionTitle}",
-                        section
-                    );
+                    var sectionTitle = $"{section.SectionTitle}";
+                    var sectionNode = CreateNode(sectionTitle, section);
                     chapterNode.Nodes.Add(sectionNode);
 
                     foreach (var subsection in section.Subsections) {
-                        var subsectionNode = CreateNode(
-                            $"第{ToKanjiFlexible(subsection.Num)}款 {subsection.SubsectionTitle}",
-                            subsection
-                        );
+                        var subsectionTitle = $"{subsection.SubsectionTitle}";
+                        var subsectionNode = CreateNode(subsectionTitle, subsection);
                         sectionNode.Nodes.Add(subsectionNode);
 
                         AddArticles(subsectionNode, subsection.Articles);
@@ -183,22 +180,24 @@ namespace EGov {
             // ============================================================
             string prefix = parent.Tag is SupplProvision ? "附則 " : "";
 
+            // ============================================================
+            // 条（Article）の追加
+            // ============================================================
             foreach (var article in articles) {
-                // ============================================================
-                // ★ 条タイトルの揺れ吸収
-                //
-                // ArticleTitle が空の場合は「第○条」を生成する。
-                // 附則の場合は prefix を付けて「附則 第○条」にする。
-                // ============================================================
-                string articleTitle = string.IsNullOrEmpty(article.ArticleTitle)
-                                        ? $"{prefix}第{ToKanjiFlexible(article.Num)}条"
-                                        : $"{prefix}{article.ArticleTitle}";
+                // ★ 条タイトルの揺れ吸収 + Caption 表示
+                string baseTitle = string.IsNullOrEmpty(article.ArticleTitle)
+                    ? $"{prefix}第{ToKanjiFlexible(article.Num)}条"
+                    : $"{prefix}{article.ArticleTitle}";
+
+                // ★ ArticleCaption（例：〈点呼等〉）を右側に付ける
+                string caption = string.IsNullOrWhiteSpace(article.ArticleCaption)
+                    ? ""
+                    : $"{article.ArticleCaption}";
+
+                string articleTitle = baseTitle + caption;
 
                 var articleNode = CreateNode(articleTitle, article);
-
-                // ★ 正規化キーを設定（117_2_2 → 117-2-2）
                 articleNode.Name = NormalizeArticleLoose(article.Num);
-
                 parent.Nodes.Add(articleNode);
 
                 // ============================================================
@@ -474,7 +473,7 @@ namespace EGov {
             if (paragraphNode == null)
                 return;
             // ハイライト＋展開
-            SelectAndHighlight(articleNode);
+            SelectAndHighlight(paragraphNode);
 
             // ★ 号が指定されていない場合 → 項だけハイライトして終了
             if (_lawItem == null)

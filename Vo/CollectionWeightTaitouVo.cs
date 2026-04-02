@@ -20,6 +20,8 @@ namespace Vo {
         private int _weight7Total;
         private int _weight8Total;
         private int _weight9Total;
+        private int _weight10Total;
+        private int _weight11Total;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -87,14 +89,14 @@ namespace Vo {
             set => this._lastRollCallYmdHms2 = value;
         }
         /// <summary>
-        /// 東武４組
+        /// 東武４組(２０２６年度から高嶺に移行するため、２０２５年度までの運用)
         /// </summary>
         public int Weight3Total {
             get => _weight3Total;
             set => _weight3Total = value;
         }
         /// <summary>
-        /// 東武４組　最終空け日時
+        /// 東武４組　最終空け日時(２０２６年度から高嶺に移行するため、２０２５年度までの運用)
         /// </summary>
         public DateTime LastRollCallYmdHms3 {
             get => this._lastRollCallYmdHms3;
@@ -150,12 +152,20 @@ namespace Vo {
             set => this._weight8Total = value;
         }
         /// <summary>
-        /// 臨時２
+        /// 臨時軽
         /// </summary>
         public int Weight9Total {
             get => this._weight9Total;
             set => this._weight9Total = value;
         }
+        /// <summary>
+        /// 高嶺４組
+        /// </summary>
+        public int Weight10Total { get => this._weight10Total; set => this._weight10Total = value; }
+        /// <summary>
+        /// 高嶺臨時
+        /// </summary>
+        public int Weight11Total { get => this._weight11Total; set => this._weight11Total = value; }
         public string InsertPcName {
             get => _insertPcName;
             set => _insertPcName = value;

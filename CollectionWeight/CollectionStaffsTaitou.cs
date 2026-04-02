@@ -35,8 +35,8 @@ namespace Collection {
         /// </summary>
         private Dictionary<int, int> _dictionaryGroup = new() { {1310602, 0},
                                                                 {1310603, 1},
-                                                                {1310604, 3},
-                                                                {1310608, 5}};
+                                                                {1310609, 2},
+                                                                {1310610, 3}};
         /// <summary>
         /// 月と_dictionaryPointの紐づけ
         /// </summary>
@@ -113,13 +113,13 @@ namespace Collection {
 
             DateTime selectDateTime = new((int)NumericUpDownExYear.Value, 4, 1);
             /*
-             * 対象配車先の割当て(2025年度)
-             * 1310602　１組
-             * 1310603　２組
-             * 1310604　４組
-             * 1310605　臨時
+             * 1310602 台東資源1
+             * 1310603 台東資源2
+             * 1310604 台東資源4(2026年度から高嶺に移行した)
+             * 1310609 台東資源臨１
+             * 1310610 台東資源臨２
              */
-            Dictionary<int, int> _dictionaryTargetSetCode = new() { { 0, 1310602 }, { 1, 1310603 }, { 2, 1310604 }, { 3, 1310608 } };
+            Dictionary<int, int> _dictionaryTargetSetCode = new() { { 0, 1310602 }, { 1, 1310603 }, { 2, 1310609 }, { 3, 1310610 } };
             /*
              * １年分のデータ処理
              */

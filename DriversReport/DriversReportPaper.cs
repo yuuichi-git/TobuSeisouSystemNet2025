@@ -235,11 +235,12 @@ namespace DriversReport {
                 case 1312013:                                                                                               // 石神井不燃５
                     sheetView.Cells[10, 17].Text = "田中駐車場 /"; // 休憩場所
                     break;
-                case 1312161:                                                                                               // 足立１６
-                case 1312162:                                                                                               // 足立２２
-                case 1312164:                                                                                               // 足立２３(２０２４)
-                case 1312163:                                                                                               // 足立３７
-                case 1312105:                                                                                               // 足立不燃４
+                case 1312171:                                                                                               // 足立１
+                case 1312170:                                                                                               // 足立５
+                case 1312174:                                                                                               // 足立１４
+                case 1312172:                                                                                               // 足立３３
+                case 1312173:                                                                                               // 足立３４
+                case 1312169:                                                                                               // 足立８
                     sheetView.Cells[10, 17].Text = "足立清掃工場 /"; // 休憩場所
                     break;
                 case 1312212:                                                                                               // 小岩６
@@ -258,7 +259,7 @@ namespace DriversReport {
                 case 1310417:                                                                                               // 新宿２－５１
                     sheetView.Cells[10, 17].Text = "新宿清掃事務所　駐車場 /";// 休憩場所
                     break;
-                case 1311507:                                                                                               // 方南２３３
+                case 1311512:                                                                                               // 方南８１８
                 case 1311511:                                                                                               // 方南２３２
                     sheetView.Cells[10, 17].Text = "杉並清掃工場 /";// 休憩場所
                     break;

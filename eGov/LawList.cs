@@ -8,12 +8,11 @@ namespace EGov {
     public partial class LawList : Form {
         private const int _colNo = 0;
         private const int _colLawTitle = 1;
-        private const int _colLawNum = 2;
-        private const int _col1 = 3;
-        private const int _col2 = 4;
-        private const int _colLawArticle = 5;
-        private const int _colLawParagraph = 6;
-        private const int _colLawItem = 7;
+        private const int _colLawSubTitle = 2;
+        private const int _colLawNum = 3;
+        private const int _colLawArticle = 4;
+        private const int _colLawParagraph = 5;
+        private const int _colLawItem = 6;
         /*
          * Screen
          */

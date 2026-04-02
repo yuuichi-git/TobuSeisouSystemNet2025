@@ -31,6 +31,11 @@
             this.labelEx10 = new ControlEx.CcLabel();
             this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
             this.PanelExMiddle = new ControlEx.CcPanel();
+            this.groupBoxEx3 = new ControlEx.GroupBoxEx();
+            this.NumericUpDownEx11 = new ControlEx.NumericUpDownEx();
+            this.NumericUpDownEx10 = new ControlEx.NumericUpDownEx();
+            this.ccLabel2 = new ControlEx.CcLabel();
+            this.ccLabel4 = new ControlEx.CcLabel();
             this.groupBoxEx2 = new ControlEx.GroupBoxEx();
             this.NumericUpDownEx8 = new ControlEx.NumericUpDownEx();
             this.NumericUpDownEx7 = new ControlEx.NumericUpDownEx();
@@ -54,6 +59,9 @@
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExMiddle.SuspendLayout();
+            this.groupBoxEx3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx11).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx10).BeginInit();
             this.groupBoxEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx7).BeginInit();
@@ -84,23 +92,23 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(572, 441);
+            this.TableLayoutPanelExBase.Size = new Size(728, 414);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(572, 24);
+            this.MenuStripEx1.Size = new Size(728, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 419);
+            this.StatusStripEx1.Location = new Point(0, 392);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(572, 22);
+            this.StatusStripEx1.Size = new Size(728, 22);
             this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
@@ -110,18 +118,20 @@
             this.PanelExUp.Controls.Add(this.ButtonExUpdate);
             this.PanelExUp.Controls.Add(this.labelEx10);
             this.PanelExUp.Controls.Add(this.DateTimePickerExOperationDate);
+            this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(566, 54);
+            this.PanelExUp.Size = new Size(722, 54);
             this.PanelExUp.TabIndex = 2;
             // 
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Location = new Point(392, 8);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            this.ButtonExUpdate.Location = new Point(500, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(148, 36);
+            this.ButtonExUpdate.Size = new Size(184, 32);
             this.ButtonExUpdate.TabIndex = 1;
             this.ButtonExUpdate.Text = "Update";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
@@ -152,13 +162,69 @@
             // PanelExMiddle
             // 
             this.PanelExMiddle.BorderStyle = BorderStyle.Fixed3D;
+            this.PanelExMiddle.Controls.Add(this.groupBoxEx3);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx2);
             this.PanelExMiddle.Controls.Add(this.groupBoxEx1);
             this.PanelExMiddle.Dock = DockStyle.Fill;
             this.PanelExMiddle.Location = new Point(3, 87);
             this.PanelExMiddle.Name = "PanelExMiddle";
-            this.PanelExMiddle.Size = new Size(566, 327);
+            this.PanelExMiddle.Size = new Size(722, 300);
             this.PanelExMiddle.TabIndex = 3;
+            // 
+            // groupBoxEx3
+            // 
+            this.groupBoxEx3.Controls.Add(this.NumericUpDownEx11);
+            this.groupBoxEx3.Controls.Add(this.NumericUpDownEx10);
+            this.groupBoxEx3.Controls.Add(this.ccLabel2);
+            this.groupBoxEx3.Controls.Add(this.ccLabel4);
+            this.groupBoxEx3.Location = new Point(492, 60);
+            this.groupBoxEx3.Name = "groupBoxEx3";
+            this.groupBoxEx3.Size = new Size(164, 176);
+            this.groupBoxEx3.TabIndex = 20;
+            this.groupBoxEx3.TabStop = false;
+            this.groupBoxEx3.Text = "高嶺";
+            // 
+            // NumericUpDownEx11
+            // 
+            this.NumericUpDownEx11.Location = new Point(64, 56);
+            this.NumericUpDownEx11.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
+            this.NumericUpDownEx11.Name = "NumericUpDownEx11";
+            this.NumericUpDownEx11.Size = new Size(84, 23);
+            this.NumericUpDownEx11.TabIndex = 1;
+            this.NumericUpDownEx11.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownEx11.ThousandsSeparator = true;
+            this.NumericUpDownEx11.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // NumericUpDownEx10
+            // 
+            this.NumericUpDownEx10.Location = new Point(64, 28);
+            this.NumericUpDownEx10.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
+            this.NumericUpDownEx10.Name = "NumericUpDownEx10";
+            this.NumericUpDownEx10.Size = new Size(84, 23);
+            this.NumericUpDownEx10.TabIndex = 0;
+            this.NumericUpDownEx10.TextAlign = HorizontalAlignment.Right;
+            this.NumericUpDownEx10.ThousandsSeparator = true;
+            this.NumericUpDownEx10.Value = new decimal(new int[] { 8888, 0, 0, 0 });
+            // 
+            // ccLabel2
+            // 
+            this.ccLabel2.AutoSize = true;
+            this.ccLabel2.Location = new Point(24, 32);
+            this.ccLabel2.Name = "ccLabel2";
+            this.ccLabel2.Size = new Size(31, 15);
+            this.ccLabel2.TabIndex = 13;
+            this.ccLabel2.Text = "４組";
+            this.ccLabel2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // ccLabel4
+            // 
+            this.ccLabel4.AutoSize = true;
+            this.ccLabel4.Location = new Point(12, 60);
+            this.ccLabel4.Name = "ccLabel4";
+            this.ccLabel4.Size = new Size(43, 15);
+            this.ccLabel4.TabIndex = 14;
+            this.ccLabel4.Text = "臨時１";
+            this.ccLabel4.TextAlign = ContentAlignment.MiddleRight;
             // 
             // groupBoxEx2
             // 
@@ -170,7 +236,7 @@
             this.groupBoxEx2.Controls.Add(this.labelEx8);
             this.groupBoxEx2.Controls.Add(this.labelEx6);
             this.groupBoxEx2.Controls.Add(this.labelEx7);
-            this.groupBoxEx2.Location = new Point(304, 60);
+            this.groupBoxEx2.Location = new Point(288, 60);
             this.groupBoxEx2.Name = "groupBoxEx2";
             this.groupBoxEx2.Size = new Size(164, 176);
             this.groupBoxEx2.TabIndex = 19;
@@ -206,7 +272,7 @@
             this.labelEx9.Name = "labelEx9";
             this.labelEx9.Size = new Size(43, 15);
             this.labelEx9.TabIndex = 17;
-            this.labelEx9.Text = "臨時２";
+            this.labelEx9.Text = "臨時軽";
             this.labelEx9.TextAlign = ContentAlignment.MiddleRight;
             // 
             // NumericUpDownEx6
@@ -222,7 +288,6 @@
             // 
             // NumericUpDownEx9
             // 
-            this.NumericUpDownEx9.Enabled = false;
             this.NumericUpDownEx9.Location = new Point(64, 112);
             this.NumericUpDownEx9.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
             this.NumericUpDownEx9.Name = "NumericUpDownEx9";
@@ -274,7 +339,8 @@
             this.groupBoxEx1.Controls.Add(this.labelEx3);
             this.groupBoxEx1.Controls.Add(this.labelEx4);
             this.groupBoxEx1.Controls.Add(this.labelEx5);
-            this.groupBoxEx1.Location = new Point(100, 60);
+            this.groupBoxEx1.ForeColor = Color.Black;
+            this.groupBoxEx1.Location = new Point(84, 60);
             this.groupBoxEx1.Name = "groupBoxEx1";
             this.groupBoxEx1.Size = new Size(164, 176);
             this.groupBoxEx1.TabIndex = 18;
@@ -305,6 +371,7 @@
             // 
             // NumericUpDownEx3
             // 
+            this.NumericUpDownEx3.Enabled = false;
             this.NumericUpDownEx3.Location = new Point(64, 84);
             this.NumericUpDownEx3.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
             this.NumericUpDownEx3.Name = "NumericUpDownEx3";
@@ -327,7 +394,6 @@
             // 
             // NumericUpDownEx5
             // 
-            this.NumericUpDownEx5.Enabled = false;
             this.NumericUpDownEx5.Location = new Point(64, 140);
             this.NumericUpDownEx5.Maximum = new decimal(new int[] { 8888, 0, 0, 0 });
             this.NumericUpDownEx5.Name = "NumericUpDownEx5";
@@ -360,6 +426,7 @@
             // labelEx3
             // 
             this.labelEx3.AutoSize = true;
+            this.labelEx3.Enabled = false;
             this.labelEx3.Location = new Point(24, 88);
             this.labelEx3.Name = "labelEx3";
             this.labelEx3.Size = new Size(31, 15);
@@ -391,7 +458,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(572, 441);
+            this.ClientSize = new Size(728, 414);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
@@ -404,6 +471,10 @@
             this.PanelExUp.ResumeLayout(false);
             this.PanelExUp.PerformLayout();
             this.PanelExMiddle.ResumeLayout(false);
+            this.groupBoxEx3.ResumeLayout(false);
+            this.groupBoxEx3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx11).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx10).EndInit();
             this.groupBoxEx2.ResumeLayout(false);
             this.groupBoxEx2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownEx8).EndInit();
@@ -450,5 +521,10 @@
         private ControlEx.CcDateTime DateTimePickerExOperationDate;
         private ControlEx.CcButton ButtonExUpdate;
         private ControlEx.CcLabel labelEx10;
+        private ControlEx.GroupBoxEx groupBoxEx3;
+        private ControlEx.NumericUpDownEx NumericUpDownEx11;
+        private ControlEx.NumericUpDownEx NumericUpDownEx10;
+        private ControlEx.CcLabel ccLabel2;
+        private ControlEx.CcLabel ccLabel4;
     }
 }

@@ -53,23 +53,23 @@
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.CcTableLayoutPanelBase.Size = new Size(1325, 753);
+            this.CcTableLayoutPanelBase.Size = new Size(1904, 1041);
             this.CcTableLayoutPanelBase.TabIndex = 0;
             // 
             // CcMenuStrip1
             // 
             this.CcMenuStrip1.Location = new Point(0, 0);
             this.CcMenuStrip1.Name = "CcMenuStrip1";
-            this.CcMenuStrip1.Size = new Size(1325, 24);
+            this.CcMenuStrip1.Size = new Size(1904, 24);
             this.CcMenuStrip1.TabIndex = 0;
             this.CcMenuStrip1.Text = "ccMenuStrip1";
             this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // CcStatusStrip1
             // 
-            this.CcStatusStrip1.Location = new Point(0, 731);
+            this.CcStatusStrip1.Location = new Point(0, 1019);
             this.CcStatusStrip1.Name = "CcStatusStrip1";
-            this.CcStatusStrip1.Size = new Size(1325, 22);
+            this.CcStatusStrip1.Size = new Size(1904, 22);
             this.CcStatusStrip1.TabIndex = 1;
             this.CcStatusStrip1.Text = "ccStatusStrip1";
             // 
@@ -79,13 +79,14 @@
             this.CcPanelTop.Dock = DockStyle.Fill;
             this.CcPanelTop.Location = new Point(3, 27);
             this.CcPanelTop.Name = "CcPanelTop";
-            this.CcPanelTop.Size = new Size(1319, 54);
+            this.CcPanelTop.Size = new Size(1898, 54);
             this.CcPanelTop.TabIndex = 2;
             // 
             // CcButtonUpdate
             // 
+            this.CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.CcButtonUpdate.ForeColor = SystemColors.ControlText;
-            this.CcButtonUpdate.Location = new Point(1100, 10);
+            this.CcButtonUpdate.Location = new Point(1660, 10);
             this.CcButtonUpdate.Name = "CcButtonUpdate";
             this.CcButtonUpdate.SetTextDirectionVertical = "";
             this.CcButtonUpdate.Size = new Size(184, 32);
@@ -101,7 +102,7 @@
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 87);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1319, 639);
+            this.SpreadList.Size = new Size(1898, 927);
             this.SpreadList.TabIndex = 3;
             this.SpreadList.CellDoubleClick += this.SheetViewList_CellDoubleClick;
             // 
@@ -109,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1325, 753);
+            this.ClientSize = new Size(1904, 1041);
             this.Controls.Add(this.CcTableLayoutPanelBase);
             this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "LawList";
