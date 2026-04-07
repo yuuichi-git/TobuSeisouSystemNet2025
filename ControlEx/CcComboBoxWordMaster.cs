@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 using Vo;
 
-namespace ControlEx {
+namespace CcControl {
     public partial class CcComboBoxWordMaster : ComboBox {
         /*
          * Vo

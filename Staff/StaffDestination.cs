@@ -5,7 +5,7 @@ using System.Data;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -338,7 +338,7 @@ namespace Staff {
         /// <returns></returns>
         private List<int> CreateList(GroupBoxEx groupBoxEx) {
             List<int> list = new();
-            foreach (CheckBoxEx checkBoxEx in groupBoxEx.Controls) {
+            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
                 if (checkBoxEx.Checked)
                     list.Add(Convert.ToInt32(checkBoxEx.Tag));
             }

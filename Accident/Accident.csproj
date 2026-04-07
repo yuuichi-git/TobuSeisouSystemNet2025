@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\ControlEx\CcControl.csproj" />
     <ProjectReference Include="..\Dao\Dao.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
   </ItemGroup>

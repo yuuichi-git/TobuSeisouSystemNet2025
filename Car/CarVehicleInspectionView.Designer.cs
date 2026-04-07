@@ -24,10 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarVehicleInspectionView));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.PictureBoxEx1 = new CcControl.CcPictureBox();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
             this.SuspendLayout();
@@ -98,9 +98,9 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcPictureBox PictureBoxEx1;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcPictureBox PictureBoxEx1;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
     }
 }

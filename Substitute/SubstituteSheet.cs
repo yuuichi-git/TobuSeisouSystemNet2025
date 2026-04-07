@@ -6,7 +6,7 @@ using System.Globalization;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -39,6 +39,15 @@ namespace Substitute {
                                                                               { 1312102, "090-5560-0677" },     // 足立２３
                                                                               { 1312163, "090-5560-0700" },     // 足立３７
                                                                               //{ 1312169, "" },                // 足立８(個人)
+
+                                                                              /*
+                                                                               * 2026年度　足立
+                                                                               */
+                                                                              //{ 1312171, "090-5560-0491" },     // 足立１(個人携帯だから登録しない)
+                                                                              //{ 1312170, "090-5560-0491" },     // 足立５(個人携帯だから登録しない)
+                                                                              { 1312174, "090-5560-0700" },     // 足立１４
+                                                                              { 1312172, "090-5560-0491" },     // 足立３３
+                                                                              { 1312173, "090-5560-0677" },     // 足立３４
 
                                                                               { 1312214, "080-3493-3728" },     // 葛飾４４
                                                                               { 1312215, "080-2202-7269" },     // 葛飾５３
@@ -140,7 +149,7 @@ namespace Substitute {
                 case 1310102: // 千代田６
                 case 1310103: // 千代田紙１
                     _cleanOfficeName = "　日盛運輸　様";
-                    _officerStaffName = "石原　由規";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("千代田区支部", "\r\n", "ＦＡＸ ０３－３６７８－２６８８");
                     Clipboard.SetText("0336782688");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
@@ -151,27 +160,32 @@ namespace Substitute {
                 case 1310202: // 中央ペット８
                 case 1310207: // 中央ペット１１
                     _cleanOfficeName = string.Concat("　東京都環境衛生事業協同組合", "\r\n", " 　中央区支部　様");
-                    _officerStaffName = "石原　由規";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("中央区支部", "\r\n", " ＦＡＸ ０３－６２８０－５８４１");
                     Clipboard.SetText("0362805841");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
                     this.ButtonExPrint1.Enabled = true;     // PrintButton1
                     this.ButtonExPrint2.Enabled = false;    // PrintButton2
                     break;
+                case 1312171: // 足立１
+                case 1312170: // 足立５
                 case 1312169: // 足立８
                 case 1312167: // 足立１２
                 case 1312168: // 足立１３
+                case 1312174: // 足立１４
                 case 1312161: // 足立１６
                 case 1312134: // 足立１８
                 case 1312162: // 足立２２
                 case 1312102: // 足立２３(2025)
                 case 1312164: // 足立２３(2024)
                 case 1312103: // 足立２４
+                case 1312172: // 足立３３
+                case 1312173: // 足立３４
                 case 1312163: // 足立３７
                 case 1312104: // 足立３８
                 case 1312105: // 足立不燃４
                     _cleanOfficeName = "　足立清掃事務所　御中";
-                    _officerStaffName = "石原　由規";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("足立清掃事務所", "\r\n", " ＦＡＸ ０３－３８５７－５７４３");
                     Clipboard.SetText("0338575743");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
@@ -186,7 +200,7 @@ namespace Substitute {
                 case 1312215: // 葛飾５３
                 case 1312210: // 葛飾５４
                     _cleanOfficeName = "　葛飾区清掃事務所　御中";
-                    _officerStaffName = "石原　由規";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("葛飾区清掃事務所", "\r\n", " ＦＡＸ ０３－３６９１－１７９７");
                     Clipboard.SetText("0336911797");
                     OutputSheetViewKATSUSHIKA(SheetView3, _setControl);
@@ -197,7 +211,7 @@ namespace Substitute {
                 case 1312208: // 小岩５
                 case 1312212: // 小岩６
                     _cleanOfficeName = "　小岩清掃事務所　御中";
-                    _officerStaffName = "石原　由規";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("小岩清掃事務所", "\r\n", " ＦＡＸ ０３－３６７３－２５３５");
                     Clipboard.SetText("0336732535");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
@@ -208,7 +222,7 @@ namespace Substitute {
                 case 1312012: // 桜台2-2
                 case 1312006: // 桜台臨時
                     _cleanOfficeName = string.Empty;
-                    _officerStaffName = "百瀨　友";
+                    _officerStaffName = "今村　修";
                     _cleanOfficeFaxText = string.Concat("東京都環境衛生事業協同組合 練馬区支部事務局", "\r\n", " ＦＡＸ ０３－５９４７－３４４１");
                     Clipboard.SetText("0359473441");
                     OutputSheetViewSAKURADAI(SheetView2, _setControl);
@@ -287,13 +301,15 @@ namespace Substitute {
              * 連絡先番号をセット
              */
             switch (displaySetMasterVo.SetCode) {
-                case 1312167: // 足立１２(個人)
-                case 1312168: // 足立１３(個人)
-                case 1312169: // 足立８(個人)
-                case 1312203: // 小岩４(個人)
-                case 1312212: // 小岩６(個人)
-                case 1310501: // 文京プラ軽３(個人)
-                case 1310503: // 文京プラ６(個人)
+                case 1312171: // 足立１(個人携帯)
+                case 1312170: // 足立５(個人携帯)
+                case 1312167: // 足立１２(個人携帯)
+                case 1312168: // 足立１３(個人携帯)
+                case 1312169: // 足立８(個人携帯)
+                case 1312203: // 小岩４(個人携帯)
+                case 1312212: // 小岩６(個人携帯)
+                case 1310501: // 文京プラ軽３(個人携帯)
+                case 1310503: // 文京プラ６(個人携帯)
                     // 個人携帯番号を登録
                     _cellphoneNumber = _staffMasterDao.SelectOneStaffMaster(((StaffLabel)_setControl.DeployedStaffLabel1).StaffMasterVo.StaffCode).CellphoneNumber.ToString();
                     break;

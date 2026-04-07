@@ -23,19 +23,19 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExMiddle = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.DateTimePickerExCertificationDate = new ControlEx.CcDateTime();
-            this.labelEx4 = new ControlEx.CcLabel();
-            this.ComboBoxExSelectName = new ControlEx.ComboBoxEx();
-            this.labelEx3 = new ControlEx.CcLabel();
-            this.LabelExCompany = new ControlEx.CcLabel();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
-            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExMiddle = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.DateTimePickerExCertificationDate = new CcControl.CcDateTime();
+            this.labelEx4 = new CcControl.CcLabel();
+            this.ComboBoxExSelectName = new CcControl.CcComboBox();
+            this.labelEx3 = new CcControl.CcLabel();
+            this.LabelExCompany = new CcControl.CcLabel();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.PictureBoxEx1 = new CcControl.CcPictureBox();
+            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -218,19 +218,19 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExMiddle;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcPictureBox PictureBoxEx1;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.CcLabel LabelExCompany;
-        private ControlEx.CcLabel labelEx3;
-        private ControlEx.CcDateTime DateTimePickerExCertificationDate;
-        private ControlEx.CcLabel labelEx4;
-        private ControlEx.ComboBoxEx ComboBoxExSelectName;
-        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExMiddle;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcPictureBox PictureBoxEx1;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcLabel LabelExCompany;
+        private CcControl.CcLabel labelEx3;
+        private CcControl.CcDateTime DateTimePickerExCertificationDate;
+        private CcControl.CcLabel labelEx4;
+        private CcControl.CcComboBox ComboBoxExSelectName;
+        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
     }

@@ -1,7 +1,7 @@
 ﻿/*
  * 2025-1-11
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcFlowLayoutPanel : FlowLayoutPanel {
         public CcFlowLayoutPanel() {
             InitializeComponent();

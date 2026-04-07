@@ -1,4 +1,4 @@
-﻿namespace ControlEx {
+﻿namespace CcControl {
     partial class MaskedTextBoxEx {
         /// <summary>
         /// 必要なデザイナー変数です。

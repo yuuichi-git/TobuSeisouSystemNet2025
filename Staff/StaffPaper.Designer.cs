@@ -24,9 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffPaper));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.CcMenuStrip1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.CcMenuStrip1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.SpreadStaffRegisterHead = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
             this.SheetViewHead = this.SpreadStaffRegisterHead.GetSheet(0);
             this.SpreadStaffRegisterTail = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource2"));
@@ -114,9 +114,9 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip CcMenuStrip1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadStaffRegisterHead;
         private FarPoint.Win.Spread.FpSpread SpreadStaffRegisterTail;
         private FarPoint.Win.Spread.SheetView SheetViewHead;

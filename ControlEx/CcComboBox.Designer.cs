@@ -1,5 +1,5 @@
-﻿namespace ControlEx {
-    partial class CheckBoxEx {
+﻿namespace CcControl {
+    partial class CcComboBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

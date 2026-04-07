@@ -7,7 +7,7 @@ using Interfaces;
 
 using Vo;
 
-namespace ControlEx {
+namespace CcControl {
 
     public partial class SetControl : TableLayoutPanel, IControls {
         /*

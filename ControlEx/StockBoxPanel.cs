@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-11-24
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class StockBoxPanel : FlowLayoutPanel {
         /*
          * デリゲート

@@ -1,7 +1,7 @@
 ﻿/*
  * 2025-05-17
  */
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -25,9 +25,9 @@ namespace LegalTwelveItem {
         /*
          * Control用の配列を確保
          */
-        private CheckBoxEx[] _arrayCheckBoxEx = new CheckBoxEx[12];
+        private CcCheckBox[] _arrayCheckBoxEx = new CcCheckBox[12];
         private CcDateTime[] _arrayDateTimePickerEx = new CcDateTime[12];
-        private ComboBoxEx[] _arrayComboBoxEx = new ComboBoxEx[12];
+        private CcComboBox[] _arrayComboBoxEx = new CcComboBox[12];
         private CcTextBox[] _arrayTextBoxEx = new CcTextBox[12];
         private CcPictureBox[] _arrayPictureBoxEx = new CcPictureBox[3];
 
@@ -295,46 +295,46 @@ namespace LegalTwelveItem {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CheckBoxEx_CheckedChanged(object sender, EventArgs e) {
-            if (((CheckBoxEx)sender).Checked) {
-                _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = true;
+            if (((CcCheckBox)sender).Checked) {
+                _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = true;
                 /*
                  * 指導実施日が空白の場合、値を入力する
                  */
-                if (_arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].CustomFormat == " ")
-                    _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SetValue(DateTimePickerExBase.GetValue());
+                if (_arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].CustomFormat == " ")
+                    _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SetValue(DateTimePickerExBase.GetValue());
 
-                _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = true;
-                _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SelectedIndex = this.ComboBoxExBase.SelectedIndex;
+                _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = true;
+                _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SelectedIndex = this.ComboBoxExBase.SelectedIndex;
 
-                _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = true;
+                _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = true;
             } else {
-                if (_arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].CustomFormat != " " || _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Text != "" || _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Text != "") {
+                if (_arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].CustomFormat != " " || _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Text != "" || _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Text != "") {
                     DialogResult dialogResult = MessageBox.Show("登録されているデータを削除してもよろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     switch (dialogResult) {
                         case DialogResult.OK:
-                            _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                            _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SetClear();
+                            _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                            _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SetClear();
 
-                            _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                            _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SelectedIndex = -1;
+                            _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                            _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SelectedIndex = -1;
 
-                            _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                            _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SetEmpty();
+                            _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                            _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SetEmpty();
                             break;
                         case DialogResult.Cancel:
                             // 処理を戻す意味で、フラグを反転させる
-                            ((CheckBoxEx)sender).Checked = !((CheckBoxEx)sender).Checked;
+                            ((CcCheckBox)sender).Checked = !((CcCheckBox)sender).Checked;
                             break;
                     }
                 } else {
-                    _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                    _arrayDateTimePickerEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SetClear();
+                    _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                    _arrayDateTimePickerEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SetClear();
 
-                    _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                    _arrayComboBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SelectedIndex = -1;
+                    _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                    _arrayComboBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SelectedIndex = -1;
 
-                    _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].Enabled = false;
-                    _arrayTextBoxEx[Convert.ToInt32(((CheckBoxEx)sender).Tag)].SetEmpty();
+                    _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = false;
+                    _arrayTextBoxEx[Convert.ToInt32(((CcCheckBox)sender).Tag)].SetEmpty();
                 }
             }
         }

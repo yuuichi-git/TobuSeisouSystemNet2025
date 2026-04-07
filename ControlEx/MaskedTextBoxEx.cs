@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-12-11
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class MaskedTextBoxEx : MaskedTextBox {
         public MaskedTextBoxEx() {
             InitializeComponent();

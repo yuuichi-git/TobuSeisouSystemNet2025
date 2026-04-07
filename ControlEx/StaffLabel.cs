@@ -3,7 +3,7 @@
  */
 using System.Diagnostics;
 
-using ControlEx.Properties;
+using CcControl.Properties;
 
 using Interfaces;
 
@@ -11,7 +11,7 @@ using Vo;
 
 using Timer = System.Windows.Forms.Timer;
 
-namespace ControlEx {
+namespace CcControl {
     public partial class StaffLabel : Label, IControls {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*

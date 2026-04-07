@@ -5,7 +5,7 @@ using System.Data;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -131,8 +131,36 @@ namespace EmploymentAgreement {
         /*
          * Dictionary
          */
+        /// <summary>
+        /// 所属
+        /// 10:役員
+        /// 11:社員
+        /// 12:アルバイト
+        /// 13:派遣
+        /// 14:嘱託雇用契約社員
+        /// 15:パートタイマー
+        /// 22:労共
+        /// 99:指定なし
+        /// </summary>
         private readonly Dictionary<int, string> _dictionaryBelongs = new();
+        /// <summary>
+        /// 職種
+        /// 10:運転手
+        /// 11:作業員
+        /// 12:自転車駐輪場
+        /// 13:リサイクルセンター
+        /// 20:事務職
+        /// 99:指定なし
+        /// </summary>
         private readonly Dictionary<int, string> _dictionaryOccupation = new();
+        /// <summary>
+        /// 雇用形態
+        /// 20:長期(新)
+        /// 21:短期(新)
+        /// 22:長期(自)
+        /// 23:短期(自)
+        /// 99:指定なし
+        /// </summary>
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
         /*
          * Flag

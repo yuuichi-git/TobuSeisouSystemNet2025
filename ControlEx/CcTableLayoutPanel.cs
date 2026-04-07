@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-09-23
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcTableLayoutPanel : TableLayoutPanel {
         /// <summary>
         /// コンストラクター

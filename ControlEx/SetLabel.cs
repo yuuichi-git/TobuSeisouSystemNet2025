@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-10-12
  */
-using ControlEx.Properties;
+using CcControl.Properties;
 
 using Interfaces;
 
@@ -9,7 +9,7 @@ using Vo;
 
 using Timer = System.Windows.Forms.Timer;
 
-namespace ControlEx {
+namespace CcControl {
     public partial class SetLabel : Label, IControls {
         /*
          * デリゲート

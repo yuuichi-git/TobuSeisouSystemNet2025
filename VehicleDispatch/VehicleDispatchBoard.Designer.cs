@@ -23,15 +23,15 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
-            this.PanelExLeft = new ControlEx.CcPanel();
-            this.ButtonExStockBoxOpen = new ControlEx.CcButton();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
+            this.PanelExLeft = new CcControl.CcPanel();
+            this.ButtonExStockBoxOpen = new CcControl.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
@@ -163,14 +163,14 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExTop;
-        private ControlEx.CcDateTime DateTimePickerExOperationDate;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.CcPanel PanelExLeft;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcButton ButtonExStockBoxOpen;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExTop;
+        private CcControl.CcDateTime DateTimePickerExOperationDate;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcPanel PanelExLeft;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton ButtonExStockBoxOpen;
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*
  * 2025-1-17
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class RadioButtonEx : RadioButton {
         public RadioButtonEx() {
             InitializeComponent();

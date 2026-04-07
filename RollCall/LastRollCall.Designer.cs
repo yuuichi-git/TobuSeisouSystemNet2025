@@ -23,27 +23,27 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.LabelExSetName = new ControlEx.CcLabel();
-            this.labelEx2 = new ControlEx.CcLabel();
-            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
-            this.labelEx3 = new ControlEx.CcLabel();
-            this.labelEx4 = new ControlEx.CcLabel();
-            this.labelEx5 = new ControlEx.CcLabel();
-            this.labelEx6 = new ControlEx.CcLabel();
-            this.labelEx7 = new ControlEx.CcLabel();
-            this.labelEx8 = new ControlEx.CcLabel();
-            this.labelEx9 = new ControlEx.CcLabel();
-            this.labelEx10 = new ControlEx.CcLabel();
-            this.CheckBoxExDelete = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.NumericUpDownExLastPlantCount = new ControlEx.NumericUpDownEx();
-            this.ComboBoxExLastPlantName = new ControlEx.ComboBoxEx();
-            this.NumericUpDownExFirstOdoMeter = new ControlEx.NumericUpDownEx();
-            this.NumericUpDownExLastOdoMeter = new ControlEx.NumericUpDownEx();
-            this.NumericUpDownExOilAmount = new ControlEx.NumericUpDownEx();
-            this.CcTimeFirstRollCallTime = new ControlEx.CcTime();
-            this.CcTimeLastPlantTime = new ControlEx.CcTime();
-            this.CcTimeLastRollCallTime = new ControlEx.CcTime();
+            this.LabelExSetName = new CcControl.CcLabel();
+            this.labelEx2 = new CcControl.CcLabel();
+            this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
+            this.labelEx3 = new CcControl.CcLabel();
+            this.labelEx4 = new CcControl.CcLabel();
+            this.labelEx5 = new CcControl.CcLabel();
+            this.labelEx6 = new CcControl.CcLabel();
+            this.labelEx7 = new CcControl.CcLabel();
+            this.labelEx8 = new CcControl.CcLabel();
+            this.labelEx9 = new CcControl.CcLabel();
+            this.labelEx10 = new CcControl.CcLabel();
+            this.CheckBoxExDelete = new CcControl.CcCheckBox();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.NumericUpDownExLastPlantCount = new CcControl.NumericUpDownEx();
+            this.ComboBoxExLastPlantName = new CcControl.CcComboBox();
+            this.NumericUpDownExFirstOdoMeter = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExLastOdoMeter = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExOilAmount = new CcControl.NumericUpDownEx();
+            this.CcTimeFirstRollCallTime = new CcControl.CcTime();
+            this.CcTimeLastPlantTime = new CcControl.CcTime();
+            this.CcTimeLastRollCallTime = new CcControl.CcTime();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLastPlantCount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExFirstOdoMeter).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.NumericUpDownExLastOdoMeter).BeginInit();
@@ -314,26 +314,26 @@
 
         #endregion
 
-        private ControlEx.CcLabel LabelExSetName;
-        private ControlEx.CcLabel labelEx2;
-        private ControlEx.CcDateTime DateTimePickerExOperationDate;
-        private ControlEx.CcLabel labelEx3;
-        private ControlEx.CcLabel labelEx4;
-        private ControlEx.CcLabel labelEx5;
-        private ControlEx.CcLabel labelEx6;
-        private ControlEx.CcLabel labelEx7;
-        private ControlEx.CcLabel labelEx8;
-        private ControlEx.CcLabel labelEx9;
-        private ControlEx.CcLabel labelEx10;
-        private ControlEx.CheckBoxEx CheckBoxExDelete;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.NumericUpDownEx NumericUpDownExLastPlantCount;
-        private ControlEx.ComboBoxEx ComboBoxExLastPlantName;
-        private ControlEx.NumericUpDownEx NumericUpDownExFirstOdoMeter;
-        private ControlEx.NumericUpDownEx NumericUpDownExLastOdoMeter;
-        private ControlEx.NumericUpDownEx NumericUpDownExOilAmount;
-        private ControlEx.CcTime CcTimeFirstRollCallTime;
-        private ControlEx.CcTime CcTimeLastPlantTime;
-        private ControlEx.CcTime CcTimeLastRollCallTime;
+        private CcControl.CcLabel LabelExSetName;
+        private CcControl.CcLabel labelEx2;
+        private CcControl.CcDateTime DateTimePickerExOperationDate;
+        private CcControl.CcLabel labelEx3;
+        private CcControl.CcLabel labelEx4;
+        private CcControl.CcLabel labelEx5;
+        private CcControl.CcLabel labelEx6;
+        private CcControl.CcLabel labelEx7;
+        private CcControl.CcLabel labelEx8;
+        private CcControl.CcLabel labelEx9;
+        private CcControl.CcLabel labelEx10;
+        private CcControl.CcCheckBox CheckBoxExDelete;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.NumericUpDownEx NumericUpDownExLastPlantCount;
+        private CcControl.CcComboBox ComboBoxExLastPlantName;
+        private CcControl.NumericUpDownEx NumericUpDownExFirstOdoMeter;
+        private CcControl.NumericUpDownEx NumericUpDownExLastOdoMeter;
+        private CcControl.NumericUpDownEx NumericUpDownExOilAmount;
+        private CcControl.CcTime CcTimeFirstRollCallTime;
+        private CcControl.CcTime CcTimeLastPlantTime;
+        private CcControl.CcTime CcTimeLastRollCallTime;
     }
 }

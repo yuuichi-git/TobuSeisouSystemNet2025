@@ -24,17 +24,17 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWorkingHours));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.labelEx3 = new ControlEx.CcLabel();
-            this.ComboBoxExStaffDisplayName = new ControlEx.ComboBoxEx();
-            this.labelEx2 = new ControlEx.CcLabel();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.DateTimePickerExOperationDate2 = new ControlEx.CcDateTime();
-            this.DateTimePickerExOperationDate1 = new ControlEx.CcDateTime();
-            this.ButtonExUpdate = new ControlEx.CcButton();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.labelEx3 = new CcControl.CcLabel();
+            this.ComboBoxExStaffDisplayName = new CcControl.CcComboBox();
+            this.labelEx2 = new CcControl.CcLabel();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.DateTimePickerExOperationDate2 = new CcControl.CcDateTime();
+            this.DateTimePickerExOperationDate1 = new CcControl.CcDateTime();
+            this.ButtonExUpdate = new CcControl.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -197,18 +197,18 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExUp;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcDateTime DateTimePickerExOperationDate1;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.CcDateTime DateTimePickerExOperationDate2;
-        private ControlEx.CcLabel labelEx2;
-        private ControlEx.CcLabel labelEx3;
-        private ControlEx.ComboBoxEx ComboBoxExStaffDisplayName;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcDateTime DateTimePickerExOperationDate1;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcDateTime DateTimePickerExOperationDate2;
+        private CcControl.CcLabel labelEx2;
+        private CcControl.CcLabel labelEx3;
+        private CcControl.CcComboBox ComboBoxExStaffDisplayName;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

@@ -24,14 +24,14 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToukanpoList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.TabControlEx1 = new ControlEx.CcTabControl();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.TabControlEx1 = new CcControl.CcTabControl();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
             this.tabPage3 = new TabPage();
@@ -263,12 +263,12 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcPanel PanelExUp;
-        private ControlEx.CcTabControl TabControlEx1;
+        private CcControl.CcPanel PanelExUp;
+        private CcControl.CcTabControl TabControlEx1;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
@@ -280,7 +280,7 @@
         private TabPage tabPage9;
         private TabPage tabPage10;
         private TabPage tabPage11;
-        private ControlEx.CcButton ButtonExUpdate;
+        private CcControl.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

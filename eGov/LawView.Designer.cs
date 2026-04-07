@@ -23,26 +23,26 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.CcTreeView1 = new ControlEx.CcTreeView();
-            this.CcRichTextBox1 = new ControlEx.CcRichTextBox();
-            this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
-            this.CcStatusStrip1 = new ControlEx.CcStatusStrip();
-            this.CcPanel1 = new ControlEx.CcPanel();
-            this.CcLabelParagraph = new ControlEx.CcLabel();
-            this.CcTextBoxLawParagraph = new ControlEx.CcTextBox();
-            this.CcTextBoxLawTitle = new ControlEx.CcTextBox();
-            this.CcTextBoxLawType = new ControlEx.CcTextBox();
-            this.CcTextBoxLawArticle = new ControlEx.CcTextBox();
-            this.CcTextBoxLawNum = new ControlEx.CcTextBox();
-            this.CcTextBoxLawId = new ControlEx.CcTextBox();
-            this.CcLabelLawId = new ControlEx.CcLabel();
-            this.CcLabelLawNum = new ControlEx.CcLabel();
-            this.CcLabelLawArticle = new ControlEx.CcLabel();
-            this.CcLabelLawType = new ControlEx.CcLabel();
-            this.CcLabelLawTitle = new ControlEx.CcLabel();
-            this.CcMenuStrip1 = new ControlEx.CcMenuStrip();
-            this.ccLabel1 = new ControlEx.CcLabel();
-            this.CcTextBoxLawItem = new ControlEx.CcTextBox();
+            this.CcTreeView1 = new CcControl.CcTreeView();
+            this.CcRichTextBox1 = new CcControl.CcRichTextBox();
+            this.CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
+            this.CcStatusStrip1 = new CcControl.CcStatusStrip();
+            this.CcPanel1 = new CcControl.CcPanel();
+            this.CcLabelParagraph = new CcControl.CcLabel();
+            this.CcTextBoxLawParagraph = new CcControl.CcTextBox();
+            this.CcTextBoxLawTitle = new CcControl.CcTextBox();
+            this.CcTextBoxLawType = new CcControl.CcTextBox();
+            this.CcTextBoxLawArticle = new CcControl.CcTextBox();
+            this.CcTextBoxLawNum = new CcControl.CcTextBox();
+            this.CcTextBoxLawId = new CcControl.CcTextBox();
+            this.CcLabelLawId = new CcControl.CcLabel();
+            this.CcLabelLawNum = new CcControl.CcLabel();
+            this.CcLabelLawArticle = new CcControl.CcLabel();
+            this.CcLabelLawType = new CcControl.CcLabel();
+            this.CcLabelLawTitle = new CcControl.CcLabel();
+            this.CcMenuStrip1 = new CcControl.CcMenuStrip();
+            this.ccLabel1 = new CcControl.CcLabel();
+            this.CcTextBoxLawItem = new CcControl.CcTextBox();
             this.CcTableLayoutPanelBase.SuspendLayout();
             this.CcPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -257,25 +257,25 @@
         }
 
         #endregion
-        private ControlEx.CcTreeView CcTreeView1;
-        private ControlEx.CcRichTextBox CcRichTextBox1;
-        private ControlEx.CcTableLayoutPanel CcTableLayoutPanelBase;
-        private ControlEx.CcPanel CcPanel1;
-        private ControlEx.CcLabel CcLabelLawTitle;
-        private ControlEx.CcLabel CcLabelLawType;
-        private ControlEx.CcStatusStrip CcStatusStrip1;
-        private ControlEx.CcMenuStrip CcMenuStrip1;
-        private ControlEx.CcLabel CcLabelLawArticle;
-        private ControlEx.CcLabel CcLabelLawId;
-        private ControlEx.CcLabel CcLabelLawNum;
-        private ControlEx.CcTextBox CcTextBoxLawTitle;
-        private ControlEx.CcTextBox CcTextBoxLawType;
-        private ControlEx.CcTextBox CcTextBoxLawArticle;
-        private ControlEx.CcTextBox CcTextBoxLawNum;
-        private ControlEx.CcTextBox CcTextBoxLawId;
-        private ControlEx.CcLabel CcLabelParagraph;
-        private ControlEx.CcTextBox CcTextBoxLawParagraph;
-        private ControlEx.CcLabel ccLabel1;
-        private ControlEx.CcTextBox CcTextBoxLawItem;
+        private CcControl.CcTreeView CcTreeView1;
+        private CcControl.CcRichTextBox CcRichTextBox1;
+        private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
+        private CcControl.CcPanel CcPanel1;
+        private CcControl.CcLabel CcLabelLawTitle;
+        private CcControl.CcLabel CcLabelLawType;
+        private CcControl.CcStatusStrip CcStatusStrip1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcLabel CcLabelLawArticle;
+        private CcControl.CcLabel CcLabelLawId;
+        private CcControl.CcLabel CcLabelLawNum;
+        private CcControl.CcTextBox CcTextBoxLawTitle;
+        private CcControl.CcTextBox CcTextBoxLawType;
+        private CcControl.CcTextBox CcTextBoxLawArticle;
+        private CcControl.CcTextBox CcTextBoxLawNum;
+        private CcControl.CcTextBox CcTextBoxLawId;
+        private CcControl.CcLabel CcLabelParagraph;
+        private CcControl.CcTextBox CcTextBoxLawParagraph;
+        private CcControl.CcLabel ccLabel1;
+        private CcControl.CcTextBox CcTextBoxLawItem;
     }
 }

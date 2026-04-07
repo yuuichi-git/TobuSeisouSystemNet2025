@@ -16,7 +16,7 @@
     <ProjectReference Include="..\Car\Car.csproj" />
     <ProjectReference Include="..\Certification\Certification.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\ControlEx\CcControl.csproj" />
     <ProjectReference Include="..\eGov\EGov.csproj" />
     <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
     <ProjectReference Include="..\LegalTwelveItem\LegalTwelveItem.csproj" />
@@ -26,6 +26,7 @@
     <ProjectReference Include="..\StatusOfResidence\StatusOfResidence.csproj" />
     <ProjectReference Include="..\Toukanpo\Toukanpo.csproj" />
     <ProjectReference Include="..\VehicleDispatch\VehicleDispatch.csproj" />
+    <ProjectReference Include="..\VoluntaryAutomobileInsurance\VoluntaryAutomobileInsurance.csproj" />
     <ProjectReference Include="..\Vo\Vo.csproj" />
     <ProjectReference Include="..\WastCollection\WastCollection.csproj" />
     <ProjectReference Include="..\Waste\Waste.csproj" />

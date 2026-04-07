@@ -5,7 +5,7 @@ using System.Drawing.Printing;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -461,7 +461,7 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CheckBoxExDigitalTachographFlag_CheckedChanged(object sender, EventArgs e) {
-            if (((CheckBoxEx)sender).Checked) {
+            if (((CcCheckBox)sender).Checked) {
                 this.ComboBoxExDigitalTachographType.Enabled = true;
             } else {
                 this.ComboBoxExDigitalTachographType.Enabled = false;

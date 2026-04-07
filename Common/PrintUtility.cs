@@ -3,7 +3,7 @@
  */
 using System.Drawing.Printing;
 
-using ControlEx;
+using CcControl;
 
 namespace Common {
     public class PrintUtility {
@@ -37,7 +37,7 @@ namespace Common {
         /// </summary>
         /// <param name="comboBoxEx"></param>
         /// <returns></returns>
-        public ComboBoxEx SetAllPrinterForComboBoxEx(ComboBoxEx comboBoxEx) {
+        public CcComboBox SetAllPrinterForComboBoxEx(CcComboBox comboBoxEx) {
             foreach (string printerName in PrinterSettings.InstalledPrinters)
                 comboBoxEx.Items.Add(printerName);
             comboBoxEx.Text = new PrintDocument().DefaultPageSettings.PrinterSettings.PrinterName;

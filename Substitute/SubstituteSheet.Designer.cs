@@ -24,15 +24,15 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubstituteSheet));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.ButtonExPrint2 = new ControlEx.CcButton();
-            this.ButtonExPrint1 = new ControlEx.CcButton();
-            this.LabelExFaxNumber = new ControlEx.CcLabel();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.ButtonExPrint2 = new CcControl.CcButton();
+            this.ButtonExPrint1 = new CcControl.CcButton();
+            this.LabelExFaxNumber = new CcControl.CcLabel();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.ComboBoxExPrinterName = new CcControl.CcComboBox();
             this.SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView1 = this.SpreadSubstitute.GetSheet(0);
             this.SheetView2 = this.SpreadSubstitute.GetSheet(1);
@@ -177,18 +177,18 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExUp;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadSubstitute;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.ComboBoxEx ComboBoxExPrinterName;
-        private ControlEx.CcLabel LabelExFaxNumber;
-        private ControlEx.CcButton ButtonExPrint1;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcComboBox ComboBoxExPrinterName;
+        private CcControl.CcLabel LabelExFaxNumber;
+        private CcControl.CcButton ButtonExPrint1;
         private FarPoint.Win.Spread.SheetView SheetView1;
         private FarPoint.Win.Spread.SheetView SheetView2;
         private FarPoint.Win.Spread.SheetView SheetView3;
-        private ControlEx.CcButton ButtonExPrint2;
+        private CcControl.CcButton ButtonExPrint2;
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*
  * 2025-02-22
  */
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -233,7 +233,7 @@ namespace Toukanpo {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ComboBoxExSelectName_SelectedIndexChanged(object sender, EventArgs e) {
-            _selectedStaffMasterVo = ((ComboBoxExSelectNameVo)((ComboBoxEx)sender).SelectedItem).StaffMasterVo;
+            _selectedStaffMasterVo = ((ComboBoxExSelectNameVo)((CcComboBox)sender).SelectedItem).StaffMasterVo;
             _selectedToukanpoTrainingCardVo = _toukanpoTrainingCardDao.SelectOneToukanpoTrainingCardMaster(_selectedStaffMasterVo.StaffCode);
             if (_selectedToukanpoTrainingCardVo.StaffCode > 0) {
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "登録されています";

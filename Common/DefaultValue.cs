@@ -6,58 +6,41 @@ namespace Common {
         /// <summary>
         /// DBからのobjectを変換
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <returns></returns>
         public T GetDefaultValue<T>(object obj) {
-            /*
-             * 旧型
-             */
-            //object objectValue = new();
-            //if (obj != DBNull.Value && obj != null) {
-            //    return (T)obj;
-            //} else { // objがNullだった場合
-            //    switch (typeof(T).Name) {
-            //        case "Boolean":
-            //            objectValue = false;
-            //            break;
-            //        case "DateTime":
-            //            objectValue = new DateTime(1900, 01, 01);
-            //            break;
-            //        case "Int32":
-            //            objectValue = 0;
-            //            break;
-            //        case "String":
-            //            objectValue = string.Empty;
-            //            break;
-            //        case "Decimal":
-            //            objectValue = 0.0;
-            //            break;
-            //        case "Byte[]":
-            //            objectValue = Array.Empty<byte>();
-            //            break;
-            //    }
-            //}
-            //return (T)objectValue;
 
-            if (obj == null || obj == DBNull.Value) {                                           // objがNullだった場合
-                if (typeof(T) == typeof(DateTime))                                              // 特殊デフォルト値
-                    return (T)(object)new DateTime(1900, 1, 1);
+            // Null or DBNull → 特殊デフォルト or default(T)
+            if (obj == null || obj == DBNull.Value) {
+                if (_specialDefaults.TryGetValue(typeof(T), out var special))
+                    return (T)special;
 
-                if (typeof(T) == typeof(byte[]))                                                // 特殊デフォルト値
-                    return (T)(object)Array.Empty<byte>();
-
-                return default!;                                                                // 通常の default(T)
+                return default!;
             }
 
-            if (obj is T value)                                                                 // そのままキャストできる場合
+            // そのままキャストできる場合
+            if (obj is T value)
                 return value;
 
-            try {                                                                               // 変換できる場合のみ ChangeType を使う
+            // ChangeType で変換
+            try {
                 return (T)Convert.ChangeType(obj, typeof(T));
             } catch {
-                return default!;                                                                // 変換できない場合は default(T)
+                return default!;
             }
         }
+
+        /// <summary>
+        /// 型ごとの特殊デフォルト値を管理する辞書
+        /// </summary>
+        private static readonly Dictionary<Type, object> _specialDefaults = new()
+        {
+            { typeof(DateTime), new DateTime(1900, 1, 1) },
+            { typeof(byte[]), Array.Empty<byte>() },
+
+            // --- ここに好きなだけ追加できる ---
+            // { typeof(Guid), Guid.Empty },
+            // { typeof(decimal), 0m },
+            // { typeof(bool), false },
+            // { typeof(string), string.Empty }, // string を default("") にしたい場合
+        };
     }
 }

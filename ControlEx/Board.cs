@@ -3,7 +3,7 @@
  */
 using Vo;
 
-namespace ControlEx {
+namespace CcControl {
     public partial class Board : TableLayoutPanel {
         /*
          * デリゲート

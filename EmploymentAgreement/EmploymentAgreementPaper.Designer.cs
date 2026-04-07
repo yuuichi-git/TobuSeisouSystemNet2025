@@ -24,12 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmploymentAgreementPaper));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.ComboBoxExPrinter = new ControlEx.ComboBoxEx();
-            this.labelEx2 = new ControlEx.CcLabel();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.ComboBoxExPrinter = new CcControl.CcComboBox();
+            this.labelEx2 = new CcControl.CcLabel();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetView体験期間契約 = this.SpreadList.GetSheet(0);
             this.SheetViewアルバイト契約 = this.SpreadList.GetSheet(1);
@@ -41,11 +41,11 @@
             this.SheetView誓約書 = this.SpreadList.GetSheet(7);
             this.SheetView使用停止予告通知書 = this.SpreadList.GetSheet(8);
             this.SheetView使用停止予告通知書自転車駐車場 = this.SpreadList.GetSheet(9);
-            this.PanelExLeft = new ControlEx.CcPanel();
-            this.ComboBoxExBaseAddress = new ControlEx.ComboBoxEx();
-            this.LabelExCurrentAddress = new ControlEx.CcLabel();
-            this.labelEx3 = new ControlEx.CcLabel();
-            this.labelEx1 = new ControlEx.CcLabel();
+            this.PanelExLeft = new CcControl.CcPanel();
+            this.ComboBoxExBaseAddress = new CcControl.CcComboBox();
+            this.LabelExCurrentAddress = new CcControl.CcLabel();
+            this.labelEx3 = new CcControl.CcLabel();
+            this.labelEx1 = new CcControl.CcLabel();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -204,19 +204,19 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExUp;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcPanel PanelExLeft;
+        private CcControl.CcPanel PanelExLeft;
         private FarPoint.Win.Spread.SheetView SpreadList_アルバイト契約;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.CcLabel LabelExCurrentAddress;
-        private ControlEx.CcLabel labelEx3;
-        private ControlEx.ComboBoxEx ComboBoxExBaseAddress;
-        private ControlEx.CcLabel labelEx2;
-        private ControlEx.ComboBoxEx ComboBoxExPrinter;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcLabel LabelExCurrentAddress;
+        private CcControl.CcLabel labelEx3;
+        private CcControl.CcComboBox ComboBoxExBaseAddress;
+        private CcControl.CcLabel labelEx2;
+        private CcControl.CcComboBox ComboBoxExPrinter;
         private FarPoint.Win.Spread.SheetView SheetView体験期間契約;
         private FarPoint.Win.Spread.SheetView SheetViewアルバイト契約;
         private FarPoint.Win.Spread.SheetView SheetView嘱託雇用契約社員;

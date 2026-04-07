@@ -24,18 +24,18 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.ToolStripMenuItemRemove = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = this.SpreadList.GetSheet(1);
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.CheckBoxExDeleteFlag = new ControlEx.CheckBoxEx();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.CheckBoxExDeleteFlag = new CcControl.CcCheckBox();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -165,16 +165,16 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcPanel PanelExUp;
-        private ControlEx.CheckBoxEx CheckBoxExDeleteFlag;
-        private ControlEx.CcButton ButtonExUpdate;
+        private CcControl.CcPanel PanelExUp;
+        private CcControl.CcCheckBox CheckBoxExDeleteFlag;
+        private CcControl.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
-        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private ToolStripMenuItem ToolStripMenuItemRemove;
     }

@@ -24,11 +24,11 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OracleAllTable));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.TreeViewEx1 = new ControlEx.CcTreeView();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.TreeViewEx1 = new CcControl.CcTreeView();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -120,11 +120,11 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcPanel PanelExTop;
-        private ControlEx.CcTreeView TreeViewEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcPanel PanelExTop;
+        private CcControl.CcTreeView TreeViewEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

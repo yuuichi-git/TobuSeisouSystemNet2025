@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CertificationList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx2 = new ControlEx.CcLabel();
-            this.ComboBoxExPrinterName = new ControlEx.ComboBoxEx();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.labelEx2 = new CcControl.CcLabel();
+            this.ComboBoxExPrinterName = new CcControl.CcComboBox();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -148,14 +148,14 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExTop;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
-        private ControlEx.CcLabel labelEx2;
-        private ControlEx.ComboBoxEx ComboBoxExPrinterName;
-        private ControlEx.CcButton ButtonExUpdate;
+        private CcControl.CcLabel labelEx2;
+        private CcControl.CcComboBox ComboBoxExPrinterName;
+        private CcControl.CcButton ButtonExUpdate;
     }
 }

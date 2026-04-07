@@ -24,9 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionPaper));
-            this.CcTableLayoutPanelBase = new ControlEx.CcTableLayoutPanel();
-            this.CcMenuStrip1 = new ControlEx.CcMenuStrip();
-            this.CcStatusStrip1 = new ControlEx.CcStatusStrip();
+            this.CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
+            this.CcMenuStrip1 = new CcControl.CcMenuStrip();
+            this.CcStatusStrip1 = new CcControl.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.CcTableLayoutPanelBase.SuspendLayout();
@@ -99,9 +99,9 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel CcTableLayoutPanelBase;
-        private ControlEx.CcMenuStrip CcMenuStrip1;
-        private ControlEx.CcStatusStrip CcStatusStrip1;
+        private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

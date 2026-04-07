@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-09-24
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcButton : Button {
         /*
          * Fontの定義

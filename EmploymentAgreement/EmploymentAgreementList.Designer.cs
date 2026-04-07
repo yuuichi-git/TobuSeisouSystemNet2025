@@ -24,11 +24,11 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmploymentAgreementList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
             this.ToolStripMenuItemExpiration = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationPartTimeJob = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationPartTimeEmployee = new ToolStripMenuItem();
@@ -42,10 +42,10 @@
             this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
             this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.CcButton();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
+            this.ButtonExUpdate = new CcControl.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.ContextMenuStripEx1.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob新産別, this.ToolStripMenuItemContractExpirationLongJob自運労運転士, this.ToolStripMenuItemContractExpirationLongJob自運労作業員, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice, this.ToolStripMenuItemContractExpirationNoticeBicycle });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(263, 290);
+            this.ContextMenuStripEx1.Size = new Size(263, 268);
             this.ContextMenuStripEx1.Opening += this.ContextMenuStripEx1_Opening;
             // 
             // ToolStripMenuItemExpiration
@@ -225,6 +225,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -255,14 +256,14 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcPanel PanelExTop;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
-        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcPanel PanelExTop;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcCheckBox CheckBoxExRetirementFlag;
+        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemExpiration;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimeJob;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob新産別;
@@ -275,7 +276,7 @@
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労運転士;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob自運労作業員;
         private FarPoint.Win.Spread.SheetView SheetViewList;
-        private ControlEx.CcLabel labelEx1;
+        private CcControl.CcLabel labelEx1;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationNoticeBicycle;
     }
 }

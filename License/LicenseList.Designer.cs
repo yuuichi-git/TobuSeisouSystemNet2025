@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenseList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.TabControlExKana = new ControlEx.CcTabControl();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.TabControlExKana = new CcControl.CcTabControl();
             this.tabPage1 = new TabPage();
             this.tabPage2 = new TabPage();
             this.tabPage3 = new TabPage();
@@ -37,11 +37,11 @@
             this.tabPage9 = new TabPage();
             this.tabPage10 = new TabPage();
             this.tabPage11 = new TabPage();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.CheckBoxExRetirementFlag = new ControlEx.CheckBoxEx();
-            this.ButtonExUpdate = new ControlEx.CcButton();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
+            this.ButtonExUpdate = new CcControl.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewToukaidenshi = this.SpreadList.GetSheet(1);
@@ -276,13 +276,13 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExUp;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcTabControl TabControlExKana;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcTabControl TabControlExKana;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
@@ -294,7 +294,7 @@
         private TabPage tabPage9;
         private TabPage tabPage10;
         private TabPage tabPage11;
-        private ControlEx.CheckBoxEx CheckBoxExRetirementFlag;
+        private CcControl.CcCheckBox CheckBoxExRetirementFlag;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewToukaidenshi;
     }

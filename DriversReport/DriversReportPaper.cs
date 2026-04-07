@@ -5,7 +5,7 @@ using System.Drawing.Printing;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using FarPoint.Win.Spread;
 

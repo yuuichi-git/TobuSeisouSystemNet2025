@@ -3,7 +3,7 @@
  */
 using System.Globalization;
 
-namespace ControlEx {
+namespace CcControl {
     public partial class CcDateTime : DateTimePicker {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly CultureInfo _cultureInfo = new("ja-JP");

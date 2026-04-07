@@ -15,7 +15,7 @@ using Collection;
 
 using Common;
 
-using ControlEx;
+using CcControl;
 
 using EGov;
 
@@ -40,6 +40,8 @@ using Toukanpo;
 using VehicleDispatch;
 
 using Vo;
+
+using VoluntaryAutomobileInsurance;
 
 using WastCollection;
 
@@ -272,6 +274,7 @@ namespace TobuSeisouSystemNet2025 {
         private WasteList wasteList = null;
         private WastCollectionList wastCollectionList = null;                                                                                   // 廃棄物顧客リスト
         private SetList setList = null;                                                                                                         // 廃棄物スポット見積リスト
+        private VoluntaryAutomobileInsuranceList voluntaryAutomobileInsuranceList = null;                                                       // 通勤用自動車任意保険加入状況一覧
 
         /// <summary>
         /// 接続先がSQLServerの場合
@@ -514,6 +517,15 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（SetList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
+                        case "VoluntaryAutomobileInsuranceList":                                                                                // 通勤用自動車任意保険加入状況一覧
+                            if (voluntaryAutomobileInsuranceList is null || voluntaryAutomobileInsuranceList.IsDisposed) {
+                                voluntaryAutomobileInsuranceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, voluntaryAutomobileInsuranceList);
+                                voluntaryAutomobileInsuranceList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（SetList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
                     }
                     break;
                 case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
@@ -648,7 +660,7 @@ namespace TobuSeisouSystemNet2025 {
                      * 陸運局監査
                      */
                     case "NodeRik00": // 00　巡回指導資料
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\00　巡回指導資料");
+                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\00　巡回指導資料");
                         break;
                     case "NodeRik01": // 01　運転者台帳
                         /*
@@ -659,10 +671,10 @@ namespace TobuSeisouSystemNet2025 {
                         staffList.Show();
                         break;
                     case "NodeRik02": // 02　運行管理規定
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\02　運行管理規定");
+                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\02　運行管理規定");
                         break;
                     case "NodeRik03": // 03　点呼記録簿・点呼執行要領
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\03　点呼記録簿・点呼執行要領");
+                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\03　点呼記録簿・点呼執行要領");
                         /*
                          * Formを表示する
                          */
@@ -749,24 +761,24 @@ namespace TobuSeisouSystemNet2025 {
                      * ISO14001
                      */
                     case "NodeISO0000": // 環境マネジメントマニュアル
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⓪環境マネジメントマニュアル");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⓪環境マネジメントマニュアル");
                         break;
                     case "NodeISO0100": // 適用規格
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\①適用規格");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\①適用規格");
                         break;
                     case "NodeISO0200": // 引用規格
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\②引用規格");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\②引用規格");
                         break;
                     case "NodeISO0300": // 用語及び定義
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\③用語及び定義");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\③用語及び定義");
                         break;
                     case "NodeISO0400": // 組織の状況
                         break;
                     case "NodeISO0410": // 組織及びその状況の理解
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\④組織の状況");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\④組織の状況");
                         break;
                     case "NodeISO0420": // 利害関係者のニーズ及び期待の理解
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\④組織の状況\④-2 利害関係者のニーズ及び期待の理解");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\④組織の状況\④-2 利害関係者のニーズ及び期待の理解");
                         break;
                     case "NodeISO0430": // 環境マネジメントシステムの適用範囲の決定
                         break;
@@ -777,7 +789,7 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0510": // リーダーシップ及びコミットメント
                         break;
                     case "NodeISO0520": // 環境方針
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑤リーダーシップ\⑤-2 環境方針");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑤リーダーシップ\⑤-2 環境方針");
                         break;
                     case "NodeISO0530": // 組織の役割、責任及び権限
                         break;
@@ -800,7 +812,7 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0614": // 取組みの計画策定
                         break;
                     case "NodeISO0620": // 環境目標及びそれを達成するための計画策定(環境マネジメントプログラム) 
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑥計画\⑥-2 環境目標及びそれを達成するための計画策定(環境マネジメントプログラム)");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑥計画\⑥-2 環境目標及びそれを達成するための計画策定(環境マネジメントプログラム)");
                         break;
                     case "NodeISO0621": // 環境目標
                         break;
@@ -837,22 +849,22 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeISO0820": // 緊急事態への準備及び対応
                         break;
                     case "NodeISO0900": // パフォーマンス評価
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価");
                         break;
                     case "NodeISO0910": // 監視、測定、分析及び評価
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価");
                         break;
                     case "NodeISO0911": // 一般
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価\⑨-1-1 一般");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価\⑨-1-1 一般");
                         break;
                     case "NodeISO0912": // 順守評価
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価\⑨-1-2 順守評価");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価\⑨-1 監視、測定、分析及び評価\⑨-1-2 順守評価");
                         break;
                     case "NodeISO0920": // 内部監査
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-2 内部監査");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価\⑨-2 内部監査");
                         break;
                     case "NodeISO0930": // マネジメントレビュー
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\① ISO\⑨パフォーマンス評価\⑨-3 マネジメントレビュー");
+                        files.OpenFolder(@"\\192.168.1.20\⑰iso14001\① ISO\⑨パフォーマンス評価\⑨-3 マネジメントレビュー");
                         break;
                     case "NodeISO1000": // 改善
                         break;
@@ -862,18 +874,16 @@ namespace TobuSeisouSystemNet2025 {
                         break;
                     case "NodeISO1030": // 継続的改善
                         break;
+
                     case "NodeTreatmentPlant": // 中間処理場
+                        files.OpenFolder(@"\\192.168.1.20\③東武リサイクルセンター");
                         break;
                     case "NodeAccident": // 事故受付
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\ISO事務局\② 事故受付");
+                        files.OpenFolder(@"\\192.168.1.20\⑩事故受付記録");
                         break;
                 }
             } else {
             }
-        }
-
-        private void ccLabel2_Click(object sender, EventArgs e) {
-
         }
 
         public string ConnectionLocation { get => this._connectionLocation; set => this._connectionLocation = value; }

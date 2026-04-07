@@ -3,7 +3,7 @@
  */
 using System.Drawing.Printing;
 
-using ControlEx;
+using CcControl;
 
 using Dao;
 
@@ -277,7 +277,7 @@ namespace StatusOfResidence {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ComboBoxExSelectName_SelectedIndexChanged(object sender, EventArgs e) {
-            StaffMasterVo staffMasterVo = ((ComboBoxExSelectNameVo)((ComboBoxEx)sender).SelectedItem).StaffMasterVo;
+            StaffMasterVo staffMasterVo = ((ComboBoxExSelectNameVo)((CcComboBox)sender).SelectedItem).StaffMasterVo;
             /*
              * StaffLedgerVoの値をControlにセットする
              */

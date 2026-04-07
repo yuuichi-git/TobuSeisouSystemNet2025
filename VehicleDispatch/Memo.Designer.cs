@@ -23,9 +23,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TextBoxExMemo = new ControlEx.CcTextBox();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.ButtonExTimeStamp = new ControlEx.CcButton();
+            this.TextBoxExMemo = new CcControl.CcTextBox();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.ButtonExTimeStamp = new CcControl.CcButton();
             this.SuspendLayout();
             // 
             // TextBoxExMemo
@@ -82,8 +82,8 @@
 
         #endregion
 
-        private ControlEx.CcTextBox TextBoxExMemo;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.CcButton ButtonExTimeStamp;
+        private CcControl.CcTextBox TextBoxExMemo;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton ButtonExTimeStamp;
     }
 }

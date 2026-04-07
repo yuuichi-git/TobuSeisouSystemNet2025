@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingFulltimeList));
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx = new ControlEx.CcStatusStrip();
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
-            this.labelEx1 = new ControlEx.CcLabel();
-            this.DateTimePickerExOperationDate = new ControlEx.CcDateTime();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx = new CcControl.CcStatusStrip();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -149,14 +149,14 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx;
-        private ControlEx.CcPanel PanelExTop;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx;
+        private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private ControlEx.CcLabel labelEx1;
-        private ControlEx.CcDateTime DateTimePickerExOperationDate;
-        private ControlEx.CcButton ButtonExUpdate;
+        private CcControl.CcLabel labelEx1;
+        private CcControl.CcDateTime DateTimePickerExOperationDate;
+        private CcControl.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

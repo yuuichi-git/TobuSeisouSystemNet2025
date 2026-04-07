@@ -1,14 +1,12 @@
 ﻿/*
  * 2024-10-01
  */
-using Vo;
-
-namespace ControlEx {
-    public partial class ComboBoxEx : ComboBox {
+namespace CcControl {
+    public partial class CcComboBox : ComboBox {
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ComboBoxEx() {
+        public CcComboBox() {
             /*
              * InitializeControl
              */

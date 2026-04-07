@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-11-05
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class GroupBoxEx : GroupBox {
         public GroupBoxEx() {
             InitializeComponent();

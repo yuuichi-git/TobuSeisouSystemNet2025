@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Car\Car.csproj" />
     <ProjectReference Include="..\CollectionWeight\Collection.csproj" />
-    <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\ControlEx\CcControl.csproj" />
     <ProjectReference Include="..\Dao\Dao.csproj" />
     <ProjectReference Include="..\DriversReport\DriversReport.csproj" />
     <ProjectReference Include="..\License\License.csproj" />

@@ -299,19 +299,50 @@ namespace EGov {
         }
 
         // ============================================================
-        // ★ 太字・色付け（章・節・款・条・項・号）
+        // ★ 太字・色付け・フォントサイズ変更（章・節・款・条・項・号）
+        // ------------------------------------------------------------
+        // RichTextBox 内のテキストに対して、正規表現で見出しを検出し、
+        // その部分だけフォントサイズ・太字・色を変更する。
+        // 
+        // ・章・節・款 → 最も大きく（11pt）
+        // ・条 → 少し大きく（10pt）
+        // ・項・号 → 標準より少し強調（10pt）
+        //
+        // RegexOptions.Multiline を使うことで、行頭 ^ が各行に適用される。
         // ============================================================
         private void ApplyFormatting() {
-            // 章・節・款・条・項・号を漢数字の揺れゼロで強調
-            ColorizeAndBold(@"^\s*第[一二三四五六七八九十百千・]+章");
-            ColorizeAndBold(@"^\s*第[一二三四五六七八九十百千・]+節");
-            ColorizeAndBold(@"^\s*第[一二三四五六七八九十百千・]+款");
-            ColorizeAndBold(@"^\s*第[一二三四五六七八九十百千・]+条(の[一二三四五六七八九十百千]+)*");
-            ColorizeAndBold(@"^\s*[一二三四五六七八九十百千]+項");
-            ColorizeAndBold(@"^\s*[一二三四五六七八九十百千]+号");
+            // 章（例：第七章）
+            ColorizeBoldAndResize(@"^\s*第[一二三四五六七八九十百千・]+章", 11);
+
+            // 節（例：第一節）
+            ColorizeBoldAndResize(@"^\s*第[一二三四五六七八九十百千・]+節", 11);
+
+            // 款（例：第一款）
+            ColorizeBoldAndResize(@"^\s*第[一二三四五六七八九十百千・]+款", 11);
+
+            // 条（例：第七条、七条の二）
+            ColorizeBoldAndResize(@"^\s*第[一二三四五六七八九十百千・]+条(の[一二三四五六七八九十百千]+)*", 10);
+
+            // 項（例：一項、二項）
+            ColorizeBoldAndResize(@"^\s*[一二三四五六七八九十百千]+項", 10);
+
+            // 号（例：一号、二号）
+            ColorizeBoldAndResize(@"^\s*[一二三四五六七八九十百千]+号", 10);
         }
 
-        private void ColorizeAndBold(string pattern) {
+        // ============================================================
+        // ★ ColorizeBoldAndResize
+        // ------------------------------------------------------------
+        // 指定した正規表現にマッチした部分だけ、
+        // ・フォントサイズ変更
+        // ・太字
+        // ・青色
+        // にするユーティリティメソッド。
+        //
+        // RichTextBox は部分的なフォント変更が可能なので、
+        // Select() → SelectionFont / SelectionColor を使って実現する。
+        // ============================================================
+        private void ColorizeBoldAndResize(string pattern, float fontSize) {
             var matches = Regex.Matches(
                 CcRichTextBox1.Text,
                 pattern,
@@ -319,25 +350,45 @@ namespace EGov {
             );
 
             foreach (Match m in matches) {
+                // 対象範囲を選択
                 CcRichTextBox1.Select(m.Index, m.Length);
-                CcRichTextBox1.SelectionFont = new Font(CcRichTextBox1.Font, FontStyle.Bold);
+
+                // フォントサイズと太字を適用
+                CcRichTextBox1.SelectionFont = new Font(
+                    CcRichTextBox1.Font.FontFamily,  // 現在のフォントファミリを維持
+                    fontSize,                        // 指定サイズに変更
+                    FontStyle.Bold                   // 太字
+                );
+
+                // 色を青に変更
                 CcRichTextBox1.SelectionColor = Color.Blue;
             }
 
+            // 選択状態を解除（カーソルを先頭に戻す）
             CcRichTextBox1.Select(0, 0);
         }
 
         private string BuildChapterText(Chapter chapter) {
             var sb = new StringBuilder();
 
-            // 章タイトル
-            sb.AppendLine($"第{ToKanjiFlexible(chapter.Num)}章 {chapter.ChapterTitle}");
+            // ============================================================
+            // ★ 章タイトルの出力
+            //
+            // ChapterTitle は e-Gov API の <ChapterTitle> に対応。
+            // 例：総則、目的、定義 など。
+            //
+            // ※ TreeView 側では「第○章 ○○」と番号付きで表示しているが、
+            //    本文側では Title のみを表示する設計。
+            //    （必要なら「第○章」を付けることも可能）
+            // ============================================================
+            string title = $"{chapter.ChapterTitle}";
+            sb.AppendLine(title);
 
-            // 章内の節 → 条 → 項 → 号 をすべて展開
+            // 章内の節をすべて展開
             foreach (var section in chapter.Sections)
                 sb.AppendLine(BuildSectionText(section));
 
-            // 章直下の条も展開
+            // 章直下に条がある場合（節なし構造）
             foreach (var article in chapter.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
@@ -347,11 +398,22 @@ namespace EGov {
         private string BuildSectionText(Section section) {
             var sb = new StringBuilder();
 
-            sb.AppendLine($"第{ToKanjiFlexible(section.Num)}節 {section.SectionTitle}");
+            // ============================================================
+            // ★ 節タイトルの出力
+            //
+            // SectionTitle は <SectionTitle> に対応。
+            // 例：定義、基本事項、手続 など。
+            //
+            // 本文側では番号（第○節）は付けず、Title のみを表示する方針。
+            // ============================================================
+            string title = $"{section.SectionTitle}";
+            sb.AppendLine(title);
 
+            // 節内の款を展開
             foreach (var subsection in section.Subsections)
                 sb.AppendLine(BuildSubsectionText(subsection));
 
+            // 節直下の条を展開
             foreach (var article in section.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
@@ -361,8 +423,18 @@ namespace EGov {
         private string BuildSubsectionText(Subsection subsection) {
             var sb = new StringBuilder();
 
-            sb.AppendLine($"第{ToKanjiFlexible(subsection.Num)}款 {subsection.SubsectionTitle}");
+            // ============================================================
+            // ★ 款タイトルの出力
+            //
+            // SubsectionTitle は <SubsectionTitle> に対応。
+            // 例：基本原則、特例、補足規定 など。
+            //
+            // 本文側では番号（第○款）は付けず、Title のみを表示する方針。
+            // ============================================================
+            string title = $"{subsection.SubsectionTitle}";
+            sb.AppendLine(title);
 
+            // 款直下の条を展開
             foreach (var article in subsection.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
@@ -372,16 +444,36 @@ namespace EGov {
         private string BuildArticleText(Article article) {
             var sb = new StringBuilder();
 
-            if (!string.IsNullOrEmpty(article.ArticleTitle))
-                sb.AppendLine(article.ArticleTitle);
-            else
-                sb.AppendLine($"第{ToKanjiFlexible(article.Num)}条");
+            // ============================================================
+            // ★ 条タイトルの出力（Caption も含む）
+            //
+            // ArticleTitle が存在する場合：
+            //   <ArticleTitle>第七条</ArticleTitle>
+            //
+            // ArticleTitle が空の場合：
+            //   第7条 → 第七条（ToKanjiFlexible）
+            //
+            // ArticleCaption（例：点呼等）は Title の右側に付ける。
+            //   例：第七条（点呼等）
+            //
+            // TreeView と本文側の表示を完全に統一するための仕様。
+            // ============================================================
+            string title = !string.IsNullOrEmpty(article.ArticleTitle)
+                ? article.ArticleTitle
+                : $"第{ToKanjiFlexible(article.Num)}条";
 
+            if (!string.IsNullOrWhiteSpace(article.ArticleCaption))
+                title += $"{article.ArticleCaption}";
+
+            sb.AppendLine(title);
+
+            // 条内の項を展開
             foreach (var para in article.Paragraphs)
                 sb.AppendLine(BuildParagraphText(para));
 
             return sb.ToString();
         }
+
 
         // ============================================================
         // 項の表示
@@ -671,15 +763,6 @@ namespace EGov {
                 .Replace("９", "9");
         }
 
-        private bool IsArticleNode(TreeNode node) =>
-            node.Text.Contains("条") && !node.Text.Contains("項") && !node.Text.Contains("号");
-
-        private bool IsParagraphNode(TreeNode node) =>
-            node.Text.Contains("項");
-
-        private bool IsItemNode(TreeNode node) =>
-            node.Text.Contains("号");
-
         // ============================================================
         //
         // ★ NumberConverter（完全リファクタ版）
@@ -731,53 +814,6 @@ namespace EGov {
                     return n;
 
                 return KanjiToNumber(s);
-            }
-
-            // ============================================================
-            // ★ NormalizeArticle（内部検索用）
-            // ============================================================
-            public static string NormalizeArticle(string text) {
-                if (string.IsNullOrWhiteSpace(text))
-                    return text;
-
-                var s = text.Trim();
-
-                // 「第」を外す
-                if (s.StartsWith("第"))
-                    s = s.Substring(1);
-
-                // ① 「条の」パターン
-                var idx = s.IndexOf("条の", StringComparison.Ordinal);
-                if (idx >= 0) {
-                    var left = s.Substring(0, idx);
-                    var right = s.Substring(idx + "条の".Length);
-                    return $"{KanjiOrNumberToInt(left)}-{KanjiOrNumberToInt(right)}";
-                }
-
-                // ② アンダースコア（50_2 → 50-2）
-                if (s.Contains('_')) {
-                    var parts = s.Split('_');
-                    return $"{KanjiOrNumberToInt(parts[0])}-{KanjiOrNumberToInt(parts[1])}";
-                }
-
-                // ③ ハイフン（50-2）
-                if (s.Contains('-')) {
-                    var parts = s.Split('-');
-                    return $"{KanjiOrNumberToInt(parts[0])}-{KanjiOrNumberToInt(parts[1])}";
-                }
-
-                // ④ 単独の条番号
-                return KanjiOrNumberToInt(s).ToString();
-            }
-
-            public static string NormalizeParagraph(string text) {
-                text = text.Replace("項", "");
-                return KanjiOrNumberToInt(text).ToString();
-            }
-
-            public static string NormalizeItem(string text) {
-                text = text.Replace("号", "");
-                return KanjiOrNumberToInt(text).ToString();
             }
         }
 

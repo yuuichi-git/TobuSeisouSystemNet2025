@@ -1,9 +1,9 @@
 ﻿/*
  * 2024-11-04
  */
-namespace ControlEx {
-    public partial class CheckBoxEx : CheckBox {
-        public CheckBoxEx() {
+namespace CcControl {
+    public partial class CcCheckBox : CheckBox {
+        public CcCheckBox() {
             InitializeComponent();
         }
 

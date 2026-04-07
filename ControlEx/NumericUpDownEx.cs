@@ -1,7 +1,7 @@
 ﻿/*
  * 2024-11-06
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class NumericUpDownEx : NumericUpDown {
         /// <summary>
         /// コンストラクター

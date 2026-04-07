@@ -2,7 +2,7 @@
  * 2026-01-22
  * 時刻入力用 MaskedTextBox カスタムコントロール CcTime
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcTime : MaskedTextBox {
         public CcTime() {
             /*

@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\ControlEx\ControlEx.csproj" />
+    <ProjectReference Include="..\ControlEx\CcControl.csproj" />
   </ItemGroup>
 
 </Project>

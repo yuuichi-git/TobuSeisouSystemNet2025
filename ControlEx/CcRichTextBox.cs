@@ -1,7 +1,7 @@
 ﻿/*
  * 2026-03^-6
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcRichTextBox : RichTextBox {
         public CcRichTextBox() {
             InitializeComponent();

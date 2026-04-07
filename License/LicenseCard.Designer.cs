@@ -23,11 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PictureBoxExHead = new ControlEx.CcPictureBox();
-            this.PictureBoxExTail = new ControlEx.CcPictureBox();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PictureBoxExHead = new CcControl.CcPictureBox();
+            this.PictureBoxExTail = new CcControl.CcPictureBox();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExHead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxExTail).BeginInit();
@@ -115,10 +115,10 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPictureBox PictureBoxExHead;
-        private ControlEx.CcPictureBox PictureBoxExTail;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPictureBox PictureBoxExHead;
+        private CcControl.CcPictureBox PictureBoxExTail;
     }
 }

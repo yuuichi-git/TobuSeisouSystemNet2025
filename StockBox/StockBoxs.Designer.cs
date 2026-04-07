@@ -23,17 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.PanelExUp = new ControlEx.CcPanel();
-            this.ButtonExDispatch = new ControlEx.CcButton();
-            this.ButtonExShortTime = new ControlEx.CcButton();
-            this.ButtonExLongTime = new ControlEx.CcButton();
-            this.ButtonExPartTime = new ControlEx.CcButton();
-            this.ButtonExFullTime = new ControlEx.CcButton();
-            this.ButtonExCar = new ControlEx.CcButton();
-            this.ButtonExSet = new ControlEx.CcButton();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.PanelExUp = new CcControl.CcPanel();
+            this.ButtonExDispatch = new CcControl.CcButton();
+            this.ButtonExShortTime = new CcControl.CcButton();
+            this.ButtonExLongTime = new CcControl.CcButton();
+            this.ButtonExPartTime = new CcControl.CcButton();
+            this.ButtonExFullTime = new CcControl.CcButton();
+            this.ButtonExCar = new CcControl.CcButton();
+            this.ButtonExSet = new CcControl.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.SuspendLayout();
@@ -184,16 +184,16 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcPanel PanelExUp;
-        private ControlEx.CcButton ButtonExSet;
-        private ControlEx.CcButton ButtonExDispatch;
-        private ControlEx.CcButton ButtonExShortTime;
-        private ControlEx.CcButton ButtonExLongTime;
-        private ControlEx.CcButton ButtonExPartTime;
-        private ControlEx.CcButton ButtonExFullTime;
-        private ControlEx.CcButton ButtonExCar;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcPanel PanelExUp;
+        private CcControl.CcButton ButtonExSet;
+        private CcControl.CcButton ButtonExDispatch;
+        private CcControl.CcButton ButtonExShortTime;
+        private CcControl.CcButton ButtonExLongTime;
+        private CcControl.CcButton ButtonExPartTime;
+        private CcControl.CcButton ButtonExFullTime;
+        private CcControl.CcButton ButtonExCar;
     }
 }

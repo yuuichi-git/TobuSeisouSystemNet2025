@@ -1,7 +1,7 @@
 ﻿/*
  * 2025-07-31
  */
-namespace ControlEx {
+namespace CcControl {
     public partial class CcTreeView : TreeView {
 
         /// <summary>

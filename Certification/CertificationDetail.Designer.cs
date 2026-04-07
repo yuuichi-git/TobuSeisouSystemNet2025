@@ -23,17 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new ControlEx.CcTableLayoutPanel();
-            this.StatusStripEx1 = new ControlEx.CcStatusStrip();
-            this.tableLayoutPanelEx1 = new ControlEx.CcTableLayoutPanel();
-            this.PictureBoxEx1 = new ControlEx.CcPictureBox();
-            this.ContextMenuStripEx1 = new ControlEx.ContextMenuStripEx();
+            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.StatusStripEx1 = new CcControl.CcStatusStrip();
+            this.tableLayoutPanelEx1 = new CcControl.CcTableLayoutPanel();
+            this.PictureBoxEx1 = new CcControl.CcPictureBox();
+            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx2 = new ControlEx.CcPictureBox();
-            this.MenuStripEx1 = new ControlEx.CcMenuStrip();
-            this.PanelExTop = new ControlEx.CcPanel();
-            this.ButtonExUpdate = new ControlEx.CcButton();
+            this.PictureBoxEx2 = new CcControl.CcPictureBox();
+            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.PanelExTop = new CcControl.CcPanel();
+            this.ButtonExUpdate = new CcControl.CcButton();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.tableLayoutPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
@@ -184,15 +184,15 @@
 
         #endregion
 
-        private ControlEx.CcTableLayoutPanel TableLayoutPanelExBase;
-        private ControlEx.CcTableLayoutPanel tableLayoutPanelEx1;
-        private ControlEx.CcPictureBox PictureBoxEx1;
-        private ControlEx.CcPictureBox PictureBoxEx2;
-        private ControlEx.CcStatusStrip StatusStripEx1;
-        private ControlEx.CcMenuStrip MenuStripEx1;
-        private ControlEx.CcPanel PanelExTop;
-        private ControlEx.CcButton ButtonExUpdate;
-        private ControlEx.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcTableLayoutPanel tableLayoutPanelEx1;
+        private CcControl.CcPictureBox PictureBoxEx1;
+        private CcControl.CcPictureBox PictureBoxEx2;
+        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcPanel PanelExTop;
+        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
     }
