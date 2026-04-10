@@ -154,7 +154,8 @@ namespace Dao {
                                             "H_WasteCollectionHead.DeleteYmdHms," +
                                             "H_WasteCollectionHead.DeleteFlag " +
                                      "FROM H_WasteCollectionHead " +
-                                     "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code";
+                                     "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code " +
+                                     "WHERE H_WasteCollectionHead.DeleteFlag = 'False'";
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     WasteCollectionHeadVo wasteCollectionHeadVo = new();

@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
 </Project>

@@ -245,6 +245,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1676, 0);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -752,6 +753,7 @@
             // 
             // BTNExExpiration
             // 
+            this.BTNExExpiration.ForeColor = SystemColors.ControlText;
             this.BTNExExpiration.Location = new Point(1088, 24);
             this.BTNExExpiration.Name = "BTNExExpiration";
             this.BTNExExpiration.SetTextDirectionVertical = "";
@@ -774,6 +776,7 @@
             // 
             // BTNExExpirationPicture
             // 
+            this.BTNExExpirationPicture.ForeColor = SystemColors.ControlText;
             this.BTNExExpirationPicture.Location = new Point(1088, 48);
             this.BTNExExpirationPicture.Name = "BTNExExpirationPicture";
             this.BTNExExpirationPicture.SetTextDirectionVertical = "";
@@ -857,7 +860,7 @@
             // 
             this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemPictureDelete });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(133, 70);
+            this.ContextMenuStripEx1.Size = new Size(181, 92);
             this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
             // 
             // ToolStripMenuItemOpen
@@ -869,7 +872,7 @@
             // ToolStripMenuItemPaste
             // 
             this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
+            this.ToolStripMenuItemPaste.Size = new Size(180, 22);
             this.ToolStripMenuItemPaste.Text = "Paste";
             // 
             // ToolStripMenuItemPictureDelete
@@ -899,6 +902,7 @@
             // 
             // BTNExContractExpirationNoticePicture1
             // 
+            this.BTNExContractExpirationNoticePicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationNoticePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationNoticePicture1.Name = "BTNExContractExpirationNoticePicture1";
             this.BTNExContractExpirationNoticePicture1.SetTextDirectionVertical = "";
@@ -910,6 +914,7 @@
             // 
             // BTNExContractExpirationNotice
             // 
+            this.BTNExContractExpirationNotice.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationNotice.Location = new Point(1088, 20);
             this.BTNExContractExpirationNotice.Name = "BTNExContractExpirationNotice";
             this.BTNExContractExpirationNotice.SetTextDirectionVertical = "";
@@ -1022,6 +1027,7 @@
             // 
             // BTNExContractExpirationLossWrittenPledgePicture1
             // 
+            this.BTNExContractExpirationLossWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationLossWrittenPledgePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationLossWrittenPledgePicture1.Name = "BTNExContractExpirationLossWrittenPledgePicture1";
             this.BTNExContractExpirationLossWrittenPledgePicture1.SetTextDirectionVertical = "";
@@ -1033,6 +1039,7 @@
             // 
             // BTNExContractExpirationLossWrittenPledge
             // 
+            this.BTNExContractExpirationLossWrittenPledge.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationLossWrittenPledge.Location = new Point(1088, 20);
             this.BTNExContractExpirationLossWrittenPledge.Name = "BTNExContractExpirationLossWrittenPledge";
             this.BTNExContractExpirationLossWrittenPledge.SetTextDirectionVertical = "";
@@ -1145,6 +1152,7 @@
             // 
             // BTNExContractExpirationWrittenPledgePicture1
             // 
+            this.BTNExContractExpirationWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationWrittenPledgePicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationWrittenPledgePicture1.Name = "BTNExContractExpirationWrittenPledgePicture1";
             this.BTNExContractExpirationWrittenPledgePicture1.SetTextDirectionVertical = "";
@@ -1156,6 +1164,7 @@
             // 
             // BTNExContractExpirationWrittenPledge
             // 
+            this.BTNExContractExpirationWrittenPledge.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationWrittenPledge.Location = new Point(1088, 20);
             this.BTNExContractExpirationWrittenPledge.Name = "BTNExContractExpirationWrittenPledge";
             this.BTNExContractExpirationWrittenPledge.SetTextDirectionVertical = "";
@@ -1273,6 +1282,7 @@
             // 
             // BTNExContractExpirationShortJobPicture2
             // 
+            this.BTNExContractExpirationShortJobPicture2.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationShortJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationShortJobPicture2.Name = "BTNExContractExpirationShortJobPicture2";
             this.BTNExContractExpirationShortJobPicture2.SetTextDirectionVertical = "";
@@ -1284,6 +1294,7 @@
             // 
             // BTNExContractExpirationShortJobPicture1
             // 
+            this.BTNExContractExpirationShortJobPicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationShortJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationShortJobPicture1.Name = "BTNExContractExpirationShortJobPicture1";
             this.BTNExContractExpirationShortJobPicture1.SetTextDirectionVertical = "";
@@ -1295,6 +1306,7 @@
             // 
             // BTNExContractExpirationShortJob
             // 
+            this.BTNExContractExpirationShortJob.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationShortJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationShortJob.Name = "BTNExContractExpirationShortJob";
             this.BTNExContractExpirationShortJob.SetTextDirectionVertical = "";
@@ -1455,6 +1467,7 @@
             // 
             // BTNExContractExpirationLongJobPicture2
             // 
+            this.BTNExContractExpirationLongJobPicture2.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationLongJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationLongJobPicture2.Name = "BTNExContractExpirationLongJobPicture2";
             this.BTNExContractExpirationLongJobPicture2.SetTextDirectionVertical = "";
@@ -1466,6 +1479,7 @@
             // 
             // BTNExContractExpirationLongJobPicture1
             // 
+            this.BTNExContractExpirationLongJobPicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationLongJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationLongJobPicture1.Name = "BTNExContractExpirationLongJobPicture1";
             this.BTNExContractExpirationLongJobPicture1.SetTextDirectionVertical = "";
@@ -1477,6 +1491,7 @@
             // 
             // BTNExContractExpirationLongJob
             // 
+            this.BTNExContractExpirationLongJob.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationLongJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationLongJob.Name = "BTNExContractExpirationLongJob";
             this.BTNExContractExpirationLongJob.SetTextDirectionVertical = "";
@@ -1637,6 +1652,7 @@
             // 
             // BTNExContractExpirationPartTimeJobPicture2
             // 
+            this.BTNExContractExpirationPartTimeJobPicture2.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationPartTimeJobPicture2.Location = new Point(1088, 76);
             this.BTNExContractExpirationPartTimeJobPicture2.Name = "BTNExContractExpirationPartTimeJobPicture2";
             this.BTNExContractExpirationPartTimeJobPicture2.SetTextDirectionVertical = "";
@@ -1648,6 +1664,7 @@
             // 
             // BTNExContractExpirationPartTimeJobPicture1
             // 
+            this.BTNExContractExpirationPartTimeJobPicture1.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationPartTimeJobPicture1.Location = new Point(1088, 48);
             this.BTNExContractExpirationPartTimeJobPicture1.Name = "BTNExContractExpirationPartTimeJobPicture1";
             this.BTNExContractExpirationPartTimeJobPicture1.SetTextDirectionVertical = "";
@@ -1659,6 +1676,7 @@
             // 
             // BTNExContractExpirationPartTimeJob
             // 
+            this.BTNExContractExpirationPartTimeJob.ForeColor = SystemColors.ControlText;
             this.BTNExContractExpirationPartTimeJob.Location = new Point(1088, 20);
             this.BTNExContractExpirationPartTimeJob.Name = "BTNExContractExpirationPartTimeJob";
             this.BTNExContractExpirationPartTimeJob.SetTextDirectionVertical = "";

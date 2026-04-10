@@ -7,9 +7,10 @@ namespace Vo {
     /// DBテーブルの1レコードをそのまま保持する純粋なデータオブジェクト。
     /// </summary>
     public class VoluntaryAutomobileInsuranceVo {
+        private DateTime _defaultDateTime = new(1900, 1, 1);
         public VoluntaryAutomobileInsuranceVo() {
             Id = string.Empty;
-            StaffCode = string.Empty;
+            StaffCode = 0;
             VehicleType = string.Empty;
             CompanyName = string.Empty;
             StartDate = string.Empty;
@@ -21,19 +22,19 @@ namespace Vo {
             Image4 = Array.Empty<byte>();
 
             InsertPcName = string.Empty;
-            InsertYmdHms = string.Empty;
+            InsertYmdHms = _defaultDateTime;
             UpdatePcName = string.Empty;
-            UpdateYmdHms = string.Empty;
+            UpdateYmdHms = _defaultDateTime;
             DeletePcName = string.Empty;
-            DeleteYmdHms = string.Empty;
-            DeleteFlag = string.Empty;
+            DeleteYmdHms = _defaultDateTime;
+            DeleteFlag = false;
         }
 
         /// <summary>主キー。varchar(50)</summary>
         public string Id { get; set; }
 
         /// <summary>スタッフコード。int</summary>
-        public string StaffCode { get; set; }
+        public int StaffCode { get; set; }
 
         /// <summary>車両種別。varchar(50)</summary>
         public string VehicleType { get; set; }
@@ -63,22 +64,22 @@ namespace Vo {
         public string InsertPcName { get; set; }
 
         /// <summary>登録日時。datetime</summary>
-        public string InsertYmdHms { get; set; }
+        public DateTime InsertYmdHms { get; set; }
 
         /// <summary>更新PC名。varchar(50)</summary>
         public string UpdatePcName { get; set; }
 
         /// <summary>更新日時。datetime</summary>
-        public string UpdateYmdHms { get; set; }
+        public DateTime UpdateYmdHms { get; set; }
 
         /// <summary>削除PC名。varchar(50)</summary>
         public string DeletePcName { get; set; }
 
         /// <summary>削除日時。datetime</summary>
-        public string DeleteYmdHms { get; set; }
+        public DateTime DeleteYmdHms { get; set; }
 
         /// <summary>削除フラグ。bit</summary>
-        public string DeleteFlag { get; set; }
+        public bool DeleteFlag { get; set; }
 
 
         /*

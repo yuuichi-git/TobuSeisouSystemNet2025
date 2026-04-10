@@ -1,6 +1,8 @@
 ﻿/*
  * 2026-02-05
  */
+using System.Diagnostics;
+
 using Windows.Data.Pdf;
 using Windows.Storage.Streams;
 
@@ -55,11 +57,41 @@ namespace Common {
                 Bitmap bitmap = new(memoryStream);                                                                      // 呼び出し側で Dispose
                 return bitmap;
             } catch (Exception exception) {
-                Console.WriteLine(exception);                                                                           // ログなどに残す
+                Debug.WriteLine(string.Concat("ConvertPdfToImage:", exception));
                 return null;
             }
         }
+
+        /// <summary>
+        /// ファイル選択ダイアログを開いて PDF を byte[] に変換する
+        /// </summary>
+        /// <param name="contextMenuStrip"></param>
+        /// <returns></returns>
+        public byte[]? ConvertPdfToByte(ContextMenuStrip contextMenuStrip) {
+            contextMenuStrip.Hide(); // コンテキストメニューを閉じる
+
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Title = "PDFファイルを選択してください";
+            openFileDialog.Filter = "PDF ファイル (*.pdf)|*.pdf";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+            // ★ 重要：親ウィンドウを指定する
+            IWin32Window owner = contextMenuStrip.SourceControl?.FindForm() ?? null;
+
+            DialogResult result = owner != null
+                ? openFileDialog.ShowDialog(owner)
+                : openFileDialog.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return null;
+
+            try {
+                return File.ReadAllBytes(openFileDialog.FileName);
+            } catch (Exception ex) {
+                Debug.WriteLine($"ConvertPdfToByte: {ex}");
+                return null;
+            }
+        }
+
     }
 }
-
-

@@ -24,29 +24,40 @@
         /// </summary>
         private void InitializeComponent() {
             this.CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
+            this.CcTabControl1 = new CcControl.CcTabControl();
+            this.TabPage1 = new TabPage();
+            this.TabPage2 = new TabPage();
+            this.TabPage3 = new TabPage();
+            this.TabPage4 = new TabPage();
             this.CcMenuStrip1 = new CcControl.CcMenuStrip();
             this.CcStatusStrip1 = new CcControl.CcStatusStrip();
             this.CcPanelTop = new CcControl.CcPanel();
             this.CcButtonUpdate = new CcControl.CcButton();
             this.CcPanelMiddle = new CcControl.CcPanel();
-            this.ccComboBox1 = new CcControl.CcComboBox();
-            this.ccLabel1 = new CcControl.CcLabel();
-            this.ccLabel2 = new CcControl.CcLabel();
-            this.ccComboBox2 = new CcControl.CcComboBox();
-            this.ccLabel3 = new CcControl.CcLabel();
+            this.CcDateTimePickerEndDate = new CcControl.CcDateTime();
+            this.CcDateTimePickerStartDate = new CcControl.CcDateTime();
             this.ccLabel4 = new CcControl.CcLabel();
-            this.ccDateTime1 = new CcControl.CcDateTime();
-            this.ccDateTime2 = new CcControl.CcDateTime();
+            this.ccLabel3 = new CcControl.CcLabel();
+            this.ccLabel2 = new CcControl.CcLabel();
+            this.CcComboBoxCompanyName = new CcControl.CcComboBox();
+            this.ccLabel1 = new CcControl.CcLabel();
+            this.CcComboBoxVehicleType = new CcControl.CcComboBox();
+            this.CcContextMenuStrip1 = new CcControl.ContextMenuStripEx();
+            this.ToolStripMenuItemOpen = new ToolStripMenuItem();
+            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.CcTableLayoutPanelBase.SuspendLayout();
+            this.CcTabControl1.SuspendLayout();
             this.CcPanelTop.SuspendLayout();
             this.CcPanelMiddle.SuspendLayout();
+            this.CcContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CcTableLayoutPanelBase
             // 
-            this.CcTableLayoutPanelBase.ColumnCount = 1;
+            this.CcTableLayoutPanelBase.ColumnCount = 2;
+            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 410F));
             this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            this.CcTableLayoutPanelBase.Controls.Add(this.CcTabControl1, 1, 2);
             this.CcTableLayoutPanelBase.Controls.Add(this.CcMenuStrip1, 0, 0);
             this.CcTableLayoutPanelBase.Controls.Add(this.CcStatusStrip1, 0, 3);
             this.CcTableLayoutPanelBase.Controls.Add(this.CcPanelTop, 0, 1);
@@ -59,106 +70,145 @@
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.CcTableLayoutPanelBase.Size = new Size(1904, 1041);
+            this.CcTableLayoutPanelBase.Size = new Size(1389, 1041);
             this.CcTableLayoutPanelBase.TabIndex = 0;
+            // 
+            // CcTabControl1
+            // 
+            this.CcTabControl1.Controls.Add(this.TabPage1);
+            this.CcTabControl1.Controls.Add(this.TabPage2);
+            this.CcTabControl1.Controls.Add(this.TabPage3);
+            this.CcTabControl1.Controls.Add(this.TabPage4);
+            this.CcTabControl1.Dock = DockStyle.Fill;
+            this.CcTabControl1.Location = new Point(413, 87);
+            this.CcTabControl1.Name = "CcTabControl1";
+            this.CcTabControl1.SelectedIndex = 0;
+            this.CcTabControl1.Size = new Size(973, 927);
+            this.CcTabControl1.SizeMode = TabSizeMode.Fixed;
+            this.CcTabControl1.TabIndex = 8;
+            // 
+            // TabPage1
+            // 
+            this.TabPage1.Location = new Point(4, 24);
+            this.TabPage1.Name = "TabPage1";
+            this.TabPage1.Padding = new Padding(3);
+            this.TabPage1.Size = new Size(965, 899);
+            this.TabPage1.TabIndex = 0;
+            this.TabPage1.Tag = "Route";
+            this.TabPage1.Text = "経路図";
+            this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // TabPage2
+            // 
+            this.TabPage2.Location = new Point(4, 24);
+            this.TabPage2.Name = "TabPage2";
+            this.TabPage2.Padding = new Padding(3);
+            this.TabPage2.Size = new Size(965, 899);
+            this.TabPage2.TabIndex = 1;
+            this.TabPage2.Tag = "Compulsory";
+            this.TabPage2.Text = "自賠責";
+            this.TabPage2.UseVisualStyleBackColor = true;
+            // 
+            // TabPage3
+            // 
+            this.TabPage3.Location = new Point(4, 24);
+            this.TabPage3.Name = "TabPage3";
+            this.TabPage3.Size = new Size(965, 899);
+            this.TabPage3.TabIndex = 2;
+            this.TabPage3.Tag = "Voluntary";
+            this.TabPage3.Text = "任意保険";
+            this.TabPage3.UseVisualStyleBackColor = true;
+            // 
+            // TabPage4
+            // 
+            this.TabPage4.Location = new Point(4, 24);
+            this.TabPage4.Name = "TabPage4";
+            this.TabPage4.Size = new Size(965, 899);
+            this.TabPage4.TabIndex = 3;
+            this.TabPage4.Tag = "WorkCommutinPermit";
+            this.TabPage4.Text = "通勤許可証";
+            this.TabPage4.UseVisualStyleBackColor = true;
             // 
             // CcMenuStrip1
             // 
+            this.CcTableLayoutPanelBase.SetColumnSpan(this.CcMenuStrip1, 2);
             this.CcMenuStrip1.Location = new Point(0, 0);
             this.CcMenuStrip1.Name = "CcMenuStrip1";
-            this.CcMenuStrip1.Size = new Size(1904, 24);
+            this.CcMenuStrip1.Size = new Size(1389, 24);
             this.CcMenuStrip1.TabIndex = 0;
             this.CcMenuStrip1.Text = "ccMenuStrip1";
             this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // CcStatusStrip1
             // 
+            this.CcTableLayoutPanelBase.SetColumnSpan(this.CcStatusStrip1, 2);
             this.CcStatusStrip1.Location = new Point(0, 1019);
             this.CcStatusStrip1.Name = "CcStatusStrip1";
-            this.CcStatusStrip1.Size = new Size(1904, 22);
+            this.CcStatusStrip1.Size = new Size(1389, 22);
             this.CcStatusStrip1.TabIndex = 1;
             this.CcStatusStrip1.Text = "ccStatusStrip1";
             // 
             // CcPanelTop
             // 
+            this.CcTableLayoutPanelBase.SetColumnSpan(this.CcPanelTop, 2);
             this.CcPanelTop.Controls.Add(this.CcButtonUpdate);
             this.CcPanelTop.Dock = DockStyle.Fill;
             this.CcPanelTop.Location = new Point(3, 27);
             this.CcPanelTop.Name = "CcPanelTop";
-            this.CcPanelTop.Size = new Size(1898, 54);
+            this.CcPanelTop.Size = new Size(1383, 54);
             this.CcPanelTop.TabIndex = 2;
             // 
             // CcButtonUpdate
             // 
             this.CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 11.25F);
+            this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             this.CcButtonUpdate.ForeColor = SystemColors.ControlText;
-            this.CcButtonUpdate.Location = new Point(1660, 10);
+            this.CcButtonUpdate.Location = new Point(1152, 10);
             this.CcButtonUpdate.Name = "CcButtonUpdate";
             this.CcButtonUpdate.SetTextDirectionVertical = "";
             this.CcButtonUpdate.Size = new Size(184, 32);
             this.CcButtonUpdate.TabIndex = 5;
-            this.CcButtonUpdate.Text = "最　新　化";
+            this.CcButtonUpdate.Text = "UPDATE";
             this.CcButtonUpdate.UseVisualStyleBackColor = true;
+            this.CcButtonUpdate.Click += this.CcButtonUpdate_Click;
             // 
             // CcPanelMiddle
             // 
-            this.CcPanelMiddle.Controls.Add(this.ccDateTime2);
-            this.CcPanelMiddle.Controls.Add(this.ccDateTime1);
+            this.CcPanelMiddle.Controls.Add(this.CcDateTimePickerEndDate);
+            this.CcPanelMiddle.Controls.Add(this.CcDateTimePickerStartDate);
             this.CcPanelMiddle.Controls.Add(this.ccLabel4);
             this.CcPanelMiddle.Controls.Add(this.ccLabel3);
             this.CcPanelMiddle.Controls.Add(this.ccLabel2);
-            this.CcPanelMiddle.Controls.Add(this.ccComboBox2);
+            this.CcPanelMiddle.Controls.Add(this.CcComboBoxCompanyName);
             this.CcPanelMiddle.Controls.Add(this.ccLabel1);
-            this.CcPanelMiddle.Controls.Add(this.ccComboBox1);
+            this.CcPanelMiddle.Controls.Add(this.CcComboBoxVehicleType);
             this.CcPanelMiddle.Dock = DockStyle.Fill;
             this.CcPanelMiddle.Location = new Point(3, 87);
             this.CcPanelMiddle.Name = "CcPanelMiddle";
-            this.CcPanelMiddle.Size = new Size(1898, 927);
+            this.CcPanelMiddle.Size = new Size(404, 927);
             this.CcPanelMiddle.TabIndex = 3;
             // 
-            // ccComboBox1
+            // CcDateTimePickerEndDate
             // 
-            this.ccComboBox1.FormattingEnabled = true;
-            this.ccComboBox1.Location = new Point(132, 32);
-            this.ccComboBox1.Name = "ccComboBox1";
-            this.ccComboBox1.Size = new Size(252, 23);
-            this.ccComboBox1.TabIndex = 0;
+            this.CcDateTimePickerEndDate.CultureFlag = false;
+            this.CcDateTimePickerEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePickerEndDate.Location = new Point(132, 116);
+            this.CcDateTimePickerEndDate.Name = "CcDateTimePickerEndDate";
+            this.CcDateTimePickerEndDate.Size = new Size(180, 23);
+            this.CcDateTimePickerEndDate.TabIndex = 7;
+            this.CcDateTimePickerEndDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // ccLabel1
+            // CcDateTimePickerStartDate
             // 
-            this.ccLabel1.Location = new Point(16, 34);
-            this.ccLabel1.Name = "ccLabel1";
-            this.ccLabel1.Size = new Size(112, 20);
-            this.ccLabel1.TabIndex = 1;
-            this.ccLabel1.Text = "対象車両種別";
-            this.ccLabel1.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // ccLabel2
-            // 
-            this.ccLabel2.Location = new Point(16, 62);
-            this.ccLabel2.Name = "ccLabel2";
-            this.ccLabel2.Size = new Size(112, 20);
-            this.ccLabel2.TabIndex = 3;
-            this.ccLabel2.Text = "保険会社名";
-            this.ccLabel2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // ccComboBox2
-            // 
-            this.ccComboBox2.FormattingEnabled = true;
-            this.ccComboBox2.Location = new Point(132, 60);
-            this.ccComboBox2.Name = "ccComboBox2";
-            this.ccComboBox2.Size = new Size(252, 23);
-            this.ccComboBox2.TabIndex = 2;
-            // 
-            // ccLabel3
-            // 
-            this.ccLabel3.Location = new Point(16, 92);
-            this.ccLabel3.Name = "ccLabel3";
-            this.ccLabel3.Size = new Size(112, 20);
-            this.ccLabel3.TabIndex = 4;
-            this.ccLabel3.Text = "契約開始日";
-            this.ccLabel3.TextAlign = ContentAlignment.MiddleRight;
+            this.CcDateTimePickerStartDate.CultureFlag = false;
+            this.CcDateTimePickerStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePickerStartDate.Location = new Point(132, 88);
+            this.CcDateTimePickerStartDate.Name = "CcDateTimePickerStartDate";
+            this.CcDateTimePickerStartDate.Size = new Size(180, 23);
+            this.CcDateTimePickerStartDate.TabIndex = 6;
+            this.CcDateTimePickerStartDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ccLabel4
             // 
@@ -169,42 +219,84 @@
             this.ccLabel4.Text = "契約終了日";
             this.ccLabel4.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // ccDateTime1
+            // ccLabel3
             // 
-            this.ccDateTime1.CultureFlag = false;
-            this.ccDateTime1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.ccDateTime1.Format = DateTimePickerFormat.Custom;
-            this.ccDateTime1.Location = new Point(132, 88);
-            this.ccDateTime1.Name = "ccDateTime1";
-            this.ccDateTime1.Size = new Size(180, 23);
-            this.ccDateTime1.TabIndex = 6;
-            this.ccDateTime1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.ccLabel3.Location = new Point(16, 92);
+            this.ccLabel3.Name = "ccLabel3";
+            this.ccLabel3.Size = new Size(112, 20);
+            this.ccLabel3.TabIndex = 4;
+            this.ccLabel3.Text = "契約開始日";
+            this.ccLabel3.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // ccDateTime2
+            // ccLabel2
             // 
-            this.ccDateTime2.CultureFlag = false;
-            this.ccDateTime2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.ccDateTime2.Format = DateTimePickerFormat.Custom;
-            this.ccDateTime2.Location = new Point(132, 116);
-            this.ccDateTime2.Name = "ccDateTime2";
-            this.ccDateTime2.Size = new Size(180, 23);
-            this.ccDateTime2.TabIndex = 7;
-            this.ccDateTime2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.ccLabel2.Location = new Point(16, 62);
+            this.ccLabel2.Name = "ccLabel2";
+            this.ccLabel2.Size = new Size(112, 20);
+            this.ccLabel2.TabIndex = 3;
+            this.ccLabel2.Text = "保険会社名";
+            this.ccLabel2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CcComboBoxCompanyName
+            // 
+            this.CcComboBoxCompanyName.FormattingEnabled = true;
+            this.CcComboBoxCompanyName.Location = new Point(132, 60);
+            this.CcComboBoxCompanyName.Name = "CcComboBoxCompanyName";
+            this.CcComboBoxCompanyName.Size = new Size(252, 23);
+            this.CcComboBoxCompanyName.TabIndex = 2;
+            // 
+            // ccLabel1
+            // 
+            this.ccLabel1.Location = new Point(16, 34);
+            this.ccLabel1.Name = "ccLabel1";
+            this.ccLabel1.Size = new Size(112, 20);
+            this.ccLabel1.TabIndex = 1;
+            this.ccLabel1.Text = "対象車両種別";
+            this.ccLabel1.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CcComboBoxVehicleType
+            // 
+            this.CcComboBoxVehicleType.FormattingEnabled = true;
+            this.CcComboBoxVehicleType.Items.AddRange(new object[] { "原付", "小型二輪", "自動二輪", "自家用軽四輪", "自家用小型乗用車", "自家用普通乗用車", "営業用軽貨物", "営業用小型貨物", "営業用普通貨物" });
+            this.CcComboBoxVehicleType.Location = new Point(132, 32);
+            this.CcComboBoxVehicleType.Name = "CcComboBoxVehicleType";
+            this.CcComboBoxVehicleType.Size = new Size(252, 23);
+            this.CcComboBoxVehicleType.TabIndex = 0;
+            // 
+            // CcContextMenuStrip1
+            // 
+            this.CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemDelete });
+            this.CcContextMenuStrip1.Name = "CcContextMenuStrip1";
+            this.CcContextMenuStrip1.Size = new Size(133, 48);
+            this.CcContextMenuStrip1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
+            // 
+            // ToolStripMenuItemOpen
+            // 
+            this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
+            this.ToolStripMenuItemOpen.Text = "Open(PDF)";
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            this.ToolStripMenuItemDelete.Size = new Size(132, 22);
+            this.ToolStripMenuItemDelete.Text = "Delete";
             // 
             // VoluntaryAutomobileInsuranceDetail
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1904, 1041);
+            this.ClientSize = new Size(1389, 1041);
             this.Controls.Add(this.CcTableLayoutPanelBase);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "VoluntaryAutomobileInsuranceDetail";
             this.Text = "VoluntaryAutomobileInsuranceDetail";
             this.CcTableLayoutPanelBase.ResumeLayout(false);
             this.CcTableLayoutPanelBase.PerformLayout();
+            this.CcTabControl1.ResumeLayout(false);
             this.CcPanelTop.ResumeLayout(false);
             this.CcPanelMiddle.ResumeLayout(false);
+            this.CcContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -217,12 +309,20 @@
         private CcControl.CcButton CcButtonUpdate;
         private CcControl.CcPanel CcPanelMiddle;
         private CcControl.CcLabel ccLabel1;
-        private CcControl.CcComboBox ccComboBox1;
+        private CcControl.CcComboBox CcComboBoxVehicleType;
         private CcControl.CcLabel ccLabel4;
         private CcControl.CcLabel ccLabel3;
         private CcControl.CcLabel ccLabel2;
-        private CcControl.CcComboBox ccComboBox2;
-        private CcControl.CcDateTime ccDateTime2;
-        private CcControl.CcDateTime ccDateTime1;
+        private CcControl.CcComboBox CcComboBoxCompanyName;
+        private CcControl.CcDateTime CcDateTimePickerEndDate;
+        private CcControl.CcDateTime CcDateTimePickerStartDate;
+        private CcControl.CcTabControl CcTabControl1;
+        private TabPage TabPage1;
+        private TabPage TabPage2;
+        private TabPage TabPage3;
+        private TabPage TabPage4;
+        private CcControl.ContextMenuStripEx CcContextMenuStrip1;
+        private ToolStripMenuItem ToolStripMenuItemOpen;
+        private ToolStripMenuItem ToolStripMenuItemDelete;
     }
 }

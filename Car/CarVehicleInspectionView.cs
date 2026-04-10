@@ -78,9 +78,11 @@ namespace Car {
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             byte[] subPicture = _carMasterDao.SelectOneSubPicture(carCode);
-            if (subPicture.Length != 0) {
+            if (subPicture != null && subPicture.Length > 0) {
                 ImageConverter imageConverter = new();
-                this.PictureBoxEx1.Image = (Image)imageConverter.ConvertFrom(subPicture);                   // 写真
+                this.PictureBoxEx1.Image = (Image)imageConverter.ConvertFrom(subPicture);
+            } else {
+                this.PictureBoxEx1.Image = null;   // 画像なしの場合の処理
             }
         }
 

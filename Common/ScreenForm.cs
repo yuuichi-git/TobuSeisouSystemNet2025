@@ -45,23 +45,47 @@ namespace Common {
         }
 
         /// <summary>
-        /// マルチ画面等で対象の画面サイズがFHD以下でFormのサイズがFHDであれば、WindowsStateをMaximizedにする
+        /// マルチ画面環境でフォームを適切に配置する。
+        /// ・画面サイズがFHD以下でフォームがFHDサイズなら最大化
+        /// ・フォームが WorkArea を超える場合は高さを WorkArea に合わせ、位置も WorkArea.Top に揃える
+        /// ・それ以外は中央に配置
         /// </summary>
-        /// <param name="form"></param>
-        /// <param name="screen"></param>
         public void SetPosition(Screen screen, Form form) {
+            form.StartPosition = FormStartPosition.Manual;
+
+            // タスクバーを除いた実際の表示可能領域
+            Rectangle workArea = screen.WorkingArea;
+
+            // ------------------------------------------------------------
+            // ① フォームの高さが WorkArea を超える場合は、
+            //    高さを WorkArea に合わせ、位置も WorkArea.Top に揃える
+            // ------------------------------------------------------------
+            if (form.Height > workArea.Height) {
+                form.Height = workArea.Height;
+
+                // 上端を WorkArea.Top に合わせる（画面いっぱいに表示）
+                form.Location = new Point(
+                    workArea.Left + (workArea.Width - form.Width) / 2,  // 横は中央
+                    workArea.Top                                       // 縦は上端に固定
+                );
+
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // ② FHD 以下の画面で、フォームが FHD サイズなら最大化
+            // ------------------------------------------------------------
             if (screen.Bounds.Width <= 1920 && screen.Bounds.Height <= 1080) {
                 if (form.Size.Width == 1920 && form.Size.Height == 1080) {
-                    form.StartPosition = FormStartPosition.Manual;
                     form.WindowState = FormWindowState.Maximized;
-                } else {
-                    form.StartPosition = FormStartPosition.Manual;
-                    form.Location = GetCenterForm(screen, form);
+                    return;
                 }
-            } else {
-                form.StartPosition = FormStartPosition.Manual;
-                form.Location = GetCenterForm(screen, form);
             }
+
+            // ------------------------------------------------------------
+            // ③ 上記以外は中央に配置
+            // ------------------------------------------------------------
+            form.Location = GetCenterForm(screen, form);
         }
 
         /// <summary>

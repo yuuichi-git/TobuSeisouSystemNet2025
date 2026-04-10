@@ -2,9 +2,9 @@
  * 2026-04-04
  * 任意保険加入状況の一覧画面
  */
-using Common;
-
 using CcControl;
+
+using Common;
 
 using Dao;
 
@@ -75,6 +75,7 @@ namespace VoluntaryAutomobileInsurance {
          * インスタンス作成
          */
         private readonly Screen _screen;
+        private readonly ScreenForm _screenForm = new();
         private readonly DateUtility _dateUtility = new();
         /*
          * Dao
@@ -109,10 +110,10 @@ namespace VoluntaryAutomobileInsurance {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        this.AddSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(new List<int> { 11, 12, 13, 14, 15, 22 },
-                                                                                                                 new List<int> { 20, 22, 99 },                // 新運転長期・自運労長期・指定なし
-                                                                                                                 new List<int> { 10, 11, 12, 13, 20, 99 },    // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし
-                                                                                                                 false));
+                        this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(CreateArray(GroupBoxExBelongs), 
+                                                                                                                 CreateArray(GroupBoxExJobForm), 
+                                                                                                                 CreateArray(GroupBoxExOccupation), 
+                                                                                                                 this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -120,8 +121,15 @@ namespace VoluntaryAutomobileInsurance {
             }
         }
 
-        private void AddSheetViewList(List<(StaffMasterVo staff, VoluntaryAutomobileInsuranceVo insurance, string belongsName, string occupationName, string jobFormName)> listData) {
+        int _spreadListTopRow = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="listData"></param>
+        private void PutSheetViewList(List<(StaffMasterVo staff, VoluntaryAutomobileInsuranceVo insurance, string belongsName, string occupationName, string jobFormName)> listData) {
             SheetView sheetView = this.SheetViewList;
+            this.SpreadList.SuspendLayout();// Spread 非活性化
+            _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);// 先頭行（列）インデックスを取得
 
             sheetView.RowCount = 0;
 
@@ -137,6 +145,7 @@ namespace VoluntaryAutomobileInsurance {
 
                 // --- 4: 氏名 ---
                 sheetView.Cells[row, _colDisplayName].Value = staff.DisplayName;
+                sheetView.Cells[row, _colDisplayName].Tag = staff.StaffCode;
 
                 // --- 5: カナ ---
                 sheetView.Cells[row, _colNameKana].Value = staff.NameKana;
@@ -172,23 +181,46 @@ namespace VoluntaryAutomobileInsurance {
                 sheetView.Cells[row, _colEndDate].Value = insurance.EndDate;
 
                 // --- 14: 経路図PDF（HasImage1）---
-                var button1 = new FarPoint.Win.Spread.CellType.ButtonCellType();
-                button1.Text = insurance.HasImage1 ? "✓" : string.Empty;
-                sheetView.Cells[row, _colRoutePdf].CellType = button1;
-                sheetView.Cells[row, _colRoutePdf].Value = insurance.HasImage1;
+                sheetView.Cells[row, _colRoutePdf].Value = insurance.HasImage1 ? "✓" : string.Empty;
 
                 // --- 15: 自賠責PDF（HasImage2）---
-                var button2 = new FarPoint.Win.Spread.CellType.ButtonCellType();
-                button2.Text = insurance.HasImage1 ? "✓" : string.Empty;
-                sheetView.Cells[row, _colCompulsoryPdf].CellType = button2;
-                sheetView.Cells[row, _colCompulsoryPdf].Value = insurance.HasImage2;
+                sheetView.Cells[row, _colCompulsoryPdf].Value = insurance.HasImage2 ? "✓" : string.Empty;
 
                 // --- 16: 任意保険PDF（HasImage3）---
-                var button3 = new FarPoint.Win.Spread.CellType.ButtonCellType();
-                button3.Text = insurance.HasImage1 ? "✓" : string.Empty;
-                sheetView.Cells[row, _colVoluntaryPdf].CellType = button3;
-                sheetView.Cells[row, _colVoluntaryPdf].Value = insurance.HasImage3;
+                sheetView.Cells[row, _colVoluntaryPdf].Value = insurance.HasImage3 ? "✓" : string.Empty;
+
+                sheetView.Cells[row, _colAuthorizedVehiclePdf].Value = insurance.HasImage4 ? "✓" : string.Empty;
+
+                // --- 期限切れチェック ---
+                DateTime endDate;
+                if (DateTime.TryParse(insurance.EndDate, out endDate)) {
+                    if (endDate.Date < DateTime.Today) {
+                        // 行全体を赤色にする
+                        sheetView.Rows[row].BackColor = Color.LightCoral;   // 目に優しい赤
+                                                                            // sheetView.Rows[row].ForeColor = Color.White;     // 必要なら文字色も変更
+                    }
+                }
             }
+            // 先頭行（列）インデックスをセット
+            this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
+            // Spread 活性化
+            this.SpreadList.ResumeLayout();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            if (e.ColumnHeader)                                                             // ヘッダーのDoubleClickを回避
+                return;
+            object? tag = SheetViewList.Cells[e.Row, _colDisplayName].Tag;                  // 行の Tag を取得            
+            if (tag is not int staffCode)
+                return;
+            VoluntaryAutomobileInsuranceDetail voluntaryAutomobileInsuranceDetail = new(_connectionVo, staffCode);
+            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), voluntaryAutomobileInsuranceDetail);
+            voluntaryAutomobileInsuranceDetail.Show(this);
         }
 
         /// <summary>
@@ -213,6 +245,18 @@ namespace VoluntaryAutomobileInsurance {
             return sheetView;
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupBoxEx"></param>
+        /// <returns></returns>
+        private List<int> CreateArray(GroupBoxEx groupBoxEx) {
+            List<int> list = new();
+            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
+                if (checkBoxEx.Checked)
+                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
+            }
+            return list;
+        }
     }
 }
