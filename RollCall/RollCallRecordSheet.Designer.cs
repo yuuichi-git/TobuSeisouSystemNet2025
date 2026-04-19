@@ -28,6 +28,8 @@
             this.MenuStripEx1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.PanelExTop = new CcControl.CcPanel();
+            this.ccLabel1 = new CcControl.CcLabel();
+            this.ComboBoxExPrinterName = new CcControl.CcComboBox();
             this.labelEx2 = new CcControl.CcLabel();
             this.ComboBoxExManagedSpace = new CcControl.CcComboBox();
             this.ButtonExUpdate = new CcControl.CcButton();
@@ -35,6 +37,7 @@
             this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
+            this.PrintDocument1 = new System.Drawing.Printing.PrintDocument();
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
@@ -57,7 +60,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1354, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1354, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
@@ -71,7 +74,7 @@
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 939);
+            this.StatusStripEx1.Location = new Point(0, 1019);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1354, 22);
             this.StatusStripEx1.SizingGrip = false;
@@ -80,6 +83,8 @@
             // 
             // PanelExTop
             // 
+            this.PanelExTop.Controls.Add(this.ccLabel1);
+            this.PanelExTop.Controls.Add(this.ComboBoxExPrinterName);
             this.PanelExTop.Controls.Add(this.labelEx2);
             this.PanelExTop.Controls.Add(this.ComboBoxExManagedSpace);
             this.PanelExTop.Controls.Add(this.ButtonExUpdate);
@@ -90,6 +95,24 @@
             this.PanelExTop.Name = "PanelExTop";
             this.PanelExTop.Size = new Size(1348, 54);
             this.PanelExTop.TabIndex = 2;
+            // 
+            // ccLabel1
+            // 
+            this.ccLabel1.AutoSize = true;
+            this.ccLabel1.Location = new Point(604, 20);
+            this.ccLabel1.Name = "ccLabel1";
+            this.ccLabel1.Size = new Size(43, 15);
+            this.ccLabel1.TabIndex = 11;
+            this.ccLabel1.Text = "出力先";
+            // 
+            // ComboBoxExPrinterName
+            // 
+            this.ComboBoxExPrinterName.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExPrinterName.FormattingEnabled = true;
+            this.ComboBoxExPrinterName.Location = new Point(652, 16);
+            this.ComboBoxExPrinterName.Name = "ComboBoxExPrinterName";
+            this.ComboBoxExPrinterName.Size = new Size(212, 23);
+            this.ComboBoxExPrinterName.TabIndex = 10;
             // 
             // labelEx2
             // 
@@ -114,7 +137,8 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.ButtonExUpdate.Location = new Point(1116, 12);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            this.ButtonExUpdate.Location = new Point(1132, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(170, 32);
@@ -150,14 +174,14 @@
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 87);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1348, 847);
+            this.SpreadList.Size = new Size(1348, 927);
             this.SpreadList.TabIndex = 3;
             // 
             // RollCallRecordSheet
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1354, 961);
+            this.ClientSize = new Size(1354, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
@@ -184,6 +208,9 @@
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcComboBox ComboBoxExManagedSpace;
+        private System.Drawing.Printing.PrintDocument PrintDocument1;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private CcControl.CcLabel ccLabel1;
+        private CcControl.CcComboBox ComboBoxExPrinterName;
     }
 }

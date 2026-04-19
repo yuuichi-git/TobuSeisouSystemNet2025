@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="grapecity.spread.winforms.ja" Version="15.3.0" />
-    <PackageReference Include="Syncfusion.Licensing" Version="33.1.47" />
-    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="33.1.47" />
+    <PackageReference Include="Syncfusion.Licensing" Version="33.1.49" />
+    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="33.1.49" />
   </ItemGroup>
 
   <ItemGroup>

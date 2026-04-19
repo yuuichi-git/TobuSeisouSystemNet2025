@@ -103,16 +103,43 @@ namespace VoluntaryAutomobileInsurance {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.CcMenuStrip1.ChangeEnable(listString);
+
             this.InitializeSheetView(this.SheetViewList);
+            /*
+             * Eventを登録する
+             */
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
+                    this.Close();
+                    break;
+            }
         }
 
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(CreateArray(GroupBoxExBelongs), 
-                                                                                                                 CreateArray(GroupBoxExJobForm), 
-                                                                                                                 CreateArray(GroupBoxExOccupation), 
+                        this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(CreateArray(GroupBoxExBelongs),
+                                                                                                                 CreateArray(GroupBoxExJobForm),
+                                                                                                                 CreateArray(GroupBoxExOccupation),
                                                                                                                  this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -229,17 +256,18 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sheetView"></param>
         /// <returns></returns>
         private SheetView InitializeSheetView(SheetView sheetView) {
-            SpreadList.AllowDragDrop = false; // DrugDropを禁止する
-            SpreadList.PaintSelectionHeader = false; // ヘッダの選択状態をしない
+            SpreadList.AllowDragDrop = false;                                               // DrugDropを禁止する
+            SpreadList.PaintSelectionHeader = false;                                        // ヘッダの選択状態をしない
             SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
-            SpreadList.TabStripPolicy = TabStripPolicy.Never; // シートタブを非表示
+            SpreadList.TabStripPolicy = TabStripPolicy.Never;                               // シートタブを非表示
 
-            sheetView.ColumnHeader.Rows[0].Height = 26; // Columnヘッダの高さ
+            sheetView.ColumnHeader.Rows[0].Height = 26;                                     // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = Color.White;
             sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
-            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9); // 行ヘッダのFont
-            sheetView.RowHeader.Columns[0].Width = 28; // 行ヘッダの幅を変更します
-            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);              // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Resizable = false;                               // 行ヘッダの幅を変更できないようにします
+            sheetView.RowHeader.Columns[0].Width = 28;                                      // 行ヘッダの幅を変更します
+            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);  // 縦のグリッド線を薄いグレーに設定
             sheetView.RemoveRows(0, sheetView.Rows.Count);
 
             return sheetView;
@@ -257,6 +285,24 @@ namespace VoluntaryAutomobileInsurance {
                     list.Add(Convert.ToInt32(checkBoxEx.Tag));
             }
             return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VoluntaryAutomobileInsuranceList_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
         }
     }
 }

@@ -37,6 +37,7 @@ namespace Vo {
             try {
                 switch (Environment.MachineName) {
                     case "TSUJINOTE":                                                                           // 自分のPCの場合
+                    case "YUUICHIZBOOK":
                         if (!localDbConnectionFlag) {
                             _pingReply = _ping.Send("192.168.1.20");
                             if (_pingReply.Status == IPStatus.Success)

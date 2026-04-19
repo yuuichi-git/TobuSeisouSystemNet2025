@@ -3,9 +3,9 @@
  */
 using System.Data;
 
-using Common;
-
 using CcControl;
+
+using Common;
 
 using Dao;
 
@@ -162,11 +162,6 @@ namespace EmploymentAgreement {
         /// 99:指定なし
         /// </summary>
         private readonly Dictionary<int, string> _dictionaryJobForm = new();
-        /*
-         * Flag
-         */
-        private bool _contractExpirationPartTimeJob;
-        private bool _contractExpirationLongJobFlag;
 
         /// <summary>
         /// コンストラクター
@@ -227,11 +222,14 @@ namespace EmploymentAgreement {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
+                        /*
+                         * 契約書情報を取得
+                         */
                         _listEmploymentAgreementVo = _employmentAgreementDao.SelectAllEmploymentAgreement();
                         _listContractExpirationVo = _contractExpirationDao.SelectAllContractExpiration();
-                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(new List<int> { 12, 14, 15, 22 },            // アルバイト・嘱託雇用契約社員・パートタイマー・労供
-                                                                                   new List<int> { 20, 22, 99 },                // 新運転長期・自運労長期・指定なし
-                                                                                   new List<int> { 10, 11, 12, 13, 20, 99 },    // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし
+                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(CreateArray(GroupBoxExBelongs),
+                                                                                   CreateArray(GroupBoxExJobForm),
+                                                                                   CreateArray(GroupBoxExOccupation),
                                                                                    this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -252,13 +250,17 @@ namespace EmploymentAgreement {
             var orderListStaffMasterVo = listStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.JobForm).ThenBy(x => x.Occupation).ThenBy(x => x.UnionCode);
 
             int rowCount = 0;
+
             // Spread 非活性化
             SpreadList.SuspendLayout();
+
             // 先頭行（列）インデックスを取得
             spreadListTopRow = SpreadList.GetViewportTopRow(0);
+
             // Rowを削除する
             if (SheetViewList.Rows.Count > 0)
                 SheetViewList.RemoveRows(0, SheetViewList.Rows.Count);
+
             foreach (StaffMasterVo staffMasterVo in orderListStaffMasterVo) {
                 SheetViewList.Rows.Add(rowCount, 1);
                 SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
@@ -283,8 +285,6 @@ namespace EmploymentAgreement {
                 if (employmentAgreementVo is not null) {
                     SheetViewList.Cells[rowCount, _colContractExpirationPeriod].Value = employmentAgreementVo.ContractExpirationPeriod;
                     SheetViewList.Cells[rowCount, _colCheckFlag].Text = employmentAgreementVo.CheckFlag ? "✓" : "";
-                } else {
-                    SheetViewList.Rows[rowCount].BackColor = Color.LightSlateGray;
                 }
                 /*
                  * ContractExpirationVo
@@ -292,15 +292,11 @@ namespace EmploymentAgreement {
                 List<ContractExpirationVo>? listContractExpirationVo = _listContractExpirationVo.FindAll(x => x.StaffCode == staffMasterVo.StaffCode);
                 if (listContractExpirationVo is not null) {
                     /*
-                     * 長期対象者契約
+                     * 体験入社契約
                      */
-                    if (listContractExpirationVo.Find(x => x.Code == 10) is not null) {
-                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 10).StartDate;
-                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 10).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 10).EndDate, rowCount, _colContractExpirationLongJobEndDate);
-                        this._contractExpirationLongJobFlag = true;
-                    } else {
-                        this._contractExpirationLongJobFlag = false;
+                    if (listContractExpirationVo.Find(x => x.Code == 21) is not null) {
+                        SheetViewList.Cells[rowCount, _colExperienceStartDate].Value = listContractExpirationVo.Find(x => x.Code == 21).StartDate;
+                        SheetViewList.Cells[rowCount, _colExperienceEndDate].Value = listContractExpirationVo.Find(x => x.Code == 21).EndDate;
                     }
                     /*
                      * 継続アルバイト契約
@@ -308,20 +304,13 @@ namespace EmploymentAgreement {
                     if (listContractExpirationVo.Find(x => x.Code == 20) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationPartTimeJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 20).StartDate;
                         SheetViewList.Cells[rowCount, _colContractExpirationPartTimeJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 20).EndDate;
-                        if (!this._contractExpirationLongJobFlag) // 長期対象者契約がされている場合は色処理をしない
-                            this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 20).EndDate, rowCount, _colContractExpirationPartTimeJobEndDate);
-                        this._contractExpirationPartTimeJob = true;
-                    } else {
-                        this._contractExpirationPartTimeJob = false;
                     }
                     /*
-                     * 体験入社契約
+                     * 長期対象者契約
                      */
-                    if (listContractExpirationVo.Find(x => x.Code == 21) is not null) {
-                        SheetViewList.Cells[rowCount, _colExperienceStartDate].Value = listContractExpirationVo.Find(x => x.Code == 21).StartDate;
-                        SheetViewList.Cells[rowCount, _colExperienceEndDate].Value = listContractExpirationVo.Find(x => x.Code == 21).EndDate;
-                        if (!this._contractExpirationPartTimeJob) // 継続アルバイト契約がされている場合は色処理をしない
-                            this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 21).EndDate, rowCount, _colExperienceEndDate);
+                    if (listContractExpirationVo.Find(x => x.Code == 10) is not null) {
+                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 10).StartDate;
+                        SheetViewList.Cells[rowCount, _colContractExpirationLongJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 10).EndDate;
                     }
                     /*
                      * 短期対象者契約
@@ -329,42 +318,56 @@ namespace EmploymentAgreement {
                     if (listContractExpirationVo.Find(x => x.Code == 11) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationShortJobStartDate].Value = listContractExpirationVo.Find(x => x.Code == 11).StartDate;
                         SheetViewList.Cells[rowCount, _colContractExpirationShortJobEndDate].Value = listContractExpirationVo.Find(x => x.Code == 11).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 11).EndDate, rowCount, _colContractExpirationShortJobEndDate);
                     }
                     /*
                      * 誓約書
                      */
                     if (listContractExpirationVo.Find(x => x.Code == 30) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationWrittenPledge].Value = listContractExpirationVo.Find(x => x.Code == 30).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 30).EndDate, rowCount, _colContractExpirationWrittenPledge);
                     }
                     /*
                      * 失墜行為
                      */
                     if (listContractExpirationVo.Find(x => x.Code == 40) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationLossWrittenPledge].Value = listContractExpirationVo.Find(x => x.Code == 40).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 40).EndDate, rowCount, _colContractExpirationLossWrittenPledge);
                     }
                     /*
                      * 契約満了
                      */
                     if (listContractExpirationVo.Find(x => x.Code == 50) is not null) {
                         SheetViewList.Cells[rowCount, _colContractExpirationNotice].Value = listContractExpirationVo.Find(x => x.Code == 50).EndDate;
-                        this.SetCellColor(listContractExpirationVo.Find(x => x.Code == 50).EndDate, rowCount, _colContractExpirationNotice);
-                    }
-                    /*
-                     * セルの色指定
-                     * 入社年月日に対して182日以内、年齢65歳以下、尚且つ55日以降と60日以降に色を変える（労共加入対象者）
-                     */
-                    if ((DateTime.Now - staffMasterVo.EmploymentDate).Days < 183 &&           // 半年以内
-                        !this._contractExpirationLongJobFlag &&                               // 長期対象者契約ではない
-                        _dateUtility.GetAge(staffMasterVo.BirthDate) <= 65 &&                 // ６５歳以下
-                        (staffMasterVo.Occupation == 10 || staffMasterVo.Occupation == 11)) { // 運転手・作業員
-                        this.SetCellColorEmploymentDate(staffMasterVo.EmploymentDate, rowCount, _colEmplomentDate);
                     }
                 }
                 SheetViewList.Rows[rowCount].Tag = staffMasterVo;
                 rowCount++;
+
+                // ここから終了日チェック
+                DateTime? exp1 = TryParseDate(SheetViewList.Cells[rowCount - 1, _colExperienceEndDate].Value);
+                DateTime? exp2 = TryParseDate(SheetViewList.Cells[rowCount - 1, _colContractExpirationPartTimeJobEndDate].Value);
+                DateTime? exp3 = TryParseDate(SheetViewList.Cells[rowCount - 1, _colContractExpirationLongJobEndDate].Value);
+                DateTime? exp4 = TryParseDate(SheetViewList.Cells[rowCount - 1, _colContractExpirationShortJobEndDate].Value);
+
+                var endDates = new List<DateTime>();
+                if (exp1.HasValue)
+                    endDates.Add(exp1.Value);
+                if (exp2.HasValue)
+                    endDates.Add(exp2.Value);
+                if (exp3.HasValue)
+                    endDates.Add(exp3.Value);
+                if (exp4.HasValue)
+                    endDates.Add(exp4.Value);
+
+                if(employmentAgreementVo is not null) {
+                    if (endDates.Count == 0) {
+                        SheetViewList.Rows[rowCount - 1].BackColor = Color.LightCoral;
+                    } else {
+                        DateTime maxEnd = endDates.Max();
+                        if (maxEnd.Date < DateTime.Today)
+                            SheetViewList.Rows[rowCount - 1].BackColor = Color.LightCoral;
+                    }
+                } else {
+                    SheetViewList.Rows[rowCount - 1].BackColor = Color.Gray;
+                }
             }
             // 先頭行（列）インデックスをセット
             SpreadList.SetViewportTopRow(0, spreadListTopRow);
@@ -373,38 +376,14 @@ namespace EmploymentAgreement {
             StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件");
         }
 
-        /// <summary>
-        /// 契約期限切れの基準色
-        /// </summary>
-        /// <param name="endDate"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        private void SetCellColor(DateTime endDate, int row, int col) {
-            switch ((endDate.Date - DateTime.Now.Date).Days) {
-                case int n when (n <= 1):
-                    SheetViewList.Cells[row, col].BackColor = Color.Red;
-                    break;
-                case int n when (n <= 3):
-                    SheetViewList.Cells[row, col].BackColor = Color.Orange;
-                    break;
-            }
-        }
+        private DateTime? TryParseDate(object value) {
+            if (value == null)
+                return null;
 
-        /// <summary>
-        /// 入社日から６０日の基準色
-        /// </summary>
-        /// <param name="employmentDate"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        private void SetCellColorEmploymentDate(DateTime employmentDate, int row, int col) {
-            switch ((DateTime.Now.Date - employmentDate.Date).Days) {
-                case int n when (n >= 60):
-                    SheetViewList.Cells[row, col].BackColor = Color.LightCoral;
-                    break;
-                case int n when (n >= 50):
-                    SheetViewList.Cells[row, col].BackColor = Color.MistyRose;
-                    break;
-            }
+            if (DateTime.TryParse(value.ToString(), out DateTime dt))
+                return dt;
+
+            return null;
         }
 
         /// <summary>
@@ -511,63 +490,77 @@ namespace EmploymentAgreement {
             StaffMasterVo staffMasterVo = (StaffMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
 
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExpiration": // 体験アルバイト契約 20
+                case "ToolStripMenuItemExpiration":                                                 // 体験アルバイト契約 20
                     employmentAgreementPaper = new(_connectionVo, 21, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationPartTimeJob": // 継続アルバイト契約 21
+                case "ToolStripMenuItemContractExpirationPartTimeJob":                              // 継続アルバイト契約 21
                     employmentAgreementPaper = new(_connectionVo, 20, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationPartTimeEmployee": // 嘱託雇用契約社員 22
+                case "ToolStripMenuItemContractExpirationPartTimeEmployee":                         // 嘱託雇用契約社員 22
                     employmentAgreementPaper = new(_connectionVo, 22, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationPartTimer": // パートタイマー 23
+                case "ToolStripMenuItemContractExpirationPartTimer":                                // パートタイマー 23
                     employmentAgreementPaper = new(_connectionVo, 23, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationLongJob新産別": // 長期雇用契約（新産別)
+                case "ToolStripMenuItemContractExpirationLongJob新産別":                             // 長期雇用契約（新産別)
                     employmentAgreementPaper = new(_connectionVo, 10, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationLongJob自運労運転士": // 長期雇用契約（自運労運転士)
+                case "ToolStripMenuItemContractExpirationLongJob自運労運転士":                        // 長期雇用契約（自運労運転士)
                     employmentAgreementPaper = new(_connectionVo, 11, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationLongJob自運労作業員": // 長期雇用契約（自運労作業員)
+                case "ToolStripMenuItemContractExpirationLongJob自運労作業員":                        // 長期雇用契約（自運労作業員)
                     employmentAgreementPaper = new(_connectionVo, 12, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationShortJob": // 短期雇用契約
+                case "ToolStripMenuItemContractExpirationShortJob":                                 // 短期雇用契約
 
                     break;
-                case "ToolStripMenuItemContractExpirationWrittenPledge": // 誓約書
+                case "ToolStripMenuItemContractExpirationWrittenPledge":                            // 誓約書
                     employmentAgreementPaper = new(_connectionVo, 30, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationLossWrittenPledge": // 失墜行為確認書
+                case "ToolStripMenuItemContractExpirationLossWrittenPledge":                        // 失墜行為確認書
 
                     break;
-                case "ToolStripMenuItemContractExpirationNotice": // 使用停止予告通知書
+                case "ToolStripMenuItemContractExpirationNotice":                                   // 使用停止予告通知書
                     employmentAgreementPaper = new(_connectionVo, 50, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
-                case "ToolStripMenuItemContractExpirationNoticeBicycle": // 使用停止予告通知書(自転車駐車場)
+                case "ToolStripMenuItemContractExpirationNoticeBicycle":                            // 使用停止予告通知書(自転車駐車場)
                     employmentAgreementPaper = new(_connectionVo, 51, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
                     break;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupBoxEx"></param>
+        /// <returns></returns>
+        private List<int> CreateArray(GroupBoxEx groupBoxEx) {
+            List<int> list = new();
+            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
+                if (checkBoxEx.Checked)
+                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
+            }
+            return list;
         }
 
         /// <summary>

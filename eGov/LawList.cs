@@ -66,7 +66,6 @@ namespace EGov {
             // ④ LawView を開く（あなたの既存コードに合わせる）
             LawView lawView = new(lawTitle, lawNum, lawArticle, lawParagraph, lawItem);
             await lawView.InitializeAsync();
-
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), lawView);
             lawView.Show(this);
         }

@@ -442,7 +442,6 @@
             this.NumericUpDownExBonusWinterPay.TabIndex = 80;
             this.NumericUpDownExBonusWinterPay.TextAlign = HorizontalAlignment.Right;
             this.NumericUpDownExBonusWinterPay.ThousandsSeparator = true;
-            this.NumericUpDownExBonusWinterPay.Value = new decimal(new int[] { 888888, 0, 0, 0 });
             // 
             // NumericUpDownExBonusSummerPay
             // 
@@ -457,7 +456,6 @@
             this.NumericUpDownExBonusSummerPay.TabIndex = 79;
             this.NumericUpDownExBonusSummerPay.TextAlign = HorizontalAlignment.Right;
             this.NumericUpDownExBonusSummerPay.ThousandsSeparator = true;
-            this.NumericUpDownExBonusSummerPay.Value = new decimal(new int[] { 888888, 0, 0, 0 });
             // 
             // ComboBoxExBonusDetailText
             // 
@@ -860,25 +858,25 @@
             // 
             this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemPictureDelete });
             this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(181, 92);
+            this.ContextMenuStripEx1.Size = new Size(133, 70);
             this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 
             this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
+            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
             this.ToolStripMenuItemOpen.Text = "Open(PDF)";
             // 
             // ToolStripMenuItemPaste
             // 
             this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new Size(180, 22);
+            this.ToolStripMenuItemPaste.Size = new Size(132, 22);
             this.ToolStripMenuItemPaste.Text = "Paste";
             // 
             // ToolStripMenuItemPictureDelete
             // 
             this.ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
-            this.ToolStripMenuItemPictureDelete.Size = new Size(180, 22);
+            this.ToolStripMenuItemPictureDelete.Size = new Size(132, 22);
             this.ToolStripMenuItemPictureDelete.Text = "Delete";
             // 
             // groupBoxEx6

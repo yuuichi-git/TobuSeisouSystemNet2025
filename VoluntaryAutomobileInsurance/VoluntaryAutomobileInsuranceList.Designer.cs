@@ -28,6 +28,7 @@
             this.CcMenuStrip1 = new CcControl.CcMenuStrip();
             this.CcStatusStrip1 = new CcControl.CcStatusStrip();
             this.CcPanelTop = new CcControl.CcPanel();
+            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             this.GroupBoxExOccupation = new CcControl.GroupBoxEx();
             this.CheckBoxEx18 = new CcControl.CcCheckBox();
             this.CheckBoxEx17 = new CcControl.CcCheckBox();
@@ -52,7 +53,6 @@
             this.ButtonExUpdate = new CcControl.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             this.CcTableLayoutPanelBase.SuspendLayout();
             this.CcPanelTop.SuspendLayout();
             this.GroupBoxExOccupation.SuspendLayout();
@@ -110,6 +110,17 @@
             this.CcPanelTop.Name = "CcPanelTop";
             this.CcPanelTop.Size = new Size(1898, 54);
             this.CcPanelTop.TabIndex = 2;
+            // 
+            // CheckBoxExRetirementFlag
+            // 
+            this.CheckBoxExRetirementFlag.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.CheckBoxExRetirementFlag.AutoSize = true;
+            this.CheckBoxExRetirementFlag.Location = new Point(1568, 18);
+            this.CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
+            this.CheckBoxExRetirementFlag.Size = new Size(95, 19);
+            this.CheckBoxExRetirementFlag.TabIndex = 8;
+            this.CheckBoxExRetirementFlag.Text = "退職者も表示";
+            this.CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExOccupation
             // 
@@ -407,17 +418,6 @@
             this.SpreadList.TabIndex = 3;
             this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
             // 
-            // CheckBoxExRetirementFlag
-            // 
-            this.CheckBoxExRetirementFlag.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.CheckBoxExRetirementFlag.AutoSize = true;
-            this.CheckBoxExRetirementFlag.Location = new Point(1568, 18);
-            this.CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
-            this.CheckBoxExRetirementFlag.Size = new Size(95, 19);
-            this.CheckBoxExRetirementFlag.TabIndex = 8;
-            this.CheckBoxExRetirementFlag.Text = "退職者も表示";
-            this.CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
-            // 
             // VoluntaryAutomobileInsuranceList
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -428,6 +428,7 @@
             this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "VoluntaryAutomobileInsuranceList";
             this.Text = "VoluntaryAutomobileInsuranceList";
+            this.FormClosing += this.VoluntaryAutomobileInsuranceList_FormClosing;
             this.CcTableLayoutPanelBase.ResumeLayout(false);
             this.CcTableLayoutPanelBase.PerformLayout();
             this.CcPanelTop.ResumeLayout(false);
@@ -450,7 +451,6 @@
         private CcControl.CcPanel CcPanelTop;
         private CcControl.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.GroupBoxEx GroupBoxExOccupation;
         private CcControl.CcCheckBox CheckBoxEx18;
         private CcControl.CcCheckBox CheckBoxEx17;
@@ -473,5 +473,6 @@
         private CcControl.CcCheckBox CheckBoxEx2;
         private CcControl.CcCheckBox CheckBoxEx1;
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

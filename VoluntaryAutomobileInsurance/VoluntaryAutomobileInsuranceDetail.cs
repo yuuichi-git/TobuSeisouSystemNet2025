@@ -3,7 +3,7 @@
  * Essential Studio® 7-Day License Key(取得日:2026-04-10)
  * "Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCekx3Q3xbf1x2ZFRHal5XTnJZUj0eQnxTdENjXX9XcndXQGRaV0JyXEleYA=="
  */
-using CcControl;   // ★ Syncfusion PDF Viewer
+using CcControl;
 
 using Common;
 
@@ -51,6 +51,16 @@ namespace VoluntaryAutomobileInsurance {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.CcMenuStrip1.ChangeEnable(listString);
+
             this.CcDateTimePickerStartDate.Value = DateTime.Now.AddDays(1);
             this.CcDateTimePickerEndDate.Value = DateTime.Now.AddYears(1);
 
@@ -85,6 +95,23 @@ namespace VoluntaryAutomobileInsurance {
             this.PutSheetViewList(_staffCode);
             this.InitializeCcComboBoxVehicleType();
             this.InitializeCcComboBoxCompanyName();
+            /*
+             * Eventを登録する
+             */
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
+                    this.Close();
+                    break;
+            }
         }
 
         private void CcButtonUpdate_Click(object sender, EventArgs e) {
@@ -138,7 +165,7 @@ namespace VoluntaryAutomobileInsurance {
 
             switch (e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    byte[]? bytes = _pdfUtility.ConvertPdfToByte(menu);
+                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
                     if (bytes is null)
                         return;
 
@@ -261,6 +288,15 @@ namespace VoluntaryAutomobileInsurance {
             this.CcComboBoxCompanyName.Items.Clear();
             foreach (string data in _voluntaryAutomobileInsuranceDao.SelectGroupCompanyName())
                 this.CcComboBoxCompanyName.Items.Add(data);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VoluntaryAutomobileInsuranceDetail_FormClosing(object sender, FormClosingEventArgs e) {
+
         }
     }
 }

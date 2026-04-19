@@ -29,6 +29,7 @@ namespace CcControl {
 
         private readonly ToolStripMenuItem toolStripMenuItemPrint = new("印刷");
         private readonly ToolStripMenuItem toolStripMenuItemPrintA4 = new("A4で印刷する");
+        private readonly ToolStripMenuItem toolStripMenuItemPrintB4 = new("B4で印刷する");
         private readonly ToolStripMenuItem toolStripMenuItemPrintB5 = new("B5で印刷する");
         private readonly ToolStripMenuItem toolStripMenuItemPrintB5Dialog = new("B5で印刷する(Dialog)");
 
@@ -125,6 +126,9 @@ namespace CcControl {
             toolStripMenuItemPrintA4.Name = "ToolStripMenuItemPrintA4";
             toolStripMenuItemPrintA4.Click += ToolStripMenuItem_Click;
             toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintA4);
+            toolStripMenuItemPrintB4.Name = "ToolStripMenuItemPrintB4";
+            toolStripMenuItemPrintB4.Click += ToolStripMenuItem_Click;
+            toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintB4);
             toolStripMenuItemPrintB5.Name = "ToolStripMenuItemPrintB5";
             toolStripMenuItemPrintB5.Click += ToolStripMenuItem_Click;
             toolStripMenuItemPrint.DropDownItems.Add(toolStripMenuItemPrintB5);

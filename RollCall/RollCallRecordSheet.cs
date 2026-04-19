@@ -1,6 +1,8 @@
 ﻿/*
  * 2025/05/13
  */
+using System.Drawing.Printing;
+
 using Common;
 
 using Dao;
@@ -12,6 +14,7 @@ using Vo;
 
 namespace RollCall {
     public partial class RollCallRecordSheet : Form {
+        private PrintDocument _printDocument = new();
         /*
          * Dao
          */
@@ -68,7 +71,7 @@ namespace RollCall {
                 "ToolStripMenuItemExport",
                 "ToolStripMenuItemExportExcel",
                 "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
+                "ToolStripMenuItemPrintB4",
                 "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
@@ -76,6 +79,13 @@ namespace RollCall {
             this.DateTimePickerExOperationDate.SetValueJp(DateTime.Now.Date);
             // 車庫地
             this.ComboBoxExManagedSpace.Text = "本社営業所";
+            /*
+             * プリンターの一覧を取得後、通常使うプリンター名をセットする
+             */
+            foreach (string item in new PrintUtility().GetAllPrinterName()) {
+                this.ComboBoxExPrinterName.Items.Add(item);
+            }
+            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
             // SPREAD
             this.InitializeSheetView(this.SheetViewList);
             // StatusStrip
@@ -227,8 +237,39 @@ namespace RollCall {
                     this.SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
                     MessageBox.Show("デスクトップへエクスポートしました", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
-                case "ToolStripMenuItemPrintA4":
-                    this.SpreadList.PrintSheet(SheetViewList);
+                case "ToolStripMenuItemPrintB4":
+                    // 印刷イベント（1ページごとに呼ばれる）を登録
+                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+
+                    // 出力先プリンタをユーザー選択のプリンタに設定
+                    _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;
+
+                    // 用紙の向きを設定（false = 縦、true = 横）
+                    _printDocument.DefaultPageSettings.Landscape = false;
+
+                    /*
+                     * 利用可能な用紙サイズの一覧から B4 を探して設定する
+                     * ※プリンタが B4 をサポートしていない場合は設定されない
+                     */
+                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                        if (paperSize.Kind == PaperKind.B4) {
+                            _printDocument.DefaultPageSettings.PaperSize = paperSize;
+                            break;
+                        }
+                    }
+
+                    // 印刷部数を 1 部に設定
+                    _printDocument.PrinterSettings.Copies = 1;
+
+                    // 両面印刷設定（Default = プリンタの既定設定を使用）
+                    _printDocument.PrinterSettings.Duplex = Duplex.Default;
+
+                    // カラー印刷を有効化
+                    _printDocument.DefaultPageSettings.Color = true;
+
+                    // 印刷を開始
+                    _printDocument.Print();
+
                     break;
                 case "ToolStripMenuItemExit":
                     Close();
@@ -246,17 +287,17 @@ namespace RollCall {
             SpreadList.PaintSelectionHeader = false; // ヘッダの選択状態をしない
             SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
             SpreadList.TabStripPolicy = TabStripPolicy.Never; // シートタブを非表示
-            //sheetView.AlternatingRows.Count = 2; // 行スタイルを２行単位とします
-            //sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke; // 1行目の背景色を設定します
-            //sheetView.AlternatingRows[1].BackColor = Color.White; // 2行目の背景色を設定します
-            //sheetView.ColumnHeader.Rows[0].Height = 22; // Columnヘッダの高さ
-            //sheetView.GrayAreaBackColor = Color.White;
-            //sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
             sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9); // 行ヘッダのFont
-            //sheetView.RowHeader.Columns[0].Width = 48; // 行ヘッダの幅を変更します
-            //sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
-            //sheetView.RemoveRows(0, sheetView.Rows.Count);
             return sheetView;
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
+            // 印刷ページ（1ページ目）の描画を行う
+            Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
+            // e.Graphicsへ出力(page パラメータは、０からではなく１から始まります)
+            this.SpreadList.OwnerPrintDraw(e.Graphics, rectangle, 0, 1);
+            // 印刷終了を指定
+            e.HasMorePages = false;
         }
 
         /// <summary>
