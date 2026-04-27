@@ -1,50 +1,28 @@
 ﻿/*
  * 2024-09-23
  */
-using System.Data;
-
 using Accident;
-
 using Accounting;
-
 using Car;
-
-using Certification;
-
-using Collection;
-
-using Common;
-
 using CcControl;
-
+using Certification;
+using Collection;
+using Common;
 using EGov;
-
 using EmploymentAgreement;
-
 using LegalTwelveItem;
-
 using License;
-
 using RollCall;
-
 using Seisou;
-
 using Set;
-
 using Staff;
-
 using StatusOfResidence;
-
+using System.Data;
 using Toukanpo;
-
 using VehicleDispatch;
-
 using Vo;
-
 using VoluntaryAutomobileInsurance;
-
 using WastCollection;
-
 using Waste;
 
 namespace TobuSeisouSystemNet2025 {

@@ -117,6 +117,14 @@ namespace CcControl {
         }
 
         /// <summary>
+        /// Emptyかどうか
+        /// </summary>
+        /// <returns></returns>
+        public bool GetEmpty() {
+            return this.Value == _defaultDateTime;
+        }
+
+        /// <summary>
         /// 西暦で表示
         /// </summary>
         /// <param name="dateTime"></param>

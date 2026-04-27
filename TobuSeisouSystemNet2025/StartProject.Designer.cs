@@ -199,7 +199,7 @@
             this.labelEx47 = new CcControl.CcLabel();
             this.TabPageSeisouSystem = new TabPage();
             this.labelEx49 = new CcControl.CcLabel();
-            this.GroupBoxEx1 = new CcControl.GroupBoxEx();
+            this.GroupBoxEx1 = new CcControl.CcGroupBox();
             this.labelEx50 = new CcControl.CcLabel();
             this.LabelExServerVersion = new CcControl.CcLabel();
             this.labelEx51 = new CcControl.CcLabel();
@@ -1645,7 +1645,7 @@
         private CcControl.CcLabel labelEx46;
         private CcControl.CcLabel labelEx47;
         private CcControl.CcTreeView TreeViewEx1;
-        private CcControl.GroupBoxEx GroupBoxEx1;
+        private CcControl.CcGroupBox GroupBoxEx1;
         private CcControl.CcButton ButtonExConnectOracle;
         private CcControl.CcLabel labelEx48;
         private CcControl.CcLabel LabelExStatusOracle;

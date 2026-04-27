@@ -31,12 +31,12 @@
             this.labelEx10 = new CcControl.CcLabel();
             this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
             this.PanelExMiddle = new CcControl.CcPanel();
-            this.groupBoxEx3 = new CcControl.GroupBoxEx();
+            this.groupBoxEx3 = new CcControl.CcGroupBox();
             this.NumericUpDownEx11 = new CcControl.NumericUpDownEx();
             this.NumericUpDownEx10 = new CcControl.NumericUpDownEx();
             this.ccLabel2 = new CcControl.CcLabel();
             this.ccLabel4 = new CcControl.CcLabel();
-            this.groupBoxEx2 = new CcControl.GroupBoxEx();
+            this.groupBoxEx2 = new CcControl.CcGroupBox();
             this.NumericUpDownEx8 = new CcControl.NumericUpDownEx();
             this.NumericUpDownEx7 = new CcControl.NumericUpDownEx();
             this.labelEx9 = new CcControl.CcLabel();
@@ -45,7 +45,7 @@
             this.labelEx8 = new CcControl.CcLabel();
             this.labelEx6 = new CcControl.CcLabel();
             this.labelEx7 = new CcControl.CcLabel();
-            this.groupBoxEx1 = new CcControl.GroupBoxEx();
+            this.groupBoxEx1 = new CcControl.CcGroupBox();
             this.NumericUpDownEx1 = new CcControl.NumericUpDownEx();
             this.NumericUpDownEx2 = new CcControl.NumericUpDownEx();
             this.NumericUpDownEx3 = new CcControl.NumericUpDownEx();
@@ -508,7 +508,7 @@
         private CcControl.CcLabel labelEx4;
         private CcControl.CcLabel labelEx3;
         private CcControl.CcLabel labelEx2;
-        private CcControl.GroupBoxEx groupBoxEx2;
+        private CcControl.CcGroupBox groupBoxEx2;
         private CcControl.NumericUpDownEx NumericUpDownEx8;
         private CcControl.NumericUpDownEx NumericUpDownEx7;
         private CcControl.CcLabel labelEx9;
@@ -517,11 +517,11 @@
         private CcControl.CcLabel labelEx8;
         private CcControl.CcLabel labelEx6;
         private CcControl.CcLabel labelEx7;
-        private CcControl.GroupBoxEx groupBoxEx1;
+        private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcDateTime DateTimePickerExOperationDate;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx10;
-        private CcControl.GroupBoxEx groupBoxEx3;
+        private CcControl.CcGroupBox groupBoxEx3;
         private CcControl.NumericUpDownEx NumericUpDownEx11;
         private CcControl.NumericUpDownEx NumericUpDownEx10;
         private CcControl.CcLabel ccLabel2;

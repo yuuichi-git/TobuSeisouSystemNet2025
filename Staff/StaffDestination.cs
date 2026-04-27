@@ -336,7 +336,7 @@ namespace Staff {
         /// </summary>
         /// <param name="groupBoxEx"></param>
         /// <returns></returns>
-        private List<int> CreateList(GroupBoxEx groupBoxEx) {
+        private List<int> CreateList(CcGroupBox groupBoxEx) {
             List<int> list = new();
             foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
                 if (checkBoxEx.Checked)

@@ -39,7 +39,7 @@
             this.MaskedTextBoxExPostNumber = new CcControl.MaskedTextBoxEx();
             this.ComboBoxExTransportationCompany = new CcControl.CcComboBox();
             this.TextBoxExEmissionCompanyKana = new CcControl.CcTextBox();
-            this.groupBoxEx1 = new CcControl.GroupBoxEx();
+            this.groupBoxEx1 = new CcControl.CcGroupBox();
             this.NumericUpDownExUnitPriceBulkyDisposal = new CcControl.NumericUpDownEx();
             this.NumericUpDownExUnitPriceBulkyTransportationCosts = new CcControl.NumericUpDownEx();
             this.NumericUpDownExUnitPriceOtherCosts = new CcControl.NumericUpDownEx();
@@ -667,7 +667,7 @@
         private CcControl.CcLabel labelEx2;
         private CcControl.CcDateTime DateTimePickerExConcludedDate;
         private CcControl.CcLabel labelEx1;
-        private CcControl.GroupBoxEx groupBoxEx1;
+        private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcLabel labelEx14;
         private CcControl.CcLabel labelEx13;
         private CcControl.CcLabel labelEx12;

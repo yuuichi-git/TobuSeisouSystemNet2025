@@ -23,3273 +23,3282 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.PanelExUp = new CcControl.CcPanel();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.PanelExLeft = new CcControl.CcPanel();
-            this.labelEx41 = new CcControl.CcLabel();
-            this.GroupBoxExRetirement = new CcControl.GroupBoxEx();
-            this.labelEx40 = new CcControl.CcLabel();
-            this.TextBoxExDeathNote = new CcControl.CcTextBox();
-            this.DateTimeExDeathDate = new CcControl.CcDateTime();
-            this.labelEx39 = new CcControl.CcLabel();
-            this.labelEx38 = new CcControl.CcLabel();
-            this.TextBoxExRetirementNote = new CcControl.CcTextBox();
-            this.DateTimeExRetirementDate = new CcControl.CcDateTime();
-            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
-            this.labelEx37 = new CcControl.CcLabel();
-            this.GroupBoxExExperience = new CcControl.GroupBoxEx();
-            this.TextBoxExExperienceDuration3 = new CcControl.CcTextBox();
-            this.TextBoxExExperienceLoad3 = new CcControl.CcTextBox();
-            this.ComboBoxExExperienceKind3 = new CcControl.CcComboBox();
-            this.TextBoxExExperienceDuration2 = new CcControl.CcTextBox();
-            this.TextBoxExExperienceLoad2 = new CcControl.CcTextBox();
-            this.ComboBoxExExperienceKind2 = new CcControl.CcComboBox();
-            this.TextBoxExExperienceDuration1 = new CcControl.CcTextBox();
-            this.TextBoxExExperienceLoad1 = new CcControl.CcTextBox();
-            this.ComboBoxExExperienceKind1 = new CcControl.CcComboBox();
-            this.labelEx36 = new CcControl.CcLabel();
-            this.TextBoxExExperienceDuration = new CcControl.CcTextBox();
-            this.labelEx35 = new CcControl.CcLabel();
-            this.TextBoxExExperienceLoad = new CcControl.CcTextBox();
-            this.ComboBoxExExperienceKind = new CcControl.CcComboBox();
-            this.labelEx30 = new CcControl.CcLabel();
-            this.TextBoxExExperienceNote3 = new CcControl.CcTextBox();
-            this.labelEx31 = new CcControl.CcLabel();
-            this.TextBoxExExperienceNote2 = new CcControl.CcTextBox();
-            this.labelEx32 = new CcControl.CcLabel();
-            this.TextBoxExExperienceNote1 = new CcControl.CcTextBox();
-            this.AddGroupBoxExExperience = new CcControl.CcButton();
-            this.labelEx33 = new CcControl.CcLabel();
-            this.TextBoxExExperienceNote = new CcControl.CcTextBox();
-            this.labelEx34 = new CcControl.CcLabel();
-            this.GroupBoxExHistory = new CcControl.GroupBoxEx();
-            this.labelEx29 = new CcControl.CcLabel();
-            this.TextBoxExCompanyName3 = new CcControl.CcTextBox();
-            this.DateTimeExHistoryDate3 = new CcControl.CcDateTime();
-            this.labelEx27 = new CcControl.CcLabel();
-            this.TextBoxExCompanyName2 = new CcControl.CcTextBox();
-            this.DateTimeExHistoryDate2 = new CcControl.CcDateTime();
-            this.labelEx28 = new CcControl.CcLabel();
-            this.TextBoxExCompanyName1 = new CcControl.CcTextBox();
-            this.DateTimeExHistoryDate1 = new CcControl.CcDateTime();
-            this.AddGroupBoxExHistory = new CcControl.CcButton();
-            this.labelEx26 = new CcControl.CcLabel();
-            this.TextBoxExCompanyName = new CcControl.CcTextBox();
-            this.labelEx25 = new CcControl.CcLabel();
-            this.DateTimeExHistoryDate = new CcControl.CcDateTime();
-            this.CheckBoxExToukanpoFlag = new CcControl.CcCheckBox();
-            this.CheckBoxExLegalTwelveItemFlag = new CcControl.CcCheckBox();
-            this.GroupBoxExDrive = new CcControl.GroupBoxEx();
-            this.ComboBoxExLicenseCondition = new CcControl.CcComboBox();
-            this.DateTimeExLicenseTypeExpirationDate = new CcControl.CcDateTime();
-            this.labelEx24 = new CcControl.CcLabel();
-            this.labelEx23 = new CcControl.CcLabel();
-            this.TextBoxExLicenseType = new CcControl.CcTextBox();
-            this.labelEx22 = new CcControl.CcLabel();
-            this.labelEx21 = new CcControl.CcLabel();
-            this.TextBoxExLicenseNumber = new CcControl.CcTextBox();
-            this.labelEx20 = new CcControl.CcLabel();
-            this.TextBoxExNotSelectionReason = new CcControl.CcTextBox();
-            this.DateTimeExNotSelectionDate = new CcControl.CcDateTime();
-            this.labelEx19 = new CcControl.CcLabel();
-            this.DateTimeExSelectionDate = new CcControl.CcDateTime();
-            this.labelEx18 = new CcControl.CcLabel();
-            this.labelEx17 = new CcControl.CcLabel();
-            this.PictureBoxExStamp = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx2 = new CcControl.ContextMenuStripEx();
-            this.ToolStripMenuItemStampClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemStampDelete = new ToolStripMenuItem();
-            this.PictureBoxExStaff = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
-            this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
-            this.labelEx16 = new CcControl.CcLabel();
-            this.TextBoxExCellphoneNumber = new CcControl.CcTextBox();
-            this.labelEx15 = new CcControl.CcLabel();
-            this.CheckBoxExTargetFlag = new CcControl.CcCheckBox();
-            this.TextBoxExTelephoneNumber = new CcControl.CcTextBox();
-            this.labelEx14 = new CcControl.CcLabel();
-            this.TextBoxExRemarks = new CcControl.CcTextBox();
-            this.labelEx13 = new CcControl.CcLabel();
-            this.TextBoxExCurrentAddress = new CcControl.CcTextBox();
-            this.DateTimePickerExContractDate = new CcControl.CcDateTime();
-            this.CheckBoxExContractFlag = new CcControl.CcCheckBox();
-            this.DateTimeExEmploymentDate = new CcControl.CcDateTime();
-            this.labelEx12 = new CcControl.CcLabel();
-            this.ComboBoxExBloodType = new CcControl.CcComboBox();
-            this.labelEx11 = new CcControl.CcLabel();
-            this.ComboBoxExGender = new CcControl.CcComboBox();
-            this.labelEx10 = new CcControl.CcLabel();
-            this.DateTimeExBirthDate = new CcControl.CcDateTime();
-            this.labelEx9 = new CcControl.CcLabel();
-            this.labelEx8 = new CcControl.CcLabel();
-            this.TextBoxExDisplayName = new CcControl.CcTextBox();
-            this.labelEx7 = new CcControl.CcLabel();
-            this.TextBoxExOtherName = new CcControl.CcTextBox();
-            this.labelEx6 = new CcControl.CcLabel();
-            this.TextBoxExName = new CcControl.CcTextBox();
-            this.labelEx5 = new CcControl.CcLabel();
-            this.TextBoxExOtherNameKana = new CcControl.CcTextBox();
-            this.labelEx3 = new CcControl.CcLabel();
-            this.TextBoxExNameKana = new CcControl.CcTextBox();
-            this.TextBoxExUnionCode = new CcControl.CcTextBox();
-            this.labelEx4 = new CcControl.CcLabel();
-            this.LabelExStaffCode = new CcControl.CcLabel();
-            this.labelEx1 = new CcControl.CcLabel();
-            this.GroupBoxExOccupation = new CcControl.GroupBoxEx();
-            this.radioButtonEx18 = new CcControl.RadioButtonEx();
-            this.radioButtonEx17 = new CcControl.RadioButtonEx();
-            this.RadioButtonExOfficeWorker = new CcControl.RadioButtonEx();
-            this.radioButtonEx15 = new CcControl.RadioButtonEx();
-            this.RadioButtonExWorkers = new CcControl.RadioButtonEx();
-            this.RadioButtonExDrivers = new CcControl.RadioButtonEx();
-            this.GroupBoxExJobForm = new CcControl.GroupBoxEx();
-            this.RadioButtonExJobFormNothing = new CcControl.RadioButtonEx();
-            this.RadioButtonExShortTimeJ = new CcControl.RadioButtonEx();
-            this.RadioButtonExLongTimeJ = new CcControl.RadioButtonEx();
-            this.RadioButtonExShortTimeS = new CcControl.RadioButtonEx();
-            this.RadioButtonExLongTimeS = new CcControl.RadioButtonEx();
-            this.GroupBoxExBelongs = new CcControl.GroupBoxEx();
-            this.RadioButtonEx労供 = new CcControl.RadioButtonEx();
-            this.RadioButtonExパートタイマー = new CcControl.RadioButtonEx();
-            this.RadioButtonEx嘱託雇用契約社員 = new CcControl.RadioButtonEx();
-            this.RadioButtonEx派遣 = new CcControl.RadioButtonEx();
-            this.RadioButtonExアルバイト = new CcControl.RadioButtonEx();
-            this.RadioButtonEx社員 = new CcControl.RadioButtonEx();
-            this.RadioButtonEx役員 = new CcControl.RadioButtonEx();
-            this.PanelExRight = new CcControl.CcPanel();
-            this.GroupBoxExPunishment = new CcControl.GroupBoxEx();
-            this.labelEx78 = new CcControl.CcLabel();
-            this.labelEx79 = new CcControl.CcLabel();
-            this.labelEx80 = new CcControl.CcLabel();
-            this.labelEx81 = new CcControl.CcLabel();
-            this.labelEx82 = new CcControl.CcLabel();
-            this.AddGroupBoxExPunishment = new CcControl.CcButton();
-            this.ComboBoxExPunishmentNote = new CcControl.CcComboBox();
-            this.DateTimeExPunishmentDate = new CcControl.CcDateTime();
-            this.ComboBoxExPunishmentNote3 = new CcControl.CcComboBox();
-            this.DateTimeExPunishmentDate3 = new CcControl.CcDateTime();
-            this.ComboBoxExPunishmentNote2 = new CcControl.CcComboBox();
-            this.DateTimeExPunishmentDate2 = new CcControl.CcDateTime();
-            this.ComboBoxExPunishmentNote1 = new CcControl.CcComboBox();
-            this.DateTimeExPunishmentDate1 = new CcControl.CcDateTime();
-            this.GroupBoxProper = new CcControl.GroupBoxEx();
-            this.labelEx67 = new CcControl.CcLabel();
-            this.labelEx73 = new CcControl.CcLabel();
-            this.labelEx74 = new CcControl.CcLabel();
-            this.labelEx75 = new CcControl.CcLabel();
-            this.labelEx76 = new CcControl.CcLabel();
-            this.labelEx77 = new CcControl.CcLabel();
-            this.AddGroupBoxProper = new CcControl.CcButton();
-            this.ComboBoxExProperKind = new CcControl.CcComboBox();
-            this.DateTimeExProperDate = new CcControl.CcDateTime();
-            this.TextBoxExProperNote = new CcControl.CcTextBox();
-            this.ComboBoxExProperKind3 = new CcControl.CcComboBox();
-            this.DateTimeExProperDate3 = new CcControl.CcDateTime();
-            this.TextBoxExProperNote3 = new CcControl.CcTextBox();
-            this.ComboBoxExProperKind2 = new CcControl.CcComboBox();
-            this.DateTimeExProperDate2 = new CcControl.CcDateTime();
-            this.TextBoxExProperNote2 = new CcControl.CcTextBox();
-            this.ComboBoxExProperKind1 = new CcControl.CcComboBox();
-            this.DateTimeExProperDate1 = new CcControl.CcDateTime();
-            this.TextBoxExProperNote1 = new CcControl.CcTextBox();
-            this.GroupBoxEducate = new CcControl.GroupBoxEx();
-            this.labelEx68 = new CcControl.CcLabel();
-            this.labelEx69 = new CcControl.CcLabel();
-            this.labelEx70 = new CcControl.CcLabel();
-            this.labelEx71 = new CcControl.CcLabel();
-            this.labelEx72 = new CcControl.CcLabel();
-            this.AddGroupBoxEducate = new CcControl.CcButton();
-            this.ComboBoxExEducateName = new CcControl.CcComboBox();
-            this.DateTimeExEducateDate = new CcControl.CcDateTime();
-            this.ComboBoxExEducateName3 = new CcControl.CcComboBox();
-            this.DateTimeExEducateDate3 = new CcControl.CcDateTime();
-            this.ComboBoxExEducateName2 = new CcControl.CcComboBox();
-            this.DateTimeExEducateDate2 = new CcControl.CcDateTime();
-            this.ComboBoxExEducateName1 = new CcControl.CcComboBox();
-            this.DateTimeExEducateDate1 = new CcControl.CcDateTime();
-            this.GroupBoxExCarViolate = new CcControl.GroupBoxEx();
-            this.labelEx61 = new CcControl.CcLabel();
-            this.labelEx62 = new CcControl.CcLabel();
-            this.labelEx63 = new CcControl.CcLabel();
-            this.labelEx64 = new CcControl.CcLabel();
-            this.labelEx65 = new CcControl.CcLabel();
-            this.labelEx66 = new CcControl.CcLabel();
-            this.AddGroupBoxExCarViolate = new CcControl.CcButton();
-            this.ComboBoxExCarViolateContent = new CcControl.CcComboBox();
-            this.DateTimeExCarViolateDate = new CcControl.CcDateTime();
-            this.TextBoxExCarViolatePlace = new CcControl.CcTextBox();
-            this.ComboBoxExCarViolateContent3 = new CcControl.CcComboBox();
-            this.DateTimeExCarViolateDate3 = new CcControl.CcDateTime();
-            this.TextBoxExCarViolatePlace3 = new CcControl.CcTextBox();
-            this.ComboBoxExCarViolateContent2 = new CcControl.CcComboBox();
-            this.DateTimeExCarViolateDate2 = new CcControl.CcDateTime();
-            this.TextBoxExCarViolatePlace2 = new CcControl.CcTextBox();
-            this.ComboBoxExCarViolateContent1 = new CcControl.CcComboBox();
-            this.DateTimeExCarViolateDate1 = new CcControl.CcDateTime();
-            this.TextBoxExCarViolatePlace1 = new CcControl.CcTextBox();
-            this.groupBoxEx9 = new CcControl.GroupBoxEx();
-            this.labelEx60 = new CcControl.CcLabel();
-            this.GroupBoxExMedicalExamination = new CcControl.GroupBoxEx();
-            this.labelEx59 = new CcControl.CcLabel();
-            this.labelEx58 = new CcControl.CcLabel();
-            this.labelEx53 = new CcControl.CcLabel();
-            this.labelEx50 = new CcControl.CcLabel();
-            this.labelEx51 = new CcControl.CcLabel();
-            this.labelEx52 = new CcControl.CcLabel();
-            this.AddGroupBoxExMedical = new CcControl.CcButton();
-            this.ComboBoxExMedicalInstitutionName = new CcControl.CcComboBox();
-            this.DateTimeExMedicalExaminationDate = new CcControl.CcDateTime();
-            this.TextBoxExMedicalExaminationNote = new CcControl.CcTextBox();
-            this.ComboBoxExMedicalInstitutionName3 = new CcControl.CcComboBox();
-            this.DateTimeExMedicalExaminationDate3 = new CcControl.CcDateTime();
-            this.TextBoxExMedicalExaminationNote3 = new CcControl.CcTextBox();
-            this.ComboBoxExMedicalInstitutionName2 = new CcControl.CcComboBox();
-            this.DateTimeExMedicalExaminationDate2 = new CcControl.CcDateTime();
-            this.TextBoxExMedicalExaminationNote2 = new CcControl.CcTextBox();
-            this.ComboBoxExMedicalInstitutionName1 = new CcControl.CcComboBox();
-            this.DateTimeExMedicalExaminationDate1 = new CcControl.CcDateTime();
-            this.TextBoxExMedicalExaminationNote1 = new CcControl.CcTextBox();
-            this.GroupBoxExInsurance = new CcControl.GroupBoxEx();
-            this.ComboBoxExHealthInsuranceNumber = new CcControl.CcComboBox();
-            this.DateTimeExHealthInsuranceDate = new CcControl.CcDateTime();
-            this.TextBoxExHealthInsuranceNote = new CcControl.CcTextBox();
-            this.ComboBoxExWorkerAccidentInsuranceNumber = new CcControl.CcComboBox();
-            this.DateTimeExWorkerAccidentInsuranceDate = new CcControl.CcDateTime();
-            this.TextBoxExWorkerAccidentInsuranceNote = new CcControl.CcTextBox();
-            this.ComboBoxExEmploymentInsuranceNumber = new CcControl.CcComboBox();
-            this.DateTimeExEmploymentInsuranceDate = new CcControl.CcDateTime();
-            this.TextBoxExEmploymentInsuranceNote = new CcControl.CcTextBox();
-            this.ComboBoxExWelfarePensionNumber = new CcControl.CcComboBox();
-            this.DateTimeExWelfarePensionDate = new CcControl.CcDateTime();
-            this.TextBoxExWelfarePensionNote = new CcControl.CcTextBox();
-            this.labelEx54 = new CcControl.CcLabel();
-            this.labelEx55 = new CcControl.CcLabel();
-            this.labelEx56 = new CcControl.CcLabel();
-            this.labelEx57 = new CcControl.CcLabel();
-            this.GroupBoxExFamily = new CcControl.GroupBoxEx();
-            this.TextBoxExUrgentTelephoneMethod = new CcControl.CcTextBox();
-            this.TextBoxExUrgentTelephoneNumber = new CcControl.CcTextBox();
-            this.labelEx49 = new CcControl.CcLabel();
-            this.labelEx48 = new CcControl.CcLabel();
-            this.labelEx47 = new CcControl.CcLabel();
-            this.labelEx46 = new CcControl.CcLabel();
-            this.ComboBoxExFamilyRelationship1 = new CcControl.CcComboBox();
-            this.DateTimeExFamilyBirthDate1 = new CcControl.CcDateTime();
-            this.TextBoxExFamilyName1 = new CcControl.CcTextBox();
-            this.ComboBoxExFamilyRelationship4 = new CcControl.CcComboBox();
-            this.DateTimeExFamilyBirthDate4 = new CcControl.CcDateTime();
-            this.TextBoxExFamilyName4 = new CcControl.CcTextBox();
-            this.ComboBoxExFamilyRelationship3 = new CcControl.CcComboBox();
-            this.DateTimeExFamilyBirthDate3 = new CcControl.CcDateTime();
-            this.TextBoxExFamilyName3 = new CcControl.CcTextBox();
-            this.ComboBoxExFamilyRelationship2 = new CcControl.CcComboBox();
-            this.DateTimeExFamilyBirthDate2 = new CcControl.CcDateTime();
-            this.TextBoxExFamilyName2 = new CcControl.CcTextBox();
-            this.labelEx45 = new CcControl.CcLabel();
-            this.AddGroupBoxExFamily = new CcControl.CcButton();
-            this.ComboBoxExFamilyRelationship = new CcControl.CcComboBox();
-            this.DateTimeExFamilyBirthDate = new CcControl.CcDateTime();
-            this.labelEx42 = new CcControl.CcLabel();
-            this.labelEx43 = new CcControl.CcLabel();
-            this.TextBoxExFamilyName = new CcControl.CcTextBox();
-            this.labelEx44 = new CcControl.CcLabel();
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExUp.SuspendLayout();
-            this.PanelExLeft.SuspendLayout();
-            this.GroupBoxExRetirement.SuspendLayout();
-            this.GroupBoxExExperience.SuspendLayout();
-            this.GroupBoxExHistory.SuspendLayout();
-            this.GroupBoxExDrive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).BeginInit();
-            this.ContextMenuStripEx2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).BeginInit();
-            this.ContextMenuStripEx1.SuspendLayout();
-            this.GroupBoxExOccupation.SuspendLayout();
-            this.GroupBoxExJobForm.SuspendLayout();
-            this.GroupBoxExBelongs.SuspendLayout();
-            this.PanelExRight.SuspendLayout();
-            this.GroupBoxExPunishment.SuspendLayout();
-            this.GroupBoxProper.SuspendLayout();
-            this.GroupBoxEducate.SuspendLayout();
-            this.GroupBoxExCarViolate.SuspendLayout();
-            this.groupBoxEx9.SuspendLayout();
-            this.GroupBoxExMedicalExamination.SuspendLayout();
-            this.GroupBoxExInsurance.SuspendLayout();
-            this.GroupBoxExFamily.SuspendLayout();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            PanelExUp = new CcControl.CcPanel();
+            CcButtonUpdate = new CcControl.CcButton();
+            PanelExLeft = new CcControl.CcPanel();
+            labelEx41 = new CcControl.CcLabel();
+            GroupBoxExRetirement = new CcControl.CcGroupBox();
+            labelEx40 = new CcControl.CcLabel();
+            TextBoxExDeathNote = new CcControl.CcTextBox();
+            DateTimeExDeathDate = new CcControl.CcDateTime();
+            labelEx39 = new CcControl.CcLabel();
+            labelEx38 = new CcControl.CcLabel();
+            TextBoxExRetirementNote = new CcControl.CcTextBox();
+            DateTimeExRetirementDate = new CcControl.CcDateTime();
+            CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
+            labelEx37 = new CcControl.CcLabel();
+            GroupBoxExExperience = new CcControl.CcGroupBox();
+            TextBoxExExperienceDuration3 = new CcControl.CcTextBox();
+            TextBoxExExperienceLoad3 = new CcControl.CcTextBox();
+            ComboBoxExExperienceKind3 = new CcControl.CcComboBox();
+            TextBoxExExperienceDuration2 = new CcControl.CcTextBox();
+            TextBoxExExperienceLoad2 = new CcControl.CcTextBox();
+            ComboBoxExExperienceKind2 = new CcControl.CcComboBox();
+            TextBoxExExperienceDuration1 = new CcControl.CcTextBox();
+            TextBoxExExperienceLoad1 = new CcControl.CcTextBox();
+            ComboBoxExExperienceKind1 = new CcControl.CcComboBox();
+            labelEx36 = new CcControl.CcLabel();
+            TextBoxExExperienceDuration = new CcControl.CcTextBox();
+            labelEx35 = new CcControl.CcLabel();
+            TextBoxExExperienceLoad = new CcControl.CcTextBox();
+            ComboBoxExExperienceKind = new CcControl.CcComboBox();
+            labelEx30 = new CcControl.CcLabel();
+            TextBoxExExperienceNote3 = new CcControl.CcTextBox();
+            labelEx31 = new CcControl.CcLabel();
+            TextBoxExExperienceNote2 = new CcControl.CcTextBox();
+            labelEx32 = new CcControl.CcLabel();
+            TextBoxExExperienceNote1 = new CcControl.CcTextBox();
+            AddGroupBoxExExperience = new CcControl.CcButton();
+            labelEx33 = new CcControl.CcLabel();
+            TextBoxExExperienceNote = new CcControl.CcTextBox();
+            labelEx34 = new CcControl.CcLabel();
+            GroupBoxExHistory = new CcControl.CcGroupBox();
+            labelEx29 = new CcControl.CcLabel();
+            TextBoxExCompanyName3 = new CcControl.CcTextBox();
+            DateTimeExHistoryDate3 = new CcControl.CcDateTime();
+            labelEx27 = new CcControl.CcLabel();
+            TextBoxExCompanyName2 = new CcControl.CcTextBox();
+            DateTimeExHistoryDate2 = new CcControl.CcDateTime();
+            labelEx28 = new CcControl.CcLabel();
+            TextBoxExCompanyName1 = new CcControl.CcTextBox();
+            DateTimeExHistoryDate1 = new CcControl.CcDateTime();
+            AddGroupBoxExHistory = new CcControl.CcButton();
+            labelEx26 = new CcControl.CcLabel();
+            TextBoxExCompanyName = new CcControl.CcTextBox();
+            labelEx25 = new CcControl.CcLabel();
+            DateTimeExHistoryDate = new CcControl.CcDateTime();
+            CheckBoxExToukanpoFlag = new CcControl.CcCheckBox();
+            CheckBoxExLegalTwelveItemFlag = new CcControl.CcCheckBox();
+            GroupBoxExDrive = new CcControl.CcGroupBox();
+            ComboBoxExLicenseCondition = new CcControl.CcComboBox();
+            DateTimeExLicenseTypeExpirationDate = new CcControl.CcDateTime();
+            labelEx24 = new CcControl.CcLabel();
+            labelEx23 = new CcControl.CcLabel();
+            TextBoxExLicenseType = new CcControl.CcTextBox();
+            labelEx22 = new CcControl.CcLabel();
+            labelEx21 = new CcControl.CcLabel();
+            TextBoxExLicenseNumber = new CcControl.CcTextBox();
+            labelEx20 = new CcControl.CcLabel();
+            TextBoxExNotSelectionReason = new CcControl.CcTextBox();
+            DateTimeExNotSelectionDate = new CcControl.CcDateTime();
+            labelEx19 = new CcControl.CcLabel();
+            DateTimeExSelectionDate = new CcControl.CcDateTime();
+            labelEx18 = new CcControl.CcLabel();
+            labelEx17 = new CcControl.CcLabel();
+            PictureBoxExStamp = new CcControl.CcPictureBox();
+            ContextMenuStripEx2 = new CcControl.ContextMenuStripEx();
+            ToolStripMenuItemStampClip = new ToolStripMenuItem();
+            ToolStripMenuItemStampDelete = new ToolStripMenuItem();
+            PictureBoxExStaff = new CcControl.CcPictureBox();
+            ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            ToolStripMenuItemPictureClip = new ToolStripMenuItem();
+            ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
+            labelEx16 = new CcControl.CcLabel();
+            TextBoxExCellphoneNumber = new CcControl.CcTextBox();
+            labelEx15 = new CcControl.CcLabel();
+            CheckBoxExTargetFlag = new CcControl.CcCheckBox();
+            TextBoxExTelephoneNumber = new CcControl.CcTextBox();
+            labelEx14 = new CcControl.CcLabel();
+            TextBoxExRemarks = new CcControl.CcTextBox();
+            labelEx13 = new CcControl.CcLabel();
+            TextBoxExCurrentAddress = new CcControl.CcTextBox();
+            CcDateTimePickerContractDate = new CcControl.CcDateTime();
+            CheckBoxExContractFlag = new CcControl.CcCheckBox();
+            CcDateTimeEmploymentDate = new CcControl.CcDateTime();
+            labelEx12 = new CcControl.CcLabel();
+            ComboBoxExBloodType = new CcControl.CcComboBox();
+            labelEx11 = new CcControl.CcLabel();
+            ComboBoxExGender = new CcControl.CcComboBox();
+            labelEx10 = new CcControl.CcLabel();
+            CcDateTimeBirthDate = new CcControl.CcDateTime();
+            labelEx9 = new CcControl.CcLabel();
+            labelEx8 = new CcControl.CcLabel();
+            TextBoxExDisplayName = new CcControl.CcTextBox();
+            labelEx7 = new CcControl.CcLabel();
+            TextBoxExOtherName = new CcControl.CcTextBox();
+            labelEx6 = new CcControl.CcLabel();
+            TextBoxExName = new CcControl.CcTextBox();
+            labelEx5 = new CcControl.CcLabel();
+            TextBoxExOtherNameKana = new CcControl.CcTextBox();
+            labelEx3 = new CcControl.CcLabel();
+            TextBoxExNameKana = new CcControl.CcTextBox();
+            TextBoxExUnionCode = new CcControl.CcTextBox();
+            labelEx4 = new CcControl.CcLabel();
+            LabelExStaffCode = new CcControl.CcLabel();
+            labelEx1 = new CcControl.CcLabel();
+            CcGroupBoxOccupation = new CcControl.CcGroupBox();
+            radioButtonEx18 = new CcControl.CcRadioButton();
+            radioButtonEx17 = new CcControl.CcRadioButton();
+            RadioButtonExOfficeWorker = new CcControl.CcRadioButton();
+            radioButtonEx15 = new CcControl.CcRadioButton();
+            RadioButtonExWorkers = new CcControl.CcRadioButton();
+            RadioButtonExDrivers = new CcControl.CcRadioButton();
+            CcGroupBoxJobForm = new CcControl.CcGroupBox();
+            RadioButtonExJobFormNothing = new CcControl.CcRadioButton();
+            RadioButtonExShortTimeJ = new CcControl.CcRadioButton();
+            RadioButtonExLongTimeJ = new CcControl.CcRadioButton();
+            RadioButtonExShortTimeS = new CcControl.CcRadioButton();
+            RadioButtonExLongTimeS = new CcControl.CcRadioButton();
+            CcGroupBoxBelongs = new CcControl.CcGroupBox();
+            RadioButtonEx労供 = new CcControl.CcRadioButton();
+            RadioButtonExパートタイマー = new CcControl.CcRadioButton();
+            RadioButtonEx嘱託雇用契約社員 = new CcControl.CcRadioButton();
+            RadioButtonEx派遣 = new CcControl.CcRadioButton();
+            RadioButtonExアルバイト = new CcControl.CcRadioButton();
+            RadioButtonEx社員 = new CcControl.CcRadioButton();
+            RadioButtonEx役員 = new CcControl.CcRadioButton();
+            PanelExRight = new CcControl.CcPanel();
+            GroupBoxExPunishment = new CcControl.CcGroupBox();
+            labelEx78 = new CcControl.CcLabel();
+            labelEx79 = new CcControl.CcLabel();
+            labelEx80 = new CcControl.CcLabel();
+            labelEx81 = new CcControl.CcLabel();
+            labelEx82 = new CcControl.CcLabel();
+            AddGroupBoxExPunishment = new CcControl.CcButton();
+            ComboBoxExPunishmentNote = new CcControl.CcComboBox();
+            DateTimeExPunishmentDate = new CcControl.CcDateTime();
+            ComboBoxExPunishmentNote3 = new CcControl.CcComboBox();
+            DateTimeExPunishmentDate3 = new CcControl.CcDateTime();
+            ComboBoxExPunishmentNote2 = new CcControl.CcComboBox();
+            DateTimeExPunishmentDate2 = new CcControl.CcDateTime();
+            ComboBoxExPunishmentNote1 = new CcControl.CcComboBox();
+            DateTimeExPunishmentDate1 = new CcControl.CcDateTime();
+            GroupBoxProper = new CcControl.CcGroupBox();
+            labelEx67 = new CcControl.CcLabel();
+            labelEx73 = new CcControl.CcLabel();
+            labelEx74 = new CcControl.CcLabel();
+            labelEx75 = new CcControl.CcLabel();
+            labelEx76 = new CcControl.CcLabel();
+            labelEx77 = new CcControl.CcLabel();
+            AddGroupBoxProper = new CcControl.CcButton();
+            ComboBoxExProperKind = new CcControl.CcComboBox();
+            DateTimeExProperDate = new CcControl.CcDateTime();
+            TextBoxExProperNote = new CcControl.CcTextBox();
+            ComboBoxExProperKind3 = new CcControl.CcComboBox();
+            DateTimeExProperDate3 = new CcControl.CcDateTime();
+            TextBoxExProperNote3 = new CcControl.CcTextBox();
+            ComboBoxExProperKind2 = new CcControl.CcComboBox();
+            DateTimeExProperDate2 = new CcControl.CcDateTime();
+            TextBoxExProperNote2 = new CcControl.CcTextBox();
+            ComboBoxExProperKind1 = new CcControl.CcComboBox();
+            DateTimeExProperDate1 = new CcControl.CcDateTime();
+            TextBoxExProperNote1 = new CcControl.CcTextBox();
+            GroupBoxEducate = new CcControl.CcGroupBox();
+            labelEx68 = new CcControl.CcLabel();
+            labelEx69 = new CcControl.CcLabel();
+            labelEx70 = new CcControl.CcLabel();
+            labelEx71 = new CcControl.CcLabel();
+            labelEx72 = new CcControl.CcLabel();
+            AddGroupBoxEducate = new CcControl.CcButton();
+            ComboBoxExEducateName = new CcControl.CcComboBox();
+            DateTimeExEducateDate = new CcControl.CcDateTime();
+            ComboBoxExEducateName3 = new CcControl.CcComboBox();
+            DateTimeExEducateDate3 = new CcControl.CcDateTime();
+            ComboBoxExEducateName2 = new CcControl.CcComboBox();
+            DateTimeExEducateDate2 = new CcControl.CcDateTime();
+            ComboBoxExEducateName1 = new CcControl.CcComboBox();
+            DateTimeExEducateDate1 = new CcControl.CcDateTime();
+            GroupBoxExCarViolate = new CcControl.CcGroupBox();
+            labelEx61 = new CcControl.CcLabel();
+            labelEx62 = new CcControl.CcLabel();
+            labelEx63 = new CcControl.CcLabel();
+            labelEx64 = new CcControl.CcLabel();
+            labelEx65 = new CcControl.CcLabel();
+            labelEx66 = new CcControl.CcLabel();
+            AddGroupBoxExCarViolate = new CcControl.CcButton();
+            ComboBoxExCarViolateContent = new CcControl.CcComboBox();
+            DateTimeExCarViolateDate = new CcControl.CcDateTime();
+            TextBoxExCarViolatePlace = new CcControl.CcTextBox();
+            ComboBoxExCarViolateContent3 = new CcControl.CcComboBox();
+            DateTimeExCarViolateDate3 = new CcControl.CcDateTime();
+            TextBoxExCarViolatePlace3 = new CcControl.CcTextBox();
+            ComboBoxExCarViolateContent2 = new CcControl.CcComboBox();
+            DateTimeExCarViolateDate2 = new CcControl.CcDateTime();
+            TextBoxExCarViolatePlace2 = new CcControl.CcTextBox();
+            ComboBoxExCarViolateContent1 = new CcControl.CcComboBox();
+            DateTimeExCarViolateDate1 = new CcControl.CcDateTime();
+            TextBoxExCarViolatePlace1 = new CcControl.CcTextBox();
+            groupBoxEx9 = new CcControl.CcGroupBox();
+            labelEx60 = new CcControl.CcLabel();
+            GroupBoxExMedicalExamination = new CcControl.CcGroupBox();
+            labelEx59 = new CcControl.CcLabel();
+            labelEx58 = new CcControl.CcLabel();
+            labelEx53 = new CcControl.CcLabel();
+            labelEx50 = new CcControl.CcLabel();
+            labelEx51 = new CcControl.CcLabel();
+            labelEx52 = new CcControl.CcLabel();
+            AddGroupBoxExMedical = new CcControl.CcButton();
+            ComboBoxExMedicalInstitutionName = new CcControl.CcComboBox();
+            DateTimeExMedicalExaminationDate = new CcControl.CcDateTime();
+            TextBoxExMedicalExaminationNote = new CcControl.CcTextBox();
+            ComboBoxExMedicalInstitutionName3 = new CcControl.CcComboBox();
+            DateTimeExMedicalExaminationDate3 = new CcControl.CcDateTime();
+            TextBoxExMedicalExaminationNote3 = new CcControl.CcTextBox();
+            ComboBoxExMedicalInstitutionName2 = new CcControl.CcComboBox();
+            DateTimeExMedicalExaminationDate2 = new CcControl.CcDateTime();
+            TextBoxExMedicalExaminationNote2 = new CcControl.CcTextBox();
+            ComboBoxExMedicalInstitutionName1 = new CcControl.CcComboBox();
+            DateTimeExMedicalExaminationDate1 = new CcControl.CcDateTime();
+            TextBoxExMedicalExaminationNote1 = new CcControl.CcTextBox();
+            GroupBoxExInsurance = new CcControl.CcGroupBox();
+            ComboBoxExHealthInsuranceNumber = new CcControl.CcComboBox();
+            DateTimeExHealthInsuranceDate = new CcControl.CcDateTime();
+            TextBoxExHealthInsuranceNote = new CcControl.CcTextBox();
+            ComboBoxExWorkerAccidentInsuranceNumber = new CcControl.CcComboBox();
+            DateTimeExWorkerAccidentInsuranceDate = new CcControl.CcDateTime();
+            TextBoxExWorkerAccidentInsuranceNote = new CcControl.CcTextBox();
+            ComboBoxExEmploymentInsuranceNumber = new CcControl.CcComboBox();
+            DateTimeExEmploymentInsuranceDate = new CcControl.CcDateTime();
+            TextBoxExEmploymentInsuranceNote = new CcControl.CcTextBox();
+            ComboBoxExWelfarePensionNumber = new CcControl.CcComboBox();
+            DateTimeExWelfarePensionDate = new CcControl.CcDateTime();
+            TextBoxExWelfarePensionNote = new CcControl.CcTextBox();
+            labelEx54 = new CcControl.CcLabel();
+            labelEx55 = new CcControl.CcLabel();
+            labelEx56 = new CcControl.CcLabel();
+            labelEx57 = new CcControl.CcLabel();
+            GroupBoxExFamily = new CcControl.CcGroupBox();
+            TextBoxExUrgentTelephoneMethod = new CcControl.CcTextBox();
+            TextBoxExUrgentTelephoneNumber = new CcControl.CcTextBox();
+            labelEx49 = new CcControl.CcLabel();
+            labelEx48 = new CcControl.CcLabel();
+            labelEx47 = new CcControl.CcLabel();
+            labelEx46 = new CcControl.CcLabel();
+            ComboBoxExFamilyRelationship1 = new CcControl.CcComboBox();
+            DateTimeExFamilyBirthDate1 = new CcControl.CcDateTime();
+            TextBoxExFamilyName1 = new CcControl.CcTextBox();
+            ComboBoxExFamilyRelationship4 = new CcControl.CcComboBox();
+            DateTimeExFamilyBirthDate4 = new CcControl.CcDateTime();
+            TextBoxExFamilyName4 = new CcControl.CcTextBox();
+            ComboBoxExFamilyRelationship3 = new CcControl.CcComboBox();
+            DateTimeExFamilyBirthDate3 = new CcControl.CcDateTime();
+            TextBoxExFamilyName3 = new CcControl.CcTextBox();
+            ComboBoxExFamilyRelationship2 = new CcControl.CcComboBox();
+            DateTimeExFamilyBirthDate2 = new CcControl.CcDateTime();
+            TextBoxExFamilyName2 = new CcControl.CcTextBox();
+            labelEx45 = new CcControl.CcLabel();
+            AddGroupBoxExFamily = new CcControl.CcButton();
+            ComboBoxExFamilyRelationship = new CcControl.CcComboBox();
+            DateTimeExFamilyBirthDate = new CcControl.CcDateTime();
+            labelEx42 = new CcControl.CcLabel();
+            labelEx43 = new CcControl.CcLabel();
+            TextBoxExFamilyName = new CcControl.CcTextBox();
+            labelEx44 = new CcControl.CcLabel();
+            TableLayoutPanelExBase.SuspendLayout();
+            PanelExUp.SuspendLayout();
+            PanelExLeft.SuspendLayout();
+            GroupBoxExRetirement.SuspendLayout();
+            GroupBoxExExperience.SuspendLayout();
+            GroupBoxExHistory.SuspendLayout();
+            GroupBoxExDrive.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxExStamp).BeginInit();
+            ContextMenuStripEx2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxExStaff).BeginInit();
+            ContextMenuStripEx1.SuspendLayout();
+            CcGroupBoxOccupation.SuspendLayout();
+            CcGroupBoxJobForm.SuspendLayout();
+            CcGroupBoxBelongs.SuspendLayout();
+            PanelExRight.SuspendLayout();
+            GroupBoxExPunishment.SuspendLayout();
+            GroupBoxProper.SuspendLayout();
+            GroupBoxEducate.SuspendLayout();
+            GroupBoxExCarViolate.SuspendLayout();
+            groupBoxEx9.SuspendLayout();
+            GroupBoxExMedicalExamination.SuspendLayout();
+            GroupBoxExInsurance.SuspendLayout();
+            GroupBoxExFamily.SuspendLayout();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 2;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExLeft, 0, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExRight, 1, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 2;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(PanelExLeft, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(PanelExRight, 1, 2);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.TableLayoutPanelExBase.SetColumnSpan(this.MenuStripEx1, 2);
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1904, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 2);
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(1904, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.TableLayoutPanelExBase.SetColumnSpan(this.StatusStripEx1, 2);
-            this.StatusStripEx1.Location = new Point(0, 1019);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1904, 22);
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 2);
+            StatusStripEx1.Location = new Point(0, 1019);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(1904, 22);
+            StatusStripEx1.TabIndex = 1;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
-            this.PanelExUp.BorderStyle = BorderStyle.Fixed3D;
-            this.TableLayoutPanelExBase.SetColumnSpan(this.PanelExUp, 2);
-            this.PanelExUp.Controls.Add(this.ButtonExUpdate);
-            this.PanelExUp.Dock = DockStyle.Fill;
-            this.PanelExUp.Location = new Point(3, 27);
-            this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1898, 54);
-            this.PanelExUp.TabIndex = 2;
+            PanelExUp.BorderStyle = BorderStyle.Fixed3D;
+            TableLayoutPanelExBase.SetColumnSpan(PanelExUp, 2);
+            PanelExUp.Controls.Add(CcButtonUpdate);
+            PanelExUp.Dock = DockStyle.Fill;
+            PanelExUp.Location = new Point(3, 27);
+            PanelExUp.Name = "PanelExUp";
+            PanelExUp.Size = new Size(1898, 54);
+            PanelExUp.TabIndex = 2;
             // 
-            // ButtonExUpdate
+            // CcButtonUpdate
             // 
-            this.ButtonExUpdate.Location = new Point(1672, 8);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(180, 36);
-            this.ButtonExUpdate.TabIndex = 0;
-            this.ButtonExUpdate.Text = "UPDATE";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonEx_Click;
+            CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            CcButtonUpdate.Location = new Point(1672, 10);
+            CcButtonUpdate.Name = "CcButtonUpdate";
+            CcButtonUpdate.SetTextDirectionVertical = "";
+            CcButtonUpdate.Size = new Size(184, 32);
+            CcButtonUpdate.TabIndex = 0;
+            CcButtonUpdate.Text = "更　　新";
+            CcButtonUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Click += ButtonEx_Click;
             // 
             // PanelExLeft
             // 
-            this.PanelExLeft.AutoScroll = true;
-            this.PanelExLeft.BorderStyle = BorderStyle.Fixed3D;
-            this.PanelExLeft.Controls.Add(this.labelEx41);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExRetirement);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExExperience);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExHistory);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExToukanpoFlag);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExLegalTwelveItemFlag);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExDrive);
-            this.PanelExLeft.Controls.Add(this.labelEx17);
-            this.PanelExLeft.Controls.Add(this.PictureBoxExStamp);
-            this.PanelExLeft.Controls.Add(this.PictureBoxExStaff);
-            this.PanelExLeft.Controls.Add(this.labelEx16);
-            this.PanelExLeft.Controls.Add(this.TextBoxExCellphoneNumber);
-            this.PanelExLeft.Controls.Add(this.labelEx15);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExTargetFlag);
-            this.PanelExLeft.Controls.Add(this.TextBoxExTelephoneNumber);
-            this.PanelExLeft.Controls.Add(this.labelEx14);
-            this.PanelExLeft.Controls.Add(this.TextBoxExRemarks);
-            this.PanelExLeft.Controls.Add(this.labelEx13);
-            this.PanelExLeft.Controls.Add(this.TextBoxExCurrentAddress);
-            this.PanelExLeft.Controls.Add(this.DateTimePickerExContractDate);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExContractFlag);
-            this.PanelExLeft.Controls.Add(this.DateTimeExEmploymentDate);
-            this.PanelExLeft.Controls.Add(this.labelEx12);
-            this.PanelExLeft.Controls.Add(this.ComboBoxExBloodType);
-            this.PanelExLeft.Controls.Add(this.labelEx11);
-            this.PanelExLeft.Controls.Add(this.ComboBoxExGender);
-            this.PanelExLeft.Controls.Add(this.labelEx10);
-            this.PanelExLeft.Controls.Add(this.DateTimeExBirthDate);
-            this.PanelExLeft.Controls.Add(this.labelEx9);
-            this.PanelExLeft.Controls.Add(this.labelEx8);
-            this.PanelExLeft.Controls.Add(this.TextBoxExDisplayName);
-            this.PanelExLeft.Controls.Add(this.labelEx7);
-            this.PanelExLeft.Controls.Add(this.TextBoxExOtherName);
-            this.PanelExLeft.Controls.Add(this.labelEx6);
-            this.PanelExLeft.Controls.Add(this.TextBoxExName);
-            this.PanelExLeft.Controls.Add(this.labelEx5);
-            this.PanelExLeft.Controls.Add(this.TextBoxExOtherNameKana);
-            this.PanelExLeft.Controls.Add(this.labelEx3);
-            this.PanelExLeft.Controls.Add(this.TextBoxExNameKana);
-            this.PanelExLeft.Controls.Add(this.TextBoxExUnionCode);
-            this.PanelExLeft.Controls.Add(this.labelEx4);
-            this.PanelExLeft.Controls.Add(this.LabelExStaffCode);
-            this.PanelExLeft.Controls.Add(this.labelEx1);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExOccupation);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExJobForm);
-            this.PanelExLeft.Controls.Add(this.GroupBoxExBelongs);
-            this.PanelExLeft.Dock = DockStyle.Fill;
-            this.PanelExLeft.Location = new Point(3, 87);
-            this.PanelExLeft.Name = "PanelExLeft";
-            this.PanelExLeft.Size = new Size(946, 927);
-            this.PanelExLeft.TabIndex = 3;
+            PanelExLeft.AutoScroll = true;
+            PanelExLeft.BorderStyle = BorderStyle.Fixed3D;
+            PanelExLeft.Controls.Add(labelEx41);
+            PanelExLeft.Controls.Add(GroupBoxExRetirement);
+            PanelExLeft.Controls.Add(GroupBoxExExperience);
+            PanelExLeft.Controls.Add(GroupBoxExHistory);
+            PanelExLeft.Controls.Add(CheckBoxExToukanpoFlag);
+            PanelExLeft.Controls.Add(CheckBoxExLegalTwelveItemFlag);
+            PanelExLeft.Controls.Add(GroupBoxExDrive);
+            PanelExLeft.Controls.Add(labelEx17);
+            PanelExLeft.Controls.Add(PictureBoxExStamp);
+            PanelExLeft.Controls.Add(PictureBoxExStaff);
+            PanelExLeft.Controls.Add(labelEx16);
+            PanelExLeft.Controls.Add(TextBoxExCellphoneNumber);
+            PanelExLeft.Controls.Add(labelEx15);
+            PanelExLeft.Controls.Add(CheckBoxExTargetFlag);
+            PanelExLeft.Controls.Add(TextBoxExTelephoneNumber);
+            PanelExLeft.Controls.Add(labelEx14);
+            PanelExLeft.Controls.Add(TextBoxExRemarks);
+            PanelExLeft.Controls.Add(labelEx13);
+            PanelExLeft.Controls.Add(TextBoxExCurrentAddress);
+            PanelExLeft.Controls.Add(CcDateTimePickerContractDate);
+            PanelExLeft.Controls.Add(CheckBoxExContractFlag);
+            PanelExLeft.Controls.Add(CcDateTimeEmploymentDate);
+            PanelExLeft.Controls.Add(labelEx12);
+            PanelExLeft.Controls.Add(ComboBoxExBloodType);
+            PanelExLeft.Controls.Add(labelEx11);
+            PanelExLeft.Controls.Add(ComboBoxExGender);
+            PanelExLeft.Controls.Add(labelEx10);
+            PanelExLeft.Controls.Add(CcDateTimeBirthDate);
+            PanelExLeft.Controls.Add(labelEx9);
+            PanelExLeft.Controls.Add(labelEx8);
+            PanelExLeft.Controls.Add(TextBoxExDisplayName);
+            PanelExLeft.Controls.Add(labelEx7);
+            PanelExLeft.Controls.Add(TextBoxExOtherName);
+            PanelExLeft.Controls.Add(labelEx6);
+            PanelExLeft.Controls.Add(TextBoxExName);
+            PanelExLeft.Controls.Add(labelEx5);
+            PanelExLeft.Controls.Add(TextBoxExOtherNameKana);
+            PanelExLeft.Controls.Add(labelEx3);
+            PanelExLeft.Controls.Add(TextBoxExNameKana);
+            PanelExLeft.Controls.Add(TextBoxExUnionCode);
+            PanelExLeft.Controls.Add(labelEx4);
+            PanelExLeft.Controls.Add(LabelExStaffCode);
+            PanelExLeft.Controls.Add(labelEx1);
+            PanelExLeft.Controls.Add(CcGroupBoxOccupation);
+            PanelExLeft.Controls.Add(CcGroupBoxJobForm);
+            PanelExLeft.Controls.Add(CcGroupBoxBelongs);
+            PanelExLeft.Dock = DockStyle.Fill;
+            PanelExLeft.Location = new Point(3, 87);
+            PanelExLeft.Name = "PanelExLeft";
+            PanelExLeft.Size = new Size(946, 927);
+            PanelExLeft.TabIndex = 3;
             // 
             // labelEx41
             // 
-            this.labelEx41.AutoSize = true;
-            this.labelEx41.Location = new Point(84, 524);
-            this.labelEx41.Name = "labelEx41";
-            this.labelEx41.Size = new Size(31, 15);
-            this.labelEx41.TabIndex = 58;
-            this.labelEx41.Text = "写真";
+            labelEx41.AutoSize = true;
+            labelEx41.Location = new Point(84, 524);
+            labelEx41.Name = "labelEx41";
+            labelEx41.Size = new Size(31, 15);
+            labelEx41.TabIndex = 58;
+            labelEx41.Text = "写真";
             // 
             // GroupBoxExRetirement
             // 
-            this.GroupBoxExRetirement.Controls.Add(this.labelEx40);
-            this.GroupBoxExRetirement.Controls.Add(this.TextBoxExDeathNote);
-            this.GroupBoxExRetirement.Controls.Add(this.DateTimeExDeathDate);
-            this.GroupBoxExRetirement.Controls.Add(this.labelEx39);
-            this.GroupBoxExRetirement.Controls.Add(this.labelEx38);
-            this.GroupBoxExRetirement.Controls.Add(this.TextBoxExRetirementNote);
-            this.GroupBoxExRetirement.Controls.Add(this.DateTimeExRetirementDate);
-            this.GroupBoxExRetirement.Controls.Add(this.CheckBoxExRetirementFlag);
-            this.GroupBoxExRetirement.Controls.Add(this.labelEx37);
-            this.GroupBoxExRetirement.Location = new Point(8, 1120);
-            this.GroupBoxExRetirement.Name = "GroupBoxExRetirement";
-            this.GroupBoxExRetirement.Size = new Size(916, 143);
-            this.GroupBoxExRetirement.TabIndex = 57;
-            this.GroupBoxExRetirement.TabStop = false;
-            this.GroupBoxExRetirement.Text = "解雇・退職の日付と理由";
+            GroupBoxExRetirement.Controls.Add(labelEx40);
+            GroupBoxExRetirement.Controls.Add(TextBoxExDeathNote);
+            GroupBoxExRetirement.Controls.Add(DateTimeExDeathDate);
+            GroupBoxExRetirement.Controls.Add(labelEx39);
+            GroupBoxExRetirement.Controls.Add(labelEx38);
+            GroupBoxExRetirement.Controls.Add(TextBoxExRetirementNote);
+            GroupBoxExRetirement.Controls.Add(DateTimeExRetirementDate);
+            GroupBoxExRetirement.Controls.Add(CheckBoxExRetirementFlag);
+            GroupBoxExRetirement.Controls.Add(labelEx37);
+            GroupBoxExRetirement.Location = new Point(8, 1120);
+            GroupBoxExRetirement.Name = "GroupBoxExRetirement";
+            GroupBoxExRetirement.Size = new Size(916, 143);
+            GroupBoxExRetirement.TabIndex = 57;
+            GroupBoxExRetirement.TabStop = false;
+            GroupBoxExRetirement.Text = "解雇・退職の日付と理由";
             // 
             // labelEx40
             // 
-            this.labelEx40.AutoSize = true;
-            this.labelEx40.Location = new Point(12, 112);
-            this.labelEx40.Name = "labelEx40";
-            this.labelEx40.Size = new Size(166, 15);
-            this.labelEx40.TabIndex = 75;
-            this.labelEx40.Text = "上記理由が死亡の場合その理由";
+            labelEx40.AutoSize = true;
+            labelEx40.Location = new Point(12, 112);
+            labelEx40.Name = "labelEx40";
+            labelEx40.Size = new Size(166, 15);
+            labelEx40.TabIndex = 75;
+            labelEx40.Text = "上記理由が死亡の場合その理由";
             // 
             // TextBoxExDeathNote
             // 
-            this.TextBoxExDeathNote.Location = new Point(188, 108);
-            this.TextBoxExDeathNote.Name = "TextBoxExDeathNote";
-            this.TextBoxExDeathNote.Size = new Size(644, 23);
-            this.TextBoxExDeathNote.TabIndex = 74;
-            this.TextBoxExDeathNote.Text = "ツジユウイチ";
+            TextBoxExDeathNote.Location = new Point(188, 108);
+            TextBoxExDeathNote.Name = "TextBoxExDeathNote";
+            TextBoxExDeathNote.Size = new Size(644, 23);
+            TextBoxExDeathNote.TabIndex = 74;
+            TextBoxExDeathNote.Text = "ツジユウイチ";
             // 
             // DateTimeExDeathDate
             // 
-            this.DateTimeExDeathDate.CultureFlag = false;
-            this.DateTimeExDeathDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExDeathDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExDeathDate.Location = new Point(188, 80);
-            this.DateTimeExDeathDate.Name = "DateTimeExDeathDate";
-            this.DateTimeExDeathDate.Size = new Size(188, 23);
-            this.DateTimeExDeathDate.TabIndex = 72;
-            this.DateTimeExDeathDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExDeathDate.CultureFlag = false;
+            DateTimeExDeathDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExDeathDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExDeathDate.Location = new Point(188, 80);
+            DateTimeExDeathDate.Name = "DateTimeExDeathDate";
+            DateTimeExDeathDate.Size = new Size(188, 23);
+            DateTimeExDeathDate.TabIndex = 72;
+            DateTimeExDeathDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx39
             // 
-            this.labelEx39.AutoSize = true;
-            this.labelEx39.Location = new Point(12, 84);
-            this.labelEx39.Name = "labelEx39";
-            this.labelEx39.Size = new Size(169, 15);
-            this.labelEx39.TabIndex = 73;
-            this.labelEx39.Text = "上記理由が死亡の場合の年月日";
+            labelEx39.AutoSize = true;
+            labelEx39.Location = new Point(12, 84);
+            labelEx39.Name = "labelEx39";
+            labelEx39.Size = new Size(169, 15);
+            labelEx39.TabIndex = 73;
+            labelEx39.Text = "上記理由が死亡の場合の年月日";
             // 
             // labelEx38
             // 
-            this.labelEx38.AutoSize = true;
-            this.labelEx38.Location = new Point(24, 56);
-            this.labelEx38.Name = "labelEx38";
-            this.labelEx38.Size = new Size(111, 15);
-            this.labelEx38.TabIndex = 71;
-            this.labelEx38.Text = "解雇又は退職の理由";
+            labelEx38.AutoSize = true;
+            labelEx38.Location = new Point(24, 56);
+            labelEx38.Name = "labelEx38";
+            labelEx38.Size = new Size(111, 15);
+            labelEx38.TabIndex = 71;
+            labelEx38.Text = "解雇又は退職の理由";
             // 
             // TextBoxExRetirementNote
             // 
-            this.TextBoxExRetirementNote.Location = new Point(148, 52);
-            this.TextBoxExRetirementNote.Name = "TextBoxExRetirementNote";
-            this.TextBoxExRetirementNote.Size = new Size(684, 23);
-            this.TextBoxExRetirementNote.TabIndex = 69;
-            this.TextBoxExRetirementNote.Text = "ツジユウイチ";
+            TextBoxExRetirementNote.Location = new Point(148, 52);
+            TextBoxExRetirementNote.Name = "TextBoxExRetirementNote";
+            TextBoxExRetirementNote.Size = new Size(684, 23);
+            TextBoxExRetirementNote.TabIndex = 69;
+            TextBoxExRetirementNote.Text = "ツジユウイチ";
             // 
             // DateTimeExRetirementDate
             // 
-            this.DateTimeExRetirementDate.CultureFlag = false;
-            this.DateTimeExRetirementDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExRetirementDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExRetirementDate.Location = new Point(168, 24);
-            this.DateTimeExRetirementDate.Name = "DateTimeExRetirementDate";
-            this.DateTimeExRetirementDate.Size = new Size(188, 23);
-            this.DateTimeExRetirementDate.TabIndex = 56;
-            this.DateTimeExRetirementDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExRetirementDate.CultureFlag = false;
+            DateTimeExRetirementDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExRetirementDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExRetirementDate.Location = new Point(168, 24);
+            DateTimeExRetirementDate.Name = "DateTimeExRetirementDate";
+            DateTimeExRetirementDate.Size = new Size(188, 23);
+            DateTimeExRetirementDate.TabIndex = 56;
+            DateTimeExRetirementDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // CheckBoxExRetirementFlag
             // 
-            this.CheckBoxExRetirementFlag.AutoSize = true;
-            this.CheckBoxExRetirementFlag.Location = new Point(148, 28);
-            this.CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
-            this.CheckBoxExRetirementFlag.Size = new Size(15, 14);
-            this.CheckBoxExRetirementFlag.TabIndex = 70;
-            this.CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
+            CheckBoxExRetirementFlag.AutoSize = true;
+            CheckBoxExRetirementFlag.Location = new Point(148, 28);
+            CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
+            CheckBoxExRetirementFlag.Size = new Size(15, 14);
+            CheckBoxExRetirementFlag.TabIndex = 70;
+            CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
             // labelEx37
             // 
-            this.labelEx37.AutoSize = true;
-            this.labelEx37.Location = new Point(12, 28);
-            this.labelEx37.Name = "labelEx37";
-            this.labelEx37.Size = new Size(123, 15);
-            this.labelEx37.TabIndex = 69;
-            this.labelEx37.Text = "解雇又は退職の年月日";
+            labelEx37.AutoSize = true;
+            labelEx37.Location = new Point(12, 28);
+            labelEx37.Name = "labelEx37";
+            labelEx37.Size = new Size(123, 15);
+            labelEx37.TabIndex = 69;
+            labelEx37.Text = "解雇又は退職の年月日";
             // 
             // GroupBoxExExperience
             // 
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceDuration3);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceLoad3);
-            this.GroupBoxExExperience.Controls.Add(this.ComboBoxExExperienceKind3);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceDuration2);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceLoad2);
-            this.GroupBoxExExperience.Controls.Add(this.ComboBoxExExperienceKind2);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceDuration1);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceLoad1);
-            this.GroupBoxExExperience.Controls.Add(this.ComboBoxExExperienceKind1);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx36);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceDuration);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx35);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceLoad);
-            this.GroupBoxExExperience.Controls.Add(this.ComboBoxExExperienceKind);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx30);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceNote3);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx31);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceNote2);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx32);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceNote1);
-            this.GroupBoxExExperience.Controls.Add(this.AddGroupBoxExExperience);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx33);
-            this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceNote);
-            this.GroupBoxExExperience.Controls.Add(this.labelEx34);
-            this.GroupBoxExExperience.Location = new Point(8, 947);
-            this.GroupBoxExExperience.Name = "GroupBoxExExperience";
-            this.GroupBoxExExperience.Size = new Size(916, 164);
-            this.GroupBoxExExperience.TabIndex = 56;
-            this.GroupBoxExExperience.TabStop = false;
-            this.GroupBoxExExperience.Text = "過去に運転経験のある自動車の種類及び経験期間等(Experience)";
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceDuration3);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceLoad3);
+            GroupBoxExExperience.Controls.Add(ComboBoxExExperienceKind3);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceDuration2);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceLoad2);
+            GroupBoxExExperience.Controls.Add(ComboBoxExExperienceKind2);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceDuration1);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceLoad1);
+            GroupBoxExExperience.Controls.Add(ComboBoxExExperienceKind1);
+            GroupBoxExExperience.Controls.Add(labelEx36);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceDuration);
+            GroupBoxExExperience.Controls.Add(labelEx35);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceLoad);
+            GroupBoxExExperience.Controls.Add(ComboBoxExExperienceKind);
+            GroupBoxExExperience.Controls.Add(labelEx30);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceNote3);
+            GroupBoxExExperience.Controls.Add(labelEx31);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceNote2);
+            GroupBoxExExperience.Controls.Add(labelEx32);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceNote1);
+            GroupBoxExExperience.Controls.Add(AddGroupBoxExExperience);
+            GroupBoxExExperience.Controls.Add(labelEx33);
+            GroupBoxExExperience.Controls.Add(TextBoxExExperienceNote);
+            GroupBoxExExperience.Controls.Add(labelEx34);
+            GroupBoxExExperience.Location = new Point(8, 947);
+            GroupBoxExExperience.Name = "GroupBoxExExperience";
+            GroupBoxExExperience.Size = new Size(916, 164);
+            GroupBoxExExperience.TabIndex = 56;
+            GroupBoxExExperience.TabStop = false;
+            GroupBoxExExperience.Text = "過去に運転経験のある自動車の種類及び経験期間等(Experience)";
             // 
             // TextBoxExExperienceDuration3
             // 
-            this.TextBoxExExperienceDuration3.Enabled = false;
-            this.TextBoxExExperienceDuration3.Location = new Point(272, 132);
-            this.TextBoxExExperienceDuration3.Name = "TextBoxExExperienceDuration3";
-            this.TextBoxExExperienceDuration3.Size = new Size(100, 23);
-            this.TextBoxExExperienceDuration3.TabIndex = 68;
-            this.TextBoxExExperienceDuration3.Text = "〇〇〇〇〇";
+            TextBoxExExperienceDuration3.Enabled = false;
+            TextBoxExExperienceDuration3.Location = new Point(272, 132);
+            TextBoxExExperienceDuration3.Name = "TextBoxExExperienceDuration3";
+            TextBoxExExperienceDuration3.Size = new Size(100, 23);
+            TextBoxExExperienceDuration3.TabIndex = 68;
+            TextBoxExExperienceDuration3.Text = "〇〇〇〇〇";
             // 
             // TextBoxExExperienceLoad3
             // 
-            this.TextBoxExExperienceLoad3.Enabled = false;
-            this.TextBoxExExperienceLoad3.Location = new Point(168, 132);
-            this.TextBoxExExperienceLoad3.Name = "TextBoxExExperienceLoad3";
-            this.TextBoxExExperienceLoad3.Size = new Size(100, 23);
-            this.TextBoxExExperienceLoad3.TabIndex = 67;
-            this.TextBoxExExperienceLoad3.Text = "〇〇〇〇〇";
+            TextBoxExExperienceLoad3.Enabled = false;
+            TextBoxExExperienceLoad3.Location = new Point(168, 132);
+            TextBoxExExperienceLoad3.Name = "TextBoxExExperienceLoad3";
+            TextBoxExExperienceLoad3.Size = new Size(100, 23);
+            TextBoxExExperienceLoad3.TabIndex = 67;
+            TextBoxExExperienceLoad3.Text = "〇〇〇〇〇";
             // 
             // ComboBoxExExperienceKind3
             // 
-            this.ComboBoxExExperienceKind3.Enabled = false;
-            this.ComboBoxExExperienceKind3.FormattingEnabled = true;
-            this.ComboBoxExExperienceKind3.Location = new Point(36, 131);
-            this.ComboBoxExExperienceKind3.Name = "ComboBoxExExperienceKind3";
-            this.ComboBoxExExperienceKind3.Size = new Size(128, 23);
-            this.ComboBoxExExperienceKind3.TabIndex = 66;
+            ComboBoxExExperienceKind3.Enabled = false;
+            ComboBoxExExperienceKind3.FormattingEnabled = true;
+            ComboBoxExExperienceKind3.Location = new Point(36, 131);
+            ComboBoxExExperienceKind3.Name = "ComboBoxExExperienceKind3";
+            ComboBoxExExperienceKind3.Size = new Size(128, 23);
+            ComboBoxExExperienceKind3.TabIndex = 66;
             // 
             // TextBoxExExperienceDuration2
             // 
-            this.TextBoxExExperienceDuration2.Enabled = false;
-            this.TextBoxExExperienceDuration2.Location = new Point(272, 104);
-            this.TextBoxExExperienceDuration2.Name = "TextBoxExExperienceDuration2";
-            this.TextBoxExExperienceDuration2.Size = new Size(100, 23);
-            this.TextBoxExExperienceDuration2.TabIndex = 65;
-            this.TextBoxExExperienceDuration2.Text = "〇〇〇〇〇";
+            TextBoxExExperienceDuration2.Enabled = false;
+            TextBoxExExperienceDuration2.Location = new Point(272, 104);
+            TextBoxExExperienceDuration2.Name = "TextBoxExExperienceDuration2";
+            TextBoxExExperienceDuration2.Size = new Size(100, 23);
+            TextBoxExExperienceDuration2.TabIndex = 65;
+            TextBoxExExperienceDuration2.Text = "〇〇〇〇〇";
             // 
             // TextBoxExExperienceLoad2
             // 
-            this.TextBoxExExperienceLoad2.Enabled = false;
-            this.TextBoxExExperienceLoad2.Location = new Point(168, 104);
-            this.TextBoxExExperienceLoad2.Name = "TextBoxExExperienceLoad2";
-            this.TextBoxExExperienceLoad2.Size = new Size(100, 23);
-            this.TextBoxExExperienceLoad2.TabIndex = 64;
-            this.TextBoxExExperienceLoad2.Text = "〇〇〇〇〇";
+            TextBoxExExperienceLoad2.Enabled = false;
+            TextBoxExExperienceLoad2.Location = new Point(168, 104);
+            TextBoxExExperienceLoad2.Name = "TextBoxExExperienceLoad2";
+            TextBoxExExperienceLoad2.Size = new Size(100, 23);
+            TextBoxExExperienceLoad2.TabIndex = 64;
+            TextBoxExExperienceLoad2.Text = "〇〇〇〇〇";
             // 
             // ComboBoxExExperienceKind2
             // 
-            this.ComboBoxExExperienceKind2.Enabled = false;
-            this.ComboBoxExExperienceKind2.FormattingEnabled = true;
-            this.ComboBoxExExperienceKind2.Location = new Point(36, 103);
-            this.ComboBoxExExperienceKind2.Name = "ComboBoxExExperienceKind2";
-            this.ComboBoxExExperienceKind2.Size = new Size(128, 23);
-            this.ComboBoxExExperienceKind2.TabIndex = 63;
+            ComboBoxExExperienceKind2.Enabled = false;
+            ComboBoxExExperienceKind2.FormattingEnabled = true;
+            ComboBoxExExperienceKind2.Location = new Point(36, 103);
+            ComboBoxExExperienceKind2.Name = "ComboBoxExExperienceKind2";
+            ComboBoxExExperienceKind2.Size = new Size(128, 23);
+            ComboBoxExExperienceKind2.TabIndex = 63;
             // 
             // TextBoxExExperienceDuration1
             // 
-            this.TextBoxExExperienceDuration1.Enabled = false;
-            this.TextBoxExExperienceDuration1.Location = new Point(272, 76);
-            this.TextBoxExExperienceDuration1.Name = "TextBoxExExperienceDuration1";
-            this.TextBoxExExperienceDuration1.Size = new Size(100, 23);
-            this.TextBoxExExperienceDuration1.TabIndex = 62;
-            this.TextBoxExExperienceDuration1.Text = "〇〇〇〇〇";
+            TextBoxExExperienceDuration1.Enabled = false;
+            TextBoxExExperienceDuration1.Location = new Point(272, 76);
+            TextBoxExExperienceDuration1.Name = "TextBoxExExperienceDuration1";
+            TextBoxExExperienceDuration1.Size = new Size(100, 23);
+            TextBoxExExperienceDuration1.TabIndex = 62;
+            TextBoxExExperienceDuration1.Text = "〇〇〇〇〇";
             // 
             // TextBoxExExperienceLoad1
             // 
-            this.TextBoxExExperienceLoad1.Enabled = false;
-            this.TextBoxExExperienceLoad1.Location = new Point(168, 76);
-            this.TextBoxExExperienceLoad1.Name = "TextBoxExExperienceLoad1";
-            this.TextBoxExExperienceLoad1.Size = new Size(100, 23);
-            this.TextBoxExExperienceLoad1.TabIndex = 61;
-            this.TextBoxExExperienceLoad1.Text = "〇〇〇〇〇";
+            TextBoxExExperienceLoad1.Enabled = false;
+            TextBoxExExperienceLoad1.Location = new Point(168, 76);
+            TextBoxExExperienceLoad1.Name = "TextBoxExExperienceLoad1";
+            TextBoxExExperienceLoad1.Size = new Size(100, 23);
+            TextBoxExExperienceLoad1.TabIndex = 61;
+            TextBoxExExperienceLoad1.Text = "〇〇〇〇〇";
             // 
             // ComboBoxExExperienceKind1
             // 
-            this.ComboBoxExExperienceKind1.Enabled = false;
-            this.ComboBoxExExperienceKind1.FormattingEnabled = true;
-            this.ComboBoxExExperienceKind1.Location = new Point(36, 75);
-            this.ComboBoxExExperienceKind1.Name = "ComboBoxExExperienceKind1";
-            this.ComboBoxExExperienceKind1.Size = new Size(128, 23);
-            this.ComboBoxExExperienceKind1.TabIndex = 60;
+            ComboBoxExExperienceKind1.Enabled = false;
+            ComboBoxExExperienceKind1.FormattingEnabled = true;
+            ComboBoxExExperienceKind1.Location = new Point(36, 75);
+            ComboBoxExExperienceKind1.Name = "ComboBoxExExperienceKind1";
+            ComboBoxExExperienceKind1.Size = new Size(128, 23);
+            ComboBoxExExperienceKind1.TabIndex = 60;
             // 
             // labelEx36
             // 
-            this.labelEx36.AutoSize = true;
-            this.labelEx36.Location = new Point(276, 24);
-            this.labelEx36.Name = "labelEx36";
-            this.labelEx36.Size = new Size(55, 15);
-            this.labelEx36.TabIndex = 59;
-            this.labelEx36.Text = "経験期間";
+            labelEx36.AutoSize = true;
+            labelEx36.Location = new Point(276, 24);
+            labelEx36.Name = "labelEx36";
+            labelEx36.Size = new Size(55, 15);
+            labelEx36.TabIndex = 59;
+            labelEx36.Text = "経験期間";
             // 
             // TextBoxExExperienceDuration
             // 
-            this.TextBoxExExperienceDuration.Location = new Point(272, 44);
-            this.TextBoxExExperienceDuration.Name = "TextBoxExExperienceDuration";
-            this.TextBoxExExperienceDuration.Size = new Size(100, 23);
-            this.TextBoxExExperienceDuration.TabIndex = 58;
-            this.TextBoxExExperienceDuration.Text = "〇〇〇〇〇";
+            TextBoxExExperienceDuration.Location = new Point(272, 44);
+            TextBoxExExperienceDuration.Name = "TextBoxExExperienceDuration";
+            TextBoxExExperienceDuration.Size = new Size(100, 23);
+            TextBoxExExperienceDuration.TabIndex = 58;
+            TextBoxExExperienceDuration.Text = "〇〇〇〇〇";
             // 
             // labelEx35
             // 
-            this.labelEx35.AutoSize = true;
-            this.labelEx35.Location = new Point(172, 24);
-            this.labelEx35.Name = "labelEx35";
-            this.labelEx35.Size = new Size(89, 15);
-            this.labelEx35.TabIndex = 57;
-            this.labelEx35.Text = "積載量又は定員";
+            labelEx35.AutoSize = true;
+            labelEx35.Location = new Point(172, 24);
+            labelEx35.Name = "labelEx35";
+            labelEx35.Size = new Size(89, 15);
+            labelEx35.TabIndex = 57;
+            labelEx35.Text = "積載量又は定員";
             // 
             // TextBoxExExperienceLoad
             // 
-            this.TextBoxExExperienceLoad.Location = new Point(168, 44);
-            this.TextBoxExExperienceLoad.Name = "TextBoxExExperienceLoad";
-            this.TextBoxExExperienceLoad.Size = new Size(100, 23);
-            this.TextBoxExExperienceLoad.TabIndex = 56;
-            this.TextBoxExExperienceLoad.Text = "〇〇〇〇〇";
+            TextBoxExExperienceLoad.Location = new Point(168, 44);
+            TextBoxExExperienceLoad.Name = "TextBoxExExperienceLoad";
+            TextBoxExExperienceLoad.Size = new Size(100, 23);
+            TextBoxExExperienceLoad.TabIndex = 56;
+            TextBoxExExperienceLoad.Text = "〇〇〇〇〇";
             // 
             // ComboBoxExExperienceKind
             // 
-            this.ComboBoxExExperienceKind.FormattingEnabled = true;
-            this.ComboBoxExExperienceKind.Location = new Point(36, 43);
-            this.ComboBoxExExperienceKind.Name = "ComboBoxExExperienceKind";
-            this.ComboBoxExExperienceKind.Size = new Size(128, 23);
-            this.ComboBoxExExperienceKind.TabIndex = 43;
+            ComboBoxExExperienceKind.FormattingEnabled = true;
+            ComboBoxExExperienceKind.Location = new Point(36, 43);
+            ComboBoxExExperienceKind.Name = "ComboBoxExExperienceKind";
+            ComboBoxExExperienceKind.Size = new Size(128, 23);
+            ComboBoxExExperienceKind.TabIndex = 43;
             // 
             // labelEx30
             // 
-            this.labelEx30.AutoSize = true;
-            this.labelEx30.Location = new Point(12, 136);
-            this.labelEx30.Name = "labelEx30";
-            this.labelEx30.Size = new Size(19, 15);
-            this.labelEx30.TabIndex = 55;
-            this.labelEx30.Text = "③";
+            labelEx30.AutoSize = true;
+            labelEx30.Location = new Point(12, 136);
+            labelEx30.Name = "labelEx30";
+            labelEx30.Size = new Size(19, 15);
+            labelEx30.TabIndex = 55;
+            labelEx30.Text = "③";
             // 
             // TextBoxExExperienceNote3
             // 
-            this.TextBoxExExperienceNote3.Enabled = false;
-            this.TextBoxExExperienceNote3.Location = new Point(376, 132);
-            this.TextBoxExExperienceNote3.Name = "TextBoxExExperienceNote3";
-            this.TextBoxExExperienceNote3.Size = new Size(456, 23);
-            this.TextBoxExExperienceNote3.TabIndex = 53;
-            this.TextBoxExExperienceNote3.Text = "ツジユウイチ";
+            TextBoxExExperienceNote3.Enabled = false;
+            TextBoxExExperienceNote3.Location = new Point(376, 132);
+            TextBoxExExperienceNote3.Name = "TextBoxExExperienceNote3";
+            TextBoxExExperienceNote3.Size = new Size(456, 23);
+            TextBoxExExperienceNote3.TabIndex = 53;
+            TextBoxExExperienceNote3.Text = "ツジユウイチ";
             // 
             // labelEx31
             // 
-            this.labelEx31.AutoSize = true;
-            this.labelEx31.Location = new Point(12, 108);
-            this.labelEx31.Name = "labelEx31";
-            this.labelEx31.Size = new Size(19, 15);
-            this.labelEx31.TabIndex = 52;
-            this.labelEx31.Text = "②";
+            labelEx31.AutoSize = true;
+            labelEx31.Location = new Point(12, 108);
+            labelEx31.Name = "labelEx31";
+            labelEx31.Size = new Size(19, 15);
+            labelEx31.TabIndex = 52;
+            labelEx31.Text = "②";
             // 
             // TextBoxExExperienceNote2
             // 
-            this.TextBoxExExperienceNote2.Enabled = false;
-            this.TextBoxExExperienceNote2.Location = new Point(376, 104);
-            this.TextBoxExExperienceNote2.Name = "TextBoxExExperienceNote2";
-            this.TextBoxExExperienceNote2.Size = new Size(456, 23);
-            this.TextBoxExExperienceNote2.TabIndex = 50;
-            this.TextBoxExExperienceNote2.Text = "ツジユウイチ";
+            TextBoxExExperienceNote2.Enabled = false;
+            TextBoxExExperienceNote2.Location = new Point(376, 104);
+            TextBoxExExperienceNote2.Name = "TextBoxExExperienceNote2";
+            TextBoxExExperienceNote2.Size = new Size(456, 23);
+            TextBoxExExperienceNote2.TabIndex = 50;
+            TextBoxExExperienceNote2.Text = "ツジユウイチ";
             // 
             // labelEx32
             // 
-            this.labelEx32.AutoSize = true;
-            this.labelEx32.Location = new Point(12, 80);
-            this.labelEx32.Name = "labelEx32";
-            this.labelEx32.Size = new Size(19, 15);
-            this.labelEx32.TabIndex = 49;
-            this.labelEx32.Text = "①";
+            labelEx32.AutoSize = true;
+            labelEx32.Location = new Point(12, 80);
+            labelEx32.Name = "labelEx32";
+            labelEx32.Size = new Size(19, 15);
+            labelEx32.TabIndex = 49;
+            labelEx32.Text = "①";
             // 
             // TextBoxExExperienceNote1
             // 
-            this.TextBoxExExperienceNote1.Enabled = false;
-            this.TextBoxExExperienceNote1.Location = new Point(376, 76);
-            this.TextBoxExExperienceNote1.Name = "TextBoxExExperienceNote1";
-            this.TextBoxExExperienceNote1.Size = new Size(456, 23);
-            this.TextBoxExExperienceNote1.TabIndex = 47;
-            this.TextBoxExExperienceNote1.Text = "ツジユウイチ";
+            TextBoxExExperienceNote1.Enabled = false;
+            TextBoxExExperienceNote1.Location = new Point(376, 76);
+            TextBoxExExperienceNote1.Name = "TextBoxExExperienceNote1";
+            TextBoxExExperienceNote1.Size = new Size(456, 23);
+            TextBoxExExperienceNote1.TabIndex = 47;
+            TextBoxExExperienceNote1.Text = "ツジユウイチ";
             // 
             // AddGroupBoxExExperience
             // 
-            this.AddGroupBoxExExperience.Location = new Point(836, 44);
-            this.AddGroupBoxExExperience.Name = "AddGroupBoxExExperience";
-            this.AddGroupBoxExExperience.SetTextDirectionVertical = "";
-            this.AddGroupBoxExExperience.Size = new Size(68, 24);
-            this.AddGroupBoxExExperience.TabIndex = 45;
-            this.AddGroupBoxExExperience.Text = "追加";
-            this.AddGroupBoxExExperience.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExExperience.Click += this.ButtonEx_Click;
+            AddGroupBoxExExperience.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExExperience.Location = new Point(836, 44);
+            AddGroupBoxExExperience.Name = "AddGroupBoxExExperience";
+            AddGroupBoxExExperience.SetTextDirectionVertical = "";
+            AddGroupBoxExExperience.Size = new Size(68, 24);
+            AddGroupBoxExExperience.TabIndex = 45;
+            AddGroupBoxExExperience.Text = "追加";
+            AddGroupBoxExExperience.UseVisualStyleBackColor = true;
+            AddGroupBoxExExperience.Click += ButtonEx_Click;
             // 
             // labelEx33
             // 
-            this.labelEx33.AutoSize = true;
-            this.labelEx33.Location = new Point(380, 24);
-            this.labelEx33.Name = "labelEx33";
-            this.labelEx33.Size = new Size(55, 15);
-            this.labelEx33.TabIndex = 44;
-            this.labelEx33.Text = "在籍記録";
+            labelEx33.AutoSize = true;
+            labelEx33.Location = new Point(380, 24);
+            labelEx33.Name = "labelEx33";
+            labelEx33.Size = new Size(55, 15);
+            labelEx33.TabIndex = 44;
+            labelEx33.Text = "在籍記録";
             // 
             // TextBoxExExperienceNote
             // 
-            this.TextBoxExExperienceNote.Location = new Point(376, 44);
-            this.TextBoxExExperienceNote.Name = "TextBoxExExperienceNote";
-            this.TextBoxExExperienceNote.Size = new Size(456, 23);
-            this.TextBoxExExperienceNote.TabIndex = 43;
-            this.TextBoxExExperienceNote.Text = "ツジユウイチ";
+            TextBoxExExperienceNote.Location = new Point(376, 44);
+            TextBoxExExperienceNote.Name = "TextBoxExExperienceNote";
+            TextBoxExExperienceNote.Size = new Size(456, 23);
+            TextBoxExExperienceNote.TabIndex = 43;
+            TextBoxExExperienceNote.Text = "ツジユウイチ";
             // 
             // labelEx34
             // 
-            this.labelEx34.AutoSize = true;
-            this.labelEx34.Location = new Point(40, 24);
-            this.labelEx34.Name = "labelEx34";
-            this.labelEx34.Size = new Size(77, 15);
-            this.labelEx34.TabIndex = 43;
-            this.labelEx34.Text = "免許証の種類";
+            labelEx34.AutoSize = true;
+            labelEx34.Location = new Point(40, 24);
+            labelEx34.Name = "labelEx34";
+            labelEx34.Size = new Size(77, 15);
+            labelEx34.TabIndex = 43;
+            labelEx34.Text = "免許証の種類";
             // 
             // GroupBoxExHistory
             // 
-            this.GroupBoxExHistory.Controls.Add(this.labelEx29);
-            this.GroupBoxExHistory.Controls.Add(this.TextBoxExCompanyName3);
-            this.GroupBoxExHistory.Controls.Add(this.DateTimeExHistoryDate3);
-            this.GroupBoxExHistory.Controls.Add(this.labelEx27);
-            this.GroupBoxExHistory.Controls.Add(this.TextBoxExCompanyName2);
-            this.GroupBoxExHistory.Controls.Add(this.DateTimeExHistoryDate2);
-            this.GroupBoxExHistory.Controls.Add(this.labelEx28);
-            this.GroupBoxExHistory.Controls.Add(this.TextBoxExCompanyName1);
-            this.GroupBoxExHistory.Controls.Add(this.DateTimeExHistoryDate1);
-            this.GroupBoxExHistory.Controls.Add(this.AddGroupBoxExHistory);
-            this.GroupBoxExHistory.Controls.Add(this.labelEx26);
-            this.GroupBoxExHistory.Controls.Add(this.TextBoxExCompanyName);
-            this.GroupBoxExHistory.Controls.Add(this.labelEx25);
-            this.GroupBoxExHistory.Controls.Add(this.DateTimeExHistoryDate);
-            this.GroupBoxExHistory.Location = new Point(8, 775);
-            this.GroupBoxExHistory.Name = "GroupBoxExHistory";
-            this.GroupBoxExHistory.Size = new Size(916, 164);
-            this.GroupBoxExHistory.TabIndex = 42;
-            this.GroupBoxExHistory.TabStop = false;
-            this.GroupBoxExHistory.Text = "職業履歴(History)";
+            GroupBoxExHistory.Controls.Add(labelEx29);
+            GroupBoxExHistory.Controls.Add(TextBoxExCompanyName3);
+            GroupBoxExHistory.Controls.Add(DateTimeExHistoryDate3);
+            GroupBoxExHistory.Controls.Add(labelEx27);
+            GroupBoxExHistory.Controls.Add(TextBoxExCompanyName2);
+            GroupBoxExHistory.Controls.Add(DateTimeExHistoryDate2);
+            GroupBoxExHistory.Controls.Add(labelEx28);
+            GroupBoxExHistory.Controls.Add(TextBoxExCompanyName1);
+            GroupBoxExHistory.Controls.Add(DateTimeExHistoryDate1);
+            GroupBoxExHistory.Controls.Add(AddGroupBoxExHistory);
+            GroupBoxExHistory.Controls.Add(labelEx26);
+            GroupBoxExHistory.Controls.Add(TextBoxExCompanyName);
+            GroupBoxExHistory.Controls.Add(labelEx25);
+            GroupBoxExHistory.Controls.Add(DateTimeExHistoryDate);
+            GroupBoxExHistory.Location = new Point(8, 775);
+            GroupBoxExHistory.Name = "GroupBoxExHistory";
+            GroupBoxExHistory.Size = new Size(916, 164);
+            GroupBoxExHistory.TabIndex = 42;
+            GroupBoxExHistory.TabStop = false;
+            GroupBoxExHistory.Text = "職業履歴(History)";
             // 
             // labelEx29
             // 
-            this.labelEx29.AutoSize = true;
-            this.labelEx29.Location = new Point(12, 136);
-            this.labelEx29.Name = "labelEx29";
-            this.labelEx29.Size = new Size(19, 15);
-            this.labelEx29.TabIndex = 55;
-            this.labelEx29.Text = "③";
+            labelEx29.AutoSize = true;
+            labelEx29.Location = new Point(12, 136);
+            labelEx29.Name = "labelEx29";
+            labelEx29.Size = new Size(19, 15);
+            labelEx29.TabIndex = 55;
+            labelEx29.Text = "③";
             // 
             // TextBoxExCompanyName3
             // 
-            this.TextBoxExCompanyName3.Enabled = false;
-            this.TextBoxExCompanyName3.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCompanyName3.Location = new Point(228, 132);
-            this.TextBoxExCompanyName3.Name = "TextBoxExCompanyName3";
-            this.TextBoxExCompanyName3.Size = new Size(604, 23);
-            this.TextBoxExCompanyName3.TabIndex = 53;
-            this.TextBoxExCompanyName3.Text = "ツジユウイチ";
+            TextBoxExCompanyName3.Enabled = false;
+            TextBoxExCompanyName3.ImeMode = ImeMode.Hiragana;
+            TextBoxExCompanyName3.Location = new Point(228, 132);
+            TextBoxExCompanyName3.Name = "TextBoxExCompanyName3";
+            TextBoxExCompanyName3.Size = new Size(604, 23);
+            TextBoxExCompanyName3.TabIndex = 53;
+            TextBoxExCompanyName3.Text = "ツジユウイチ";
             // 
             // DateTimeExHistoryDate3
             // 
-            this.DateTimeExHistoryDate3.CultureFlag = false;
-            this.DateTimeExHistoryDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExHistoryDate3.Enabled = false;
-            this.DateTimeExHistoryDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExHistoryDate3.Location = new Point(36, 132);
-            this.DateTimeExHistoryDate3.Name = "DateTimeExHistoryDate3";
-            this.DateTimeExHistoryDate3.Size = new Size(188, 23);
-            this.DateTimeExHistoryDate3.TabIndex = 54;
-            this.DateTimeExHistoryDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExHistoryDate3.CultureFlag = false;
+            DateTimeExHistoryDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExHistoryDate3.Enabled = false;
+            DateTimeExHistoryDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExHistoryDate3.Location = new Point(36, 132);
+            DateTimeExHistoryDate3.Name = "DateTimeExHistoryDate3";
+            DateTimeExHistoryDate3.Size = new Size(188, 23);
+            DateTimeExHistoryDate3.TabIndex = 54;
+            DateTimeExHistoryDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx27
             // 
-            this.labelEx27.AutoSize = true;
-            this.labelEx27.Location = new Point(12, 108);
-            this.labelEx27.Name = "labelEx27";
-            this.labelEx27.Size = new Size(19, 15);
-            this.labelEx27.TabIndex = 52;
-            this.labelEx27.Text = "②";
+            labelEx27.AutoSize = true;
+            labelEx27.Location = new Point(12, 108);
+            labelEx27.Name = "labelEx27";
+            labelEx27.Size = new Size(19, 15);
+            labelEx27.TabIndex = 52;
+            labelEx27.Text = "②";
             // 
             // TextBoxExCompanyName2
             // 
-            this.TextBoxExCompanyName2.Enabled = false;
-            this.TextBoxExCompanyName2.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCompanyName2.Location = new Point(228, 104);
-            this.TextBoxExCompanyName2.Name = "TextBoxExCompanyName2";
-            this.TextBoxExCompanyName2.Size = new Size(604, 23);
-            this.TextBoxExCompanyName2.TabIndex = 50;
-            this.TextBoxExCompanyName2.Text = "ツジユウイチ";
+            TextBoxExCompanyName2.Enabled = false;
+            TextBoxExCompanyName2.ImeMode = ImeMode.Hiragana;
+            TextBoxExCompanyName2.Location = new Point(228, 104);
+            TextBoxExCompanyName2.Name = "TextBoxExCompanyName2";
+            TextBoxExCompanyName2.Size = new Size(604, 23);
+            TextBoxExCompanyName2.TabIndex = 50;
+            TextBoxExCompanyName2.Text = "ツジユウイチ";
             // 
             // DateTimeExHistoryDate2
             // 
-            this.DateTimeExHistoryDate2.CultureFlag = false;
-            this.DateTimeExHistoryDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExHistoryDate2.Enabled = false;
-            this.DateTimeExHistoryDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExHistoryDate2.Location = new Point(36, 104);
-            this.DateTimeExHistoryDate2.Name = "DateTimeExHistoryDate2";
-            this.DateTimeExHistoryDate2.Size = new Size(188, 23);
-            this.DateTimeExHistoryDate2.TabIndex = 51;
-            this.DateTimeExHistoryDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExHistoryDate2.CultureFlag = false;
+            DateTimeExHistoryDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExHistoryDate2.Enabled = false;
+            DateTimeExHistoryDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExHistoryDate2.Location = new Point(36, 104);
+            DateTimeExHistoryDate2.Name = "DateTimeExHistoryDate2";
+            DateTimeExHistoryDate2.Size = new Size(188, 23);
+            DateTimeExHistoryDate2.TabIndex = 51;
+            DateTimeExHistoryDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx28
             // 
-            this.labelEx28.AutoSize = true;
-            this.labelEx28.Location = new Point(12, 80);
-            this.labelEx28.Name = "labelEx28";
-            this.labelEx28.Size = new Size(19, 15);
-            this.labelEx28.TabIndex = 49;
-            this.labelEx28.Text = "①";
+            labelEx28.AutoSize = true;
+            labelEx28.Location = new Point(12, 80);
+            labelEx28.Name = "labelEx28";
+            labelEx28.Size = new Size(19, 15);
+            labelEx28.TabIndex = 49;
+            labelEx28.Text = "①";
             // 
             // TextBoxExCompanyName1
             // 
-            this.TextBoxExCompanyName1.Enabled = false;
-            this.TextBoxExCompanyName1.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCompanyName1.Location = new Point(228, 76);
-            this.TextBoxExCompanyName1.Name = "TextBoxExCompanyName1";
-            this.TextBoxExCompanyName1.Size = new Size(604, 23);
-            this.TextBoxExCompanyName1.TabIndex = 47;
-            this.TextBoxExCompanyName1.Text = "ツジユウイチ";
+            TextBoxExCompanyName1.Enabled = false;
+            TextBoxExCompanyName1.ImeMode = ImeMode.Hiragana;
+            TextBoxExCompanyName1.Location = new Point(228, 76);
+            TextBoxExCompanyName1.Name = "TextBoxExCompanyName1";
+            TextBoxExCompanyName1.Size = new Size(604, 23);
+            TextBoxExCompanyName1.TabIndex = 47;
+            TextBoxExCompanyName1.Text = "ツジユウイチ";
             // 
             // DateTimeExHistoryDate1
             // 
-            this.DateTimeExHistoryDate1.CultureFlag = false;
-            this.DateTimeExHistoryDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExHistoryDate1.Enabled = false;
-            this.DateTimeExHistoryDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExHistoryDate1.Location = new Point(36, 76);
-            this.DateTimeExHistoryDate1.Name = "DateTimeExHistoryDate1";
-            this.DateTimeExHistoryDate1.Size = new Size(188, 23);
-            this.DateTimeExHistoryDate1.TabIndex = 48;
-            this.DateTimeExHistoryDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExHistoryDate1.CultureFlag = false;
+            DateTimeExHistoryDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExHistoryDate1.Enabled = false;
+            DateTimeExHistoryDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExHistoryDate1.Location = new Point(36, 76);
+            DateTimeExHistoryDate1.Name = "DateTimeExHistoryDate1";
+            DateTimeExHistoryDate1.Size = new Size(188, 23);
+            DateTimeExHistoryDate1.TabIndex = 48;
+            DateTimeExHistoryDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // AddGroupBoxExHistory
             // 
-            this.AddGroupBoxExHistory.Location = new Point(836, 44);
-            this.AddGroupBoxExHistory.Name = "AddGroupBoxExHistory";
-            this.AddGroupBoxExHistory.SetTextDirectionVertical = "";
-            this.AddGroupBoxExHistory.Size = new Size(68, 24);
-            this.AddGroupBoxExHistory.TabIndex = 45;
-            this.AddGroupBoxExHistory.Text = "追加";
-            this.AddGroupBoxExHistory.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExHistory.Click += this.ButtonEx_Click;
+            AddGroupBoxExHistory.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExHistory.Location = new Point(836, 44);
+            AddGroupBoxExHistory.Name = "AddGroupBoxExHistory";
+            AddGroupBoxExHistory.SetTextDirectionVertical = "";
+            AddGroupBoxExHistory.Size = new Size(68, 24);
+            AddGroupBoxExHistory.TabIndex = 45;
+            AddGroupBoxExHistory.Text = "追加";
+            AddGroupBoxExHistory.UseVisualStyleBackColor = true;
+            AddGroupBoxExHistory.Click += ButtonEx_Click;
             // 
             // labelEx26
             // 
-            this.labelEx26.AutoSize = true;
-            this.labelEx26.Location = new Point(232, 24);
-            this.labelEx26.Name = "labelEx26";
-            this.labelEx26.Size = new Size(55, 15);
-            this.labelEx26.TabIndex = 44;
-            this.labelEx26.Text = "在籍記録";
+            labelEx26.AutoSize = true;
+            labelEx26.Location = new Point(232, 24);
+            labelEx26.Name = "labelEx26";
+            labelEx26.Size = new Size(55, 15);
+            labelEx26.TabIndex = 44;
+            labelEx26.Text = "在籍記録";
             // 
             // TextBoxExCompanyName
             // 
-            this.TextBoxExCompanyName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCompanyName.Location = new Point(228, 44);
-            this.TextBoxExCompanyName.Name = "TextBoxExCompanyName";
-            this.TextBoxExCompanyName.Size = new Size(604, 23);
-            this.TextBoxExCompanyName.TabIndex = 43;
-            this.TextBoxExCompanyName.Text = "ツジユウイチ";
+            TextBoxExCompanyName.ImeMode = ImeMode.Hiragana;
+            TextBoxExCompanyName.Location = new Point(228, 44);
+            TextBoxExCompanyName.Name = "TextBoxExCompanyName";
+            TextBoxExCompanyName.Size = new Size(604, 23);
+            TextBoxExCompanyName.TabIndex = 43;
+            TextBoxExCompanyName.Text = "ツジユウイチ";
             // 
             // labelEx25
             // 
-            this.labelEx25.AutoSize = true;
-            this.labelEx25.Location = new Point(40, 24);
-            this.labelEx25.Name = "labelEx25";
-            this.labelEx25.Size = new Size(31, 15);
-            this.labelEx25.TabIndex = 43;
-            this.labelEx25.Text = "日時";
+            labelEx25.AutoSize = true;
+            labelEx25.Location = new Point(40, 24);
+            labelEx25.Name = "labelEx25";
+            labelEx25.Size = new Size(31, 15);
+            labelEx25.TabIndex = 43;
+            labelEx25.Text = "日時";
             // 
             // DateTimeExHistoryDate
             // 
-            this.DateTimeExHistoryDate.CultureFlag = false;
-            this.DateTimeExHistoryDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExHistoryDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExHistoryDate.Location = new Point(36, 44);
-            this.DateTimeExHistoryDate.Name = "DateTimeExHistoryDate";
-            this.DateTimeExHistoryDate.Size = new Size(188, 23);
-            this.DateTimeExHistoryDate.TabIndex = 43;
-            this.DateTimeExHistoryDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExHistoryDate.CultureFlag = false;
+            DateTimeExHistoryDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExHistoryDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExHistoryDate.Location = new Point(36, 44);
+            DateTimeExHistoryDate.Name = "DateTimeExHistoryDate";
+            DateTimeExHistoryDate.Size = new Size(188, 23);
+            DateTimeExHistoryDate.TabIndex = 43;
+            DateTimeExHistoryDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // CheckBoxExToukanpoFlag
             // 
-            this.CheckBoxExToukanpoFlag.AutoSize = true;
-            this.CheckBoxExToukanpoFlag.Location = new Point(296, 12);
-            this.CheckBoxExToukanpoFlag.Name = "CheckBoxExToukanpoFlag";
-            this.CheckBoxExToukanpoFlag.Size = new Size(146, 19);
-            this.CheckBoxExToukanpoFlag.TabIndex = 41;
-            this.CheckBoxExToukanpoFlag.Text = "東環保研修受講対象者";
-            this.CheckBoxExToukanpoFlag.UseVisualStyleBackColor = true;
+            CheckBoxExToukanpoFlag.AutoSize = true;
+            CheckBoxExToukanpoFlag.Location = new Point(296, 12);
+            CheckBoxExToukanpoFlag.Name = "CheckBoxExToukanpoFlag";
+            CheckBoxExToukanpoFlag.Size = new Size(146, 19);
+            CheckBoxExToukanpoFlag.TabIndex = 41;
+            CheckBoxExToukanpoFlag.Text = "東環保研修受講対象者";
+            CheckBoxExToukanpoFlag.UseVisualStyleBackColor = true;
             // 
             // CheckBoxExLegalTwelveItemFlag
             // 
-            this.CheckBoxExLegalTwelveItemFlag.AutoSize = true;
-            this.CheckBoxExLegalTwelveItemFlag.Location = new Point(132, 12);
-            this.CheckBoxExLegalTwelveItemFlag.Name = "CheckBoxExLegalTwelveItemFlag";
-            this.CheckBoxExLegalTwelveItemFlag.Size = new Size(158, 19);
-            this.CheckBoxExLegalTwelveItemFlag.TabIndex = 40;
-            this.CheckBoxExLegalTwelveItemFlag.Text = "法定１２項目受講対象者";
-            this.CheckBoxExLegalTwelveItemFlag.UseVisualStyleBackColor = true;
+            CheckBoxExLegalTwelveItemFlag.AutoSize = true;
+            CheckBoxExLegalTwelveItemFlag.Location = new Point(132, 12);
+            CheckBoxExLegalTwelveItemFlag.Name = "CheckBoxExLegalTwelveItemFlag";
+            CheckBoxExLegalTwelveItemFlag.Size = new Size(158, 19);
+            CheckBoxExLegalTwelveItemFlag.TabIndex = 40;
+            CheckBoxExLegalTwelveItemFlag.Text = "法定１２項目受講対象者";
+            CheckBoxExLegalTwelveItemFlag.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExDrive
             // 
-            this.GroupBoxExDrive.Controls.Add(this.ComboBoxExLicenseCondition);
-            this.GroupBoxExDrive.Controls.Add(this.DateTimeExLicenseTypeExpirationDate);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx24);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx23);
-            this.GroupBoxExDrive.Controls.Add(this.TextBoxExLicenseType);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx22);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx21);
-            this.GroupBoxExDrive.Controls.Add(this.TextBoxExLicenseNumber);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx20);
-            this.GroupBoxExDrive.Controls.Add(this.TextBoxExNotSelectionReason);
-            this.GroupBoxExDrive.Controls.Add(this.DateTimeExNotSelectionDate);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx19);
-            this.GroupBoxExDrive.Controls.Add(this.DateTimeExSelectionDate);
-            this.GroupBoxExDrive.Controls.Add(this.labelEx18);
-            this.GroupBoxExDrive.Location = new Point(8, 631);
-            this.GroupBoxExDrive.Name = "GroupBoxExDrive";
-            this.GroupBoxExDrive.Size = new Size(916, 140);
-            this.GroupBoxExDrive.TabIndex = 39;
-            this.GroupBoxExDrive.TabStop = false;
-            this.GroupBoxExDrive.Text = "運転に関する情報";
+            GroupBoxExDrive.Controls.Add(ComboBoxExLicenseCondition);
+            GroupBoxExDrive.Controls.Add(DateTimeExLicenseTypeExpirationDate);
+            GroupBoxExDrive.Controls.Add(labelEx24);
+            GroupBoxExDrive.Controls.Add(labelEx23);
+            GroupBoxExDrive.Controls.Add(TextBoxExLicenseType);
+            GroupBoxExDrive.Controls.Add(labelEx22);
+            GroupBoxExDrive.Controls.Add(labelEx21);
+            GroupBoxExDrive.Controls.Add(TextBoxExLicenseNumber);
+            GroupBoxExDrive.Controls.Add(labelEx20);
+            GroupBoxExDrive.Controls.Add(TextBoxExNotSelectionReason);
+            GroupBoxExDrive.Controls.Add(DateTimeExNotSelectionDate);
+            GroupBoxExDrive.Controls.Add(labelEx19);
+            GroupBoxExDrive.Controls.Add(DateTimeExSelectionDate);
+            GroupBoxExDrive.Controls.Add(labelEx18);
+            GroupBoxExDrive.Location = new Point(8, 631);
+            GroupBoxExDrive.Name = "GroupBoxExDrive";
+            GroupBoxExDrive.Size = new Size(916, 140);
+            GroupBoxExDrive.TabIndex = 39;
+            GroupBoxExDrive.TabStop = false;
+            GroupBoxExDrive.Text = "運転に関する情報";
             // 
             // ComboBoxExLicenseCondition
             // 
-            this.ComboBoxExLicenseCondition.FormattingEnabled = true;
-            this.ComboBoxExLicenseCondition.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExLicenseCondition.Location = new Point(280, 80);
-            this.ComboBoxExLicenseCondition.Name = "ComboBoxExLicenseCondition";
-            this.ComboBoxExLicenseCondition.Size = new Size(616, 23);
-            this.ComboBoxExLicenseCondition.TabIndex = 42;
+            ComboBoxExLicenseCondition.FormattingEnabled = true;
+            ComboBoxExLicenseCondition.ImeMode = ImeMode.Hiragana;
+            ComboBoxExLicenseCondition.Location = new Point(280, 80);
+            ComboBoxExLicenseCondition.Name = "ComboBoxExLicenseCondition";
+            ComboBoxExLicenseCondition.Size = new Size(616, 23);
+            ComboBoxExLicenseCondition.TabIndex = 42;
             // 
             // DateTimeExLicenseTypeExpirationDate
             // 
-            this.DateTimeExLicenseTypeExpirationDate.CultureFlag = false;
-            this.DateTimeExLicenseTypeExpirationDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExLicenseTypeExpirationDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExLicenseTypeExpirationDate.Location = new Point(436, 108);
-            this.DateTimeExLicenseTypeExpirationDate.Name = "DateTimeExLicenseTypeExpirationDate";
-            this.DateTimeExLicenseTypeExpirationDate.Size = new Size(188, 23);
-            this.DateTimeExLicenseTypeExpirationDate.TabIndex = 41;
-            this.DateTimeExLicenseTypeExpirationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExLicenseTypeExpirationDate.CultureFlag = false;
+            DateTimeExLicenseTypeExpirationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExLicenseTypeExpirationDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExLicenseTypeExpirationDate.Location = new Point(436, 108);
+            DateTimeExLicenseTypeExpirationDate.Name = "DateTimeExLicenseTypeExpirationDate";
+            DateTimeExLicenseTypeExpirationDate.Size = new Size(188, 23);
+            DateTimeExLicenseTypeExpirationDate.TabIndex = 41;
+            DateTimeExLicenseTypeExpirationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx24
             // 
-            this.labelEx24.AutoSize = true;
-            this.labelEx24.Location = new Point(376, 112);
-            this.labelEx24.Name = "labelEx24";
-            this.labelEx24.Size = new Size(55, 15);
-            this.labelEx24.TabIndex = 40;
-            this.labelEx24.Text = "有効期限";
+            labelEx24.AutoSize = true;
+            labelEx24.Location = new Point(376, 112);
+            labelEx24.Name = "labelEx24";
+            labelEx24.Size = new Size(55, 15);
+            labelEx24.TabIndex = 40;
+            labelEx24.Text = "有効期限";
             // 
             // labelEx23
             // 
-            this.labelEx23.AutoSize = true;
-            this.labelEx23.Location = new Point(72, 112);
-            this.labelEx23.Name = "labelEx23";
-            this.labelEx23.Size = new Size(55, 15);
-            this.labelEx23.TabIndex = 39;
-            this.labelEx23.Text = "免許区分";
+            labelEx23.AutoSize = true;
+            labelEx23.Location = new Point(72, 112);
+            labelEx23.Name = "labelEx23";
+            labelEx23.Size = new Size(55, 15);
+            labelEx23.TabIndex = 39;
+            labelEx23.Text = "免許区分";
             // 
             // TextBoxExLicenseType
             // 
-            this.TextBoxExLicenseType.Location = new Point(132, 108);
-            this.TextBoxExLicenseType.Name = "TextBoxExLicenseType";
-            this.TextBoxExLicenseType.Size = new Size(236, 23);
-            this.TextBoxExLicenseType.TabIndex = 38;
-            this.TextBoxExLicenseType.Text = "(大型)(中型)(準中型)";
+            TextBoxExLicenseType.Location = new Point(132, 108);
+            TextBoxExLicenseType.Name = "TextBoxExLicenseType";
+            TextBoxExLicenseType.Size = new Size(236, 23);
+            TextBoxExLicenseType.TabIndex = 38;
+            TextBoxExLicenseType.Text = "(大型)(中型)(準中型)";
             // 
             // labelEx22
             // 
-            this.labelEx22.AutoSize = true;
-            this.labelEx22.Location = new Point(232, 84);
-            this.labelEx22.Name = "labelEx22";
-            this.labelEx22.Size = new Size(43, 15);
-            this.labelEx22.TabIndex = 37;
-            this.labelEx22.Text = "条件等";
+            labelEx22.AutoSize = true;
+            labelEx22.Location = new Point(232, 84);
+            labelEx22.Name = "labelEx22";
+            labelEx22.Size = new Size(43, 15);
+            labelEx22.TabIndex = 37;
+            labelEx22.Text = "条件等";
             // 
             // labelEx21
             // 
-            this.labelEx21.AutoSize = true;
-            this.labelEx21.Location = new Point(72, 84);
-            this.labelEx21.Name = "labelEx21";
-            this.labelEx21.Size = new Size(55, 15);
-            this.labelEx21.TabIndex = 35;
-            this.labelEx21.Text = "免許番号";
+            labelEx21.AutoSize = true;
+            labelEx21.Location = new Point(72, 84);
+            labelEx21.Name = "labelEx21";
+            labelEx21.Size = new Size(55, 15);
+            labelEx21.TabIndex = 35;
+            labelEx21.Text = "免許番号";
             // 
             // TextBoxExLicenseNumber
             // 
-            this.TextBoxExLicenseNumber.Location = new Point(132, 80);
-            this.TextBoxExLicenseNumber.Name = "TextBoxExLicenseNumber";
-            this.TextBoxExLicenseNumber.Size = new Size(92, 23);
-            this.TextBoxExLicenseNumber.TabIndex = 34;
-            this.TextBoxExLicenseNumber.Text = "888888888888";
-            this.TextBoxExLicenseNumber.TextAlign = HorizontalAlignment.Center;
+            TextBoxExLicenseNumber.Location = new Point(132, 80);
+            TextBoxExLicenseNumber.Name = "TextBoxExLicenseNumber";
+            TextBoxExLicenseNumber.Size = new Size(92, 23);
+            TextBoxExLicenseNumber.TabIndex = 34;
+            TextBoxExLicenseNumber.Text = "888888888888";
+            TextBoxExLicenseNumber.TextAlign = HorizontalAlignment.Center;
             // 
             // labelEx20
             // 
-            this.labelEx20.AutoSize = true;
-            this.labelEx20.Location = new Point(332, 56);
-            this.labelEx20.Name = "labelEx20";
-            this.labelEx20.Size = new Size(31, 15);
-            this.labelEx20.TabIndex = 33;
-            this.labelEx20.Text = "理由";
+            labelEx20.AutoSize = true;
+            labelEx20.Location = new Point(332, 56);
+            labelEx20.Name = "labelEx20";
+            labelEx20.Size = new Size(31, 15);
+            labelEx20.TabIndex = 33;
+            labelEx20.Text = "理由";
             // 
             // TextBoxExNotSelectionReason
             // 
-            this.TextBoxExNotSelectionReason.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExNotSelectionReason.Location = new Point(368, 52);
-            this.TextBoxExNotSelectionReason.Name = "TextBoxExNotSelectionReason";
-            this.TextBoxExNotSelectionReason.Size = new Size(528, 23);
-            this.TextBoxExNotSelectionReason.TabIndex = 32;
-            this.TextBoxExNotSelectionReason.Text = "ツジユウイチ";
+            TextBoxExNotSelectionReason.ImeMode = ImeMode.Hiragana;
+            TextBoxExNotSelectionReason.Location = new Point(368, 52);
+            TextBoxExNotSelectionReason.Name = "TextBoxExNotSelectionReason";
+            TextBoxExNotSelectionReason.Size = new Size(528, 23);
+            TextBoxExNotSelectionReason.TabIndex = 32;
+            TextBoxExNotSelectionReason.Text = "ツジユウイチ";
             // 
             // DateTimeExNotSelectionDate
             // 
-            this.DateTimeExNotSelectionDate.CultureFlag = false;
-            this.DateTimeExNotSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExNotSelectionDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExNotSelectionDate.Location = new Point(132, 52);
-            this.DateTimeExNotSelectionDate.Name = "DateTimeExNotSelectionDate";
-            this.DateTimeExNotSelectionDate.Size = new Size(188, 23);
-            this.DateTimeExNotSelectionDate.TabIndex = 23;
-            this.DateTimeExNotSelectionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExNotSelectionDate.CultureFlag = false;
+            DateTimeExNotSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExNotSelectionDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExNotSelectionDate.Location = new Point(132, 52);
+            DateTimeExNotSelectionDate.Name = "DateTimeExNotSelectionDate";
+            DateTimeExNotSelectionDate.Size = new Size(188, 23);
+            DateTimeExNotSelectionDate.TabIndex = 23;
+            DateTimeExNotSelectionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx19
             // 
-            this.labelEx19.AutoSize = true;
-            this.labelEx19.Location = new Point(16, 56);
-            this.labelEx19.Name = "labelEx19";
-            this.labelEx19.Size = new Size(109, 15);
-            this.labelEx19.TabIndex = 22;
-            this.labelEx19.Text = "運転者でなくなった日";
+            labelEx19.AutoSize = true;
+            labelEx19.Location = new Point(16, 56);
+            labelEx19.Name = "labelEx19";
+            labelEx19.Size = new Size(109, 15);
+            labelEx19.TabIndex = 22;
+            labelEx19.Text = "運転者でなくなった日";
             // 
             // DateTimeExSelectionDate
             // 
-            this.DateTimeExSelectionDate.CultureFlag = false;
-            this.DateTimeExSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExSelectionDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExSelectionDate.Location = new Point(132, 24);
-            this.DateTimeExSelectionDate.Name = "DateTimeExSelectionDate";
-            this.DateTimeExSelectionDate.Size = new Size(188, 23);
-            this.DateTimeExSelectionDate.TabIndex = 21;
-            this.DateTimeExSelectionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExSelectionDate.CultureFlag = false;
+            DateTimeExSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExSelectionDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExSelectionDate.Location = new Point(132, 24);
+            DateTimeExSelectionDate.Name = "DateTimeExSelectionDate";
+            DateTimeExSelectionDate.Size = new Size(188, 23);
+            DateTimeExSelectionDate.TabIndex = 21;
+            DateTimeExSelectionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx18
             // 
-            this.labelEx18.AutoSize = true;
-            this.labelEx18.Location = new Point(12, 28);
-            this.labelEx18.Name = "labelEx18";
-            this.labelEx18.Size = new Size(116, 15);
-            this.labelEx18.TabIndex = 20;
-            this.labelEx18.Text = "運転者に選任された日";
+            labelEx18.AutoSize = true;
+            labelEx18.Location = new Point(12, 28);
+            labelEx18.Name = "labelEx18";
+            labelEx18.Size = new Size(116, 15);
+            labelEx18.TabIndex = 20;
+            labelEx18.Text = "運転者に選任された日";
             // 
             // labelEx17
             // 
-            this.labelEx17.AutoSize = true;
-            this.labelEx17.Location = new Point(304, 524);
-            this.labelEx17.Name = "labelEx17";
-            this.labelEx17.Size = new Size(31, 15);
-            this.labelEx17.TabIndex = 38;
-            this.labelEx17.Text = "印影";
+            labelEx17.AutoSize = true;
+            labelEx17.Location = new Point(304, 524);
+            labelEx17.Name = "labelEx17";
+            labelEx17.Size = new Size(31, 15);
+            labelEx17.TabIndex = 38;
+            labelEx17.Text = "印影";
             // 
             // PictureBoxExStamp
             // 
-            this.PictureBoxExStamp.BorderStyle = BorderStyle.FixedSingle;
-            this.PictureBoxExStamp.ContextMenuStrip = this.ContextMenuStripEx2;
-            this.PictureBoxExStamp.Location = new Point(344, 508);
-            this.PictureBoxExStamp.Name = "PictureBoxExStamp";
-            this.PictureBoxExStamp.Size = new Size(44, 44);
-            this.PictureBoxExStamp.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxExStamp.TabIndex = 37;
-            this.PictureBoxExStamp.TabStop = false;
+            PictureBoxExStamp.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxExStamp.ContextMenuStrip = ContextMenuStripEx2;
+            PictureBoxExStamp.Location = new Point(344, 508);
+            PictureBoxExStamp.Name = "PictureBoxExStamp";
+            PictureBoxExStamp.Size = new Size(44, 44);
+            PictureBoxExStamp.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxExStamp.TabIndex = 37;
+            PictureBoxExStamp.TabStop = false;
             // 
             // ContextMenuStripEx2
             // 
-            this.ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemStampClip, this.ToolStripMenuItemStampDelete });
-            this.ContextMenuStripEx2.Name = "ContextMenuStripEx2";
-            this.ContextMenuStripEx2.Size = new Size(108, 48);
+            ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemStampClip, ToolStripMenuItemStampDelete });
+            ContextMenuStripEx2.Name = "ContextMenuStripEx2";
+            ContextMenuStripEx2.Size = new Size(108, 48);
             // 
             // ToolStripMenuItemStampClip
             // 
-            this.ToolStripMenuItemStampClip.Name = "ToolStripMenuItemStampClip";
-            this.ToolStripMenuItemStampClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemStampClip.Text = "Copy";
-            this.ToolStripMenuItemStampClip.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemStampClip.Name = "ToolStripMenuItemStampClip";
+            ToolStripMenuItemStampClip.Size = new Size(107, 22);
+            ToolStripMenuItemStampClip.Text = "Copy";
+            ToolStripMenuItemStampClip.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemStampDelete
             // 
-            this.ToolStripMenuItemStampDelete.Name = "ToolStripMenuItemStampDelete";
-            this.ToolStripMenuItemStampDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemStampDelete.Text = "Delete";
-            this.ToolStripMenuItemStampDelete.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemStampDelete.Name = "ToolStripMenuItemStampDelete";
+            ToolStripMenuItemStampDelete.Size = new Size(107, 22);
+            ToolStripMenuItemStampDelete.Text = "Delete";
+            ToolStripMenuItemStampDelete.Click += ToolStripMenuItem_Click;
             // 
             // PictureBoxExStaff
             // 
-            this.PictureBoxExStaff.BorderStyle = BorderStyle.FixedSingle;
-            this.PictureBoxExStaff.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.PictureBoxExStaff.Location = new Point(124, 444);
-            this.PictureBoxExStaff.Name = "PictureBoxExStaff";
-            this.PictureBoxExStaff.Size = new Size(144, 176);
-            this.PictureBoxExStaff.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxExStaff.TabIndex = 36;
-            this.PictureBoxExStaff.TabStop = false;
+            PictureBoxExStaff.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxExStaff.ContextMenuStrip = ContextMenuStripEx1;
+            PictureBoxExStaff.Location = new Point(124, 444);
+            PictureBoxExStaff.Name = "PictureBoxExStaff";
+            PictureBoxExStaff.Size = new Size(144, 176);
+            PictureBoxExStaff.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBoxExStaff.TabIndex = 36;
+            PictureBoxExStaff.TabStop = false;
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPictureClip, this.ToolStripMenuItemPictureDelete });
-            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemPictureClip, ToolStripMenuItemPictureDelete });
+            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            ContextMenuStripEx1.Size = new Size(108, 48);
             // 
             // ToolStripMenuItemPictureClip
             // 
-            this.ToolStripMenuItemPictureClip.Name = "ToolStripMenuItemPictureClip";
-            this.ToolStripMenuItemPictureClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemPictureClip.Text = "Copy";
-            this.ToolStripMenuItemPictureClip.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemPictureClip.Name = "ToolStripMenuItemPictureClip";
+            ToolStripMenuItemPictureClip.Size = new Size(107, 22);
+            ToolStripMenuItemPictureClip.Text = "Copy";
+            ToolStripMenuItemPictureClip.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemPictureDelete
             // 
-            this.ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
-            this.ToolStripMenuItemPictureDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemPictureDelete.Text = "Delete";
-            this.ToolStripMenuItemPictureDelete.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
+            ToolStripMenuItemPictureDelete.Size = new Size(107, 22);
+            ToolStripMenuItemPictureDelete.Text = "Delete";
+            ToolStripMenuItemPictureDelete.Click += ToolStripMenuItem_Click;
             // 
             // labelEx16
             // 
-            this.labelEx16.AutoSize = true;
-            this.labelEx16.Location = new Point(196, 416);
-            this.labelEx16.Name = "labelEx16";
-            this.labelEx16.Size = new Size(135, 15);
-            this.labelEx16.TabIndex = 35;
-            this.labelEx16.Text = "携帯番号(代番等連絡用)";
+            labelEx16.AutoSize = true;
+            labelEx16.Location = new Point(196, 416);
+            labelEx16.Name = "labelEx16";
+            labelEx16.Size = new Size(135, 15);
+            labelEx16.TabIndex = 35;
+            labelEx16.Text = "携帯番号(代番等連絡用)";
             // 
             // TextBoxExCellphoneNumber
             // 
-            this.TextBoxExCellphoneNumber.Location = new Point(336, 412);
-            this.TextBoxExCellphoneNumber.Name = "TextBoxExCellphoneNumber";
-            this.TextBoxExCellphoneNumber.Size = new Size(96, 23);
-            this.TextBoxExCellphoneNumber.TabIndex = 34;
-            this.TextBoxExCellphoneNumber.Text = "03-8888-8888";
+            TextBoxExCellphoneNumber.Location = new Point(336, 412);
+            TextBoxExCellphoneNumber.Name = "TextBoxExCellphoneNumber";
+            TextBoxExCellphoneNumber.Size = new Size(96, 23);
+            TextBoxExCellphoneNumber.TabIndex = 34;
+            TextBoxExCellphoneNumber.Text = "03-8888-8888";
             // 
             // labelEx15
             // 
-            this.labelEx15.AutoSize = true;
-            this.labelEx15.Location = new Point(20, 416);
-            this.labelEx15.Name = "labelEx15";
-            this.labelEx15.Size = new Size(55, 15);
-            this.labelEx15.TabIndex = 33;
-            this.labelEx15.Text = "電話番号";
+            labelEx15.AutoSize = true;
+            labelEx15.Location = new Point(20, 416);
+            labelEx15.Name = "labelEx15";
+            labelEx15.Size = new Size(55, 15);
+            labelEx15.TabIndex = 33;
+            labelEx15.Text = "電話番号";
             // 
             // CheckBoxExTargetFlag
             // 
-            this.CheckBoxExTargetFlag.AutoSize = true;
-            this.CheckBoxExTargetFlag.Location = new Point(20, 12);
-            this.CheckBoxExTargetFlag.Name = "CheckBoxExTargetFlag";
-            this.CheckBoxExTargetFlag.Size = new Size(105, 19);
-            this.CheckBoxExTargetFlag.TabIndex = 0;
-            this.CheckBoxExTargetFlag.Text = "配車する対象者";
-            this.CheckBoxExTargetFlag.UseVisualStyleBackColor = true;
+            CheckBoxExTargetFlag.AutoSize = true;
+            CheckBoxExTargetFlag.Location = new Point(20, 12);
+            CheckBoxExTargetFlag.Name = "CheckBoxExTargetFlag";
+            CheckBoxExTargetFlag.Size = new Size(105, 19);
+            CheckBoxExTargetFlag.TabIndex = 0;
+            CheckBoxExTargetFlag.Text = "配車する対象者";
+            CheckBoxExTargetFlag.UseVisualStyleBackColor = true;
             // 
             // TextBoxExTelephoneNumber
             // 
-            this.TextBoxExTelephoneNumber.Location = new Point(80, 412);
-            this.TextBoxExTelephoneNumber.Name = "TextBoxExTelephoneNumber";
-            this.TextBoxExTelephoneNumber.Size = new Size(96, 23);
-            this.TextBoxExTelephoneNumber.TabIndex = 32;
-            this.TextBoxExTelephoneNumber.Text = "03-8888-8888";
+            TextBoxExTelephoneNumber.Location = new Point(80, 412);
+            TextBoxExTelephoneNumber.Name = "TextBoxExTelephoneNumber";
+            TextBoxExTelephoneNumber.Size = new Size(96, 23);
+            TextBoxExTelephoneNumber.TabIndex = 32;
+            TextBoxExTelephoneNumber.Text = "03-8888-8888";
             // 
             // labelEx14
             // 
-            this.labelEx14.AutoSize = true;
-            this.labelEx14.Location = new Point(44, 388);
-            this.labelEx14.Name = "labelEx14";
-            this.labelEx14.Size = new Size(31, 15);
-            this.labelEx14.TabIndex = 31;
-            this.labelEx14.Text = "備考";
+            labelEx14.AutoSize = true;
+            labelEx14.Location = new Point(44, 388);
+            labelEx14.Name = "labelEx14";
+            labelEx14.Size = new Size(31, 15);
+            labelEx14.TabIndex = 31;
+            labelEx14.Text = "備考";
             // 
             // TextBoxExRemarks
             // 
-            this.TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExRemarks.Location = new Point(80, 384);
-            this.TextBoxExRemarks.Name = "TextBoxExRemarks";
-            this.TextBoxExRemarks.Size = new Size(640, 23);
-            this.TextBoxExRemarks.TabIndex = 30;
-            this.TextBoxExRemarks.Text = "ツジユウイチ";
+            TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
+            TextBoxExRemarks.Location = new Point(80, 384);
+            TextBoxExRemarks.Name = "TextBoxExRemarks";
+            TextBoxExRemarks.Size = new Size(640, 23);
+            TextBoxExRemarks.TabIndex = 30;
+            TextBoxExRemarks.Text = "ツジユウイチ";
             // 
             // labelEx13
             // 
-            this.labelEx13.AutoSize = true;
-            this.labelEx13.Location = new Point(32, 360);
-            this.labelEx13.Name = "labelEx13";
-            this.labelEx13.Size = new Size(43, 15);
-            this.labelEx13.TabIndex = 29;
-            this.labelEx13.Text = "現住所";
+            labelEx13.AutoSize = true;
+            labelEx13.Location = new Point(32, 360);
+            labelEx13.Name = "labelEx13";
+            labelEx13.Size = new Size(43, 15);
+            labelEx13.TabIndex = 29;
+            labelEx13.Text = "現住所";
             // 
             // TextBoxExCurrentAddress
             // 
-            this.TextBoxExCurrentAddress.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCurrentAddress.Location = new Point(80, 356);
-            this.TextBoxExCurrentAddress.Name = "TextBoxExCurrentAddress";
-            this.TextBoxExCurrentAddress.Size = new Size(640, 23);
-            this.TextBoxExCurrentAddress.TabIndex = 28;
-            this.TextBoxExCurrentAddress.Text = "ツジユウイチ";
+            TextBoxExCurrentAddress.ImeMode = ImeMode.Hiragana;
+            TextBoxExCurrentAddress.Location = new Point(80, 356);
+            TextBoxExCurrentAddress.Name = "TextBoxExCurrentAddress";
+            TextBoxExCurrentAddress.Size = new Size(640, 23);
+            TextBoxExCurrentAddress.TabIndex = 28;
+            TextBoxExCurrentAddress.Text = "ツジユウイチ";
             // 
-            // DateTimePickerExContractDate
+            // CcDateTimePickerContractDate
             // 
-            this.DateTimePickerExContractDate.CultureFlag = false;
-            this.DateTimePickerExContractDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExContractDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExContractDate.Location = new Point(376, 328);
-            this.DateTimePickerExContractDate.Name = "DateTimePickerExContractDate";
-            this.DateTimePickerExContractDate.Size = new Size(188, 23);
-            this.DateTimePickerExContractDate.TabIndex = 27;
-            this.DateTimePickerExContractDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimePickerContractDate.CultureFlag = false;
+            CcDateTimePickerContractDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimePickerContractDate.Format = DateTimePickerFormat.Custom;
+            CcDateTimePickerContractDate.Location = new Point(376, 328);
+            CcDateTimePickerContractDate.Name = "CcDateTimePickerContractDate";
+            CcDateTimePickerContractDate.Size = new Size(188, 23);
+            CcDateTimePickerContractDate.TabIndex = 27;
+            CcDateTimePickerContractDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // CheckBoxExContractFlag
             // 
-            this.CheckBoxExContractFlag.AutoSize = true;
-            this.CheckBoxExContractFlag.Location = new Point(284, 332);
-            this.CheckBoxExContractFlag.Name = "CheckBoxExContractFlag";
-            this.CheckBoxExContractFlag.Size = new Size(86, 19);
-            this.CheckBoxExContractFlag.TabIndex = 26;
-            this.CheckBoxExContractFlag.Text = "契約満了日";
-            this.CheckBoxExContractFlag.UseVisualStyleBackColor = true;
+            CheckBoxExContractFlag.AutoSize = true;
+            CheckBoxExContractFlag.Location = new Point(284, 332);
+            CheckBoxExContractFlag.Name = "CheckBoxExContractFlag";
+            CheckBoxExContractFlag.Size = new Size(86, 19);
+            CheckBoxExContractFlag.TabIndex = 26;
+            CheckBoxExContractFlag.Text = "契約満了日";
+            CheckBoxExContractFlag.UseVisualStyleBackColor = true;
             // 
-            // DateTimeExEmploymentDate
+            // CcDateTimeEmploymentDate
             // 
-            this.DateTimeExEmploymentDate.CultureFlag = false;
-            this.DateTimeExEmploymentDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEmploymentDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEmploymentDate.Location = new Point(80, 328);
-            this.DateTimeExEmploymentDate.Name = "DateTimeExEmploymentDate";
-            this.DateTimeExEmploymentDate.Size = new Size(188, 23);
-            this.DateTimeExEmploymentDate.TabIndex = 25;
-            this.DateTimeExEmploymentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimeEmploymentDate.CultureFlag = false;
+            CcDateTimeEmploymentDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimeEmploymentDate.Format = DateTimePickerFormat.Custom;
+            CcDateTimeEmploymentDate.Location = new Point(80, 328);
+            CcDateTimeEmploymentDate.Name = "CcDateTimeEmploymentDate";
+            CcDateTimeEmploymentDate.Size = new Size(188, 23);
+            CcDateTimeEmploymentDate.TabIndex = 25;
+            CcDateTimeEmploymentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx12
             // 
-            this.labelEx12.AutoSize = true;
-            this.labelEx12.Location = new Point(8, 332);
-            this.labelEx12.Name = "labelEx12";
-            this.labelEx12.Size = new Size(67, 15);
-            this.labelEx12.TabIndex = 24;
-            this.labelEx12.Text = "雇用年月日";
+            labelEx12.AutoSize = true;
+            labelEx12.Location = new Point(8, 332);
+            labelEx12.Name = "labelEx12";
+            labelEx12.Size = new Size(67, 15);
+            labelEx12.TabIndex = 24;
+            labelEx12.Text = "雇用年月日";
             // 
             // ComboBoxExBloodType
             // 
-            this.ComboBoxExBloodType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExBloodType.FormattingEnabled = true;
-            this.ComboBoxExBloodType.Items.AddRange(new object[] { "A", "B", "AB", "O" });
-            this.ComboBoxExBloodType.Location = new Point(420, 300);
-            this.ComboBoxExBloodType.Name = "ComboBoxExBloodType";
-            this.ComboBoxExBloodType.Size = new Size(52, 23);
-            this.ComboBoxExBloodType.TabIndex = 23;
+            ComboBoxExBloodType.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxExBloodType.FormattingEnabled = true;
+            ComboBoxExBloodType.Items.AddRange(new object[] { "A", "B", "AB", "O" });
+            ComboBoxExBloodType.Location = new Point(420, 300);
+            ComboBoxExBloodType.Name = "ComboBoxExBloodType";
+            ComboBoxExBloodType.Size = new Size(52, 23);
+            ComboBoxExBloodType.TabIndex = 23;
             // 
             // labelEx11
             // 
-            this.labelEx11.AutoSize = true;
-            this.labelEx11.Location = new Point(372, 304);
-            this.labelEx11.Name = "labelEx11";
-            this.labelEx11.Size = new Size(43, 15);
-            this.labelEx11.TabIndex = 22;
-            this.labelEx11.Text = "血液型";
+            labelEx11.AutoSize = true;
+            labelEx11.Location = new Point(372, 304);
+            labelEx11.Name = "labelEx11";
+            labelEx11.Size = new Size(43, 15);
+            labelEx11.TabIndex = 22;
+            labelEx11.Text = "血液型";
             // 
             // ComboBoxExGender
             // 
-            this.ComboBoxExGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExGender.FormattingEnabled = true;
-            this.ComboBoxExGender.Items.AddRange(new object[] { "男性", "女性" });
-            this.ComboBoxExGender.Location = new Point(312, 300);
-            this.ComboBoxExGender.Name = "ComboBoxExGender";
-            this.ComboBoxExGender.Size = new Size(52, 23);
-            this.ComboBoxExGender.TabIndex = 21;
+            ComboBoxExGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxExGender.FormattingEnabled = true;
+            ComboBoxExGender.Items.AddRange(new object[] { "男性", "女性" });
+            ComboBoxExGender.Location = new Point(312, 300);
+            ComboBoxExGender.Name = "ComboBoxExGender";
+            ComboBoxExGender.Size = new Size(52, 23);
+            ComboBoxExGender.TabIndex = 21;
             // 
             // labelEx10
             // 
-            this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(276, 304);
-            this.labelEx10.Name = "labelEx10";
-            this.labelEx10.Size = new Size(31, 15);
-            this.labelEx10.TabIndex = 20;
-            this.labelEx10.Text = "性別";
+            labelEx10.AutoSize = true;
+            labelEx10.Location = new Point(276, 304);
+            labelEx10.Name = "labelEx10";
+            labelEx10.Size = new Size(31, 15);
+            labelEx10.TabIndex = 20;
+            labelEx10.Text = "性別";
             // 
-            // DateTimeExBirthDate
+            // CcDateTimeBirthDate
             // 
-            this.DateTimeExBirthDate.CultureFlag = false;
-            this.DateTimeExBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExBirthDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExBirthDate.Location = new Point(80, 300);
-            this.DateTimeExBirthDate.Name = "DateTimeExBirthDate";
-            this.DateTimeExBirthDate.Size = new Size(188, 23);
-            this.DateTimeExBirthDate.TabIndex = 19;
-            this.DateTimeExBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimeBirthDate.CultureFlag = false;
+            CcDateTimeBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimeBirthDate.Format = DateTimePickerFormat.Custom;
+            CcDateTimeBirthDate.Location = new Point(80, 300);
+            CcDateTimeBirthDate.Name = "CcDateTimeBirthDate";
+            CcDateTimeBirthDate.Size = new Size(188, 23);
+            CcDateTimeBirthDate.TabIndex = 19;
+            CcDateTimeBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx9
             // 
-            this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(20, 304);
-            this.labelEx9.Name = "labelEx9";
-            this.labelEx9.Size = new Size(55, 15);
-            this.labelEx9.TabIndex = 18;
-            this.labelEx9.Text = "生年月日";
+            labelEx9.AutoSize = true;
+            labelEx9.Location = new Point(20, 304);
+            labelEx9.Name = "labelEx9";
+            labelEx9.Size = new Size(55, 15);
+            labelEx9.TabIndex = 18;
+            labelEx9.Text = "生年月日";
             // 
             // labelEx8
             // 
-            this.labelEx8.AutoSize = true;
-            this.labelEx8.Location = new Point(728, 276);
-            this.labelEx8.Name = "labelEx8";
-            this.labelEx8.Size = new Size(99, 15);
-            this.labelEx8.TabIndex = 17;
-            this.labelEx8.Text = "略称名(全角６字)";
+            labelEx8.AutoSize = true;
+            labelEx8.Location = new Point(728, 276);
+            labelEx8.Name = "labelEx8";
+            labelEx8.Size = new Size(99, 15);
+            labelEx8.TabIndex = 17;
+            labelEx8.Text = "略称名(全角６字)";
             // 
             // TextBoxExDisplayName
             // 
-            this.TextBoxExDisplayName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExDisplayName.Location = new Point(832, 272);
-            this.TextBoxExDisplayName.Name = "TextBoxExDisplayName";
-            this.TextBoxExDisplayName.Size = new Size(84, 23);
-            this.TextBoxExDisplayName.TabIndex = 16;
-            this.TextBoxExDisplayName.Text = "〇〇〇〇〇〇";
+            TextBoxExDisplayName.ImeMode = ImeMode.Hiragana;
+            TextBoxExDisplayName.Location = new Point(832, 272);
+            TextBoxExDisplayName.Name = "TextBoxExDisplayName";
+            TextBoxExDisplayName.Size = new Size(84, 23);
+            TextBoxExDisplayName.TabIndex = 16;
+            TextBoxExDisplayName.Text = "〇〇〇〇〇〇";
             // 
             // labelEx7
             // 
-            this.labelEx7.AutoSize = true;
-            this.labelEx7.Location = new Point(364, 276);
-            this.labelEx7.Name = "labelEx7";
-            this.labelEx7.Size = new Size(87, 15);
-            this.labelEx7.TabIndex = 15;
-            this.labelEx7.Text = "氏名(スペース入)";
+            labelEx7.AutoSize = true;
+            labelEx7.Location = new Point(364, 276);
+            labelEx7.Name = "labelEx7";
+            labelEx7.Size = new Size(87, 15);
+            labelEx7.TabIndex = 15;
+            labelEx7.Text = "氏名(スペース入)";
             // 
             // TextBoxExOtherName
             // 
-            this.TextBoxExOtherName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExOtherName.Location = new Point(456, 272);
-            this.TextBoxExOtherName.Name = "TextBoxExOtherName";
-            this.TextBoxExOtherName.Size = new Size(264, 23);
-            this.TextBoxExOtherName.TabIndex = 14;
-            this.TextBoxExOtherName.Text = "辻　祐一";
+            TextBoxExOtherName.ImeMode = ImeMode.Hiragana;
+            TextBoxExOtherName.Location = new Point(456, 272);
+            TextBoxExOtherName.Name = "TextBoxExOtherName";
+            TextBoxExOtherName.Size = new Size(264, 23);
+            TextBoxExOtherName.TabIndex = 14;
+            TextBoxExOtherName.Text = "辻　祐一";
             // 
             // labelEx6
             // 
-            this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(44, 276);
-            this.labelEx6.Name = "labelEx6";
-            this.labelEx6.Size = new Size(31, 15);
-            this.labelEx6.TabIndex = 13;
-            this.labelEx6.Text = "氏名";
+            labelEx6.AutoSize = true;
+            labelEx6.Location = new Point(44, 276);
+            labelEx6.Name = "labelEx6";
+            labelEx6.Size = new Size(31, 15);
+            labelEx6.TabIndex = 13;
+            labelEx6.Text = "氏名";
             // 
             // TextBoxExName
             // 
-            this.TextBoxExName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExName.Location = new Point(80, 272);
-            this.TextBoxExName.Name = "TextBoxExName";
-            this.TextBoxExName.Size = new Size(264, 23);
-            this.TextBoxExName.TabIndex = 12;
-            this.TextBoxExName.Text = "辻祐一";
+            TextBoxExName.ImeMode = ImeMode.Hiragana;
+            TextBoxExName.Location = new Point(80, 272);
+            TextBoxExName.Name = "TextBoxExName";
+            TextBoxExName.Size = new Size(264, 23);
+            TextBoxExName.TabIndex = 12;
+            TextBoxExName.Text = "辻祐一";
             // 
             // labelEx5
             // 
-            this.labelEx5.AutoSize = true;
-            this.labelEx5.Location = new Point(352, 248);
-            this.labelEx5.Name = "labelEx5";
-            this.labelEx5.Size = new Size(97, 15);
-            this.labelEx5.TabIndex = 11;
-            this.labelEx5.Text = "フリガナ(スペース入)";
+            labelEx5.AutoSize = true;
+            labelEx5.Location = new Point(352, 248);
+            labelEx5.Name = "labelEx5";
+            labelEx5.Size = new Size(97, 15);
+            labelEx5.TabIndex = 11;
+            labelEx5.Text = "フリガナ(スペース入)";
             // 
             // TextBoxExOtherNameKana
             // 
-            this.TextBoxExOtherNameKana.ImeMode = ImeMode.Katakana;
-            this.TextBoxExOtherNameKana.Location = new Point(456, 244);
-            this.TextBoxExOtherNameKana.Name = "TextBoxExOtherNameKana";
-            this.TextBoxExOtherNameKana.Size = new Size(264, 23);
-            this.TextBoxExOtherNameKana.TabIndex = 10;
-            this.TextBoxExOtherNameKana.Text = "ツジ　ユウイチ";
+            TextBoxExOtherNameKana.ImeMode = ImeMode.Katakana;
+            TextBoxExOtherNameKana.Location = new Point(456, 244);
+            TextBoxExOtherNameKana.Name = "TextBoxExOtherNameKana";
+            TextBoxExOtherNameKana.Size = new Size(264, 23);
+            TextBoxExOtherNameKana.TabIndex = 10;
+            TextBoxExOtherNameKana.Text = "ツジ　ユウイチ";
             // 
             // labelEx3
             // 
-            this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(32, 248);
-            this.labelEx3.Name = "labelEx3";
-            this.labelEx3.Size = new Size(41, 15);
-            this.labelEx3.TabIndex = 9;
-            this.labelEx3.Text = "フリガナ";
+            labelEx3.AutoSize = true;
+            labelEx3.Location = new Point(32, 248);
+            labelEx3.Name = "labelEx3";
+            labelEx3.Size = new Size(41, 15);
+            labelEx3.TabIndex = 9;
+            labelEx3.Text = "フリガナ";
             // 
             // TextBoxExNameKana
             // 
-            this.TextBoxExNameKana.ImeMode = ImeMode.Katakana;
-            this.TextBoxExNameKana.Location = new Point(80, 244);
-            this.TextBoxExNameKana.Name = "TextBoxExNameKana";
-            this.TextBoxExNameKana.Size = new Size(264, 23);
-            this.TextBoxExNameKana.TabIndex = 8;
-            this.TextBoxExNameKana.Text = "ツジユウイチ";
+            TextBoxExNameKana.ImeMode = ImeMode.Katakana;
+            TextBoxExNameKana.Location = new Point(80, 244);
+            TextBoxExNameKana.Name = "TextBoxExNameKana";
+            TextBoxExNameKana.Size = new Size(264, 23);
+            TextBoxExNameKana.TabIndex = 8;
+            TextBoxExNameKana.Text = "ツジユウイチ";
             // 
             // TextBoxExUnionCode
             // 
-            this.TextBoxExUnionCode.Location = new Point(196, 216);
-            this.TextBoxExUnionCode.Name = "TextBoxExUnionCode";
-            this.TextBoxExUnionCode.Size = new Size(44, 23);
-            this.TextBoxExUnionCode.TabIndex = 7;
-            this.TextBoxExUnionCode.Text = "8888";
-            this.TextBoxExUnionCode.TextAlign = HorizontalAlignment.Center;
+            TextBoxExUnionCode.Location = new Point(196, 216);
+            TextBoxExUnionCode.Name = "TextBoxExUnionCode";
+            TextBoxExUnionCode.Size = new Size(44, 23);
+            TextBoxExUnionCode.TabIndex = 7;
+            TextBoxExUnionCode.Text = "8888";
+            TextBoxExUnionCode.TextAlign = HorizontalAlignment.Center;
             // 
             // labelEx4
             // 
-            this.labelEx4.AutoSize = true;
-            this.labelEx4.Location = new Point(144, 220);
-            this.labelEx4.Name = "labelEx4";
-            this.labelEx4.Size = new Size(46, 15);
-            this.labelEx4.TabIndex = 6;
-            this.labelEx4.Text = "組合CD";
+            labelEx4.AutoSize = true;
+            labelEx4.Location = new Point(144, 220);
+            labelEx4.Name = "labelEx4";
+            labelEx4.Size = new Size(46, 15);
+            labelEx4.TabIndex = 6;
+            labelEx4.Text = "組合CD";
             // 
             // LabelExStaffCode
             // 
-            this.LabelExStaffCode.BorderStyle = BorderStyle.FixedSingle;
-            this.LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F);
-            this.LabelExStaffCode.Location = new Point(80, 216);
-            this.LabelExStaffCode.Name = "LabelExStaffCode";
-            this.LabelExStaffCode.Size = new Size(56, 23);
-            this.LabelExStaffCode.TabIndex = 5;
-            this.LabelExStaffCode.Text = "88888";
-            this.LabelExStaffCode.TextAlign = ContentAlignment.TopCenter;
+            LabelExStaffCode.BorderStyle = BorderStyle.FixedSingle;
+            LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F);
+            LabelExStaffCode.Location = new Point(80, 216);
+            LabelExStaffCode.Name = "LabelExStaffCode";
+            LabelExStaffCode.Size = new Size(56, 23);
+            LabelExStaffCode.TabIndex = 5;
+            LabelExStaffCode.Text = "88888";
+            LabelExStaffCode.TextAlign = ContentAlignment.TopCenter;
             // 
             // labelEx1
             // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(28, 220);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(46, 15);
-            this.labelEx1.TabIndex = 4;
-            this.labelEx1.Text = "社員CD";
+            labelEx1.AutoSize = true;
+            labelEx1.Location = new Point(28, 220);
+            labelEx1.Name = "labelEx1";
+            labelEx1.Size = new Size(46, 15);
+            labelEx1.TabIndex = 4;
+            labelEx1.Text = "社員CD";
             // 
-            // GroupBoxExOccupation
+            // CcGroupBoxOccupation
             // 
-            this.GroupBoxExOccupation.Controls.Add(this.radioButtonEx18);
-            this.GroupBoxExOccupation.Controls.Add(this.radioButtonEx17);
-            this.GroupBoxExOccupation.Controls.Add(this.RadioButtonExOfficeWorker);
-            this.GroupBoxExOccupation.Controls.Add(this.radioButtonEx15);
-            this.GroupBoxExOccupation.Controls.Add(this.RadioButtonExWorkers);
-            this.GroupBoxExOccupation.Controls.Add(this.RadioButtonExDrivers);
-            this.GroupBoxExOccupation.Location = new Point(8, 156);
-            this.GroupBoxExOccupation.Name = "GroupBoxExOccupation";
-            this.GroupBoxExOccupation.Size = new Size(916, 52);
-            this.GroupBoxExOccupation.TabIndex = 3;
-            this.GroupBoxExOccupation.TabStop = false;
-            this.GroupBoxExOccupation.Text = "職種(Occupation)";
+            CcGroupBoxOccupation.Controls.Add(radioButtonEx18);
+            CcGroupBoxOccupation.Controls.Add(radioButtonEx17);
+            CcGroupBoxOccupation.Controls.Add(RadioButtonExOfficeWorker);
+            CcGroupBoxOccupation.Controls.Add(radioButtonEx15);
+            CcGroupBoxOccupation.Controls.Add(RadioButtonExWorkers);
+            CcGroupBoxOccupation.Controls.Add(RadioButtonExDrivers);
+            CcGroupBoxOccupation.Location = new Point(8, 156);
+            CcGroupBoxOccupation.Name = "CcGroupBoxOccupation";
+            CcGroupBoxOccupation.Size = new Size(916, 52);
+            CcGroupBoxOccupation.TabIndex = 3;
+            CcGroupBoxOccupation.TabStop = false;
+            CcGroupBoxOccupation.Text = "職種(Occupation)";
             // 
             // radioButtonEx18
             // 
-            this.radioButtonEx18.AutoSize = true;
-            this.radioButtonEx18.Location = new Point(432, 24);
-            this.radioButtonEx18.Name = "radioButtonEx18";
-            this.radioButtonEx18.Size = new Size(67, 19);
-            this.radioButtonEx18.TabIndex = 9;
-            this.radioButtonEx18.TabStop = true;
-            this.radioButtonEx18.Tag = "99";
-            this.radioButtonEx18.Text = "指定なし";
-            this.radioButtonEx18.UseVisualStyleBackColor = true;
-            this.radioButtonEx18.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            radioButtonEx18.AutoSize = true;
+            radioButtonEx18.Location = new Point(432, 24);
+            radioButtonEx18.Name = "radioButtonEx18";
+            radioButtonEx18.Size = new Size(67, 19);
+            radioButtonEx18.TabIndex = 9;
+            radioButtonEx18.TabStop = true;
+            radioButtonEx18.Tag = "99";
+            radioButtonEx18.Text = "指定なし";
+            radioButtonEx18.UseVisualStyleBackColor = true;
+            radioButtonEx18.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // radioButtonEx17
             // 
-            this.radioButtonEx17.AutoSize = true;
-            this.radioButtonEx17.Location = new Point(328, 24);
-            this.radioButtonEx17.Name = "radioButtonEx17";
-            this.radioButtonEx17.Size = new Size(97, 19);
-            this.radioButtonEx17.TabIndex = 8;
-            this.radioButtonEx17.TabStop = true;
-            this.radioButtonEx17.Tag = "12";
-            this.radioButtonEx17.Text = "自転車駐輪場";
-            this.radioButtonEx17.UseVisualStyleBackColor = true;
-            this.radioButtonEx17.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            radioButtonEx17.AutoSize = true;
+            radioButtonEx17.Location = new Point(328, 24);
+            radioButtonEx17.Name = "radioButtonEx17";
+            radioButtonEx17.Size = new Size(97, 19);
+            radioButtonEx17.TabIndex = 8;
+            radioButtonEx17.TabStop = true;
+            radioButtonEx17.Tag = "12";
+            radioButtonEx17.Text = "自転車駐輪場";
+            radioButtonEx17.UseVisualStyleBackColor = true;
+            radioButtonEx17.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExOfficeWorker
             // 
-            this.RadioButtonExOfficeWorker.AutoSize = true;
-            this.RadioButtonExOfficeWorker.Location = new Point(12, 24);
-            this.RadioButtonExOfficeWorker.Name = "RadioButtonExOfficeWorker";
-            this.RadioButtonExOfficeWorker.Size = new Size(61, 19);
-            this.RadioButtonExOfficeWorker.TabIndex = 7;
-            this.RadioButtonExOfficeWorker.TabStop = true;
-            this.RadioButtonExOfficeWorker.Tag = "20";
-            this.RadioButtonExOfficeWorker.Text = "事務員";
-            this.RadioButtonExOfficeWorker.UseVisualStyleBackColor = true;
-            this.RadioButtonExOfficeWorker.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExOfficeWorker.AutoSize = true;
+            RadioButtonExOfficeWorker.Location = new Point(12, 24);
+            RadioButtonExOfficeWorker.Name = "RadioButtonExOfficeWorker";
+            RadioButtonExOfficeWorker.Size = new Size(61, 19);
+            RadioButtonExOfficeWorker.TabIndex = 7;
+            RadioButtonExOfficeWorker.TabStop = true;
+            RadioButtonExOfficeWorker.Tag = "20";
+            RadioButtonExOfficeWorker.Text = "事務員";
+            RadioButtonExOfficeWorker.UseVisualStyleBackColor = true;
+            RadioButtonExOfficeWorker.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // radioButtonEx15
             // 
-            this.radioButtonEx15.AutoSize = true;
-            this.radioButtonEx15.Location = new Point(216, 24);
-            this.radioButtonEx15.Name = "radioButtonEx15";
-            this.radioButtonEx15.Size = new Size(107, 19);
-            this.radioButtonEx15.TabIndex = 6;
-            this.radioButtonEx15.TabStop = true;
-            this.radioButtonEx15.Tag = "13";
-            this.radioButtonEx15.Text = "リサイクルセンター";
-            this.radioButtonEx15.UseVisualStyleBackColor = true;
-            this.radioButtonEx15.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            radioButtonEx15.AutoSize = true;
+            radioButtonEx15.Location = new Point(216, 24);
+            radioButtonEx15.Name = "radioButtonEx15";
+            radioButtonEx15.Size = new Size(107, 19);
+            radioButtonEx15.TabIndex = 6;
+            radioButtonEx15.TabStop = true;
+            radioButtonEx15.Tag = "13";
+            radioButtonEx15.Text = "リサイクルセンター";
+            radioButtonEx15.UseVisualStyleBackColor = true;
+            radioButtonEx15.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExWorkers
             // 
-            this.RadioButtonExWorkers.AutoSize = true;
-            this.RadioButtonExWorkers.Location = new Point(148, 24);
-            this.RadioButtonExWorkers.Name = "RadioButtonExWorkers";
-            this.RadioButtonExWorkers.Size = new Size(61, 19);
-            this.RadioButtonExWorkers.TabIndex = 5;
-            this.RadioButtonExWorkers.TabStop = true;
-            this.RadioButtonExWorkers.Tag = "11";
-            this.RadioButtonExWorkers.Text = "作業員";
-            this.RadioButtonExWorkers.UseVisualStyleBackColor = true;
-            this.RadioButtonExWorkers.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExWorkers.AutoSize = true;
+            RadioButtonExWorkers.Location = new Point(148, 24);
+            RadioButtonExWorkers.Name = "RadioButtonExWorkers";
+            RadioButtonExWorkers.Size = new Size(61, 19);
+            RadioButtonExWorkers.TabIndex = 5;
+            RadioButtonExWorkers.TabStop = true;
+            RadioButtonExWorkers.Tag = "11";
+            RadioButtonExWorkers.Text = "作業員";
+            RadioButtonExWorkers.UseVisualStyleBackColor = true;
+            RadioButtonExWorkers.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExDrivers
             // 
-            this.RadioButtonExDrivers.AutoSize = true;
-            this.RadioButtonExDrivers.Location = new Point(80, 24);
-            this.RadioButtonExDrivers.Name = "RadioButtonExDrivers";
-            this.RadioButtonExDrivers.Size = new Size(61, 19);
-            this.RadioButtonExDrivers.TabIndex = 4;
-            this.RadioButtonExDrivers.TabStop = true;
-            this.RadioButtonExDrivers.Tag = "10";
-            this.RadioButtonExDrivers.Text = "運転手";
-            this.RadioButtonExDrivers.UseVisualStyleBackColor = true;
-            this.RadioButtonExDrivers.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExDrivers.AutoSize = true;
+            RadioButtonExDrivers.Location = new Point(80, 24);
+            RadioButtonExDrivers.Name = "RadioButtonExDrivers";
+            RadioButtonExDrivers.Size = new Size(61, 19);
+            RadioButtonExDrivers.TabIndex = 4;
+            RadioButtonExDrivers.TabStop = true;
+            RadioButtonExDrivers.Tag = "10";
+            RadioButtonExDrivers.Text = "運転手";
+            RadioButtonExDrivers.UseVisualStyleBackColor = true;
+            RadioButtonExDrivers.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
-            // GroupBoxExJobForm
+            // CcGroupBoxJobForm
             // 
-            this.GroupBoxExJobForm.Controls.Add(this.RadioButtonExJobFormNothing);
-            this.GroupBoxExJobForm.Controls.Add(this.RadioButtonExShortTimeJ);
-            this.GroupBoxExJobForm.Controls.Add(this.RadioButtonExLongTimeJ);
-            this.GroupBoxExJobForm.Controls.Add(this.RadioButtonExShortTimeS);
-            this.GroupBoxExJobForm.Controls.Add(this.RadioButtonExLongTimeS);
-            this.GroupBoxExJobForm.Location = new Point(8, 100);
-            this.GroupBoxExJobForm.Name = "GroupBoxExJobForm";
-            this.GroupBoxExJobForm.Size = new Size(916, 52);
-            this.GroupBoxExJobForm.TabIndex = 2;
-            this.GroupBoxExJobForm.TabStop = false;
-            this.GroupBoxExJobForm.Text = "雇用形態(JobForm)";
+            CcGroupBoxJobForm.Controls.Add(RadioButtonExJobFormNothing);
+            CcGroupBoxJobForm.Controls.Add(RadioButtonExShortTimeJ);
+            CcGroupBoxJobForm.Controls.Add(RadioButtonExLongTimeJ);
+            CcGroupBoxJobForm.Controls.Add(RadioButtonExShortTimeS);
+            CcGroupBoxJobForm.Controls.Add(RadioButtonExLongTimeS);
+            CcGroupBoxJobForm.Location = new Point(8, 100);
+            CcGroupBoxJobForm.Name = "CcGroupBoxJobForm";
+            CcGroupBoxJobForm.Size = new Size(916, 52);
+            CcGroupBoxJobForm.TabIndex = 2;
+            CcGroupBoxJobForm.TabStop = false;
+            CcGroupBoxJobForm.Text = "雇用形態(JobForm)";
             // 
             // RadioButtonExJobFormNothing
             // 
-            this.RadioButtonExJobFormNothing.AutoSize = true;
-            this.RadioButtonExJobFormNothing.Location = new Point(316, 24);
-            this.RadioButtonExJobFormNothing.Name = "RadioButtonExJobFormNothing";
-            this.RadioButtonExJobFormNothing.Size = new Size(67, 19);
-            this.RadioButtonExJobFormNothing.TabIndex = 7;
-            this.RadioButtonExJobFormNothing.TabStop = true;
-            this.RadioButtonExJobFormNothing.Tag = "99";
-            this.RadioButtonExJobFormNothing.Text = "指定なし";
-            this.RadioButtonExJobFormNothing.UseVisualStyleBackColor = true;
-            this.RadioButtonExJobFormNothing.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExJobFormNothing.AutoSize = true;
+            RadioButtonExJobFormNothing.Location = new Point(316, 24);
+            RadioButtonExJobFormNothing.Name = "RadioButtonExJobFormNothing";
+            RadioButtonExJobFormNothing.Size = new Size(67, 19);
+            RadioButtonExJobFormNothing.TabIndex = 7;
+            RadioButtonExJobFormNothing.TabStop = true;
+            RadioButtonExJobFormNothing.Tag = "99";
+            RadioButtonExJobFormNothing.Text = "指定なし";
+            RadioButtonExJobFormNothing.UseVisualStyleBackColor = true;
+            RadioButtonExJobFormNothing.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExShortTimeJ
             // 
-            this.RadioButtonExShortTimeJ.AutoSize = true;
-            this.RadioButtonExShortTimeJ.Location = new Point(240, 24);
-            this.RadioButtonExShortTimeJ.Name = "RadioButtonExShortTimeJ";
-            this.RadioButtonExShortTimeJ.Size = new Size(69, 19);
-            this.RadioButtonExShortTimeJ.TabIndex = 6;
-            this.RadioButtonExShortTimeJ.TabStop = true;
-            this.RadioButtonExShortTimeJ.Tag = "23";
-            this.RadioButtonExShortTimeJ.Text = "短期(自)";
-            this.RadioButtonExShortTimeJ.UseVisualStyleBackColor = true;
-            this.RadioButtonExShortTimeJ.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExShortTimeJ.AutoSize = true;
+            RadioButtonExShortTimeJ.Location = new Point(240, 24);
+            RadioButtonExShortTimeJ.Name = "RadioButtonExShortTimeJ";
+            RadioButtonExShortTimeJ.Size = new Size(69, 19);
+            RadioButtonExShortTimeJ.TabIndex = 6;
+            RadioButtonExShortTimeJ.TabStop = true;
+            RadioButtonExShortTimeJ.Tag = "23";
+            RadioButtonExShortTimeJ.Text = "短期(自)";
+            RadioButtonExShortTimeJ.UseVisualStyleBackColor = true;
+            RadioButtonExShortTimeJ.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExLongTimeJ
             // 
-            this.RadioButtonExLongTimeJ.AutoSize = true;
-            this.RadioButtonExLongTimeJ.Location = new Point(164, 24);
-            this.RadioButtonExLongTimeJ.Name = "RadioButtonExLongTimeJ";
-            this.RadioButtonExLongTimeJ.Size = new Size(69, 19);
-            this.RadioButtonExLongTimeJ.TabIndex = 5;
-            this.RadioButtonExLongTimeJ.TabStop = true;
-            this.RadioButtonExLongTimeJ.Tag = "22";
-            this.RadioButtonExLongTimeJ.Text = "長期(自)";
-            this.RadioButtonExLongTimeJ.UseVisualStyleBackColor = true;
-            this.RadioButtonExLongTimeJ.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExLongTimeJ.AutoSize = true;
+            RadioButtonExLongTimeJ.Location = new Point(164, 24);
+            RadioButtonExLongTimeJ.Name = "RadioButtonExLongTimeJ";
+            RadioButtonExLongTimeJ.Size = new Size(69, 19);
+            RadioButtonExLongTimeJ.TabIndex = 5;
+            RadioButtonExLongTimeJ.TabStop = true;
+            RadioButtonExLongTimeJ.Tag = "22";
+            RadioButtonExLongTimeJ.Text = "長期(自)";
+            RadioButtonExLongTimeJ.UseVisualStyleBackColor = true;
+            RadioButtonExLongTimeJ.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExShortTimeS
             // 
-            this.RadioButtonExShortTimeS.AutoSize = true;
-            this.RadioButtonExShortTimeS.Location = new Point(88, 24);
-            this.RadioButtonExShortTimeS.Name = "RadioButtonExShortTimeS";
-            this.RadioButtonExShortTimeS.Size = new Size(69, 19);
-            this.RadioButtonExShortTimeS.TabIndex = 4;
-            this.RadioButtonExShortTimeS.TabStop = true;
-            this.RadioButtonExShortTimeS.Tag = "21";
-            this.RadioButtonExShortTimeS.Text = "短期(新)";
-            this.RadioButtonExShortTimeS.UseVisualStyleBackColor = true;
-            this.RadioButtonExShortTimeS.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExShortTimeS.AutoSize = true;
+            RadioButtonExShortTimeS.Location = new Point(88, 24);
+            RadioButtonExShortTimeS.Name = "RadioButtonExShortTimeS";
+            RadioButtonExShortTimeS.Size = new Size(69, 19);
+            RadioButtonExShortTimeS.TabIndex = 4;
+            RadioButtonExShortTimeS.TabStop = true;
+            RadioButtonExShortTimeS.Tag = "21";
+            RadioButtonExShortTimeS.Text = "短期(新)";
+            RadioButtonExShortTimeS.UseVisualStyleBackColor = true;
+            RadioButtonExShortTimeS.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExLongTimeS
             // 
-            this.RadioButtonExLongTimeS.AutoSize = true;
-            this.RadioButtonExLongTimeS.Location = new Point(12, 24);
-            this.RadioButtonExLongTimeS.Name = "RadioButtonExLongTimeS";
-            this.RadioButtonExLongTimeS.Size = new Size(69, 19);
-            this.RadioButtonExLongTimeS.TabIndex = 3;
-            this.RadioButtonExLongTimeS.TabStop = true;
-            this.RadioButtonExLongTimeS.Tag = "20";
-            this.RadioButtonExLongTimeS.Text = "長期(新)";
-            this.RadioButtonExLongTimeS.UseVisualStyleBackColor = true;
-            this.RadioButtonExLongTimeS.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExLongTimeS.AutoSize = true;
+            RadioButtonExLongTimeS.Location = new Point(12, 24);
+            RadioButtonExLongTimeS.Name = "RadioButtonExLongTimeS";
+            RadioButtonExLongTimeS.Size = new Size(69, 19);
+            RadioButtonExLongTimeS.TabIndex = 3;
+            RadioButtonExLongTimeS.TabStop = true;
+            RadioButtonExLongTimeS.Tag = "20";
+            RadioButtonExLongTimeS.Text = "長期(新)";
+            RadioButtonExLongTimeS.UseVisualStyleBackColor = true;
+            RadioButtonExLongTimeS.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
-            // GroupBoxExBelongs
+            // CcGroupBoxBelongs
             // 
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonEx労供);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonExパートタイマー);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonEx嘱託雇用契約社員);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonEx派遣);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonExアルバイト);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonEx社員);
-            this.GroupBoxExBelongs.Controls.Add(this.RadioButtonEx役員);
-            this.GroupBoxExBelongs.Location = new Point(8, 44);
-            this.GroupBoxExBelongs.Name = "GroupBoxExBelongs";
-            this.GroupBoxExBelongs.Size = new Size(916, 52);
-            this.GroupBoxExBelongs.TabIndex = 1;
-            this.GroupBoxExBelongs.TabStop = false;
-            this.GroupBoxExBelongs.Text = "所属(Belongs)";
+            CcGroupBoxBelongs.Controls.Add(RadioButtonEx労供);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonExパートタイマー);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonEx嘱託雇用契約社員);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonEx派遣);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonExアルバイト);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonEx社員);
+            CcGroupBoxBelongs.Controls.Add(RadioButtonEx役員);
+            CcGroupBoxBelongs.Location = new Point(8, 44);
+            CcGroupBoxBelongs.Name = "CcGroupBoxBelongs";
+            CcGroupBoxBelongs.Size = new Size(916, 52);
+            CcGroupBoxBelongs.TabIndex = 1;
+            CcGroupBoxBelongs.TabStop = false;
+            CcGroupBoxBelongs.Text = "所属(Belongs)";
             // 
             // RadioButtonEx労供
             // 
-            this.RadioButtonEx労供.AutoSize = true;
-            this.RadioButtonEx労供.Location = new Point(476, 24);
-            this.RadioButtonEx労供.Name = "RadioButtonEx労供";
-            this.RadioButtonEx労供.Size = new Size(49, 19);
-            this.RadioButtonEx労供.TabIndex = 7;
-            this.RadioButtonEx労供.TabStop = true;
-            this.RadioButtonEx労供.Tag = "22";
-            this.RadioButtonEx労供.Text = "労供";
-            this.RadioButtonEx労供.UseVisualStyleBackColor = true;
-            this.RadioButtonEx労供.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonEx労供.AutoSize = true;
+            RadioButtonEx労供.Location = new Point(476, 24);
+            RadioButtonEx労供.Name = "RadioButtonEx労供";
+            RadioButtonEx労供.Size = new Size(49, 19);
+            RadioButtonEx労供.TabIndex = 7;
+            RadioButtonEx労供.TabStop = true;
+            RadioButtonEx労供.Tag = "22";
+            RadioButtonEx労供.Text = "労供";
+            RadioButtonEx労供.UseVisualStyleBackColor = true;
+            RadioButtonEx労供.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExパートタイマー
             // 
-            this.RadioButtonExパートタイマー.AutoSize = true;
-            this.RadioButtonExパートタイマー.Location = new Point(384, 24);
-            this.RadioButtonExパートタイマー.Name = "RadioButtonExパートタイマー";
-            this.RadioButtonExパートタイマー.Size = new Size(86, 19);
-            this.RadioButtonExパートタイマー.TabIndex = 4;
-            this.RadioButtonExパートタイマー.TabStop = true;
-            this.RadioButtonExパートタイマー.Tag = "15";
-            this.RadioButtonExパートタイマー.Text = "パートタイマー";
-            this.RadioButtonExパートタイマー.UseVisualStyleBackColor = true;
-            this.RadioButtonExパートタイマー.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExパートタイマー.AutoSize = true;
+            RadioButtonExパートタイマー.Location = new Point(384, 24);
+            RadioButtonExパートタイマー.Name = "RadioButtonExパートタイマー";
+            RadioButtonExパートタイマー.Size = new Size(86, 19);
+            RadioButtonExパートタイマー.TabIndex = 4;
+            RadioButtonExパートタイマー.TabStop = true;
+            RadioButtonExパートタイマー.Tag = "15";
+            RadioButtonExパートタイマー.Text = "パートタイマー";
+            RadioButtonExパートタイマー.UseVisualStyleBackColor = true;
+            RadioButtonExパートタイマー.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonEx嘱託雇用契約社員
             // 
-            this.RadioButtonEx嘱託雇用契約社員.AutoSize = true;
-            this.RadioButtonEx嘱託雇用契約社員.Location = new Point(256, 24);
-            this.RadioButtonEx嘱託雇用契約社員.Name = "RadioButtonEx嘱託雇用契約社員";
-            this.RadioButtonEx嘱託雇用契約社員.Size = new Size(121, 19);
-            this.RadioButtonEx嘱託雇用契約社員.TabIndex = 6;
-            this.RadioButtonEx嘱託雇用契約社員.TabStop = true;
-            this.RadioButtonEx嘱託雇用契約社員.Tag = "14";
-            this.RadioButtonEx嘱託雇用契約社員.Text = "嘱託雇用契約社員";
-            this.RadioButtonEx嘱託雇用契約社員.UseVisualStyleBackColor = true;
-            this.RadioButtonEx嘱託雇用契約社員.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonEx嘱託雇用契約社員.AutoSize = true;
+            RadioButtonEx嘱託雇用契約社員.Location = new Point(256, 24);
+            RadioButtonEx嘱託雇用契約社員.Name = "RadioButtonEx嘱託雇用契約社員";
+            RadioButtonEx嘱託雇用契約社員.Size = new Size(121, 19);
+            RadioButtonEx嘱託雇用契約社員.TabIndex = 6;
+            RadioButtonEx嘱託雇用契約社員.TabStop = true;
+            RadioButtonEx嘱託雇用契約社員.Tag = "14";
+            RadioButtonEx嘱託雇用契約社員.Text = "嘱託雇用契約社員";
+            RadioButtonEx嘱託雇用契約社員.UseVisualStyleBackColor = true;
+            RadioButtonEx嘱託雇用契約社員.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonEx派遣
             // 
-            this.RadioButtonEx派遣.AutoSize = true;
-            this.RadioButtonEx派遣.Location = new Point(200, 24);
-            this.RadioButtonEx派遣.Name = "RadioButtonEx派遣";
-            this.RadioButtonEx派遣.Size = new Size(49, 19);
-            this.RadioButtonEx派遣.TabIndex = 5;
-            this.RadioButtonEx派遣.TabStop = true;
-            this.RadioButtonEx派遣.Tag = "13";
-            this.RadioButtonEx派遣.Text = "派遣";
-            this.RadioButtonEx派遣.UseVisualStyleBackColor = true;
-            this.RadioButtonEx派遣.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonEx派遣.AutoSize = true;
+            RadioButtonEx派遣.Location = new Point(200, 24);
+            RadioButtonEx派遣.Name = "RadioButtonEx派遣";
+            RadioButtonEx派遣.Size = new Size(49, 19);
+            RadioButtonEx派遣.TabIndex = 5;
+            RadioButtonEx派遣.TabStop = true;
+            RadioButtonEx派遣.Tag = "13";
+            RadioButtonEx派遣.Text = "派遣";
+            RadioButtonEx派遣.UseVisualStyleBackColor = true;
+            RadioButtonEx派遣.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonExアルバイト
             // 
-            this.RadioButtonExアルバイト.AutoSize = true;
-            this.RadioButtonExアルバイト.Location = new Point(124, 24);
-            this.RadioButtonExアルバイト.Name = "RadioButtonExアルバイト";
-            this.RadioButtonExアルバイト.Size = new Size(71, 19);
-            this.RadioButtonExアルバイト.TabIndex = 4;
-            this.RadioButtonExアルバイト.TabStop = true;
-            this.RadioButtonExアルバイト.Tag = "12";
-            this.RadioButtonExアルバイト.Text = "アルバイト";
-            this.RadioButtonExアルバイト.UseVisualStyleBackColor = true;
-            this.RadioButtonExアルバイト.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonExアルバイト.AutoSize = true;
+            RadioButtonExアルバイト.Location = new Point(124, 24);
+            RadioButtonExアルバイト.Name = "RadioButtonExアルバイト";
+            RadioButtonExアルバイト.Size = new Size(71, 19);
+            RadioButtonExアルバイト.TabIndex = 4;
+            RadioButtonExアルバイト.TabStop = true;
+            RadioButtonExアルバイト.Tag = "12";
+            RadioButtonExアルバイト.Text = "アルバイト";
+            RadioButtonExアルバイト.UseVisualStyleBackColor = true;
+            RadioButtonExアルバイト.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonEx社員
             // 
-            this.RadioButtonEx社員.AutoSize = true;
-            this.RadioButtonEx社員.Location = new Point(68, 24);
-            this.RadioButtonEx社員.Name = "RadioButtonEx社員";
-            this.RadioButtonEx社員.Size = new Size(49, 19);
-            this.RadioButtonEx社員.TabIndex = 3;
-            this.RadioButtonEx社員.TabStop = true;
-            this.RadioButtonEx社員.Tag = "11";
-            this.RadioButtonEx社員.Text = "社員";
-            this.RadioButtonEx社員.UseVisualStyleBackColor = true;
-            this.RadioButtonEx社員.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonEx社員.AutoSize = true;
+            RadioButtonEx社員.Location = new Point(68, 24);
+            RadioButtonEx社員.Name = "RadioButtonEx社員";
+            RadioButtonEx社員.Size = new Size(49, 19);
+            RadioButtonEx社員.TabIndex = 3;
+            RadioButtonEx社員.TabStop = true;
+            RadioButtonEx社員.Tag = "11";
+            RadioButtonEx社員.Text = "社員";
+            RadioButtonEx社員.UseVisualStyleBackColor = true;
+            RadioButtonEx社員.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // RadioButtonEx役員
             // 
-            this.RadioButtonEx役員.AutoSize = true;
-            this.RadioButtonEx役員.Location = new Point(12, 24);
-            this.RadioButtonEx役員.Name = "RadioButtonEx役員";
-            this.RadioButtonEx役員.Size = new Size(49, 19);
-            this.RadioButtonEx役員.TabIndex = 2;
-            this.RadioButtonEx役員.TabStop = true;
-            this.RadioButtonEx役員.Tag = "10";
-            this.RadioButtonEx役員.Text = "役員";
-            this.RadioButtonEx役員.UseVisualStyleBackColor = true;
-            this.RadioButtonEx役員.CheckedChanged += this.RadioButtonEx_CheckedChanged;
+            RadioButtonEx役員.AutoSize = true;
+            RadioButtonEx役員.Location = new Point(12, 24);
+            RadioButtonEx役員.Name = "RadioButtonEx役員";
+            RadioButtonEx役員.Size = new Size(49, 19);
+            RadioButtonEx役員.TabIndex = 2;
+            RadioButtonEx役員.TabStop = true;
+            RadioButtonEx役員.Tag = "10";
+            RadioButtonEx役員.Text = "役員";
+            RadioButtonEx役員.UseVisualStyleBackColor = true;
+            RadioButtonEx役員.CheckedChanged += RadioButtonEx_CheckedChanged;
             // 
             // PanelExRight
             // 
-            this.PanelExRight.AutoScroll = true;
-            this.PanelExRight.BorderStyle = BorderStyle.Fixed3D;
-            this.PanelExRight.Controls.Add(this.GroupBoxExPunishment);
-            this.PanelExRight.Controls.Add(this.GroupBoxProper);
-            this.PanelExRight.Controls.Add(this.GroupBoxEducate);
-            this.PanelExRight.Controls.Add(this.GroupBoxExCarViolate);
-            this.PanelExRight.Controls.Add(this.groupBoxEx9);
-            this.PanelExRight.Controls.Add(this.GroupBoxExMedicalExamination);
-            this.PanelExRight.Controls.Add(this.GroupBoxExInsurance);
-            this.PanelExRight.Controls.Add(this.GroupBoxExFamily);
-            this.PanelExRight.Dock = DockStyle.Fill;
-            this.PanelExRight.Location = new Point(955, 87);
-            this.PanelExRight.Name = "PanelExRight";
-            this.PanelExRight.Size = new Size(946, 927);
-            this.PanelExRight.TabIndex = 4;
+            PanelExRight.AutoScroll = true;
+            PanelExRight.BorderStyle = BorderStyle.Fixed3D;
+            PanelExRight.Controls.Add(GroupBoxExPunishment);
+            PanelExRight.Controls.Add(GroupBoxProper);
+            PanelExRight.Controls.Add(GroupBoxEducate);
+            PanelExRight.Controls.Add(GroupBoxExCarViolate);
+            PanelExRight.Controls.Add(groupBoxEx9);
+            PanelExRight.Controls.Add(GroupBoxExMedicalExamination);
+            PanelExRight.Controls.Add(GroupBoxExInsurance);
+            PanelExRight.Controls.Add(GroupBoxExFamily);
+            PanelExRight.Dock = DockStyle.Fill;
+            PanelExRight.Location = new Point(955, 87);
+            PanelExRight.Name = "PanelExRight";
+            PanelExRight.Size = new Size(946, 927);
+            PanelExRight.TabIndex = 4;
             // 
             // GroupBoxExPunishment
             // 
-            this.GroupBoxExPunishment.Controls.Add(this.labelEx78);
-            this.GroupBoxExPunishment.Controls.Add(this.labelEx79);
-            this.GroupBoxExPunishment.Controls.Add(this.labelEx80);
-            this.GroupBoxExPunishment.Controls.Add(this.labelEx81);
-            this.GroupBoxExPunishment.Controls.Add(this.labelEx82);
-            this.GroupBoxExPunishment.Controls.Add(this.AddGroupBoxExPunishment);
-            this.GroupBoxExPunishment.Controls.Add(this.ComboBoxExPunishmentNote);
-            this.GroupBoxExPunishment.Controls.Add(this.DateTimeExPunishmentDate);
-            this.GroupBoxExPunishment.Controls.Add(this.ComboBoxExPunishmentNote3);
-            this.GroupBoxExPunishment.Controls.Add(this.DateTimeExPunishmentDate3);
-            this.GroupBoxExPunishment.Controls.Add(this.ComboBoxExPunishmentNote2);
-            this.GroupBoxExPunishment.Controls.Add(this.DateTimeExPunishmentDate2);
-            this.GroupBoxExPunishment.Controls.Add(this.ComboBoxExPunishmentNote1);
-            this.GroupBoxExPunishment.Controls.Add(this.DateTimeExPunishmentDate1);
-            this.GroupBoxExPunishment.Location = new Point(8, 1152);
-            this.GroupBoxExPunishment.Name = "GroupBoxExPunishment";
-            this.GroupBoxExPunishment.Size = new Size(916, 164);
-            this.GroupBoxExPunishment.TabIndex = 89;
-            this.GroupBoxExPunishment.TabStop = false;
-            this.GroupBoxExPunishment.Text = "賞罰・譴責(Punishment)";
+            GroupBoxExPunishment.Controls.Add(labelEx78);
+            GroupBoxExPunishment.Controls.Add(labelEx79);
+            GroupBoxExPunishment.Controls.Add(labelEx80);
+            GroupBoxExPunishment.Controls.Add(labelEx81);
+            GroupBoxExPunishment.Controls.Add(labelEx82);
+            GroupBoxExPunishment.Controls.Add(AddGroupBoxExPunishment);
+            GroupBoxExPunishment.Controls.Add(ComboBoxExPunishmentNote);
+            GroupBoxExPunishment.Controls.Add(DateTimeExPunishmentDate);
+            GroupBoxExPunishment.Controls.Add(ComboBoxExPunishmentNote3);
+            GroupBoxExPunishment.Controls.Add(DateTimeExPunishmentDate3);
+            GroupBoxExPunishment.Controls.Add(ComboBoxExPunishmentNote2);
+            GroupBoxExPunishment.Controls.Add(DateTimeExPunishmentDate2);
+            GroupBoxExPunishment.Controls.Add(ComboBoxExPunishmentNote1);
+            GroupBoxExPunishment.Controls.Add(DateTimeExPunishmentDate1);
+            GroupBoxExPunishment.Location = new Point(8, 1152);
+            GroupBoxExPunishment.Name = "GroupBoxExPunishment";
+            GroupBoxExPunishment.Size = new Size(916, 164);
+            GroupBoxExPunishment.TabIndex = 89;
+            GroupBoxExPunishment.TabStop = false;
+            GroupBoxExPunishment.Text = "賞罰・譴責(Punishment)";
             // 
             // labelEx78
             // 
-            this.labelEx78.AutoSize = true;
-            this.labelEx78.Location = new Point(232, 24);
-            this.labelEx78.Name = "labelEx78";
-            this.labelEx78.Size = new Size(31, 15);
-            this.labelEx78.TabIndex = 85;
-            this.labelEx78.Text = "備考";
+            labelEx78.AutoSize = true;
+            labelEx78.Location = new Point(232, 24);
+            labelEx78.Name = "labelEx78";
+            labelEx78.Size = new Size(31, 15);
+            labelEx78.TabIndex = 85;
+            labelEx78.Text = "備考";
             // 
             // labelEx79
             // 
-            this.labelEx79.AutoSize = true;
-            this.labelEx79.Location = new Point(40, 24);
-            this.labelEx79.Name = "labelEx79";
-            this.labelEx79.Size = new Size(67, 15);
-            this.labelEx79.TabIndex = 84;
-            this.labelEx79.Text = "発行年月日";
+            labelEx79.AutoSize = true;
+            labelEx79.Location = new Point(40, 24);
+            labelEx79.Name = "labelEx79";
+            labelEx79.Size = new Size(67, 15);
+            labelEx79.TabIndex = 84;
+            labelEx79.Text = "発行年月日";
             // 
             // labelEx80
             // 
-            this.labelEx80.AutoSize = true;
-            this.labelEx80.Location = new Point(12, 136);
-            this.labelEx80.Name = "labelEx80";
-            this.labelEx80.Size = new Size(19, 15);
-            this.labelEx80.TabIndex = 83;
-            this.labelEx80.Text = "③";
+            labelEx80.AutoSize = true;
+            labelEx80.Location = new Point(12, 136);
+            labelEx80.Name = "labelEx80";
+            labelEx80.Size = new Size(19, 15);
+            labelEx80.TabIndex = 83;
+            labelEx80.Text = "③";
             // 
             // labelEx81
             // 
-            this.labelEx81.AutoSize = true;
-            this.labelEx81.Location = new Point(12, 108);
-            this.labelEx81.Name = "labelEx81";
-            this.labelEx81.Size = new Size(19, 15);
-            this.labelEx81.TabIndex = 82;
-            this.labelEx81.Text = "②";
+            labelEx81.AutoSize = true;
+            labelEx81.Location = new Point(12, 108);
+            labelEx81.Name = "labelEx81";
+            labelEx81.Size = new Size(19, 15);
+            labelEx81.TabIndex = 82;
+            labelEx81.Text = "②";
             // 
             // labelEx82
             // 
-            this.labelEx82.AutoSize = true;
-            this.labelEx82.Location = new Point(12, 80);
-            this.labelEx82.Name = "labelEx82";
-            this.labelEx82.Size = new Size(19, 15);
-            this.labelEx82.TabIndex = 81;
-            this.labelEx82.Text = "①";
+            labelEx82.AutoSize = true;
+            labelEx82.Location = new Point(12, 80);
+            labelEx82.Name = "labelEx82";
+            labelEx82.Size = new Size(19, 15);
+            labelEx82.TabIndex = 81;
+            labelEx82.Text = "①";
             // 
             // AddGroupBoxExPunishment
             // 
-            this.AddGroupBoxExPunishment.Location = new Point(836, 44);
-            this.AddGroupBoxExPunishment.Name = "AddGroupBoxExPunishment";
-            this.AddGroupBoxExPunishment.SetTextDirectionVertical = "";
-            this.AddGroupBoxExPunishment.Size = new Size(68, 24);
-            this.AddGroupBoxExPunishment.TabIndex = 80;
-            this.AddGroupBoxExPunishment.Text = "追加";
-            this.AddGroupBoxExPunishment.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExPunishment.Click += this.ButtonEx_Click;
+            AddGroupBoxExPunishment.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExPunishment.Location = new Point(836, 44);
+            AddGroupBoxExPunishment.Name = "AddGroupBoxExPunishment";
+            AddGroupBoxExPunishment.SetTextDirectionVertical = "";
+            AddGroupBoxExPunishment.Size = new Size(68, 24);
+            AddGroupBoxExPunishment.TabIndex = 80;
+            AddGroupBoxExPunishment.Text = "追加";
+            AddGroupBoxExPunishment.UseVisualStyleBackColor = true;
+            AddGroupBoxExPunishment.Click += ButtonEx_Click;
             // 
             // ComboBoxExPunishmentNote
             // 
-            this.ComboBoxExPunishmentNote.FormattingEnabled = true;
-            this.ComboBoxExPunishmentNote.Location = new Point(228, 44);
-            this.ComboBoxExPunishmentNote.Name = "ComboBoxExPunishmentNote";
-            this.ComboBoxExPunishmentNote.Size = new Size(604, 23);
-            this.ComboBoxExPunishmentNote.TabIndex = 74;
+            ComboBoxExPunishmentNote.FormattingEnabled = true;
+            ComboBoxExPunishmentNote.Location = new Point(228, 44);
+            ComboBoxExPunishmentNote.Name = "ComboBoxExPunishmentNote";
+            ComboBoxExPunishmentNote.Size = new Size(604, 23);
+            ComboBoxExPunishmentNote.TabIndex = 74;
             // 
             // DateTimeExPunishmentDate
             // 
-            this.DateTimeExPunishmentDate.CultureFlag = false;
-            this.DateTimeExPunishmentDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExPunishmentDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExPunishmentDate.Location = new Point(36, 44);
-            this.DateTimeExPunishmentDate.Name = "DateTimeExPunishmentDate";
-            this.DateTimeExPunishmentDate.Size = new Size(188, 23);
-            this.DateTimeExPunishmentDate.TabIndex = 73;
-            this.DateTimeExPunishmentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExPunishmentDate.CultureFlag = false;
+            DateTimeExPunishmentDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExPunishmentDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExPunishmentDate.Location = new Point(36, 44);
+            DateTimeExPunishmentDate.Name = "DateTimeExPunishmentDate";
+            DateTimeExPunishmentDate.Size = new Size(188, 23);
+            DateTimeExPunishmentDate.TabIndex = 73;
+            DateTimeExPunishmentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExPunishmentNote3
             // 
-            this.ComboBoxExPunishmentNote3.Enabled = false;
-            this.ComboBoxExPunishmentNote3.FormattingEnabled = true;
-            this.ComboBoxExPunishmentNote3.Location = new Point(228, 132);
-            this.ComboBoxExPunishmentNote3.Name = "ComboBoxExPunishmentNote3";
-            this.ComboBoxExPunishmentNote3.Size = new Size(604, 23);
-            this.ComboBoxExPunishmentNote3.TabIndex = 71;
+            ComboBoxExPunishmentNote3.Enabled = false;
+            ComboBoxExPunishmentNote3.FormattingEnabled = true;
+            ComboBoxExPunishmentNote3.Location = new Point(228, 132);
+            ComboBoxExPunishmentNote3.Name = "ComboBoxExPunishmentNote3";
+            ComboBoxExPunishmentNote3.Size = new Size(604, 23);
+            ComboBoxExPunishmentNote3.TabIndex = 71;
             // 
             // DateTimeExPunishmentDate3
             // 
-            this.DateTimeExPunishmentDate3.CultureFlag = false;
-            this.DateTimeExPunishmentDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExPunishmentDate3.Enabled = false;
-            this.DateTimeExPunishmentDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExPunishmentDate3.Location = new Point(36, 132);
-            this.DateTimeExPunishmentDate3.Name = "DateTimeExPunishmentDate3";
-            this.DateTimeExPunishmentDate3.Size = new Size(188, 23);
-            this.DateTimeExPunishmentDate3.TabIndex = 70;
-            this.DateTimeExPunishmentDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExPunishmentDate3.CultureFlag = false;
+            DateTimeExPunishmentDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExPunishmentDate3.Enabled = false;
+            DateTimeExPunishmentDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExPunishmentDate3.Location = new Point(36, 132);
+            DateTimeExPunishmentDate3.Name = "DateTimeExPunishmentDate3";
+            DateTimeExPunishmentDate3.Size = new Size(188, 23);
+            DateTimeExPunishmentDate3.TabIndex = 70;
+            DateTimeExPunishmentDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExPunishmentNote2
             // 
-            this.ComboBoxExPunishmentNote2.Enabled = false;
-            this.ComboBoxExPunishmentNote2.FormattingEnabled = true;
-            this.ComboBoxExPunishmentNote2.Location = new Point(228, 104);
-            this.ComboBoxExPunishmentNote2.Name = "ComboBoxExPunishmentNote2";
-            this.ComboBoxExPunishmentNote2.Size = new Size(604, 23);
-            this.ComboBoxExPunishmentNote2.TabIndex = 68;
+            ComboBoxExPunishmentNote2.Enabled = false;
+            ComboBoxExPunishmentNote2.FormattingEnabled = true;
+            ComboBoxExPunishmentNote2.Location = new Point(228, 104);
+            ComboBoxExPunishmentNote2.Name = "ComboBoxExPunishmentNote2";
+            ComboBoxExPunishmentNote2.Size = new Size(604, 23);
+            ComboBoxExPunishmentNote2.TabIndex = 68;
             // 
             // DateTimeExPunishmentDate2
             // 
-            this.DateTimeExPunishmentDate2.CultureFlag = false;
-            this.DateTimeExPunishmentDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExPunishmentDate2.Enabled = false;
-            this.DateTimeExPunishmentDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExPunishmentDate2.Location = new Point(36, 104);
-            this.DateTimeExPunishmentDate2.Name = "DateTimeExPunishmentDate2";
-            this.DateTimeExPunishmentDate2.Size = new Size(188, 23);
-            this.DateTimeExPunishmentDate2.TabIndex = 67;
-            this.DateTimeExPunishmentDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExPunishmentDate2.CultureFlag = false;
+            DateTimeExPunishmentDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExPunishmentDate2.Enabled = false;
+            DateTimeExPunishmentDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExPunishmentDate2.Location = new Point(36, 104);
+            DateTimeExPunishmentDate2.Name = "DateTimeExPunishmentDate2";
+            DateTimeExPunishmentDate2.Size = new Size(188, 23);
+            DateTimeExPunishmentDate2.TabIndex = 67;
+            DateTimeExPunishmentDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExPunishmentNote1
             // 
-            this.ComboBoxExPunishmentNote1.Enabled = false;
-            this.ComboBoxExPunishmentNote1.FormattingEnabled = true;
-            this.ComboBoxExPunishmentNote1.Location = new Point(228, 76);
-            this.ComboBoxExPunishmentNote1.Name = "ComboBoxExPunishmentNote1";
-            this.ComboBoxExPunishmentNote1.Size = new Size(604, 23);
-            this.ComboBoxExPunishmentNote1.TabIndex = 65;
+            ComboBoxExPunishmentNote1.Enabled = false;
+            ComboBoxExPunishmentNote1.FormattingEnabled = true;
+            ComboBoxExPunishmentNote1.Location = new Point(228, 76);
+            ComboBoxExPunishmentNote1.Name = "ComboBoxExPunishmentNote1";
+            ComboBoxExPunishmentNote1.Size = new Size(604, 23);
+            ComboBoxExPunishmentNote1.TabIndex = 65;
             // 
             // DateTimeExPunishmentDate1
             // 
-            this.DateTimeExPunishmentDate1.CultureFlag = false;
-            this.DateTimeExPunishmentDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExPunishmentDate1.Enabled = false;
-            this.DateTimeExPunishmentDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExPunishmentDate1.Location = new Point(36, 76);
-            this.DateTimeExPunishmentDate1.Name = "DateTimeExPunishmentDate1";
-            this.DateTimeExPunishmentDate1.Size = new Size(188, 23);
-            this.DateTimeExPunishmentDate1.TabIndex = 64;
-            this.DateTimeExPunishmentDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExPunishmentDate1.CultureFlag = false;
+            DateTimeExPunishmentDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExPunishmentDate1.Enabled = false;
+            DateTimeExPunishmentDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExPunishmentDate1.Location = new Point(36, 76);
+            DateTimeExPunishmentDate1.Name = "DateTimeExPunishmentDate1";
+            DateTimeExPunishmentDate1.Size = new Size(188, 23);
+            DateTimeExPunishmentDate1.TabIndex = 64;
+            DateTimeExPunishmentDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // GroupBoxProper
             // 
-            this.GroupBoxProper.Controls.Add(this.labelEx67);
-            this.GroupBoxProper.Controls.Add(this.labelEx73);
-            this.GroupBoxProper.Controls.Add(this.labelEx74);
-            this.GroupBoxProper.Controls.Add(this.labelEx75);
-            this.GroupBoxProper.Controls.Add(this.labelEx76);
-            this.GroupBoxProper.Controls.Add(this.labelEx77);
-            this.GroupBoxProper.Controls.Add(this.AddGroupBoxProper);
-            this.GroupBoxProper.Controls.Add(this.ComboBoxExProperKind);
-            this.GroupBoxProper.Controls.Add(this.DateTimeExProperDate);
-            this.GroupBoxProper.Controls.Add(this.TextBoxExProperNote);
-            this.GroupBoxProper.Controls.Add(this.ComboBoxExProperKind3);
-            this.GroupBoxProper.Controls.Add(this.DateTimeExProperDate3);
-            this.GroupBoxProper.Controls.Add(this.TextBoxExProperNote3);
-            this.GroupBoxProper.Controls.Add(this.ComboBoxExProperKind2);
-            this.GroupBoxProper.Controls.Add(this.DateTimeExProperDate2);
-            this.GroupBoxProper.Controls.Add(this.TextBoxExProperNote2);
-            this.GroupBoxProper.Controls.Add(this.ComboBoxExProperKind1);
-            this.GroupBoxProper.Controls.Add(this.DateTimeExProperDate1);
-            this.GroupBoxProper.Controls.Add(this.TextBoxExProperNote1);
-            this.GroupBoxProper.Location = new Point(8, 980);
-            this.GroupBoxProper.Name = "GroupBoxProper";
-            this.GroupBoxProper.Size = new Size(916, 164);
-            this.GroupBoxProper.TabIndex = 88;
-            this.GroupBoxProper.TabStop = false;
-            this.GroupBoxProper.Text = "適正診断(Proper・NASVA他)";
+            GroupBoxProper.Controls.Add(labelEx67);
+            GroupBoxProper.Controls.Add(labelEx73);
+            GroupBoxProper.Controls.Add(labelEx74);
+            GroupBoxProper.Controls.Add(labelEx75);
+            GroupBoxProper.Controls.Add(labelEx76);
+            GroupBoxProper.Controls.Add(labelEx77);
+            GroupBoxProper.Controls.Add(AddGroupBoxProper);
+            GroupBoxProper.Controls.Add(ComboBoxExProperKind);
+            GroupBoxProper.Controls.Add(DateTimeExProperDate);
+            GroupBoxProper.Controls.Add(TextBoxExProperNote);
+            GroupBoxProper.Controls.Add(ComboBoxExProperKind3);
+            GroupBoxProper.Controls.Add(DateTimeExProperDate3);
+            GroupBoxProper.Controls.Add(TextBoxExProperNote3);
+            GroupBoxProper.Controls.Add(ComboBoxExProperKind2);
+            GroupBoxProper.Controls.Add(DateTimeExProperDate2);
+            GroupBoxProper.Controls.Add(TextBoxExProperNote2);
+            GroupBoxProper.Controls.Add(ComboBoxExProperKind1);
+            GroupBoxProper.Controls.Add(DateTimeExProperDate1);
+            GroupBoxProper.Controls.Add(TextBoxExProperNote1);
+            GroupBoxProper.Location = new Point(8, 980);
+            GroupBoxProper.Name = "GroupBoxProper";
+            GroupBoxProper.Size = new Size(916, 164);
+            GroupBoxProper.TabIndex = 88;
+            GroupBoxProper.TabStop = false;
+            GroupBoxProper.Text = "適正診断(Proper・NASVA他)";
             // 
             // labelEx67
             // 
-            this.labelEx67.AutoSize = true;
-            this.labelEx67.Location = new Point(564, 24);
-            this.labelEx67.Name = "labelEx67";
-            this.labelEx67.Size = new Size(31, 15);
-            this.labelEx67.TabIndex = 86;
-            this.labelEx67.Text = "備考";
+            labelEx67.AutoSize = true;
+            labelEx67.Location = new Point(564, 24);
+            labelEx67.Name = "labelEx67";
+            labelEx67.Size = new Size(31, 15);
+            labelEx67.TabIndex = 86;
+            labelEx67.Text = "備考";
             // 
             // labelEx73
             // 
-            this.labelEx73.AutoSize = true;
-            this.labelEx73.Location = new Point(232, 24);
-            this.labelEx73.Name = "labelEx73";
-            this.labelEx73.Size = new Size(65, 15);
-            this.labelEx73.TabIndex = 85;
-            this.labelEx73.Text = "診断の種類";
+            labelEx73.AutoSize = true;
+            labelEx73.Location = new Point(232, 24);
+            labelEx73.Name = "labelEx73";
+            labelEx73.Size = new Size(65, 15);
+            labelEx73.TabIndex = 85;
+            labelEx73.Text = "診断の種類";
             // 
             // labelEx74
             // 
-            this.labelEx74.AutoSize = true;
-            this.labelEx74.Location = new Point(40, 24);
-            this.labelEx74.Name = "labelEx74";
-            this.labelEx74.Size = new Size(67, 15);
-            this.labelEx74.TabIndex = 84;
-            this.labelEx74.Text = "実施年月日";
+            labelEx74.AutoSize = true;
+            labelEx74.Location = new Point(40, 24);
+            labelEx74.Name = "labelEx74";
+            labelEx74.Size = new Size(67, 15);
+            labelEx74.TabIndex = 84;
+            labelEx74.Text = "実施年月日";
             // 
             // labelEx75
             // 
-            this.labelEx75.AutoSize = true;
-            this.labelEx75.Location = new Point(12, 136);
-            this.labelEx75.Name = "labelEx75";
-            this.labelEx75.Size = new Size(19, 15);
-            this.labelEx75.TabIndex = 83;
-            this.labelEx75.Text = "③";
+            labelEx75.AutoSize = true;
+            labelEx75.Location = new Point(12, 136);
+            labelEx75.Name = "labelEx75";
+            labelEx75.Size = new Size(19, 15);
+            labelEx75.TabIndex = 83;
+            labelEx75.Text = "③";
             // 
             // labelEx76
             // 
-            this.labelEx76.AutoSize = true;
-            this.labelEx76.Location = new Point(12, 108);
-            this.labelEx76.Name = "labelEx76";
-            this.labelEx76.Size = new Size(19, 15);
-            this.labelEx76.TabIndex = 82;
-            this.labelEx76.Text = "②";
+            labelEx76.AutoSize = true;
+            labelEx76.Location = new Point(12, 108);
+            labelEx76.Name = "labelEx76";
+            labelEx76.Size = new Size(19, 15);
+            labelEx76.TabIndex = 82;
+            labelEx76.Text = "②";
             // 
             // labelEx77
             // 
-            this.labelEx77.AutoSize = true;
-            this.labelEx77.Location = new Point(12, 80);
-            this.labelEx77.Name = "labelEx77";
-            this.labelEx77.Size = new Size(19, 15);
-            this.labelEx77.TabIndex = 81;
-            this.labelEx77.Text = "①";
+            labelEx77.AutoSize = true;
+            labelEx77.Location = new Point(12, 80);
+            labelEx77.Name = "labelEx77";
+            labelEx77.Size = new Size(19, 15);
+            labelEx77.TabIndex = 81;
+            labelEx77.Text = "①";
             // 
             // AddGroupBoxProper
             // 
-            this.AddGroupBoxProper.Location = new Point(836, 44);
-            this.AddGroupBoxProper.Name = "AddGroupBoxProper";
-            this.AddGroupBoxProper.SetTextDirectionVertical = "";
-            this.AddGroupBoxProper.Size = new Size(68, 24);
-            this.AddGroupBoxProper.TabIndex = 80;
-            this.AddGroupBoxProper.Text = "追加";
-            this.AddGroupBoxProper.UseVisualStyleBackColor = true;
-            this.AddGroupBoxProper.Click += this.ButtonEx_Click;
+            AddGroupBoxProper.ForeColor = SystemColors.ControlText;
+            AddGroupBoxProper.Location = new Point(836, 44);
+            AddGroupBoxProper.Name = "AddGroupBoxProper";
+            AddGroupBoxProper.SetTextDirectionVertical = "";
+            AddGroupBoxProper.Size = new Size(68, 24);
+            AddGroupBoxProper.TabIndex = 80;
+            AddGroupBoxProper.Text = "追加";
+            AddGroupBoxProper.UseVisualStyleBackColor = true;
+            AddGroupBoxProper.Click += ButtonEx_Click;
             // 
             // ComboBoxExProperKind
             // 
-            this.ComboBoxExProperKind.FormattingEnabled = true;
-            this.ComboBoxExProperKind.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExProperKind.Items.AddRange(new object[] { "初任診断", "適齢診断", "特定診断Ⅰ", "特定診断Ⅱ", "一般診断", "カウンセリング付き定期診断", "特別診断" });
-            this.ComboBoxExProperKind.Location = new Point(228, 44);
-            this.ComboBoxExProperKind.Name = "ComboBoxExProperKind";
-            this.ComboBoxExProperKind.Size = new Size(328, 23);
-            this.ComboBoxExProperKind.TabIndex = 74;
+            ComboBoxExProperKind.FormattingEnabled = true;
+            ComboBoxExProperKind.ImeMode = ImeMode.Hiragana;
+            ComboBoxExProperKind.Items.AddRange(new object[] { "初任診断", "適齢診断", "特定診断Ⅰ", "特定診断Ⅱ", "一般診断", "カウンセリング付き定期診断", "特別診断" });
+            ComboBoxExProperKind.Location = new Point(228, 44);
+            ComboBoxExProperKind.Name = "ComboBoxExProperKind";
+            ComboBoxExProperKind.Size = new Size(328, 23);
+            ComboBoxExProperKind.TabIndex = 74;
             // 
             // DateTimeExProperDate
             // 
-            this.DateTimeExProperDate.CultureFlag = false;
-            this.DateTimeExProperDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExProperDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExProperDate.Location = new Point(36, 44);
-            this.DateTimeExProperDate.Name = "DateTimeExProperDate";
-            this.DateTimeExProperDate.Size = new Size(188, 23);
-            this.DateTimeExProperDate.TabIndex = 73;
-            this.DateTimeExProperDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExProperDate.CultureFlag = false;
+            DateTimeExProperDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExProperDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExProperDate.Location = new Point(36, 44);
+            DateTimeExProperDate.Name = "DateTimeExProperDate";
+            DateTimeExProperDate.Size = new Size(188, 23);
+            DateTimeExProperDate.TabIndex = 73;
+            DateTimeExProperDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExProperNote
             // 
-            this.TextBoxExProperNote.Location = new Point(560, 44);
-            this.TextBoxExProperNote.Name = "TextBoxExProperNote";
-            this.TextBoxExProperNote.Size = new Size(272, 23);
-            this.TextBoxExProperNote.TabIndex = 72;
-            this.TextBoxExProperNote.Text = "辻祐一";
+            TextBoxExProperNote.Location = new Point(560, 44);
+            TextBoxExProperNote.Name = "TextBoxExProperNote";
+            TextBoxExProperNote.Size = new Size(272, 23);
+            TextBoxExProperNote.TabIndex = 72;
+            TextBoxExProperNote.Text = "辻祐一";
             // 
             // ComboBoxExProperKind3
             // 
-            this.ComboBoxExProperKind3.Enabled = false;
-            this.ComboBoxExProperKind3.FormattingEnabled = true;
-            this.ComboBoxExProperKind3.Location = new Point(228, 132);
-            this.ComboBoxExProperKind3.Name = "ComboBoxExProperKind3";
-            this.ComboBoxExProperKind3.Size = new Size(328, 23);
-            this.ComboBoxExProperKind3.TabIndex = 71;
+            ComboBoxExProperKind3.Enabled = false;
+            ComboBoxExProperKind3.FormattingEnabled = true;
+            ComboBoxExProperKind3.Location = new Point(228, 132);
+            ComboBoxExProperKind3.Name = "ComboBoxExProperKind3";
+            ComboBoxExProperKind3.Size = new Size(328, 23);
+            ComboBoxExProperKind3.TabIndex = 71;
             // 
             // DateTimeExProperDate3
             // 
-            this.DateTimeExProperDate3.CultureFlag = false;
-            this.DateTimeExProperDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExProperDate3.Enabled = false;
-            this.DateTimeExProperDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExProperDate3.Location = new Point(36, 132);
-            this.DateTimeExProperDate3.Name = "DateTimeExProperDate3";
-            this.DateTimeExProperDate3.Size = new Size(188, 23);
-            this.DateTimeExProperDate3.TabIndex = 70;
-            this.DateTimeExProperDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExProperDate3.CultureFlag = false;
+            DateTimeExProperDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExProperDate3.Enabled = false;
+            DateTimeExProperDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExProperDate3.Location = new Point(36, 132);
+            DateTimeExProperDate3.Name = "DateTimeExProperDate3";
+            DateTimeExProperDate3.Size = new Size(188, 23);
+            DateTimeExProperDate3.TabIndex = 70;
+            DateTimeExProperDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExProperNote3
             // 
-            this.TextBoxExProperNote3.Enabled = false;
-            this.TextBoxExProperNote3.Location = new Point(560, 132);
-            this.TextBoxExProperNote3.Name = "TextBoxExProperNote3";
-            this.TextBoxExProperNote3.Size = new Size(272, 23);
-            this.TextBoxExProperNote3.TabIndex = 69;
-            this.TextBoxExProperNote3.Text = "辻祐一";
+            TextBoxExProperNote3.Enabled = false;
+            TextBoxExProperNote3.Location = new Point(560, 132);
+            TextBoxExProperNote3.Name = "TextBoxExProperNote3";
+            TextBoxExProperNote3.Size = new Size(272, 23);
+            TextBoxExProperNote3.TabIndex = 69;
+            TextBoxExProperNote3.Text = "辻祐一";
             // 
             // ComboBoxExProperKind2
             // 
-            this.ComboBoxExProperKind2.Enabled = false;
-            this.ComboBoxExProperKind2.FormattingEnabled = true;
-            this.ComboBoxExProperKind2.Location = new Point(228, 104);
-            this.ComboBoxExProperKind2.Name = "ComboBoxExProperKind2";
-            this.ComboBoxExProperKind2.Size = new Size(328, 23);
-            this.ComboBoxExProperKind2.TabIndex = 68;
+            ComboBoxExProperKind2.Enabled = false;
+            ComboBoxExProperKind2.FormattingEnabled = true;
+            ComboBoxExProperKind2.Location = new Point(228, 104);
+            ComboBoxExProperKind2.Name = "ComboBoxExProperKind2";
+            ComboBoxExProperKind2.Size = new Size(328, 23);
+            ComboBoxExProperKind2.TabIndex = 68;
             // 
             // DateTimeExProperDate2
             // 
-            this.DateTimeExProperDate2.CultureFlag = false;
-            this.DateTimeExProperDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExProperDate2.Enabled = false;
-            this.DateTimeExProperDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExProperDate2.Location = new Point(36, 104);
-            this.DateTimeExProperDate2.Name = "DateTimeExProperDate2";
-            this.DateTimeExProperDate2.Size = new Size(188, 23);
-            this.DateTimeExProperDate2.TabIndex = 67;
-            this.DateTimeExProperDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExProperDate2.CultureFlag = false;
+            DateTimeExProperDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExProperDate2.Enabled = false;
+            DateTimeExProperDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExProperDate2.Location = new Point(36, 104);
+            DateTimeExProperDate2.Name = "DateTimeExProperDate2";
+            DateTimeExProperDate2.Size = new Size(188, 23);
+            DateTimeExProperDate2.TabIndex = 67;
+            DateTimeExProperDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExProperNote2
             // 
-            this.TextBoxExProperNote2.Enabled = false;
-            this.TextBoxExProperNote2.Location = new Point(560, 104);
-            this.TextBoxExProperNote2.Name = "TextBoxExProperNote2";
-            this.TextBoxExProperNote2.Size = new Size(272, 23);
-            this.TextBoxExProperNote2.TabIndex = 66;
-            this.TextBoxExProperNote2.Text = "辻祐一";
+            TextBoxExProperNote2.Enabled = false;
+            TextBoxExProperNote2.Location = new Point(560, 104);
+            TextBoxExProperNote2.Name = "TextBoxExProperNote2";
+            TextBoxExProperNote2.Size = new Size(272, 23);
+            TextBoxExProperNote2.TabIndex = 66;
+            TextBoxExProperNote2.Text = "辻祐一";
             // 
             // ComboBoxExProperKind1
             // 
-            this.ComboBoxExProperKind1.Enabled = false;
-            this.ComboBoxExProperKind1.FormattingEnabled = true;
-            this.ComboBoxExProperKind1.Location = new Point(228, 76);
-            this.ComboBoxExProperKind1.Name = "ComboBoxExProperKind1";
-            this.ComboBoxExProperKind1.Size = new Size(328, 23);
-            this.ComboBoxExProperKind1.TabIndex = 65;
+            ComboBoxExProperKind1.Enabled = false;
+            ComboBoxExProperKind1.FormattingEnabled = true;
+            ComboBoxExProperKind1.Location = new Point(228, 76);
+            ComboBoxExProperKind1.Name = "ComboBoxExProperKind1";
+            ComboBoxExProperKind1.Size = new Size(328, 23);
+            ComboBoxExProperKind1.TabIndex = 65;
             // 
             // DateTimeExProperDate1
             // 
-            this.DateTimeExProperDate1.CultureFlag = false;
-            this.DateTimeExProperDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExProperDate1.Enabled = false;
-            this.DateTimeExProperDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExProperDate1.Location = new Point(36, 76);
-            this.DateTimeExProperDate1.Name = "DateTimeExProperDate1";
-            this.DateTimeExProperDate1.Size = new Size(188, 23);
-            this.DateTimeExProperDate1.TabIndex = 64;
-            this.DateTimeExProperDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExProperDate1.CultureFlag = false;
+            DateTimeExProperDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExProperDate1.Enabled = false;
+            DateTimeExProperDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExProperDate1.Location = new Point(36, 76);
+            DateTimeExProperDate1.Name = "DateTimeExProperDate1";
+            DateTimeExProperDate1.Size = new Size(188, 23);
+            DateTimeExProperDate1.TabIndex = 64;
+            DateTimeExProperDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExProperNote1
             // 
-            this.TextBoxExProperNote1.Enabled = false;
-            this.TextBoxExProperNote1.Location = new Point(560, 76);
-            this.TextBoxExProperNote1.Name = "TextBoxExProperNote1";
-            this.TextBoxExProperNote1.Size = new Size(272, 23);
-            this.TextBoxExProperNote1.TabIndex = 63;
-            this.TextBoxExProperNote1.Text = "辻祐一";
+            TextBoxExProperNote1.Enabled = false;
+            TextBoxExProperNote1.Location = new Point(560, 76);
+            TextBoxExProperNote1.Name = "TextBoxExProperNote1";
+            TextBoxExProperNote1.Size = new Size(272, 23);
+            TextBoxExProperNote1.TabIndex = 63;
+            TextBoxExProperNote1.Text = "辻祐一";
             // 
             // GroupBoxEducate
             // 
-            this.GroupBoxEducate.Controls.Add(this.labelEx68);
-            this.GroupBoxEducate.Controls.Add(this.labelEx69);
-            this.GroupBoxEducate.Controls.Add(this.labelEx70);
-            this.GroupBoxEducate.Controls.Add(this.labelEx71);
-            this.GroupBoxEducate.Controls.Add(this.labelEx72);
-            this.GroupBoxEducate.Controls.Add(this.AddGroupBoxEducate);
-            this.GroupBoxEducate.Controls.Add(this.ComboBoxExEducateName);
-            this.GroupBoxEducate.Controls.Add(this.DateTimeExEducateDate);
-            this.GroupBoxEducate.Controls.Add(this.ComboBoxExEducateName3);
-            this.GroupBoxEducate.Controls.Add(this.DateTimeExEducateDate3);
-            this.GroupBoxEducate.Controls.Add(this.ComboBoxExEducateName2);
-            this.GroupBoxEducate.Controls.Add(this.DateTimeExEducateDate2);
-            this.GroupBoxEducate.Controls.Add(this.ComboBoxExEducateName1);
-            this.GroupBoxEducate.Controls.Add(this.DateTimeExEducateDate1);
-            this.GroupBoxEducate.Location = new Point(8, 808);
-            this.GroupBoxEducate.Name = "GroupBoxEducate";
-            this.GroupBoxEducate.Size = new Size(916, 164);
-            this.GroupBoxEducate.TabIndex = 88;
-            this.GroupBoxEducate.TabStop = false;
-            this.GroupBoxEducate.Text = "社内教育の実施記録(Educate・詳細は教育記録を参照)";
+            GroupBoxEducate.Controls.Add(labelEx68);
+            GroupBoxEducate.Controls.Add(labelEx69);
+            GroupBoxEducate.Controls.Add(labelEx70);
+            GroupBoxEducate.Controls.Add(labelEx71);
+            GroupBoxEducate.Controls.Add(labelEx72);
+            GroupBoxEducate.Controls.Add(AddGroupBoxEducate);
+            GroupBoxEducate.Controls.Add(ComboBoxExEducateName);
+            GroupBoxEducate.Controls.Add(DateTimeExEducateDate);
+            GroupBoxEducate.Controls.Add(ComboBoxExEducateName3);
+            GroupBoxEducate.Controls.Add(DateTimeExEducateDate3);
+            GroupBoxEducate.Controls.Add(ComboBoxExEducateName2);
+            GroupBoxEducate.Controls.Add(DateTimeExEducateDate2);
+            GroupBoxEducate.Controls.Add(ComboBoxExEducateName1);
+            GroupBoxEducate.Controls.Add(DateTimeExEducateDate1);
+            GroupBoxEducate.Location = new Point(8, 808);
+            GroupBoxEducate.Name = "GroupBoxEducate";
+            GroupBoxEducate.Size = new Size(916, 164);
+            GroupBoxEducate.TabIndex = 88;
+            GroupBoxEducate.TabStop = false;
+            GroupBoxEducate.Text = "社内教育の実施記録(Educate・詳細は教育記録を参照)";
             // 
             // labelEx68
             // 
-            this.labelEx68.AutoSize = true;
-            this.labelEx68.Location = new Point(232, 24);
-            this.labelEx68.Name = "labelEx68";
-            this.labelEx68.Size = new Size(79, 15);
-            this.labelEx68.TabIndex = 85;
-            this.labelEx68.Text = "実施対象事由";
+            labelEx68.AutoSize = true;
+            labelEx68.Location = new Point(232, 24);
+            labelEx68.Name = "labelEx68";
+            labelEx68.Size = new Size(79, 15);
+            labelEx68.TabIndex = 85;
+            labelEx68.Text = "実施対象事由";
             // 
             // labelEx69
             // 
-            this.labelEx69.AutoSize = true;
-            this.labelEx69.Location = new Point(40, 24);
-            this.labelEx69.Name = "labelEx69";
-            this.labelEx69.Size = new Size(67, 15);
-            this.labelEx69.TabIndex = 84;
-            this.labelEx69.Text = "実施年月日";
+            labelEx69.AutoSize = true;
+            labelEx69.Location = new Point(40, 24);
+            labelEx69.Name = "labelEx69";
+            labelEx69.Size = new Size(67, 15);
+            labelEx69.TabIndex = 84;
+            labelEx69.Text = "実施年月日";
             // 
             // labelEx70
             // 
-            this.labelEx70.AutoSize = true;
-            this.labelEx70.Location = new Point(12, 136);
-            this.labelEx70.Name = "labelEx70";
-            this.labelEx70.Size = new Size(19, 15);
-            this.labelEx70.TabIndex = 83;
-            this.labelEx70.Text = "③";
+            labelEx70.AutoSize = true;
+            labelEx70.Location = new Point(12, 136);
+            labelEx70.Name = "labelEx70";
+            labelEx70.Size = new Size(19, 15);
+            labelEx70.TabIndex = 83;
+            labelEx70.Text = "③";
             // 
             // labelEx71
             // 
-            this.labelEx71.AutoSize = true;
-            this.labelEx71.Location = new Point(12, 108);
-            this.labelEx71.Name = "labelEx71";
-            this.labelEx71.Size = new Size(19, 15);
-            this.labelEx71.TabIndex = 82;
-            this.labelEx71.Text = "②";
+            labelEx71.AutoSize = true;
+            labelEx71.Location = new Point(12, 108);
+            labelEx71.Name = "labelEx71";
+            labelEx71.Size = new Size(19, 15);
+            labelEx71.TabIndex = 82;
+            labelEx71.Text = "②";
             // 
             // labelEx72
             // 
-            this.labelEx72.AutoSize = true;
-            this.labelEx72.Location = new Point(12, 80);
-            this.labelEx72.Name = "labelEx72";
-            this.labelEx72.Size = new Size(19, 15);
-            this.labelEx72.TabIndex = 81;
-            this.labelEx72.Text = "①";
+            labelEx72.AutoSize = true;
+            labelEx72.Location = new Point(12, 80);
+            labelEx72.Name = "labelEx72";
+            labelEx72.Size = new Size(19, 15);
+            labelEx72.TabIndex = 81;
+            labelEx72.Text = "①";
             // 
             // AddGroupBoxEducate
             // 
-            this.AddGroupBoxEducate.Location = new Point(836, 44);
-            this.AddGroupBoxEducate.Name = "AddGroupBoxEducate";
-            this.AddGroupBoxEducate.SetTextDirectionVertical = "";
-            this.AddGroupBoxEducate.Size = new Size(68, 24);
-            this.AddGroupBoxEducate.TabIndex = 80;
-            this.AddGroupBoxEducate.Text = "追加";
-            this.AddGroupBoxEducate.UseVisualStyleBackColor = true;
-            this.AddGroupBoxEducate.Click += this.ButtonEx_Click;
+            AddGroupBoxEducate.ForeColor = SystemColors.ControlText;
+            AddGroupBoxEducate.Location = new Point(836, 44);
+            AddGroupBoxEducate.Name = "AddGroupBoxEducate";
+            AddGroupBoxEducate.SetTextDirectionVertical = "";
+            AddGroupBoxEducate.Size = new Size(68, 24);
+            AddGroupBoxEducate.TabIndex = 80;
+            AddGroupBoxEducate.Text = "追加";
+            AddGroupBoxEducate.UseVisualStyleBackColor = true;
+            AddGroupBoxEducate.Click += ButtonEx_Click;
             // 
             // ComboBoxExEducateName
             // 
-            this.ComboBoxExEducateName.FormattingEnabled = true;
-            this.ComboBoxExEducateName.Location = new Point(228, 44);
-            this.ComboBoxExEducateName.Name = "ComboBoxExEducateName";
-            this.ComboBoxExEducateName.Size = new Size(604, 23);
-            this.ComboBoxExEducateName.TabIndex = 74;
+            ComboBoxExEducateName.FormattingEnabled = true;
+            ComboBoxExEducateName.Location = new Point(228, 44);
+            ComboBoxExEducateName.Name = "ComboBoxExEducateName";
+            ComboBoxExEducateName.Size = new Size(604, 23);
+            ComboBoxExEducateName.TabIndex = 74;
             // 
             // DateTimeExEducateDate
             // 
-            this.DateTimeExEducateDate.CultureFlag = false;
-            this.DateTimeExEducateDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEducateDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEducateDate.Location = new Point(36, 44);
-            this.DateTimeExEducateDate.Name = "DateTimeExEducateDate";
-            this.DateTimeExEducateDate.Size = new Size(188, 23);
-            this.DateTimeExEducateDate.TabIndex = 73;
-            this.DateTimeExEducateDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExEducateDate.CultureFlag = false;
+            DateTimeExEducateDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExEducateDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExEducateDate.Location = new Point(36, 44);
+            DateTimeExEducateDate.Name = "DateTimeExEducateDate";
+            DateTimeExEducateDate.Size = new Size(188, 23);
+            DateTimeExEducateDate.TabIndex = 73;
+            DateTimeExEducateDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExEducateName3
             // 
-            this.ComboBoxExEducateName3.Enabled = false;
-            this.ComboBoxExEducateName3.FormattingEnabled = true;
-            this.ComboBoxExEducateName3.Location = new Point(228, 132);
-            this.ComboBoxExEducateName3.Name = "ComboBoxExEducateName3";
-            this.ComboBoxExEducateName3.Size = new Size(604, 23);
-            this.ComboBoxExEducateName3.TabIndex = 71;
+            ComboBoxExEducateName3.Enabled = false;
+            ComboBoxExEducateName3.FormattingEnabled = true;
+            ComboBoxExEducateName3.Location = new Point(228, 132);
+            ComboBoxExEducateName3.Name = "ComboBoxExEducateName3";
+            ComboBoxExEducateName3.Size = new Size(604, 23);
+            ComboBoxExEducateName3.TabIndex = 71;
             // 
             // DateTimeExEducateDate3
             // 
-            this.DateTimeExEducateDate3.CultureFlag = false;
-            this.DateTimeExEducateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEducateDate3.Enabled = false;
-            this.DateTimeExEducateDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEducateDate3.Location = new Point(36, 132);
-            this.DateTimeExEducateDate3.Name = "DateTimeExEducateDate3";
-            this.DateTimeExEducateDate3.Size = new Size(188, 23);
-            this.DateTimeExEducateDate3.TabIndex = 70;
-            this.DateTimeExEducateDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExEducateDate3.CultureFlag = false;
+            DateTimeExEducateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExEducateDate3.Enabled = false;
+            DateTimeExEducateDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExEducateDate3.Location = new Point(36, 132);
+            DateTimeExEducateDate3.Name = "DateTimeExEducateDate3";
+            DateTimeExEducateDate3.Size = new Size(188, 23);
+            DateTimeExEducateDate3.TabIndex = 70;
+            DateTimeExEducateDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExEducateName2
             // 
-            this.ComboBoxExEducateName2.Enabled = false;
-            this.ComboBoxExEducateName2.FormattingEnabled = true;
-            this.ComboBoxExEducateName2.Location = new Point(228, 104);
-            this.ComboBoxExEducateName2.Name = "ComboBoxExEducateName2";
-            this.ComboBoxExEducateName2.Size = new Size(604, 23);
-            this.ComboBoxExEducateName2.TabIndex = 68;
+            ComboBoxExEducateName2.Enabled = false;
+            ComboBoxExEducateName2.FormattingEnabled = true;
+            ComboBoxExEducateName2.Location = new Point(228, 104);
+            ComboBoxExEducateName2.Name = "ComboBoxExEducateName2";
+            ComboBoxExEducateName2.Size = new Size(604, 23);
+            ComboBoxExEducateName2.TabIndex = 68;
             // 
             // DateTimeExEducateDate2
             // 
-            this.DateTimeExEducateDate2.CultureFlag = false;
-            this.DateTimeExEducateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEducateDate2.Enabled = false;
-            this.DateTimeExEducateDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEducateDate2.Location = new Point(36, 104);
-            this.DateTimeExEducateDate2.Name = "DateTimeExEducateDate2";
-            this.DateTimeExEducateDate2.Size = new Size(188, 23);
-            this.DateTimeExEducateDate2.TabIndex = 67;
-            this.DateTimeExEducateDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExEducateDate2.CultureFlag = false;
+            DateTimeExEducateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExEducateDate2.Enabled = false;
+            DateTimeExEducateDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExEducateDate2.Location = new Point(36, 104);
+            DateTimeExEducateDate2.Name = "DateTimeExEducateDate2";
+            DateTimeExEducateDate2.Size = new Size(188, 23);
+            DateTimeExEducateDate2.TabIndex = 67;
+            DateTimeExEducateDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ComboBoxExEducateName1
             // 
-            this.ComboBoxExEducateName1.Enabled = false;
-            this.ComboBoxExEducateName1.FormattingEnabled = true;
-            this.ComboBoxExEducateName1.Location = new Point(228, 76);
-            this.ComboBoxExEducateName1.Name = "ComboBoxExEducateName1";
-            this.ComboBoxExEducateName1.Size = new Size(604, 23);
-            this.ComboBoxExEducateName1.TabIndex = 65;
+            ComboBoxExEducateName1.Enabled = false;
+            ComboBoxExEducateName1.FormattingEnabled = true;
+            ComboBoxExEducateName1.Location = new Point(228, 76);
+            ComboBoxExEducateName1.Name = "ComboBoxExEducateName1";
+            ComboBoxExEducateName1.Size = new Size(604, 23);
+            ComboBoxExEducateName1.TabIndex = 65;
             // 
             // DateTimeExEducateDate1
             // 
-            this.DateTimeExEducateDate1.CultureFlag = false;
-            this.DateTimeExEducateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEducateDate1.Enabled = false;
-            this.DateTimeExEducateDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEducateDate1.Location = new Point(36, 76);
-            this.DateTimeExEducateDate1.Name = "DateTimeExEducateDate1";
-            this.DateTimeExEducateDate1.Size = new Size(188, 23);
-            this.DateTimeExEducateDate1.TabIndex = 64;
-            this.DateTimeExEducateDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExEducateDate1.CultureFlag = false;
+            DateTimeExEducateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExEducateDate1.Enabled = false;
+            DateTimeExEducateDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExEducateDate1.Location = new Point(36, 76);
+            DateTimeExEducateDate1.Name = "DateTimeExEducateDate1";
+            DateTimeExEducateDate1.Size = new Size(188, 23);
+            DateTimeExEducateDate1.TabIndex = 64;
+            DateTimeExEducateDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // GroupBoxExCarViolate
             // 
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx61);
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx62);
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx63);
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx64);
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx65);
-            this.GroupBoxExCarViolate.Controls.Add(this.labelEx66);
-            this.GroupBoxExCarViolate.Controls.Add(this.AddGroupBoxExCarViolate);
-            this.GroupBoxExCarViolate.Controls.Add(this.ComboBoxExCarViolateContent);
-            this.GroupBoxExCarViolate.Controls.Add(this.DateTimeExCarViolateDate);
-            this.GroupBoxExCarViolate.Controls.Add(this.TextBoxExCarViolatePlace);
-            this.GroupBoxExCarViolate.Controls.Add(this.ComboBoxExCarViolateContent3);
-            this.GroupBoxExCarViolate.Controls.Add(this.DateTimeExCarViolateDate3);
-            this.GroupBoxExCarViolate.Controls.Add(this.TextBoxExCarViolatePlace3);
-            this.GroupBoxExCarViolate.Controls.Add(this.ComboBoxExCarViolateContent2);
-            this.GroupBoxExCarViolate.Controls.Add(this.DateTimeExCarViolateDate2);
-            this.GroupBoxExCarViolate.Controls.Add(this.TextBoxExCarViolatePlace2);
-            this.GroupBoxExCarViolate.Controls.Add(this.ComboBoxExCarViolateContent1);
-            this.GroupBoxExCarViolate.Controls.Add(this.DateTimeExCarViolateDate1);
-            this.GroupBoxExCarViolate.Controls.Add(this.TextBoxExCarViolatePlace1);
-            this.GroupBoxExCarViolate.Location = new Point(8, 636);
-            this.GroupBoxExCarViolate.Name = "GroupBoxExCarViolate";
-            this.GroupBoxExCarViolate.Size = new Size(916, 164);
-            this.GroupBoxExCarViolate.TabIndex = 87;
-            this.GroupBoxExCarViolate.TabStop = false;
-            this.GroupBoxExCarViolate.Text = "業務上の交通違反歴(CarViolate)";
+            GroupBoxExCarViolate.Controls.Add(labelEx61);
+            GroupBoxExCarViolate.Controls.Add(labelEx62);
+            GroupBoxExCarViolate.Controls.Add(labelEx63);
+            GroupBoxExCarViolate.Controls.Add(labelEx64);
+            GroupBoxExCarViolate.Controls.Add(labelEx65);
+            GroupBoxExCarViolate.Controls.Add(labelEx66);
+            GroupBoxExCarViolate.Controls.Add(AddGroupBoxExCarViolate);
+            GroupBoxExCarViolate.Controls.Add(ComboBoxExCarViolateContent);
+            GroupBoxExCarViolate.Controls.Add(DateTimeExCarViolateDate);
+            GroupBoxExCarViolate.Controls.Add(TextBoxExCarViolatePlace);
+            GroupBoxExCarViolate.Controls.Add(ComboBoxExCarViolateContent3);
+            GroupBoxExCarViolate.Controls.Add(DateTimeExCarViolateDate3);
+            GroupBoxExCarViolate.Controls.Add(TextBoxExCarViolatePlace3);
+            GroupBoxExCarViolate.Controls.Add(ComboBoxExCarViolateContent2);
+            GroupBoxExCarViolate.Controls.Add(DateTimeExCarViolateDate2);
+            GroupBoxExCarViolate.Controls.Add(TextBoxExCarViolatePlace2);
+            GroupBoxExCarViolate.Controls.Add(ComboBoxExCarViolateContent1);
+            GroupBoxExCarViolate.Controls.Add(DateTimeExCarViolateDate1);
+            GroupBoxExCarViolate.Controls.Add(TextBoxExCarViolatePlace1);
+            GroupBoxExCarViolate.Location = new Point(8, 636);
+            GroupBoxExCarViolate.Name = "GroupBoxExCarViolate";
+            GroupBoxExCarViolate.Size = new Size(916, 164);
+            GroupBoxExCarViolate.TabIndex = 87;
+            GroupBoxExCarViolate.TabStop = false;
+            GroupBoxExCarViolate.Text = "業務上の交通違反歴(CarViolate)";
             // 
             // labelEx61
             // 
-            this.labelEx61.AutoSize = true;
-            this.labelEx61.Location = new Point(564, 24);
-            this.labelEx61.Name = "labelEx61";
-            this.labelEx61.Size = new Size(31, 15);
-            this.labelEx61.TabIndex = 86;
-            this.labelEx61.Text = "備考";
+            labelEx61.AutoSize = true;
+            labelEx61.Location = new Point(564, 24);
+            labelEx61.Name = "labelEx61";
+            labelEx61.Size = new Size(31, 15);
+            labelEx61.TabIndex = 86;
+            labelEx61.Text = "備考";
             // 
             // labelEx62
             // 
-            this.labelEx62.AutoSize = true;
-            this.labelEx62.Location = new Point(232, 24);
-            this.labelEx62.Name = "labelEx62";
-            this.labelEx62.Size = new Size(79, 15);
-            this.labelEx62.TabIndex = 85;
-            this.labelEx62.Text = "交通違反内容";
+            labelEx62.AutoSize = true;
+            labelEx62.Location = new Point(232, 24);
+            labelEx62.Name = "labelEx62";
+            labelEx62.Size = new Size(79, 15);
+            labelEx62.TabIndex = 85;
+            labelEx62.Text = "交通違反内容";
             // 
             // labelEx63
             // 
-            this.labelEx63.AutoSize = true;
-            this.labelEx63.Location = new Point(40, 24);
-            this.labelEx63.Name = "labelEx63";
-            this.labelEx63.Size = new Size(67, 15);
-            this.labelEx63.TabIndex = 84;
-            this.labelEx63.Text = "発生年月日";
+            labelEx63.AutoSize = true;
+            labelEx63.Location = new Point(40, 24);
+            labelEx63.Name = "labelEx63";
+            labelEx63.Size = new Size(67, 15);
+            labelEx63.TabIndex = 84;
+            labelEx63.Text = "発生年月日";
             // 
             // labelEx64
             // 
-            this.labelEx64.AutoSize = true;
-            this.labelEx64.Location = new Point(12, 136);
-            this.labelEx64.Name = "labelEx64";
-            this.labelEx64.Size = new Size(19, 15);
-            this.labelEx64.TabIndex = 83;
-            this.labelEx64.Text = "③";
+            labelEx64.AutoSize = true;
+            labelEx64.Location = new Point(12, 136);
+            labelEx64.Name = "labelEx64";
+            labelEx64.Size = new Size(19, 15);
+            labelEx64.TabIndex = 83;
+            labelEx64.Text = "③";
             // 
             // labelEx65
             // 
-            this.labelEx65.AutoSize = true;
-            this.labelEx65.Location = new Point(12, 108);
-            this.labelEx65.Name = "labelEx65";
-            this.labelEx65.Size = new Size(19, 15);
-            this.labelEx65.TabIndex = 82;
-            this.labelEx65.Text = "②";
+            labelEx65.AutoSize = true;
+            labelEx65.Location = new Point(12, 108);
+            labelEx65.Name = "labelEx65";
+            labelEx65.Size = new Size(19, 15);
+            labelEx65.TabIndex = 82;
+            labelEx65.Text = "②";
             // 
             // labelEx66
             // 
-            this.labelEx66.AutoSize = true;
-            this.labelEx66.Location = new Point(12, 80);
-            this.labelEx66.Name = "labelEx66";
-            this.labelEx66.Size = new Size(19, 15);
-            this.labelEx66.TabIndex = 81;
-            this.labelEx66.Text = "①";
+            labelEx66.AutoSize = true;
+            labelEx66.Location = new Point(12, 80);
+            labelEx66.Name = "labelEx66";
+            labelEx66.Size = new Size(19, 15);
+            labelEx66.TabIndex = 81;
+            labelEx66.Text = "①";
             // 
             // AddGroupBoxExCarViolate
             // 
-            this.AddGroupBoxExCarViolate.Location = new Point(836, 44);
-            this.AddGroupBoxExCarViolate.Name = "AddGroupBoxExCarViolate";
-            this.AddGroupBoxExCarViolate.SetTextDirectionVertical = "";
-            this.AddGroupBoxExCarViolate.Size = new Size(68, 24);
-            this.AddGroupBoxExCarViolate.TabIndex = 80;
-            this.AddGroupBoxExCarViolate.Text = "追加";
-            this.AddGroupBoxExCarViolate.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExCarViolate.Click += this.ButtonEx_Click;
+            AddGroupBoxExCarViolate.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExCarViolate.Location = new Point(836, 44);
+            AddGroupBoxExCarViolate.Name = "AddGroupBoxExCarViolate";
+            AddGroupBoxExCarViolate.SetTextDirectionVertical = "";
+            AddGroupBoxExCarViolate.Size = new Size(68, 24);
+            AddGroupBoxExCarViolate.TabIndex = 80;
+            AddGroupBoxExCarViolate.Text = "追加";
+            AddGroupBoxExCarViolate.UseVisualStyleBackColor = true;
+            AddGroupBoxExCarViolate.Click += ButtonEx_Click;
             // 
             // ComboBoxExCarViolateContent
             // 
-            this.ComboBoxExCarViolateContent.FormattingEnabled = true;
-            this.ComboBoxExCarViolateContent.Location = new Point(228, 44);
-            this.ComboBoxExCarViolateContent.Name = "ComboBoxExCarViolateContent";
-            this.ComboBoxExCarViolateContent.Size = new Size(328, 23);
-            this.ComboBoxExCarViolateContent.TabIndex = 74;
+            ComboBoxExCarViolateContent.FormattingEnabled = true;
+            ComboBoxExCarViolateContent.Location = new Point(228, 44);
+            ComboBoxExCarViolateContent.Name = "ComboBoxExCarViolateContent";
+            ComboBoxExCarViolateContent.Size = new Size(328, 23);
+            ComboBoxExCarViolateContent.TabIndex = 74;
             // 
             // DateTimeExCarViolateDate
             // 
-            this.DateTimeExCarViolateDate.CultureFlag = false;
-            this.DateTimeExCarViolateDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExCarViolateDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExCarViolateDate.Location = new Point(36, 44);
-            this.DateTimeExCarViolateDate.Name = "DateTimeExCarViolateDate";
-            this.DateTimeExCarViolateDate.Size = new Size(188, 23);
-            this.DateTimeExCarViolateDate.TabIndex = 73;
-            this.DateTimeExCarViolateDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExCarViolateDate.CultureFlag = false;
+            DateTimeExCarViolateDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExCarViolateDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExCarViolateDate.Location = new Point(36, 44);
+            DateTimeExCarViolateDate.Name = "DateTimeExCarViolateDate";
+            DateTimeExCarViolateDate.Size = new Size(188, 23);
+            DateTimeExCarViolateDate.TabIndex = 73;
+            DateTimeExCarViolateDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExCarViolatePlace
             // 
-            this.TextBoxExCarViolatePlace.Location = new Point(560, 44);
-            this.TextBoxExCarViolatePlace.Name = "TextBoxExCarViolatePlace";
-            this.TextBoxExCarViolatePlace.Size = new Size(272, 23);
-            this.TextBoxExCarViolatePlace.TabIndex = 72;
-            this.TextBoxExCarViolatePlace.Text = "辻祐一";
+            TextBoxExCarViolatePlace.Location = new Point(560, 44);
+            TextBoxExCarViolatePlace.Name = "TextBoxExCarViolatePlace";
+            TextBoxExCarViolatePlace.Size = new Size(272, 23);
+            TextBoxExCarViolatePlace.TabIndex = 72;
+            TextBoxExCarViolatePlace.Text = "辻祐一";
             // 
             // ComboBoxExCarViolateContent3
             // 
-            this.ComboBoxExCarViolateContent3.Enabled = false;
-            this.ComboBoxExCarViolateContent3.FormattingEnabled = true;
-            this.ComboBoxExCarViolateContent3.Location = new Point(228, 132);
-            this.ComboBoxExCarViolateContent3.Name = "ComboBoxExCarViolateContent3";
-            this.ComboBoxExCarViolateContent3.Size = new Size(328, 23);
-            this.ComboBoxExCarViolateContent3.TabIndex = 71;
+            ComboBoxExCarViolateContent3.Enabled = false;
+            ComboBoxExCarViolateContent3.FormattingEnabled = true;
+            ComboBoxExCarViolateContent3.Location = new Point(228, 132);
+            ComboBoxExCarViolateContent3.Name = "ComboBoxExCarViolateContent3";
+            ComboBoxExCarViolateContent3.Size = new Size(328, 23);
+            ComboBoxExCarViolateContent3.TabIndex = 71;
             // 
             // DateTimeExCarViolateDate3
             // 
-            this.DateTimeExCarViolateDate3.CultureFlag = false;
-            this.DateTimeExCarViolateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExCarViolateDate3.Enabled = false;
-            this.DateTimeExCarViolateDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExCarViolateDate3.Location = new Point(36, 132);
-            this.DateTimeExCarViolateDate3.Name = "DateTimeExCarViolateDate3";
-            this.DateTimeExCarViolateDate3.Size = new Size(188, 23);
-            this.DateTimeExCarViolateDate3.TabIndex = 70;
-            this.DateTimeExCarViolateDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExCarViolateDate3.CultureFlag = false;
+            DateTimeExCarViolateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExCarViolateDate3.Enabled = false;
+            DateTimeExCarViolateDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExCarViolateDate3.Location = new Point(36, 132);
+            DateTimeExCarViolateDate3.Name = "DateTimeExCarViolateDate3";
+            DateTimeExCarViolateDate3.Size = new Size(188, 23);
+            DateTimeExCarViolateDate3.TabIndex = 70;
+            DateTimeExCarViolateDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExCarViolatePlace3
             // 
-            this.TextBoxExCarViolatePlace3.Enabled = false;
-            this.TextBoxExCarViolatePlace3.Location = new Point(560, 132);
-            this.TextBoxExCarViolatePlace3.Name = "TextBoxExCarViolatePlace3";
-            this.TextBoxExCarViolatePlace3.Size = new Size(272, 23);
-            this.TextBoxExCarViolatePlace3.TabIndex = 69;
-            this.TextBoxExCarViolatePlace3.Text = "辻祐一";
+            TextBoxExCarViolatePlace3.Enabled = false;
+            TextBoxExCarViolatePlace3.Location = new Point(560, 132);
+            TextBoxExCarViolatePlace3.Name = "TextBoxExCarViolatePlace3";
+            TextBoxExCarViolatePlace3.Size = new Size(272, 23);
+            TextBoxExCarViolatePlace3.TabIndex = 69;
+            TextBoxExCarViolatePlace3.Text = "辻祐一";
             // 
             // ComboBoxExCarViolateContent2
             // 
-            this.ComboBoxExCarViolateContent2.Enabled = false;
-            this.ComboBoxExCarViolateContent2.FormattingEnabled = true;
-            this.ComboBoxExCarViolateContent2.Location = new Point(228, 104);
-            this.ComboBoxExCarViolateContent2.Name = "ComboBoxExCarViolateContent2";
-            this.ComboBoxExCarViolateContent2.Size = new Size(328, 23);
-            this.ComboBoxExCarViolateContent2.TabIndex = 68;
+            ComboBoxExCarViolateContent2.Enabled = false;
+            ComboBoxExCarViolateContent2.FormattingEnabled = true;
+            ComboBoxExCarViolateContent2.Location = new Point(228, 104);
+            ComboBoxExCarViolateContent2.Name = "ComboBoxExCarViolateContent2";
+            ComboBoxExCarViolateContent2.Size = new Size(328, 23);
+            ComboBoxExCarViolateContent2.TabIndex = 68;
             // 
             // DateTimeExCarViolateDate2
             // 
-            this.DateTimeExCarViolateDate2.CultureFlag = false;
-            this.DateTimeExCarViolateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExCarViolateDate2.Enabled = false;
-            this.DateTimeExCarViolateDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExCarViolateDate2.Location = new Point(36, 104);
-            this.DateTimeExCarViolateDate2.Name = "DateTimeExCarViolateDate2";
-            this.DateTimeExCarViolateDate2.Size = new Size(188, 23);
-            this.DateTimeExCarViolateDate2.TabIndex = 67;
-            this.DateTimeExCarViolateDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExCarViolateDate2.CultureFlag = false;
+            DateTimeExCarViolateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExCarViolateDate2.Enabled = false;
+            DateTimeExCarViolateDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExCarViolateDate2.Location = new Point(36, 104);
+            DateTimeExCarViolateDate2.Name = "DateTimeExCarViolateDate2";
+            DateTimeExCarViolateDate2.Size = new Size(188, 23);
+            DateTimeExCarViolateDate2.TabIndex = 67;
+            DateTimeExCarViolateDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExCarViolatePlace2
             // 
-            this.TextBoxExCarViolatePlace2.Enabled = false;
-            this.TextBoxExCarViolatePlace2.Location = new Point(560, 104);
-            this.TextBoxExCarViolatePlace2.Name = "TextBoxExCarViolatePlace2";
-            this.TextBoxExCarViolatePlace2.Size = new Size(272, 23);
-            this.TextBoxExCarViolatePlace2.TabIndex = 66;
-            this.TextBoxExCarViolatePlace2.Text = "辻祐一";
+            TextBoxExCarViolatePlace2.Enabled = false;
+            TextBoxExCarViolatePlace2.Location = new Point(560, 104);
+            TextBoxExCarViolatePlace2.Name = "TextBoxExCarViolatePlace2";
+            TextBoxExCarViolatePlace2.Size = new Size(272, 23);
+            TextBoxExCarViolatePlace2.TabIndex = 66;
+            TextBoxExCarViolatePlace2.Text = "辻祐一";
             // 
             // ComboBoxExCarViolateContent1
             // 
-            this.ComboBoxExCarViolateContent1.Enabled = false;
-            this.ComboBoxExCarViolateContent1.FormattingEnabled = true;
-            this.ComboBoxExCarViolateContent1.Location = new Point(228, 76);
-            this.ComboBoxExCarViolateContent1.Name = "ComboBoxExCarViolateContent1";
-            this.ComboBoxExCarViolateContent1.Size = new Size(328, 23);
-            this.ComboBoxExCarViolateContent1.TabIndex = 65;
+            ComboBoxExCarViolateContent1.Enabled = false;
+            ComboBoxExCarViolateContent1.FormattingEnabled = true;
+            ComboBoxExCarViolateContent1.Location = new Point(228, 76);
+            ComboBoxExCarViolateContent1.Name = "ComboBoxExCarViolateContent1";
+            ComboBoxExCarViolateContent1.Size = new Size(328, 23);
+            ComboBoxExCarViolateContent1.TabIndex = 65;
             // 
             // DateTimeExCarViolateDate1
             // 
-            this.DateTimeExCarViolateDate1.CultureFlag = false;
-            this.DateTimeExCarViolateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExCarViolateDate1.Enabled = false;
-            this.DateTimeExCarViolateDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExCarViolateDate1.Location = new Point(36, 76);
-            this.DateTimeExCarViolateDate1.Name = "DateTimeExCarViolateDate1";
-            this.DateTimeExCarViolateDate1.Size = new Size(188, 23);
-            this.DateTimeExCarViolateDate1.TabIndex = 64;
-            this.DateTimeExCarViolateDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExCarViolateDate1.CultureFlag = false;
+            DateTimeExCarViolateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExCarViolateDate1.Enabled = false;
+            DateTimeExCarViolateDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExCarViolateDate1.Location = new Point(36, 76);
+            DateTimeExCarViolateDate1.Name = "DateTimeExCarViolateDate1";
+            DateTimeExCarViolateDate1.Size = new Size(188, 23);
+            DateTimeExCarViolateDate1.TabIndex = 64;
+            DateTimeExCarViolateDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExCarViolatePlace1
             // 
-            this.TextBoxExCarViolatePlace1.Enabled = false;
-            this.TextBoxExCarViolatePlace1.Location = new Point(560, 76);
-            this.TextBoxExCarViolatePlace1.Name = "TextBoxExCarViolatePlace1";
-            this.TextBoxExCarViolatePlace1.Size = new Size(272, 23);
-            this.TextBoxExCarViolatePlace1.TabIndex = 63;
-            this.TextBoxExCarViolatePlace1.Text = "辻祐一";
+            TextBoxExCarViolatePlace1.Enabled = false;
+            TextBoxExCarViolatePlace1.Location = new Point(560, 76);
+            TextBoxExCarViolatePlace1.Name = "TextBoxExCarViolatePlace1";
+            TextBoxExCarViolatePlace1.Size = new Size(272, 23);
+            TextBoxExCarViolatePlace1.TabIndex = 63;
+            TextBoxExCarViolatePlace1.Text = "辻祐一";
             // 
             // groupBoxEx9
             // 
-            this.groupBoxEx9.Controls.Add(this.labelEx60);
-            this.groupBoxEx9.Location = new Point(8, 556);
-            this.groupBoxEx9.Name = "groupBoxEx9";
-            this.groupBoxEx9.Size = new Size(916, 72);
-            this.groupBoxEx9.TabIndex = 82;
-            this.groupBoxEx9.TabStop = false;
-            this.groupBoxEx9.Text = "交通事故歴";
+            groupBoxEx9.Controls.Add(labelEx60);
+            groupBoxEx9.Location = new Point(8, 556);
+            groupBoxEx9.Name = "groupBoxEx9";
+            groupBoxEx9.Size = new Size(916, 72);
+            groupBoxEx9.TabIndex = 82;
+            groupBoxEx9.TabStop = false;
+            groupBoxEx9.Text = "交通事故歴";
             // 
             // labelEx60
             // 
-            this.labelEx60.Font = new Font("Yu Gothic UI", 14.25F);
-            this.labelEx60.ForeColor = Color.Blue;
-            this.labelEx60.Location = new Point(8, 24);
-            this.labelEx60.Name = "labelEx60";
-            this.labelEx60.Size = new Size(904, 40);
-            this.labelEx60.TabIndex = 0;
-            this.labelEx60.Text = "事故記録は「事故報告書記録」から入力して下さい";
-            this.labelEx60.TextAlign = ContentAlignment.MiddleCenter;
+            labelEx60.Font = new Font("Yu Gothic UI", 14.25F);
+            labelEx60.ForeColor = Color.Blue;
+            labelEx60.Location = new Point(8, 24);
+            labelEx60.Name = "labelEx60";
+            labelEx60.Size = new Size(904, 40);
+            labelEx60.TabIndex = 0;
+            labelEx60.Text = "事故記録は「事故報告書記録」から入力して下さい";
+            labelEx60.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // GroupBoxExMedicalExamination
             // 
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx59);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx58);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx53);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx50);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx51);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.labelEx52);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.AddGroupBoxExMedical);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.ComboBoxExMedicalInstitutionName);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.DateTimeExMedicalExaminationDate);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.TextBoxExMedicalExaminationNote);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.ComboBoxExMedicalInstitutionName3);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.DateTimeExMedicalExaminationDate3);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.TextBoxExMedicalExaminationNote3);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.ComboBoxExMedicalInstitutionName2);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.DateTimeExMedicalExaminationDate2);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.TextBoxExMedicalExaminationNote2);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.ComboBoxExMedicalInstitutionName1);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.DateTimeExMedicalExaminationDate1);
-            this.GroupBoxExMedicalExamination.Controls.Add(this.TextBoxExMedicalExaminationNote1);
-            this.GroupBoxExMedicalExamination.Location = new Point(8, 388);
-            this.GroupBoxExMedicalExamination.Name = "GroupBoxExMedicalExamination";
-            this.GroupBoxExMedicalExamination.Size = new Size(916, 164);
-            this.GroupBoxExMedicalExamination.TabIndex = 81;
-            this.GroupBoxExMedicalExamination.TabStop = false;
-            this.GroupBoxExMedicalExamination.Text = "健康状態(健康診断等の実施結果による特記すべき事項)　※運転の可否に十分に留意すること(MedicalExamination)";
+            GroupBoxExMedicalExamination.Controls.Add(labelEx59);
+            GroupBoxExMedicalExamination.Controls.Add(labelEx58);
+            GroupBoxExMedicalExamination.Controls.Add(labelEx53);
+            GroupBoxExMedicalExamination.Controls.Add(labelEx50);
+            GroupBoxExMedicalExamination.Controls.Add(labelEx51);
+            GroupBoxExMedicalExamination.Controls.Add(labelEx52);
+            GroupBoxExMedicalExamination.Controls.Add(AddGroupBoxExMedical);
+            GroupBoxExMedicalExamination.Controls.Add(ComboBoxExMedicalInstitutionName);
+            GroupBoxExMedicalExamination.Controls.Add(DateTimeExMedicalExaminationDate);
+            GroupBoxExMedicalExamination.Controls.Add(TextBoxExMedicalExaminationNote);
+            GroupBoxExMedicalExamination.Controls.Add(ComboBoxExMedicalInstitutionName3);
+            GroupBoxExMedicalExamination.Controls.Add(DateTimeExMedicalExaminationDate3);
+            GroupBoxExMedicalExamination.Controls.Add(TextBoxExMedicalExaminationNote3);
+            GroupBoxExMedicalExamination.Controls.Add(ComboBoxExMedicalInstitutionName2);
+            GroupBoxExMedicalExamination.Controls.Add(DateTimeExMedicalExaminationDate2);
+            GroupBoxExMedicalExamination.Controls.Add(TextBoxExMedicalExaminationNote2);
+            GroupBoxExMedicalExamination.Controls.Add(ComboBoxExMedicalInstitutionName1);
+            GroupBoxExMedicalExamination.Controls.Add(DateTimeExMedicalExaminationDate1);
+            GroupBoxExMedicalExamination.Controls.Add(TextBoxExMedicalExaminationNote1);
+            GroupBoxExMedicalExamination.Location = new Point(8, 388);
+            GroupBoxExMedicalExamination.Name = "GroupBoxExMedicalExamination";
+            GroupBoxExMedicalExamination.Size = new Size(916, 164);
+            GroupBoxExMedicalExamination.TabIndex = 81;
+            GroupBoxExMedicalExamination.TabStop = false;
+            GroupBoxExMedicalExamination.Text = "健康状態(健康診断等の実施結果による特記すべき事項)　※運転の可否に十分に留意すること(MedicalExamination)";
             // 
             // labelEx59
             // 
-            this.labelEx59.AutoSize = true;
-            this.labelEx59.Location = new Point(564, 24);
-            this.labelEx59.Name = "labelEx59";
-            this.labelEx59.Size = new Size(130, 15);
-            this.labelEx59.TabIndex = 86;
-            this.labelEx59.Text = "健診以外で気づいた点等";
+            labelEx59.AutoSize = true;
+            labelEx59.Location = new Point(564, 24);
+            labelEx59.Name = "labelEx59";
+            labelEx59.Size = new Size(130, 15);
+            labelEx59.TabIndex = 86;
+            labelEx59.Text = "健診以外で気づいた点等";
             // 
             // labelEx58
             // 
-            this.labelEx58.AutoSize = true;
-            this.labelEx58.Location = new Point(232, 24);
-            this.labelEx58.Name = "labelEx58";
-            this.labelEx58.Size = new Size(85, 15);
-            this.labelEx58.TabIndex = 85;
-            this.labelEx58.Text = "健診機関・詳細";
+            labelEx58.AutoSize = true;
+            labelEx58.Location = new Point(232, 24);
+            labelEx58.Name = "labelEx58";
+            labelEx58.Size = new Size(85, 15);
+            labelEx58.TabIndex = 85;
+            labelEx58.Text = "健診機関・詳細";
             // 
             // labelEx53
             // 
-            this.labelEx53.AutoSize = true;
-            this.labelEx53.Location = new Point(40, 24);
-            this.labelEx53.Name = "labelEx53";
-            this.labelEx53.Size = new Size(43, 15);
-            this.labelEx53.TabIndex = 84;
-            this.labelEx53.Text = "受診日";
+            labelEx53.AutoSize = true;
+            labelEx53.Location = new Point(40, 24);
+            labelEx53.Name = "labelEx53";
+            labelEx53.Size = new Size(43, 15);
+            labelEx53.TabIndex = 84;
+            labelEx53.Text = "受診日";
             // 
             // labelEx50
             // 
-            this.labelEx50.AutoSize = true;
-            this.labelEx50.Location = new Point(12, 136);
-            this.labelEx50.Name = "labelEx50";
-            this.labelEx50.Size = new Size(19, 15);
-            this.labelEx50.TabIndex = 83;
-            this.labelEx50.Text = "③";
+            labelEx50.AutoSize = true;
+            labelEx50.Location = new Point(12, 136);
+            labelEx50.Name = "labelEx50";
+            labelEx50.Size = new Size(19, 15);
+            labelEx50.TabIndex = 83;
+            labelEx50.Text = "③";
             // 
             // labelEx51
             // 
-            this.labelEx51.AutoSize = true;
-            this.labelEx51.Location = new Point(12, 108);
-            this.labelEx51.Name = "labelEx51";
-            this.labelEx51.Size = new Size(19, 15);
-            this.labelEx51.TabIndex = 82;
-            this.labelEx51.Text = "②";
+            labelEx51.AutoSize = true;
+            labelEx51.Location = new Point(12, 108);
+            labelEx51.Name = "labelEx51";
+            labelEx51.Size = new Size(19, 15);
+            labelEx51.TabIndex = 82;
+            labelEx51.Text = "②";
             // 
             // labelEx52
             // 
-            this.labelEx52.AutoSize = true;
-            this.labelEx52.Location = new Point(12, 80);
-            this.labelEx52.Name = "labelEx52";
-            this.labelEx52.Size = new Size(19, 15);
-            this.labelEx52.TabIndex = 81;
-            this.labelEx52.Text = "①";
+            labelEx52.AutoSize = true;
+            labelEx52.Location = new Point(12, 80);
+            labelEx52.Name = "labelEx52";
+            labelEx52.Size = new Size(19, 15);
+            labelEx52.TabIndex = 81;
+            labelEx52.Text = "①";
             // 
             // AddGroupBoxExMedical
             // 
-            this.AddGroupBoxExMedical.Location = new Point(836, 44);
-            this.AddGroupBoxExMedical.Name = "AddGroupBoxExMedical";
-            this.AddGroupBoxExMedical.SetTextDirectionVertical = "";
-            this.AddGroupBoxExMedical.Size = new Size(68, 24);
-            this.AddGroupBoxExMedical.TabIndex = 80;
-            this.AddGroupBoxExMedical.Text = "追加";
-            this.AddGroupBoxExMedical.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExMedical.Click += this.ButtonEx_Click;
+            AddGroupBoxExMedical.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExMedical.Location = new Point(836, 44);
+            AddGroupBoxExMedical.Name = "AddGroupBoxExMedical";
+            AddGroupBoxExMedical.SetTextDirectionVertical = "";
+            AddGroupBoxExMedical.Size = new Size(68, 24);
+            AddGroupBoxExMedical.TabIndex = 80;
+            AddGroupBoxExMedical.Text = "追加";
+            AddGroupBoxExMedical.UseVisualStyleBackColor = true;
+            AddGroupBoxExMedical.Click += ButtonEx_Click;
             // 
             // ComboBoxExMedicalInstitutionName
             // 
-            this.ComboBoxExMedicalInstitutionName.FormattingEnabled = true;
-            this.ComboBoxExMedicalInstitutionName.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExMedicalInstitutionName.Items.AddRange(new object[] { "一般財団法人　日本健康増進財団" });
-            this.ComboBoxExMedicalInstitutionName.Location = new Point(228, 44);
-            this.ComboBoxExMedicalInstitutionName.Name = "ComboBoxExMedicalInstitutionName";
-            this.ComboBoxExMedicalInstitutionName.Size = new Size(328, 23);
-            this.ComboBoxExMedicalInstitutionName.TabIndex = 74;
+            ComboBoxExMedicalInstitutionName.FormattingEnabled = true;
+            ComboBoxExMedicalInstitutionName.ImeMode = ImeMode.Hiragana;
+            ComboBoxExMedicalInstitutionName.Items.AddRange(new object[] { "一般財団法人　日本健康増進財団" });
+            ComboBoxExMedicalInstitutionName.Location = new Point(228, 44);
+            ComboBoxExMedicalInstitutionName.Name = "ComboBoxExMedicalInstitutionName";
+            ComboBoxExMedicalInstitutionName.Size = new Size(328, 23);
+            ComboBoxExMedicalInstitutionName.TabIndex = 74;
             // 
             // DateTimeExMedicalExaminationDate
             // 
-            this.DateTimeExMedicalExaminationDate.CultureFlag = false;
-            this.DateTimeExMedicalExaminationDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExMedicalExaminationDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExMedicalExaminationDate.ImeMode = ImeMode.Disable;
-            this.DateTimeExMedicalExaminationDate.Location = new Point(36, 44);
-            this.DateTimeExMedicalExaminationDate.Name = "DateTimeExMedicalExaminationDate";
-            this.DateTimeExMedicalExaminationDate.Size = new Size(188, 23);
-            this.DateTimeExMedicalExaminationDate.TabIndex = 73;
-            this.DateTimeExMedicalExaminationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExMedicalExaminationDate.CultureFlag = false;
+            DateTimeExMedicalExaminationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExMedicalExaminationDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExMedicalExaminationDate.ImeMode = ImeMode.Disable;
+            DateTimeExMedicalExaminationDate.Location = new Point(36, 44);
+            DateTimeExMedicalExaminationDate.Name = "DateTimeExMedicalExaminationDate";
+            DateTimeExMedicalExaminationDate.Size = new Size(188, 23);
+            DateTimeExMedicalExaminationDate.TabIndex = 73;
+            DateTimeExMedicalExaminationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExMedicalExaminationNote
             // 
-            this.TextBoxExMedicalExaminationNote.Location = new Point(560, 44);
-            this.TextBoxExMedicalExaminationNote.Name = "TextBoxExMedicalExaminationNote";
-            this.TextBoxExMedicalExaminationNote.Size = new Size(272, 23);
-            this.TextBoxExMedicalExaminationNote.TabIndex = 72;
-            this.TextBoxExMedicalExaminationNote.Text = "辻祐一";
+            TextBoxExMedicalExaminationNote.Location = new Point(560, 44);
+            TextBoxExMedicalExaminationNote.Name = "TextBoxExMedicalExaminationNote";
+            TextBoxExMedicalExaminationNote.Size = new Size(272, 23);
+            TextBoxExMedicalExaminationNote.TabIndex = 72;
+            TextBoxExMedicalExaminationNote.Text = "辻祐一";
             // 
             // ComboBoxExMedicalInstitutionName3
             // 
-            this.ComboBoxExMedicalInstitutionName3.Enabled = false;
-            this.ComboBoxExMedicalInstitutionName3.FormattingEnabled = true;
-            this.ComboBoxExMedicalInstitutionName3.Location = new Point(228, 132);
-            this.ComboBoxExMedicalInstitutionName3.Name = "ComboBoxExMedicalInstitutionName3";
-            this.ComboBoxExMedicalInstitutionName3.Size = new Size(328, 23);
-            this.ComboBoxExMedicalInstitutionName3.TabIndex = 71;
+            ComboBoxExMedicalInstitutionName3.Enabled = false;
+            ComboBoxExMedicalInstitutionName3.FormattingEnabled = true;
+            ComboBoxExMedicalInstitutionName3.Location = new Point(228, 132);
+            ComboBoxExMedicalInstitutionName3.Name = "ComboBoxExMedicalInstitutionName3";
+            ComboBoxExMedicalInstitutionName3.Size = new Size(328, 23);
+            ComboBoxExMedicalInstitutionName3.TabIndex = 71;
             // 
             // DateTimeExMedicalExaminationDate3
             // 
-            this.DateTimeExMedicalExaminationDate3.CultureFlag = false;
-            this.DateTimeExMedicalExaminationDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExMedicalExaminationDate3.Enabled = false;
-            this.DateTimeExMedicalExaminationDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExMedicalExaminationDate3.Location = new Point(36, 132);
-            this.DateTimeExMedicalExaminationDate3.Name = "DateTimeExMedicalExaminationDate3";
-            this.DateTimeExMedicalExaminationDate3.Size = new Size(188, 23);
-            this.DateTimeExMedicalExaminationDate3.TabIndex = 70;
-            this.DateTimeExMedicalExaminationDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExMedicalExaminationDate3.CultureFlag = false;
+            DateTimeExMedicalExaminationDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExMedicalExaminationDate3.Enabled = false;
+            DateTimeExMedicalExaminationDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExMedicalExaminationDate3.Location = new Point(36, 132);
+            DateTimeExMedicalExaminationDate3.Name = "DateTimeExMedicalExaminationDate3";
+            DateTimeExMedicalExaminationDate3.Size = new Size(188, 23);
+            DateTimeExMedicalExaminationDate3.TabIndex = 70;
+            DateTimeExMedicalExaminationDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExMedicalExaminationNote3
             // 
-            this.TextBoxExMedicalExaminationNote3.Enabled = false;
-            this.TextBoxExMedicalExaminationNote3.Location = new Point(560, 132);
-            this.TextBoxExMedicalExaminationNote3.Name = "TextBoxExMedicalExaminationNote3";
-            this.TextBoxExMedicalExaminationNote3.Size = new Size(272, 23);
-            this.TextBoxExMedicalExaminationNote3.TabIndex = 69;
-            this.TextBoxExMedicalExaminationNote3.Text = "辻祐一";
+            TextBoxExMedicalExaminationNote3.Enabled = false;
+            TextBoxExMedicalExaminationNote3.Location = new Point(560, 132);
+            TextBoxExMedicalExaminationNote3.Name = "TextBoxExMedicalExaminationNote3";
+            TextBoxExMedicalExaminationNote3.Size = new Size(272, 23);
+            TextBoxExMedicalExaminationNote3.TabIndex = 69;
+            TextBoxExMedicalExaminationNote3.Text = "辻祐一";
             // 
             // ComboBoxExMedicalInstitutionName2
             // 
-            this.ComboBoxExMedicalInstitutionName2.Enabled = false;
-            this.ComboBoxExMedicalInstitutionName2.FormattingEnabled = true;
-            this.ComboBoxExMedicalInstitutionName2.Location = new Point(228, 104);
-            this.ComboBoxExMedicalInstitutionName2.Name = "ComboBoxExMedicalInstitutionName2";
-            this.ComboBoxExMedicalInstitutionName2.Size = new Size(328, 23);
-            this.ComboBoxExMedicalInstitutionName2.TabIndex = 68;
+            ComboBoxExMedicalInstitutionName2.Enabled = false;
+            ComboBoxExMedicalInstitutionName2.FormattingEnabled = true;
+            ComboBoxExMedicalInstitutionName2.Location = new Point(228, 104);
+            ComboBoxExMedicalInstitutionName2.Name = "ComboBoxExMedicalInstitutionName2";
+            ComboBoxExMedicalInstitutionName2.Size = new Size(328, 23);
+            ComboBoxExMedicalInstitutionName2.TabIndex = 68;
             // 
             // DateTimeExMedicalExaminationDate2
             // 
-            this.DateTimeExMedicalExaminationDate2.CultureFlag = false;
-            this.DateTimeExMedicalExaminationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExMedicalExaminationDate2.Enabled = false;
-            this.DateTimeExMedicalExaminationDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExMedicalExaminationDate2.Location = new Point(36, 104);
-            this.DateTimeExMedicalExaminationDate2.Name = "DateTimeExMedicalExaminationDate2";
-            this.DateTimeExMedicalExaminationDate2.Size = new Size(188, 23);
-            this.DateTimeExMedicalExaminationDate2.TabIndex = 67;
-            this.DateTimeExMedicalExaminationDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExMedicalExaminationDate2.CultureFlag = false;
+            DateTimeExMedicalExaminationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExMedicalExaminationDate2.Enabled = false;
+            DateTimeExMedicalExaminationDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExMedicalExaminationDate2.Location = new Point(36, 104);
+            DateTimeExMedicalExaminationDate2.Name = "DateTimeExMedicalExaminationDate2";
+            DateTimeExMedicalExaminationDate2.Size = new Size(188, 23);
+            DateTimeExMedicalExaminationDate2.TabIndex = 67;
+            DateTimeExMedicalExaminationDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExMedicalExaminationNote2
             // 
-            this.TextBoxExMedicalExaminationNote2.Enabled = false;
-            this.TextBoxExMedicalExaminationNote2.Location = new Point(560, 104);
-            this.TextBoxExMedicalExaminationNote2.Name = "TextBoxExMedicalExaminationNote2";
-            this.TextBoxExMedicalExaminationNote2.Size = new Size(272, 23);
-            this.TextBoxExMedicalExaminationNote2.TabIndex = 66;
-            this.TextBoxExMedicalExaminationNote2.Text = "辻祐一";
+            TextBoxExMedicalExaminationNote2.Enabled = false;
+            TextBoxExMedicalExaminationNote2.Location = new Point(560, 104);
+            TextBoxExMedicalExaminationNote2.Name = "TextBoxExMedicalExaminationNote2";
+            TextBoxExMedicalExaminationNote2.Size = new Size(272, 23);
+            TextBoxExMedicalExaminationNote2.TabIndex = 66;
+            TextBoxExMedicalExaminationNote2.Text = "辻祐一";
             // 
             // ComboBoxExMedicalInstitutionName1
             // 
-            this.ComboBoxExMedicalInstitutionName1.Enabled = false;
-            this.ComboBoxExMedicalInstitutionName1.FormattingEnabled = true;
-            this.ComboBoxExMedicalInstitutionName1.Location = new Point(228, 76);
-            this.ComboBoxExMedicalInstitutionName1.Name = "ComboBoxExMedicalInstitutionName1";
-            this.ComboBoxExMedicalInstitutionName1.Size = new Size(328, 23);
-            this.ComboBoxExMedicalInstitutionName1.TabIndex = 65;
+            ComboBoxExMedicalInstitutionName1.Enabled = false;
+            ComboBoxExMedicalInstitutionName1.FormattingEnabled = true;
+            ComboBoxExMedicalInstitutionName1.Location = new Point(228, 76);
+            ComboBoxExMedicalInstitutionName1.Name = "ComboBoxExMedicalInstitutionName1";
+            ComboBoxExMedicalInstitutionName1.Size = new Size(328, 23);
+            ComboBoxExMedicalInstitutionName1.TabIndex = 65;
             // 
             // DateTimeExMedicalExaminationDate1
             // 
-            this.DateTimeExMedicalExaminationDate1.CultureFlag = false;
-            this.DateTimeExMedicalExaminationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExMedicalExaminationDate1.Enabled = false;
-            this.DateTimeExMedicalExaminationDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExMedicalExaminationDate1.Location = new Point(36, 76);
-            this.DateTimeExMedicalExaminationDate1.Name = "DateTimeExMedicalExaminationDate1";
-            this.DateTimeExMedicalExaminationDate1.Size = new Size(188, 23);
-            this.DateTimeExMedicalExaminationDate1.TabIndex = 64;
-            this.DateTimeExMedicalExaminationDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExMedicalExaminationDate1.CultureFlag = false;
+            DateTimeExMedicalExaminationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExMedicalExaminationDate1.Enabled = false;
+            DateTimeExMedicalExaminationDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExMedicalExaminationDate1.Location = new Point(36, 76);
+            DateTimeExMedicalExaminationDate1.Name = "DateTimeExMedicalExaminationDate1";
+            DateTimeExMedicalExaminationDate1.Size = new Size(188, 23);
+            DateTimeExMedicalExaminationDate1.TabIndex = 64;
+            DateTimeExMedicalExaminationDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExMedicalExaminationNote1
             // 
-            this.TextBoxExMedicalExaminationNote1.Enabled = false;
-            this.TextBoxExMedicalExaminationNote1.Location = new Point(560, 76);
-            this.TextBoxExMedicalExaminationNote1.Name = "TextBoxExMedicalExaminationNote1";
-            this.TextBoxExMedicalExaminationNote1.Size = new Size(272, 23);
-            this.TextBoxExMedicalExaminationNote1.TabIndex = 63;
-            this.TextBoxExMedicalExaminationNote1.Text = "辻祐一";
+            TextBoxExMedicalExaminationNote1.Enabled = false;
+            TextBoxExMedicalExaminationNote1.Location = new Point(560, 76);
+            TextBoxExMedicalExaminationNote1.Name = "TextBoxExMedicalExaminationNote1";
+            TextBoxExMedicalExaminationNote1.Size = new Size(272, 23);
+            TextBoxExMedicalExaminationNote1.TabIndex = 63;
+            TextBoxExMedicalExaminationNote1.Text = "辻祐一";
             // 
             // GroupBoxExInsurance
             // 
-            this.GroupBoxExInsurance.Controls.Add(this.ComboBoxExHealthInsuranceNumber);
-            this.GroupBoxExInsurance.Controls.Add(this.DateTimeExHealthInsuranceDate);
-            this.GroupBoxExInsurance.Controls.Add(this.TextBoxExHealthInsuranceNote);
-            this.GroupBoxExInsurance.Controls.Add(this.ComboBoxExWorkerAccidentInsuranceNumber);
-            this.GroupBoxExInsurance.Controls.Add(this.DateTimeExWorkerAccidentInsuranceDate);
-            this.GroupBoxExInsurance.Controls.Add(this.TextBoxExWorkerAccidentInsuranceNote);
-            this.GroupBoxExInsurance.Controls.Add(this.ComboBoxExEmploymentInsuranceNumber);
-            this.GroupBoxExInsurance.Controls.Add(this.DateTimeExEmploymentInsuranceDate);
-            this.GroupBoxExInsurance.Controls.Add(this.TextBoxExEmploymentInsuranceNote);
-            this.GroupBoxExInsurance.Controls.Add(this.ComboBoxExWelfarePensionNumber);
-            this.GroupBoxExInsurance.Controls.Add(this.DateTimeExWelfarePensionDate);
-            this.GroupBoxExInsurance.Controls.Add(this.TextBoxExWelfarePensionNote);
-            this.GroupBoxExInsurance.Controls.Add(this.labelEx54);
-            this.GroupBoxExInsurance.Controls.Add(this.labelEx55);
-            this.GroupBoxExInsurance.Controls.Add(this.labelEx56);
-            this.GroupBoxExInsurance.Controls.Add(this.labelEx57);
-            this.GroupBoxExInsurance.Location = new Point(8, 236);
-            this.GroupBoxExInsurance.Name = "GroupBoxExInsurance";
-            this.GroupBoxExInsurance.Size = new Size(916, 144);
-            this.GroupBoxExInsurance.TabIndex = 80;
-            this.GroupBoxExInsurance.TabStop = false;
-            this.GroupBoxExInsurance.Text = "保険関係";
+            GroupBoxExInsurance.Controls.Add(ComboBoxExHealthInsuranceNumber);
+            GroupBoxExInsurance.Controls.Add(DateTimeExHealthInsuranceDate);
+            GroupBoxExInsurance.Controls.Add(TextBoxExHealthInsuranceNote);
+            GroupBoxExInsurance.Controls.Add(ComboBoxExWorkerAccidentInsuranceNumber);
+            GroupBoxExInsurance.Controls.Add(DateTimeExWorkerAccidentInsuranceDate);
+            GroupBoxExInsurance.Controls.Add(TextBoxExWorkerAccidentInsuranceNote);
+            GroupBoxExInsurance.Controls.Add(ComboBoxExEmploymentInsuranceNumber);
+            GroupBoxExInsurance.Controls.Add(DateTimeExEmploymentInsuranceDate);
+            GroupBoxExInsurance.Controls.Add(TextBoxExEmploymentInsuranceNote);
+            GroupBoxExInsurance.Controls.Add(ComboBoxExWelfarePensionNumber);
+            GroupBoxExInsurance.Controls.Add(DateTimeExWelfarePensionDate);
+            GroupBoxExInsurance.Controls.Add(TextBoxExWelfarePensionNote);
+            GroupBoxExInsurance.Controls.Add(labelEx54);
+            GroupBoxExInsurance.Controls.Add(labelEx55);
+            GroupBoxExInsurance.Controls.Add(labelEx56);
+            GroupBoxExInsurance.Controls.Add(labelEx57);
+            GroupBoxExInsurance.Location = new Point(8, 236);
+            GroupBoxExInsurance.Name = "GroupBoxExInsurance";
+            GroupBoxExInsurance.Size = new Size(916, 144);
+            GroupBoxExInsurance.TabIndex = 80;
+            GroupBoxExInsurance.TabStop = false;
+            GroupBoxExInsurance.Text = "保険関係";
             // 
             // ComboBoxExHealthInsuranceNumber
             // 
-            this.ComboBoxExHealthInsuranceNumber.FormattingEnabled = true;
-            this.ComboBoxExHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
-            this.ComboBoxExHealthInsuranceNumber.Location = new Point(264, 28);
-            this.ComboBoxExHealthInsuranceNumber.Name = "ComboBoxExHealthInsuranceNumber";
-            this.ComboBoxExHealthInsuranceNumber.Size = new Size(292, 23);
-            this.ComboBoxExHealthInsuranceNumber.TabIndex = 74;
+            ComboBoxExHealthInsuranceNumber.FormattingEnabled = true;
+            ComboBoxExHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
+            ComboBoxExHealthInsuranceNumber.Location = new Point(264, 28);
+            ComboBoxExHealthInsuranceNumber.Name = "ComboBoxExHealthInsuranceNumber";
+            ComboBoxExHealthInsuranceNumber.Size = new Size(292, 23);
+            ComboBoxExHealthInsuranceNumber.TabIndex = 74;
             // 
             // DateTimeExHealthInsuranceDate
             // 
-            this.DateTimeExHealthInsuranceDate.CultureFlag = false;
-            this.DateTimeExHealthInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExHealthInsuranceDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExHealthInsuranceDate.Location = new Point(72, 28);
-            this.DateTimeExHealthInsuranceDate.Name = "DateTimeExHealthInsuranceDate";
-            this.DateTimeExHealthInsuranceDate.Size = new Size(188, 23);
-            this.DateTimeExHealthInsuranceDate.TabIndex = 73;
-            this.DateTimeExHealthInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExHealthInsuranceDate.CultureFlag = false;
+            DateTimeExHealthInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExHealthInsuranceDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExHealthInsuranceDate.Location = new Point(72, 28);
+            DateTimeExHealthInsuranceDate.Name = "DateTimeExHealthInsuranceDate";
+            DateTimeExHealthInsuranceDate.Size = new Size(188, 23);
+            DateTimeExHealthInsuranceDate.TabIndex = 73;
+            DateTimeExHealthInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExHealthInsuranceNote
             // 
-            this.TextBoxExHealthInsuranceNote.Location = new Point(560, 28);
-            this.TextBoxExHealthInsuranceNote.Name = "TextBoxExHealthInsuranceNote";
-            this.TextBoxExHealthInsuranceNote.Size = new Size(272, 23);
-            this.TextBoxExHealthInsuranceNote.TabIndex = 72;
-            this.TextBoxExHealthInsuranceNote.Text = "辻祐一";
+            TextBoxExHealthInsuranceNote.Location = new Point(560, 28);
+            TextBoxExHealthInsuranceNote.Name = "TextBoxExHealthInsuranceNote";
+            TextBoxExHealthInsuranceNote.Size = new Size(272, 23);
+            TextBoxExHealthInsuranceNote.TabIndex = 72;
+            TextBoxExHealthInsuranceNote.Text = "辻祐一";
             // 
             // ComboBoxExWorkerAccidentInsuranceNumber
             // 
-            this.ComboBoxExWorkerAccidentInsuranceNumber.FormattingEnabled = true;
-            this.ComboBoxExWorkerAccidentInsuranceNumber.Location = new Point(264, 112);
-            this.ComboBoxExWorkerAccidentInsuranceNumber.Name = "ComboBoxExWorkerAccidentInsuranceNumber";
-            this.ComboBoxExWorkerAccidentInsuranceNumber.Size = new Size(292, 23);
-            this.ComboBoxExWorkerAccidentInsuranceNumber.TabIndex = 71;
+            ComboBoxExWorkerAccidentInsuranceNumber.FormattingEnabled = true;
+            ComboBoxExWorkerAccidentInsuranceNumber.Location = new Point(264, 112);
+            ComboBoxExWorkerAccidentInsuranceNumber.Name = "ComboBoxExWorkerAccidentInsuranceNumber";
+            ComboBoxExWorkerAccidentInsuranceNumber.Size = new Size(292, 23);
+            ComboBoxExWorkerAccidentInsuranceNumber.TabIndex = 71;
             // 
             // DateTimeExWorkerAccidentInsuranceDate
             // 
-            this.DateTimeExWorkerAccidentInsuranceDate.CultureFlag = false;
-            this.DateTimeExWorkerAccidentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExWorkerAccidentInsuranceDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExWorkerAccidentInsuranceDate.Location = new Point(72, 112);
-            this.DateTimeExWorkerAccidentInsuranceDate.Name = "DateTimeExWorkerAccidentInsuranceDate";
-            this.DateTimeExWorkerAccidentInsuranceDate.Size = new Size(188, 23);
-            this.DateTimeExWorkerAccidentInsuranceDate.TabIndex = 70;
-            this.DateTimeExWorkerAccidentInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExWorkerAccidentInsuranceDate.CultureFlag = false;
+            DateTimeExWorkerAccidentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExWorkerAccidentInsuranceDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExWorkerAccidentInsuranceDate.Location = new Point(72, 112);
+            DateTimeExWorkerAccidentInsuranceDate.Name = "DateTimeExWorkerAccidentInsuranceDate";
+            DateTimeExWorkerAccidentInsuranceDate.Size = new Size(188, 23);
+            DateTimeExWorkerAccidentInsuranceDate.TabIndex = 70;
+            DateTimeExWorkerAccidentInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExWorkerAccidentInsuranceNote
             // 
-            this.TextBoxExWorkerAccidentInsuranceNote.Location = new Point(560, 112);
-            this.TextBoxExWorkerAccidentInsuranceNote.Name = "TextBoxExWorkerAccidentInsuranceNote";
-            this.TextBoxExWorkerAccidentInsuranceNote.Size = new Size(272, 23);
-            this.TextBoxExWorkerAccidentInsuranceNote.TabIndex = 69;
-            this.TextBoxExWorkerAccidentInsuranceNote.Text = "辻祐一";
+            TextBoxExWorkerAccidentInsuranceNote.Location = new Point(560, 112);
+            TextBoxExWorkerAccidentInsuranceNote.Name = "TextBoxExWorkerAccidentInsuranceNote";
+            TextBoxExWorkerAccidentInsuranceNote.Size = new Size(272, 23);
+            TextBoxExWorkerAccidentInsuranceNote.TabIndex = 69;
+            TextBoxExWorkerAccidentInsuranceNote.Text = "辻祐一";
             // 
             // ComboBoxExEmploymentInsuranceNumber
             // 
-            this.ComboBoxExEmploymentInsuranceNumber.FormattingEnabled = true;
-            this.ComboBoxExEmploymentInsuranceNumber.Location = new Point(264, 84);
-            this.ComboBoxExEmploymentInsuranceNumber.Name = "ComboBoxExEmploymentInsuranceNumber";
-            this.ComboBoxExEmploymentInsuranceNumber.Size = new Size(292, 23);
-            this.ComboBoxExEmploymentInsuranceNumber.TabIndex = 68;
+            ComboBoxExEmploymentInsuranceNumber.FormattingEnabled = true;
+            ComboBoxExEmploymentInsuranceNumber.Location = new Point(264, 84);
+            ComboBoxExEmploymentInsuranceNumber.Name = "ComboBoxExEmploymentInsuranceNumber";
+            ComboBoxExEmploymentInsuranceNumber.Size = new Size(292, 23);
+            ComboBoxExEmploymentInsuranceNumber.TabIndex = 68;
             // 
             // DateTimeExEmploymentInsuranceDate
             // 
-            this.DateTimeExEmploymentInsuranceDate.CultureFlag = false;
-            this.DateTimeExEmploymentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExEmploymentInsuranceDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExEmploymentInsuranceDate.Location = new Point(72, 84);
-            this.DateTimeExEmploymentInsuranceDate.Name = "DateTimeExEmploymentInsuranceDate";
-            this.DateTimeExEmploymentInsuranceDate.Size = new Size(188, 23);
-            this.DateTimeExEmploymentInsuranceDate.TabIndex = 67;
-            this.DateTimeExEmploymentInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExEmploymentInsuranceDate.CultureFlag = false;
+            DateTimeExEmploymentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExEmploymentInsuranceDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExEmploymentInsuranceDate.Location = new Point(72, 84);
+            DateTimeExEmploymentInsuranceDate.Name = "DateTimeExEmploymentInsuranceDate";
+            DateTimeExEmploymentInsuranceDate.Size = new Size(188, 23);
+            DateTimeExEmploymentInsuranceDate.TabIndex = 67;
+            DateTimeExEmploymentInsuranceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExEmploymentInsuranceNote
             // 
-            this.TextBoxExEmploymentInsuranceNote.Location = new Point(560, 84);
-            this.TextBoxExEmploymentInsuranceNote.Name = "TextBoxExEmploymentInsuranceNote";
-            this.TextBoxExEmploymentInsuranceNote.Size = new Size(272, 23);
-            this.TextBoxExEmploymentInsuranceNote.TabIndex = 66;
-            this.TextBoxExEmploymentInsuranceNote.Text = "辻祐一";
+            TextBoxExEmploymentInsuranceNote.Location = new Point(560, 84);
+            TextBoxExEmploymentInsuranceNote.Name = "TextBoxExEmploymentInsuranceNote";
+            TextBoxExEmploymentInsuranceNote.Size = new Size(272, 23);
+            TextBoxExEmploymentInsuranceNote.TabIndex = 66;
+            TextBoxExEmploymentInsuranceNote.Text = "辻祐一";
             // 
             // ComboBoxExWelfarePensionNumber
             // 
-            this.ComboBoxExWelfarePensionNumber.FormattingEnabled = true;
-            this.ComboBoxExWelfarePensionNumber.Location = new Point(264, 56);
-            this.ComboBoxExWelfarePensionNumber.Name = "ComboBoxExWelfarePensionNumber";
-            this.ComboBoxExWelfarePensionNumber.Size = new Size(292, 23);
-            this.ComboBoxExWelfarePensionNumber.TabIndex = 65;
+            ComboBoxExWelfarePensionNumber.FormattingEnabled = true;
+            ComboBoxExWelfarePensionNumber.Location = new Point(264, 56);
+            ComboBoxExWelfarePensionNumber.Name = "ComboBoxExWelfarePensionNumber";
+            ComboBoxExWelfarePensionNumber.Size = new Size(292, 23);
+            ComboBoxExWelfarePensionNumber.TabIndex = 65;
             // 
             // DateTimeExWelfarePensionDate
             // 
-            this.DateTimeExWelfarePensionDate.CultureFlag = false;
-            this.DateTimeExWelfarePensionDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExWelfarePensionDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExWelfarePensionDate.Location = new Point(72, 56);
-            this.DateTimeExWelfarePensionDate.Name = "DateTimeExWelfarePensionDate";
-            this.DateTimeExWelfarePensionDate.Size = new Size(188, 23);
-            this.DateTimeExWelfarePensionDate.TabIndex = 64;
-            this.DateTimeExWelfarePensionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExWelfarePensionDate.CultureFlag = false;
+            DateTimeExWelfarePensionDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExWelfarePensionDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExWelfarePensionDate.Location = new Point(72, 56);
+            DateTimeExWelfarePensionDate.Name = "DateTimeExWelfarePensionDate";
+            DateTimeExWelfarePensionDate.Size = new Size(188, 23);
+            DateTimeExWelfarePensionDate.TabIndex = 64;
+            DateTimeExWelfarePensionDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExWelfarePensionNote
             // 
-            this.TextBoxExWelfarePensionNote.Location = new Point(560, 56);
-            this.TextBoxExWelfarePensionNote.Name = "TextBoxExWelfarePensionNote";
-            this.TextBoxExWelfarePensionNote.Size = new Size(272, 23);
-            this.TextBoxExWelfarePensionNote.TabIndex = 63;
-            this.TextBoxExWelfarePensionNote.Text = "辻祐一";
+            TextBoxExWelfarePensionNote.Location = new Point(560, 56);
+            TextBoxExWelfarePensionNote.Name = "TextBoxExWelfarePensionNote";
+            TextBoxExWelfarePensionNote.Size = new Size(272, 23);
+            TextBoxExWelfarePensionNote.TabIndex = 63;
+            TextBoxExWelfarePensionNote.Text = "辻祐一";
             // 
             // labelEx54
             // 
-            this.labelEx54.AutoSize = true;
-            this.labelEx54.Location = new Point(12, 116);
-            this.labelEx54.Name = "labelEx54";
-            this.labelEx54.Size = new Size(55, 15);
-            this.labelEx54.TabIndex = 62;
-            this.labelEx54.Text = "労災保険";
+            labelEx54.AutoSize = true;
+            labelEx54.Location = new Point(12, 116);
+            labelEx54.Name = "labelEx54";
+            labelEx54.Size = new Size(55, 15);
+            labelEx54.TabIndex = 62;
+            labelEx54.Text = "労災保険";
             // 
             // labelEx55
             // 
-            this.labelEx55.AutoSize = true;
-            this.labelEx55.Location = new Point(12, 88);
-            this.labelEx55.Name = "labelEx55";
-            this.labelEx55.Size = new Size(55, 15);
-            this.labelEx55.TabIndex = 58;
-            this.labelEx55.Text = "雇用保険";
+            labelEx55.AutoSize = true;
+            labelEx55.Location = new Point(12, 88);
+            labelEx55.Name = "labelEx55";
+            labelEx55.Size = new Size(55, 15);
+            labelEx55.TabIndex = 58;
+            labelEx55.Text = "雇用保険";
             // 
             // labelEx56
             // 
-            this.labelEx56.AutoSize = true;
-            this.labelEx56.Location = new Point(12, 60);
-            this.labelEx56.Name = "labelEx56";
-            this.labelEx56.Size = new Size(55, 15);
-            this.labelEx56.TabIndex = 57;
-            this.labelEx56.Text = "厚生年金";
+            labelEx56.AutoSize = true;
+            labelEx56.Location = new Point(12, 60);
+            labelEx56.Name = "labelEx56";
+            labelEx56.Size = new Size(55, 15);
+            labelEx56.TabIndex = 57;
+            labelEx56.Text = "厚生年金";
             // 
             // labelEx57
             // 
-            this.labelEx57.AutoSize = true;
-            this.labelEx57.Location = new Point(12, 32);
-            this.labelEx57.Name = "labelEx57";
-            this.labelEx57.Size = new Size(55, 15);
-            this.labelEx57.TabIndex = 56;
-            this.labelEx57.Text = "健康保険";
+            labelEx57.AutoSize = true;
+            labelEx57.Location = new Point(12, 32);
+            labelEx57.Name = "labelEx57";
+            labelEx57.Size = new Size(55, 15);
+            labelEx57.TabIndex = 56;
+            labelEx57.Text = "健康保険";
             // 
             // GroupBoxExFamily
             // 
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExUrgentTelephoneMethod);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExUrgentTelephoneNumber);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx49);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx48);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx47);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx46);
-            this.GroupBoxExFamily.Controls.Add(this.ComboBoxExFamilyRelationship1);
-            this.GroupBoxExFamily.Controls.Add(this.DateTimeExFamilyBirthDate1);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExFamilyName1);
-            this.GroupBoxExFamily.Controls.Add(this.ComboBoxExFamilyRelationship4);
-            this.GroupBoxExFamily.Controls.Add(this.DateTimeExFamilyBirthDate4);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExFamilyName4);
-            this.GroupBoxExFamily.Controls.Add(this.ComboBoxExFamilyRelationship3);
-            this.GroupBoxExFamily.Controls.Add(this.DateTimeExFamilyBirthDate3);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExFamilyName3);
-            this.GroupBoxExFamily.Controls.Add(this.ComboBoxExFamilyRelationship2);
-            this.GroupBoxExFamily.Controls.Add(this.DateTimeExFamilyBirthDate2);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExFamilyName2);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx45);
-            this.GroupBoxExFamily.Controls.Add(this.AddGroupBoxExFamily);
-            this.GroupBoxExFamily.Controls.Add(this.ComboBoxExFamilyRelationship);
-            this.GroupBoxExFamily.Controls.Add(this.DateTimeExFamilyBirthDate);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx42);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx43);
-            this.GroupBoxExFamily.Controls.Add(this.TextBoxExFamilyName);
-            this.GroupBoxExFamily.Controls.Add(this.labelEx44);
-            this.GroupBoxExFamily.Location = new Point(8, 8);
-            this.GroupBoxExFamily.Name = "GroupBoxExFamily";
-            this.GroupBoxExFamily.Size = new Size(916, 224);
-            this.GroupBoxExFamily.TabIndex = 2;
-            this.GroupBoxExFamily.TabStop = false;
-            this.GroupBoxExFamily.Text = "家族構成(Family)";
+            GroupBoxExFamily.Controls.Add(TextBoxExUrgentTelephoneMethod);
+            GroupBoxExFamily.Controls.Add(TextBoxExUrgentTelephoneNumber);
+            GroupBoxExFamily.Controls.Add(labelEx49);
+            GroupBoxExFamily.Controls.Add(labelEx48);
+            GroupBoxExFamily.Controls.Add(labelEx47);
+            GroupBoxExFamily.Controls.Add(labelEx46);
+            GroupBoxExFamily.Controls.Add(ComboBoxExFamilyRelationship1);
+            GroupBoxExFamily.Controls.Add(DateTimeExFamilyBirthDate1);
+            GroupBoxExFamily.Controls.Add(TextBoxExFamilyName1);
+            GroupBoxExFamily.Controls.Add(ComboBoxExFamilyRelationship4);
+            GroupBoxExFamily.Controls.Add(DateTimeExFamilyBirthDate4);
+            GroupBoxExFamily.Controls.Add(TextBoxExFamilyName4);
+            GroupBoxExFamily.Controls.Add(ComboBoxExFamilyRelationship3);
+            GroupBoxExFamily.Controls.Add(DateTimeExFamilyBirthDate3);
+            GroupBoxExFamily.Controls.Add(TextBoxExFamilyName3);
+            GroupBoxExFamily.Controls.Add(ComboBoxExFamilyRelationship2);
+            GroupBoxExFamily.Controls.Add(DateTimeExFamilyBirthDate2);
+            GroupBoxExFamily.Controls.Add(TextBoxExFamilyName2);
+            GroupBoxExFamily.Controls.Add(labelEx45);
+            GroupBoxExFamily.Controls.Add(AddGroupBoxExFamily);
+            GroupBoxExFamily.Controls.Add(ComboBoxExFamilyRelationship);
+            GroupBoxExFamily.Controls.Add(DateTimeExFamilyBirthDate);
+            GroupBoxExFamily.Controls.Add(labelEx42);
+            GroupBoxExFamily.Controls.Add(labelEx43);
+            GroupBoxExFamily.Controls.Add(TextBoxExFamilyName);
+            GroupBoxExFamily.Controls.Add(labelEx44);
+            GroupBoxExFamily.Location = new Point(8, 8);
+            GroupBoxExFamily.Name = "GroupBoxExFamily";
+            GroupBoxExFamily.Size = new Size(916, 224);
+            GroupBoxExFamily.TabIndex = 2;
+            GroupBoxExFamily.TabStop = false;
+            GroupBoxExFamily.Text = "家族構成(Family)";
             // 
             // TextBoxExUrgentTelephoneMethod
             // 
-            this.TextBoxExUrgentTelephoneMethod.Location = new Point(186, 192);
-            this.TextBoxExUrgentTelephoneMethod.Name = "TextBoxExUrgentTelephoneMethod";
-            this.TextBoxExUrgentTelephoneMethod.Size = new Size(648, 23);
-            this.TextBoxExUrgentTelephoneMethod.TabIndex = 79;
-            this.TextBoxExUrgentTelephoneMethod.Text = "〇〇〇〇〇〇";
+            TextBoxExUrgentTelephoneMethod.Location = new Point(186, 192);
+            TextBoxExUrgentTelephoneMethod.Name = "TextBoxExUrgentTelephoneMethod";
+            TextBoxExUrgentTelephoneMethod.Size = new Size(648, 23);
+            TextBoxExUrgentTelephoneMethod.TabIndex = 79;
+            TextBoxExUrgentTelephoneMethod.Text = "〇〇〇〇〇〇";
             // 
             // TextBoxExUrgentTelephoneNumber
             // 
-            this.TextBoxExUrgentTelephoneNumber.Location = new Point(88, 192);
-            this.TextBoxExUrgentTelephoneNumber.Name = "TextBoxExUrgentTelephoneNumber";
-            this.TextBoxExUrgentTelephoneNumber.Size = new Size(96, 23);
-            this.TextBoxExUrgentTelephoneNumber.TabIndex = 78;
-            this.TextBoxExUrgentTelephoneNumber.Text = "03-8888-8888";
+            TextBoxExUrgentTelephoneNumber.Location = new Point(88, 192);
+            TextBoxExUrgentTelephoneNumber.Name = "TextBoxExUrgentTelephoneNumber";
+            TextBoxExUrgentTelephoneNumber.Size = new Size(96, 23);
+            TextBoxExUrgentTelephoneNumber.TabIndex = 78;
+            TextBoxExUrgentTelephoneNumber.Text = "03-8888-8888";
             // 
             // labelEx49
             // 
-            this.labelEx49.AutoSize = true;
-            this.labelEx49.Location = new Point(16, 196);
-            this.labelEx49.Name = "labelEx49";
-            this.labelEx49.Size = new Size(67, 15);
-            this.labelEx49.TabIndex = 77;
-            this.labelEx49.Text = "緊急連絡先";
+            labelEx49.AutoSize = true;
+            labelEx49.Location = new Point(16, 196);
+            labelEx49.Name = "labelEx49";
+            labelEx49.Size = new Size(67, 15);
+            labelEx49.TabIndex = 77;
+            labelEx49.Text = "緊急連絡先";
             // 
             // labelEx48
             // 
-            this.labelEx48.AutoSize = true;
-            this.labelEx48.Location = new Point(744, 28);
-            this.labelEx48.Name = "labelEx48";
-            this.labelEx48.Size = new Size(31, 15);
-            this.labelEx48.TabIndex = 76;
-            this.labelEx48.Text = "続柄";
+            labelEx48.AutoSize = true;
+            labelEx48.Location = new Point(744, 28);
+            labelEx48.Name = "labelEx48";
+            labelEx48.Size = new Size(31, 15);
+            labelEx48.TabIndex = 76;
+            labelEx48.Text = "続柄";
             // 
             // labelEx47
             // 
-            this.labelEx47.AutoSize = true;
-            this.labelEx47.Location = new Point(552, 28);
-            this.labelEx47.Name = "labelEx47";
-            this.labelEx47.Size = new Size(55, 15);
-            this.labelEx47.TabIndex = 76;
-            this.labelEx47.Text = "生年月日";
+            labelEx47.AutoSize = true;
+            labelEx47.Location = new Point(552, 28);
+            labelEx47.Name = "labelEx47";
+            labelEx47.Size = new Size(55, 15);
+            labelEx47.TabIndex = 76;
+            labelEx47.Text = "生年月日";
             // 
             // labelEx46
             // 
-            this.labelEx46.AutoSize = true;
-            this.labelEx46.Location = new Point(40, 28);
-            this.labelEx46.Name = "labelEx46";
-            this.labelEx46.Size = new Size(55, 15);
-            this.labelEx46.TabIndex = 75;
-            this.labelEx46.Text = "家族氏名";
+            labelEx46.AutoSize = true;
+            labelEx46.Location = new Point(40, 28);
+            labelEx46.Name = "labelEx46";
+            labelEx46.Size = new Size(55, 15);
+            labelEx46.TabIndex = 75;
+            labelEx46.Text = "家族氏名";
             // 
             // ComboBoxExFamilyRelationship1
             // 
-            this.ComboBoxExFamilyRelationship1.Enabled = false;
-            this.ComboBoxExFamilyRelationship1.FormattingEnabled = true;
-            this.ComboBoxExFamilyRelationship1.Location = new Point(744, 80);
-            this.ComboBoxExFamilyRelationship1.Name = "ComboBoxExFamilyRelationship1";
-            this.ComboBoxExFamilyRelationship1.Size = new Size(90, 23);
-            this.ComboBoxExFamilyRelationship1.TabIndex = 74;
+            ComboBoxExFamilyRelationship1.Enabled = false;
+            ComboBoxExFamilyRelationship1.FormattingEnabled = true;
+            ComboBoxExFamilyRelationship1.Location = new Point(744, 80);
+            ComboBoxExFamilyRelationship1.Name = "ComboBoxExFamilyRelationship1";
+            ComboBoxExFamilyRelationship1.Size = new Size(90, 23);
+            ComboBoxExFamilyRelationship1.TabIndex = 74;
             // 
             // DateTimeExFamilyBirthDate1
             // 
-            this.DateTimeExFamilyBirthDate1.CultureFlag = false;
-            this.DateTimeExFamilyBirthDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExFamilyBirthDate1.Enabled = false;
-            this.DateTimeExFamilyBirthDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExFamilyBirthDate1.Location = new Point(552, 80);
-            this.DateTimeExFamilyBirthDate1.Name = "DateTimeExFamilyBirthDate1";
-            this.DateTimeExFamilyBirthDate1.Size = new Size(188, 23);
-            this.DateTimeExFamilyBirthDate1.TabIndex = 73;
-            this.DateTimeExFamilyBirthDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExFamilyBirthDate1.CultureFlag = false;
+            DateTimeExFamilyBirthDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExFamilyBirthDate1.Enabled = false;
+            DateTimeExFamilyBirthDate1.Format = DateTimePickerFormat.Custom;
+            DateTimeExFamilyBirthDate1.Location = new Point(552, 80);
+            DateTimeExFamilyBirthDate1.Name = "DateTimeExFamilyBirthDate1";
+            DateTimeExFamilyBirthDate1.Size = new Size(188, 23);
+            DateTimeExFamilyBirthDate1.TabIndex = 73;
+            DateTimeExFamilyBirthDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExFamilyName1
             // 
-            this.TextBoxExFamilyName1.Enabled = false;
-            this.TextBoxExFamilyName1.Location = new Point(36, 80);
-            this.TextBoxExFamilyName1.Name = "TextBoxExFamilyName1";
-            this.TextBoxExFamilyName1.Size = new Size(512, 23);
-            this.TextBoxExFamilyName1.TabIndex = 72;
-            this.TextBoxExFamilyName1.Text = "辻祐一";
+            TextBoxExFamilyName1.Enabled = false;
+            TextBoxExFamilyName1.Location = new Point(36, 80);
+            TextBoxExFamilyName1.Name = "TextBoxExFamilyName1";
+            TextBoxExFamilyName1.Size = new Size(512, 23);
+            TextBoxExFamilyName1.TabIndex = 72;
+            TextBoxExFamilyName1.Text = "辻祐一";
             // 
             // ComboBoxExFamilyRelationship4
             // 
-            this.ComboBoxExFamilyRelationship4.Enabled = false;
-            this.ComboBoxExFamilyRelationship4.FormattingEnabled = true;
-            this.ComboBoxExFamilyRelationship4.Location = new Point(744, 164);
-            this.ComboBoxExFamilyRelationship4.Name = "ComboBoxExFamilyRelationship4";
-            this.ComboBoxExFamilyRelationship4.Size = new Size(90, 23);
-            this.ComboBoxExFamilyRelationship4.TabIndex = 71;
+            ComboBoxExFamilyRelationship4.Enabled = false;
+            ComboBoxExFamilyRelationship4.FormattingEnabled = true;
+            ComboBoxExFamilyRelationship4.Location = new Point(744, 164);
+            ComboBoxExFamilyRelationship4.Name = "ComboBoxExFamilyRelationship4";
+            ComboBoxExFamilyRelationship4.Size = new Size(90, 23);
+            ComboBoxExFamilyRelationship4.TabIndex = 71;
             // 
             // DateTimeExFamilyBirthDate4
             // 
-            this.DateTimeExFamilyBirthDate4.CultureFlag = false;
-            this.DateTimeExFamilyBirthDate4.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExFamilyBirthDate4.Enabled = false;
-            this.DateTimeExFamilyBirthDate4.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExFamilyBirthDate4.Location = new Point(552, 164);
-            this.DateTimeExFamilyBirthDate4.Name = "DateTimeExFamilyBirthDate4";
-            this.DateTimeExFamilyBirthDate4.Size = new Size(188, 23);
-            this.DateTimeExFamilyBirthDate4.TabIndex = 70;
-            this.DateTimeExFamilyBirthDate4.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExFamilyBirthDate4.CultureFlag = false;
+            DateTimeExFamilyBirthDate4.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExFamilyBirthDate4.Enabled = false;
+            DateTimeExFamilyBirthDate4.Format = DateTimePickerFormat.Custom;
+            DateTimeExFamilyBirthDate4.Location = new Point(552, 164);
+            DateTimeExFamilyBirthDate4.Name = "DateTimeExFamilyBirthDate4";
+            DateTimeExFamilyBirthDate4.Size = new Size(188, 23);
+            DateTimeExFamilyBirthDate4.TabIndex = 70;
+            DateTimeExFamilyBirthDate4.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExFamilyName4
             // 
-            this.TextBoxExFamilyName4.Enabled = false;
-            this.TextBoxExFamilyName4.Location = new Point(36, 164);
-            this.TextBoxExFamilyName4.Name = "TextBoxExFamilyName4";
-            this.TextBoxExFamilyName4.Size = new Size(512, 23);
-            this.TextBoxExFamilyName4.TabIndex = 69;
-            this.TextBoxExFamilyName4.Text = "辻祐一";
+            TextBoxExFamilyName4.Enabled = false;
+            TextBoxExFamilyName4.Location = new Point(36, 164);
+            TextBoxExFamilyName4.Name = "TextBoxExFamilyName4";
+            TextBoxExFamilyName4.Size = new Size(512, 23);
+            TextBoxExFamilyName4.TabIndex = 69;
+            TextBoxExFamilyName4.Text = "辻祐一";
             // 
             // ComboBoxExFamilyRelationship3
             // 
-            this.ComboBoxExFamilyRelationship3.Enabled = false;
-            this.ComboBoxExFamilyRelationship3.FormattingEnabled = true;
-            this.ComboBoxExFamilyRelationship3.Location = new Point(744, 136);
-            this.ComboBoxExFamilyRelationship3.Name = "ComboBoxExFamilyRelationship3";
-            this.ComboBoxExFamilyRelationship3.Size = new Size(90, 23);
-            this.ComboBoxExFamilyRelationship3.TabIndex = 68;
+            ComboBoxExFamilyRelationship3.Enabled = false;
+            ComboBoxExFamilyRelationship3.FormattingEnabled = true;
+            ComboBoxExFamilyRelationship3.Location = new Point(744, 136);
+            ComboBoxExFamilyRelationship3.Name = "ComboBoxExFamilyRelationship3";
+            ComboBoxExFamilyRelationship3.Size = new Size(90, 23);
+            ComboBoxExFamilyRelationship3.TabIndex = 68;
             // 
             // DateTimeExFamilyBirthDate3
             // 
-            this.DateTimeExFamilyBirthDate3.CultureFlag = false;
-            this.DateTimeExFamilyBirthDate3.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExFamilyBirthDate3.Enabled = false;
-            this.DateTimeExFamilyBirthDate3.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExFamilyBirthDate3.Location = new Point(552, 136);
-            this.DateTimeExFamilyBirthDate3.Name = "DateTimeExFamilyBirthDate3";
-            this.DateTimeExFamilyBirthDate3.Size = new Size(188, 23);
-            this.DateTimeExFamilyBirthDate3.TabIndex = 67;
-            this.DateTimeExFamilyBirthDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExFamilyBirthDate3.CultureFlag = false;
+            DateTimeExFamilyBirthDate3.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExFamilyBirthDate3.Enabled = false;
+            DateTimeExFamilyBirthDate3.Format = DateTimePickerFormat.Custom;
+            DateTimeExFamilyBirthDate3.Location = new Point(552, 136);
+            DateTimeExFamilyBirthDate3.Name = "DateTimeExFamilyBirthDate3";
+            DateTimeExFamilyBirthDate3.Size = new Size(188, 23);
+            DateTimeExFamilyBirthDate3.TabIndex = 67;
+            DateTimeExFamilyBirthDate3.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExFamilyName3
             // 
-            this.TextBoxExFamilyName3.Enabled = false;
-            this.TextBoxExFamilyName3.Location = new Point(36, 136);
-            this.TextBoxExFamilyName3.Name = "TextBoxExFamilyName3";
-            this.TextBoxExFamilyName3.Size = new Size(512, 23);
-            this.TextBoxExFamilyName3.TabIndex = 66;
-            this.TextBoxExFamilyName3.Text = "辻祐一";
+            TextBoxExFamilyName3.Enabled = false;
+            TextBoxExFamilyName3.Location = new Point(36, 136);
+            TextBoxExFamilyName3.Name = "TextBoxExFamilyName3";
+            TextBoxExFamilyName3.Size = new Size(512, 23);
+            TextBoxExFamilyName3.TabIndex = 66;
+            TextBoxExFamilyName3.Text = "辻祐一";
             // 
             // ComboBoxExFamilyRelationship2
             // 
-            this.ComboBoxExFamilyRelationship2.Enabled = false;
-            this.ComboBoxExFamilyRelationship2.FormattingEnabled = true;
-            this.ComboBoxExFamilyRelationship2.Location = new Point(744, 108);
-            this.ComboBoxExFamilyRelationship2.Name = "ComboBoxExFamilyRelationship2";
-            this.ComboBoxExFamilyRelationship2.Size = new Size(90, 23);
-            this.ComboBoxExFamilyRelationship2.TabIndex = 65;
+            ComboBoxExFamilyRelationship2.Enabled = false;
+            ComboBoxExFamilyRelationship2.FormattingEnabled = true;
+            ComboBoxExFamilyRelationship2.Location = new Point(744, 108);
+            ComboBoxExFamilyRelationship2.Name = "ComboBoxExFamilyRelationship2";
+            ComboBoxExFamilyRelationship2.Size = new Size(90, 23);
+            ComboBoxExFamilyRelationship2.TabIndex = 65;
             // 
             // DateTimeExFamilyBirthDate2
             // 
-            this.DateTimeExFamilyBirthDate2.CultureFlag = false;
-            this.DateTimeExFamilyBirthDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExFamilyBirthDate2.Enabled = false;
-            this.DateTimeExFamilyBirthDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExFamilyBirthDate2.Location = new Point(552, 108);
-            this.DateTimeExFamilyBirthDate2.Name = "DateTimeExFamilyBirthDate2";
-            this.DateTimeExFamilyBirthDate2.Size = new Size(188, 23);
-            this.DateTimeExFamilyBirthDate2.TabIndex = 64;
-            this.DateTimeExFamilyBirthDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExFamilyBirthDate2.CultureFlag = false;
+            DateTimeExFamilyBirthDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExFamilyBirthDate2.Enabled = false;
+            DateTimeExFamilyBirthDate2.Format = DateTimePickerFormat.Custom;
+            DateTimeExFamilyBirthDate2.Location = new Point(552, 108);
+            DateTimeExFamilyBirthDate2.Name = "DateTimeExFamilyBirthDate2";
+            DateTimeExFamilyBirthDate2.Size = new Size(188, 23);
+            DateTimeExFamilyBirthDate2.TabIndex = 64;
+            DateTimeExFamilyBirthDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // TextBoxExFamilyName2
             // 
-            this.TextBoxExFamilyName2.Enabled = false;
-            this.TextBoxExFamilyName2.Location = new Point(36, 108);
-            this.TextBoxExFamilyName2.Name = "TextBoxExFamilyName2";
-            this.TextBoxExFamilyName2.Size = new Size(512, 23);
-            this.TextBoxExFamilyName2.TabIndex = 63;
-            this.TextBoxExFamilyName2.Text = "辻祐一";
+            TextBoxExFamilyName2.Enabled = false;
+            TextBoxExFamilyName2.Location = new Point(36, 108);
+            TextBoxExFamilyName2.Name = "TextBoxExFamilyName2";
+            TextBoxExFamilyName2.Size = new Size(512, 23);
+            TextBoxExFamilyName2.TabIndex = 63;
+            TextBoxExFamilyName2.Text = "辻祐一";
             // 
             // labelEx45
             // 
-            this.labelEx45.AutoSize = true;
-            this.labelEx45.Location = new Point(12, 168);
-            this.labelEx45.Name = "labelEx45";
-            this.labelEx45.Size = new Size(19, 15);
-            this.labelEx45.TabIndex = 62;
-            this.labelEx45.Text = "④";
+            labelEx45.AutoSize = true;
+            labelEx45.Location = new Point(12, 168);
+            labelEx45.Name = "labelEx45";
+            labelEx45.Size = new Size(19, 15);
+            labelEx45.TabIndex = 62;
+            labelEx45.Text = "④";
             // 
             // AddGroupBoxExFamily
             // 
-            this.AddGroupBoxExFamily.Location = new Point(836, 48);
-            this.AddGroupBoxExFamily.Name = "AddGroupBoxExFamily";
-            this.AddGroupBoxExFamily.SetTextDirectionVertical = "";
-            this.AddGroupBoxExFamily.Size = new Size(68, 24);
-            this.AddGroupBoxExFamily.TabIndex = 46;
-            this.AddGroupBoxExFamily.Text = "追加";
-            this.AddGroupBoxExFamily.UseVisualStyleBackColor = true;
-            this.AddGroupBoxExFamily.Click += this.ButtonEx_Click;
+            AddGroupBoxExFamily.ForeColor = SystemColors.ControlText;
+            AddGroupBoxExFamily.Location = new Point(836, 48);
+            AddGroupBoxExFamily.Name = "AddGroupBoxExFamily";
+            AddGroupBoxExFamily.SetTextDirectionVertical = "";
+            AddGroupBoxExFamily.Size = new Size(68, 24);
+            AddGroupBoxExFamily.TabIndex = 46;
+            AddGroupBoxExFamily.Text = "追加";
+            AddGroupBoxExFamily.UseVisualStyleBackColor = true;
+            AddGroupBoxExFamily.Click += ButtonEx_Click;
             // 
             // ComboBoxExFamilyRelationship
             // 
-            this.ComboBoxExFamilyRelationship.FormattingEnabled = true;
-            this.ComboBoxExFamilyRelationship.Location = new Point(744, 48);
-            this.ComboBoxExFamilyRelationship.Name = "ComboBoxExFamilyRelationship";
-            this.ComboBoxExFamilyRelationship.Size = new Size(90, 23);
-            this.ComboBoxExFamilyRelationship.TabIndex = 61;
+            ComboBoxExFamilyRelationship.FormattingEnabled = true;
+            ComboBoxExFamilyRelationship.Location = new Point(744, 48);
+            ComboBoxExFamilyRelationship.Name = "ComboBoxExFamilyRelationship";
+            ComboBoxExFamilyRelationship.Size = new Size(90, 23);
+            ComboBoxExFamilyRelationship.TabIndex = 61;
             // 
             // DateTimeExFamilyBirthDate
             // 
-            this.DateTimeExFamilyBirthDate.CultureFlag = false;
-            this.DateTimeExFamilyBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimeExFamilyBirthDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimeExFamilyBirthDate.Location = new Point(552, 48);
-            this.DateTimeExFamilyBirthDate.Name = "DateTimeExFamilyBirthDate";
-            this.DateTimeExFamilyBirthDate.Size = new Size(188, 23);
-            this.DateTimeExFamilyBirthDate.TabIndex = 60;
-            this.DateTimeExFamilyBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimeExFamilyBirthDate.CultureFlag = false;
+            DateTimeExFamilyBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimeExFamilyBirthDate.Format = DateTimePickerFormat.Custom;
+            DateTimeExFamilyBirthDate.Location = new Point(552, 48);
+            DateTimeExFamilyBirthDate.Name = "DateTimeExFamilyBirthDate";
+            DateTimeExFamilyBirthDate.Size = new Size(188, 23);
+            DateTimeExFamilyBirthDate.TabIndex = 60;
+            DateTimeExFamilyBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx42
             // 
-            this.labelEx42.AutoSize = true;
-            this.labelEx42.Location = new Point(12, 140);
-            this.labelEx42.Name = "labelEx42";
-            this.labelEx42.Size = new Size(19, 15);
-            this.labelEx42.TabIndex = 58;
-            this.labelEx42.Text = "③";
+            labelEx42.AutoSize = true;
+            labelEx42.Location = new Point(12, 140);
+            labelEx42.Name = "labelEx42";
+            labelEx42.Size = new Size(19, 15);
+            labelEx42.TabIndex = 58;
+            labelEx42.Text = "③";
             // 
             // labelEx43
             // 
-            this.labelEx43.AutoSize = true;
-            this.labelEx43.Location = new Point(12, 112);
-            this.labelEx43.Name = "labelEx43";
-            this.labelEx43.Size = new Size(19, 15);
-            this.labelEx43.TabIndex = 57;
-            this.labelEx43.Text = "②";
+            labelEx43.AutoSize = true;
+            labelEx43.Location = new Point(12, 112);
+            labelEx43.Name = "labelEx43";
+            labelEx43.Size = new Size(19, 15);
+            labelEx43.TabIndex = 57;
+            labelEx43.Text = "②";
             // 
             // TextBoxExFamilyName
             // 
-            this.TextBoxExFamilyName.Location = new Point(36, 48);
-            this.TextBoxExFamilyName.Name = "TextBoxExFamilyName";
-            this.TextBoxExFamilyName.Size = new Size(512, 23);
-            this.TextBoxExFamilyName.TabIndex = 59;
-            this.TextBoxExFamilyName.Text = "辻祐一";
+            TextBoxExFamilyName.Location = new Point(36, 48);
+            TextBoxExFamilyName.Name = "TextBoxExFamilyName";
+            TextBoxExFamilyName.Size = new Size(512, 23);
+            TextBoxExFamilyName.TabIndex = 59;
+            TextBoxExFamilyName.Text = "辻祐一";
             // 
             // labelEx44
             // 
-            this.labelEx44.AutoSize = true;
-            this.labelEx44.Location = new Point(12, 84);
-            this.labelEx44.Name = "labelEx44";
-            this.labelEx44.Size = new Size(19, 15);
-            this.labelEx44.TabIndex = 56;
-            this.labelEx44.Text = "①";
+            labelEx44.AutoSize = true;
+            labelEx44.Location = new Point(12, 84);
+            labelEx44.Name = "labelEx44";
+            labelEx44.Size = new Size(19, 15);
+            labelEx44.TabIndex = 56;
+            labelEx44.Text = "①";
             // 
             // StaffDetail
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1904, 1041);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "StaffDetail";
-            this.Text = "StaffDetail";
-            this.FormClosing += this.StaffDetail_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExUp.ResumeLayout(false);
-            this.PanelExLeft.ResumeLayout(false);
-            this.PanelExLeft.PerformLayout();
-            this.GroupBoxExRetirement.ResumeLayout(false);
-            this.GroupBoxExRetirement.PerformLayout();
-            this.GroupBoxExExperience.ResumeLayout(false);
-            this.GroupBoxExExperience.PerformLayout();
-            this.GroupBoxExHistory.ResumeLayout(false);
-            this.GroupBoxExHistory.PerformLayout();
-            this.GroupBoxExDrive.ResumeLayout(false);
-            this.GroupBoxExDrive.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).EndInit();
-            this.ContextMenuStripEx2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).EndInit();
-            this.ContextMenuStripEx1.ResumeLayout(false);
-            this.GroupBoxExOccupation.ResumeLayout(false);
-            this.GroupBoxExOccupation.PerformLayout();
-            this.GroupBoxExJobForm.ResumeLayout(false);
-            this.GroupBoxExJobForm.PerformLayout();
-            this.GroupBoxExBelongs.ResumeLayout(false);
-            this.GroupBoxExBelongs.PerformLayout();
-            this.PanelExRight.ResumeLayout(false);
-            this.GroupBoxExPunishment.ResumeLayout(false);
-            this.GroupBoxExPunishment.PerformLayout();
-            this.GroupBoxProper.ResumeLayout(false);
-            this.GroupBoxProper.PerformLayout();
-            this.GroupBoxEducate.ResumeLayout(false);
-            this.GroupBoxEducate.PerformLayout();
-            this.GroupBoxExCarViolate.ResumeLayout(false);
-            this.GroupBoxExCarViolate.PerformLayout();
-            this.groupBoxEx9.ResumeLayout(false);
-            this.GroupBoxExMedicalExamination.ResumeLayout(false);
-            this.GroupBoxExMedicalExamination.PerformLayout();
-            this.GroupBoxExInsurance.ResumeLayout(false);
-            this.GroupBoxExInsurance.PerformLayout();
-            this.GroupBoxExFamily.ResumeLayout(false);
-            this.GroupBoxExFamily.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            Name = "StaffDetail";
+            Text = "StaffDetail";
+            FormClosing += StaffDetail_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            PanelExUp.ResumeLayout(false);
+            PanelExLeft.ResumeLayout(false);
+            PanelExLeft.PerformLayout();
+            GroupBoxExRetirement.ResumeLayout(false);
+            GroupBoxExRetirement.PerformLayout();
+            GroupBoxExExperience.ResumeLayout(false);
+            GroupBoxExExperience.PerformLayout();
+            GroupBoxExHistory.ResumeLayout(false);
+            GroupBoxExHistory.PerformLayout();
+            GroupBoxExDrive.ResumeLayout(false);
+            GroupBoxExDrive.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxExStamp).EndInit();
+            ContextMenuStripEx2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PictureBoxExStaff).EndInit();
+            ContextMenuStripEx1.ResumeLayout(false);
+            CcGroupBoxOccupation.ResumeLayout(false);
+            CcGroupBoxOccupation.PerformLayout();
+            CcGroupBoxJobForm.ResumeLayout(false);
+            CcGroupBoxJobForm.PerformLayout();
+            CcGroupBoxBelongs.ResumeLayout(false);
+            CcGroupBoxBelongs.PerformLayout();
+            PanelExRight.ResumeLayout(false);
+            GroupBoxExPunishment.ResumeLayout(false);
+            GroupBoxExPunishment.PerformLayout();
+            GroupBoxProper.ResumeLayout(false);
+            GroupBoxProper.PerformLayout();
+            GroupBoxEducate.ResumeLayout(false);
+            GroupBoxEducate.PerformLayout();
+            GroupBoxExCarViolate.ResumeLayout(false);
+            GroupBoxExCarViolate.PerformLayout();
+            groupBoxEx9.ResumeLayout(false);
+            GroupBoxExMedicalExamination.ResumeLayout(false);
+            GroupBoxExMedicalExamination.PerformLayout();
+            GroupBoxExInsurance.ResumeLayout(false);
+            GroupBoxExInsurance.PerformLayout();
+            GroupBoxExFamily.ResumeLayout(false);
+            GroupBoxExFamily.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -3300,28 +3309,28 @@
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExLeft;
         private CcControl.CcPanel PanelExRight;
-        private CcControl.GroupBoxEx GroupBoxExBelongs;
+        private CcControl.CcGroupBox CcGroupBoxBelongs;
         private CcControl.CcCheckBox CheckBoxExTargetFlag;
-        private CcControl.RadioButtonEx RadioButtonEx嘱託雇用契約社員;
-        private CcControl.RadioButtonEx RadioButtonEx派遣;
-        private CcControl.RadioButtonEx RadioButtonExアルバイト;
-        private CcControl.RadioButtonEx RadioButtonEx社員;
-        private CcControl.RadioButtonEx RadioButtonEx役員;
-        private CcControl.GroupBoxEx GroupBoxExOccupation;
-        private CcControl.GroupBoxEx GroupBoxExJobForm;
-        private CcControl.RadioButtonEx RadioButtonEx労供;
-        private CcControl.RadioButtonEx RadioButtonExパートタイマー;
-        private CcControl.RadioButtonEx RadioButtonExLongTimeS;
-        private CcControl.RadioButtonEx RadioButtonExJobFormNothing;
-        private CcControl.RadioButtonEx RadioButtonExShortTimeJ;
-        private CcControl.RadioButtonEx RadioButtonExLongTimeJ;
-        private CcControl.RadioButtonEx RadioButtonExShortTimeS;
-        private CcControl.RadioButtonEx radioButtonEx17;
-        private CcControl.RadioButtonEx RadioButtonExOfficeWorker;
-        private CcControl.RadioButtonEx radioButtonEx15;
-        private CcControl.RadioButtonEx RadioButtonExWorkers;
-        private CcControl.RadioButtonEx RadioButtonExDrivers;
-        private CcControl.RadioButtonEx radioButtonEx18;
+        private CcControl.CcRadioButton RadioButtonEx嘱託雇用契約社員;
+        private CcControl.CcRadioButton RadioButtonEx派遣;
+        private CcControl.CcRadioButton RadioButtonExアルバイト;
+        private CcControl.CcRadioButton RadioButtonEx社員;
+        private CcControl.CcRadioButton RadioButtonEx役員;
+        private CcControl.CcGroupBox CcGroupBoxOccupation;
+        private CcControl.CcGroupBox CcGroupBoxJobForm;
+        private CcControl.CcRadioButton RadioButtonEx労供;
+        private CcControl.CcRadioButton RadioButtonExパートタイマー;
+        private CcControl.CcRadioButton RadioButtonExLongTimeS;
+        private CcControl.CcRadioButton RadioButtonExJobFormNothing;
+        private CcControl.CcRadioButton RadioButtonExShortTimeJ;
+        private CcControl.CcRadioButton RadioButtonExLongTimeJ;
+        private CcControl.CcRadioButton RadioButtonExShortTimeS;
+        private CcControl.CcRadioButton radioButtonEx17;
+        private CcControl.CcRadioButton RadioButtonExOfficeWorker;
+        private CcControl.CcRadioButton radioButtonEx15;
+        private CcControl.CcRadioButton RadioButtonExWorkers;
+        private CcControl.CcRadioButton RadioButtonExDrivers;
+        private CcControl.CcRadioButton radioButtonEx18;
         private CcControl.CcTextBox TextBoxExUnionCode;
         private CcControl.CcLabel labelEx4;
         private CcControl.CcLabel LabelExStaffCode;
@@ -3336,15 +3345,15 @@
         private CcControl.CcTextBox TextBoxExOtherNameKana;
         private CcControl.CcLabel labelEx8;
         private CcControl.CcTextBox TextBoxExDisplayName;
-        private CcControl.CcDateTime DateTimeExBirthDate;
+        private CcControl.CcDateTime CcDateTimeBirthDate;
         private CcControl.CcLabel labelEx9;
         private CcControl.CcComboBox ComboBoxExBloodType;
         private CcControl.CcLabel labelEx11;
         private CcControl.CcComboBox ComboBoxExGender;
         private CcControl.CcLabel labelEx10;
-        private CcControl.CcDateTime DateTimeExEmploymentDate;
+        private CcControl.CcDateTime CcDateTimeEmploymentDate;
         private CcControl.CcLabel labelEx12;
-        private CcControl.CcDateTime DateTimePickerExContractDate;
+        private CcControl.CcDateTime CcDateTimePickerContractDate;
         private CcControl.CcCheckBox CheckBoxExContractFlag;
         private CcControl.CcLabel labelEx14;
         private CcControl.CcTextBox TextBoxExRemarks;
@@ -3357,7 +3366,7 @@
         private CcControl.CcLabel labelEx17;
         private CcControl.CcPictureBox PictureBoxExStamp;
         private CcControl.CcPictureBox PictureBoxExStaff;
-        private CcControl.GroupBoxEx GroupBoxExDrive;
+        private CcControl.CcGroupBox GroupBoxExDrive;
         private CcControl.CcDateTime DateTimeExSelectionDate;
         private CcControl.CcLabel labelEx18;
         private CcControl.CcTextBox TextBoxExLicenseType;
@@ -3372,7 +3381,7 @@
         private CcControl.CcDateTime DateTimeExLicenseTypeExpirationDate;
         private CcControl.CcLabel labelEx24;
         private CcControl.CcLabel labelEx23;
-        private CcControl.GroupBoxEx GroupBoxExHistory;
+        private CcControl.CcGroupBox GroupBoxExHistory;
         private CcControl.CcCheckBox CheckBoxExToukanpoFlag;
         private CcControl.CcCheckBox CheckBoxExLegalTwelveItemFlag;
         private CcControl.CcButton AddGroupBoxExHistory;
@@ -3389,7 +3398,7 @@
         private CcControl.CcLabel labelEx27;
         private CcControl.CcTextBox TextBoxExCompanyName2;
         private CcControl.CcDateTime DateTimeExHistoryDate2;
-        private CcControl.GroupBoxEx GroupBoxExExperience;
+        private CcControl.CcGroupBox GroupBoxExExperience;
         private CcControl.CcLabel labelEx30;
         private CcControl.CcTextBox TextBoxExExperienceNote3;
         private CcControl.CcLabel labelEx31;
@@ -3400,7 +3409,7 @@
         private CcControl.CcLabel labelEx33;
         private CcControl.CcTextBox TextBoxExExperienceNote;
         private CcControl.CcLabel labelEx34;
-        private CcControl.GroupBoxEx GroupBoxExRetirement;
+        private CcControl.CcGroupBox GroupBoxExRetirement;
         private CcControl.CcLabel labelEx35;
         private CcControl.CcTextBox TextBoxExExperienceLoad;
         private CcControl.CcComboBox ComboBoxExExperienceKind;
@@ -3425,7 +3434,7 @@
         private CcControl.CcDateTime DateTimeExDeathDate;
         private CcControl.CcLabel labelEx39;
         private CcControl.CcLabel labelEx41;
-        private CcControl.GroupBoxEx GroupBoxExFamily;
+        private CcControl.CcGroupBox GroupBoxExFamily;
         private CcControl.CcTextBox TextBoxExFamilyName;
         private CcControl.CcLabel labelEx48;
         private CcControl.CcLabel labelEx47;
@@ -3452,7 +3461,7 @@
         private CcControl.CcTextBox TextBoxExUrgentTelephoneMethod;
         private CcControl.CcTextBox TextBoxExUrgentTelephoneNumber;
         private CcControl.CcLabel labelEx49;
-        private CcControl.GroupBoxEx GroupBoxExInsurance;
+        private CcControl.CcGroupBox GroupBoxExInsurance;
         private CcControl.CcComboBox ComboBoxExHealthInsuranceNumber;
         private CcControl.CcDateTime DateTimeExHealthInsuranceDate;
         private CcControl.CcTextBox TextBoxExHealthInsuranceNote;
@@ -3469,7 +3478,7 @@
         private CcControl.CcLabel labelEx55;
         private CcControl.CcLabel labelEx56;
         private CcControl.CcLabel labelEx57;
-        private CcControl.GroupBoxEx GroupBoxExMedicalExamination;
+        private CcControl.CcGroupBox GroupBoxExMedicalExamination;
         private CcControl.CcComboBox ComboBoxExMedicalInstitutionName;
         private CcControl.CcDateTime DateTimeExMedicalExaminationDate;
         private CcControl.CcTextBox TextBoxExMedicalExaminationNote;
@@ -3489,9 +3498,9 @@
         private CcControl.CcLabel labelEx51;
         private CcControl.CcLabel labelEx52;
         private CcControl.CcButton AddGroupBoxExMedical;
-        private CcControl.GroupBoxEx groupBoxEx9;
+        private CcControl.CcGroupBox groupBoxEx9;
         private CcControl.CcLabel labelEx60;
-        private CcControl.GroupBoxEx GroupBoxExCarViolate;
+        private CcControl.CcGroupBox GroupBoxExCarViolate;
         private CcControl.CcLabel labelEx61;
         private CcControl.CcLabel labelEx62;
         private CcControl.CcLabel labelEx63;
@@ -3511,7 +3520,7 @@
         private CcControl.CcComboBox ComboBoxExCarViolateContent1;
         private CcControl.CcDateTime DateTimeExCarViolateDate1;
         private CcControl.CcTextBox TextBoxExCarViolatePlace1;
-        private CcControl.GroupBoxEx GroupBoxEducate;
+        private CcControl.CcGroupBox GroupBoxEducate;
         private CcControl.CcLabel labelEx68;
         private CcControl.CcLabel labelEx69;
         private CcControl.CcLabel labelEx70;
@@ -3526,7 +3535,7 @@
         private CcControl.CcDateTime DateTimeExEducateDate2;
         private CcControl.CcComboBox ComboBoxExEducateName1;
         private CcControl.CcDateTime DateTimeExEducateDate1;
-        private CcControl.GroupBoxEx GroupBoxExPunishment;
+        private CcControl.CcGroupBox GroupBoxExPunishment;
         private CcControl.CcLabel labelEx78;
         private CcControl.CcLabel labelEx79;
         private CcControl.CcLabel labelEx80;
@@ -3541,7 +3550,7 @@
         private CcControl.CcDateTime DateTimeExPunishmentDate2;
         private CcControl.CcComboBox ComboBoxExPunishmentNote1;
         private CcControl.CcDateTime DateTimeExPunishmentDate1;
-        private CcControl.GroupBoxEx GroupBoxProper;
+        private CcControl.CcGroupBox GroupBoxProper;
         private CcControl.CcLabel labelEx67;
         private CcControl.CcLabel labelEx73;
         private CcControl.CcLabel labelEx74;
@@ -3561,7 +3570,7 @@
         private CcControl.CcComboBox ComboBoxExProperKind1;
         private CcControl.CcDateTime DateTimeExProperDate1;
         private CcControl.CcTextBox TextBoxExProperNote1;
-        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton CcButtonUpdate;
         private CcControl.ContextMenuStripEx ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemPictureClip;
         private ToolStripMenuItem ToolStripMenuItemPictureDelete;

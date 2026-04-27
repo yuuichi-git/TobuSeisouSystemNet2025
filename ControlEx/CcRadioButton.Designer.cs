@@ -1,5 +1,5 @@
 ﻿namespace CcControl {
-    partial class RadioButtonEx {
+    partial class CcRadioButton {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

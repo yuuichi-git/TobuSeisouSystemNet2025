@@ -30,12 +30,12 @@
             this.PanelExUp = new CcControl.CcPanel();
             this.ButtonExUpdate = new CcControl.CcButton();
             this.CheckBoxEx1 = new CcControl.CcCheckBox();
-            this.groupBoxEx2 = new CcControl.GroupBoxEx();
+            this.groupBoxEx2 = new CcControl.CcGroupBox();
             this.ComboBoxEx8 = new CcControl.CcComboBox();
             this.ComboBoxEx7 = new CcControl.CcComboBox();
             this.labelEx9 = new CcControl.CcLabel();
             this.labelEx8 = new CcControl.CcLabel();
-            this.groupBoxEx1 = new CcControl.GroupBoxEx();
+            this.groupBoxEx1 = new CcControl.CcGroupBox();
             this.ComboBoxExWeather = new CcControl.CcComboBox();
             this.labelEx7 = new CcControl.CcLabel();
             this.ComboBoxEx5 = new CcControl.CcComboBox();
@@ -379,9 +379,9 @@
         private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadFirstRollCall;
         private CcControl.CcLabel labelEx1;
-        private CcControl.GroupBoxEx groupBoxEx1;
+        private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcDateTime DateTimePickerExOperationDate;
-        private CcControl.GroupBoxEx groupBoxEx2;
+        private CcControl.CcGroupBox groupBoxEx2;
         private CcControl.CcComboBox ComboBoxExWeather;
         private CcControl.CcLabel labelEx7;
         private CcControl.CcComboBox ComboBoxEx5;

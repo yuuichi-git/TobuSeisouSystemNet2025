@@ -1,5 +1,5 @@
 ﻿namespace CcControl {
-    partial class GroupBoxEx {
+    partial class CcGroupBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

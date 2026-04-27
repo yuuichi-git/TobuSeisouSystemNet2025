@@ -6,6 +6,7 @@ using CcControl;
 using Dao;
 
 using Vo;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Staff {
     public partial class StaffDetail : Form {
@@ -38,7 +39,7 @@ namespace Staff {
         private readonly Dictionary<string, int> _dictionaryJobFormSI = new();
 
         /// <summary>
-        /// 
+        /// Staffを新規登録するためのコンストラクタ
         /// </summary>
         /// <param name="connectionVo"></param>
         public StaffDetail(ConnectionVo connectionVo) {
@@ -88,7 +89,10 @@ namespace Staff {
                 "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
-
+            /*
+             * 各Controlを初期化する
+             * 新規と更新で共通のControlはInitializeControls()で初期化する
+             */
             this.InitializeControls();
             this.LabelExStaffCode.Text = (_staffMasterDao.GetStaffCode(24000) + 1).ToString("#####");        // 新規従事者コードを採番
             /*
@@ -98,7 +102,7 @@ namespace Staff {
         }
 
         /// <summary>
-        /// 
+        ///　Staffを更新するためのコンストラクタ
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="staffCode"></param>
@@ -149,7 +153,10 @@ namespace Staff {
                 "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
-
+            /*
+             * 各Controlを初期化する
+             * 新規と更新で共通のControlはInitializeControls()で初期化する
+             */
             this.InitializeControls();
             try {
                 StaffMasterVo staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
@@ -167,14 +174,14 @@ namespace Staff {
         /// 
         /// </summary>
         public void InitializeControls() {
-            CheckBoxExTargetFlag.Checked = false;                                       // 配車する対象者
-            CheckBoxExLegalTwelveItemFlag.Checked = false;                              // 法定１２項目受講対象者
-            CheckBoxExToukanpoFlag.Checked = false;                                     // 東環保研修受講対象者
-            foreach (RadioButtonEx radioButtonEx in GroupBoxExBelongs.Controls)         // 所属
+            this.CheckBoxExTargetFlag.Checked = false;                                  // 配車する対象者
+            this.CheckBoxExLegalTwelveItemFlag.Checked = false;                         // 法定１２項目受講対象者
+            this.CheckBoxExToukanpoFlag.Checked = false;                                // 東環保研修受講対象者
+            foreach (CcRadioButton radioButtonEx in CcGroupBoxBelongs.Controls)         // 所属
                 radioButtonEx.Checked = false;
-            foreach (RadioButtonEx radioButtonEx in GroupBoxExJobForm.Controls)         // 雇用形態
+            foreach (CcRadioButton radioButtonEx in CcGroupBoxJobForm.Controls)         // 雇用形態
                 radioButtonEx.Checked = false;
-            foreach (RadioButtonEx radioButtonEx in GroupBoxExOccupation.Controls)      // 職種
+            foreach (CcRadioButton radioButtonEx in CcGroupBoxOccupation.Controls)      // 職種
                 radioButtonEx.Checked = false;
             /*
              * 個人情報
@@ -186,13 +193,13 @@ namespace Staff {
             TextBoxExName.Text = string.Empty;
             TextBoxExOtherName.Text = string.Empty;
             TextBoxExDisplayName.Text = string.Empty;
-            DateTimeExBirthDate.SetClear();
+            CcDateTimeBirthDate.SetClear();
             ComboBoxExGender.SelectedIndex = -1;
             ComboBoxExBloodType.SelectedIndex = -1;
-            DateTimeExEmploymentDate.SetClear();
+            CcDateTimeEmploymentDate.SetClear();
             CheckBoxExContractFlag.Checked = false;
-            DateTimePickerExContractDate.Enabled = false;
-            DateTimePickerExContractDate.SetClear();
+            CcDateTimePickerContractDate.Enabled = false;
+            CcDateTimePickerContractDate.SetClear();
             TextBoxExCurrentAddress.Text = string.Empty;
             TextBoxExRemarks.Text = string.Empty;
             TextBoxExTelephoneNumber.Text = string.Empty;
@@ -374,15 +381,15 @@ namespace Staff {
             staffMasterVo.VehicleDispatchTarget = CheckBoxExTargetFlag.Checked;                                                         // 配車する対象者
             staffMasterVo.LegalTwelveItemFlag = CheckBoxExLegalTwelveItemFlag.Checked;                                                  // 法定１２項目受講対象者
             staffMasterVo.ToukanpoFlag = CheckBoxExToukanpoFlag.Checked;                                                                // 東環保研修受講対象者
-            foreach (RadioButtonEx radioButtonExBelongs in GroupBoxExBelongs.Controls) {                                                // 所属
+            foreach (CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls) {                                                // 所属
                 if (radioButtonExBelongs.Checked)
                     staffMasterVo.Belongs = _dictionaryBelongsSI[radioButtonExBelongs.Text];
             }
-            foreach (RadioButtonEx radioButtonExJobForm in GroupBoxExJobForm.Controls) {                                                // 雇用形態
+            foreach (CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls) {                                                // 雇用形態
                 if (radioButtonExJobForm.Checked)
                     staffMasterVo.JobForm = _dictionaryJobFormSI[radioButtonExJobForm.Text];
             }
-            foreach (RadioButtonEx radioButtonExOccupation in GroupBoxExOccupation.Controls) {                                          // 職種
+            foreach (CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls) {                                          // 職種
                 if (radioButtonExOccupation.Checked)
                     staffMasterVo.Occupation = _dictionaryOccupationSI[radioButtonExOccupation.Text];
             }
@@ -399,12 +406,12 @@ namespace Staff {
             staffMasterVo.Name = TextBoxExName.Text;                                                                                    // 氏名
             staffMasterVo.OtherName = TextBoxExOtherName.Text;                                                                          // 氏名(健康診断用)
             staffMasterVo.DisplayName = TextBoxExDisplayName.Text;                                                                      // 略称名
-            staffMasterVo.BirthDate = DateTimeExBirthDate.GetValue();                                                                   // 生年月日
+            staffMasterVo.BirthDate = CcDateTimeBirthDate.GetValue();                                                                   // 生年月日
             staffMasterVo.Gender = ComboBoxExGender.Text;                                                                               // 性別
             staffMasterVo.BloodType = ComboBoxExBloodType.Text;                                                                         // 血液型
-            staffMasterVo.EmploymentDate = DateTimeExEmploymentDate.GetValue();                                                         // 雇用年月日
+            staffMasterVo.EmploymentDate = CcDateTimeEmploymentDate.GetValue();                                                         // 雇用年月日
             staffMasterVo.ContractFlag = CheckBoxExContractFlag.Checked;                                                                // 契約満了日チェック
-            staffMasterVo.ContractDate = CheckBoxExContractFlag.Checked ? DateTimePickerExContractDate.GetValue() : _defaultDateTime;   // 契約満了日
+            staffMasterVo.ContractDate = CheckBoxExContractFlag.Checked ? CcDateTimePickerContractDate.GetValue() : _defaultDateTime;   // 契約満了日
             staffMasterVo.CurrentAddress = TextBoxExCurrentAddress.Text;                                                                // 現住所
             staffMasterVo.Remarks = TextBoxExRemarks.Text;                                                                              // 備考
             staffMasterVo.TelephoneNumber = TextBoxExTelephoneNumber.Text;                                                              // 電話番号
@@ -485,19 +492,19 @@ namespace Staff {
             /*
              * GroupBoxExBelongs
              */
-            foreach (RadioButtonEx radioButtonExBelongs in GroupBoxExBelongs.Controls)                                                  // 所属
+            foreach (CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls)                                                  // 所属
                 if (radioButtonExBelongs.Text == _dictionaryBelongsIS[staffMasterVo.Belongs])
                     radioButtonExBelongs.Checked = true;
             /*
              * GroupBoxExJobForm
              */
-            foreach (RadioButtonEx radioButtonExJobForm in GroupBoxExJobForm.Controls)                                                  // 雇用形態
+            foreach (CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls)                                                  // 雇用形態
                 if (radioButtonExJobForm.Text == _dictionaryJobFormIS[staffMasterVo.JobForm])
                     radioButtonExJobForm.Checked = true;
             /*
              * GroupBoxExOccupation
              */
-            foreach (RadioButtonEx radioButtonExOccupation in GroupBoxExOccupation.Controls)                                            // 職種
+            foreach (CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls)                                            // 職種
                 if (radioButtonExOccupation.Text == _dictionaryOccupationIS[staffMasterVo.Occupation])
                     radioButtonExOccupation.Checked = true;
             /*
@@ -511,12 +518,12 @@ namespace Staff {
             TextBoxExName.Text = staffMasterVo.Name;
             TextBoxExOtherName.Text = staffMasterVo.OtherName;
             TextBoxExDisplayName.Text = staffMasterVo.DisplayName;
-            DateTimeExBirthDate.SetValueJp(staffMasterVo.BirthDate);
+            CcDateTimeBirthDate.SetValueJp(staffMasterVo.BirthDate);
             ComboBoxExGender.Text = staffMasterVo.Gender;
             ComboBoxExBloodType.Text = staffMasterVo.BloodType;
-            DateTimeExEmploymentDate.SetValueJp(staffMasterVo.EmploymentDate);
+            CcDateTimeEmploymentDate.SetValueJp(staffMasterVo.EmploymentDate);
             CheckBoxExContractFlag.Checked = staffMasterVo.ContractFlag;
-            DateTimePickerExContractDate.SetValue(staffMasterVo.ContractDate);
+            CcDateTimePickerContractDate.SetValue(staffMasterVo.ContractDate);
             TextBoxExCurrentAddress.Text = staffMasterVo.CurrentAddress;
             TextBoxExRemarks.Text = staffMasterVo.Remarks;
             TextBoxExTelephoneNumber.Text = staffMasterVo.TelephoneNumber;
@@ -782,7 +789,31 @@ namespace Staff {
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((Button)sender).Name) {
-                case "ButtonExUpdate":
+                case "CcButtonUpdate":
+                    /*
+                     * バリデーション
+                     */
+                    if (!CcGroupBoxBelongs.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "所属を選択してください。";
+                        break;
+                    }
+                    if (!CcGroupBoxJobForm.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "雇用形態を選択してください。";
+                        break;
+                    }
+                    if (!CcGroupBoxOccupation.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "職種を選択してください。";
+                        break;
+                    }
+                    if (CcDateTimeBirthDate.GetEmpty()) {
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "生年月日を選択してください。";
+                        break;
+                    }
+                    if (CcDateTimeEmploymentDate.GetEmpty()) {
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "入社日を選択してください。";
+                        break;
+                    }
+
                     try {
                         int.TryParse(LabelExStaffCode.Text, out int staffCode);
                         if (_staffMasterDao.ExistenceStaffMaster(staffCode)) {
@@ -1121,111 +1152,111 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RadioButtonEx_CheckedChanged(object sender, EventArgs e) {
-            switch (((RadioButtonEx)sender).Text) {
+            switch (((CcRadioButton)sender).Text) {
                 case "役員":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = false;
-                    RadioButtonExDrivers.Enabled = false;
-                    RadioButtonExWorkers.Enabled = false;
-                    radioButtonEx15.Enabled = false;
-                    radioButtonEx17.Enabled = false;
-                    radioButtonEx18.Enabled = true;
-                    radioButtonEx18.Checked = true;
+                    this.RadioButtonExOfficeWorker.Enabled = false;
+                    this.RadioButtonExDrivers.Enabled = false;
+                    this.RadioButtonExWorkers.Enabled = false;
+                    this.radioButtonEx15.Enabled = false;
+                    this.radioButtonEx17.Enabled = false;
+                    this.radioButtonEx18.Enabled = true;
+                    this.radioButtonEx18.Checked = true;
                     break;
                 case "社員":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = true;
-                    RadioButtonExDrivers.Enabled = true;
-                    RadioButtonExWorkers.Enabled = true;
-                    radioButtonEx15.Enabled = true;
-                    radioButtonEx17.Enabled = true;
-                    radioButtonEx18.Enabled = true;
+                    this.RadioButtonExOfficeWorker.Enabled = true;
+                    this.RadioButtonExDrivers.Enabled = true;
+                    this.RadioButtonExWorkers.Enabled = true;
+                    this.radioButtonEx15.Enabled = true;
+                    this.radioButtonEx17.Enabled = true;
+                    this.radioButtonEx18.Enabled = true;
                     break;
                 case "アルバイト":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = true;
-                    RadioButtonExDrivers.Enabled = true;
-                    RadioButtonExWorkers.Enabled = true;
-                    radioButtonEx15.Enabled = true;
-                    radioButtonEx17.Enabled = true;
-                    radioButtonEx18.Enabled = true;
+                    this.RadioButtonExOfficeWorker.Enabled = true;
+                    this.RadioButtonExDrivers.Enabled = true;
+                    this.RadioButtonExWorkers.Enabled = true;
+                    this.radioButtonEx15.Enabled = true;
+                    this.radioButtonEx17.Enabled = true;
+                    this.radioButtonEx18.Enabled = true;
                     break;
                 case "派遣":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = false;
-                    RadioButtonExDrivers.Enabled = true;
-                    RadioButtonExWorkers.Enabled = true;
-                    radioButtonEx15.Enabled = false;
-                    radioButtonEx17.Enabled = false;
-                    radioButtonEx18.Enabled = false;
+                    this.RadioButtonExOfficeWorker.Enabled = false;
+                    this.RadioButtonExDrivers.Enabled = true;
+                    this.RadioButtonExWorkers.Enabled = true;
+                    this.radioButtonEx15.Enabled = false;
+                    this.radioButtonEx17.Enabled = false;
+                    this.radioButtonEx18.Enabled = false;
                     break;
                 case "嘱託雇用契約社員":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = true;
-                    RadioButtonExDrivers.Enabled = false;
-                    RadioButtonExWorkers.Enabled = false;
-                    radioButtonEx15.Enabled = false;
-                    radioButtonEx17.Enabled = false;
-                    radioButtonEx18.Enabled = false;
+                    this.RadioButtonExOfficeWorker.Enabled = true;
+                    this.RadioButtonExDrivers.Enabled = false;
+                    this.RadioButtonExWorkers.Enabled = false;
+                    this.radioButtonEx15.Enabled = false;
+                    this.radioButtonEx17.Enabled = false;
+                    this.radioButtonEx18.Enabled = false;
                     break;
                 case "パートタイマー":
-                    RadioButtonExLongTimeS.Enabled = false;
-                    RadioButtonExShortTimeS.Enabled = false;
-                    RadioButtonExLongTimeJ.Enabled = false;
-                    RadioButtonExShortTimeJ.Enabled = false;
-                    RadioButtonExJobFormNothing.Enabled = true;
-                    RadioButtonExJobFormNothing.Checked = true;
+                    this.RadioButtonExLongTimeS.Enabled = false;
+                    this.RadioButtonExShortTimeS.Enabled = false;
+                    this.RadioButtonExLongTimeJ.Enabled = false;
+                    this.RadioButtonExShortTimeJ.Enabled = false;
+                    this.RadioButtonExJobFormNothing.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Checked = true;
 
-                    RadioButtonExOfficeWorker.Enabled = true;
-                    RadioButtonExDrivers.Enabled = false;
-                    RadioButtonExWorkers.Enabled = false;
-                    radioButtonEx15.Enabled = false;
-                    radioButtonEx17.Enabled = false;
-                    radioButtonEx18.Enabled = false;
+                    this.RadioButtonExOfficeWorker.Enabled = true;
+                    this.RadioButtonExDrivers.Enabled = false;
+                    this.RadioButtonExWorkers.Enabled = false;
+                    this.radioButtonEx15.Enabled = false;
+                    this.radioButtonEx17.Enabled = false;
+                    this.radioButtonEx18.Enabled = false;
                     break;
                 case "労供":
-                    RadioButtonExLongTimeS.Enabled = true;
-                    RadioButtonExShortTimeS.Enabled = true;
-                    RadioButtonExLongTimeJ.Enabled = true;
-                    RadioButtonExShortTimeJ.Enabled = true;
-                    RadioButtonExJobFormNothing.Enabled = false;
+                    this.RadioButtonExLongTimeS.Enabled = true;
+                    this.RadioButtonExShortTimeS.Enabled = true;
+                    this.RadioButtonExLongTimeJ.Enabled = true;
+                    this.RadioButtonExShortTimeJ.Enabled = true;
+                    this.RadioButtonExJobFormNothing.Enabled = false;
 
-                    RadioButtonExOfficeWorker.Enabled = false;
-                    RadioButtonExDrivers.Enabled = true;
-                    RadioButtonExWorkers.Enabled = true;
-                    radioButtonEx15.Enabled = false;
-                    radioButtonEx17.Enabled = false;
-                    radioButtonEx18.Enabled = false;
+                    this.RadioButtonExOfficeWorker.Enabled = false;
+                    this.RadioButtonExDrivers.Enabled = true;
+                    this.RadioButtonExWorkers.Enabled = true;
+                    this.radioButtonEx15.Enabled = false;
+                    this.radioButtonEx17.Enabled = false;
+                    this.radioButtonEx18.Enabled = false;
                     break;
             }
         }

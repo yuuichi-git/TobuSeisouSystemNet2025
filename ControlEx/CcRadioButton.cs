@@ -2,8 +2,8 @@
  * 2025-1-17
  */
 namespace CcControl {
-    public partial class RadioButtonEx : RadioButton {
-        public RadioButtonEx() {
+    public partial class CcRadioButton : RadioButton {
+        public CcRadioButton() {
             InitializeComponent();
         }
 

@@ -2,8 +2,8 @@
  * 2024-11-05
  */
 namespace CcControl {
-    public partial class GroupBoxEx : GroupBox {
-        public GroupBoxEx() {
+    public partial class CcGroupBox : GroupBox {
+        public CcGroupBox() {
             InitializeComponent();
         }
 

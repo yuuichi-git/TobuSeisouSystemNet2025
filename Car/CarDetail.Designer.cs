@@ -29,7 +29,7 @@
             this.PanelExUp = new CcControl.CcPanel();
             this.ButtonExUpdate = new CcControl.CcButton();
             this.PanelExLeft = new CcControl.CcPanel();
-            this.groupBoxEx4 = new CcControl.GroupBoxEx();
+            this.groupBoxEx4 = new CcControl.CcGroupBox();
             this.TextBoxExRemarks = new CcControl.CcTextBox();
             this.TextBoxExCategoryDistinguishNumber = new CcControl.CcTextBox();
             this.TextBoxExVersionDesignateNumber = new CcControl.CcTextBox();
@@ -76,7 +76,7 @@
             this.labelEx21 = new CcControl.CcLabel();
             this.labelEx22 = new CcControl.CcLabel();
             this.labelEx23 = new CcControl.CcLabel();
-            this.groupBoxEx3 = new CcControl.GroupBoxEx();
+            this.groupBoxEx3 = new CcControl.CcGroupBox();
             this.ComboBoxExBaseAddress = new CcControl.CcComboBox();
             this.ComboBoxExUserAddress = new CcControl.CcComboBox();
             this.ComboBoxExUserName = new CcControl.CcComboBox();
@@ -87,7 +87,7 @@
             this.labelEx16 = new CcControl.CcLabel();
             this.labelEx17 = new CcControl.CcLabel();
             this.labelEx18 = new CcControl.CcLabel();
-            this.groupBoxEx2 = new CcControl.GroupBoxEx();
+            this.groupBoxEx2 = new CcControl.CcGroupBox();
             this.DateTimePickerExExpirationDate = new CcControl.CcDateTime();
             this.DateTimePickerExFirstRegistrationDate = new CcControl.CcDateTime();
             this.DateTimePickerExRegistrationDate = new CcControl.CcDateTime();
@@ -96,7 +96,7 @@
             this.labelEx12 = new CcControl.CcLabel();
             this.labelEx13 = new CcControl.CcLabel();
             this.labelEx14 = new CcControl.CcLabel();
-            this.groupBoxEx1 = new CcControl.GroupBoxEx();
+            this.groupBoxEx1 = new CcControl.CcGroupBox();
             this.CheckBoxExDigitalTachographFlag = new CcControl.CcCheckBox();
             this.labelEx41 = new CcControl.CcLabel();
             this.ComboBoxExDigitalTachographType = new CcControl.CcComboBox();
@@ -1289,16 +1289,16 @@
         private CcControl.CcPanel PanelExLeft;
         private CcControl.CcPictureBox PictureBoxExMainPicture;
         private CcControl.CcPictureBox PictureBoxExSubPicture;
-        private CcControl.GroupBoxEx groupBoxEx1;
+        private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
-        private CcControl.GroupBoxEx groupBoxEx3;
+        private CcControl.CcGroupBox groupBoxEx3;
         private CcControl.CcLabel labelEx10;
         private CcControl.CcLabel labelEx15;
         private CcControl.CcLabel labelEx16;
         private CcControl.CcLabel labelEx17;
         private CcControl.CcLabel labelEx18;
-        private CcControl.GroupBoxEx groupBoxEx2;
+        private CcControl.CcGroupBox groupBoxEx2;
         private CcControl.CcLabel labelEx11;
         private CcControl.CcLabel labelEx12;
         private CcControl.CcLabel labelEx13;
@@ -1308,7 +1308,7 @@
         private CcControl.CcLabel labelEx5;
         private CcControl.CcLabel labelEx4;
         private CcControl.CcLabel labelEx3;
-        private CcControl.GroupBoxEx groupBoxEx4;
+        private CcControl.CcGroupBox groupBoxEx4;
         private CcControl.CcLabel labelEx38;
         private CcControl.CcLabel labelEx39;
         private CcControl.CcLabel labelEx31;

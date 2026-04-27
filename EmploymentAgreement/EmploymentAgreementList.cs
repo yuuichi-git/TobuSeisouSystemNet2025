@@ -554,7 +554,7 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="groupBoxEx"></param>
         /// <returns></returns>
-        private List<int> CreateArray(GroupBoxEx groupBoxEx) {
+        private List<int> CreateArray(CcGroupBox groupBoxEx) {
             List<int> list = new();
             foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
                 if (checkBoxEx.Checked)

@@ -71,7 +71,7 @@
             this.NumericUpDownExPay = new CcControl.NumericUpDownEx();
             this.labelEx2 = new CcControl.CcLabel();
             this.CheckBoxExCheckFlag = new CcControl.CcCheckBox();
-            this.GroupBoxExExpiration = new CcControl.GroupBoxEx();
+            this.GroupBoxExExpiration = new CcControl.CcGroupBox();
             this.BTNExExpiration = new CcControl.CcButton();
             this.DTPExExpirationEndDate = new CcControl.CcDateTime();
             this.BTNExExpirationPicture = new CcControl.CcButton();
@@ -86,7 +86,7 @@
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemPaste = new ToolStripMenuItem();
             this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
-            this.groupBoxEx6 = new CcControl.GroupBoxEx();
+            this.groupBoxEx6 = new CcControl.CcGroupBox();
             this.BTNExContractExpirationNoticePicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationNotice = new CcControl.CcButton();
             this.DTPExContractExpirationNoticeStartDate = new CcControl.CcDateTime();
@@ -97,7 +97,7 @@
             this.DTPExContractExpirationNoticeEndDate1 = new CcControl.CcDateTime();
             this.labelEx28 = new CcControl.CcLabel();
             this.TextBoxExContractExpirationNoticeMemo1 = new CcControl.CcTextBox();
-            this.groupBoxEx5 = new CcControl.GroupBoxEx();
+            this.groupBoxEx5 = new CcControl.CcGroupBox();
             this.BTNExContractExpirationLossWrittenPledgePicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationLossWrittenPledge = new CcControl.CcButton();
             this.DTPExContractExpirationLossWrittenPledgeStartDate = new CcControl.CcDateTime();
@@ -108,7 +108,7 @@
             this.DTPExContractExpirationLossWrittenPledgeEndDate1 = new CcControl.CcDateTime();
             this.labelEx24 = new CcControl.CcLabel();
             this.TextBoxExContractExpirationLossWrittenPledgeMemo1 = new CcControl.CcTextBox();
-            this.GroupBoxExContractExpirationWrittenPledge = new CcControl.GroupBoxEx();
+            this.GroupBoxExContractExpirationWrittenPledge = new CcControl.CcGroupBox();
             this.BTNExContractExpirationWrittenPledgePicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationWrittenPledge = new CcControl.CcButton();
             this.DTPExContractExpirationWrittenPledgeStartDate = new CcControl.CcDateTime();
@@ -119,7 +119,7 @@
             this.DTPExContractExpirationWrittenPledgeEndDate1 = new CcControl.CcDateTime();
             this.labelEx20 = new CcControl.CcLabel();
             this.TextBoxExContractExpirationWrittenPledgeMemo1 = new CcControl.CcTextBox();
-            this.GroupBoxExContractExpirationShortJob = new CcControl.GroupBoxEx();
+            this.GroupBoxExContractExpirationShortJob = new CcControl.CcGroupBox();
             this.BTNExContractExpirationShortJobPicture2 = new CcControl.CcButton();
             this.BTNExContractExpirationShortJobPicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationShortJob = new CcControl.CcButton();
@@ -135,7 +135,7 @@
             this.labelEx16 = new CcControl.CcLabel();
             this.DTPExContractExpirationShortJobStartDate2 = new CcControl.CcDateTime();
             this.TextBoxExContractExpirationShortJobMemo1 = new CcControl.CcTextBox();
-            this.GroupBoxExContractExpirationLongJob = new CcControl.GroupBoxEx();
+            this.GroupBoxExContractExpirationLongJob = new CcControl.CcGroupBox();
             this.BTNExContractExpirationLongJobPicture2 = new CcControl.CcButton();
             this.BTNExContractExpirationLongJobPicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationLongJob = new CcControl.CcButton();
@@ -151,7 +151,7 @@
             this.labelEx12 = new CcControl.CcLabel();
             this.DTPExContractExpirationLongJobStartDate2 = new CcControl.CcDateTime();
             this.TextBoxExContractExpirationLongJobMemo1 = new CcControl.CcTextBox();
-            this.GroupBoxExContractExpirationPartTimeJob = new CcControl.GroupBoxEx();
+            this.GroupBoxExContractExpirationPartTimeJob = new CcControl.CcGroupBox();
             this.BTNExContractExpirationPartTimeJobPicture2 = new CcControl.CcButton();
             this.BTNExContractExpirationPartTimeJobPicture1 = new CcControl.CcButton();
             this.BTNExContractExpirationPartTimeJob = new CcControl.CcButton();
@@ -1872,9 +1872,9 @@
         private CcControl.CcLabel labelEx8;
         private CcControl.CcDateTime DTPExContractExpirationPartTimeJobEndDate2;
         private CcControl.CcDateTime DTPExContractExpirationPartTimeJobStartDate2;
-        private CcControl.GroupBoxEx GroupBoxExContractExpirationPartTimeJob;
+        private CcControl.CcGroupBox GroupBoxExContractExpirationPartTimeJob;
         private CcControl.CcButton BTNExContractExpirationPartTimeJob;
-        private CcControl.GroupBoxEx groupBoxEx5;
+        private CcControl.CcGroupBox groupBoxEx5;
         private CcControl.CcButton BTNExContractExpirationLossWrittenPledge;
         private CcControl.CcDateTime DTPExContractExpirationLossWrittenPledgeStartDate;
         private CcControl.CcDateTime DTPExContractExpirationLossWrittenPledgeEndDate;
@@ -1884,7 +1884,7 @@
         private CcControl.CcDateTime DTPExContractExpirationLossWrittenPledgeEndDate1;
         private CcControl.CcLabel labelEx24;
         private CcControl.CcTextBox TextBoxExContractExpirationLossWrittenPledgeMemo1;
-        private CcControl.GroupBoxEx GroupBoxExContractExpirationWrittenPledge;
+        private CcControl.CcGroupBox GroupBoxExContractExpirationWrittenPledge;
         private CcControl.CcButton BTNExContractExpirationWrittenPledge;
         private CcControl.CcDateTime DTPExContractExpirationWrittenPledgeStartDate;
         private CcControl.CcDateTime DTPExContractExpirationWrittenPledgeEndDate;
@@ -1894,7 +1894,7 @@
         private CcControl.CcDateTime DTPExContractExpirationWrittenPledgeEndDate1;
         private CcControl.CcLabel labelEx20;
         private CcControl.CcTextBox TextBoxExContractExpirationWrittenPledgeMemo1;
-        private CcControl.GroupBoxEx GroupBoxExContractExpirationShortJob;
+        private CcControl.CcGroupBox GroupBoxExContractExpirationShortJob;
         private CcControl.CcButton BTNExContractExpirationShortJob;
         private CcControl.CcDateTime DTPExContractExpirationShortJobStartDate;
         private CcControl.CcDateTime DTPExContractExpirationShortJobEndDate;
@@ -1908,7 +1908,7 @@
         private CcControl.CcLabel labelEx16;
         private CcControl.CcDateTime DTPExContractExpirationShortJobStartDate2;
         private CcControl.CcTextBox TextBoxExContractExpirationShortJobMemo1;
-        private CcControl.GroupBoxEx GroupBoxExContractExpirationLongJob;
+        private CcControl.CcGroupBox GroupBoxExContractExpirationLongJob;
         private CcControl.CcButton BTNExContractExpirationLongJob;
         private CcControl.CcDateTime DTPExContractExpirationLongJobStartDate;
         private CcControl.CcDateTime DTPExContractExpirationLongJobEndDate;
@@ -1922,7 +1922,7 @@
         private CcControl.CcLabel labelEx12;
         private CcControl.CcDateTime DTPExContractExpirationLongJobStartDate2;
         private CcControl.CcTextBox TextBoxExContractExpirationLongJobMemo1;
-        private CcControl.GroupBoxEx groupBoxEx6;
+        private CcControl.CcGroupBox groupBoxEx6;
         private CcControl.CcButton BTNExContractExpirationNotice;
         private CcControl.CcDateTime DTPExContractExpirationNoticeStartDate;
         private CcControl.CcDateTime DTPExContractExpirationNoticeEndDate;
@@ -1959,7 +1959,7 @@
         private CcControl.CcButton BTNExContractExpirationLongJobPicture1;
         private CcControl.CcButton BTNExContractExpirationPartTimeJobPicture2;
         private CcControl.CcButton BTNExContractExpirationPartTimeJobPicture1;
-        private CcControl.GroupBoxEx GroupBoxExExpiration;
+        private CcControl.CcGroupBox GroupBoxExExpiration;
         private CcControl.CcCheckBox CheckBoxExCheckFlag;
         private CcControl.CcButton BTNExExpiration;
         private CcControl.NumericUpDownEx NumericUpDownExPay;
