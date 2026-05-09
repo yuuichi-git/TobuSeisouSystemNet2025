@@ -269,47 +269,49 @@ namespace Staff {
                     sheetView.Cells[rowCount, 11].Value = _toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(staffMasterVo.StaffCode);
                     // 法定１２項目
                     sheetView.Cells[rowCount, 12].Value = staffMasterVo.LegalTwelveItemFlag;
+                    // 定期健康診断
+                    sheetView.Cells[rowCount, 13].Value = staffMasterVo.MedicalCheckupFlag;
                     // 東環保講習
-                    sheetView.Cells[rowCount, 13].Value = staffMasterVo.ToukanpoFlag;
+                    sheetView.Cells[rowCount, 14].Value = staffMasterVo.ToukanpoFlag;
                     // 免許証期限
-                    sheetView.Cells[rowCount, 14].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 15].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
                    　// 初任診断
                     if (_staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode) != _defaultDateTime) {
-                        sheetView.Cells[rowCount, 15].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode);
+                        sheetView.Cells[rowCount, 16].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode);
                     } else {
-                        sheetView.Cells[rowCount, 15].Value = string.Empty;
+                        sheetView.Cells[rowCount, 16].Value = string.Empty;
                     }
                     // 適齢診断の残日数
-                    sheetView.Cells[rowCount, 16].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 17].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
                     // 年度内事故回数
-                    sheetView.Cells[rowCount, 17].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 18].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
                     /*
                      * 1年以内の健康診断
                      */
                     DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(staffMasterVo.StaffCode);
                     if (medicalExaminationDate != _defaultDateTime) {
                         if (medicalExaminationDate.AddYears(1) > DateTime.Now) {
-                            sheetView.Cells[rowCount, 18].ForeColor = Color.Black;
-                            sheetView.Cells[rowCount, 18].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                            sheetView.Cells[rowCount, 19].ForeColor = Color.Black;
+                            sheetView.Cells[rowCount, 19].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         } else {
-                            sheetView.Cells[rowCount, 18].ForeColor = Color.Red;
-                            sheetView.Cells[rowCount, 18].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                            sheetView.Cells[rowCount, 19].ForeColor = Color.Red;
+                            sheetView.Cells[rowCount, 19].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         }
 
                     } else {
-                        sheetView.Cells[rowCount, 18].ForeColor = Color.DarkGray;
-                        sheetView.Cells[rowCount, 18].Value = "健康診断の記録無し";
+                        sheetView.Cells[rowCount, 19].ForeColor = Color.DarkGray;
+                        sheetView.Cells[rowCount, 19].Value = "健康診断の記録無し";
                     }
                     // 現住所
-                    sheetView.Cells[rowCount, 19].Value = staffMasterVo.CurrentAddress;
+                    sheetView.Cells[rowCount, 20].Value = staffMasterVo.CurrentAddress;
                     // 健康保険加入
-                    sheetView.Cells[rowCount, 20].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 21].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
                     // 厚生年金加入
-                    sheetView.Cells[rowCount, 21].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 22].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
                     // 雇用保険加入
-                    sheetView.Cells[rowCount, 22].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 23].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
                     // 労災保険
-                    sheetView.Cells[rowCount, 23].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 24].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
                     rowCount++;
                 }
             }
@@ -348,7 +350,7 @@ namespace Staff {
                 _ => _listStaffMasterVo,
             };
 
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.RetirementFlag == false);
+            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.MedicalCheckupFlag == true && x.RetirementFlag == false);                               // 定期健康診断の対象者で、かつ退職していない従業員を抽出する
             if (_findListStaffMasterVo is not null) {
                 foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);

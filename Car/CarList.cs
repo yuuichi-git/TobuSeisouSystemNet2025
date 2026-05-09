@@ -3,7 +3,7 @@
 using Dao;
 
 using FarPoint.Win.Spread;
-
+using FarPoint.Win.Spread.Model;
 using Vo;
 
 namespace Car {
@@ -166,7 +166,7 @@ namespace Car {
             /*
              * StatusStrip
              */
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
              * Eventを登録する
              */
@@ -249,7 +249,7 @@ namespace Car {
             SpreadList.SetViewportTopRow(0, spreadListTopRow1);                                                                                                                          // 先頭行（列）インデックスをセット
 
             SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
         int spreadListTopRow2 = 0;
@@ -303,7 +303,7 @@ namespace Car {
             SpreadList.SetViewportTopRow(0, spreadListTopRow2);                                                                                                                          // 先頭行（列）インデックスをセット
 
             SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
         /// <summary>
@@ -397,7 +397,7 @@ namespace Car {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    
+
                     this.ButtonExUpdate.PerformClick();                                                                 // ButtonをClickする。画面とDBの整合性を担保するため。
                     break;
                 case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する

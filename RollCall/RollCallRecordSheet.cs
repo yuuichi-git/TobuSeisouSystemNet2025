@@ -134,8 +134,7 @@ namespace RollCall {
             // 点呼実施者（始業点呼）を取得
             _firstRollCallVo = _firstRollCallDao.SelectOneFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue());
             if (_firstRollCallVo is null) {
-                MessageBox.Show("選択日付の点呼実施者記録が存在しません。処理を終了します。",
-                                "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("選択日付の点呼実施者記録が存在しません。処理を終了します。", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -146,9 +145,7 @@ namespace RollCall {
             _listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
 
             int row = 0;
-            foreach (var detail in _listVehicleDispatchDetailVo
-                .Where(x => x.OperationFlag && x.ManagedSpaceCode == managedSpaceCode)
-                .OrderBy(x => x.StaffRollCallYmdHms1)) {
+            foreach (var detail in _listVehicleDispatchDetailVo.Where(x => x.OperationFlag && x.ManagedSpaceCode == managedSpaceCode).OrderBy(x => x.StaffRollCallYmdHms1)) {
                 // マスターキャッシュ
                 var set = _listSetMasterVo.Find(x => x.SetCode == detail.SetCode);
                 var car = _listCarMasterVo.Find(x => x.CarCode == detail.CarCode);
@@ -184,8 +181,7 @@ namespace RollCall {
                 this.SheetViewList.Cells[r, (int)Col.RollCallMethodStart].Text = "対面";
 
                 // 点呼時刻
-                this.SheetViewList.Cells[r, (int)Col.RollCallTimeStart].Text =
-                    detail.StaffRollCallYmdHms1.ToString("H:mm");
+                this.SheetViewList.Cells[r, (int)Col.RollCallTimeStart].Text = detail.StaffRollCallYmdHms1.ToString("H:mm");
 
                 // チェック項目
                 this.SheetViewList.Cells[r, (int)Col.License].Text = "✓";
@@ -195,12 +191,10 @@ namespace RollCall {
                 this.SheetViewList.Cells[r, (int)Col.DetectorStart].Text = "有";
 
                 // 指示事項
-                this.SheetViewList.Cells[r, (int)Col.Instruction].Text =
-                    $"{_firstRollCallVo.Instruction1}\r\n\r\n{_firstRollCallVo.Instruction2}";
+                this.SheetViewList.Cells[r, (int)Col.Instruction].Text = $"{_firstRollCallVo.Instruction1}\r\n\r\n{_firstRollCallVo.Instruction2}";
 
                 // 点呼実施者（始業）
-                this.SheetViewList.Cells[r, (int)Col.RollCallNameStart].Text =
-                    GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, false);
+                this.SheetViewList.Cells[r, (int)Col.RollCallNameStart].Text = GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, false);
 
                 /*
                  * 乗務後点呼
@@ -222,8 +216,7 @@ namespace RollCall {
                         this.SheetViewList.Cells[r, (int)Col.Memo].Text = detail.SetMemo;
 
                         // 点呼実施者（終業）
-                        this.SheetViewList.Cells[r, (int)Col.RollCallNameEnd].Text =
-                            GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, true);
+                        this.SheetViewList.Cells[r, (int)Col.RollCallNameEnd].Text = GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, true);
                     }
                 }
 

@@ -2,8 +2,8 @@
  * 2024-11-06
  */
 namespace CcControl {
-    public partial class ContextMenuStripEx : ContextMenuStrip {
-        public ContextMenuStripEx() {
+    public partial class CcContextMenuStrip : ContextMenuStrip {
+        public CcContextMenuStrip() {
             InitializeComponent();
         }
 

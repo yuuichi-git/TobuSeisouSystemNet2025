@@ -99,11 +99,11 @@
             labelEx18 = new CcControl.CcLabel();
             labelEx17 = new CcControl.CcLabel();
             PictureBoxExStamp = new CcControl.CcPictureBox();
-            ContextMenuStripEx2 = new CcControl.ContextMenuStripEx();
+            ContextMenuStripEx2 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemStampClip = new ToolStripMenuItem();
             ToolStripMenuItemStampDelete = new ToolStripMenuItem();
             PictureBoxExStaff = new CcControl.CcPictureBox();
-            ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemPictureClip = new ToolStripMenuItem();
             ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
             labelEx16 = new CcControl.CcLabel();
@@ -140,6 +140,7 @@
             LabelExStaffCode = new CcControl.CcLabel();
             labelEx1 = new CcControl.CcLabel();
             CcGroupBoxOccupation = new CcControl.CcGroupBox();
+            ccRadioButton1 = new CcControl.CcRadioButton();
             radioButtonEx18 = new CcControl.CcRadioButton();
             radioButtonEx17 = new CcControl.CcRadioButton();
             RadioButtonExOfficeWorker = new CcControl.CcRadioButton();
@@ -297,6 +298,7 @@
             labelEx43 = new CcControl.CcLabel();
             TextBoxExFamilyName = new CcControl.CcTextBox();
             labelEx44 = new CcControl.CcLabel();
+            CcCheckBoxMedicalCheckupFlag = new CcControl.CcCheckBox();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExUp.SuspendLayout();
             PanelExLeft.SuspendLayout();
@@ -389,6 +391,7 @@
             // 
             PanelExLeft.AutoScroll = true;
             PanelExLeft.BorderStyle = BorderStyle.Fixed3D;
+            PanelExLeft.Controls.Add(CcCheckBoxMedicalCheckupFlag);
             PanelExLeft.Controls.Add(labelEx41);
             PanelExLeft.Controls.Add(GroupBoxExRetirement);
             PanelExLeft.Controls.Add(GroupBoxExExperience);
@@ -968,7 +971,7 @@
             // CheckBoxExToukanpoFlag
             // 
             CheckBoxExToukanpoFlag.AutoSize = true;
-            CheckBoxExToukanpoFlag.Location = new Point(296, 12);
+            CheckBoxExToukanpoFlag.Location = new Point(460, 12);
             CheckBoxExToukanpoFlag.Name = "CheckBoxExToukanpoFlag";
             CheckBoxExToukanpoFlag.Size = new Size(146, 19);
             CheckBoxExToukanpoFlag.TabIndex = 41;
@@ -1519,6 +1522,7 @@
             // 
             // CcGroupBoxOccupation
             // 
+            CcGroupBoxOccupation.Controls.Add(ccRadioButton1);
             CcGroupBoxOccupation.Controls.Add(radioButtonEx18);
             CcGroupBoxOccupation.Controls.Add(radioButtonEx17);
             CcGroupBoxOccupation.Controls.Add(RadioButtonExOfficeWorker);
@@ -1532,10 +1536,22 @@
             CcGroupBoxOccupation.TabStop = false;
             CcGroupBoxOccupation.Text = "職種(Occupation)";
             // 
+            // ccRadioButton1
+            // 
+            ccRadioButton1.AutoSize = true;
+            ccRadioButton1.Location = new Point(364, 24);
+            ccRadioButton1.Name = "ccRadioButton1";
+            ccRadioButton1.Size = new Size(85, 19);
+            ccRadioButton1.TabIndex = 10;
+            ccRadioButton1.TabStop = true;
+            ccRadioButton1.Tag = "14";
+            ccRadioButton1.Text = "文京中継所";
+            ccRadioButton1.UseVisualStyleBackColor = true;
+            // 
             // radioButtonEx18
             // 
             radioButtonEx18.AutoSize = true;
-            radioButtonEx18.Location = new Point(432, 24);
+            radioButtonEx18.Location = new Point(524, 24);
             radioButtonEx18.Name = "radioButtonEx18";
             radioButtonEx18.Size = new Size(67, 19);
             radioButtonEx18.TabIndex = 9;
@@ -1548,7 +1564,7 @@
             // radioButtonEx17
             // 
             radioButtonEx17.AutoSize = true;
-            radioButtonEx17.Location = new Point(328, 24);
+            radioButtonEx17.Location = new Point(148, 24);
             radioButtonEx17.Name = "radioButtonEx17";
             radioButtonEx17.Size = new Size(97, 19);
             radioButtonEx17.TabIndex = 8;
@@ -1561,7 +1577,7 @@
             // RadioButtonExOfficeWorker
             // 
             RadioButtonExOfficeWorker.AutoSize = true;
-            RadioButtonExOfficeWorker.Location = new Point(12, 24);
+            RadioButtonExOfficeWorker.Location = new Point(456, 24);
             RadioButtonExOfficeWorker.Name = "RadioButtonExOfficeWorker";
             RadioButtonExOfficeWorker.Size = new Size(61, 19);
             RadioButtonExOfficeWorker.TabIndex = 7;
@@ -1574,7 +1590,7 @@
             // radioButtonEx15
             // 
             radioButtonEx15.AutoSize = true;
-            radioButtonEx15.Location = new Point(216, 24);
+            radioButtonEx15.Location = new Point(252, 24);
             radioButtonEx15.Name = "radioButtonEx15";
             radioButtonEx15.Size = new Size(107, 19);
             radioButtonEx15.TabIndex = 6;
@@ -1587,7 +1603,7 @@
             // RadioButtonExWorkers
             // 
             RadioButtonExWorkers.AutoSize = true;
-            RadioButtonExWorkers.Location = new Point(148, 24);
+            RadioButtonExWorkers.Location = new Point(80, 24);
             RadioButtonExWorkers.Name = "RadioButtonExWorkers";
             RadioButtonExWorkers.Size = new Size(61, 19);
             RadioButtonExWorkers.TabIndex = 5;
@@ -1600,7 +1616,7 @@
             // RadioButtonExDrivers
             // 
             RadioButtonExDrivers.AutoSize = true;
-            RadioButtonExDrivers.Location = new Point(80, 24);
+            RadioButtonExDrivers.Location = new Point(12, 24);
             RadioButtonExDrivers.Name = "RadioButtonExDrivers";
             RadioButtonExDrivers.Size = new Size(61, 19);
             RadioButtonExDrivers.TabIndex = 4;
@@ -3249,6 +3265,16 @@
             labelEx44.TabIndex = 56;
             labelEx44.Text = "①";
             // 
+            // CcCheckBoxMedicalCheckupFlag
+            // 
+            CcCheckBoxMedicalCheckupFlag.AutoSize = true;
+            CcCheckBoxMedicalCheckupFlag.Location = new Point(296, 12);
+            CcCheckBoxMedicalCheckupFlag.Name = "CcCheckBoxMedicalCheckupFlag";
+            CcCheckBoxMedicalCheckupFlag.Size = new Size(158, 19);
+            CcCheckBoxMedicalCheckupFlag.TabIndex = 59;
+            CcCheckBoxMedicalCheckupFlag.Text = "定期健康診断受診対象者";
+            CcCheckBoxMedicalCheckupFlag.UseVisualStyleBackColor = true;
+            // 
             // StaffDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -3571,11 +3597,13 @@
         private CcControl.CcDateTime DateTimeExProperDate1;
         private CcControl.CcTextBox TextBoxExProperNote1;
         private CcControl.CcButton CcButtonUpdate;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemPictureClip;
         private ToolStripMenuItem ToolStripMenuItemPictureDelete;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx2;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx2;
         private ToolStripMenuItem ToolStripMenuItemStampClip;
         private ToolStripMenuItem ToolStripMenuItemStampDelete;
+        private CcControl.CcRadioButton ccRadioButton1;
+        private CcControl.CcCheckBox CcCheckBoxMedicalCheckupFlag;
     }
 }

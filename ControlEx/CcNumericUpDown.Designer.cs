@@ -1,5 +1,5 @@
 ﻿namespace CcControl {
-    partial class NumericUpDownEx {
+    partial class CcNumericUpDown {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

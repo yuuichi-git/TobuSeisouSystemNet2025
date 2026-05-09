@@ -38,7 +38,7 @@
             this.TabControlEx1 = new CcControl.CcTabControl();
             this.TabPage1 = new TabPage();
             this.CcPictureBox1 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemPaste = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
@@ -72,7 +72,7 @@
             this.CcPanelDown = new CcControl.CcPanel();
             this.CcButtonDelete = new CcControl.CcButton();
             this.CcButtonOk = new CcControl.CcButton();
-            this.CcNumericUpDownAmount = new CcControl.NumericUpDownEx();
+            this.CcNumericUpDownAmount = new CcControl.CcNumericUpDown();
             this.labelEx17 = new CcControl.CcLabel();
             this.labelEx16 = new CcControl.CcLabel();
             this.labelEx15 = new CcControl.CcLabel();
@@ -81,8 +81,8 @@
             this.labelEx11 = new CcControl.CcLabel();
             this.CcTextBoxNumber = new CcControl.CcTextBox();
             this.CcTextBoxOthers = new CcControl.CcTextBox();
-            this.CcNumericUpDownUnitPrice = new CcControl.NumericUpDownEx();
-            this.CcNumericUpDownNumberOfUnits = new CcControl.NumericUpDownEx();
+            this.CcNumericUpDownUnitPrice = new CcControl.CcNumericUpDown();
+            this.CcNumericUpDownNumberOfUnits = new CcControl.CcNumericUpDown();
             this.CcTextBoxItemSize = new CcControl.CcTextBox();
             this.CcComboBoxItemName = new CcControl.CcComboBoxWordMaster();
             this.ToolTip1 = new ToolTip(this.components);
@@ -821,8 +821,8 @@
         private CcControl.CcTextBox CcTextBoxRemarks;
         private CcControl.CcPanel CcPanelDown;
         private CcControl.CcTextBox CcTextBoxOthers;
-        private CcControl.NumericUpDownEx CcNumericUpDownUnitPrice;
-        private CcControl.NumericUpDownEx CcNumericUpDownNumberOfUnits;
+        private CcControl.CcNumericUpDown CcNumericUpDownUnitPrice;
+        private CcControl.CcNumericUpDown CcNumericUpDownNumberOfUnits;
         private CcControl.CcTextBox CcTextBoxItemSize;
         private CcControl.CcComboBoxWordMaster CcComboBoxItemName;
         private CcControl.CcTextBox CcTextBoxNumber;
@@ -832,7 +832,7 @@
         private CcControl.CcLabel labelEx14;
         private CcControl.CcLabel labelEx13;
         private CcControl.CcLabel labelEx11;
-        private CcControl.NumericUpDownEx CcNumericUpDownAmount;
+        private CcControl.CcNumericUpDown CcNumericUpDownAmount;
         private CcControl.CcButton CcButtonDelete;
         private CcControl.CcButton CcButtonOk;
         private CcControl.CcPanel ccPanel1;
@@ -843,7 +843,7 @@
         private CcControl.CcPictureBox CcPictureBox2;
         private CcControl.CcLabel labelEx18;
         private CcControl.CcTextBox CcTextBoxId;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private CcControl.CcButton CcButtonMaps1;

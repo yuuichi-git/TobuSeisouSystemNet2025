@@ -11,6 +11,7 @@ namespace Vo {
         private string _lastPlantName;
         private DateTime _lastPlantHms;
         private DateTime _lastRollCallHms;
+        private TimeSpan _continuousDrivingTime;
         private decimal _firstOdoMeter;
         private decimal _lastOdoMeter;
         private decimal _oilAmount;
@@ -33,6 +34,7 @@ namespace Vo {
             _lastPlantName = string.Empty;
             _lastPlantHms = _defaultDateTime;
             _lastRollCallHms = _defaultDateTime;
+            _continuousDrivingTime = TimeSpan.Zero;
             _firstOdoMeter = 0;
             _lastOdoMeter = 0;
             _oilAmount = 0;
@@ -93,6 +95,13 @@ namespace Vo {
         public DateTime LastRollCallYmdHms {
             get => _lastRollCallHms;
             set => _lastRollCallHms = value;
+        }
+        /// <summary>
+        /// 連続走行時間
+        /// </summary>
+        public TimeSpan ContinuousDrivingTime {
+            get => _continuousDrivingTime;
+            set => _continuousDrivingTime = value;
         }
         /// <summary>
         /// 出庫時メーター

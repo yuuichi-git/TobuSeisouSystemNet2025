@@ -30,7 +30,7 @@
             this.ButtonExUpdate = new CcControl.CcButton();
             this.PanelExCenter = new CcControl.CcPanel();
             this.PictureBoxEx2 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.PictureBoxEx1 = new CcControl.CcPictureBox();
@@ -499,7 +499,7 @@
         private CcControl.CcLabel labelEx5;
         private CcControl.CcPictureBox PictureBoxEx1;
         private CcControl.CcPictureBox PictureBoxEx2;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private CcControl.CcButton ButtonExUpdate;

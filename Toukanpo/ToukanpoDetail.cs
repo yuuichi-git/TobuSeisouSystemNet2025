@@ -176,7 +176,7 @@ namespace Toukanpo {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStripEx1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
-            _sourceControl = ((ContextMenuStripEx)sender).SourceControl;                                                  // ContextMenuStripを表示しているコントロールを取得する
+            _sourceControl = ((CcContextMenuStrip)sender).SourceControl;                                                  // ContextMenuStripを表示しているコントロールを取得する
         }
 
         /// <summary>

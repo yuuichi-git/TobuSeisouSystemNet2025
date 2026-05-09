@@ -1,5 +1,5 @@
 ﻿namespace CcControl {
-    partial class ContextMenuStripEx {
+    partial class CcContextMenuStrip {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

@@ -36,8 +36,8 @@
             labelEx1 = new CcControl.CcLabel();
             DateTimePickerExOperationDate = new CcControl.CcDateTime();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            SheetViewList = SpreadList.GetSheet(0);
             PrintDocument1 = new System.Drawing.Printing.PrintDocument();
+            SheetViewList = SpreadList.GetSheet(0);
             TableLayoutPanelExBase.SuspendLayout();
             PanelExTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
@@ -170,7 +170,7 @@
             // 
             // SpreadList
             // 
-            SpreadList.AccessibleDescription = "Book1, Sheet1, Row 0, Column 0";
+            SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             SpreadList.Location = new Point(3, 87);
@@ -210,8 +210,8 @@
         private CcControl.CcLabel labelEx2;
         private CcControl.CcComboBox ComboBoxExManagedSpace;
         private System.Drawing.Printing.PrintDocument PrintDocument1;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.CcLabel ccLabel1;
         private CcControl.CcComboBox ComboBoxExPrinterName;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

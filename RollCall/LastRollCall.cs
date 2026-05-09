@@ -71,6 +71,7 @@ namespace RollCall {
             this.CcTimeFirstRollCallTime.Text = _vehicleDispatchDetailDao.GetStaffRollCallYmdHms1(_setControl.CellNumber, _setControl.OperationDate).ToString("HH:mm");
             this.NumericUpDownExLastPlantCount.Value = 0;
             this.ComboBoxExLastPlantName.SelectedIndex = -1;
+            this.CcTimeContinuousDrivingTime.Text = string.Empty;
             this.NumericUpDownExFirstOdoMeter.Value = 0;
             this.NumericUpDownExLastOdoMeter.Value = 0;
             this.NumericUpDownExOilAmount.Value = 0;
@@ -89,6 +90,7 @@ namespace RollCall {
             this.ComboBoxExLastPlantName.Text = lastRollCallVo.LastPlantName;
             this.CcTimeLastPlantTime.Text = lastRollCallVo.LastPlantYmdHms.ToString("HH:mm");
             this.CcTimeLastRollCallTime.Text = lastRollCallVo.LastRollCallYmdHms.ToString("HH:mm");
+            this.CcTimeContinuousDrivingTime.Text = lastRollCallVo.ContinuousDrivingTime != TimeSpan.Zero ? lastRollCallVo.ContinuousDrivingTime.ToString(@"hh\:mm") : string.Empty;
             this.NumericUpDownExFirstOdoMeter.Value = lastRollCallVo.FirstOdoMeter;
             this.NumericUpDownExLastOdoMeter.Value = lastRollCallVo.LastOdoMeter;
             this.NumericUpDownExOilAmount.Value = lastRollCallVo.OilAmount;
@@ -108,6 +110,7 @@ namespace RollCall {
             newLastRollCallVo.LastPlantName = this.ComboBoxExLastPlantName.Text;
             newLastRollCallVo.LastPlantYmdHms = _dateUtility.GetStringTimeToDateTime(this.DateTimePickerExOperationDate.GetValue(), this.CcTimeLastPlantTime.Text);
             newLastRollCallVo.LastRollCallYmdHms = dateTime;
+            newLastRollCallVo.ContinuousDrivingTime = this.CcTimeContinuousDrivingTime.Text != string.Empty ? TimeSpan.Parse(this.CcTimeContinuousDrivingTime.Text) : TimeSpan.Zero;
             newLastRollCallVo.FirstOdoMeter = this.NumericUpDownExFirstOdoMeter.Value;
             newLastRollCallVo.LastOdoMeter = this.NumericUpDownExLastOdoMeter.Value;
             newLastRollCallVo.OilAmount = this.NumericUpDownExOilAmount.Value;

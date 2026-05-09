@@ -45,6 +45,7 @@ namespace Vo {
         private DateTime _deathDate;
         private string _deathNote;
         private bool _legalTwelveItemFlag;
+        private bool _medicalCheckupFlag;
         private bool _toukanpoFlag;
         private List<StaffFamilyVo> _listStaffFamilyVo;
         private string _urgentTelephoneNumber;
@@ -114,6 +115,7 @@ namespace Vo {
             _deathDate = _defaultDateTime;
             _deathNote = string.Empty;
             _legalTwelveItemFlag = false;
+            _medicalCheckupFlag = false;
             _toukanpoFlag = false;
             _listStaffFamilyVo = new List<StaffFamilyVo>();
             _urgentTelephoneNumber = string.Empty;
@@ -405,6 +407,14 @@ namespace Vo {
             set => _legalTwelveItemFlag = value;
         }
         /// <summary>
+        /// 定期健康診断受診対象者フラグ
+        /// true:受診対象者 false:受診未対象者
+        /// </summary>
+        public bool MedicalCheckupFlag {
+            get => _medicalCheckupFlag;
+            set => _medicalCheckupFlag = value;
+        }
+        /// <summary>
         /// 東環保更新研修受講対象者フラグ
         /// true:受講対象者 false:受講未対象者
         /// </summary>
@@ -556,6 +566,5 @@ namespace Vo {
             get => _deleteFlag;
             set => _deleteFlag = value;
         }
-        
     }
 }

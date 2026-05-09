@@ -46,7 +46,7 @@
             this.labelEx12 = new CcControl.CcLabel();
             this.ComboBoxExSpareOfPeople = new CcControl.CcComboBox();
             this.labelEx11 = new CcControl.CcLabel();
-            this.NumericUpDownExNumberOfPeople = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExNumberOfPeople = new CcControl.CcNumericUpDown();
             this.labelEx10 = new CcControl.CcLabel();
             this.ComboBoxExContactMethod = new CcControl.CcComboBox();
             this.labelEx9 = new CcControl.CcLabel();
@@ -569,7 +569,7 @@
         private CcControl.CcComboBox ComboBoxExContactMethod;
         private CcControl.CcLabel labelEx9;
         private CcControl.CcLabel labelEx10;
-        private CcControl.NumericUpDownEx NumericUpDownExNumberOfPeople;
+        private CcControl.CcNumericUpDown NumericUpDownExNumberOfPeople;
         private CcControl.CcLabel labelEx11;
         private CcControl.CcComboBox ComboBoxExSpareOfPeople;
         private CcControl.CcCheckBox CheckBoxExSun;

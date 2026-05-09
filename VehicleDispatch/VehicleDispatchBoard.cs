@@ -1,34 +1,22 @@
 ﻿/*
  * 2024/10/03
  */
-using System.Diagnostics;
-
 using Car;
-
-using Collection;
-
-using Common;
-
 using CcControl;
-
+using Collection;
+using Common;
 using Dao;
-
 using DriversReport;
-
 using License;
-
 using RollCall;
-
 using Staff;
-
 using StockBox;
-
 using Substitute;
-
+using System.Diagnostics;
 using Vo;
 
 namespace VehicleDispatch {
-    public partial class VehicleDispatchBoard : Form {
+    public partial class VehicleDispatchBoard: Form {
         /*
          * インスタンス作成
          */
@@ -89,7 +77,7 @@ namespace VehicleDispatch {
             InitializeComponent();
 
             List<string> listString;
-            switch (_connectionVo.ConnectionLocation) {
+            switch(_connectionVo.ConnectionLocation) {
                 case "本社":
                     /*
                      * MenuStrip
@@ -119,7 +107,6 @@ namespace VehicleDispatch {
                     this.MenuStripEx1.BackColor = Color.Empty;
                     break;
             }
-
 
             this.DateTimePickerExOperationDate.SetToday();                                                          // DateTimePickerExOperationDateを初期化
             this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";                                      // ButtonExStockBoxOpenを初期化
@@ -173,13 +160,13 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     ((CcButton)sender).Enabled = false;                                                             // 多重クリック防止
                     this.Cursor = Cursors.WaitCursor;                                                               // カーソルを砂時計に変更
                     try {
                         this.AddControls(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(DateTimePickerExOperationDate.GetDate()));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     } finally {
                         this.Cursor = Cursors.Default;                                                              // カーソルを元に戻す
@@ -188,7 +175,7 @@ namespace VehicleDispatch {
                     }
                     break;
                 case "ButtonExStockBoxOpen":
-                    if (_stockBoxs is null || _stockBoxs.IsDisposed) {
+                    if(_stockBoxs is null || _stockBoxs.IsDisposed) {
                         _stockBoxs = new(_connectionVo, _board);
                         _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), _stockBoxs);
                         _stockBoxs.Show(this);
@@ -210,14 +197,14 @@ namespace VehicleDispatch {
              * SetControlを追加する
              */
             int cellNumber = 0; // 0～199
-            for (int row = 0; row < _board.RowAllNumber; row++) {
-                switch (row) {
+            for(int row = 0; row < _board.RowAllNumber; row++) {
+                switch(row) {
                     case 0 or 2 or 4 or 6: // 空のCell
                         break;
                     case 1 or 3 or 5 or 7: // SetControlが入るCell
-                        for (int x = 0; x < _board.ColumnCount; x++) {
+                        for(int x = 0; x < _board.ColumnCount; x++) {
                             VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber);
-                            if (vehicleDispatchDetailVo is not null) {
+                            if(vehicleDispatchDetailVo is not null) {
                                 _board.AddOneSetControl(cellNumber,
                                                         vehicleDispatchDetailVo,
                                                         _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
@@ -243,13 +230,13 @@ namespace VehicleDispatch {
              * SetControlを追加する
              */
             int cellNumber = 0; // 0～199
-            for (int rowNumber = 0; rowNumber < _board.RowAllNumber; rowNumber++) {
-                switch (rowNumber) {
+            for(int rowNumber = 0; rowNumber < _board.RowAllNumber; rowNumber++) {
+                switch(rowNumber) {
                     case 0 or 2 or 4 or 6: // 空のCell
                         break;
                     case 1 or 3 or 5 or 7: // SetControlが入るCell
-                        for (int columnNumber = 0; columnNumber < _board.ColumnCount; columnNumber++) {
-                            if (listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber) is not null) {
+                        for(int columnNumber = 0; columnNumber < _board.ColumnCount; columnNumber++) {
+                            if(listVehicleDispatchDetailVo.Find(x => x.CellNumber == cellNumber) is not null) {
                                 /*
                                  * HEAD/BODYにCellNumberが存在する場合の処理
                                  * コメント部分は元の値か初期値を採用する
@@ -262,7 +249,7 @@ namespace VehicleDispatch {
                                  * SetMasterVoを作成
                                  */
                                 SetMasterVo setMasterVo = _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode);
-                                if (setMasterVo is not null) {
+                                if(setMasterVo is not null) {
                                     trueVehicleDispatchDetailVo.VehicleDispatchFlag = true;
                                     trueVehicleDispatchDetailVo.PurposeFlag = setMasterVo.NumberOfPeople > 2 ? true : false;
                                     trueVehicleDispatchDetailVo.SetCode = setMasterVo.SetCode;
@@ -282,7 +269,7 @@ namespace VehicleDispatch {
                                  * CarMasterVoを作成
                                  */
                                 CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode);
-                                if (carMasterVo is not null) {
+                                if(carMasterVo is not null) {
                                     trueVehicleDispatchDetailVo.CarCode = carMasterVo.CarCode;
                                     trueVehicleDispatchDetailVo.CarGarageCode = carMasterVo.ManagedSpace;
                                     trueVehicleDispatchDetailVo.CarProxyFlag = false;
@@ -293,7 +280,7 @@ namespace VehicleDispatch {
                                  * StaffMasterVoのStaff1部分を作成(運転手)
                                  */
                                 StaffMasterVo staffMasterVo1 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode1);
-                                if (staffMasterVo1 is not null) {
+                                if(staffMasterVo1 is not null) {
                                     trueVehicleDispatchDetailVo.StaffCode1 = staffMasterVo1.StaffCode;
                                     trueVehicleDispatchDetailVo.StaffOccupation1 = staffMasterVo1.Occupation;
                                     trueVehicleDispatchDetailVo.StaffProxyFlag1 = false;
@@ -306,7 +293,7 @@ namespace VehicleDispatch {
                                  * StaffMasterVoのStaff2部分を作成(作業員１)
                                  */
                                 StaffMasterVo staffMasterVo2 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode2);
-                                if (staffMasterVo2 is not null) {
+                                if(staffMasterVo2 is not null) {
                                     trueVehicleDispatchDetailVo.StaffCode2 = staffMasterVo2.StaffCode;
                                     trueVehicleDispatchDetailVo.StaffOccupation2 = staffMasterVo2.Occupation;
                                     trueVehicleDispatchDetailVo.StaffProxyFlag2 = false;
@@ -319,7 +306,7 @@ namespace VehicleDispatch {
                                  * StaffMasterVoのStaff3部分を作成(作業員２)
                                  */
                                 StaffMasterVo staffMasterVo3 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode3);
-                                if (staffMasterVo3 is not null) {
+                                if(staffMasterVo3 is not null) {
                                     trueVehicleDispatchDetailVo.StaffCode3 = staffMasterVo3.StaffCode;
                                     trueVehicleDispatchDetailVo.StaffOccupation3 = staffMasterVo3.Occupation;
                                     trueVehicleDispatchDetailVo.StaffProxyFlag3 = false;
@@ -332,7 +319,7 @@ namespace VehicleDispatch {
                                  * StaffMasterVoのStaff4部分を作成(作業員３)
                                  */
                                 StaffMasterVo staffMasterVo4 = _listStaffMasterVo.Find(x => x.StaffCode == trueVehicleDispatchDetailVo.StaffCode4);
-                                if (staffMasterVo4 is not null) {
+                                if(staffMasterVo4 is not null) {
                                     trueVehicleDispatchDetailVo.StaffCode4 = staffMasterVo4.StaffCode;
                                     trueVehicleDispatchDetailVo.StaffOccupation4 = staffMasterVo4.Occupation;
                                     trueVehicleDispatchDetailVo.StaffProxyFlag4 = false;
@@ -359,7 +346,7 @@ namespace VehicleDispatch {
                                  * PurposeFlag = true なら columnNumber++
                                  * PurposeFlag = true なら _cellNumber++
                                  */
-                                if (trueVehicleDispatchDetailVo.PurposeFlag) {
+                                if(trueVehicleDispatchDetailVo.PurposeFlag) {
                                     columnNumber++; // 一番右のCellがDoubleだったらおかしくなるかも・・・・
                                     cellNumber++;
                                 }
@@ -445,7 +432,7 @@ namespace VehicleDispatch {
             try {
                 _vehicleDispatchDetailDao.DeleteVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
                 _vehicleDispatchDetailDao.InsertVehicleDispatchDetail(this._board.GetListVehicleDispatchDetailVo());
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
         }
@@ -483,7 +470,7 @@ namespace VehicleDispatch {
         /// <returns></returns>
         private StaffMasterVo GetStaffMasterVo(int staffCode) {
             StaffMasterVo staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
-            if (staffMasterVo is not null) {
+            if(staffMasterVo is not null) {
                 // 検索で見つかったVoを返す
                 return staffMasterVo;
             } else {
@@ -499,7 +486,7 @@ namespace VehicleDispatch {
         /// <param name="e"></param>
         private void VehicleDispatchBoard_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();
@@ -523,7 +510,7 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStripEx_Opened(object sender, EventArgs e) {
-            switch (((ContextMenuStrip)sender).SourceControl) {
+            switch(((ContextMenuStrip)sender).SourceControl) {
                 case SetControl setControl:
                     _contextMenuStripExOpendControl = setControl;
                     break;
@@ -546,7 +533,7 @@ namespace VehicleDispatch {
         /// <param name="sender">ToolStripMenuItem</param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 /*
                  * 
                  * Form(MenuStrip)
@@ -563,11 +550,11 @@ namespace VehicleDispatch {
                     break;
                 // 初期化
                 case "ToolStripMenuItemInitializeBord":
-                    if (_vehicleDispatchDetailDao.ExistenceVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue())) {
-                        if (MessageBox.Show("対象日の配車データが存在します。本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                    if(_vehicleDispatchDetailDao.ExistenceVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue())) {
+                        if(MessageBox.Show("対象日の配車データが存在します。本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                             return;
                     } else {
-                        if (MessageBox.Show("本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                        if(MessageBox.Show("本番登録で初期化してもよろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                             return;
                     }
                     int financialYear = _dateUtility.GetFiscalYear(this.DateTimePickerExOperationDate.GetValue());
@@ -583,7 +570,7 @@ namespace VehicleDispatch {
                 case "ToolStripMenuItemSetControlSingle": // SetControl Single
                     int cellNumberSingle = ((SetControl)_contextMenuStripExOpendControl).CellNumber;
                     int endCellNumberSingle = 0;
-                    switch (cellNumberSingle) {
+                    switch(cellNumberSingle) {
                         case int i when i >= 0 && i <= 43:
                             endCellNumberSingle = 43;
                             break;
@@ -602,7 +589,7 @@ namespace VehicleDispatch {
                 case "ToolStripMenuItemSetControlDouble": // SetControl Double
                     int cellNumberDouble = ((SetControl)_contextMenuStripExOpendControl).CellNumber;
                     int endCellNumberDouble = 0;
-                    switch (cellNumberDouble) {
+                    switch(cellNumberDouble) {
                         case int i when i >= 0 && i <= 43:
                             endCellNumberDouble = 43;
                             break;
@@ -637,7 +624,7 @@ namespace VehicleDispatch {
                         DriversReportPaper driversReportPaper = new(_connectionVo, (SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl);
                         _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), driversReportPaper);
                         driversReportPaper.ShowDialog(this);
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -651,7 +638,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).VehicleDispatchFlag = true;     // SetControlのフラグをセット
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // SetControlの構成を再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -662,7 +649,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).VehicleDispatchFlag = false;    // SetControlのフラグをセット
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // SetControlの構成を再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -676,7 +663,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // SetControlの構成を再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(((SetLabel)_contextMenuStripExOpendControl).SetMasterVo.SetName, "配車先管理を足立に変更しました。");
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -687,7 +674,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(((SetLabel)_contextMenuStripExOpendControl).SetMasterVo.SetName, "配車先管理を三郷に変更しました。");
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -701,7 +688,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((SetLabel)_contextMenuStripExOpendControl).SetMasterVo.SetName, "雇上契約に変更しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -712,7 +699,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((SetLabel)_contextMenuStripExOpendControl).SetMasterVo.SetName, "区契約に変更しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -726,7 +713,7 @@ namespace VehicleDispatch {
                         ((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((SetLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((SetLabel)_contextMenuStripExOpendControl).SetMasterVo.SetName, "作付に変更しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -861,7 +848,7 @@ namespace VehicleDispatch {
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の管理車庫を足立に変更しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -872,7 +859,7 @@ namespace VehicleDispatch {
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の管理車庫を三郷に変更しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -886,7 +873,7 @@ namespace VehicleDispatch {
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "を代車に設定しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -897,7 +884,7 @@ namespace VehicleDispatch {
                         ((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();            // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((CarLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((CarLabel)_contextMenuStripExOpendControl).CarMasterVo.RegistrationNumber, "の代車を解除しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -930,7 +917,7 @@ namespace VehicleDispatch {
                 case "ToolStripMenuItemStaffProxyTrue":
                     ((StaffLabel)_contextMenuStripExOpendControl).ProxyFlag = true;
                     try {
-                        switch (((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
+                        switch(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
                             case 0:
                                 ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).StaffProxyFlag1 = true;   // SetControlのフラグをセット
                                 break;
@@ -947,14 +934,14 @@ namespace VehicleDispatch {
                         ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();              // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を代番に設定しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ToolStripMenuItemStaffProxyFalse":
                     ((StaffLabel)_contextMenuStripExOpendControl).ProxyFlag = false;
                     try {
-                        switch (((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
+                        switch(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
                             case 0:
                                 ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).StaffProxyFlag1 = false;   // SetControlのフラグをセット
                                 break;
@@ -971,7 +958,7 @@ namespace VehicleDispatch {
                         ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();              // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "の代番を解除しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -979,7 +966,7 @@ namespace VehicleDispatch {
                 case "ToolStripMenuItemStaffOccupation10":
                     ((StaffLabel)_contextMenuStripExOpendControl).OccupationCode = 10;
                     try {
-                        switch (((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
+                        switch(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
                             case 0:
                                 ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).StaffOccupation1 = 10;    // SetControlのフラグをセット
                                 break;
@@ -996,14 +983,14 @@ namespace VehicleDispatch {
                         ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();              // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を運転手として登録しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 case "ToolStripMenuItemStaffOccupation11":
                     ((StaffLabel)_contextMenuStripExOpendControl).OccupationCode = 11;
                     try {
-                        switch (((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
+                        switch(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetStaffNumber((StaffLabel)_contextMenuStripExOpendControl)) {
                             case 0:
                                 ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).StaffOccupation1 = 11;    // SetControlのフラグをセット
                                 break;
@@ -1020,7 +1007,7 @@ namespace VehicleDispatch {
                         ((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).DefaultRelocation();              // プロパティの再構築
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)((StaffLabel)_contextMenuStripExOpendControl).ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo.DisplayName, "を作業員として登録しました。"));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -1050,8 +1037,8 @@ namespace VehicleDispatch {
                 Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " のPurposeFlagを'False'に変更しました"));
 
                 // ②各CellNumberをインクリメントする。
-                for (int i = cellNumber + 2; i <= endCellNumber; i++) { // DoubleをSingleに変えるんだから+2からスタートする
-                    if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberがズレるから存在確認が必要
+                for(int i = cellNumber + 2; i <= endCellNumber; i++) { // DoubleをSingleに変えるんだから+2からスタートする
+                    if(_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberがズレるから存在確認が必要
                         vehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
                         vehicleDispatchDetailVo.CellNumber--;
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, vehicleDispatchDetailVo);
@@ -1067,7 +1054,7 @@ namespace VehicleDispatch {
                 defaultVehicleDispatchDetailVo.OperationDate = this.DateTimePickerExOperationDate.GetDate();
                 _vehicleDispatchDetailDao.InsertOneVehicleDispatchDetail(defaultVehicleDispatchDetailVo);
                 Debug.WriteLine(string.Concat("CellNumber = ", defaultVehicleDispatchDetailVo.CellNumber, " に空のレコードををINSERTしました"));
-            } catch (Exception e) {
+            } catch(Exception e) {
                 MessageBox.Show(e.Message);
             }
             // ButtonをClickする。画面とDBの整合性を担保するため。
@@ -1083,14 +1070,14 @@ namespace VehicleDispatch {
             try {
                 // ①CellNumber93を削除する
                 VehicleDispatchDetailVo defaultVehicleDispatchDetailVo = new();
-                if (_vehicleDispatchDetailDao.DeleteOneVehicleDispatchDetail(endCellNumber, this.DateTimePickerExOperationDate.GetDate()) == 0) {
+                if(_vehicleDispatchDetailDao.DeleteOneVehicleDispatchDetail(endCellNumber, this.DateTimePickerExOperationDate.GetDate()) == 0) {
                     MessageBox.Show("CellNumber93番を削除できません。処理を中断します。");
                     return;
                 }
 
                 // ②各CellNumberをデクリメントする
-                for (int i = endCellNumber - 1; i >= cellNumber + 1; i--) {
-                    if (_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberが飛ぶから存在確認が必要
+                for(int i = endCellNumber - 1; i >= cellNumber + 1; i--) {
+                    if(_vehicleDispatchDetailDao.ExistenceEmploymentAgreement(i, this.DateTimePickerExOperationDate.GetDate())) { // この先にDoubleがあったらCellNumberが飛ぶから存在確認が必要
                         defaultVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectOneVehicleDispatchDetail(i, this.DateTimePickerExOperationDate.GetDate());
                         defaultVehicleDispatchDetailVo.CellNumber++;
                         _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(i, defaultVehicleDispatchDetailVo);
@@ -1105,7 +1092,7 @@ namespace VehicleDispatch {
                 targetVehicleDispatchDetailVo.PurposeFlag = true;
                 _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(cellNumber, targetVehicleDispatchDetailVo);
                 Debug.WriteLine(string.Concat("CellNumber = ", cellNumber, " のPurposeFlagを'True'に変更しました"));
-            } catch (Exception e) {
+            } catch(Exception e) {
                 MessageBox.Show(e.Message);
             }
             // ButtonをClickする。画面とDBの整合性を担保するため。
@@ -1123,11 +1110,11 @@ namespace VehicleDispatch {
         /// <param name="sender">これを呼出したSetControlが入っている</param>
         /// <param name="e"></param>
         private void OnDragEnter(object sender, DragEventArgs e) {
-            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+            if(e.Data.GetDataPresent(typeof(SetLabel))) {
                 _dragEnterObject = (SetLabel)e.Data.GetData(typeof(SetLabel));
-            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+            } else if(e.Data.GetDataPresent(typeof(CarLabel))) {
                 _dragEnterObject = (CarLabel)e.Data.GetData(typeof(CarLabel));
-            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+            } else if(e.Data.GetDataPresent(typeof(StaffLabel))) {
                 _dragEnterObject = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
             }
         }
@@ -1161,7 +1148,7 @@ namespace VehicleDispatch {
             /*
              * DropされたObjectのParentによって処理を分岐する
              */
-            switch (((SetControl)sender).DragParentControl) {
+            switch(((SetControl)sender).DragParentControl) {
                 // Drug元のSetControlをdragParentControlとして取得する
                 case SetControl dragParentControl:
                     /*
@@ -1173,19 +1160,19 @@ namespace VehicleDispatch {
                      * Drop処理
                      * Controlを追加する
                      */
-                    switch (((SetControl)sender).DragControl) {
+                    switch(((SetControl)sender).DragControl) {
                         case SetLabel setLabel:
                             /*
                              * 更新マークが付いている場合は処理を禁止する
                              */
-                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                            if(dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
                                 MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
                             /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
-                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
+                            if(string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
                                 MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
@@ -1197,7 +1184,7 @@ namespace VehicleDispatch {
                                 dragParentControl.SetControlRelocation();                                                                                       // プロパティの再構築
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo());     // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
                                 dragParentControl.EventDel(setLabel);                                                                                           // Eventを削除
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             /*
@@ -1207,7 +1194,7 @@ namespace VehicleDispatch {
                                 ((SetControl)sender).SetControlRelocation((SetControl)sender);                                                                  // プロパティの再構築
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 ((SetControl)sender).EventAdd(setLabel);                                                                                        // Eventを追加
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1215,14 +1202,14 @@ namespace VehicleDispatch {
                             /*
                              * 更新マークが付いている場合は処理を禁止する
                              */
-                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                            if(dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
                                 MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
                             /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
-                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
+                            if(string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal)) {
                                 MessageBox.Show("三郷車庫接続時はこの操作は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
@@ -1235,7 +1222,7 @@ namespace VehicleDispatch {
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo());     // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
                                 dragParentControl.EventDel(carLabel);                                                                                           // Eventを削除
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             /*
@@ -1246,7 +1233,7 @@ namespace VehicleDispatch {
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 ((SetControl)sender).EventAdd(carLabel);                                                                                        // Eventを追加
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " CarLabel UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1254,14 +1241,14 @@ namespace VehicleDispatch {
                             /*
                              * 更新マークが付いている場合は処理を禁止する
                              */
-                            if (dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
+                            if(dragParentControl.UpdateMarkFlag || dropParent.UpdateMarkFlag) {
                                 MessageBox.Show("更新されています。最新化してから操作してください。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
                             /*
                              * 接続場所が三郷車庫の場合は処理を禁止する
                              */
-                            if (string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal) && (dragParentControl.ManagedSpaceCode != 2 || ((SetControl)sender).ManagedSpaceCode != 2)) {
+                            if(string.Equals(_connectionVo.ConnectionLocation, "三郷車庫", StringComparison.Ordinal) && (dragParentControl.ManagedSpaceCode != 2 || ((SetControl)sender).ManagedSpaceCode != 2)) {
                                 MessageBox.Show("三郷車庫に配置されているStaff間の操作以外は許可されていません。", "操作不可", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
@@ -1274,7 +1261,7 @@ namespace VehicleDispatch {
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(dragParentControl.GetVehicleDispatchDetailVo());     // DragParentControlのVehicleDispatchDetailVoを取得　SQL発行
                                 dragParentControl.EventDel(staffLabel);                                                                                         // Eventを削除
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, "UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             /*
@@ -1285,7 +1272,7 @@ namespace VehicleDispatch {
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 ((SetControl)sender).EventAdd(staffLabel);                                                                                      // Eventを追加
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " StaffLabel UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1293,7 +1280,7 @@ namespace VehicleDispatch {
                     Debug.WriteLine(string.Concat(dragParentControl.CellNumber, " → ", ((SetControl)sender).CellNumber, "の", cellPoint.X, ",", cellPoint.Y));
                     break;
                 case StockBoxPanel stockBoxPanel:
-                    switch (this._dragEnterObject) {
+                    switch(this._dragEnterObject) {
                         case SetLabel setLabel:
                             ((SetControl)sender).Controls.Add(setLabel, cellPoint.X, cellPoint.Y);                                                              // SetLabelを移動する
                             ((SetControl)setLabel.ParentControl).OperationFlag = true;                                                                          // SetControlのフラグをセット
@@ -1306,7 +1293,7 @@ namespace VehicleDispatch {
                                 ((SetControl)sender).DefaultRelocation();                                                                                       // プロパティの再構築
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " SetLabel UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1319,7 +1306,7 @@ namespace VehicleDispatch {
                                 ((SetControl)sender).DefaultRelocation();                                                                                       // プロパティの再構築
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " CarLabel UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1332,7 +1319,7 @@ namespace VehicleDispatch {
                                 ((SetControl)sender).DefaultRelocation();                                                                                       // プロパティの再構築
                                 int updateCount = _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)sender).GetVehicleDispatchDetailVo());  // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(updateCount, " StaffLabel UpdateSuccess");
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                             break;
@@ -1347,7 +1334,7 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMouseClick(object sender, MouseEventArgs e) {
-            switch (sender) {
+            switch(sender) {
                 case SetLabel setLabel:
                     MessageBox.Show("SetLabel-OnMouseClick");
                     break;
@@ -1358,15 +1345,15 @@ namespace VehicleDispatch {
                     /*
                      * 出庫時点呼
                      */
-                    if (staffLabel.RollCallFlag) {
+                    if(staffLabel.RollCallFlag) {
                         DialogResult dialogResult = MessageBox.Show(string.Concat(staffLabel.StaffMasterVo.DisplayName, "の出庫点呼を未実施に戻しますか？"), "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.OK) {
+                        if(dialogResult == DialogResult.OK) {
                             try {
                                 staffLabel.RollCallFlag = false;
                                 ((SetControl)staffLabel.ParentControl).DefaultRelocation(); // プロパティの再構築
                                 _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(staffLabel.StaffMasterVo.DisplayName, "の点呼を解除しました。"));
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(exception.Message);
                             }
                         } else {
@@ -1378,7 +1365,7 @@ namespace VehicleDispatch {
                             ((SetControl)staffLabel.ParentControl).DefaultRelocation(); // プロパティの再構築
                             _vehicleDispatchDetailDao.UpdateOneVehicleDispatchDetail(((SetControl)staffLabel.ParentControl).GetVehicleDispatchDetailVo()); // thisのVehicleDispatchDetailVoを取得　SQL発行
                             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(string.Concat(staffLabel.StaffMasterVo.DisplayName, "の点呼を記録しました。"));
-                        } catch (Exception exception) {
+                        } catch(Exception exception) {
                             MessageBox.Show(exception.Message);
                         }
                     }
@@ -1392,7 +1379,7 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMouseDoubleClick(object sender, MouseEventArgs e) {
-            switch (sender) {
+            switch(sender) {
                 case SetLabel setLabel:
                     /*
                      * 帰庫点呼
@@ -1418,11 +1405,11 @@ namespace VehicleDispatch {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMouseDown(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
-                switch (sender) {
+            if(e.Button == MouseButtons.Left) {
+                switch(sender) {
                     case SetLabel setLabel:
                         this.DragParentControl = (SetControl)setLabel.Parent; // Dragラベルが格納されているSetControlを退避する
-                        if (setLabel.SetMasterVo.MoveFlag) {
+                        if(setLabel.SetMasterVo.MoveFlag) {
                             setLabel.DoDragDrop(sender, DragDropEffects.Move);
                         } else {
                             setLabel.DoDragDrop(sender, DragDropEffects.None);
@@ -1488,17 +1475,17 @@ namespace VehicleDispatch {
             // DBから当日の必要データを取得（タプル版）
             List<(int CellNumber, int SetCode, string UpdatePcName, DateTime UpdateYmdHms)> list = _vehicleDispatchDetailDao.SelectAllUpdateMark(this.DateTimePickerExOperationDate.GetDate());
 
-            foreach (Control control in _board.Controls) {
-                if (control is SetControl setControl) {
+            foreach(Control control in _board.Controls) {
+                if(control is SetControl setControl) {
                     // DB側の同じCellNumberのレコードを取得
-                    var record = list.FirstOrDefault(x => x.CellNumber == setControl.CellNumber);
+                    (int CellNumber,int SetCode,string UpdatePcName,DateTime UpdateYmdHms) record = list.FirstOrDefault(x => x.CellNumber == setControl.CellNumber);
 
                     // 自分自身が更新したSetControlにはマークを付けないようにする
-                    if (record.UpdatePcName == Environment.MachineName)
+                    if(record.UpdatePcName == Environment.MachineName)
                         continue;
 
                     // DBの更新日時とSetControlの更新日時を比較
-                    if (_lastUpdateDateTime < record.UpdateYmdHms) {
+                    if(_lastUpdateDateTime < record.UpdateYmdHms) {
                         _board.SetUpdateMark(_ccToolTipUpdateMark, setControl.CellNumber, record.UpdatePcName, record.UpdateYmdHms);
                         setControl.UpdateMarkFlag = true; // SetControlに更新マークフラグをセット
 

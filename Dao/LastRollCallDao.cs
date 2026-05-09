@@ -12,7 +12,6 @@ namespace Dao {
     public class LastRollCallDao {
         private readonly DateTime _defaultDateTime = new DateTime(1900, 01, 01);
         private readonly DefaultValue _defaultValue = new();
-        private readonly DateUtility _dateUtility = new();
         /*
          * Vo
          */
@@ -61,6 +60,7 @@ namespace Dao {
                                             "H_LastRollCall.LastPlantName," +
                                             "H_LastRollCall.LastPlantYmdHms," +
                                             "H_LastRollCall.LastRollCallYmdHms," +
+                                            "H_LastRollCall.ContinuousDrivingTime," +                                                                           // 2024-02-19 連続走行時間を追加
                                             "H_LastRollCall.FirstOdoMeter," +
                                             "H_LastRollCall.LastOdoMeter," +
                                             "H_LastRollCall.OilAmount " +
@@ -78,6 +78,7 @@ namespace Dao {
                     hLastRollCallVo.LastPlantName = _defaultValue.GetDefaultValue<string>(sqlDataReader["LastPlantName"]);
                     hLastRollCallVo.LastPlantYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["LastPlantYmdHms"]);
                     hLastRollCallVo.LastRollCallYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["LastRollCallYmdHms"]);
+                    hLastRollCallVo.ContinuousDrivingTime = _defaultValue.GetDefaultValue<TimeSpan>(sqlDataReader["ContinuousDrivingTime"]);                    // 2024-02-19 連続走行時間を追加
                     hLastRollCallVo.FirstOdoMeter = _defaultValue.GetDefaultValue<decimal>(sqlDataReader["FirstOdoMeter"]);
                     hLastRollCallVo.LastOdoMeter = _defaultValue.GetDefaultValue<decimal>(sqlDataReader["LastOdoMeter"]);
                     hLastRollCallVo.OilAmount = _defaultValue.GetDefaultValue<decimal>(sqlDataReader["OilAmount"]);
@@ -100,6 +101,7 @@ namespace Dao {
                                                                 "LastPlantName," +
                                                                 "LastPlantYmdHms," +
                                                                 "LastRollCallYmdHms," +
+                                                                "ContinuousDrivingTime," +                                                                      // 2024-02-19 連続走行時間を追加
                                                                 "FirstOdoMeter," +
                                                                 "LastOdoMeter," +
                                                                 "OilAmount," +
@@ -117,6 +119,7 @@ namespace Dao {
                                             "'" + _defaultValue.GetDefaultValue<string>(lastRollCallVo.LastPlantName) + "'," +
                                             "'" + _defaultValue.GetDefaultValue<DateTime>(lastRollCallVo.LastPlantYmdHms) + "'," +
                                             "'" + _defaultValue.GetDefaultValue<DateTime>(lastRollCallVo.LastRollCallYmdHms) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<TimeSpan>(lastRollCallVo.ContinuousDrivingTime) + "'," +                        // 2024-02-19 連続走行時間を追加
                                              "" + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.FirstOdoMeter) + "," +
                                              "" + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.LastOdoMeter) + "," +
                                              "" + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.OilAmount) + "," +
@@ -149,6 +152,7 @@ namespace Dao {
                                          "LastPlantName = '" + _defaultValue.GetDefaultValue<string>(lastRollCallVo.LastPlantName) + "'," +
                                          "LastPlantYmdHms = '" + _defaultValue.GetDefaultValue<DateTime>(lastRollCallVo.LastPlantYmdHms) + "'," +
                                          "LastRollCallYmdHms = '" + _defaultValue.GetDefaultValue<DateTime>(lastRollCallVo.LastRollCallYmdHms) + "'," +
+                                         "ContinuousDrivingTime = '" + _defaultValue.GetDefaultValue<TimeSpan>(lastRollCallVo.ContinuousDrivingTime) + "'," +   // 2024-02-19 連続走行時間を追加
                                          "FirstOdoMeter = " + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.FirstOdoMeter) + "," +
                                          "LastOdoMeter = " + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.LastOdoMeter) + "," +
                                          "OilAmount = " + _defaultValue.GetDefaultValue<decimal>(lastRollCallVo.OilAmount) + "," +

@@ -35,7 +35,7 @@
             this.LabelExCompany = new CcControl.CcLabel();
             this.labelEx1 = new CcControl.CcLabel();
             this.PictureBoxEx1 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -230,7 +230,7 @@
         private CcControl.CcDateTime DateTimePickerExCertificationDate;
         private CcControl.CcLabel labelEx4;
         private CcControl.CcComboBox ComboBoxExSelectName;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
     }

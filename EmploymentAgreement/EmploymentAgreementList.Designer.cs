@@ -24,525 +24,540 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmploymentAgreementList));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
-            this.ToolStripMenuItemExpiration = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationPartTimeJob = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationPartTimer = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationLongJob新産別 = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士 = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員 = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationShortJob = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
-            this.ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.PanelExTop = new CcControl.CcPanel();
-            this.GroupBoxExOccupation = new CcControl.CcGroupBox();
-            this.CheckBoxEx18 = new CcControl.CcCheckBox();
-            this.CheckBoxEx17 = new CcControl.CcCheckBox();
-            this.CheckBoxEx16 = new CcControl.CcCheckBox();
-            this.CheckBoxEx15 = new CcControl.CcCheckBox();
-            this.CheckBoxEx14 = new CcControl.CcCheckBox();
-            this.CheckBoxEx13 = new CcControl.CcCheckBox();
-            this.GroupBoxExJobForm = new CcControl.CcGroupBox();
-            this.checkBoxEx8 = new CcControl.CcCheckBox();
-            this.checkBoxEx11 = new CcControl.CcCheckBox();
-            this.CheckBoxEx12 = new CcControl.CcCheckBox();
-            this.CheckBoxEx10 = new CcControl.CcCheckBox();
-            this.CheckBoxEx9 = new CcControl.CcCheckBox();
-            this.GroupBoxExBelongs = new CcControl.CcGroupBox();
-            this.CheckBoxEx7 = new CcControl.CcCheckBox();
-            this.CheckBoxEx6 = new CcControl.CcCheckBox();
-            this.CheckBoxEx5 = new CcControl.CcCheckBox();
-            this.CheckBoxEx4 = new CcControl.CcCheckBox();
-            this.CheckBoxEx3 = new CcControl.CcCheckBox();
-            this.CheckBoxEx2 = new CcControl.CcCheckBox();
-            this.CheckBoxEx1 = new CcControl.CcCheckBox();
-            this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.TableLayoutPanelExBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
-            this.ContextMenuStripEx1.SuspendLayout();
-            this.PanelExTop.SuspendLayout();
-            this.GroupBoxExOccupation.SuspendLayout();
-            this.GroupBoxExJobForm.SuspendLayout();
-            this.GroupBoxExBelongs.SuspendLayout();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
+            ToolStripMenuItemExpiration = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationPartTimeJob = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationPartTimeEmployee = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationPartTimer = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationLongJob新産別 = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationLongJob自運労運転士 = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationLongJob自運労作業員 = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationShortJob = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationWrittenPledge = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationLossWrittenPledge = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationNotice = new ToolStripMenuItem();
+            ToolStripMenuItemContractExpirationNoticeBicycle = new ToolStripMenuItem();
+            SheetViewList = SpreadList.GetSheet(0);
+            PanelExTop = new CcControl.CcPanel();
+            GroupBoxExOccupation = new CcControl.CcGroupBox();
+            CheckBoxEx18 = new CcControl.CcCheckBox();
+            CheckBoxEx17 = new CcControl.CcCheckBox();
+            CheckBoxEx16 = new CcControl.CcCheckBox();
+            CheckBoxEx15 = new CcControl.CcCheckBox();
+            CheckBoxEx14 = new CcControl.CcCheckBox();
+            CheckBoxEx13 = new CcControl.CcCheckBox();
+            GroupBoxExJobForm = new CcControl.CcGroupBox();
+            checkBoxEx8 = new CcControl.CcCheckBox();
+            checkBoxEx11 = new CcControl.CcCheckBox();
+            CheckBoxEx12 = new CcControl.CcCheckBox();
+            CheckBoxEx10 = new CcControl.CcCheckBox();
+            CheckBoxEx9 = new CcControl.CcCheckBox();
+            GroupBoxExBelongs = new CcControl.CcGroupBox();
+            CheckBoxEx7 = new CcControl.CcCheckBox();
+            CheckBoxEx6 = new CcControl.CcCheckBox();
+            CheckBoxEx5 = new CcControl.CcCheckBox();
+            CheckBoxEx4 = new CcControl.CcCheckBox();
+            CheckBoxEx3 = new CcControl.CcCheckBox();
+            CheckBoxEx2 = new CcControl.CcCheckBox();
+            CheckBoxEx1 = new CcControl.CcCheckBox();
+            CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
+            ButtonExUpdate = new CcControl.CcButton();
+            ccCheckBox1 = new CcControl.CcCheckBox();
+            TableLayoutPanelExBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            ContextMenuStripEx1.SuspendLayout();
+            PanelExTop.SuspendLayout();
+            GroupBoxExOccupation.SuspendLayout();
+            GroupBoxExJobForm.SuspendLayout();
+            GroupBoxExBelongs.SuspendLayout();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1904, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(1904, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 1019);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1904, 22);
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            StatusStripEx1.Location = new Point(0, 1019);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(1904, 22);
+            StatusStripEx1.TabIndex = 1;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
-            this.SpreadList.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(3, 87);
-            this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1898, 927);
-            this.SpreadList.TabIndex = 2;
-            this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
+            SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            SpreadList.ContextMenuStrip = ContextMenuStripEx1;
+            SpreadList.Dock = DockStyle.Fill;
+            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadList.Location = new Point(3, 87);
+            SpreadList.Name = "SpreadList";
+            SpreadList.Size = new Size(1898, 927);
+            SpreadList.TabIndex = 2;
+            SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
             // ContextMenuStripEx1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemExpiration, this.ToolStripMenuItemContractExpirationPartTimeJob, this.ToolStripMenuItemContractExpirationPartTimeEmployee, this.ToolStripMenuItemContractExpirationPartTimer, this.ToolStripMenuItemContractExpirationLongJob新産別, this.ToolStripMenuItemContractExpirationLongJob自運労運転士, this.ToolStripMenuItemContractExpirationLongJob自運労作業員, this.ToolStripMenuItemContractExpirationShortJob, this.ToolStripMenuItemContractExpirationWrittenPledge, this.ToolStripMenuItemContractExpirationLossWrittenPledge, this.ToolStripMenuItemContractExpirationNotice, this.ToolStripMenuItemContractExpirationNoticeBicycle });
-            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(263, 268);
-            this.ContextMenuStripEx1.Opening += this.ContextMenuStripEx1_Opening;
+            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemExpiration, ToolStripMenuItemContractExpirationPartTimeJob, ToolStripMenuItemContractExpirationPartTimeEmployee, ToolStripMenuItemContractExpirationPartTimer, ToolStripMenuItemContractExpirationLongJob新産別, ToolStripMenuItemContractExpirationLongJob自運労運転士, ToolStripMenuItemContractExpirationLongJob自運労作業員, ToolStripMenuItemContractExpirationShortJob, ToolStripMenuItemContractExpirationWrittenPledge, ToolStripMenuItemContractExpirationLossWrittenPledge, ToolStripMenuItemContractExpirationNotice, ToolStripMenuItemContractExpirationNoticeBicycle });
+            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            ContextMenuStripEx1.Size = new Size(263, 268);
+            ContextMenuStripEx1.Opening += ContextMenuStripEx1_Opening;
             // 
             // ToolStripMenuItemExpiration
             // 
-            this.ToolStripMenuItemExpiration.Name = "ToolStripMenuItemExpiration";
-            this.ToolStripMenuItemExpiration.Size = new Size(262, 22);
-            this.ToolStripMenuItemExpiration.Text = "体験入社契約書";
-            this.ToolStripMenuItemExpiration.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemExpiration.Name = "ToolStripMenuItemExpiration";
+            ToolStripMenuItemExpiration.Size = new Size(262, 22);
+            ToolStripMenuItemExpiration.Text = "体験入社契約書";
+            ToolStripMenuItemExpiration.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimeJob
             // 
-            this.ToolStripMenuItemContractExpirationPartTimeJob.Name = "ToolStripMenuItemContractExpirationPartTimeJob";
-            this.ToolStripMenuItemContractExpirationPartTimeJob.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationPartTimeJob.Text = "継続アルバイト契約書";
-            this.ToolStripMenuItemContractExpirationPartTimeJob.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationPartTimeJob.Name = "ToolStripMenuItemContractExpirationPartTimeJob";
+            ToolStripMenuItemContractExpirationPartTimeJob.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationPartTimeJob.Text = "継続アルバイト契約書";
+            ToolStripMenuItemContractExpirationPartTimeJob.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimeEmployee
             // 
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Name = "ToolStripMenuItemContractExpirationPartTimeEmployee";
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Text = "嘱託雇用契約社員";
-            this.ToolStripMenuItemContractExpirationPartTimeEmployee.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationPartTimeEmployee.Name = "ToolStripMenuItemContractExpirationPartTimeEmployee";
+            ToolStripMenuItemContractExpirationPartTimeEmployee.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationPartTimeEmployee.Text = "嘱託雇用契約社員";
+            ToolStripMenuItemContractExpirationPartTimeEmployee.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationPartTimer
             // 
-            this.ToolStripMenuItemContractExpirationPartTimer.Name = "ToolStripMenuItemContractExpirationPartTimer";
-            this.ToolStripMenuItemContractExpirationPartTimer.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationPartTimer.Text = "パートタイマー";
-            this.ToolStripMenuItemContractExpirationPartTimer.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationPartTimer.Name = "ToolStripMenuItemContractExpirationPartTimer";
+            ToolStripMenuItemContractExpirationPartTimer.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationPartTimer.Text = "パートタイマー";
+            ToolStripMenuItemContractExpirationPartTimer.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob新産別
             // 
-            this.ToolStripMenuItemContractExpirationLongJob新産別.Name = "ToolStripMenuItemContractExpirationLongJob新産別";
-            this.ToolStripMenuItemContractExpirationLongJob新産別.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationLongJob新産別.Text = "長期雇用契約書（新産別）";
-            this.ToolStripMenuItemContractExpirationLongJob新産別.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationLongJob新産別.Name = "ToolStripMenuItemContractExpirationLongJob新産別";
+            ToolStripMenuItemContractExpirationLongJob新産別.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationLongJob新産別.Text = "長期雇用契約書（新産別）";
+            ToolStripMenuItemContractExpirationLongJob新産別.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob自運労運転士
             // 
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Name = "ToolStripMenuItemContractExpirationLongJob自運労運転士";
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Text = "長期雇用契約書（自運労・運転手）";
-            this.ToolStripMenuItemContractExpirationLongJob自運労運転士.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationLongJob自運労運転士.Name = "ToolStripMenuItemContractExpirationLongJob自運労運転士";
+            ToolStripMenuItemContractExpirationLongJob自運労運転士.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationLongJob自運労運転士.Text = "長期雇用契約書（自運労・運転手）";
+            ToolStripMenuItemContractExpirationLongJob自運労運転士.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLongJob自運労作業員
             // 
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Name = "ToolStripMenuItemContractExpirationLongJob自運労作業員";
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Text = "長期雇用契約書（自運労・作業員）";
-            this.ToolStripMenuItemContractExpirationLongJob自運労作業員.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationLongJob自運労作業員.Name = "ToolStripMenuItemContractExpirationLongJob自運労作業員";
+            ToolStripMenuItemContractExpirationLongJob自運労作業員.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationLongJob自運労作業員.Text = "長期雇用契約書（自運労・作業員）";
+            ToolStripMenuItemContractExpirationLongJob自運労作業員.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationShortJob
             // 
-            this.ToolStripMenuItemContractExpirationShortJob.Name = "ToolStripMenuItemContractExpirationShortJob";
-            this.ToolStripMenuItemContractExpirationShortJob.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationShortJob.Text = "短期雇用契約書";
-            this.ToolStripMenuItemContractExpirationShortJob.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationShortJob.Name = "ToolStripMenuItemContractExpirationShortJob";
+            ToolStripMenuItemContractExpirationShortJob.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationShortJob.Text = "短期雇用契約書";
+            ToolStripMenuItemContractExpirationShortJob.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationWrittenPledge
             // 
-            this.ToolStripMenuItemContractExpirationWrittenPledge.Name = "ToolStripMenuItemContractExpirationWrittenPledge";
-            this.ToolStripMenuItemContractExpirationWrittenPledge.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationWrittenPledge.Text = "誓約書";
-            this.ToolStripMenuItemContractExpirationWrittenPledge.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationWrittenPledge.Name = "ToolStripMenuItemContractExpirationWrittenPledge";
+            ToolStripMenuItemContractExpirationWrittenPledge.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationWrittenPledge.Text = "誓約書";
+            ToolStripMenuItemContractExpirationWrittenPledge.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationLossWrittenPledge
             // 
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Name = "ToolStripMenuItemContractExpirationLossWrittenPledge";
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Text = "失墜行為確認書";
-            this.ToolStripMenuItemContractExpirationLossWrittenPledge.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationLossWrittenPledge.Name = "ToolStripMenuItemContractExpirationLossWrittenPledge";
+            ToolStripMenuItemContractExpirationLossWrittenPledge.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationLossWrittenPledge.Text = "失墜行為確認書";
+            ToolStripMenuItemContractExpirationLossWrittenPledge.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationNotice
             // 
-            this.ToolStripMenuItemContractExpirationNotice.Name = "ToolStripMenuItemContractExpirationNotice";
-            this.ToolStripMenuItemContractExpirationNotice.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationNotice.Text = "使用停止予告通知書";
-            this.ToolStripMenuItemContractExpirationNotice.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationNotice.Name = "ToolStripMenuItemContractExpirationNotice";
+            ToolStripMenuItemContractExpirationNotice.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationNotice.Text = "使用停止予告通知書";
+            ToolStripMenuItemContractExpirationNotice.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemContractExpirationNoticeBicycle
             // 
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Name = "ToolStripMenuItemContractExpirationNoticeBicycle";
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Size = new Size(262, 22);
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Text = "使用停止予告通知書(自転車駐車場)";
-            this.ToolStripMenuItemContractExpirationNoticeBicycle.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemContractExpirationNoticeBicycle.Name = "ToolStripMenuItemContractExpirationNoticeBicycle";
+            ToolStripMenuItemContractExpirationNoticeBicycle.Size = new Size(262, 22);
+            ToolStripMenuItemContractExpirationNoticeBicycle.Text = "使用停止予告通知書(自転車駐車場)";
+            ToolStripMenuItemContractExpirationNoticeBicycle.Click += ToolStripMenuItem_Click;
             // 
             // PanelExTop
             // 
-            this.PanelExTop.Controls.Add(this.GroupBoxExOccupation);
-            this.PanelExTop.Controls.Add(this.GroupBoxExJobForm);
-            this.PanelExTop.Controls.Add(this.GroupBoxExBelongs);
-            this.PanelExTop.Controls.Add(this.CheckBoxExRetirementFlag);
-            this.PanelExTop.Controls.Add(this.ButtonExUpdate);
-            this.PanelExTop.Dock = DockStyle.Fill;
-            this.PanelExTop.Location = new Point(3, 27);
-            this.PanelExTop.Name = "PanelExTop";
-            this.PanelExTop.Size = new Size(1898, 54);
-            this.PanelExTop.TabIndex = 3;
+            PanelExTop.Controls.Add(GroupBoxExOccupation);
+            PanelExTop.Controls.Add(GroupBoxExJobForm);
+            PanelExTop.Controls.Add(GroupBoxExBelongs);
+            PanelExTop.Controls.Add(CheckBoxExRetirementFlag);
+            PanelExTop.Controls.Add(ButtonExUpdate);
+            PanelExTop.Dock = DockStyle.Fill;
+            PanelExTop.Location = new Point(3, 27);
+            PanelExTop.Name = "PanelExTop";
+            PanelExTop.Size = new Size(1898, 54);
+            PanelExTop.TabIndex = 3;
             // 
             // GroupBoxExOccupation
             // 
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx18);
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx17);
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx16);
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx15);
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx14);
-            this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx13);
-            this.GroupBoxExOccupation.Location = new Point(952, 6);
-            this.GroupBoxExOccupation.Name = "GroupBoxExOccupation";
-            this.GroupBoxExOccupation.Size = new Size(508, 44);
-            this.GroupBoxExOccupation.TabIndex = 10;
-            this.GroupBoxExOccupation.TabStop = false;
-            this.GroupBoxExOccupation.Text = "職種(第三条件)";
+            GroupBoxExOccupation.Controls.Add(ccCheckBox1);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx18);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx17);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx16);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx15);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx14);
+            GroupBoxExOccupation.Controls.Add(CheckBoxEx13);
+            GroupBoxExOccupation.Location = new Point(952, 6);
+            GroupBoxExOccupation.Name = "GroupBoxExOccupation";
+            GroupBoxExOccupation.Size = new Size(600, 44);
+            GroupBoxExOccupation.TabIndex = 10;
+            GroupBoxExOccupation.TabStop = false;
+            GroupBoxExOccupation.Text = "職種(第三条件)";
             // 
             // CheckBoxEx18
             // 
-            this.CheckBoxEx18.AutoSize = true;
-            this.CheckBoxEx18.Checked = true;
-            this.CheckBoxEx18.CheckState = CheckState.Checked;
-            this.CheckBoxEx18.Location = new Point(432, 16);
-            this.CheckBoxEx18.Name = "CheckBoxEx18";
-            this.CheckBoxEx18.Size = new Size(68, 19);
-            this.CheckBoxEx18.TabIndex = 5;
-            this.CheckBoxEx18.Tag = "99";
-            this.CheckBoxEx18.Text = "指定なし";
-            this.CheckBoxEx18.UseVisualStyleBackColor = true;
+            CheckBoxEx18.AutoSize = true;
+            CheckBoxEx18.Checked = true;
+            CheckBoxEx18.CheckState = CheckState.Checked;
+            CheckBoxEx18.Location = new Point(524, 16);
+            CheckBoxEx18.Name = "CheckBoxEx18";
+            CheckBoxEx18.Size = new Size(68, 19);
+            CheckBoxEx18.TabIndex = 5;
+            CheckBoxEx18.Tag = "99";
+            CheckBoxEx18.Text = "指定なし";
+            CheckBoxEx18.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx17
             // 
-            this.CheckBoxEx17.AutoSize = true;
-            this.CheckBoxEx17.Checked = true;
-            this.CheckBoxEx17.CheckState = CheckState.Checked;
-            this.CheckBoxEx17.Location = new Point(364, 16);
-            this.CheckBoxEx17.Name = "CheckBoxEx17";
-            this.CheckBoxEx17.Size = new Size(62, 19);
-            this.CheckBoxEx17.TabIndex = 4;
-            this.CheckBoxEx17.Tag = "20";
-            this.CheckBoxEx17.Text = "事務職";
-            this.CheckBoxEx17.UseVisualStyleBackColor = true;
+            CheckBoxEx17.AutoSize = true;
+            CheckBoxEx17.Checked = true;
+            CheckBoxEx17.CheckState = CheckState.Checked;
+            CheckBoxEx17.Location = new Point(456, 16);
+            CheckBoxEx17.Name = "CheckBoxEx17";
+            CheckBoxEx17.Size = new Size(62, 19);
+            CheckBoxEx17.TabIndex = 4;
+            CheckBoxEx17.Tag = "20";
+            CheckBoxEx17.Text = "事務職";
+            CheckBoxEx17.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx16
             // 
-            this.CheckBoxEx16.AutoSize = true;
-            this.CheckBoxEx16.Checked = true;
-            this.CheckBoxEx16.CheckState = CheckState.Checked;
-            this.CheckBoxEx16.Location = new Point(252, 16);
-            this.CheckBoxEx16.Name = "CheckBoxEx16";
-            this.CheckBoxEx16.Size = new Size(108, 19);
-            this.CheckBoxEx16.TabIndex = 3;
-            this.CheckBoxEx16.Tag = "13";
-            this.CheckBoxEx16.Text = "リサイクルセンター";
-            this.CheckBoxEx16.UseVisualStyleBackColor = true;
+            CheckBoxEx16.AutoSize = true;
+            CheckBoxEx16.Checked = true;
+            CheckBoxEx16.CheckState = CheckState.Checked;
+            CheckBoxEx16.Location = new Point(252, 16);
+            CheckBoxEx16.Name = "CheckBoxEx16";
+            CheckBoxEx16.Size = new Size(108, 19);
+            CheckBoxEx16.TabIndex = 3;
+            CheckBoxEx16.Tag = "13";
+            CheckBoxEx16.Text = "リサイクルセンター";
+            CheckBoxEx16.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx15
             // 
-            this.CheckBoxEx15.AutoSize = true;
-            this.CheckBoxEx15.Checked = true;
-            this.CheckBoxEx15.CheckState = CheckState.Checked;
-            this.CheckBoxEx15.Location = new Point(148, 16);
-            this.CheckBoxEx15.Name = "CheckBoxEx15";
-            this.CheckBoxEx15.Size = new Size(98, 19);
-            this.CheckBoxEx15.TabIndex = 2;
-            this.CheckBoxEx15.Tag = "12";
-            this.CheckBoxEx15.Text = "自転車駐輪場";
-            this.CheckBoxEx15.UseVisualStyleBackColor = true;
+            CheckBoxEx15.AutoSize = true;
+            CheckBoxEx15.Checked = true;
+            CheckBoxEx15.CheckState = CheckState.Checked;
+            CheckBoxEx15.Location = new Point(148, 16);
+            CheckBoxEx15.Name = "CheckBoxEx15";
+            CheckBoxEx15.Size = new Size(98, 19);
+            CheckBoxEx15.TabIndex = 2;
+            CheckBoxEx15.Tag = "12";
+            CheckBoxEx15.Text = "自転車駐輪場";
+            CheckBoxEx15.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx14
             // 
-            this.CheckBoxEx14.AutoSize = true;
-            this.CheckBoxEx14.Checked = true;
-            this.CheckBoxEx14.CheckState = CheckState.Checked;
-            this.CheckBoxEx14.Location = new Point(80, 16);
-            this.CheckBoxEx14.Name = "CheckBoxEx14";
-            this.CheckBoxEx14.Size = new Size(62, 19);
-            this.CheckBoxEx14.TabIndex = 1;
-            this.CheckBoxEx14.Tag = "11";
-            this.CheckBoxEx14.Text = "作業員";
-            this.CheckBoxEx14.UseVisualStyleBackColor = true;
+            CheckBoxEx14.AutoSize = true;
+            CheckBoxEx14.Checked = true;
+            CheckBoxEx14.CheckState = CheckState.Checked;
+            CheckBoxEx14.Location = new Point(80, 16);
+            CheckBoxEx14.Name = "CheckBoxEx14";
+            CheckBoxEx14.Size = new Size(62, 19);
+            CheckBoxEx14.TabIndex = 1;
+            CheckBoxEx14.Tag = "11";
+            CheckBoxEx14.Text = "作業員";
+            CheckBoxEx14.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx13
             // 
-            this.CheckBoxEx13.AutoSize = true;
-            this.CheckBoxEx13.Checked = true;
-            this.CheckBoxEx13.CheckState = CheckState.Checked;
-            this.CheckBoxEx13.Location = new Point(12, 16);
-            this.CheckBoxEx13.Name = "CheckBoxEx13";
-            this.CheckBoxEx13.Size = new Size(62, 19);
-            this.CheckBoxEx13.TabIndex = 0;
-            this.CheckBoxEx13.Tag = "10";
-            this.CheckBoxEx13.Text = "運転手";
-            this.CheckBoxEx13.UseVisualStyleBackColor = true;
+            CheckBoxEx13.AutoSize = true;
+            CheckBoxEx13.Checked = true;
+            CheckBoxEx13.CheckState = CheckState.Checked;
+            CheckBoxEx13.Location = new Point(12, 16);
+            CheckBoxEx13.Name = "CheckBoxEx13";
+            CheckBoxEx13.Size = new Size(62, 19);
+            CheckBoxEx13.TabIndex = 0;
+            CheckBoxEx13.Tag = "10";
+            CheckBoxEx13.Text = "運転手";
+            CheckBoxEx13.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExJobForm
             // 
-            this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx8);
-            this.GroupBoxExJobForm.Controls.Add(this.checkBoxEx11);
-            this.GroupBoxExJobForm.Controls.Add(this.CheckBoxEx12);
-            this.GroupBoxExJobForm.Controls.Add(this.CheckBoxEx10);
-            this.GroupBoxExJobForm.Controls.Add(this.CheckBoxEx9);
-            this.GroupBoxExJobForm.Location = new Point(552, 6);
-            this.GroupBoxExJobForm.Name = "GroupBoxExJobForm";
-            this.GroupBoxExJobForm.Size = new Size(392, 44);
-            this.GroupBoxExJobForm.TabIndex = 9;
-            this.GroupBoxExJobForm.TabStop = false;
-            this.GroupBoxExJobForm.Text = "雇用形態(第二条件)";
+            GroupBoxExJobForm.Controls.Add(checkBoxEx8);
+            GroupBoxExJobForm.Controls.Add(checkBoxEx11);
+            GroupBoxExJobForm.Controls.Add(CheckBoxEx12);
+            GroupBoxExJobForm.Controls.Add(CheckBoxEx10);
+            GroupBoxExJobForm.Controls.Add(CheckBoxEx9);
+            GroupBoxExJobForm.Location = new Point(552, 6);
+            GroupBoxExJobForm.Name = "GroupBoxExJobForm";
+            GroupBoxExJobForm.Size = new Size(392, 44);
+            GroupBoxExJobForm.TabIndex = 9;
+            GroupBoxExJobForm.TabStop = false;
+            GroupBoxExJobForm.Text = "雇用形態(第二条件)";
             // 
             // checkBoxEx8
             // 
-            this.checkBoxEx8.AutoSize = true;
-            this.checkBoxEx8.Location = new Point(240, 16);
-            this.checkBoxEx8.Name = "checkBoxEx8";
-            this.checkBoxEx8.Size = new Size(70, 19);
-            this.checkBoxEx8.TabIndex = 5;
-            this.checkBoxEx8.Tag = "23";
-            this.checkBoxEx8.Text = "手帳(自)";
-            this.checkBoxEx8.UseVisualStyleBackColor = true;
+            checkBoxEx8.AutoSize = true;
+            checkBoxEx8.Location = new Point(240, 16);
+            checkBoxEx8.Name = "checkBoxEx8";
+            checkBoxEx8.Size = new Size(70, 19);
+            checkBoxEx8.TabIndex = 5;
+            checkBoxEx8.Tag = "23";
+            checkBoxEx8.Text = "手帳(自)";
+            checkBoxEx8.UseVisualStyleBackColor = true;
             // 
             // checkBoxEx11
             // 
-            this.checkBoxEx11.AutoSize = true;
-            this.checkBoxEx11.Checked = true;
-            this.checkBoxEx11.CheckState = CheckState.Checked;
-            this.checkBoxEx11.Location = new Point(164, 16);
-            this.checkBoxEx11.Name = "checkBoxEx11";
-            this.checkBoxEx11.Size = new Size(70, 19);
-            this.checkBoxEx11.TabIndex = 4;
-            this.checkBoxEx11.Tag = "22";
-            this.checkBoxEx11.Text = "長期(自)";
-            this.checkBoxEx11.UseVisualStyleBackColor = true;
+            checkBoxEx11.AutoSize = true;
+            checkBoxEx11.Checked = true;
+            checkBoxEx11.CheckState = CheckState.Checked;
+            checkBoxEx11.Location = new Point(164, 16);
+            checkBoxEx11.Name = "checkBoxEx11";
+            checkBoxEx11.Size = new Size(70, 19);
+            checkBoxEx11.TabIndex = 4;
+            checkBoxEx11.Tag = "22";
+            checkBoxEx11.Text = "長期(自)";
+            checkBoxEx11.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx12
             // 
-            this.CheckBoxEx12.AutoSize = true;
-            this.CheckBoxEx12.Checked = true;
-            this.CheckBoxEx12.CheckState = CheckState.Checked;
-            this.CheckBoxEx12.Location = new Point(316, 16);
-            this.CheckBoxEx12.Name = "CheckBoxEx12";
-            this.CheckBoxEx12.Size = new Size(68, 19);
-            this.CheckBoxEx12.TabIndex = 3;
-            this.CheckBoxEx12.Tag = "99";
-            this.CheckBoxEx12.Text = "指定なし";
-            this.CheckBoxEx12.UseVisualStyleBackColor = true;
+            CheckBoxEx12.AutoSize = true;
+            CheckBoxEx12.Checked = true;
+            CheckBoxEx12.CheckState = CheckState.Checked;
+            CheckBoxEx12.Location = new Point(316, 16);
+            CheckBoxEx12.Name = "CheckBoxEx12";
+            CheckBoxEx12.Size = new Size(68, 19);
+            CheckBoxEx12.TabIndex = 3;
+            CheckBoxEx12.Tag = "99";
+            CheckBoxEx12.Text = "指定なし";
+            CheckBoxEx12.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx10
             // 
-            this.CheckBoxEx10.AutoSize = true;
-            this.CheckBoxEx10.Location = new Point(88, 16);
-            this.CheckBoxEx10.Name = "CheckBoxEx10";
-            this.CheckBoxEx10.Size = new Size(70, 19);
-            this.CheckBoxEx10.TabIndex = 1;
-            this.CheckBoxEx10.Tag = "21";
-            this.CheckBoxEx10.Text = "手帳(新)";
-            this.CheckBoxEx10.UseVisualStyleBackColor = true;
+            CheckBoxEx10.AutoSize = true;
+            CheckBoxEx10.Location = new Point(88, 16);
+            CheckBoxEx10.Name = "CheckBoxEx10";
+            CheckBoxEx10.Size = new Size(70, 19);
+            CheckBoxEx10.TabIndex = 1;
+            CheckBoxEx10.Tag = "21";
+            CheckBoxEx10.Text = "手帳(新)";
+            CheckBoxEx10.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx9
             // 
-            this.CheckBoxEx9.AutoSize = true;
-            this.CheckBoxEx9.Checked = true;
-            this.CheckBoxEx9.CheckState = CheckState.Checked;
-            this.CheckBoxEx9.Location = new Point(12, 16);
-            this.CheckBoxEx9.Name = "CheckBoxEx9";
-            this.CheckBoxEx9.Size = new Size(70, 19);
-            this.CheckBoxEx9.TabIndex = 0;
-            this.CheckBoxEx9.Tag = "20";
-            this.CheckBoxEx9.Text = "長期(新)";
-            this.CheckBoxEx9.UseVisualStyleBackColor = true;
+            CheckBoxEx9.AutoSize = true;
+            CheckBoxEx9.Checked = true;
+            CheckBoxEx9.CheckState = CheckState.Checked;
+            CheckBoxEx9.Location = new Point(12, 16);
+            CheckBoxEx9.Name = "CheckBoxEx9";
+            CheckBoxEx9.Size = new Size(70, 19);
+            CheckBoxEx9.TabIndex = 0;
+            CheckBoxEx9.Tag = "20";
+            CheckBoxEx9.Text = "長期(新)";
+            CheckBoxEx9.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExBelongs
             // 
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx7);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx6);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx5);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx4);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx3);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx2);
-            this.GroupBoxExBelongs.Controls.Add(this.CheckBoxEx1);
-            this.GroupBoxExBelongs.Location = new Point(8, 5);
-            this.GroupBoxExBelongs.Name = "GroupBoxExBelongs";
-            this.GroupBoxExBelongs.Size = new Size(536, 44);
-            this.GroupBoxExBelongs.TabIndex = 8;
-            this.GroupBoxExBelongs.TabStop = false;
-            this.GroupBoxExBelongs.Text = "役職又は所属(第一条件)";
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx7);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx6);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx5);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx4);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx3);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx2);
+            GroupBoxExBelongs.Controls.Add(CheckBoxEx1);
+            GroupBoxExBelongs.Location = new Point(8, 5);
+            GroupBoxExBelongs.Name = "GroupBoxExBelongs";
+            GroupBoxExBelongs.Size = new Size(536, 44);
+            GroupBoxExBelongs.TabIndex = 8;
+            GroupBoxExBelongs.TabStop = false;
+            GroupBoxExBelongs.Text = "役職又は所属(第一条件)";
             // 
             // CheckBoxEx7
             // 
-            this.CheckBoxEx7.AutoSize = true;
-            this.CheckBoxEx7.Checked = true;
-            this.CheckBoxEx7.CheckState = CheckState.Checked;
-            this.CheckBoxEx7.Location = new Point(476, 16);
-            this.CheckBoxEx7.Name = "CheckBoxEx7";
-            this.CheckBoxEx7.Size = new Size(50, 19);
-            this.CheckBoxEx7.TabIndex = 6;
-            this.CheckBoxEx7.Tag = "22";
-            this.CheckBoxEx7.Text = "労供";
-            this.CheckBoxEx7.UseVisualStyleBackColor = true;
+            CheckBoxEx7.AutoSize = true;
+            CheckBoxEx7.Checked = true;
+            CheckBoxEx7.CheckState = CheckState.Checked;
+            CheckBoxEx7.Location = new Point(476, 16);
+            CheckBoxEx7.Name = "CheckBoxEx7";
+            CheckBoxEx7.Size = new Size(50, 19);
+            CheckBoxEx7.TabIndex = 6;
+            CheckBoxEx7.Tag = "22";
+            CheckBoxEx7.Text = "労供";
+            CheckBoxEx7.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx6
             // 
-            this.CheckBoxEx6.AutoSize = true;
-            this.CheckBoxEx6.Location = new Point(420, 16);
-            this.CheckBoxEx6.Name = "CheckBoxEx6";
-            this.CheckBoxEx6.Size = new Size(50, 19);
-            this.CheckBoxEx6.TabIndex = 5;
-            this.CheckBoxEx6.Tag = "13";
-            this.CheckBoxEx6.Text = "派遣";
-            this.CheckBoxEx6.UseVisualStyleBackColor = true;
+            CheckBoxEx6.AutoSize = true;
+            CheckBoxEx6.Location = new Point(420, 16);
+            CheckBoxEx6.Name = "CheckBoxEx6";
+            CheckBoxEx6.Size = new Size(50, 19);
+            CheckBoxEx6.TabIndex = 5;
+            CheckBoxEx6.Tag = "13";
+            CheckBoxEx6.Text = "派遣";
+            CheckBoxEx6.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx5
             // 
-            this.CheckBoxEx5.AutoSize = true;
-            this.CheckBoxEx5.Checked = true;
-            this.CheckBoxEx5.CheckState = CheckState.Checked;
-            this.CheckBoxEx5.Location = new Point(328, 16);
-            this.CheckBoxEx5.Name = "CheckBoxEx5";
-            this.CheckBoxEx5.Size = new Size(87, 19);
-            this.CheckBoxEx5.TabIndex = 4;
-            this.CheckBoxEx5.Tag = "15";
-            this.CheckBoxEx5.Text = "パートタイマー";
-            this.CheckBoxEx5.UseVisualStyleBackColor = true;
+            CheckBoxEx5.AutoSize = true;
+            CheckBoxEx5.Checked = true;
+            CheckBoxEx5.CheckState = CheckState.Checked;
+            CheckBoxEx5.Location = new Point(328, 16);
+            CheckBoxEx5.Name = "CheckBoxEx5";
+            CheckBoxEx5.Size = new Size(87, 19);
+            CheckBoxEx5.TabIndex = 4;
+            CheckBoxEx5.Tag = "15";
+            CheckBoxEx5.Text = "パートタイマー";
+            CheckBoxEx5.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx4
             // 
-            this.CheckBoxEx4.AutoSize = true;
-            this.CheckBoxEx4.Checked = true;
-            this.CheckBoxEx4.CheckState = CheckState.Checked;
-            this.CheckBoxEx4.Location = new Point(200, 16);
-            this.CheckBoxEx4.Name = "CheckBoxEx4";
-            this.CheckBoxEx4.Size = new Size(122, 19);
-            this.CheckBoxEx4.TabIndex = 3;
-            this.CheckBoxEx4.Tag = "14";
-            this.CheckBoxEx4.Text = "嘱託雇用契約社員";
-            this.CheckBoxEx4.UseVisualStyleBackColor = true;
+            CheckBoxEx4.AutoSize = true;
+            CheckBoxEx4.Checked = true;
+            CheckBoxEx4.CheckState = CheckState.Checked;
+            CheckBoxEx4.Location = new Point(200, 16);
+            CheckBoxEx4.Name = "CheckBoxEx4";
+            CheckBoxEx4.Size = new Size(122, 19);
+            CheckBoxEx4.TabIndex = 3;
+            CheckBoxEx4.Tag = "14";
+            CheckBoxEx4.Text = "嘱託雇用契約社員";
+            CheckBoxEx4.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx3
             // 
-            this.CheckBoxEx3.AutoSize = true;
-            this.CheckBoxEx3.Checked = true;
-            this.CheckBoxEx3.CheckState = CheckState.Checked;
-            this.CheckBoxEx3.Location = new Point(124, 16);
-            this.CheckBoxEx3.Name = "CheckBoxEx3";
-            this.CheckBoxEx3.Size = new Size(72, 19);
-            this.CheckBoxEx3.TabIndex = 2;
-            this.CheckBoxEx3.Tag = "12";
-            this.CheckBoxEx3.Text = "アルバイト";
-            this.CheckBoxEx3.UseVisualStyleBackColor = true;
+            CheckBoxEx3.AutoSize = true;
+            CheckBoxEx3.Checked = true;
+            CheckBoxEx3.CheckState = CheckState.Checked;
+            CheckBoxEx3.Location = new Point(124, 16);
+            CheckBoxEx3.Name = "CheckBoxEx3";
+            CheckBoxEx3.Size = new Size(72, 19);
+            CheckBoxEx3.TabIndex = 2;
+            CheckBoxEx3.Tag = "12";
+            CheckBoxEx3.Text = "アルバイト";
+            CheckBoxEx3.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx2
             // 
-            this.CheckBoxEx2.AutoSize = true;
-            this.CheckBoxEx2.Location = new Point(68, 16);
-            this.CheckBoxEx2.Name = "CheckBoxEx2";
-            this.CheckBoxEx2.Size = new Size(50, 19);
-            this.CheckBoxEx2.TabIndex = 1;
-            this.CheckBoxEx2.Tag = "11";
-            this.CheckBoxEx2.Text = "社員";
-            this.CheckBoxEx2.UseVisualStyleBackColor = true;
+            CheckBoxEx2.AutoSize = true;
+            CheckBoxEx2.Location = new Point(68, 16);
+            CheckBoxEx2.Name = "CheckBoxEx2";
+            CheckBoxEx2.Size = new Size(50, 19);
+            CheckBoxEx2.TabIndex = 1;
+            CheckBoxEx2.Tag = "11";
+            CheckBoxEx2.Text = "社員";
+            CheckBoxEx2.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx1
             // 
-            this.CheckBoxEx1.AutoSize = true;
-            this.CheckBoxEx1.Location = new Point(12, 16);
-            this.CheckBoxEx1.Name = "CheckBoxEx1";
-            this.CheckBoxEx1.Size = new Size(50, 19);
-            this.CheckBoxEx1.TabIndex = 0;
-            this.CheckBoxEx1.Tag = "10";
-            this.CheckBoxEx1.Text = "役員";
-            this.CheckBoxEx1.UseVisualStyleBackColor = true;
+            CheckBoxEx1.AutoSize = true;
+            CheckBoxEx1.Location = new Point(12, 16);
+            CheckBoxEx1.Name = "CheckBoxEx1";
+            CheckBoxEx1.Size = new Size(50, 19);
+            CheckBoxEx1.TabIndex = 0;
+            CheckBoxEx1.Tag = "10";
+            CheckBoxEx1.Text = "役員";
+            CheckBoxEx1.UseVisualStyleBackColor = true;
             // 
             // CheckBoxExRetirementFlag
             // 
-            this.CheckBoxExRetirementFlag.AutoSize = true;
-            this.CheckBoxExRetirementFlag.Location = new Point(1560, 18);
-            this.CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
-            this.CheckBoxExRetirementFlag.Size = new Size(102, 19);
-            this.CheckBoxExRetirementFlag.TabIndex = 4;
-            this.CheckBoxExRetirementFlag.Text = "退職者も含める";
-            this.CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
+            CheckBoxExRetirementFlag.AutoSize = true;
+            CheckBoxExRetirementFlag.Location = new Point(1568, 18);
+            CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
+            CheckBoxExRetirementFlag.Size = new Size(102, 19);
+            CheckBoxExRetirementFlag.TabIndex = 4;
+            CheckBoxExRetirementFlag.Text = "退職者も含める";
+            CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F);
-            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            this.ButtonExUpdate.Location = new Point(1672, 10);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(184, 32);
-            this.ButtonExUpdate.TabIndex = 3;
-            this.ButtonExUpdate.Text = "最　新　化";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonEx_Click;
+            ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExUpdate.Font = new Font("Yu Gothic UI", 11.25F);
+            ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            ButtonExUpdate.Location = new Point(1676, 10);
+            ButtonExUpdate.Name = "ButtonExUpdate";
+            ButtonExUpdate.SetTextDirectionVertical = "";
+            ButtonExUpdate.Size = new Size(184, 32);
+            ButtonExUpdate.TabIndex = 3;
+            ButtonExUpdate.Text = "最　新　化";
+            ButtonExUpdate.UseVisualStyleBackColor = true;
+            ButtonExUpdate.Click += ButtonEx_Click;
+            // 
+            // ccCheckBox1
+            // 
+            ccCheckBox1.AutoSize = true;
+            ccCheckBox1.Checked = true;
+            ccCheckBox1.CheckState = CheckState.Checked;
+            ccCheckBox1.Location = new Point(364, 16);
+            ccCheckBox1.Name = "ccCheckBox1";
+            ccCheckBox1.Size = new Size(86, 19);
+            ccCheckBox1.TabIndex = 6;
+            ccCheckBox1.Tag = "14";
+            ccCheckBox1.Text = "文京中継所";
+            ccCheckBox1.UseVisualStyleBackColor = true;
             // 
             // EmploymentAgreementList
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1904, 1041);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "EmploymentAgreementList";
-            this.Text = "EmploymentAgreementList";
-            this.FormClosing += this.EmploymentAgreementList_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
-            this.ContextMenuStripEx1.ResumeLayout(false);
-            this.PanelExTop.ResumeLayout(false);
-            this.PanelExTop.PerformLayout();
-            this.GroupBoxExOccupation.ResumeLayout(false);
-            this.GroupBoxExOccupation.PerformLayout();
-            this.GroupBoxExJobForm.ResumeLayout(false);
-            this.GroupBoxExJobForm.PerformLayout();
-            this.GroupBoxExBelongs.ResumeLayout(false);
-            this.GroupBoxExBelongs.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            Name = "EmploymentAgreementList";
+            Text = "EmploymentAgreementList";
+            FormClosing += EmploymentAgreementList_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            ContextMenuStripEx1.ResumeLayout(false);
+            PanelExTop.ResumeLayout(false);
+            PanelExTop.PerformLayout();
+            GroupBoxExOccupation.ResumeLayout(false);
+            GroupBoxExOccupation.PerformLayout();
+            GroupBoxExJobForm.ResumeLayout(false);
+            GroupBoxExJobForm.PerformLayout();
+            GroupBoxExBelongs.ResumeLayout(false);
+            GroupBoxExBelongs.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -554,7 +569,7 @@
         private CcControl.CcPanel PanelExTop;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemExpiration;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationPartTimeJob;
         private ToolStripMenuItem ToolStripMenuItemContractExpirationLongJob新産別;
@@ -589,5 +604,6 @@
         private CcControl.CcCheckBox CheckBoxEx3;
         private CcControl.CcCheckBox CheckBoxEx2;
         private CcControl.CcCheckBox CheckBoxEx1;
+        private CcControl.CcCheckBox ccCheckBox1;
     }
 }

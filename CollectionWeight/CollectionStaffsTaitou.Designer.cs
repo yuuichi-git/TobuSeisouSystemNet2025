@@ -30,7 +30,7 @@
             this.PanelExTop = new CcControl.CcPanel();
             this.labelEx2 = new CcControl.CcLabel();
             this.labelEx1 = new CcControl.CcLabel();
-            this.NumericUpDownExYear = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExYear = new CcControl.CcNumericUpDown();
             this.ButtonExUpdate = new CcControl.CcButton();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
@@ -173,7 +173,7 @@
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
-        private CcControl.NumericUpDownEx NumericUpDownExYear;
+        private CcControl.CcNumericUpDown NumericUpDownExYear;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

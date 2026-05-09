@@ -1,5 +1,5 @@
 ﻿namespace CcControl {
-    partial class MaskedTextBoxEx {
+    partial class CcMaskedTextBox {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>

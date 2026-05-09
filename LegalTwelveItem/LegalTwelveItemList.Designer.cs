@@ -32,7 +32,7 @@
             this.ComboBoxExPrinterName = new CcControl.CcComboBox();
             this.labelEx1 = new CcControl.CcLabel();
             this.ButtonExUpdate = new CcControl.CcButton();
-            this.NumericUpDownExFiscalYear = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExFiscalYear = new CcControl.CcNumericUpDown();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -184,7 +184,7 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private CcControl.NumericUpDownEx NumericUpDownExFiscalYear;
+        private CcControl.CcNumericUpDown NumericUpDownExFiscalYear;
         private CcControl.CcLabel labelEx1;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx2;

@@ -47,7 +47,7 @@
             this.CheckBoxExMedium = new CcControl.CcCheckBox();
             this.CheckBoxExLarge = new CcControl.CcCheckBox();
             this.PictureBoxEx2 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.ContextMenuStripEx();
+            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemClip = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.PictureBoxEx1 = new CcControl.CcPictureBox();
@@ -711,7 +711,7 @@
         private CcControl.CcCheckBox CheckBoxExBigTwo;
         private CcControl.CcCheckBox CheckBoxExWithARaw;
         private CcControl.CcCheckBox CheckBoxExSmallSpecial;
-        private CcControl.ContextMenuStripEx ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
         private ToolStripMenuItem ToolStripMenuItemClip;
         private ToolStripMenuItem ToolStripMenuItemDelete;
     }

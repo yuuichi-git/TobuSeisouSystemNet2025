@@ -1,21 +1,10 @@
 ﻿/*
- * 2024-11-06
+ * 2024-12-11
  */
 namespace CcControl {
-    public partial class NumericUpDownEx : NumericUpDown {
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public NumericUpDownEx() {
+    public partial class CcMaskedTextBox : MaskedTextBox {
+        public CcMaskedTextBox() {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pe"></param>
-        protected override void OnPaint(PaintEventArgs pe) {
-            base.OnPaint(pe);
         }
 
         /// <summary>
@@ -30,6 +19,10 @@ namespace CcControl {
             SendKeys.Send("+{END}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e) {
             switch (e.KeyCode) {
                 case Keys.Enter:

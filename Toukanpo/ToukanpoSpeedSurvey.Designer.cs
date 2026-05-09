@@ -32,8 +32,8 @@
             this.labelEx3 = new CcControl.CcLabel();
             this.labelEx2 = new CcControl.CcLabel();
             this.labelEx1 = new CcControl.CcLabel();
-            this.NumericUpDownExMonth = new CcControl.NumericUpDownEx();
-            this.NumericUpDownExYear = new CcControl.NumericUpDownEx();
+            this.NumericUpDownExMonth = new CcControl.CcNumericUpDown();
+            this.NumericUpDownExYear = new CcControl.CcNumericUpDown();
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -195,11 +195,11 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private CcControl.NumericUpDownEx NumericUpDownExYear;
+        private CcControl.CcNumericUpDown NumericUpDownExYear;
         private CcControl.CcLabel labelEx3;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
-        private CcControl.NumericUpDownEx NumericUpDownExMonth;
+        private CcControl.CcNumericUpDown NumericUpDownExMonth;
         private CcControl.CcButton ButtonExUpdate;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

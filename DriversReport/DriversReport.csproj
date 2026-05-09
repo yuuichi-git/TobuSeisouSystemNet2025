@@ -10,10 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="grapecity.spread.winforms.ja" Version="15.3.0" />
+    <PackageReference Include="syncfusion.shared.base" Version="33.1.49" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\CcControl.csproj" />
+    <ProjectReference Include="..\Dao\Dao.csproj" />
   </ItemGroup>
 </Project>

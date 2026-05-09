@@ -43,7 +43,7 @@
             this.CcComboBoxCompanyName = new CcControl.CcComboBox();
             this.ccLabel1 = new CcControl.CcLabel();
             this.CcComboBoxVehicleType = new CcControl.CcComboBox();
-            this.CcContextMenuStrip1 = new CcControl.ContextMenuStripEx();
+            this.CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
@@ -326,7 +326,7 @@
         private TabPage TabPage2;
         private TabPage TabPage3;
         private TabPage TabPage4;
-        private CcControl.ContextMenuStripEx CcContextMenuStrip1;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemOpen;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private Syncfusion.Windows.Forms.Tools.FlowLayout flowLayout1;

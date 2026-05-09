@@ -146,6 +146,7 @@ namespace Dao {
                                             "DeathDate," +
                                             "DeathNote," +
                                             "LegalTwelveItemFlag," +
+                                            "MedicalCheckupFlag," +
                                             "ToukanpoFlag," +
                                             "UrgentTelephoneNumber," +
                                             "UrgentTelephoneMethod," +
@@ -210,6 +211,7 @@ namespace Dao {
                     staffMasterVo.DeathDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeathDate"]);
                     staffMasterVo.DeathNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeathNote"]);
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
+                    staffMasterVo.MedicalCheckupFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MedicalCheckupFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
                     staffMasterVo.UrgentTelephoneMethod = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneMethod"]);
@@ -279,6 +281,7 @@ namespace Dao {
                                             "DeathDate," +
                                             "DeathNote," +
                                             "LegalTwelveItemFlag," +
+                                            "MedicalCheckupFlag," +
                                             "ToukanpoFlag," +
                                             "UrgentTelephoneNumber," +
                                             "UrgentTelephoneMethod," +
@@ -341,6 +344,7 @@ namespace Dao {
                     staffMasterVo.DeathDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeathDate"]);
                     staffMasterVo.DeathNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeathNote"]);
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
+                    staffMasterVo.MedicalCheckupFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MedicalCheckupFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
                     staffMasterVo.ListHStaffFamilyVo = _staffFamilyDao.SelectOneStaffFamilyMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
@@ -413,6 +417,7 @@ namespace Dao {
                                                                "DeathDate," +
                                                                "DeathNote," +
                                                                "LegalTwelveItemFlag," +
+                                                               "MedicalCheckupFlag," +
                                                                "ToukanpoFlag," +
                                                                "UrgentTelephoneNumber," +
                                                                "UrgentTelephoneMethod," +
@@ -468,6 +473,7 @@ namespace Dao {
                                             "'" + staffMasterVo.DeathDate + "'," +
                                             "'" + staffMasterVo.DeathNote + "'," +
                                             "'" + staffMasterVo.LegalTwelveItemFlag + "'," +
+                                            "'" + staffMasterVo.MedicalCheckupFlag + "'," +
                                             "'" + staffMasterVo.ToukanpoFlag + "'," +
                                             "'" + staffMasterVo.UrgentTelephoneNumber + "'," +
                                             "'" + staffMasterVo.UrgentTelephoneMethod + "'," +
@@ -483,8 +489,8 @@ namespace Dao {
                                             "'" + staffMasterVo.WorkerAccidentInsuranceDate + "'," +
                                             "'" + staffMasterVo.WorkerAccidentInsuranceNumber + "'," +
                                             "'" + staffMasterVo.WorkerAccidentInsuranceNote + "'," +
-                                            "'" + staffMasterVo.InsertPcName + "'," +
-                                            "'" + staffMasterVo.InsertYmdHms + "'," +
+                                            "'" + Environment.MachineName + "'," +
+                                            "'" + DateTime.Now + "'," +
                                             "'" + staffMasterVo.UpdatePcName + "'," +
                                             "'" + staffMasterVo.UpdateYmdHms + "'," +
                                             "'" + staffMasterVo.DeletePcName + "'," +
@@ -540,6 +546,7 @@ namespace Dao {
                                          "DeathDate = '" + staffMasterVo.DeathDate + "'," +
                                          "DeathNote = '" + staffMasterVo.DeathNote + "'," +
                                          "LegalTwelveItemFlag = '" + staffMasterVo.LegalTwelveItemFlag + "'," +
+                                         "MedicalCheckupFlag = '" + staffMasterVo.MedicalCheckupFlag + "'," +
                                          "ToukanpoFlag = '" + staffMasterVo.ToukanpoFlag + "'," +
                                          "UrgentTelephoneNumber = '" + staffMasterVo.UrgentTelephoneNumber + "'," +
                                          "UrgentTelephoneMethod = '" + staffMasterVo.UrgentTelephoneMethod + "'," +
@@ -555,8 +562,8 @@ namespace Dao {
                                          "WorkerAccidentInsuranceDate = '" + staffMasterVo.WorkerAccidentInsuranceDate + "'," +
                                          "WorkerAccidentInsuranceNumber = '" + staffMasterVo.WorkerAccidentInsuranceNumber + "'," +
                                          "WorkerAccidentInsuranceNote = '" + staffMasterVo.WorkerAccidentInsuranceNote + "'," +
-                                         "UpdatePcName = '" + staffMasterVo.UpdatePcName + "'," +
-                                         "UpdateYmdHms = '" + staffMasterVo.UpdateYmdHms + "' " +
+                                         "UpdatePcName = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + staffMasterVo.StaffCode;
             try {
                 sqlCommand.Parameters.Add("@member_picture", SqlDbType.Image, staffMasterVo.Picture.Length).Value = staffMasterVo.Picture;
