@@ -1,7 +1,5 @@
 ﻿/*
  * 2026-04-07
- * Essential Studio® 7-Day License Key(取得日:2026-04-10)
- * "Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCekx3Q3xbf1x2ZFRHal5XTnJZUj0eQnxTdENjXX9XcndXQGRaV0JyXEleYA=="
  */
 using CcControl;
 
@@ -9,44 +7,30 @@ using Common;
 
 using Dao;
 
-using Syncfusion.Windows.Forms.PdfViewer;
-
 using Vo;
 
 namespace VoluntaryAutomobileInsurance {
     public partial class VoluntaryAutomobileInsuranceDetail : Form {
         private int _staffCode;
-
-        /*
-         * PDF 読み込み・変換ユーティリティ
-         */
         private PdfUtility _pdfUtility = new();
-
+        private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
+        private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
         /*
-         * 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
-         * TabPage と 1:1 対応
-         */
-        private PdfViewerControl[] _pdfViewerControl = new PdfViewerControl[4];
-
-        /*
-         * DAO（PDF の Insert/Update/Delete を担当）
+         * Dao
          */
         private VoluntaryAutomobileInsuranceDao _voluntaryAutomobileInsuranceDao;
-
-        // PdfViewer ごとに MemoryStream を保持する
-        private MemoryStream[] _memoryStream = new MemoryStream[4];
 
         /// <summary>
         /// コンストラクター
         /// </summary>
+        /// <param name="connectionVo"></param>
+        /// <param name="staffCode"></param>
         public VoluntaryAutomobileInsuranceDetail(ConnectionVo connectionVo, int staffCode) {
-            _staffCode = staffCode;
-
             /*
              * Dao
              */
             _voluntaryAutomobileInsuranceDao = new(connectionVo);
-
+            _staffCode = staffCode;
             /*
              * InitializeControl
              */
@@ -61,40 +45,31 @@ namespace VoluntaryAutomobileInsurance {
             };
             this.CcMenuStrip1.ChangeEnable(listString);
 
+            // 対象車両種別
+            this.InitializeCcComboBoxVehicleType();
+
+            // 保険会社名
+            this.InitializeCcComboBoxCompanyName();
+
+            // 開始日・終了日
             this.CcDateTimePickerStartDate.Value = DateTime.Now.AddDays(1);
             this.CcDateTimePickerEndDate.Value = DateTime.Now.AddYears(1);
 
-            /*
-             * PdfViewer の初期化（4つ）
-             */
+            // PDF 表示エリア
+            TabPage[] tabPages = new TabPage[4];
+            tabPages[0] = this.TabPage1;
+            tabPages[1] = this.TabPage2;
+            tabPages[2] = this.TabPage3;
+            tabPages[3] = this.TabPage4;
+
+            // 4つの CcPdfView を生成して TabPage に配置
             for (int i = 0; i < 4; i++) {
-                _pdfViewerControl[i] = new PdfViewerControl();
-
-                // ▼ Syncfusion の「フォルダ（Open）」アイコンを無効化
-                _pdfViewerControl[i].ShowToolBar = true;
-                _pdfViewerControl[i].ToolbarSettings.OpenButton.IsEnabled = false;
-
-                // ▼ 共通の右クリックメニュー
-                _pdfViewerControl[i].ContextMenuStrip = CcContextMenuStrip1;
-
-                // ▼ レイアウト
-                _pdfViewerControl[i].Dock = DockStyle.Fill;
+                _ccPdfViews[i] = new();
+                tabPages[i].Controls.Add(_ccPdfViews[i]);
             }
 
-            /*
-             * TabPage に PdfViewer を配置
-             */
-            this.TabPage1.Controls.Add(_pdfViewerControl[0]);
-            this.TabPage2.Controls.Add(_pdfViewerControl[1]);
-            this.TabPage3.Controls.Add(_pdfViewerControl[2]);
-            this.TabPage4.Controls.Add(_pdfViewerControl[3]);
-
-            /*
-             * 画面表示
-             */
-            this.PutSheetViewList(_staffCode);
-            this.InitializeCcComboBoxVehicleType();
-            this.InitializeCcComboBoxCompanyName();
+            // 表示対象のデータを画面へ反映
+            this.PutSheetViewList(staffCode);
             /*
              * Eventを登録する
              */
@@ -106,20 +81,12 @@ namespace VoluntaryAutomobileInsurance {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
-                    this.Close();
-                    break;
-            }
-        }
-
         private void CcButtonUpdate_Click(object sender, EventArgs e) {
             /*
              * 新規 or 更新用の VO を作成
              */
             VoluntaryAutomobileInsuranceVo vo = new();
-            vo.Id = Guid.NewGuid().ToString();
+            vo.Id = Guid.NewGuid().ToString();                                                      // 一意な ID を生成
             vo.StaffCode = _staffCode;
             vo.VehicleType = this.CcComboBoxVehicleType.Text;
             vo.CompanyName = this.CcComboBoxCompanyName.Text;
@@ -152,59 +119,20 @@ namespace VoluntaryAutomobileInsurance {
             this.CcDateTimePickerEndDate.Enabled = false;
         }
 
-        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if (sender is not ContextMenuStrip menu)
-                return;
-
-            if (menu.SourceControl is not PdfViewerControl viewer)
-                return;
-
-            int imageNo = GetImageNoFromViewer(viewer);
-            if (imageNo == 0)
-                return;
-
-            switch (e.ClickedItem.Name) {
-                case "ToolStripMenuItemOpen":
-                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
-                    if (bytes is null)
-                        return;
-
-                    this.ShowPdfToViewer(viewer, bytes);
-                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
-                    break;
-
-                case "ToolStripMenuItemDelete":
-                    this.ClearPdfViewer(viewer);
-                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
-                    break;
-            }
-        }
-
         /// <summary>
-        /// PdfViewer がどの ImageNo に対応しているかを返す
-        /// </summary>
-        private int GetImageNoFromViewer(PdfViewerControl viewer) {
-            for (int i = 0; i < _pdfViewerControl.Length; i++) {
-                if (_pdfViewerControl[i] == viewer) {
-                    return i + 1;
-                }
-            }
-            return 0;
-        }
-
-        /// <summary>
-        /// 画面へPDF等を表示する
+        /// 画面へ PDF 等を表示する
         /// </summary>
         private void PutSheetViewList(int staffCode) {
             if (_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(staffCode)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在します。";
-
-                VoluntaryAutomobileInsuranceVo vo =
-                    _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
+                VoluntaryAutomobileInsuranceVo vo = _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
 
                 if (vo is null)
                     return;
 
+                /*
+                 * 画面項目へ反映
+                 */
                 this.CcComboBoxVehicleType.Text = vo.VehicleType;
                 this.CcComboBoxCompanyName.Text = vo.CompanyName;
 
@@ -214,59 +142,81 @@ namespace VoluntaryAutomobileInsurance {
                 if (DateTime.TryParse(vo.EndDate, out DateTime end))
                     this.CcDateTimePickerEndDate.Value = end;
 
-                ShowPdfIfExists(_pdfViewerControl[0], vo.Image1, 0);
-                ShowPdfIfExists(_pdfViewerControl[1], vo.Image2, 1);
-                ShowPdfIfExists(_pdfViewerControl[2], vo.Image3, 2);
-                ShowPdfIfExists(_pdfViewerControl[3], vo.Image4, 3);
+                /*
+                 * PDF 表示（Image1〜4）
+                 */
+                ShowPdfIfExists(_ccPdfViews[0], vo.Image1, 0);
+                ShowPdfIfExists(_ccPdfViews[1], vo.Image2, 1);
+                ShowPdfIfExists(_ccPdfViews[2], vo.Image3, 2);
+                ShowPdfIfExists(_ccPdfViews[3], vo.Image4, 3);
             } else {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在しません。";
 
+                /*
+                 * 画面クリア
+                 */
                 this.CcComboBoxVehicleType.Text = string.Empty;
                 this.CcComboBoxCompanyName.Text = string.Empty;
+
+                /*
+                 * PDF クリア
+                 */
+                for (int i = 0; i < 4; i++) {
+                    ClearPdfViewer(_ccPdfViews[i]);
+                }
             }
         }
 
         /// <summary>
         /// PDF が存在すれば表示する
         /// </summary>
-        private void ShowPdfIfExists(PdfViewerControl viewer, byte[] bytes, int index) {
+        private void ShowPdfIfExists(CcPdfView ccPdfView, byte[] bytes, int index) {
             if (bytes is null || bytes.Length == 0) {
-                ClearPdfViewer(viewer);
+                ClearPdfViewer(ccPdfView);
                 return;
             }
 
             _memoryStream[index]?.Dispose();
             _memoryStream[index] = new MemoryStream(bytes);
 
-            viewer.Unload();
-            viewer.Load(_memoryStream[index]);
+            ccPdfView.Unload();
+            ccPdfView.SetPdfStream(_memoryStream[index]);
+        }
+
+        /// <summary>
+        /// PdfViewer がどの ImageNo に対応しているかを返す
+        /// </summary>
+        private int GetImageNoFromViewer(CcPdfView viewer) {
+            for (int i = 0; i < _ccPdfViews.Length; i++) {
+                if (_ccPdfViews[i] == viewer) {
+                    return i + 1;
+                }
+            }
+            return 0;
         }
 
         /// <summary>
         /// 指定された PdfViewer に PDF（byte[]）を表示する
         /// </summary>
-        private void ShowPdfToViewer(PdfViewerControl viewer, byte[] pdfBytes) {
-            int imageNo = GetImageNoFromViewer(viewer);
+        private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
+            int imageNo = GetImageNoFromViewer(ccPdfView);
             if (imageNo == 0)
                 return;
 
             int index = imageNo - 1;
 
             _memoryStream[index]?.Dispose();
-            _memoryStream[index] = null;
-
-            viewer.Unload();
-
             _memoryStream[index] = new MemoryStream(pdfBytes);
 
-            viewer.Load(_memoryStream[index]);
+            ccPdfView.Unload();
+            ccPdfView.SetPdfStream(_memoryStream[index]);
         }
 
         /// <summary>
         /// 指定された PdfViewer をクリアする
         /// </summary>
-        private void ClearPdfViewer(PdfViewerControl viewer) {
-            int imageNo = GetImageNoFromViewer(viewer);
+        private void ClearPdfViewer(CcPdfView ccPdfView) {
+            int imageNo = GetImageNoFromViewer(ccPdfView);
             if (imageNo == 0)
                 return;
 
@@ -275,19 +225,71 @@ namespace VoluntaryAutomobileInsurance {
             _memoryStream[index]?.Dispose();
             _memoryStream[index] = null;
 
-            viewer.Unload();
+            ccPdfView.Unload();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeCcComboBoxVehicleType() {
             this.CcComboBoxVehicleType.Items.Clear();
             foreach (string data in _voluntaryAutomobileInsuranceDao.SelectGroupVehicleType())
                 this.CcComboBoxVehicleType.Items.Add(data);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeCcComboBoxCompanyName() {
             this.CcComboBoxCompanyName.Items.Clear();
             foreach (string data in _voluntaryAutomobileInsuranceDao.SelectGroupCompanyName())
                 this.CcComboBoxCompanyName.Items.Add(data);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch (((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
+                    this.Close();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if (sender is not ContextMenuStrip menu)
+                return;
+
+            if (menu.SourceControl is not CcPdfView ccPdfView)
+                return;
+
+            int imageNo = GetImageNoFromViewer(ccPdfView);
+            if (imageNo == 0)
+                return;
+
+            switch (e.ClickedItem.Name) {
+                case "ToolStripMenuItemOpen":
+                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
+                    if (bytes is null)
+                        return;
+
+                    this.ShowPdfToViewer(ccPdfView, bytes);
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
+                    break;
+
+                case "ToolStripMenuItemDelete":
+                    this.ClearPdfViewer(ccPdfView);
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
+                    break;
+            }
         }
 
         /// <summary>

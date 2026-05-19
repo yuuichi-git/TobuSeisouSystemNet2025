@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
             this.CcTabControl1 = new CcControl.CcTabControl();
             this.TabPage1 = new TabPage();
@@ -46,13 +45,11 @@
             this.CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.flowLayout1 = new Syncfusion.Windows.Forms.Tools.FlowLayout(this.components);
             this.CcTableLayoutPanelBase.SuspendLayout();
             this.CcTabControl1.SuspendLayout();
             this.CcPanelTop.SuspendLayout();
             this.CcPanelMiddle.SuspendLayout();
             this.CcContextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.flowLayout1).BeginInit();
             this.SuspendLayout();
             // 
             // CcTableLayoutPanelBase
@@ -93,8 +90,8 @@
             // TabPage1
             // 
             this.TabPage1.Location = new Point(4, 24);
+            this.TabPage1.Margin = new Padding(0);
             this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Padding = new Padding(3);
             this.TabPage1.Size = new Size(965, 899);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Tag = "Route";
@@ -104,8 +101,8 @@
             // TabPage2
             // 
             this.TabPage2.Location = new Point(4, 24);
+            this.TabPage2.Margin = new Padding(0);
             this.TabPage2.Name = "TabPage2";
-            this.TabPage2.Padding = new Padding(3);
             this.TabPage2.Size = new Size(965, 899);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Tag = "Compulsory";
@@ -115,6 +112,7 @@
             // TabPage3
             // 
             this.TabPage3.Location = new Point(4, 24);
+            this.TabPage3.Margin = new Padding(0);
             this.TabPage3.Name = "TabPage3";
             this.TabPage3.Size = new Size(965, 899);
             this.TabPage3.TabIndex = 2;
@@ -125,6 +123,7 @@
             // TabPage4
             // 
             this.TabPage4.Location = new Point(4, 24);
+            this.TabPage4.Margin = new Padding(0);
             this.TabPage4.Name = "TabPage4";
             this.TabPage4.Size = new Size(965, 899);
             this.TabPage4.TabIndex = 3;
@@ -301,7 +300,6 @@
             this.CcPanelTop.ResumeLayout(false);
             this.CcPanelMiddle.ResumeLayout(false);
             this.CcContextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.flowLayout1).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -329,6 +327,5 @@
         private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemOpen;
         private ToolStripMenuItem ToolStripMenuItemDelete;
-        private Syncfusion.Windows.Forms.Tools.FlowLayout flowLayout1;
     }
 }

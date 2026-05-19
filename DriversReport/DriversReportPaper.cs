@@ -208,9 +208,10 @@ namespace DriversReport {
                 case 1311715:                                                                                               // 北区粗大対策
                     sheetView.Cells[3, 23].Text = "粗大　　組"; // 組名
                     sheetView.Cells[10, 17].Text = "浮間清掃事業所 /"; // 休憩場所
-                    sheetView.Cells[12, 3].Text = "浮間清掃事業所"; // 運搬先名①
-                    sheetView.Cells[13, 3].Text = "浮間清掃事業所"; // 運搬先名②
-                    sheetView.Cells[14, 3].Text = "浮間清掃事業所"; // 運搬先名③
+                    sheetView.Cells[12, 3].Text = "🔲　浮間清掃事業所"; // 運搬先名①
+                    sheetView.Cells[13, 3].Text = "🔲　浮間清掃事業所"; // 運搬先名②
+                    sheetView.Cells[14, 3].Text = "🔲　浮間清掃事業所"; // 運搬先名③
+                    sheetView.Cells[15, 3].Text = "🔲　浮間清掃事業所"; // 運搬先名④
                     break;
                 case 1310602:                                                                                               // 台東資源１
                 case 1310603:                                                                                               // 台東資源２
@@ -228,6 +229,11 @@ namespace DriversReport {
                 case 1311903:                                                                                               // 板橋西軽２
                 case 1311904:                                                                                               // 板橋西軽３
                     sheetView.Cells[10, 17].Text = "西台中継所/板橋清掃工場 /"; // 休憩場所
+                    sheetView.Cells[12, 3].Text = "🔲　板橋清掃工場"; // 運搬先名①
+                    sheetView.Cells[13, 3].Text = "🔲　板橋清掃工場"; // 運搬先名②
+                    sheetView.Cells[14, 3].Text = "🔲　板橋清掃工場"; // 運搬先名③
+                    sheetView.Cells[15, 3].Text = "🔲　板橋清掃工場"; // 運搬先名④
+                    sheetView.Cells[12, 17].Text = "🔲　板橋清掃工場"; // 運搬先名⑤
                     break;
                 case 1311910:                                                                                               // 板橋東プラ軽３
                     sheetView.Cells[10, 17].Text = "板橋清掃工場"; // 休憩場所
@@ -266,11 +272,11 @@ namespace DriversReport {
                 case 1312014:                                                                                               // 桜台粗大１
                 case 1312015:                                                                                               // 桜台粗大２
                     sheetView.Cells[10, 17].Text = "";// 休憩場所
-                    sheetView.Cells[12, 3].Text = "土支田　・　センター";
-                    sheetView.Cells[13, 3].Text = "土支田　・　センター";
-                    sheetView.Cells[14, 3].Text = "土支田　・　センター";
-                    sheetView.Cells[15, 3].Text = "土支田　・　センター";
-                    sheetView.Cells[12, 17].Text = "土支田　・　センター";
+                    sheetView.Cells[12, 3].Text = "🔲 土支田　🔲 センター";
+                    sheetView.Cells[13, 3].Text = "🔲 土支田　🔲 センター";
+                    sheetView.Cells[14, 3].Text = "🔲 土支田　🔲 センター";
+                    sheetView.Cells[15, 3].Text = "🔲 土支田　🔲  センター";
+                    sheetView.Cells[12, 17].Text = "🔲 土支田　🔲センター";
                     sheetView.Cells[13, 17].Text = string.Empty;
                     sheetView.Cells[14, 17].Text = string.Empty;
                     sheetView.Cells[15, 17].Text = string.Empty;
@@ -279,8 +285,8 @@ namespace DriversReport {
                 case 1310202:                                                                                               // 中央ペット８
                 case 1310207:                                                                                               // 中央ペット１１
                     sheetView.Cells[10, 17].Text = "";// 休憩場所
-                    sheetView.Cells[12, 3].Text = "要興業城南島リサイクルセンター";
-                    sheetView.Cells[13, 3].Text = "要興業城南島リサイクルセンター";
+                    sheetView.Cells[12, 3].Text = "城南島リサイクルセンター";
+                    sheetView.Cells[13, 3].Text = "城南島リサイクルセンター";
                     sheetView.Cells[14, 3].Text = string.Empty;
                     sheetView.Cells[15, 3].Text = string.Empty;
                     sheetView.Cells[12, 17].Text = string.Empty;

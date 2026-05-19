@@ -67,6 +67,7 @@ namespace CcControl {
         public class CcComboBoxStaffMasterVo {
             private string _displayName;
             private StaffMasterVo _staffMasterVo;
+
             /// <summary>
             /// コンストラクター
             /// </summary>

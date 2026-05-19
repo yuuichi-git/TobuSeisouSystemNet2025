@@ -8,6 +8,7 @@ namespace Vo {
     /// </summary>
     public class VoluntaryAutomobileInsuranceVo {
         private DateTime _defaultDateTime = new(1900, 1, 1);
+
         public VoluntaryAutomobileInsuranceVo() {
             Id = string.Empty;
             StaffCode = 0;

@@ -492,7 +492,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "VoluntaryAutomobileInsuranceList":                                                                                // 通勤用自動車任意保険加入状況一覧
-                            if(voluntaryAutomobileInsuranceList is null || voluntaryAutomobileInsuranceList.IsDisposed) {
+                            if (voluntaryAutomobileInsuranceList is null || voluntaryAutomobileInsuranceList.IsDisposed) {
                                 voluntaryAutomobileInsuranceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, voluntaryAutomobileInsuranceList);
                                 voluntaryAutomobileInsuranceList.Show(this);
@@ -502,7 +502,7 @@ namespace TobuSeisouSystemNet2025 {
                             break;
 
                         case "TabTransportBureauAudit":
-                            if(continuousDrivingTimePaper is null || continuousDrivingTimePaper.IsDisposed) {
+                            if (continuousDrivingTimePaper is null || continuousDrivingTimePaper.IsDisposed) {
                                 continuousDrivingTimePaper = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, continuousDrivingTimePaper);
                                 continuousDrivingTimePaper.Show(this);

@@ -191,6 +191,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1688, 11);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -246,6 +247,7 @@
             // 
             // ButtonExMap
             // 
+            this.ButtonExMap.ForeColor = SystemColors.ControlText;
             this.ButtonExMap.Location = new Point(624, 240);
             this.ButtonExMap.Name = "ButtonExMap";
             this.ButtonExMap.SetTextDirectionVertical = "";
@@ -587,7 +589,7 @@
             // 
             this.ComboBoxExAccidentKind.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ComboBoxExAccidentKind.FormattingEnabled = true;
-            this.ComboBoxExAccidentKind.Items.AddRange(new object[] { "人身事故", "物件事故", "作業事故", "労災事故", "被害事故", "飛び石", "参考" });
+            this.ComboBoxExAccidentKind.Items.AddRange(new object[] { "人身事故", "重大事故", "物件事故", "作業事故", "労災事故", "被害事故", "飛び石", "参考" });
             this.ComboBoxExAccidentKind.Location = new Point(112, 44);
             this.ComboBoxExAccidentKind.Name = "ComboBoxExAccidentKind";
             this.ComboBoxExAccidentKind.Size = new Size(148, 23);

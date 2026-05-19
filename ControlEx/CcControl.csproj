@@ -34,6 +34,8 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="HiraokaHyperTools.PdfiumViewer.Native.Windows" Version="0.1.5637" />
+    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
   <ItemGroup>

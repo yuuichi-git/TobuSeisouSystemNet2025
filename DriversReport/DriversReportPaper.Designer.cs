@@ -53,7 +53,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1174, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1174, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
@@ -67,7 +67,7 @@
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 939);
+            this.StatusStripEx1.Location = new Point(0, 1019);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1174, 22);
             this.StatusStripEx1.SizingGrip = false;
@@ -109,14 +109,14 @@
             this.SpreadDriversReportPaper.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadDriversReportPaper.Location = new Point(3, 87);
             this.SpreadDriversReportPaper.Name = "SpreadDriversReportPaper";
-            this.SpreadDriversReportPaper.Size = new Size(1168, 847);
+            this.SpreadDriversReportPaper.Size = new Size(1168, 927);
             this.SpreadDriversReportPaper.TabIndex = 3;
             // 
             // DriversReportPaper
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1174, 961);
+            this.ClientSize = new Size(1174, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;

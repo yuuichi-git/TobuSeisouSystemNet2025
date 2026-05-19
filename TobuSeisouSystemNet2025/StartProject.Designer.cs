@@ -209,7 +209,6 @@
             LabelExServerNameOracle = new CcControl.CcLabel();
             ButtonExConnectOracle = new CcControl.CcButton();
             labelEx48 = new CcControl.CcLabel();
-            cardLayout1 = new Syncfusion.Windows.Forms.Tools.CardLayout(components);
             TabPageTransportBureauAudit = new TabPage();
             ccLabel5 = new CcControl.CcLabel();
             ccLabel6 = new CcControl.CcLabel();
@@ -223,7 +222,6 @@
             TabPageHaikibutu.SuspendLayout();
             TabPageSeisouSystem.SuspendLayout();
             GroupBoxEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)cardLayout1).BeginInit();
             TabPageTransportBureauAudit.SuspendLayout();
             SuspendLayout();
             // 
@@ -1612,7 +1610,6 @@
             TabPageSeisouSystem.PerformLayout();
             GroupBoxEx1.ResumeLayout(false);
             GroupBoxEx1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)cardLayout1).EndInit();
             TabPageTransportBureauAudit.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -1709,7 +1706,6 @@
         private CcControl.CcLabel CcLabelDefaultGatewey;
         private CcControl.CcLabel ccLabel3;
         private CcControl.CcLabel ccLabel4;
-        private Syncfusion.Windows.Forms.Tools.CardLayout cardLayout1;
         private TabPage TabPageTransportBureauAudit;
         private CcControl.CcLabel ccLabel6;
         private CcControl.CcLabel ccLabel5;

@@ -97,6 +97,7 @@ namespace CcControl {
             private string _registrationNumber;
             private string _serchKey;
             private CarMasterVo _carMasterVo;
+
             /// <summary>
             /// コンストラクター
             /// </summary>
