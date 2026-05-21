@@ -1,36 +1,61 @@
 ﻿/*
  * 2024-09-23
  */
-using Accident;
-using Accounting;
-using Car;
-using CcControl;
-using Certification;
-using Collection;
-using Common;
-using DriversReport;
-using EGov;
-using EmploymentAgreement;
-using LegalTwelveItem;
-using License;
-using RollCall;
-using Seisou;
-using Set;
-using Staff;
-using StatusOfResidence;
 using System.Data;
+
+using Accident;
+
+using Accounting;
+
+using Car;
+
+using CcControl;
+
+using Certification;
+
+using Collection;
+
+using Common;
+
+using DriversReport;
+
+using EGov;
+
+using EmploymentAgreement;
+
+using LegalTwelveItem;
+
+using License;
+
+using RollCall;
+
+using Seisou;
+
+using Set;
+
+using Staff;
+
+using StatusOfResidence;
+
 using Toukanpo;
+
 using VehicleDispatch;
+
 using Vo;
+
 using VoluntaryAutomobileInsurance;
+
 using WastCollection;
+
 using Waste;
 
 namespace TobuSeisouSystemNet2025 {
-    public partial class StartProject: Form {
+    public partial class StartProject : Form {
         /*
-         * アクセス場所を保持
+         * プロパティ
          */
+        private string _ipAddress = string.Empty;
+        private string _defaultGatewayAddress = string.Empty;
         private string _connectionLocation = string.Empty;
         /*
          * インスタンス作成
@@ -45,12 +70,12 @@ namespace TobuSeisouSystemNet2025 {
         /// コンストラクター
         /// </summary>
         public StartProject() {
-            this.ConnectionLocation = NetworkUtility.GetConnectLocation();                            // 接続場所をフィールドにセット
-            //this.ConnectionLocation = "三郷車庫";
             /*
              * Initialize
              */
             InitializeComponent();
+            // 重い処理はLoadイベントで行う
+            this.Load += StartProject_Load;
             /*
              * Form
              */
@@ -65,8 +90,8 @@ namespace TobuSeisouSystemNet2025 {
                                              "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
             this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
-            this.CcLabelIpAddress.Text = string.Concat("〇 IpAddress：", NetworkUtility.GetIpAddress());
-            this.CcLabelDefaultGatewey.Text = string.Concat("〇 DefaultGatewey：", NetworkUtility.GetDefaultGatewayAddress());
+            this.CcLabelIpAddress.Text = string.Concat("〇 IpAddress：", this.IpAddress);
+            this.CcLabelDefaultGatewey.Text = string.Concat("〇 DefaultGatewey：", this.DefaultGatewayAddress);
             this.LabelExLocation.Text = string.Concat("〇 NW-Location：", this.ConnectionLocation, "からの接続");
             /*
              * TreeViewEx
@@ -83,9 +108,9 @@ namespace TobuSeisouSystemNet2025 {
             List<ComboBoxItem> listComboBoxItem = new();
             int i = 0;
             int primaryScreenNumber = 0;
-            foreach(Screen screen in _screenForm.GetAllScreen()) {
+            foreach (Screen screen in _screenForm.GetAllScreen()) {
                 listComboBoxItem.Add(new ComboBoxItem(string.Concat(screen.DeviceName, "　{ ", screen.Bounds.Width, "×", screen.Bounds.Height, " }"), screen));
-                if(screen.Primary)
+                if (screen.Primary)
                     // PrimaryScreenを退避
                     primaryScreenNumber = i;
                 i++;
@@ -100,7 +125,7 @@ namespace TobuSeisouSystemNet2025 {
              * CcTabControl
              * LocalNetworkは４か所
              */
-            switch(this.ConnectionLocation) {
+            switch (this.ConnectionLocation) {
                 case "本社":
                     break;
                 case "三郷車庫":
@@ -126,7 +151,7 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch(((CcButton)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExConnectSqlServer":
                     try {
                         _connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag);
@@ -136,7 +161,7 @@ namespace TobuSeisouSystemNet2025 {
                         this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
                         this.LabelExDataBaseNameSqlServer.Text = string.Concat("接続先データベース：" + _connectionVo.SqlServerConnection.Database);
                         this.LabelExStatusSqlServer.Text = string.Concat("状態：" + _connectionVo.SqlServerConnection.State);
-                        switch(this.ConnectionLocation) {
+                        switch (this.ConnectionLocation) {
                             case "三郷車庫":
                                 this.TreeViewEx1.Enabled = false;
                                 break;
@@ -145,12 +170,12 @@ namespace TobuSeisouSystemNet2025 {
                                 break;
                         }
                         this.GroupBoxEx1.Enabled = true;
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case "ButtonExDisConnectSqlServer":
-                    if(_connectionVo.OracleConnection.State == ConnectionState.Open) {
+                    if (_connectionVo.OracleConnection.State == ConnectionState.Open) {
                         MessageBox.Show("OracleをCloseして下さい", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     } else {
@@ -165,7 +190,7 @@ namespace TobuSeisouSystemNet2025 {
 
                             this.TreeViewEx1.Enabled = false;
                             this.GroupBoxEx1.Enabled = false;
-                        } catch(Exception exception) {
+                        } catch (Exception exception) {
                             MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -179,7 +204,7 @@ namespace TobuSeisouSystemNet2025 {
                         this.LabelExServerVersion.Text = string.Concat("ServerVersion：" + _connectionVo.OracleConnection.ServerVersion);
                         this.LabelExDataBaseNameOracle.Text = string.Concat("接続先データベース：" + _connectionVo.OracleConnection.DatabaseName);
                         this.LabelExStatusOracle.Text = string.Concat("状態：" + _connectionVo.OracleConnection.State);
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
@@ -194,7 +219,7 @@ namespace TobuSeisouSystemNet2025 {
                         this.LabelExStatusOracle.Text = "状態：";
 
                         this.TreeViewEx1.Enabled = false;
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
@@ -207,7 +232,7 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch(((ToolStripMenuItem)sender).Name) {
+            switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExit":
                     this.Close();
                     break;
@@ -256,11 +281,11 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>a
         private void Label_SqlServer_Click(object sender, EventArgs e) {
-            switch(_connectionVo.SqlServerConnection.State) {
+            switch (_connectionVo.SqlServerConnection.State) {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
-                    switch((string)((Label)sender).Tag) {
+                    switch ((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
-                            if(vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
+                            if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
                                 _connectionVo.ConnectionLocation = "本社";
                                 vehicleDispatchBoard = new(_connectionVo);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
@@ -270,7 +295,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "VehicleDispatchBoardMisato":                                                                                      // 配車パネル（三郷車庫専用）
-                            if(vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
+                            if (vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
                                 _connectionVo.ConnectionLocation = "三郷車庫";
                                 vehicleDispatchBoard = new(_connectionVo);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
@@ -285,7 +310,7 @@ namespace TobuSeisouSystemNet2025 {
                             firstRollColl.Show();
                             break;
                         case "StaffList":                                                                                                       // 従事者台帳
-                            if(staffList is null || staffList.IsDisposed) {
+                            if (staffList is null || staffList.IsDisposed) {
                                 staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
                                 staffList.Show();
@@ -294,7 +319,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CarList":                                                                                                         // 車両台帳
-                            if(carList is null || carList.IsDisposed) {
+                            if (carList is null || carList.IsDisposed) {
                                 carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
                                 carList.Show();
@@ -303,7 +328,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CarWorkingDays":                                                                                                  // 車両稼働一覧
-                            if(carWorkingDays is null || carWorkingDays.IsDisposed) {
+                            if (carWorkingDays is null || carWorkingDays.IsDisposed) {
                                 carWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carWorkingDays);
                                 carWorkingDays.Show(this);
@@ -312,7 +337,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "EmploymentAgreementList":                                                                                         // 契約書・誓約書等
-                            if(employmentAgreementList is null || employmentAgreementList.IsDisposed) {
+                            if (employmentAgreementList is null || employmentAgreementList.IsDisposed) {
                                 employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
                                 employmentAgreementList.Show(this);
@@ -321,7 +346,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "StaffDestination":
-                            if(staffDestination is null || staffDestination.IsDisposed) {
+                            if (staffDestination is null || staffDestination.IsDisposed) {
                                 staffDestination = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffDestination);
                                 staffDestination.Show(this);
@@ -330,7 +355,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CollectionWeightChiyoda":                                                                                         // 千代田配車集計表
-                            if(collectionWeightChiyoda is null || collectionWeightChiyoda.IsDisposed) {
+                            if (collectionWeightChiyoda is null || collectionWeightChiyoda.IsDisposed) {
                                 collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
                                 collectionWeightChiyoda.Show(this);
@@ -339,7 +364,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CollectionStaffsTaitou":                                                                                          // 台東古紙配車人数集計表
-                            if(collectionStaffsTaitou is null || collectionStaffsTaitou.IsDisposed) {
+                            if (collectionStaffsTaitou is null || collectionStaffsTaitou.IsDisposed) {
                                 collectionStaffsTaitou = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionStaffsTaitou);
                                 collectionStaffsTaitou.Show(this);
@@ -348,7 +373,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CollectionWeightTaitouList":                                                                                      // 台東古紙収集量集計表
-                            if(collectionWeightTaitouList is null || collectionWeightTaitouList.IsDisposed) {
+                            if (collectionWeightTaitouList is null || collectionWeightTaitouList.IsDisposed) {
                                 collectionWeightTaitouList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightTaitouList);
                                 collectionWeightTaitouList.Show(this);
@@ -357,7 +382,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "StaffWorkingHours":                                                                                               // 個別労働時間集計表
-                            if(staffWorkingHours is null || staffWorkingHours.IsDisposed) {
+                            if (staffWorkingHours is null || staffWorkingHours.IsDisposed) {
                                 staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
                                 staffWorkingHours.Show(this);
@@ -366,7 +391,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "StaffWorkingDays":                                                                                                // 個別労働時間集計表
-                            if(staffWorkingDays is null || staffWorkingDays.IsDisposed) {
+                            if (staffWorkingDays is null || staffWorkingDays.IsDisposed) {
                                 staffWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingDays);
                                 staffWorkingDays.Show(this);
@@ -375,7 +400,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "LicenseList":                                                                                                     // 免許証台帳
-                            if(licenseList is null || licenseList.IsDisposed) {
+                            if (licenseList is null || licenseList.IsDisposed) {
                                 licenseList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, licenseList);
                                 licenseList.Show(this);
@@ -384,7 +409,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "ToukanpoList":                                                                                                    // 東環保カード
-                            if(toukanpoList is null || toukanpoList.IsDisposed) {
+                            if (toukanpoList is null || toukanpoList.IsDisposed) {
                                 toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
                                 toukanpoList.Show(this);
@@ -393,7 +418,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "ToukanpoSpeedSurvey":                                                                                             // 東環保速度超過表
-                            if(toukanpoSpeedSurvey is null || toukanpoSpeedSurvey.IsDisposed) {
+                            if (toukanpoSpeedSurvey is null || toukanpoSpeedSurvey.IsDisposed) {
                                 toukanpoSpeedSurvey = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoSpeedSurvey);
                                 toukanpoSpeedSurvey.Show(this);
@@ -402,7 +427,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "AccountingParttimeList":                                                                                          // アルバイト出勤状況
-                            if(accountingParttimeList is null || accountingParttimeList.IsDisposed) {
+                            if (accountingParttimeList is null || accountingParttimeList.IsDisposed) {
                                 accountingParttimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingParttimeList);
                                 accountingParttimeList.Show(this);
@@ -411,7 +436,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "AccountingFulltime":                                                                                              // 全従事者出勤状況
-                            if(accountingFulltimeList is null || accountingFulltimeList.IsDisposed) {
+                            if (accountingFulltimeList is null || accountingFulltimeList.IsDisposed) {
                                 accountingFulltimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltimeList);
                                 accountingFulltimeList.Show(this);
@@ -420,7 +445,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "StatusOfResidenceList":                                                                                           // 在留カード
-                            if(statusOfResidenceList is null || statusOfResidenceList.IsDisposed) {
+                            if (statusOfResidenceList is null || statusOfResidenceList.IsDisposed) {
                                 statusOfResidenceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, statusOfResidenceList);
                                 statusOfResidenceList.Show(this);
@@ -429,7 +454,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "RollCallRecordSheet":                                                                                             // 点呼記録簿
-                            if(rollCallRecordSheet is null || rollCallRecordSheet.IsDisposed) {
+                            if (rollCallRecordSheet is null || rollCallRecordSheet.IsDisposed) {
                                 rollCallRecordSheet = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, rollCallRecordSheet);
                                 rollCallRecordSheet.Show(this);
@@ -438,7 +463,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "LegalTwelveItemList":                                                                                             // 法定１２項目の講習
-                            if(legalTwelveItemList is null || legalTwelveItemList.IsDisposed) {
+                            if (legalTwelveItemList is null || legalTwelveItemList.IsDisposed) {
                                 legalTwelveItemList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, legalTwelveItemList);
                                 legalTwelveItemList.Show(this);
@@ -447,7 +472,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "CertificationList":                                                                                               // 有資格者証一覧
-                            if(certificationList is null || certificationList.IsDisposed) {
+                            if (certificationList is null || certificationList.IsDisposed) {
                                 certificationList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, certificationList);
                                 certificationList.Show(this);
@@ -456,7 +481,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "AccidentList":                                                                                                    // 事故記録簿
-                            if(accidentList is null || accidentList.IsDisposed) {
+                            if (accidentList is null || accidentList.IsDisposed) {
                                 accidentList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accidentList);
                                 accidentList.Show(this);
@@ -465,7 +490,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "WasteList":                                                                                                       // 廃棄物顧客リスト
-                            if(wasteList is null || wasteList.IsDisposed) {
+                            if (wasteList is null || wasteList.IsDisposed) {
                                 wasteList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wasteList);
                                 wasteList.Show(this);
@@ -474,7 +499,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "WastCollectionList":                                                                                               // 廃棄物スポット見積リスト
-                            if(wastCollectionList is null || wastCollectionList.IsDisposed) {
+                            if (wastCollectionList is null || wastCollectionList.IsDisposed) {
                                 wastCollectionList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wastCollectionList);
                                 wastCollectionList.Show(this);
@@ -483,7 +508,7 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         case "SetList":                                                                                                         // 配車先マスター
-                            if(setList is null || setList.IsDisposed) {
+                            if (setList is null || setList.IsDisposed) {
                                 setList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, setList);
                                 setList.Show(this);
@@ -532,9 +557,9 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Label_Oracle_Click(object sender, EventArgs e) {
-            switch(_connectionVo.OracleConnection.State) {
+            switch (_connectionVo.OracleConnection.State) {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
-                    switch((string)((Label)sender).Tag) {
+                    switch ((string)((Label)sender).Tag) {
                         /*
                          * システム管理
                          */
@@ -609,42 +634,19 @@ namespace TobuSeisouSystemNet2025 {
         }
 
         /// <summary>
-        /// StartForm_FormClosing
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void StartForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if(_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
-                MessageBox.Show("アプリケーションを終了する前に、データベースを切断して下さい。", "ACID特性の確保", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Cancel = true;
-            } else {
-                DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                switch(dialogResult) {
-                    case DialogResult.OK:
-                        e.Cancel = false;
-                        Dispose();
-                        break;
-                    case DialogResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TreeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
             FilesUtility files = new();
-            if(_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
-                switch(e.Node.Name) {
+            if (_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
+                switch (e.Node.Name) {
                     /*
                      * 陸運局監査
                      */
                     case "NodeRik00": // 00　巡回指導資料
-                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\00　巡回指導資料");
+                        files.OpenFolder(@"\\Tobusvr\⑲関東運輸局　東京運輸支局\00　巡回指導資料");
                         break;
                     case "NodeRik01": // 01　運転者台帳
                         /*
@@ -655,10 +657,10 @@ namespace TobuSeisouSystemNet2025 {
                         staffList.Show();
                         break;
                     case "NodeRik02": // 02　運行管理規定
-                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\02　運行管理規定");
+                        files.OpenFolder(@"\\Tobusvr\⑲関東運輸局　東京運輸支局\02　運行管理規定");
                         break;
                     case "NodeRik03": // 03　点呼記録簿・点呼執行要領
-                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\03　点呼記録簿・点呼執行要領");
+                        files.OpenFolder(@"\\Tobusvr\⑲関東運輸局　東京運輸支局\03　点呼記録簿・点呼執行要領");
                         /*
                          * Formを表示する
                          */
@@ -696,10 +698,10 @@ namespace TobuSeisouSystemNet2025 {
                     case "NodeRik16": // 16　乗務員指導記録簿
                         break;
                     case "NodeRik17": // 17　適性診断受診結果票及び指導記録
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\17　適性診断受診結果票及び指導記録");
+                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\17　適性診断受診結果票及び指導記録");
                         break;
                     case "NodeRik18": // 18　適性診断受診計画表
-                        files.OpenFolder(@"\\192.168.1.20\iso14001\陸運局監査\18　適性診断受診計画表");
+                        files.OpenFolder(@"\\192.168.1.20\⑲関東運輸局　東京運輸支局\18　適性診断受診計画表");
                         break;
                     case "NodeRik19": // 19　事故記録簿
                         break;
@@ -858,7 +860,6 @@ namespace TobuSeisouSystemNet2025 {
                         break;
                     case "NodeISO1030": // 継続的改善
                         break;
-
                     case "NodeTreatmentPlant": // 中間処理場
                         files.OpenFolder(@"\\192.168.1.20\③東武リサイクルセンター");
                         break;
@@ -871,12 +872,65 @@ namespace TobuSeisouSystemNet2025 {
         }
 
         /// <summary>
+        /// NetworkUtilityを非同期で実行する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void StartProject_Load(object sender, EventArgs e) {
+            await Task.Run(() => {
+                this.IpAddress = NetworkUtility.GetIpAddress();
+                this.DefaultGatewayAddress = NetworkUtility.GetDefaultGatewayAddress();
+                this.ConnectionLocation = NetworkUtility.GetConnectLocation();
+                //this.ConnectionLocation = "三郷車庫";
+            });
+
+        }
+
+        /// <summary>
+        /// StartForm_FormClosing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StartForm_FormClosing(object sender, FormClosingEventArgs e) {
+            if (_connectionVo.SqlServerConnection.State == ConnectionState.Open) {
+                MessageBox.Show("アプリケーションを終了する前に、データベースを切断して下さい。", "ACID特性の確保", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true;
+            } else {
+                DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                switch (dialogResult) {
+                    case DialogResult.OK:
+                        e.Cancel = false;
+                        Dispose();
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string IpAddress {
+            get => this._ipAddress;
+            set => this._ipAddress = value;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DefaultGatewayAddress {
+            get => this._defaultGatewayAddress;
+            set => this._defaultGatewayAddress = value;
+        }
+        /// <summary>
         /// 192.168.1.5（本社）に接続しているかどうかを判定する
         /// 192.168.10.1（三郷車庫）に接続しているかどうかを判定する
         /// 192.168.11.1（リサイクルセンター）に接続しているかどうかを判定する
         /// </summary>
         public string ConnectionLocation {
-            get => this._connectionLocation; set => this._connectionLocation = value;
+            get => this._connectionLocation;
+            set => this._connectionLocation = value;
         }
     }
 }

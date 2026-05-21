@@ -3,16 +3,16 @@
  */
 using System.Data;
 
-using Common;
-
 using CcControl;
+
+using Common;
 
 using Dao;
 
 using Vo;
 
 namespace EmploymentAgreement {
-    public partial class EmploymentAgreementDetail: Form {
+    public partial class EmploymentAgreementDetail : Form {
         /*
          * インスタンス作成
          */
@@ -68,13 +68,13 @@ namespace EmploymentAgreement {
             /*
              * Dictionary
              */
-            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
-            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
+            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
                 _dictionaryOccupation.Add(occupationMasterVo.Code, occupationMasterVo.Name);
-            foreach(JobDescriptionMasterVo jobDescriptionMasterVo in _jobDescriptionMasterDao.SelectAllJobDescriptionMaster())
+            foreach (JobDescriptionMasterVo jobDescriptionMasterVo in _jobDescriptionMasterDao.SelectAllJobDescriptionMaster())
                 _dictionaryJobDescription.Add(jobDescriptionMasterVo.Code, jobDescriptionMasterVo.Name);
-            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
+            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
                 _dictionaryJobForm.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
             /*
              * InitializeControl
@@ -89,7 +89,7 @@ namespace EmploymentAgreement {
                 "ToolStripMenuItemHelp"
             };
             this.InitializeControl();
-            if(_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
+            if (_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                 this.ButtonExUpdate.Text = "更　新";
                 this.PutControlHead();
                 this.PutControlBody();
@@ -112,10 +112,10 @@ namespace EmploymentAgreement {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch(((CcButton)sender).Name) {
+            switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        if(!_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
+                        if (!_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                             _employmentAgreementDao.InsertOneEmploymentAgreement(this.SetEmploymentAgreementVo());
                             StatusStripEx1.ToolStripStatusLabelDetail.Text = "INSERTに成功しました。";
                             this.Close();
@@ -124,27 +124,35 @@ namespace EmploymentAgreement {
                             StatusStripEx1.ToolStripStatusLabelDetail.Text = "UPDATEに成功しました。";
                             this.Close();
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
                 // 体験入社期間
                 case "BTNExExpiration":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
                         _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(21,
                                                                                                    DTPExExpirationStartDate.GetDate(),
                                                                                                    DTPExExpirationEndDate.GetDate(),
                                                                                                    TextBoxExExpirationMemo.Text,
                                                                                                    CcPictureBox1.Image));
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutExpiration(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 継続アルバイト更新期間
                 case "BTNExContractExpirationPartTimeJob":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(20,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(20,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationPartTimeJobStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationPartTimeJobEndDate.GetDate().Date)) {
@@ -160,15 +168,23 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationPartTimeJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 組合長期雇用期間
                 case "BTNExContractExpirationLongJob":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    DTPExContractExpirationLongJobStartDate.Enabled = false;
+                    DTPExContractExpirationLongJobEndDate.Enabled = false;
+                    TextBoxExContractExpirationLongJobMemo.Enabled = false;
+                    BTNExContractExpirationLongJob.Enabled = false;
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(10,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(10,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationLongJobStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationLongJobEndDate.GetDate().Date)) {
@@ -184,15 +200,19 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationLongJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationLongJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 組合短期雇用期間
                 case "BTNExContractExpirationShortJob":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(11,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(11,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationShortJobStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationShortJobEndDate.GetDate().Date)) {
@@ -208,15 +228,19 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationShortJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationShortJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 誓約書
                 case "BTNExContractExpirationWrittenPledge":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(30,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(30,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationWrittenPledgeStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationWrittenPledgeEndDate.GetDate().Date)) {
@@ -232,15 +256,19 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 失墜行為
                 case "BTNExContractExpirationLossWrittenPledge":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(40,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(40,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationLossWrittenPledgeEndDate.GetDate().Date)) {
@@ -256,15 +284,19 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationLossWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationLossWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 契約満了通知
                 case "BTNExContractExpirationNotice":
+                    if (CcPictureBox1.Image == null) {
+                        MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     try {
-                        if(!_contractExpirationDao.ExistenceContractExpiration(50,
+                        if (!_contractExpirationDao.ExistenceContractExpiration(50,
                                                                                 _staffMasterVo.StaffCode,
                                                                                 DTPExContractExpirationNoticeStartDate.GetDate().Date,
                                                                                 DTPExContractExpirationNoticeEndDate.GetDate().Date)) {
@@ -280,7 +312,7 @@ namespace EmploymentAgreement {
                                                                                                        TextBoxExContractExpirationNoticeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
-                    } catch(Exception exception) {
+                    } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     this.PutContractExpirationNotice(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
@@ -288,7 +320,7 @@ namespace EmploymentAgreement {
 
                 // 体験入社期間 画像
                 case "BTNExExpirationPicture":
-                    if(this.BTNExExpirationPicture.Tag is not null) {
+                    if (this.BTNExExpirationPicture.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExExpirationPicture.Tag).Show();
                     } else {
                         MessageBox.Show("体験入社期間の契約書が添付されていません。");
@@ -296,7 +328,7 @@ namespace EmploymentAgreement {
                     break;
                 // 長期アルバイト更新期間　画像１
                 case "BTNExContractExpirationPartTimeJobPicture1":
-                    if(this.BTNExContractExpirationPartTimeJobPicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationPartTimeJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
@@ -304,7 +336,7 @@ namespace EmploymentAgreement {
                     break;
                 // 長期アルバイト更新期間　画像２
                 case "BTNExContractExpirationPartTimeJobPicture2":
-                    if(this.BTNExContractExpirationPartTimeJobPicture2.Tag is not null) {
+                    if (this.BTNExContractExpirationPartTimeJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
@@ -312,7 +344,7 @@ namespace EmploymentAgreement {
                     break;
                 // 組合長期雇用期間　画像１
                 case "BTNExContractExpirationLongJobPicture1":
-                    if(this.BTNExContractExpirationLongJobPicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationLongJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
@@ -320,7 +352,7 @@ namespace EmploymentAgreement {
                     break;
                 // 組合長期雇用期間　画像２
                 case "BTNExContractExpirationLongJobPicture2":
-                    if(this.BTNExContractExpirationLongJobPicture2.Tag is not null) {
+                    if (this.BTNExContractExpirationLongJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
@@ -328,7 +360,7 @@ namespace EmploymentAgreement {
                     break;
                 // 組合短期雇用期間　画像１
                 case "BTNExContractExpirationShortJobPicture1":
-                    if(this.BTNExContractExpirationShortJobPicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationShortJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
@@ -336,7 +368,7 @@ namespace EmploymentAgreement {
                     break;
                 // 組合短期雇用期間　画像２
                 case "BTNExContractExpirationShortJobPicture2":
-                    if(this.BTNExContractExpirationShortJobPicture2.Tag is not null) {
+                    if (this.BTNExContractExpirationShortJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
@@ -344,7 +376,7 @@ namespace EmploymentAgreement {
                     break;
                 // 誓約書期間　画像１
                 case "BTNExContractExpirationWrittenPledgePicture1":
-                    if(this.BTNExContractExpirationWrittenPledgePicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationWrittenPledgePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("誓約書が添付されていません。");
@@ -352,7 +384,7 @@ namespace EmploymentAgreement {
                     break;
                 // 失墜行為書類期間　画像１
                 case "BTNExContractExpirationLossWrittenPledgePicture1":
-                    if(this.BTNExContractExpirationLossWrittenPledgePicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationLossWrittenPledgePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationLossWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("失墜行為確認書が添付されていません。");
@@ -360,7 +392,7 @@ namespace EmploymentAgreement {
                     break;
                 // 契約満了通知(事前通知書)　画像１
                 case "BTNExContractExpirationNoticePicture1":
-                    if(this.BTNExContractExpirationNoticePicture1.Tag is not null) {
+                    if (this.BTNExContractExpirationNoticePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.BTNExContractExpirationNoticePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("契約満了通知(事前通知書)が添付されていません。");
@@ -399,10 +431,10 @@ namespace EmploymentAgreement {
              */
             DateTime date = DateTime.Now;
             string time = string.Empty;
-            if(_employmentAgreementVo.ContractExpirationPeriodString != string.Empty) {
+            if (_employmentAgreementVo.ContractExpirationPeriodString != string.Empty) {
                 this.TextBoxExContractExpirationPeriod.Text = _employmentAgreementVo.ContractExpirationPeriodString;
             } else {
-                switch(_employmentAgreementVo.ContractExpirationPeriod) {
+                switch (_employmentAgreementVo.ContractExpirationPeriod) {
                     case 0:
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", date.Date.AddDays(6).ToString("yyyy年MM月dd日"));
                         this.TextBoxExContractExpirationPeriod.Text = time;
@@ -467,7 +499,7 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExExpirationMemo } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExExpirationPicture } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 21).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 21).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
@@ -481,7 +513,7 @@ namespace EmploymentAgreement {
                 BTNExExpiration.Enabled = false;
 
                 count++;
-                if(count > 0)
+                if (count > 0)
                     break;
             }
         }
@@ -496,13 +528,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationPartTimeJobMemo1 }, { 1, TextBoxExContractExpirationPartTimeJobMemo2 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationPartTimeJobPicture1 }, { 1, BTNExContractExpirationPartTimeJobPicture2 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 20).OrderByDescending(x => x.StartDate).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 20).OrderByDescending(x => x.StartDate).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 1)
+                if (count > 1)
                     break;
             }
         }
@@ -517,13 +549,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLongJobMemo1 }, { 1, TextBoxExContractExpirationLongJobMemo2 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLongJobPicture1 }, { 1, BTNExContractExpirationLongJobPicture2 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 10).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 10).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 1)
+                if (count > 1)
                     break;
             }
         }
@@ -538,13 +570,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationShortJobMemo1 }, { 1, TextBoxExContractExpirationShortJobMemo2 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationShortJobPicture1 }, { 1, BTNExContractExpirationShortJobPicture2 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 11).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 11).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 1)
+                if (count > 1)
                     break;
             }
         }
@@ -559,13 +591,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationWrittenPledgeMemo1 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationWrittenPledgePicture1 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 30).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 30).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 0)
+                if (count > 0)
                     break;
             }
         }
@@ -580,13 +612,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLossWrittenPledgeMemo1 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLossWrittenPledgePicture1 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 40).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 40).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 0)
+                if (count > 0)
                     break;
             }
         }
@@ -601,13 +633,13 @@ namespace EmploymentAgreement {
             Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationNoticeMemo1 } };
             Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationNoticePicture1 } };
             int count = 0;
-            foreach(ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 50).OrderByDescending(x => x.EndDate)) {
+            foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 50).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
                 _dicEndDate[count].SetValueJp(contractExpirationVo.EndDate);
                 _dicMemo[count].Text = contractExpirationVo.Memo;
                 _dicPicture[count].Tag = contractExpirationVo.Picture;
                 count++;
-                if(count > 0)
+                if (count > 0)
                     break;
             }
         }
@@ -769,23 +801,23 @@ namespace EmploymentAgreement {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if(sender is not ContextMenuStrip contextMenuStrip)
+            if (sender is not ContextMenuStrip contextMenuStrip)
                 return;
 
-            if(contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
                 return;
 
-            switch(e.ClickedItem.Name) {
+            switch (e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
                     Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
-                    if(bitmap is not null) {
+                    if (bitmap is not null) {
                         ccPictureBox.Image = bitmap;
                     }
                     break;
 
                 case "ToolStripMenuItemPaste":
                     IDataObject data = Clipboard.GetDataObject();
-                    if(data?.GetDataPresent(DataFormats.Bitmap) == true) {
+                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
                         ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
                     }
                     break;
@@ -802,7 +834,7 @@ namespace EmploymentAgreement {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch(((ToolStripMenuItem)sender).Name) {
+            switch (((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
@@ -818,7 +850,7 @@ namespace EmploymentAgreement {
             DataTable dataTable = new();
             dataTable.Columns.Add("Code");
             dataTable.Columns.Add("Name");
-            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 dataTable.Rows.Add(belongsMasterVo.Code, belongsMasterVo.Name);
             this.ComboBoxExBelongs.DataSource = dataTable;
             this.ComboBoxExBelongs.ValueMember = "Code";
@@ -834,7 +866,7 @@ namespace EmploymentAgreement {
             DataTable dataTable = new();
             dataTable.Columns.Add("Code");
             dataTable.Columns.Add("Name");
-            foreach(JobDescriptionMasterVo jobDescriptionMasterVo in _jobDescriptionMasterDao.SelectAllJobDescriptionMaster())
+            foreach (JobDescriptionMasterVo jobDescriptionMasterVo in _jobDescriptionMasterDao.SelectAllJobDescriptionMaster())
                 dataTable.Rows.Add(jobDescriptionMasterVo.Code, jobDescriptionMasterVo.Name);
             this.ComboBoxExJobDescription.DataSource = dataTable;
             this.ComboBoxExJobDescription.ValueMember = "Code";
@@ -846,7 +878,7 @@ namespace EmploymentAgreement {
         /// </summary>
         private void InitializeComboBoxExPayDetail() {
             this.ComboBoxExPayDetail.Items.Clear();
-            foreach(string payDetail in _employmentAgreementDao.SelectGroupPayDetail())
+            foreach (string payDetail in _employmentAgreementDao.SelectGroupPayDetail())
                 this.ComboBoxExPayDetail.Items.Add(payDetail);
         }
 

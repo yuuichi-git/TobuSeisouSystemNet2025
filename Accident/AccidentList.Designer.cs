@@ -136,6 +136,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1688, 11);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -147,7 +148,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "Book1, Sheet1, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 87);
@@ -181,11 +182,11 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
         private CcControl.CcDateTime DateTimePickerExOperationDate2;
         private CcControl.CcDateTime DateTimePickerExOperationDate1;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

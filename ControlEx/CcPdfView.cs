@@ -23,7 +23,7 @@ namespace CcControl {
         public void SetPdfStream(MemoryStream stream) {
             if (stream is null)
                 return;
-            Unload();                                                  // 既存の PDF を破棄
+            Unload();                                                       // 既存の PDF を破棄
 
             // 新しいストリームを保持
             _stream = stream;
