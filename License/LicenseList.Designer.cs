@@ -45,6 +45,7 @@
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewToukaidenshi = this.SpreadList.GetSheet(1);
+            this.SheetViewM_JYOUMUIN = this.SpreadList.GetSheet(2);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.TabControlExKana.SuspendLayout();
             this.PanelExUp.SuspendLayout();
@@ -234,6 +235,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1700, 8);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -245,7 +247,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "Book1, LicenseList, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, M_JYOUMUIN, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 119);
@@ -297,5 +299,6 @@
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewToukaidenshi;
+        private FarPoint.Win.Spread.SheetView SheetViewM_JYOUMUIN;
     }
 }
