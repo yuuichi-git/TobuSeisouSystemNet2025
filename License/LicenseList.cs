@@ -151,12 +151,11 @@ namespace License {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                        "ToolStripMenuItemExit",
-                        "ToolStripMenuItemEdit",
-                        "ToolStripMenuItemInsertNewRecord",
-                        "ToolStripMenuItemHelp"
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemEdit",
+                                             "ToolStripMenuItemInsertNewRecord",
+                                             "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
 

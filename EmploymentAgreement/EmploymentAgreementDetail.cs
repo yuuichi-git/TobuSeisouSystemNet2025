@@ -30,7 +30,6 @@ namespace EmploymentAgreement {
         /*
          * Vo
          */
-        private readonly ConnectionVo _connectionVo;
         private readonly StaffMasterVo _staffMasterVo;
         private EmploymentAgreementVo _employmentAgreementVo;
         private List<ContractExpirationVo> _listContractExpirationVo;
@@ -61,7 +60,6 @@ namespace EmploymentAgreement {
             /*
              * Vo
              */
-            _connectionVo = connectionVo;
             _staffMasterVo = staffMasterVo;
             _employmentAgreementVo = employmentAgreementVo;
             _listContractExpirationVo = _contractExpirationDao.SelectOneContractExpirationP(staffMasterVo.StaffCode);
@@ -113,7 +111,7 @@ namespace EmploymentAgreement {
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((CcButton)sender).Name) {
-                case "ButtonExUpdate":
+                case "CcButtonUpdate":
                     try {
                         if (!_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                             _employmentAgreementDao.InsertOneEmploymentAgreement(this.SetEmploymentAgreementVo());
@@ -129,16 +127,20 @@ namespace EmploymentAgreement {
                     }
                     break;
                 // 体験入社期間
-                case "BTNExExpiration":
+                case "CcButtonExpiration":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeExpirationStartDate.Enabled = false;
+                    CcDateTimeExpirationEndDate.Enabled = false;
+                    CcTextBoxExpirationMemo.Enabled = false;
+                    CcButtonExpiration.Enabled = false;
                     try {
                         _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(21,
-                                                                                                   DTPExExpirationStartDate.GetDate(),
-                                                                                                   DTPExExpirationEndDate.GetDate(),
-                                                                                                   TextBoxExExpirationMemo.Text,
+                                                                                                   CcDateTimeExpirationStartDate.GetDate(),
+                                                                                                   CcDateTimeExpirationEndDate.GetDate(),
+                                                                                                   CcTextBoxExpirationMemo.Text,
                                                                                                    CcPictureBox1.Image));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -146,26 +148,30 @@ namespace EmploymentAgreement {
                     this.PutExpiration(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 継続アルバイト更新期間
-                case "BTNExContractExpirationPartTimeJob":
+                case "CcButtonContractExpirationPartTimeJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeContractExpirationPartTimeJobStartDate.Enabled = false;
+                    CcDateTimeContractExpirationPartTimeJobEndDate.Enabled = false;
+                    CcTextBoxContractExpirationPartTimeJobMemo.Enabled = false;
+                    CcButtonContractExpirationPartTimeJob.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(20,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationPartTimeJobStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationPartTimeJobEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationPartTimeJobStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationPartTimeJobEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(20,
-                                                                                                       DTPExContractExpirationPartTimeJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationPartTimeJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationPartTimeJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationPartTimeJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationPartTimeJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationPartTimeJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(20,
-                                                                                                       DTPExContractExpirationPartTimeJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationPartTimeJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationPartTimeJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationPartTimeJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationPartTimeJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationPartTimeJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -174,30 +180,30 @@ namespace EmploymentAgreement {
                     this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 組合長期雇用期間
-                case "BTNExContractExpirationLongJob":
+                case "CcButtonContractExpirationLongJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    DTPExContractExpirationLongJobStartDate.Enabled = false;
-                    DTPExContractExpirationLongJobEndDate.Enabled = false;
-                    TextBoxExContractExpirationLongJobMemo.Enabled = false;
-                    BTNExContractExpirationLongJob.Enabled = false;
+                    CcDateTimeContractExpirationLongJobStartDate.Enabled = false;
+                    CcDateTimeContractExpirationLongJobEndDate.Enabled = false;
+                    CcTextBoxContractExpirationLongJobMemo.Enabled = false;
+                    CcButtonContractExpirationLongJob.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(10,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationLongJobStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationLongJobEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationLongJobStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationLongJobEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(10,
-                                                                                                       DTPExContractExpirationLongJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationLongJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationLongJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationLongJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationLongJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationLongJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(10,
-                                                                                                       DTPExContractExpirationLongJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationLongJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationLongJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationLongJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationLongJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationLongJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -206,26 +212,30 @@ namespace EmploymentAgreement {
                     this.PutContractExpirationLongJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 組合短期雇用期間
-                case "BTNExContractExpirationShortJob":
+                case "CcButtonContractExpirationShortJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeContractExpirationShortJobStartDate.Enabled = false;
+                    CcDateTimeContractExpirationShortJobEndDate.Enabled = false;
+                    CcTextBoxContractExpirationShortJobMemo.Enabled = false;
+                    CcButtonContractExpirationShortJob.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(11,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationShortJobStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationShortJobEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationShortJobStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationShortJobEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(11,
-                                                                                                       DTPExContractExpirationShortJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationShortJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationShortJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationShortJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationShortJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationShortJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(11,
-                                                                                                       DTPExContractExpirationShortJobStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationShortJobEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationShortJobMemo.Text,
+                                                                                                       CcDateTimeContractExpirationShortJobStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationShortJobEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationShortJobMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -234,26 +244,30 @@ namespace EmploymentAgreement {
                     this.PutContractExpirationShortJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 誓約書
-                case "BTNExContractExpirationWrittenPledge":
+                case "CcButtonContractExpirationWrittenPledge":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeContractExpirationWrittenPledgeStartDate.Enabled = false;
+                    CcDateTimeContractExpirationWrittenPledgeEndDate.Enabled = false;
+                    CcTextBoxContractExpirationWrittenPledgeMemo.Enabled = false;
+                    CcButtonContractExpirationWrittenPledge.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(30,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationWrittenPledgeStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationWrittenPledgeEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationWrittenPledgeStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationWrittenPledgeEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(30,
-                                                                                                       DTPExContractExpirationWrittenPledgeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationWrittenPledgeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationWrittenPledgeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationWrittenPledgeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationWrittenPledgeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(30,
-                                                                                                       DTPExContractExpirationWrittenPledgeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationWrittenPledgeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationWrittenPledgeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationWrittenPledgeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationWrittenPledgeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -262,26 +276,30 @@ namespace EmploymentAgreement {
                     this.PutContractExpirationWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 失墜行為
-                case "BTNExContractExpirationLossWrittenPledge":
+                case "CcButtonContractExpirationLossWrittenPledge":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeContractExpirationLossWrittenPledgeStartDate.Enabled = false;
+                    CcDateTimeContractExpirationLossWrittenPledgeEndDate.Enabled = false;
+                    CcTextBoxContractExpirationLossWrittenPledgeMemo.Enabled = false;
+                    CcButtonContractExpirationLossWrittenPledge.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(40,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationLossWrittenPledgeEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationLossWrittenPledgeEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(40,
-                                                                                                       DTPExContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationLossWrittenPledgeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationLossWrittenPledgeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationLossWrittenPledgeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationLossWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(40,
-                                                                                                       DTPExContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationLossWrittenPledgeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationLossWrittenPledgeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationLossWrittenPledgeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationLossWrittenPledgeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationLossWrittenPledgeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -290,26 +308,30 @@ namespace EmploymentAgreement {
                     this.PutContractExpirationLossWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
                     break;
                 // 契約満了通知
-                case "BTNExContractExpirationNotice":
+                case "CcButtonContractExpirationNotice":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    CcDateTimeContractExpirationNoticeStartDate.Enabled = false;
+                    CcDateTimeContractExpirationNoticeEndDate.Enabled = false;
+                    CcTextBoxContractExpirationNoticeMemo.Enabled = false;
+                    CcButtonContractExpirationNotice.Enabled = false;
                     try {
                         if (!_contractExpirationDao.ExistenceContractExpiration(50,
                                                                                 _staffMasterVo.StaffCode,
-                                                                                DTPExContractExpirationNoticeStartDate.GetDate().Date,
-                                                                                DTPExContractExpirationNoticeEndDate.GetDate().Date)) {
+                                                                                CcDateTimeContractExpirationNoticeStartDate.GetDate().Date,
+                                                                                CcDateTimeContractExpirationNoticeEndDate.GetDate().Date)) {
                             _contractExpirationDao.InsertOneContractExpiration(SetContractExpirationVo(50,
-                                                                                                       DTPExContractExpirationNoticeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationNoticeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationNoticeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationNoticeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationNoticeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationNoticeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         } else {
                             _contractExpirationDao.UpdateOneContractExpiration(SetContractExpirationVo(50,
-                                                                                                       DTPExContractExpirationNoticeStartDate.GetDate().Date,
-                                                                                                       DTPExContractExpirationNoticeEndDate.GetDate().Date,
-                                                                                                       TextBoxExContractExpirationNoticeMemo.Text,
+                                                                                                       CcDateTimeContractExpirationNoticeStartDate.GetDate().Date,
+                                                                                                       CcDateTimeContractExpirationNoticeEndDate.GetDate().Date,
+                                                                                                       CcTextBoxContractExpirationNoticeMemo.Text,
                                                                                                        CcPictureBox1.Image));
                         }
                     } catch (Exception exception) {
@@ -319,81 +341,81 @@ namespace EmploymentAgreement {
                     break;
 
                 // 体験入社期間 画像
-                case "BTNExExpirationPicture":
-                    if (this.BTNExExpirationPicture.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExExpirationPicture.Tag).Show();
+                case "CcButtonExpirationPicture":
+                    if (this.CcButtonExpirationPicture.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonExpirationPicture.Tag).Show();
                     } else {
                         MessageBox.Show("体験入社期間の契約書が添付されていません。");
                     }
                     break;
                 // 長期アルバイト更新期間　画像１
-                case "BTNExContractExpirationPartTimeJobPicture1":
-                    if (this.BTNExContractExpirationPartTimeJobPicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture1.Tag).Show();
+                case "CcButtonContractExpirationPartTimeJobPicture1":
+                    if (this.CcButtonContractExpirationPartTimeJobPicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationPartTimeJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
                     break;
                 // 長期アルバイト更新期間　画像２
-                case "BTNExContractExpirationPartTimeJobPicture2":
-                    if (this.BTNExContractExpirationPartTimeJobPicture2.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationPartTimeJobPicture2.Tag).Show();
+                case "CcButtonContractExpirationPartTimeJobPicture2":
+                    if (this.CcButtonContractExpirationPartTimeJobPicture2.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationPartTimeJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
                     break;
                 // 組合長期雇用期間　画像１
-                case "BTNExContractExpirationLongJobPicture1":
-                    if (this.BTNExContractExpirationLongJobPicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture1.Tag).Show();
+                case "CcButtonContractExpirationLongJobPicture1":
+                    if (this.CcButtonContractExpirationLongJobPicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLongJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
                     break;
                 // 組合長期雇用期間　画像２
-                case "BTNExContractExpirationLongJobPicture2":
-                    if (this.BTNExContractExpirationLongJobPicture2.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLongJobPicture2.Tag).Show();
+                case "CcButtonContractExpirationLongJobPicture2":
+                    if (this.CcButtonContractExpirationLongJobPicture2.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLongJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
                     break;
                 // 組合短期雇用期間　画像１
-                case "BTNExContractExpirationShortJobPicture1":
-                    if (this.BTNExContractExpirationShortJobPicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture1.Tag).Show();
+                case "CcButtonContractExpirationShortJobPicture1":
+                    if (this.CcButtonContractExpirationShortJobPicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationShortJobPicture1.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
                     break;
                 // 組合短期雇用期間　画像２
-                case "BTNExContractExpirationShortJobPicture2":
-                    if (this.BTNExContractExpirationShortJobPicture2.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationShortJobPicture2.Tag).Show();
+                case "CcButtonContractExpirationShortJobPicture2":
+                    if (this.CcButtonContractExpirationShortJobPicture2.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationShortJobPicture2.Tag).Show();
                     } else {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
                     break;
                 // 誓約書期間　画像１
-                case "BTNExContractExpirationWrittenPledgePicture1":
-                    if (this.BTNExContractExpirationWrittenPledgePicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationWrittenPledgePicture1.Tag).Show();
+                case "CcButtonContractExpirationWrittenPledgePicture1":
+                    if (this.CcButtonContractExpirationWrittenPledgePicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("誓約書が添付されていません。");
                     }
                     break;
                 // 失墜行為書類期間　画像１
-                case "BTNExContractExpirationLossWrittenPledgePicture1":
-                    if (this.BTNExContractExpirationLossWrittenPledgePicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationLossWrittenPledgePicture1.Tag).Show();
+                case "CcButtonContractExpirationLossWrittenPledgePicture1":
+                    if (this.CcButtonContractExpirationLossWrittenPledgePicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLossWrittenPledgePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("失墜行為確認書が添付されていません。");
                     }
                     break;
                 // 契約満了通知(事前通知書)　画像１
-                case "BTNExContractExpirationNoticePicture1":
-                    if (this.BTNExContractExpirationNoticePicture1.Tag is not null) {
-                        new EmploymentAgreementView((byte[])this.BTNExContractExpirationNoticePicture1.Tag).Show();
+                case "CcButtonContractExpirationNoticePicture1":
+                    if (this.CcButtonContractExpirationNoticePicture1.Tag is not null) {
+                        new EmploymentAgreementView((byte[])this.CcButtonContractExpirationNoticePicture1.Tag).Show();
                     } else {
                         MessageBox.Show("契約満了通知(事前通知書)が添付されていません。");
                     }
@@ -405,11 +427,11 @@ namespace EmploymentAgreement {
         /// 
         /// </summary>
         private void PutControlHead() {
-            this.LabelExUnionCode.Text = _staffMasterVo.UnionCode.ToString("###");
-            this.LabelExDisplayName.Text = _staffMasterVo.DisplayName;
-            this.LabelExBelongs.Text = _dictionaryBelongs[_staffMasterVo.Belongs];
-            this.LabelExOccupation.Text = _dictionaryOccupation[_staffMasterVo.Occupation];
-            this.LabelExJobForm.Text = _dictionaryJobForm[_staffMasterVo.JobForm];
+            this.CcLabelUnionCode.Text = _staffMasterVo.UnionCode.ToString("###");
+            this.CcLabelDisplayName.Text = _staffMasterVo.DisplayName;
+            this.CcLabelBelongs.Text = _dictionaryBelongs[_staffMasterVo.Belongs];
+            this.CcLabelOccupation.Text = _dictionaryOccupation[_staffMasterVo.Occupation];
+            this.CcLabelJobForm.Text = _dictionaryJobForm[_staffMasterVo.JobForm];
         }
 
         /// <summary>
@@ -423,63 +445,63 @@ namespace EmploymentAgreement {
         /// 修正の場合の値をセットする
         /// </summary>
         private void PutControlBody() {
-            this.ComboBoxExBaseAddress.Text = _employmentAgreementVo.BaseLocation; // 勤務地
-            this.ComboBoxExBelongs.SelectedValue = _staffMasterVo.Belongs; // 雇用形態
-            this.NUDExContractExpirationPeriod.Value = _employmentAgreementVo.ContractExpirationPeriod; // 契約期間
+            this.CcComboBoxBaseAddress.Text = _employmentAgreementVo.BaseLocation; // 勤務地
+            this.CcComboBoxBelongs.SelectedValue = _staffMasterVo.Belongs; // 雇用形態
+            this.CcNumericUpDownContractExpirationPeriod.Value = _employmentAgreementVo.ContractExpirationPeriod; // 契約期間
             /*
              * 契約期間文字を計算
              */
             DateTime date = DateTime.Now;
             string time = string.Empty;
             if (_employmentAgreementVo.ContractExpirationPeriodString != string.Empty) {
-                this.TextBoxExContractExpirationPeriod.Text = _employmentAgreementVo.ContractExpirationPeriodString;
+                this.CcTextBoxContractExpirationPeriod.Text = _employmentAgreementVo.ContractExpirationPeriodString;
             } else {
                 switch (_employmentAgreementVo.ContractExpirationPeriod) {
                     case 0:
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", date.Date.AddDays(6).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     case 1:         // １カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     case 2:         // ２カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(1)).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     case 3:         // ３カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(2)).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     case 6:         // ６カ月更新の場合
                         time = string.Concat(date.Date.ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetEndOfMonth(date.AddMonths(5)).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     case 12:        // １２カ月更新の場合
                         time = string.Concat(_dateUtility.GetFiscalYearStartDate(date).ToString("yyyy年MM月dd日"), " ～ ", _dateUtility.GetFiscalYearEndDate(date).AddDays(-1).ToString("yyyy年MM月dd日"));
-                        this.TextBoxExContractExpirationPeriod.Text = time;
+                        this.CcTextBoxContractExpirationPeriod.Text = time;
                         break;
                     default:
-                        this.TextBoxExContractExpirationPeriod.Text = string.Empty;
+                        this.CcTextBoxContractExpirationPeriod.Text = string.Empty;
                         break;
                 }
             }
-            this.CheckBoxExCheckFlag.Checked = _employmentAgreementVo.CheckFlag;                        // 各労共に提出中
-            this.ComboBoxExPayDetail.Text = _employmentAgreementVo.PayDetail;                           // 給与区分
-            this.NumericUpDownExPay.Value = _employmentAgreementVo.Pay;                                 // 給与単価
-            this.ComboBoxExTravelCostDetail.Text = _employmentAgreementVo.TravelCostDetail;             // 交通費区分
-            this.NUDExTravelCost.Value = _employmentAgreementVo.TravelCost;                             // 交通費
-            this.ComboBoxExJobDescription.SelectedValue = _employmentAgreementVo.JobDescription;        // 従事すべき業務内容
-            this.ComboBoxExWorkTime.Text = _employmentAgreementVo.WorkTime;                             // 勤務時間
-            this.ComboBoxExBreakTime.Text = _employmentAgreementVo.BreakTime;                           // 休憩時間
-            this.CheckBoxExKOYOU.Checked = _employmentAgreementVo.KoyouFlag;                            // 雇用保険の有無
-            this.CheckBoxExSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag;                          // 社会保険の有無
-            this.ComboBoxExSalaryRaise.Text = _employmentAgreementVo.SalaryRaise;                       // 昇給の有無
-            this.ComboBoxExBonusSummerText.Text = _employmentAgreementVo.BonusSummerText;               // 夏賞与の有無
-            this.NumericUpDownExBonusSummerPay.Value = _employmentAgreementVo.BonusSummerPay;           // 夏賞与の金額
-            this.ComboBoxExBonusWinterText.Text = _employmentAgreementVo.BonusWinterText;               // 冬賞与の有無
-            this.NumericUpDownExBonusWinterPay.Value = _employmentAgreementVo.BonusWinterPay;           // 冬賞与の金額
-            this.ComboBoxExBonusDetailText.Text = _employmentAgreementVo.BonusDetailText;
+            this.CcCheckBoxCheckFlag.Checked = _employmentAgreementVo.CheckFlag;                        // 各労共に提出中
+            this.CcComboBoxPayDetail.Text = _employmentAgreementVo.PayDetail;                           // 給与区分
+            this.CcNumericUpDownPay.Value = _employmentAgreementVo.Pay;                                 // 給与単価
+            this.CcComboBoxTravelCostDetail.Text = _employmentAgreementVo.TravelCostDetail;             // 交通費区分
+            this.CcNumericUpDownTravelCost.Value = _employmentAgreementVo.TravelCost;                   // 交通費
+            this.CcComboBoxJobDescription.SelectedValue = _employmentAgreementVo.JobDescription;        // 従事すべき業務内容
+            this.CcComboBoxWorkTime.Text = _employmentAgreementVo.WorkTime;                             // 勤務時間
+            this.CcComboBoxBreakTime.Text = _employmentAgreementVo.BreakTime;                           // 休憩時間
+            this.CcCheckBoxKOYOU.Checked = _employmentAgreementVo.KoyouFlag;                            // 雇用保険の有無
+            this.CcCheckBoxSYAKAI.Checked = _employmentAgreementVo.SyakaiFlag;                          // 社会保険の有無
+            this.CcComboBoxSalaryRaise.Text = _employmentAgreementVo.SalaryRaise;                       // 昇給の有無
+            this.CcComboBoxBonusSummerText.Text = _employmentAgreementVo.BonusSummerText;               // 夏賞与の有無
+            this.CcNumericUpDownBonusSummerPay.Value = _employmentAgreementVo.BonusSummerPay;           // 夏賞与の金額
+            this.CcComboBoxBonusWinterText.Text = _employmentAgreementVo.BonusWinterText;               // 冬賞与の有無
+            this.CcNumericUpDownBonusWinterPay.Value = _employmentAgreementVo.BonusWinterPay;           // 冬賞与の金額
+            this.CcComboBoxBonusDetailText.Text = _employmentAgreementVo.BonusDetailText;
             this.PutExpiration(_listContractExpirationVo);
             this.PutContractExpirationPartTimeJob(_listContractExpirationVo);
             this.PutContractExpirationLongJob(_listContractExpirationVo);
@@ -494,10 +516,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutExpiration(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExExpirationStartDate } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExExpirationEndDate } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExExpirationMemo } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExExpirationPicture } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeExpirationStartDate } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeExpirationEndDate } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxExpirationMemo } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonExpirationPicture } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 21).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -510,7 +532,7 @@ namespace EmploymentAgreement {
                 _dicStartDate[count].Enabled = false;
                 _dicEndDate[count].Enabled = false;
                 _dicMemo[count].Enabled = false;
-                BTNExExpiration.Enabled = false;
+                CcButtonExpiration.Enabled = false;
 
                 count++;
                 if (count > 0)
@@ -523,10 +545,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationPartTimeJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationPartTimeJobStartDate1 }, { 1, DTPExContractExpirationPartTimeJobStartDate2 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationPartTimeJobEndDate1 }, { 1, DTPExContractExpirationPartTimeJobEndDate2 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationPartTimeJobMemo1 }, { 1, TextBoxExContractExpirationPartTimeJobMemo2 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationPartTimeJobPicture1 }, { 1, BTNExContractExpirationPartTimeJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationPartTimeJobStartDate1 }, { 1, CcDateTimeContractExpirationPartTimeJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationPartTimeJobEndDate1 }, { 1, CcDateTimeContractExpirationPartTimeJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationPartTimeJobMemo1 }, { 1, CcTextBoxContractExpirationPartTimeJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationPartTimeJobPicture1 }, { 1, CcButtonContractExpirationPartTimeJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 20).OrderByDescending(x => x.StartDate).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -544,10 +566,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationLongJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationLongJobStartDate1 }, { 1, DTPExContractExpirationLongJobStartDate2 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationLongJobEndDate1 }, { 1, DTPExContractExpirationLongJobEndDate2 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLongJobMemo1 }, { 1, TextBoxExContractExpirationLongJobMemo2 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLongJobPicture1 }, { 1, BTNExContractExpirationLongJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationLongJobStartDate1 }, { 1, CcDateTimeContractExpirationLongJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationLongJobEndDate1 }, { 1, CcDateTimeContractExpirationLongJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationLongJobMemo1 }, { 1, CcTextBoxContractExpirationLongJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationLongJobPicture1 }, { 1, CcButtonContractExpirationLongJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 10).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -565,10 +587,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationShortJob(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationShortJobStartDate1 }, { 1, DTPExContractExpirationShortJobStartDate2 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationShortJobEndDate1 }, { 1, DTPExContractExpirationShortJobEndDate2 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationShortJobMemo1 }, { 1, TextBoxExContractExpirationShortJobMemo2 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationShortJobPicture1 }, { 1, BTNExContractExpirationShortJobPicture2 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationShortJobStartDate1 }, { 1, CcDateTimeContractExpirationShortJobStartDate2 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationShortJobEndDate1 }, { 1, CcDateTimeContractExpirationShortJobEndDate2 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationShortJobMemo1 }, { 1, CcTextBoxContractExpirationShortJobMemo2 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationShortJobPicture1 }, { 1, CcButtonContractExpirationShortJobPicture2 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 11).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -586,10 +608,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationWrittenPledge(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationWrittenPledgeStartDate1 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationWrittenPledgeEndDate1 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationWrittenPledgeMemo1 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationWrittenPledgePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationWrittenPledgeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationWrittenPledgeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationWrittenPledgeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationWrittenPledgePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 30).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -607,10 +629,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationLossWrittenPledge(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeStartDate1 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationLossWrittenPledgeEndDate1 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationLossWrittenPledgeMemo1 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationLossWrittenPledgePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationLossWrittenPledgeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationLossWrittenPledgeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationLossWrittenPledgeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationLossWrittenPledgePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 40).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -628,10 +650,10 @@ namespace EmploymentAgreement {
         /// </summary>
         /// <param name="listContractExpirationVo"></param>
         private void PutContractExpirationNotice(List<ContractExpirationVo> listContractExpirationVo) {
-            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, DTPExContractExpirationNoticeStartDate1 } };
-            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, DTPExContractExpirationNoticeEndDate1 } };
-            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, TextBoxExContractExpirationNoticeMemo1 } };
-            Dictionary<int, CcButton> _dicPicture = new() { { 0, BTNExContractExpirationNoticePicture1 } };
+            Dictionary<int, CcDateTime> _dicStartDate = new() { { 0, CcDateTimeContractExpirationNoticeStartDate1 } };
+            Dictionary<int, CcDateTime> _dicEndDate = new() { { 0, CcDateTimeContractExpirationNoticeEndDate1 } };
+            Dictionary<int, CcTextBox> _dicMemo = new() { { 0, CcTextBoxContractExpirationNoticeMemo1 } };
+            Dictionary<int, CcButton> _dicPicture = new() { { 0, CcButtonContractExpirationNoticePicture1 } };
             int count = 0;
             foreach (ContractExpirationVo contractExpirationVo in listContractExpirationVo.FindAll(x => x.Code == 50).OrderByDescending(x => x.EndDate)) {
                 _dicStartDate[count].SetValueJp(contractExpirationVo.StartDate);
@@ -651,26 +673,26 @@ namespace EmploymentAgreement {
         private EmploymentAgreementVo SetEmploymentAgreementVo() {
             EmploymentAgreementVo employmentAgreementVo = new();
             employmentAgreementVo.StaffCode = _staffMasterVo.StaffCode;
-            employmentAgreementVo.BaseLocation = ComboBoxExBaseAddress.Text;
-            employmentAgreementVo.Occupation = int.Parse(this.ComboBoxExBelongs.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
-            employmentAgreementVo.ContractExpirationPeriod = (int)NUDExContractExpirationPeriod.Value;
-            employmentAgreementVo.ContractExpirationPeriodString = this.TextBoxExContractExpirationPeriod.Text;
-            employmentAgreementVo.PayDetail = this.ComboBoxExPayDetail.Text;
-            employmentAgreementVo.Pay = (int)this.NumericUpDownExPay.Value;
-            employmentAgreementVo.TravelCostDetail = this.ComboBoxExTravelCostDetail.Text;
-            employmentAgreementVo.TravelCost = (int)this.NUDExTravelCost.Value;
-            employmentAgreementVo.JobDescription = int.Parse(this.ComboBoxExJobDescription.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
-            employmentAgreementVo.WorkTime = this.ComboBoxExWorkTime.Text;
-            employmentAgreementVo.BreakTime = this.ComboBoxExBreakTime.Text;
-            employmentAgreementVo.CheckFlag = this.CheckBoxExCheckFlag.Checked;
-            employmentAgreementVo.KoyouFlag = this.CheckBoxExKOYOU.Checked;
-            employmentAgreementVo.SyakaiFlag = this.CheckBoxExSYAKAI.Checked;
-            employmentAgreementVo.SalaryRaise = this.ComboBoxExSalaryRaise.Text;
-            employmentAgreementVo.BonusSummerText = this.ComboBoxExBonusSummerText.Text;
-            employmentAgreementVo.BonusSummerPay = (int)this.NumericUpDownExBonusSummerPay.Value;
-            employmentAgreementVo.BonusWinterText = this.ComboBoxExBonusWinterText.Text;
-            employmentAgreementVo.BonusWinterPay = (int)this.NumericUpDownExBonusWinterPay.Value;
-            employmentAgreementVo.BonusDetailText = this.ComboBoxExBonusDetailText.Text;
+            employmentAgreementVo.BaseLocation = CcComboBoxBaseAddress.Text;
+            employmentAgreementVo.Occupation = int.Parse(this.CcComboBoxBelongs.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
+            employmentAgreementVo.ContractExpirationPeriod = (int)CcNumericUpDownContractExpirationPeriod.Value;
+            employmentAgreementVo.ContractExpirationPeriodString = this.CcTextBoxContractExpirationPeriod.Text;
+            employmentAgreementVo.PayDetail = this.CcComboBoxPayDetail.Text;
+            employmentAgreementVo.Pay = (int)this.CcNumericUpDownPay.Value;
+            employmentAgreementVo.TravelCostDetail = this.CcComboBoxTravelCostDetail.Text;
+            employmentAgreementVo.TravelCost = (int)this.CcNumericUpDownTravelCost.Value;
+            employmentAgreementVo.JobDescription = int.Parse(this.CcComboBoxJobDescription.SelectedValue.ToString()); // 元がObject型で入ってるからキャストが必要
+            employmentAgreementVo.WorkTime = this.CcComboBoxWorkTime.Text;
+            employmentAgreementVo.BreakTime = this.CcComboBoxBreakTime.Text;
+            employmentAgreementVo.CheckFlag = this.CcCheckBoxCheckFlag.Checked;
+            employmentAgreementVo.KoyouFlag = this.CcCheckBoxKOYOU.Checked;
+            employmentAgreementVo.SyakaiFlag = this.CcCheckBoxSYAKAI.Checked;
+            employmentAgreementVo.SalaryRaise = this.CcComboBoxSalaryRaise.Text;
+            employmentAgreementVo.BonusSummerText = this.CcComboBoxBonusSummerText.Text;
+            employmentAgreementVo.BonusSummerPay = (int)this.CcNumericUpDownBonusSummerPay.Value;
+            employmentAgreementVo.BonusWinterText = this.CcComboBoxBonusWinterText.Text;
+            employmentAgreementVo.BonusWinterPay = (int)this.CcNumericUpDownBonusWinterPay.Value;
+            employmentAgreementVo.BonusDetailText = this.CcComboBoxBonusDetailText.Text;
             employmentAgreementVo.InsertPcName = Environment.MachineName;
             employmentAgreementVo.InsertYmdHms = DateTime.Now;
             employmentAgreementVo.UpdatePcName = Environment.MachineName;
@@ -707,92 +729,92 @@ namespace EmploymentAgreement {
         /// 
         /// </summary>
         private void InitializeControl() {
-            this.LabelExUnionCode.Text = string.Empty;
-            this.LabelExDisplayName.Text = string.Empty;
-            this.LabelExBelongs.Text = string.Empty;
-            this.LabelExOccupation.Text = string.Empty;
-            this.LabelExJobForm.Text = string.Empty;
+            this.CcLabelUnionCode.Text = string.Empty;
+            this.CcLabelDisplayName.Text = string.Empty;
+            this.CcLabelBelongs.Text = string.Empty;
+            this.CcLabelOccupation.Text = string.Empty;
+            this.CcLabelJobForm.Text = string.Empty;
             this.InitializeComboBoxExBelongs();
-            this.NUDExContractExpirationPeriod.Value = 0;
-            this.TextBoxExContractExpirationPeriod.Text = string.Empty;
-            this.CheckBoxExCheckFlag.Checked = false;
+            this.CcNumericUpDownContractExpirationPeriod.Value = 0;
+            this.CcTextBoxContractExpirationPeriod.Text = string.Empty;
+            this.CcCheckBoxCheckFlag.Checked = false;
             this.InitializeComboBoxExPayDetail();
-            this.NumericUpDownExPay.Value = 0;
-            this.ComboBoxExTravelCostDetail.SelectedIndex = 0;
-            this.NUDExTravelCost.Value = 0;
+            this.CcNumericUpDownPay.Value = 0;
+            this.CcComboBoxTravelCostDetail.SelectedIndex = 0;
+            this.CcNumericUpDownTravelCost.Value = 0;
             this.InitializeComboBoxExJobDescription();
-            this.ComboBoxExWorkTime.Text = string.Empty;
-            this.ComboBoxExBreakTime.Text = string.Empty;
+            this.CcComboBoxWorkTime.Text = string.Empty;
+            this.CcComboBoxBreakTime.Text = string.Empty;
 
             /*
              * 体験入社期間
              */
-            this.DTPExExpirationStartDate.SetClear();
-            this.DTPExExpirationEndDate.SetClear();
-            this.TextBoxExExpirationMemo.Text = string.Empty;
+            this.CcDateTimeExpirationStartDate.SetClear();
+            this.CcDateTimeExpirationEndDate.SetClear();
+            this.CcTextBoxExpirationMemo.Text = string.Empty;
             /*
              * 長期アルバイト更新期間
              */
-            this.DTPExContractExpirationPartTimeJobStartDate.SetClear();
-            this.DTPExContractExpirationPartTimeJobEndDate.SetClear();
-            this.TextBoxExContractExpirationPartTimeJobMemo.Text = string.Empty;
-            this.DTPExContractExpirationPartTimeJobStartDate1.SetClear();
-            this.DTPExContractExpirationPartTimeJobEndDate1.SetClear();
-            this.TextBoxExContractExpirationPartTimeJobMemo1.Text = string.Empty;
-            this.DTPExContractExpirationPartTimeJobStartDate2.SetClear();
-            this.DTPExContractExpirationPartTimeJobEndDate2.SetClear();
-            this.TextBoxExContractExpirationPartTimeJobMemo2.Text = string.Empty;
+            this.CcDateTimeContractExpirationPartTimeJobStartDate.SetClear();
+            this.CcDateTimeContractExpirationPartTimeJobEndDate.SetClear();
+            this.CcTextBoxContractExpirationPartTimeJobMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationPartTimeJobStartDate1.SetClear();
+            this.CcDateTimeContractExpirationPartTimeJobEndDate1.SetClear();
+            this.CcTextBoxContractExpirationPartTimeJobMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationPartTimeJobStartDate2.SetClear();
+            this.CcDateTimeContractExpirationPartTimeJobEndDate2.SetClear();
+            this.CcTextBoxContractExpirationPartTimeJobMemo2.Text = string.Empty;
             /*
              * 組合長期雇用期間
              */
-            this.DTPExContractExpirationLongJobStartDate.SetClear();
-            this.DTPExContractExpirationLongJobEndDate.SetClear();
-            this.TextBoxExContractExpirationLongJobMemo.Text = string.Empty;
-            this.DTPExContractExpirationLongJobStartDate1.SetClear();
-            this.DTPExContractExpirationLongJobEndDate1.SetClear();
-            this.TextBoxExContractExpirationLongJobMemo1.Text = string.Empty;
-            this.DTPExContractExpirationLongJobStartDate2.SetClear();
-            this.DTPExContractExpirationLongJobEndDate2.SetClear();
-            this.TextBoxExContractExpirationLongJobMemo2.Text = string.Empty;
+            this.CcDateTimeContractExpirationLongJobStartDate.SetClear();
+            this.CcDateTimeContractExpirationLongJobEndDate.SetClear();
+            this.CcTextBoxContractExpirationLongJobMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationLongJobStartDate1.SetClear();
+            this.CcDateTimeContractExpirationLongJobEndDate1.SetClear();
+            this.CcTextBoxContractExpirationLongJobMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationLongJobStartDate2.SetClear();
+            this.CcDateTimeContractExpirationLongJobEndDate2.SetClear();
+            this.CcTextBoxContractExpirationLongJobMemo2.Text = string.Empty;
             /*
              * 組合短期雇用期間
              */
-            this.DTPExContractExpirationShortJobStartDate.SetClear();
-            this.DTPExContractExpirationShortJobEndDate.SetClear();
-            this.TextBoxExContractExpirationShortJobMemo.Text = string.Empty;
-            this.DTPExContractExpirationShortJobStartDate1.SetClear();
-            this.DTPExContractExpirationShortJobEndDate1.SetClear();
-            this.TextBoxExContractExpirationShortJobMemo1.Text = string.Empty;
-            this.DTPExContractExpirationShortJobStartDate2.SetClear();
-            this.DTPExContractExpirationShortJobEndDate2.SetClear();
-            this.TextBoxExContractExpirationShortJobMemo2.Text = string.Empty;
+            this.CcDateTimeContractExpirationShortJobStartDate.SetClear();
+            this.CcDateTimeContractExpirationShortJobEndDate.SetClear();
+            this.CcTextBoxContractExpirationShortJobMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationShortJobStartDate1.SetClear();
+            this.CcDateTimeContractExpirationShortJobEndDate1.SetClear();
+            this.CcTextBoxContractExpirationShortJobMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationShortJobStartDate2.SetClear();
+            this.CcDateTimeContractExpirationShortJobEndDate2.SetClear();
+            this.CcTextBoxContractExpirationShortJobMemo2.Text = string.Empty;
             /*
              * 誓約書期間
              */
-            this.DTPExContractExpirationWrittenPledgeStartDate.SetClear();
-            this.DTPExContractExpirationWrittenPledgeEndDate.SetClear();
-            this.TextBoxExContractExpirationWrittenPledgeMemo.Text = string.Empty;
-            this.DTPExContractExpirationWrittenPledgeStartDate1.SetClear();
-            this.DTPExContractExpirationWrittenPledgeEndDate1.SetClear();
-            this.TextBoxExContractExpirationWrittenPledgeMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationWrittenPledgeStartDate.SetClear();
+            this.CcDateTimeContractExpirationWrittenPledgeEndDate.SetClear();
+            this.CcTextBoxContractExpirationWrittenPledgeMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationWrittenPledgeStartDate1.SetClear();
+            this.CcDateTimeContractExpirationWrittenPledgeEndDate1.SetClear();
+            this.CcTextBoxContractExpirationWrittenPledgeMemo1.Text = string.Empty;
             /*
              * 失墜行為書類期間
              */
-            this.DTPExContractExpirationLossWrittenPledgeStartDate.SetClear();
-            this.DTPExContractExpirationLossWrittenPledgeEndDate.SetClear();
-            this.TextBoxExContractExpirationLossWrittenPledgeMemo.Text = string.Empty;
-            this.DTPExContractExpirationLossWrittenPledgeStartDate1.SetClear();
-            this.DTPExContractExpirationLossWrittenPledgeEndDate1.SetClear();
-            this.TextBoxExContractExpirationLossWrittenPledgeMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.SetClear();
+            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.SetClear();
+            this.CcTextBoxContractExpirationLossWrittenPledgeMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.SetClear();
+            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.SetClear();
+            this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Text = string.Empty;
             /*
              * 契約満了通知(事前通知書)
              */
-            this.DTPExContractExpirationNoticeStartDate.SetClear();
-            this.DTPExContractExpirationNoticeEndDate.SetClear();
-            this.TextBoxExContractExpirationNoticeMemo.Text = string.Empty;
-            this.DTPExContractExpirationNoticeStartDate1.SetClear();
-            this.DTPExContractExpirationNoticeEndDate1.SetClear();
-            this.TextBoxExContractExpirationNoticeMemo1.Text = string.Empty;
+            this.CcDateTimeContractExpirationNoticeStartDate.SetClear();
+            this.CcDateTimeContractExpirationNoticeEndDate.SetClear();
+            this.CcTextBoxContractExpirationNoticeMemo.Text = string.Empty;
+            this.CcDateTimeContractExpirationNoticeStartDate1.SetClear();
+            this.CcDateTimeContractExpirationNoticeEndDate1.SetClear();
+            this.CcTextBoxContractExpirationNoticeMemo1.Text = string.Empty;
         }
 
         /// <summary>
@@ -846,15 +868,15 @@ namespace EmploymentAgreement {
         /// /// ComboBoxにデータを入れる
         /// </summary>
         private void InitializeComboBoxExBelongs() {
-            this.ComboBoxExBelongs.Items.Clear();
+            this.CcComboBoxBelongs.Items.Clear();
             DataTable dataTable = new();
             dataTable.Columns.Add("Code");
             dataTable.Columns.Add("Name");
             foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 dataTable.Rows.Add(belongsMasterVo.Code, belongsMasterVo.Name);
-            this.ComboBoxExBelongs.DataSource = dataTable;
-            this.ComboBoxExBelongs.ValueMember = "Code";
-            this.ComboBoxExBelongs.DisplayMember = "Name";
+            this.CcComboBoxBelongs.DataSource = dataTable;
+            this.CcComboBoxBelongs.ValueMember = "Code";
+            this.CcComboBoxBelongs.DisplayMember = "Name";
         }
 
         /// <summary>
@@ -862,24 +884,24 @@ namespace EmploymentAgreement {
         /// ComboBoxにデータを入れる
         /// </summary>
         private void InitializeComboBoxExJobDescription() {
-            this.ComboBoxExJobDescription.Items.Clear();
+            this.CcComboBoxJobDescription.Items.Clear();
             DataTable dataTable = new();
             dataTable.Columns.Add("Code");
             dataTable.Columns.Add("Name");
             foreach (JobDescriptionMasterVo jobDescriptionMasterVo in _jobDescriptionMasterDao.SelectAllJobDescriptionMaster())
                 dataTable.Rows.Add(jobDescriptionMasterVo.Code, jobDescriptionMasterVo.Name);
-            this.ComboBoxExJobDescription.DataSource = dataTable;
-            this.ComboBoxExJobDescription.ValueMember = "Code";
-            this.ComboBoxExJobDescription.DisplayMember = "Name";
+            this.CcComboBoxJobDescription.DataSource = dataTable;
+            this.CcComboBoxJobDescription.ValueMember = "Code";
+            this.CcComboBoxJobDescription.DisplayMember = "Name";
         }
 
         /// <summary>
         /// 
         /// </summary>
         private void InitializeComboBoxExPayDetail() {
-            this.ComboBoxExPayDetail.Items.Clear();
+            this.CcComboBoxPayDetail.Items.Clear();
             foreach (string payDetail in _employmentAgreementDao.SelectGroupPayDetail())
-                this.ComboBoxExPayDetail.Items.Add(payDetail);
+                this.CcComboBoxPayDetail.Items.Add(payDetail);
         }
 
         /// <summary>
