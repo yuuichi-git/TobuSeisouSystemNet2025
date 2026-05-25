@@ -24,39 +24,39 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CertificationList));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            this.CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
             this.MenuStripEx1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.PanelExTop = new CcControl.CcPanel();
             this.ButtonExUpdate = new CcControl.CcButton();
             this.labelEx2 = new CcControl.CcLabel();
             this.ComboBoxExPrinterName = new CcControl.CcComboBox();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.TableLayoutPanelExBase.SuspendLayout();
+            this.CcTableLayoutPanelBase.SuspendLayout();
             this.PanelExTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.SuspendLayout();
             // 
-            // TableLayoutPanelExBase
+            // CcTableLayoutPanelBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            this.CcTableLayoutPanelBase.ColumnCount = 1;
+            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            this.CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            this.CcTableLayoutPanelBase.Controls.Add(this.MenuStripEx1, 0, 0);
+            this.CcTableLayoutPanelBase.Controls.Add(this.StatusStripEx1, 0, 3);
+            this.CcTableLayoutPanelBase.Controls.Add(this.PanelExTop, 0, 1);
+            this.CcTableLayoutPanelBase.Controls.Add(this.SpreadList, 0, 2);
+            this.CcTableLayoutPanelBase.Dock = DockStyle.Fill;
+            this.CcTableLayoutPanelBase.Location = new Point(0, 0);
+            this.CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
+            this.CcTableLayoutPanelBase.RowCount = 4;
+            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            this.CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            this.CcTableLayoutPanelBase.Size = new Size(1904, 1041);
+            this.CcTableLayoutPanelBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
@@ -90,6 +90,7 @@
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1688, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = null;
@@ -133,13 +134,13 @@
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(1904, 1041);
-            this.Controls.Add(this.TableLayoutPanelExBase);
+            this.Controls.Add(this.CcTableLayoutPanelBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.Name = "CertificationList";
             this.Text = "CertificationList";
             this.FormClosing += this.CertificationList_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
+            this.CcTableLayoutPanelBase.ResumeLayout(false);
+            this.CcTableLayoutPanelBase.PerformLayout();
             this.PanelExTop.ResumeLayout(false);
             this.PanelExTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
@@ -148,7 +149,7 @@
 
         #endregion
 
-        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
+        private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
         private CcControl.CcMenuStrip MenuStripEx1;
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
