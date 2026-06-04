@@ -45,7 +45,6 @@
             this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewToukaidenshi = this.SpreadList.GetSheet(1);
-            this.SheetViewM_JYOUMUIN = this.SpreadList.GetSheet(2);
             this.TableLayoutPanelExBase.SuspendLayout();
             this.TabControlExKana.SuspendLayout();
             this.PanelExUp.SuspendLayout();
@@ -299,6 +298,5 @@
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewToukaidenshi;
-        private FarPoint.Win.Spread.SheetView SheetViewM_JYOUMUIN;
     }
 }

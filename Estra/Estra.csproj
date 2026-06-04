@@ -1,17 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWin32Manifest>true</NoWin32Manifest>
-    <Platforms>AnyCPU;x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="PdfSharpCore" Version="1.3.67" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="grapecity.spread.winforms.ja" Version="15.4.0" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ControlEx\CcControl.csproj" />
+    <ProjectReference Include="..\Dao\Dao.csproj" />
+    <ProjectReference Include="..\Vo\Vo.csproj" />
   </ItemGroup>
+
 </Project>

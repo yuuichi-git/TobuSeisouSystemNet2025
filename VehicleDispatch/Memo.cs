@@ -184,14 +184,5 @@ namespace VehicleDispatch {
             TableLayoutPanelCellPosition tableLayoutPanelCellPosition = ((SetControl)staffLabel.ParentControl).GetCellPosition(staffLabel);
             return tableLayoutPanelCellPosition.Column * 2 + (tableLayoutPanelCellPosition.Row - 2);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Memo_FormClosing(object sender, FormClosingEventArgs e) {
-
-        }
     }
 }

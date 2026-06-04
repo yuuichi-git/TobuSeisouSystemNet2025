@@ -128,7 +128,6 @@ namespace License {
          */
         private readonly ConnectionVo _connectionVo;
         private List<LicenseMasterVo> _listLicenseMasterVo;
-        private List<MJyoumuinVo> _listM_JyoumuinVo = new();
 
         /// <summary>
         /// 
@@ -161,7 +160,6 @@ namespace License {
 
             this.InitializeSheetView(this.SheetViewList);
             this.InitializeSheetView(this.SheetViewToukaidenshi);
-            this.InitializeSheetView(this.SheetViewM_JYOUMUIN);
 
             this.SpreadList.ActiveSheetIndex = 0;                                               // ActiveSheet
             /*
@@ -182,9 +180,6 @@ namespace License {
                     break;
                 case "ToukaiDenshiCSV":                                                                     // SheetViewTokaidenshi
                     this.SetSheetViewToukaidenshi(SheetViewToukaidenshi, _licenseMasterDao.SelectAllLicenseMaster());
-                    break;
-                case "M_JYOUMUIN":                                                                          // SheetViewM_JYOUMUIN
-                    this.SetSheetViewM_JYOUMUIN(SheetViewM_JYOUMUIN, _licenseMasterDao.SelectAllLicenseMaster());
                     break;
             }
         }
@@ -215,34 +210,6 @@ namespace License {
                                                                Environment.NewLine,
                                                                ",",
                                                                "");
-                            MessageBox.Show("デスクトップへエクスポートしました", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            break;
-
-                        case "M_JYOUMUIN":
-                            /*
-                             * csv形式ファイルをエクスポートします 矢崎エナジーシステム(M_JYOUMUIN)データ
-                             * Encoding.Unicode ← UTF-16 LE（BOM付き）でエンコードしないとエラーになるよ
-                             */
-                            filePath = string.Concat("矢崎エナジーシステム(M_JYOUMUIN)データ", DateTime.Now.ToString("MM月dd日"), "作成");
-                            using (StreamWriter writer = new(new DirectryUtility().GetExcelDesktopPassCsv(filePath), false, Encoding.Unicode)) {                                                // Encoding.Unicode ← UTF-16 LE（BOM付き）
-                                for (int i = 0; i < _listM_JyoumuinVo.Count; i++) {
-                                    MJyoumuinVo mJyoumuinVo = _listM_JyoumuinVo[i];
-
-                                    // CSV 1行を作成
-                                    string line = string.Join(",", mJyoumuinVo.JyoumuinCode,
-                                                                   mJyoumuinVo.JyoumuinName.Length >= 8 ? mJyoumuinVo.JyoumuinName.Substring(0, 8) : mJyoumuinVo.JyoumuinName,                  // 乗務員名は全角８文字以内
-                                                                   mJyoumuinVo.JyoumuinNameKana.Length >= 16 ? mJyoumuinVo.JyoumuinNameKana.Substring(0, 16) : mJyoumuinVo.JyoumuinNameKana,    // 乗務員名カナは全角１６文字文字以内
-                                                                   mJyoumuinVo.JigyousyoCode,
-                                                                   mJyoumuinVo.SyozokuCode,
-                                                                   mJyoumuinVo.GetsujiSyukeiTaishou,
-                                                                   mJyoumuinVo.RoumuKanriTaishou,
-                                                                   mJyoumuinVo.SaiyouYmd,
-                                                                   mJyoumuinVo.TaishokuYmd
-                                    );
-                                    //line = "\"" + line + "\"";                                                      // 行全体を "" で囲む
-                                    writer.WriteLine(line);
-                                }
-                            }
                             MessageBox.Show("デスクトップへエクスポートしました", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                     }
@@ -305,20 +272,6 @@ namespace License {
                         "ToolStripMenuItemHelp"
                         };
                     this.MenuStripEx1.ChangeEnable(listStringSheetViewToukaidenshi);
-                    this.TabControlExKana.Enabled = false;                                                                                  // TabControlを無効にする
-                    break;
-                case "M_JYOUMUIN":
-                    /*
-                     * MenuStrip
-                     */
-                    List<string> listStringSheetViewM_JYOUMUIN = new() {
-                        "ToolStripMenuItemFile",
-                        "ToolStripMenuItemExit",
-                        "ToolStripMenuItemExport",
-                        "ToolStripMenuItemExportCSV",
-                        "ToolStripMenuItemHelp"
-                        };
-                    this.MenuStripEx1.ChangeEnable(listStringSheetViewM_JYOUMUIN);
                     this.TabControlExKana.Enabled = false;                                                                                  // TabControlを無効にする
                     break;
             }
@@ -515,156 +468,6 @@ namespace License {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sheetView"></param>
-        /// <param name="listLicenseMasterVo"></param>
-        private void SetSheetViewM_JYOUMUIN(SheetView sheetView, List<LicenseMasterVo> listLicenseMasterVo) {
-            // Spread 非活性化
-            this.SpreadList.SuspendLayout();
-            // 先頭行（列）インデックスを取得
-            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);
-            if (sheetView.Rows.Count > 0)
-                sheetView.RemoveRows(0, sheetView.Rows.Count);
-            int row = 0;                                                                                                                    // Rowインデックス
-            int lastId = listLicenseMasterVo.Max(x => x.UnionCode) + 1;                                                                     // 最終ID(245番を含ませる)
-            foreach (LicenseMasterVo licenseMasterVo in listLicenseMasterVo.OrderBy(x => x.UnionCode)) {
-                MJyoumuinVo mJyoumuinVo = new();
-                switch (licenseMasterVo.UnionCode) {
-                    case 0:
-                    case 254:                                                                                                               // 0番、254番のUnionCodeは未設定なので通しID(使用済UnionCodeの次から)をセットする
-                        sheetView.Rows.Add(row, 1);
-                        sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                        // Rowヘッダ
-                        sheetView.Rows[row].Height = 22;                                                                                    // Rowの高さ
-                        sheetView.Rows[row].Resizable = false;                                                                              // RowのResizableを禁止
-                        sheetView.Cells[row, 0].Text = lastId.ToString("00000000");
-                        sheetView.Cells[row, 1].Text = licenseMasterVo.Name;
-                        sheetView.Cells[row, 2].Text = licenseMasterVo.NameKana;
-                        sheetView.Cells[row, 3].Text = "0001";                                                  // 事業所
-                        sheetView.Cells[row, 4].Text = "0001";                                                  // 所属
-                        sheetView.Cells[row, 5].Text = "1";                                                     // 月次集計対象
-                        sheetView.Cells[row, 6].Text = "1";                                                     // 労務管理対象
-                        sheetView.Cells[row, 7].Text = "";                                                      // 採用年月日
-                        sheetView.Cells[row, 8].Text = "";                                                      // 退職年月日
-                        /*
-                         * CSV用にList<MJyoumuinVo>に追加する
-                         */
-                        mJyoumuinVo.JyoumuinCode = lastId.ToString("00000000");
-                        mJyoumuinVo.JyoumuinName = licenseMasterVo.Name;
-                        mJyoumuinVo.JyoumuinNameKana = licenseMasterVo.NameKana;
-                        mJyoumuinVo.JigyousyoCode = "0001";
-                        mJyoumuinVo.SyozokuCode = "0001";
-                        mJyoumuinVo.GetsujiSyukeiTaishou = "1";
-                        mJyoumuinVo.RoumuKanriTaishou = "1";
-                        mJyoumuinVo.SaiyouYmd = "";
-                        mJyoumuinVo.TaishokuYmd = "";
-
-                        row++;
-                        lastId++;
-                        break;
-                    default:
-                        sheetView.Rows.Add(row, 1);
-                        sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();                                                        // Rowヘッダ
-                        sheetView.Rows[row].Height = 22;                                                                                    // Rowの高さ
-                        sheetView.Rows[row].Resizable = false;                                                                              // RowのResizableを禁止
-                        sheetView.Cells[row, 0].Text = licenseMasterVo.UnionCode.ToString("00000000");
-                        sheetView.Cells[row, 1].Text = licenseMasterVo.Name;
-                        sheetView.Cells[row, 2].Text = licenseMasterVo.NameKana;
-                        sheetView.Cells[row, 3].Text = "0001";                                                  // 事業所
-                        sheetView.Cells[row, 4].Text = "0001";                                                  // 所属
-                        sheetView.Cells[row, 5].Text = "1";                                                     // 月次集計対象
-                        sheetView.Cells[row, 6].Text = "1";                                                     // 労務管理対象
-                        sheetView.Cells[row, 7].Text = "";                                                      // 採用年月日
-                        sheetView.Cells[row, 8].Text = "";                                                      // 退職年月日
-                        /*
-                         * CSV用にList<MJyoumuinVo>に追加する
-                         */
-                        mJyoumuinVo.JyoumuinCode = licenseMasterVo.UnionCode.ToString("00000000");
-                        mJyoumuinVo.JyoumuinName = licenseMasterVo.Name;
-                        mJyoumuinVo.JyoumuinNameKana = licenseMasterVo.NameKana;
-                        mJyoumuinVo.JigyousyoCode = "0001";
-                        mJyoumuinVo.SyozokuCode = "0001";
-                        mJyoumuinVo.GetsujiSyukeiTaishou = "1";
-                        mJyoumuinVo.RoumuKanriTaishou = "1";
-                        mJyoumuinVo.SaiyouYmd = "";
-                        mJyoumuinVo.TaishokuYmd = "";
-
-                        row++;
-                        break;
-                }
-                _listM_JyoumuinVo.Add(mJyoumuinVo);
-            }
-
-            /*
-             * 245番の予備を追加する
-             */
-            sheetView.Rows.Add(row, 1);
-            sheetView.RowHeader.Columns[0].Label = (row + 1).ToString();
-            sheetView.Rows[row].Height = 22;
-            sheetView.Rows[row].Resizable = false;
-            sheetView.Cells[row, 0].Text = "00000245";                                                          // 乗務員コード
-            sheetView.Cells[row, 1].Text = "予備";                                                               // 乗務員名
-            sheetView.Cells[row, 2].Text = "ヨビ";                                                               // フリガナ
-            sheetView.Cells[row, 3].Text = "0001";                                                              // 事業所
-            sheetView.Cells[row, 4].Text = "0001";                                                              // 所属
-            sheetView.Cells[row, 5].Text = "1";                                                                 // 月次集計対象
-            sheetView.Cells[row, 6].Text = "1";                                                                 // 労務管理対象
-            sheetView.Cells[row, 7].Text = "";                                                                  // 採用年月日
-            sheetView.Cells[row, 8].Text = "";                                                                  // 退職年月日
-            /*
-             * CSV用にList<MJyoumuinVo>に追加する
-             */
-            MJyoumuinVo mJyoumuinVo00000245 = new();
-            mJyoumuinVo00000245.JyoumuinCode = "00000245";
-            mJyoumuinVo00000245.JyoumuinName = "予備";
-            mJyoumuinVo00000245.JyoumuinNameKana = "ヨビ";
-            mJyoumuinVo00000245.JigyousyoCode = "0001";
-            mJyoumuinVo00000245.SyozokuCode = "0001";
-            mJyoumuinVo00000245.GetsujiSyukeiTaishou = "1";
-            mJyoumuinVo00000245.RoumuKanriTaishou = "1";
-            mJyoumuinVo00000245.SaiyouYmd = "";
-            mJyoumuinVo00000245.TaishokuYmd = "";
-            _listM_JyoumuinVo.Add(mJyoumuinVo00000245);
-            row++;
-            /*
-             * 9999番の予備(点検用)を追加する
-             */
-            sheetView.Rows.Add(row, 1);
-            sheetView.RowHeader.Columns[0].Label = (row + 1).ToString(); // Rowヘッダ
-            sheetView.Rows[row].Height = 22; // Rowの高さ
-            sheetView.Rows[row].Resizable = false; // RowのResizableを禁止
-            sheetView.Cells[row, 0].Text = "00009999";                                                          // 乗務員コード
-            sheetView.Cells[row, 1].Text = "点検用";                                                             // 乗務員名
-            sheetView.Cells[row, 2].Text = "テンケンヨウ";                                                        // フリガナ
-            sheetView.Cells[row, 3].Text = "0001";                                                              // 事業所
-            sheetView.Cells[row, 4].Text = "0001";                                                              // 所属
-            sheetView.Cells[row, 5].Text = "1";                                                                 // 月次集計対象
-            sheetView.Cells[row, 6].Text = "1";                                                                 // 労務管理対象
-            sheetView.Cells[row, 7].Text = "";                                                                  // 採用年月日
-            sheetView.Cells[row, 8].Text = "";                                                                  // 退職年月日
-            /*
-             * CSV用にList<MJyoumuinVo>に追加する
-             */
-            MJyoumuinVo mJyoumuinVo00009999 = new();
-            mJyoumuinVo00009999.JyoumuinCode = "00009999";
-            mJyoumuinVo00009999.JyoumuinName = "点検用";
-            mJyoumuinVo00009999.JyoumuinNameKana = "テンケンヨウ";
-            mJyoumuinVo00009999.JigyousyoCode = "0001";
-            mJyoumuinVo00009999.SyozokuCode = "0001";
-            mJyoumuinVo00009999.GetsujiSyukeiTaishou = "1";
-            mJyoumuinVo00009999.RoumuKanriTaishou = "1";
-            mJyoumuinVo00009999.SaiyouYmd = "";
-            mJyoumuinVo00009999.TaishokuYmd = "";
-            _listM_JyoumuinVo.Add(mJyoumuinVo00009999);
-
-            // 先頭行（列）インデックスをセット
-            this.SpreadList.SetViewportTopRow(0, spreadListTopRow);
-            // Spread 活性化
-            this.SpreadList.ResumeLayout();
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void LicenseList_FormClosing(object sender, FormClosingEventArgs e) {
@@ -678,19 +481,6 @@ namespace License {
                     e.Cancel = true;
                     break;
             }
-        }
-
-
-        private class MJyoumuinVo {
-            public string JyoumuinCode { get; set; }
-            public string JyoumuinName { get; set; }
-            public string JyoumuinNameKana { get; set; }
-            public string JigyousyoCode { get; set; }
-            public string SyozokuCode { get; set; }
-            public string GetsujiSyukeiTaishou { get; set; }
-            public string RoumuKanriTaishou { get; set; }
-            public string SaiyouYmd { get; set; }
-            public string TaishokuYmd { get; set; }
         }
     }
 }

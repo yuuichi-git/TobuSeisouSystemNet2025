@@ -27,7 +27,7 @@
             this.MenuStripEx1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.PanelExUp = new CcControl.CcPanel();
-            this.ButtonExUpdate = new CcControl.CcButton();
+            this.CcButtonUpdate = new CcControl.CcButton();
             this.labelEx34 = new CcControl.CcLabel();
             this.CcLabelUnionCode = new CcControl.CcLabel();
             this.labelEx38 = new CcControl.CcLabel();
@@ -72,6 +72,7 @@
             this.labelEx2 = new CcControl.CcLabel();
             this.CcCheckBoxCheckFlag = new CcControl.CcCheckBox();
             this.CcGroupBoxExpiration = new CcControl.CcGroupBox();
+            this.CcButtonExpirationDelete = new CcControl.CcButton();
             this.CcButtonExpiration = new CcControl.CcButton();
             this.CcDateTimeExpirationEndDate = new CcControl.CcDateTime();
             this.CcButtonExpirationPicture = new CcControl.CcButton();
@@ -82,6 +83,7 @@
             this.CcNumericUpDownContractExpirationPeriod = new CcControl.CcNumericUpDown();
             this.labelEx39 = new CcControl.CcLabel();
             this.CcGroupBoxContractExpirationNotice = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationNoticeDelete = new CcControl.CcButton();
             this.CcButtonContractExpirationNoticePicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationNotice = new CcControl.CcButton();
             this.CcDateTimeContractExpirationNoticeStartDate = new CcControl.CcDateTime();
@@ -93,6 +95,7 @@
             this.labelEx28 = new CcControl.CcLabel();
             this.CcTextBoxContractExpirationNoticeMemo1 = new CcControl.CcTextBox();
             this.CcGroupBoxContractExpirationLossWrittenPledge = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationLossWrittenPledgeDelete = new CcControl.CcButton();
             this.CcButtonContractExpirationLossWrittenPledgePicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationLossWrittenPledge = new CcControl.CcButton();
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate = new CcControl.CcDateTime();
@@ -104,6 +107,7 @@
             this.labelEx24 = new CcControl.CcLabel();
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1 = new CcControl.CcTextBox();
             this.CcGroupBoxContractExpirationWrittenPledge = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationWrittenPledgeDelete = new CcControl.CcButton();
             this.CcButtonContractExpirationWrittenPledgePicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationWrittenPledge = new CcControl.CcButton();
             this.CcDateTimeContractExpirationWrittenPledgeStartDate = new CcControl.CcDateTime();
@@ -115,7 +119,9 @@
             this.labelEx20 = new CcControl.CcLabel();
             this.CcTextBoxContractExpirationWrittenPledgeMemo1 = new CcControl.CcTextBox();
             this.CcGroupBoxContractExpirationShortJob = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationShortJobDelete2 = new CcControl.CcButton();
             this.CcButtonContractExpirationShortJobPicture2 = new CcControl.CcButton();
+            this.CcButtonContractExpirationShortJobDelete1 = new CcControl.CcButton();
             this.CcButtonContractExpirationShortJobPicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationShortJob = new CcControl.CcButton();
             this.CcDateTimeContractExpirationShortJobStartDate = new CcControl.CcDateTime();
@@ -131,6 +137,8 @@
             this.CcDateTimeContractExpirationShortJobStartDate2 = new CcControl.CcDateTime();
             this.CcTextBoxContractExpirationShortJobMemo1 = new CcControl.CcTextBox();
             this.CcGroupBoxContractExpirationLongJob = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationLongJobDelete2 = new CcControl.CcButton();
+            this.CcButtonContractExpirationLongJobDelete1 = new CcControl.CcButton();
             this.CcButtonContractExpirationLongJobPicture2 = new CcControl.CcButton();
             this.CcButtonContractExpirationLongJobPicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationLongJob = new CcControl.CcButton();
@@ -147,6 +155,8 @@
             this.CcDateTimeContractExpirationLongJobStartDate2 = new CcControl.CcDateTime();
             this.CcTextBoxContractExpirationLongJobMemo1 = new CcControl.CcTextBox();
             this.CcGroupBoxContractExpirationPartTimeJob = new CcControl.CcGroupBox();
+            this.CcButtonContractExpirationPartTimeJobDelete2 = new CcControl.CcButton();
+            this.CcButtonContractExpirationPartTimeJobDelete1 = new CcControl.CcButton();
             this.CcButtonContractExpirationPartTimeJobPicture2 = new CcControl.CcButton();
             this.CcButtonContractExpirationPartTimeJobPicture1 = new CcControl.CcButton();
             this.CcButtonContractExpirationPartTimeJob = new CcControl.CcButton();
@@ -189,7 +199,7 @@
             // TableLayoutPanelExBase
             // 
             this.TableLayoutPanelExBase.ColumnCount = 2;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1230F));
+            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1250F));
             this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
             this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
@@ -229,7 +239,7 @@
             // PanelExUp
             // 
             this.TableLayoutPanelExBase.SetColumnSpan(this.PanelExUp, 2);
-            this.PanelExUp.Controls.Add(this.ButtonExUpdate);
+            this.PanelExUp.Controls.Add(this.CcButtonUpdate);
             this.PanelExUp.Controls.Add(this.labelEx34);
             this.PanelExUp.Controls.Add(this.CcLabelUnionCode);
             this.PanelExUp.Controls.Add(this.labelEx38);
@@ -246,19 +256,19 @@
             this.PanelExUp.Size = new Size(1898, 34);
             this.PanelExUp.TabIndex = 2;
             // 
-            // ButtonExUpdate
+            // CcButtonUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
-            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            this.ButtonExUpdate.Location = new Point(1676, 0);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(184, 32);
-            this.ButtonExUpdate.TabIndex = 4;
-            this.ButtonExUpdate.Text = "更　新";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonEx_Click;
+            this.CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            this.CcButtonUpdate.Location = new Point(1676, 0);
+            this.CcButtonUpdate.Name = "CcButtonUpdate";
+            this.CcButtonUpdate.SetTextDirectionVertical = "";
+            this.CcButtonUpdate.Size = new Size(184, 32);
+            this.CcButtonUpdate.TabIndex = 4;
+            this.CcButtonUpdate.Text = "更　新";
+            this.CcButtonUpdate.UseVisualStyleBackColor = true;
+            this.CcButtonUpdate.Click += this.ButtonEx_Click;
             // 
             // labelEx34
             // 
@@ -412,7 +422,7 @@
             this.PanelExMiddle.Dock = DockStyle.Fill;
             this.PanelExMiddle.Location = new Point(3, 67);
             this.PanelExMiddle.Name = "PanelExMiddle";
-            this.PanelExMiddle.Size = new Size(1224, 947);
+            this.PanelExMiddle.Size = new Size(1244, 947);
             this.PanelExMiddle.TabIndex = 3;
             // 
             // labelEx29
@@ -740,6 +750,7 @@
             // 
             // CcGroupBoxExpiration
             // 
+            this.CcGroupBoxExpiration.Controls.Add(this.CcButtonExpirationDelete);
             this.CcGroupBoxExpiration.Controls.Add(this.CcButtonExpiration);
             this.CcGroupBoxExpiration.Controls.Add(this.CcDateTimeExpirationEndDate);
             this.CcGroupBoxExpiration.Controls.Add(this.CcButtonExpirationPicture);
@@ -748,15 +759,28 @@
             this.CcGroupBoxExpiration.Controls.Add(this.CcTextBoxExpirationMemo);
             this.CcGroupBoxExpiration.Location = new Point(12, 268);
             this.CcGroupBoxExpiration.Name = "CcGroupBoxExpiration";
-            this.CcGroupBoxExpiration.Size = new Size(1188, 80);
+            this.CcGroupBoxExpiration.Size = new Size(1216, 80);
             this.CcGroupBoxExpiration.TabIndex = 11;
             this.CcGroupBoxExpiration.TabStop = false;
             this.CcGroupBoxExpiration.Text = "体験入社期間";
             // 
+            // CcButtonExpirationDelete
+            // 
+            this.CcButtonExpirationDelete.ForeColor = SystemColors.ControlText;
+            this.CcButtonExpirationDelete.Location = new Point(1140, 48);
+            this.CcButtonExpirationDelete.Name = "CcButtonExpirationDelete";
+            this.CcButtonExpirationDelete.SetTextDirectionVertical = "";
+            this.CcButtonExpirationDelete.Size = new Size(68, 22);
+            this.CcButtonExpirationDelete.TabIndex = 32;
+            this.CcButtonExpirationDelete.TabStop = false;
+            this.CcButtonExpirationDelete.Text = "削除";
+            this.CcButtonExpirationDelete.UseVisualStyleBackColor = true;
+            this.CcButtonExpirationDelete.Click += this.ButtonEx_Click;
+            // 
             // CcButtonExpiration
             // 
             this.CcButtonExpiration.ForeColor = SystemColors.ControlText;
-            this.CcButtonExpiration.Location = new Point(1088, 24);
+            this.CcButtonExpiration.Location = new Point(1048, 24);
             this.CcButtonExpiration.Name = "CcButtonExpiration";
             this.CcButtonExpiration.SetTextDirectionVertical = "";
             this.CcButtonExpiration.Size = new Size(84, 22);
@@ -770,7 +794,7 @@
             this.CcDateTimeExpirationEndDate.CultureFlag = false;
             this.CcDateTimeExpirationEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeExpirationEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeExpirationEndDate.Location = new Point(392, 24);
+            this.CcDateTimeExpirationEndDate.Location = new Point(352, 24);
             this.CcDateTimeExpirationEndDate.Name = "CcDateTimeExpirationEndDate";
             this.CcDateTimeExpirationEndDate.Size = new Size(180, 23);
             this.CcDateTimeExpirationEndDate.TabIndex = 1;
@@ -779,7 +803,7 @@
             // CcButtonExpirationPicture
             // 
             this.CcButtonExpirationPicture.ForeColor = SystemColors.ControlText;
-            this.CcButtonExpirationPicture.Location = new Point(1088, 48);
+            this.CcButtonExpirationPicture.Location = new Point(1048, 48);
             this.CcButtonExpirationPicture.Name = "CcButtonExpirationPicture";
             this.CcButtonExpirationPicture.SetTextDirectionVertical = "";
             this.CcButtonExpirationPicture.Size = new Size(84, 22);
@@ -793,7 +817,7 @@
             this.CcDateTimeExpirationStartDate.CultureFlag = false;
             this.CcDateTimeExpirationStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeExpirationStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeExpirationStartDate.Location = new Point(188, 24);
+            this.CcDateTimeExpirationStartDate.Location = new Point(148, 24);
             this.CcDateTimeExpirationStartDate.Name = "CcDateTimeExpirationStartDate";
             this.CcDateTimeExpirationStartDate.Size = new Size(180, 23);
             this.CcDateTimeExpirationStartDate.TabIndex = 0;
@@ -802,7 +826,7 @@
             // labelEx1
             // 
             this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(372, 28);
+            this.labelEx1.Location = new Point(332, 28);
             this.labelEx1.Name = "labelEx1";
             this.labelEx1.Size = new Size(19, 15);
             this.labelEx1.TabIndex = 2;
@@ -811,7 +835,7 @@
             // CcTextBoxExpirationMemo
             // 
             this.CcTextBoxExpirationMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxExpirationMemo.Location = new Point(588, 24);
+            this.CcTextBoxExpirationMemo.Location = new Point(548, 24);
             this.CcTextBoxExpirationMemo.Name = "CcTextBoxExpirationMemo";
             this.CcTextBoxExpirationMemo.Size = new Size(496, 23);
             this.CcTextBoxExpirationMemo.TabIndex = 12;
@@ -849,6 +873,7 @@
             // 
             // CcGroupBoxContractExpirationNotice
             // 
+            this.CcGroupBoxContractExpirationNotice.Controls.Add(this.CcButtonContractExpirationNoticeDelete);
             this.CcGroupBoxContractExpirationNotice.Controls.Add(this.CcButtonContractExpirationNoticePicture1);
             this.CcGroupBoxContractExpirationNotice.Controls.Add(this.CcButtonContractExpirationNotice);
             this.CcGroupBoxContractExpirationNotice.Controls.Add(this.CcDateTimeContractExpirationNoticeStartDate);
@@ -861,15 +886,28 @@
             this.CcGroupBoxContractExpirationNotice.Controls.Add(this.CcTextBoxContractExpirationNoticeMemo1);
             this.CcGroupBoxContractExpirationNotice.Location = new Point(12, 856);
             this.CcGroupBoxContractExpirationNotice.Name = "CcGroupBoxContractExpirationNotice";
-            this.CcGroupBoxContractExpirationNotice.Size = new Size(1188, 80);
+            this.CcGroupBoxContractExpirationNotice.Size = new Size(1216, 80);
             this.CcGroupBoxContractExpirationNotice.TabIndex = 17;
             this.CcGroupBoxContractExpirationNotice.TabStop = false;
             this.CcGroupBoxContractExpirationNotice.Text = "契約満了通知(事前通知書)";
             // 
+            // CcButtonContractExpirationNoticeDelete
+            // 
+            this.CcButtonContractExpirationNoticeDelete.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationNoticeDelete.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationNoticeDelete.Name = "CcButtonContractExpirationNoticeDelete";
+            this.CcButtonContractExpirationNoticeDelete.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationNoticeDelete.Size = new Size(68, 22);
+            this.CcButtonContractExpirationNoticeDelete.TabIndex = 91;
+            this.CcButtonContractExpirationNoticeDelete.TabStop = false;
+            this.CcButtonContractExpirationNoticeDelete.Text = "削除";
+            this.CcButtonContractExpirationNoticeDelete.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationNoticeDelete.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationNoticePicture1
             // 
             this.CcButtonContractExpirationNoticePicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationNoticePicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationNoticePicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationNoticePicture1.Name = "CcButtonContractExpirationNoticePicture1";
             this.CcButtonContractExpirationNoticePicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationNoticePicture1.Size = new Size(84, 22);
@@ -881,7 +919,7 @@
             // CcButtonContractExpirationNotice
             // 
             this.CcButtonContractExpirationNotice.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationNotice.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationNotice.Location = new Point(1048, 20);
             this.CcButtonContractExpirationNotice.Name = "CcButtonContractExpirationNotice";
             this.CcButtonContractExpirationNotice.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationNotice.Size = new Size(84, 22);
@@ -895,7 +933,7 @@
             this.CcDateTimeContractExpirationNoticeStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationNoticeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationNoticeStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationNoticeStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationNoticeStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationNoticeStartDate.Name = "CcDateTimeContractExpirationNoticeStartDate";
             this.CcDateTimeContractExpirationNoticeStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationNoticeStartDate.TabIndex = 8;
@@ -906,7 +944,7 @@
             this.CcDateTimeContractExpirationNoticeEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationNoticeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationNoticeEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationNoticeEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationNoticeEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationNoticeEndDate.Name = "CcDateTimeContractExpirationNoticeEndDate";
             this.CcDateTimeContractExpirationNoticeEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationNoticeEndDate.TabIndex = 9;
@@ -915,7 +953,7 @@
             // labelEx26
             // 
             this.labelEx26.AutoSize = true;
-            this.labelEx26.Location = new Point(372, 24);
+            this.labelEx26.Location = new Point(332, 24);
             this.labelEx26.Name = "labelEx26";
             this.labelEx26.Size = new Size(19, 15);
             this.labelEx26.TabIndex = 10;
@@ -924,7 +962,7 @@
             // CcTextBoxContractExpirationNoticeMemo
             // 
             this.CcTextBoxContractExpirationNoticeMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationNoticeMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationNoticeMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationNoticeMemo.Name = "CcTextBoxContractExpirationNoticeMemo";
             this.CcTextBoxContractExpirationNoticeMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationNoticeMemo.TabIndex = 14;
@@ -935,7 +973,7 @@
             this.CcDateTimeContractExpirationNoticeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationNoticeStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationNoticeStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationNoticeStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationNoticeStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationNoticeStartDate1.Name = "CcDateTimeContractExpirationNoticeStartDate1";
             this.CcDateTimeContractExpirationNoticeStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationNoticeStartDate1.TabIndex = 15;
@@ -947,7 +985,7 @@
             this.CcDateTimeContractExpirationNoticeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationNoticeEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationNoticeEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationNoticeEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationNoticeEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationNoticeEndDate1.Name = "CcDateTimeContractExpirationNoticeEndDate1";
             this.CcDateTimeContractExpirationNoticeEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationNoticeEndDate1.TabIndex = 16;
@@ -957,7 +995,7 @@
             // 
             this.labelEx28.AutoSize = true;
             this.labelEx28.Enabled = false;
-            this.labelEx28.Location = new Point(372, 52);
+            this.labelEx28.Location = new Point(332, 52);
             this.labelEx28.Name = "labelEx28";
             this.labelEx28.Size = new Size(19, 15);
             this.labelEx28.TabIndex = 17;
@@ -967,13 +1005,14 @@
             // 
             this.CcTextBoxContractExpirationNoticeMemo1.Enabled = false;
             this.CcTextBoxContractExpirationNoticeMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationNoticeMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationNoticeMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationNoticeMemo1.Name = "CcTextBoxContractExpirationNoticeMemo1";
             this.CcTextBoxContractExpirationNoticeMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationNoticeMemo1.TabIndex = 18;
             // 
             // CcGroupBoxContractExpirationLossWrittenPledge
             // 
+            this.CcGroupBoxContractExpirationLossWrittenPledge.Controls.Add(this.CcButtonContractExpirationLossWrittenPledgeDelete);
             this.CcGroupBoxContractExpirationLossWrittenPledge.Controls.Add(this.CcButtonContractExpirationLossWrittenPledgePicture1);
             this.CcGroupBoxContractExpirationLossWrittenPledge.Controls.Add(this.CcButtonContractExpirationLossWrittenPledge);
             this.CcGroupBoxContractExpirationLossWrittenPledge.Controls.Add(this.CcDateTimeContractExpirationLossWrittenPledgeStartDate);
@@ -986,15 +1025,28 @@
             this.CcGroupBoxContractExpirationLossWrittenPledge.Controls.Add(this.CcTextBoxContractExpirationLossWrittenPledgeMemo1);
             this.CcGroupBoxContractExpirationLossWrittenPledge.Location = new Point(12, 772);
             this.CcGroupBoxContractExpirationLossWrittenPledge.Name = "CcGroupBoxContractExpirationLossWrittenPledge";
-            this.CcGroupBoxContractExpirationLossWrittenPledge.Size = new Size(1188, 80);
+            this.CcGroupBoxContractExpirationLossWrittenPledge.Size = new Size(1216, 80);
             this.CcGroupBoxContractExpirationLossWrittenPledge.TabIndex = 16;
             this.CcGroupBoxContractExpirationLossWrittenPledge.TabStop = false;
             this.CcGroupBoxContractExpirationLossWrittenPledge.Text = "失墜行為書類期間";
             // 
+            // CcButtonContractExpirationLossWrittenPledgeDelete
+            // 
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.Name = "CcButtonContractExpirationLossWrittenPledgeDelete";
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.Size = new Size(68, 22);
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.TabIndex = 90;
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.TabStop = false;
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.Text = "削除";
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationLossWrittenPledgeDelete.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationLossWrittenPledgePicture1
             // 
             this.CcButtonContractExpirationLossWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationLossWrittenPledgePicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationLossWrittenPledgePicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationLossWrittenPledgePicture1.Name = "CcButtonContractExpirationLossWrittenPledgePicture1";
             this.CcButtonContractExpirationLossWrittenPledgePicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationLossWrittenPledgePicture1.Size = new Size(84, 22);
@@ -1006,7 +1058,7 @@
             // CcButtonContractExpirationLossWrittenPledge
             // 
             this.CcButtonContractExpirationLossWrittenPledge.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationLossWrittenPledge.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationLossWrittenPledge.Location = new Point(1048, 20);
             this.CcButtonContractExpirationLossWrittenPledge.Name = "CcButtonContractExpirationLossWrittenPledge";
             this.CcButtonContractExpirationLossWrittenPledge.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationLossWrittenPledge.Size = new Size(84, 22);
@@ -1020,7 +1072,7 @@
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.Name = "CcDateTimeContractExpirationLossWrittenPledgeStartDate";
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate.TabIndex = 8;
@@ -1031,7 +1083,7 @@
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.Name = "CcDateTimeContractExpirationLossWrittenPledgeEndDate";
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate.TabIndex = 9;
@@ -1040,7 +1092,7 @@
             // labelEx22
             // 
             this.labelEx22.AutoSize = true;
-            this.labelEx22.Location = new Point(372, 24);
+            this.labelEx22.Location = new Point(332, 24);
             this.labelEx22.Name = "labelEx22";
             this.labelEx22.Size = new Size(19, 15);
             this.labelEx22.TabIndex = 10;
@@ -1049,7 +1101,7 @@
             // CcTextBoxContractExpirationLossWrittenPledgeMemo
             // 
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationLossWrittenPledgeMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationLossWrittenPledgeMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo.Name = "CcTextBoxContractExpirationLossWrittenPledgeMemo";
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo.TabIndex = 14;
@@ -1060,7 +1112,7 @@
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Name = "CcDateTimeContractExpirationLossWrittenPledgeStartDate1";
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLossWrittenPledgeStartDate1.TabIndex = 15;
@@ -1072,7 +1124,7 @@
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Name = "CcDateTimeContractExpirationLossWrittenPledgeEndDate1";
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLossWrittenPledgeEndDate1.TabIndex = 16;
@@ -1082,7 +1134,7 @@
             // 
             this.labelEx24.AutoSize = true;
             this.labelEx24.Enabled = false;
-            this.labelEx24.Location = new Point(372, 52);
+            this.labelEx24.Location = new Point(332, 52);
             this.labelEx24.Name = "labelEx24";
             this.labelEx24.Size = new Size(19, 15);
             this.labelEx24.TabIndex = 17;
@@ -1092,13 +1144,14 @@
             // 
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Enabled = false;
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Name = "CcTextBoxContractExpirationLossWrittenPledgeMemo1";
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationLossWrittenPledgeMemo1.TabIndex = 18;
             // 
             // CcGroupBoxContractExpirationWrittenPledge
             // 
+            this.CcGroupBoxContractExpirationWrittenPledge.Controls.Add(this.CcButtonContractExpirationWrittenPledgeDelete);
             this.CcGroupBoxContractExpirationWrittenPledge.Controls.Add(this.CcButtonContractExpirationWrittenPledgePicture1);
             this.CcGroupBoxContractExpirationWrittenPledge.Controls.Add(this.CcButtonContractExpirationWrittenPledge);
             this.CcGroupBoxContractExpirationWrittenPledge.Controls.Add(this.CcDateTimeContractExpirationWrittenPledgeStartDate);
@@ -1111,15 +1164,28 @@
             this.CcGroupBoxContractExpirationWrittenPledge.Controls.Add(this.CcTextBoxContractExpirationWrittenPledgeMemo1);
             this.CcGroupBoxContractExpirationWrittenPledge.Location = new Point(12, 688);
             this.CcGroupBoxContractExpirationWrittenPledge.Name = "CcGroupBoxContractExpirationWrittenPledge";
-            this.CcGroupBoxContractExpirationWrittenPledge.Size = new Size(1188, 80);
+            this.CcGroupBoxContractExpirationWrittenPledge.Size = new Size(1216, 80);
             this.CcGroupBoxContractExpirationWrittenPledge.TabIndex = 15;
             this.CcGroupBoxContractExpirationWrittenPledge.TabStop = false;
             this.CcGroupBoxContractExpirationWrittenPledge.Text = "誓約書期間";
             // 
+            // CcButtonContractExpirationWrittenPledgeDelete
+            // 
+            this.CcButtonContractExpirationWrittenPledgeDelete.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationWrittenPledgeDelete.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationWrittenPledgeDelete.Name = "CcButtonContractExpirationWrittenPledgeDelete";
+            this.CcButtonContractExpirationWrittenPledgeDelete.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationWrittenPledgeDelete.Size = new Size(68, 22);
+            this.CcButtonContractExpirationWrittenPledgeDelete.TabIndex = 89;
+            this.CcButtonContractExpirationWrittenPledgeDelete.TabStop = false;
+            this.CcButtonContractExpirationWrittenPledgeDelete.Text = "削除";
+            this.CcButtonContractExpirationWrittenPledgeDelete.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationWrittenPledgeDelete.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationWrittenPledgePicture1
             // 
             this.CcButtonContractExpirationWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationWrittenPledgePicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationWrittenPledgePicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationWrittenPledgePicture1.Name = "CcButtonContractExpirationWrittenPledgePicture1";
             this.CcButtonContractExpirationWrittenPledgePicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationWrittenPledgePicture1.Size = new Size(84, 22);
@@ -1131,7 +1197,7 @@
             // CcButtonContractExpirationWrittenPledge
             // 
             this.CcButtonContractExpirationWrittenPledge.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationWrittenPledge.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationWrittenPledge.Location = new Point(1048, 20);
             this.CcButtonContractExpirationWrittenPledge.Name = "CcButtonContractExpirationWrittenPledge";
             this.CcButtonContractExpirationWrittenPledge.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationWrittenPledge.Size = new Size(84, 22);
@@ -1145,7 +1211,7 @@
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationWrittenPledgeStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationWrittenPledgeStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.Name = "CcDateTimeContractExpirationWrittenPledgeStartDate";
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationWrittenPledgeStartDate.TabIndex = 8;
@@ -1156,7 +1222,7 @@
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationWrittenPledgeEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationWrittenPledgeEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.Name = "CcDateTimeContractExpirationWrittenPledgeEndDate";
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationWrittenPledgeEndDate.TabIndex = 9;
@@ -1165,7 +1231,7 @@
             // labelEx18
             // 
             this.labelEx18.AutoSize = true;
-            this.labelEx18.Location = new Point(372, 24);
+            this.labelEx18.Location = new Point(332, 24);
             this.labelEx18.Name = "labelEx18";
             this.labelEx18.Size = new Size(19, 15);
             this.labelEx18.TabIndex = 10;
@@ -1174,7 +1240,7 @@
             // CcTextBoxContractExpirationWrittenPledgeMemo
             // 
             this.CcTextBoxContractExpirationWrittenPledgeMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationWrittenPledgeMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationWrittenPledgeMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationWrittenPledgeMemo.Name = "CcTextBoxContractExpirationWrittenPledgeMemo";
             this.CcTextBoxContractExpirationWrittenPledgeMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationWrittenPledgeMemo.TabIndex = 14;
@@ -1185,7 +1251,7 @@
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Name = "CcDateTimeContractExpirationWrittenPledgeStartDate1";
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationWrittenPledgeStartDate1.TabIndex = 15;
@@ -1197,7 +1263,7 @@
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Name = "CcDateTimeContractExpirationWrittenPledgeEndDate1";
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationWrittenPledgeEndDate1.TabIndex = 16;
@@ -1207,7 +1273,7 @@
             // 
             this.labelEx20.AutoSize = true;
             this.labelEx20.Enabled = false;
-            this.labelEx20.Location = new Point(372, 52);
+            this.labelEx20.Location = new Point(332, 52);
             this.labelEx20.Name = "labelEx20";
             this.labelEx20.Size = new Size(19, 15);
             this.labelEx20.TabIndex = 17;
@@ -1217,14 +1283,16 @@
             // 
             this.CcTextBoxContractExpirationWrittenPledgeMemo1.Enabled = false;
             this.CcTextBoxContractExpirationWrittenPledgeMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationWrittenPledgeMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationWrittenPledgeMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationWrittenPledgeMemo1.Name = "CcTextBoxContractExpirationWrittenPledgeMemo1";
             this.CcTextBoxContractExpirationWrittenPledgeMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationWrittenPledgeMemo1.TabIndex = 18;
             // 
             // CcGroupBoxContractExpirationShortJob
             // 
+            this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcButtonContractExpirationShortJobDelete2);
             this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcButtonContractExpirationShortJobPicture2);
+            this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcButtonContractExpirationShortJobDelete1);
             this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcButtonContractExpirationShortJobPicture1);
             this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcButtonContractExpirationShortJob);
             this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcDateTimeContractExpirationShortJobStartDate);
@@ -1241,15 +1309,28 @@
             this.CcGroupBoxContractExpirationShortJob.Controls.Add(this.CcTextBoxContractExpirationShortJobMemo1);
             this.CcGroupBoxContractExpirationShortJob.Location = new Point(12, 576);
             this.CcGroupBoxContractExpirationShortJob.Name = "CcGroupBoxContractExpirationShortJob";
-            this.CcGroupBoxContractExpirationShortJob.Size = new Size(1188, 108);
+            this.CcGroupBoxContractExpirationShortJob.Size = new Size(1216, 108);
             this.CcGroupBoxContractExpirationShortJob.TabIndex = 14;
             this.CcGroupBoxContractExpirationShortJob.TabStop = false;
             this.CcGroupBoxContractExpirationShortJob.Text = "組合短期雇用期間";
             // 
+            // CcButtonContractExpirationShortJobDelete2
+            // 
+            this.CcButtonContractExpirationShortJobDelete2.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationShortJobDelete2.Location = new Point(1140, 76);
+            this.CcButtonContractExpirationShortJobDelete2.Name = "CcButtonContractExpirationShortJobDelete2";
+            this.CcButtonContractExpirationShortJobDelete2.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationShortJobDelete2.Size = new Size(68, 22);
+            this.CcButtonContractExpirationShortJobDelete2.TabIndex = 87;
+            this.CcButtonContractExpirationShortJobDelete2.TabStop = false;
+            this.CcButtonContractExpirationShortJobDelete2.Text = "削除";
+            this.CcButtonContractExpirationShortJobDelete2.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationShortJobDelete2.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationShortJobPicture2
             // 
             this.CcButtonContractExpirationShortJobPicture2.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationShortJobPicture2.Location = new Point(1088, 76);
+            this.CcButtonContractExpirationShortJobPicture2.Location = new Point(1048, 76);
             this.CcButtonContractExpirationShortJobPicture2.Name = "CcButtonContractExpirationShortJobPicture2";
             this.CcButtonContractExpirationShortJobPicture2.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationShortJobPicture2.Size = new Size(84, 22);
@@ -1258,10 +1339,23 @@
             this.CcButtonContractExpirationShortJobPicture2.UseVisualStyleBackColor = true;
             this.CcButtonContractExpirationShortJobPicture2.Click += this.ButtonEx_Click;
             // 
+            // CcButtonContractExpirationShortJobDelete1
+            // 
+            this.CcButtonContractExpirationShortJobDelete1.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationShortJobDelete1.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationShortJobDelete1.Name = "CcButtonContractExpirationShortJobDelete1";
+            this.CcButtonContractExpirationShortJobDelete1.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationShortJobDelete1.Size = new Size(68, 22);
+            this.CcButtonContractExpirationShortJobDelete1.TabIndex = 86;
+            this.CcButtonContractExpirationShortJobDelete1.TabStop = false;
+            this.CcButtonContractExpirationShortJobDelete1.Text = "削除";
+            this.CcButtonContractExpirationShortJobDelete1.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationShortJobDelete1.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationShortJobPicture1
             // 
             this.CcButtonContractExpirationShortJobPicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationShortJobPicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationShortJobPicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationShortJobPicture1.Name = "CcButtonContractExpirationShortJobPicture1";
             this.CcButtonContractExpirationShortJobPicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationShortJobPicture1.Size = new Size(84, 22);
@@ -1273,7 +1367,7 @@
             // CcButtonContractExpirationShortJob
             // 
             this.CcButtonContractExpirationShortJob.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationShortJob.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationShortJob.Location = new Point(1048, 20);
             this.CcButtonContractExpirationShortJob.Name = "CcButtonContractExpirationShortJob";
             this.CcButtonContractExpirationShortJob.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationShortJob.Size = new Size(84, 22);
@@ -1287,7 +1381,7 @@
             this.CcDateTimeContractExpirationShortJobStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationShortJobStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationShortJobStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationShortJobStartDate.Name = "CcDateTimeContractExpirationShortJobStartDate";
             this.CcDateTimeContractExpirationShortJobStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobStartDate.TabIndex = 8;
@@ -1298,7 +1392,7 @@
             this.CcDateTimeContractExpirationShortJobEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationShortJobEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationShortJobEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationShortJobEndDate.Name = "CcDateTimeContractExpirationShortJobEndDate";
             this.CcDateTimeContractExpirationShortJobEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobEndDate.TabIndex = 9;
@@ -1307,7 +1401,7 @@
             // labelEx14
             // 
             this.labelEx14.AutoSize = true;
-            this.labelEx14.Location = new Point(372, 24);
+            this.labelEx14.Location = new Point(332, 24);
             this.labelEx14.Name = "labelEx14";
             this.labelEx14.Size = new Size(19, 15);
             this.labelEx14.TabIndex = 10;
@@ -1316,7 +1410,7 @@
             // CcTextBoxContractExpirationShortJobMemo
             // 
             this.CcTextBoxContractExpirationShortJobMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationShortJobMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationShortJobMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationShortJobMemo.Name = "CcTextBoxContractExpirationShortJobMemo";
             this.CcTextBoxContractExpirationShortJobMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationShortJobMemo.TabIndex = 14;
@@ -1325,7 +1419,7 @@
             // 
             this.CcTextBoxContractExpirationShortJobMemo2.Enabled = false;
             this.CcTextBoxContractExpirationShortJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationShortJobMemo2.Location = new Point(588, 76);
+            this.CcTextBoxContractExpirationShortJobMemo2.Location = new Point(548, 76);
             this.CcTextBoxContractExpirationShortJobMemo2.Name = "CcTextBoxContractExpirationShortJobMemo2";
             this.CcTextBoxContractExpirationShortJobMemo2.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationShortJobMemo2.TabIndex = 22;
@@ -1336,7 +1430,7 @@
             this.CcDateTimeContractExpirationShortJobStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationShortJobStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationShortJobStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationShortJobStartDate1.Name = "CcDateTimeContractExpirationShortJobStartDate1";
             this.CcDateTimeContractExpirationShortJobStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobStartDate1.TabIndex = 15;
@@ -1346,7 +1440,7 @@
             // 
             this.labelEx15.AutoSize = true;
             this.labelEx15.Enabled = false;
-            this.labelEx15.Location = new Point(372, 80);
+            this.labelEx15.Location = new Point(332, 80);
             this.labelEx15.Name = "labelEx15";
             this.labelEx15.Size = new Size(19, 15);
             this.labelEx15.TabIndex = 21;
@@ -1358,7 +1452,7 @@
             this.CcDateTimeContractExpirationShortJobEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationShortJobEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationShortJobEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationShortJobEndDate1.Name = "CcDateTimeContractExpirationShortJobEndDate1";
             this.CcDateTimeContractExpirationShortJobEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobEndDate1.TabIndex = 16;
@@ -1370,7 +1464,7 @@
             this.CcDateTimeContractExpirationShortJobEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobEndDate2.Enabled = false;
             this.CcDateTimeContractExpirationShortJobEndDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobEndDate2.Location = new Point(392, 76);
+            this.CcDateTimeContractExpirationShortJobEndDate2.Location = new Point(352, 76);
             this.CcDateTimeContractExpirationShortJobEndDate2.Name = "CcDateTimeContractExpirationShortJobEndDate2";
             this.CcDateTimeContractExpirationShortJobEndDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobEndDate2.TabIndex = 20;
@@ -1380,7 +1474,7 @@
             // 
             this.labelEx16.AutoSize = true;
             this.labelEx16.Enabled = false;
-            this.labelEx16.Location = new Point(372, 52);
+            this.labelEx16.Location = new Point(332, 52);
             this.labelEx16.Name = "labelEx16";
             this.labelEx16.Size = new Size(19, 15);
             this.labelEx16.TabIndex = 17;
@@ -1392,7 +1486,7 @@
             this.CcDateTimeContractExpirationShortJobStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationShortJobStartDate2.Enabled = false;
             this.CcDateTimeContractExpirationShortJobStartDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationShortJobStartDate2.Location = new Point(188, 76);
+            this.CcDateTimeContractExpirationShortJobStartDate2.Location = new Point(148, 76);
             this.CcDateTimeContractExpirationShortJobStartDate2.Name = "CcDateTimeContractExpirationShortJobStartDate2";
             this.CcDateTimeContractExpirationShortJobStartDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationShortJobStartDate2.TabIndex = 19;
@@ -1402,13 +1496,15 @@
             // 
             this.CcTextBoxContractExpirationShortJobMemo1.Enabled = false;
             this.CcTextBoxContractExpirationShortJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationShortJobMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationShortJobMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationShortJobMemo1.Name = "CcTextBoxContractExpirationShortJobMemo1";
             this.CcTextBoxContractExpirationShortJobMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationShortJobMemo1.TabIndex = 18;
             // 
             // CcGroupBoxContractExpirationLongJob
             // 
+            this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcButtonContractExpirationLongJobDelete2);
+            this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcButtonContractExpirationLongJobDelete1);
             this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcButtonContractExpirationLongJobPicture2);
             this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcButtonContractExpirationLongJobPicture1);
             this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcButtonContractExpirationLongJob);
@@ -1426,15 +1522,41 @@
             this.CcGroupBoxContractExpirationLongJob.Controls.Add(this.CcTextBoxContractExpirationLongJobMemo1);
             this.CcGroupBoxContractExpirationLongJob.Location = new Point(12, 464);
             this.CcGroupBoxContractExpirationLongJob.Name = "CcGroupBoxContractExpirationLongJob";
-            this.CcGroupBoxContractExpirationLongJob.Size = new Size(1188, 108);
+            this.CcGroupBoxContractExpirationLongJob.Size = new Size(1216, 108);
             this.CcGroupBoxContractExpirationLongJob.TabIndex = 13;
             this.CcGroupBoxContractExpirationLongJob.TabStop = false;
             this.CcGroupBoxContractExpirationLongJob.Text = "組合長期雇用期間";
             // 
+            // CcButtonContractExpirationLongJobDelete2
+            // 
+            this.CcButtonContractExpirationLongJobDelete2.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationLongJobDelete2.Location = new Point(1140, 76);
+            this.CcButtonContractExpirationLongJobDelete2.Name = "CcButtonContractExpirationLongJobDelete2";
+            this.CcButtonContractExpirationLongJobDelete2.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationLongJobDelete2.Size = new Size(68, 22);
+            this.CcButtonContractExpirationLongJobDelete2.TabIndex = 85;
+            this.CcButtonContractExpirationLongJobDelete2.TabStop = false;
+            this.CcButtonContractExpirationLongJobDelete2.Text = "削除";
+            this.CcButtonContractExpirationLongJobDelete2.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationLongJobDelete2.Click += this.ButtonEx_Click;
+            // 
+            // CcButtonContractExpirationLongJobDelete1
+            // 
+            this.CcButtonContractExpirationLongJobDelete1.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationLongJobDelete1.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationLongJobDelete1.Name = "CcButtonContractExpirationLongJobDelete1";
+            this.CcButtonContractExpirationLongJobDelete1.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationLongJobDelete1.Size = new Size(68, 22);
+            this.CcButtonContractExpirationLongJobDelete1.TabIndex = 84;
+            this.CcButtonContractExpirationLongJobDelete1.TabStop = false;
+            this.CcButtonContractExpirationLongJobDelete1.Text = "削除";
+            this.CcButtonContractExpirationLongJobDelete1.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationLongJobDelete1.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationLongJobPicture2
             // 
             this.CcButtonContractExpirationLongJobPicture2.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationLongJobPicture2.Location = new Point(1088, 76);
+            this.CcButtonContractExpirationLongJobPicture2.Location = new Point(1048, 76);
             this.CcButtonContractExpirationLongJobPicture2.Name = "CcButtonContractExpirationLongJobPicture2";
             this.CcButtonContractExpirationLongJobPicture2.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationLongJobPicture2.Size = new Size(84, 22);
@@ -1446,7 +1568,7 @@
             // CcButtonContractExpirationLongJobPicture1
             // 
             this.CcButtonContractExpirationLongJobPicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationLongJobPicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationLongJobPicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationLongJobPicture1.Name = "CcButtonContractExpirationLongJobPicture1";
             this.CcButtonContractExpirationLongJobPicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationLongJobPicture1.Size = new Size(84, 22);
@@ -1458,7 +1580,7 @@
             // CcButtonContractExpirationLongJob
             // 
             this.CcButtonContractExpirationLongJob.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationLongJob.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationLongJob.Location = new Point(1048, 20);
             this.CcButtonContractExpirationLongJob.Name = "CcButtonContractExpirationLongJob";
             this.CcButtonContractExpirationLongJob.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationLongJob.Size = new Size(84, 22);
@@ -1472,7 +1594,7 @@
             this.CcDateTimeContractExpirationLongJobStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationLongJobStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationLongJobStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationLongJobStartDate.Name = "CcDateTimeContractExpirationLongJobStartDate";
             this.CcDateTimeContractExpirationLongJobStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobStartDate.TabIndex = 8;
@@ -1483,7 +1605,7 @@
             this.CcDateTimeContractExpirationLongJobEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationLongJobEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationLongJobEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationLongJobEndDate.Name = "CcDateTimeContractExpirationLongJobEndDate";
             this.CcDateTimeContractExpirationLongJobEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobEndDate.TabIndex = 9;
@@ -1492,7 +1614,7 @@
             // labelEx10
             // 
             this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(372, 24);
+            this.labelEx10.Location = new Point(332, 24);
             this.labelEx10.Name = "labelEx10";
             this.labelEx10.Size = new Size(19, 15);
             this.labelEx10.TabIndex = 10;
@@ -1501,7 +1623,7 @@
             // CcTextBoxContractExpirationLongJobMemo
             // 
             this.CcTextBoxContractExpirationLongJobMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationLongJobMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationLongJobMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationLongJobMemo.Name = "CcTextBoxContractExpirationLongJobMemo";
             this.CcTextBoxContractExpirationLongJobMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationLongJobMemo.TabIndex = 14;
@@ -1510,7 +1632,7 @@
             // 
             this.CcTextBoxContractExpirationLongJobMemo2.Enabled = false;
             this.CcTextBoxContractExpirationLongJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationLongJobMemo2.Location = new Point(588, 76);
+            this.CcTextBoxContractExpirationLongJobMemo2.Location = new Point(548, 76);
             this.CcTextBoxContractExpirationLongJobMemo2.Name = "CcTextBoxContractExpirationLongJobMemo2";
             this.CcTextBoxContractExpirationLongJobMemo2.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationLongJobMemo2.TabIndex = 22;
@@ -1521,7 +1643,7 @@
             this.CcDateTimeContractExpirationLongJobStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationLongJobStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationLongJobStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationLongJobStartDate1.Name = "CcDateTimeContractExpirationLongJobStartDate1";
             this.CcDateTimeContractExpirationLongJobStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobStartDate1.TabIndex = 15;
@@ -1531,7 +1653,7 @@
             // 
             this.labelEx11.AutoSize = true;
             this.labelEx11.Enabled = false;
-            this.labelEx11.Location = new Point(372, 80);
+            this.labelEx11.Location = new Point(332, 80);
             this.labelEx11.Name = "labelEx11";
             this.labelEx11.Size = new Size(19, 15);
             this.labelEx11.TabIndex = 21;
@@ -1543,7 +1665,7 @@
             this.CcDateTimeContractExpirationLongJobEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationLongJobEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationLongJobEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationLongJobEndDate1.Name = "CcDateTimeContractExpirationLongJobEndDate1";
             this.CcDateTimeContractExpirationLongJobEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobEndDate1.TabIndex = 16;
@@ -1555,7 +1677,7 @@
             this.CcDateTimeContractExpirationLongJobEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobEndDate2.Enabled = false;
             this.CcDateTimeContractExpirationLongJobEndDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobEndDate2.Location = new Point(392, 76);
+            this.CcDateTimeContractExpirationLongJobEndDate2.Location = new Point(352, 76);
             this.CcDateTimeContractExpirationLongJobEndDate2.Name = "CcDateTimeContractExpirationLongJobEndDate2";
             this.CcDateTimeContractExpirationLongJobEndDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobEndDate2.TabIndex = 20;
@@ -1565,7 +1687,7 @@
             // 
             this.labelEx12.AutoSize = true;
             this.labelEx12.Enabled = false;
-            this.labelEx12.Location = new Point(372, 52);
+            this.labelEx12.Location = new Point(332, 52);
             this.labelEx12.Name = "labelEx12";
             this.labelEx12.Size = new Size(19, 15);
             this.labelEx12.TabIndex = 17;
@@ -1577,7 +1699,7 @@
             this.CcDateTimeContractExpirationLongJobStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationLongJobStartDate2.Enabled = false;
             this.CcDateTimeContractExpirationLongJobStartDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationLongJobStartDate2.Location = new Point(188, 76);
+            this.CcDateTimeContractExpirationLongJobStartDate2.Location = new Point(148, 76);
             this.CcDateTimeContractExpirationLongJobStartDate2.Name = "CcDateTimeContractExpirationLongJobStartDate2";
             this.CcDateTimeContractExpirationLongJobStartDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationLongJobStartDate2.TabIndex = 19;
@@ -1587,13 +1709,15 @@
             // 
             this.CcTextBoxContractExpirationLongJobMemo1.Enabled = false;
             this.CcTextBoxContractExpirationLongJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationLongJobMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationLongJobMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationLongJobMemo1.Name = "CcTextBoxContractExpirationLongJobMemo1";
             this.CcTextBoxContractExpirationLongJobMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationLongJobMemo1.TabIndex = 18;
             // 
             // CcGroupBoxContractExpirationPartTimeJob
             // 
+            this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcButtonContractExpirationPartTimeJobDelete2);
+            this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcButtonContractExpirationPartTimeJobDelete1);
             this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcButtonContractExpirationPartTimeJobPicture2);
             this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcButtonContractExpirationPartTimeJobPicture1);
             this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcButtonContractExpirationPartTimeJob);
@@ -1611,15 +1735,41 @@
             this.CcGroupBoxContractExpirationPartTimeJob.Controls.Add(this.CcTextBoxContractExpirationPartTimeJobMemo1);
             this.CcGroupBoxContractExpirationPartTimeJob.Location = new Point(12, 352);
             this.CcGroupBoxContractExpirationPartTimeJob.Name = "CcGroupBoxContractExpirationPartTimeJob";
-            this.CcGroupBoxContractExpirationPartTimeJob.Size = new Size(1188, 108);
+            this.CcGroupBoxContractExpirationPartTimeJob.Size = new Size(1216, 108);
             this.CcGroupBoxContractExpirationPartTimeJob.TabIndex = 12;
             this.CcGroupBoxContractExpirationPartTimeJob.TabStop = false;
             this.CcGroupBoxContractExpirationPartTimeJob.Text = "長期アルバイト更新期間";
             // 
+            // CcButtonContractExpirationPartTimeJobDelete2
+            // 
+            this.CcButtonContractExpirationPartTimeJobDelete2.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationPartTimeJobDelete2.Location = new Point(1140, 76);
+            this.CcButtonContractExpirationPartTimeJobDelete2.Name = "CcButtonContractExpirationPartTimeJobDelete2";
+            this.CcButtonContractExpirationPartTimeJobDelete2.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationPartTimeJobDelete2.Size = new Size(68, 22);
+            this.CcButtonContractExpirationPartTimeJobDelete2.TabIndex = 83;
+            this.CcButtonContractExpirationPartTimeJobDelete2.TabStop = false;
+            this.CcButtonContractExpirationPartTimeJobDelete2.Text = "削除";
+            this.CcButtonContractExpirationPartTimeJobDelete2.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationPartTimeJobDelete2.Click += this.ButtonEx_Click;
+            // 
+            // CcButtonContractExpirationPartTimeJobDelete1
+            // 
+            this.CcButtonContractExpirationPartTimeJobDelete1.ForeColor = SystemColors.ControlText;
+            this.CcButtonContractExpirationPartTimeJobDelete1.Location = new Point(1140, 48);
+            this.CcButtonContractExpirationPartTimeJobDelete1.Name = "CcButtonContractExpirationPartTimeJobDelete1";
+            this.CcButtonContractExpirationPartTimeJobDelete1.SetTextDirectionVertical = "";
+            this.CcButtonContractExpirationPartTimeJobDelete1.Size = new Size(68, 22);
+            this.CcButtonContractExpirationPartTimeJobDelete1.TabIndex = 33;
+            this.CcButtonContractExpirationPartTimeJobDelete1.TabStop = false;
+            this.CcButtonContractExpirationPartTimeJobDelete1.Text = "削除";
+            this.CcButtonContractExpirationPartTimeJobDelete1.UseVisualStyleBackColor = true;
+            this.CcButtonContractExpirationPartTimeJobDelete1.Click += this.ButtonEx_Click;
+            // 
             // CcButtonContractExpirationPartTimeJobPicture2
             // 
             this.CcButtonContractExpirationPartTimeJobPicture2.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationPartTimeJobPicture2.Location = new Point(1088, 76);
+            this.CcButtonContractExpirationPartTimeJobPicture2.Location = new Point(1048, 76);
             this.CcButtonContractExpirationPartTimeJobPicture2.Name = "CcButtonContractExpirationPartTimeJobPicture2";
             this.CcButtonContractExpirationPartTimeJobPicture2.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationPartTimeJobPicture2.Size = new Size(84, 22);
@@ -1631,7 +1781,7 @@
             // CcButtonContractExpirationPartTimeJobPicture1
             // 
             this.CcButtonContractExpirationPartTimeJobPicture1.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationPartTimeJobPicture1.Location = new Point(1088, 48);
+            this.CcButtonContractExpirationPartTimeJobPicture1.Location = new Point(1048, 48);
             this.CcButtonContractExpirationPartTimeJobPicture1.Name = "CcButtonContractExpirationPartTimeJobPicture1";
             this.CcButtonContractExpirationPartTimeJobPicture1.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationPartTimeJobPicture1.Size = new Size(84, 22);
@@ -1643,7 +1793,7 @@
             // CcButtonContractExpirationPartTimeJob
             // 
             this.CcButtonContractExpirationPartTimeJob.ForeColor = SystemColors.ControlText;
-            this.CcButtonContractExpirationPartTimeJob.Location = new Point(1088, 20);
+            this.CcButtonContractExpirationPartTimeJob.Location = new Point(1048, 20);
             this.CcButtonContractExpirationPartTimeJob.Name = "CcButtonContractExpirationPartTimeJob";
             this.CcButtonContractExpirationPartTimeJob.SetTextDirectionVertical = "";
             this.CcButtonContractExpirationPartTimeJob.Size = new Size(84, 22);
@@ -1657,7 +1807,7 @@
             this.CcDateTimeContractExpirationPartTimeJobStartDate.CultureFlag = false;
             this.CcDateTimeContractExpirationPartTimeJobStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobStartDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobStartDate.Location = new Point(188, 20);
+            this.CcDateTimeContractExpirationPartTimeJobStartDate.Location = new Point(148, 20);
             this.CcDateTimeContractExpirationPartTimeJobStartDate.Name = "CcDateTimeContractExpirationPartTimeJobStartDate";
             this.CcDateTimeContractExpirationPartTimeJobStartDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobStartDate.TabIndex = 8;
@@ -1668,7 +1818,7 @@
             this.CcDateTimeContractExpirationPartTimeJobEndDate.CultureFlag = false;
             this.CcDateTimeContractExpirationPartTimeJobEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobEndDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobEndDate.Location = new Point(392, 20);
+            this.CcDateTimeContractExpirationPartTimeJobEndDate.Location = new Point(352, 20);
             this.CcDateTimeContractExpirationPartTimeJobEndDate.Name = "CcDateTimeContractExpirationPartTimeJobEndDate";
             this.CcDateTimeContractExpirationPartTimeJobEndDate.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobEndDate.TabIndex = 9;
@@ -1677,7 +1827,7 @@
             // labelEx6
             // 
             this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(372, 24);
+            this.labelEx6.Location = new Point(332, 24);
             this.labelEx6.Name = "labelEx6";
             this.labelEx6.Size = new Size(19, 15);
             this.labelEx6.TabIndex = 10;
@@ -1686,7 +1836,7 @@
             // CcTextBoxContractExpirationPartTimeJobMemo
             // 
             this.CcTextBoxContractExpirationPartTimeJobMemo.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationPartTimeJobMemo.Location = new Point(588, 20);
+            this.CcTextBoxContractExpirationPartTimeJobMemo.Location = new Point(548, 20);
             this.CcTextBoxContractExpirationPartTimeJobMemo.Name = "CcTextBoxContractExpirationPartTimeJobMemo";
             this.CcTextBoxContractExpirationPartTimeJobMemo.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationPartTimeJobMemo.TabIndex = 14;
@@ -1695,7 +1845,7 @@
             // 
             this.CcTextBoxContractExpirationPartTimeJobMemo2.Enabled = false;
             this.CcTextBoxContractExpirationPartTimeJobMemo2.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationPartTimeJobMemo2.Location = new Point(588, 76);
+            this.CcTextBoxContractExpirationPartTimeJobMemo2.Location = new Point(548, 76);
             this.CcTextBoxContractExpirationPartTimeJobMemo2.Name = "CcTextBoxContractExpirationPartTimeJobMemo2";
             this.CcTextBoxContractExpirationPartTimeJobMemo2.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationPartTimeJobMemo2.TabIndex = 22;
@@ -1706,7 +1856,7 @@
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.Enabled = false;
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobStartDate1.Location = new Point(188, 48);
+            this.CcDateTimeContractExpirationPartTimeJobStartDate1.Location = new Point(148, 48);
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.Name = "CcDateTimeContractExpirationPartTimeJobStartDate1";
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobStartDate1.TabIndex = 15;
@@ -1716,7 +1866,7 @@
             // 
             this.labelEx8.AutoSize = true;
             this.labelEx8.Enabled = false;
-            this.labelEx8.Location = new Point(372, 80);
+            this.labelEx8.Location = new Point(332, 80);
             this.labelEx8.Name = "labelEx8";
             this.labelEx8.Size = new Size(19, 15);
             this.labelEx8.TabIndex = 21;
@@ -1728,7 +1878,7 @@
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.Enabled = false;
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobEndDate1.Location = new Point(392, 48);
+            this.CcDateTimeContractExpirationPartTimeJobEndDate1.Location = new Point(352, 48);
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.Name = "CcDateTimeContractExpirationPartTimeJobEndDate1";
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobEndDate1.TabIndex = 16;
@@ -1740,7 +1890,7 @@
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.Enabled = false;
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobEndDate2.Location = new Point(392, 76);
+            this.CcDateTimeContractExpirationPartTimeJobEndDate2.Location = new Point(352, 76);
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.Name = "CcDateTimeContractExpirationPartTimeJobEndDate2";
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobEndDate2.TabIndex = 20;
@@ -1750,7 +1900,7 @@
             // 
             this.labelEx7.AutoSize = true;
             this.labelEx7.Enabled = false;
-            this.labelEx7.Location = new Point(372, 52);
+            this.labelEx7.Location = new Point(332, 52);
             this.labelEx7.Name = "labelEx7";
             this.labelEx7.Size = new Size(19, 15);
             this.labelEx7.TabIndex = 17;
@@ -1762,7 +1912,7 @@
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.Enabled = false;
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeContractExpirationPartTimeJobStartDate2.Location = new Point(188, 76);
+            this.CcDateTimeContractExpirationPartTimeJobStartDate2.Location = new Point(148, 76);
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.Name = "CcDateTimeContractExpirationPartTimeJobStartDate2";
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.Size = new Size(180, 23);
             this.CcDateTimeContractExpirationPartTimeJobStartDate2.TabIndex = 19;
@@ -1772,7 +1922,7 @@
             // 
             this.CcTextBoxContractExpirationPartTimeJobMemo1.Enabled = false;
             this.CcTextBoxContractExpirationPartTimeJobMemo1.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxContractExpirationPartTimeJobMemo1.Location = new Point(588, 48);
+            this.CcTextBoxContractExpirationPartTimeJobMemo1.Location = new Point(548, 48);
             this.CcTextBoxContractExpirationPartTimeJobMemo1.Name = "CcTextBoxContractExpirationPartTimeJobMemo1";
             this.CcTextBoxContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
             this.CcTextBoxContractExpirationPartTimeJobMemo1.TabIndex = 18;
@@ -1782,9 +1932,9 @@
             this.CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
             this.CcPictureBox1.ContextMenuStrip = this.ContextMenuStripEx1;
             this.CcPictureBox1.Dock = DockStyle.Fill;
-            this.CcPictureBox1.Location = new Point(1233, 67);
+            this.CcPictureBox1.Location = new Point(1253, 67);
             this.CcPictureBox1.Name = "CcPictureBox1";
-            this.CcPictureBox1.Size = new Size(668, 947);
+            this.CcPictureBox1.Size = new Size(648, 947);
             this.CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             this.CcPictureBox1.TabIndex = 35;
             this.CcPictureBox1.TabStop = false;
@@ -1860,7 +2010,7 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExMiddle;
-        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton CcButtonUpdate;
         private CcControl.CcLabel labelEx1;
         private CcControl.CcDateTime CcDateTimeExpirationEndDate;
         private CcControl.CcDateTime CcDateTimeExpirationStartDate;
@@ -2000,5 +2150,15 @@
         private CcControl.CcLabel labelEx27;
         private CcControl.CcLabel labelEx29;
         private ToolStripMenuItem ToolStripMenuItemOpen;
+        private CcControl.CcButton CcButtonExpirationDelete;
+        private CcControl.CcButton CcButtonContractExpirationNoticeDelete;
+        private CcControl.CcButton CcButtonContractExpirationLossWrittenPledgeDelete;
+        private CcControl.CcButton CcButtonContractExpirationWrittenPledgeDelete;
+        private CcControl.CcButton CcButtonContractExpirationShortJobDelete2;
+        private CcControl.CcButton CcButtonContractExpirationShortJobDelete1;
+        private CcControl.CcButton CcButtonContractExpirationLongJobDelete2;
+        private CcControl.CcButton CcButtonContractExpirationLongJobDelete1;
+        private CcControl.CcButton CcButtonContractExpirationPartTimeJobDelete2;
+        private CcControl.CcButton CcButtonContractExpirationPartTimeJobDelete1;
     }
 }

@@ -659,5 +659,43 @@ namespace CcControl {
                 this.Refresh();
             }
         }
+
+        /// <summary>
+        /// 外部からToolStripMenuItemを有効/無効を切り替えるためのメソッド
+        /// 引数の文字列とToolStripMenuItemのNameプロパティが一致するものを有効にする
+        /// </summary>
+        /// <param name="toolStripMenuItemNames">Nullの場合は全て無効にする</param>
+        public void SetToolStripMenuItemEnables(string[]? toolStripMenuItemNames) {
+            // null の場合は全て false にする
+            if (toolStripMenuItemNames == null) {
+                SetEnableRecursive(contextMenuStrip.Items, Array.Empty<string>());
+                return;
+            }
+
+            // 指定された名前だけ true、それ以外 false
+            SetEnableRecursive(contextMenuStrip.Items, toolStripMenuItemNames);
+        }
+        private void SetEnableRecursive(ToolStripItemCollection items, string[] enableNames) {
+            int length = items.Count;
+
+            for (int i = 0; i < length; i++) {
+                ToolStripItem item = items[i];
+                ToolStripMenuItem? menuItem = item as ToolStripMenuItem;
+
+                if (menuItem == null) {
+                    continue;
+                }
+
+                // 名前一致で Enabled を決定
+                bool enable = enableNames.Contains(menuItem.Name);
+
+                menuItem.Enabled = enable;
+
+                // 子メニューがある場合は再帰処理
+                if (menuItem.HasDropDownItems) {
+                    SetEnableRecursive(menuItem.DropDownItems, enableNames);
+                }
+            }
+        }
     }
 }

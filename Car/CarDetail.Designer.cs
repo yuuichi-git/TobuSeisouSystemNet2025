@@ -207,6 +207,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(1696, 12);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -976,7 +977,7 @@
             // 
             this.ComboBoxExDigitalTachographType.FormattingEnabled = true;
             this.ComboBoxExDigitalTachographType.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExDigitalTachographType.Items.AddRange(new object[] { "YDX-8", "YDX-7", "YDX-3α" });
+            this.ComboBoxExDigitalTachographType.Items.AddRange(new object[] { "YDX-8", "YDX-7", "Y-eye3T" });
             this.ComboBoxExDigitalTachographType.Location = new Point(204, 216);
             this.ComboBoxExDigitalTachographType.Name = "ComboBoxExDigitalTachographType";
             this.ComboBoxExDigitalTachographType.Size = new Size(148, 23);
@@ -1213,7 +1214,7 @@
             // ToolStripMenuItemOpen
             // 
             this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
+            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
             this.ToolStripMenuItemOpen.Text = "Open(PDF)";
             // 
             // ToolStripMenuItemPaste
@@ -1225,7 +1226,7 @@
             // ToolStripMenuItemDelete
             // 
             this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
-            this.ToolStripMenuItemDelete.Size = new Size(180, 22);
+            this.ToolStripMenuItemDelete.Size = new Size(132, 22);
             this.ToolStripMenuItemDelete.Text = "Delete";
             // 
             // PictureBoxExSubPicture

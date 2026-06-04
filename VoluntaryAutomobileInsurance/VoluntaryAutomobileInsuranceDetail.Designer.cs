@@ -44,6 +44,7 @@
             this.CcComboBoxVehicleType = new CcControl.CcComboBox();
             this.CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             this.ToolStripMenuItemOpen = new ToolStripMenuItem();
+            this.ToolStripMenuItemPaste = new ToolStripMenuItem();
             this.ToolStripMenuItemDelete = new ToolStripMenuItem();
             this.CcTableLayoutPanelBase.SuspendLayout();
             this.CcTabControl1.SuspendLayout();
@@ -267,21 +268,27 @@
             // 
             // CcContextMenuStrip1
             // 
-            this.CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemDelete });
+            this.CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDelete });
             this.CcContextMenuStrip1.Name = "CcContextMenuStrip1";
-            this.CcContextMenuStrip1.Size = new Size(133, 48);
+            this.CcContextMenuStrip1.Size = new Size(156, 70);
             this.CcContextMenuStrip1.ItemClicked += this.ContextMenuStripEx_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 
             this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            this.ToolStripMenuItemOpen.Size = new Size(132, 22);
+            this.ToolStripMenuItemOpen.Size = new Size(155, 22);
             this.ToolStripMenuItemOpen.Text = "Open(PDF)";
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            this.ToolStripMenuItemPaste.Size = new Size(155, 22);
+            this.ToolStripMenuItemPaste.Text = "Paste(ClipBord)";
             // 
             // ToolStripMenuItemDelete
             // 
             this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
-            this.ToolStripMenuItemDelete.Size = new Size(132, 22);
+            this.ToolStripMenuItemDelete.Size = new Size(155, 22);
             this.ToolStripMenuItemDelete.Text = "Delete";
             // 
             // VoluntaryAutomobileInsuranceDetail
@@ -327,5 +334,6 @@
         private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemOpen;
         private ToolStripMenuItem ToolStripMenuItemDelete;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
     }
 }

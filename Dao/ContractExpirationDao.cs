@@ -149,7 +149,12 @@ namespace Dao {
             return listContractExpirationVo;
         }
 
-        public List<ContractExpirationVo> SelectOneContractExpirationP(int staffCode) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        public List<ContractExpirationVo> SelectSomeContractExpirationP(int staffCode) {
             List<ContractExpirationVo> listContractExpirationVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT Code," +
@@ -190,7 +195,7 @@ namespace Dao {
         }
 
         public int InsertOneContractExpiration(ContractExpirationVo contractExpirationVo) {
-            var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_ContractExpiration(Code," +
                                                                       "StaffCode," +
                                                                       "StartDate," +
@@ -243,6 +248,28 @@ namespace Dao {
                                      "AND EndDate = '" + contractExpirationVo.EndDate + "'";
             try {
                 sqlCommand.Parameters.Add("@Picture", SqlDbType.Image, contractExpirationVo.Picture.Length).Value = contractExpirationVo.Picture;
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="staffCode"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public int DeleteOneContractExpiration(int code, int staffCode, DateTime startDate, DateTime endDate) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "DELETE FROM H_ContractExpiration " +
+                                     "WHERE Code = " + code + " " +
+                                     "  AND StaffCode = " + staffCode + " " +
+                                     "  AND StartDate = '" + startDate + "' " +
+                                     "  AND EndDate = '" + endDate + "'";
+            try {
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

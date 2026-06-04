@@ -1,6 +1,8 @@
 ﻿/*
  * 2026-05-05
  */
+using System.Drawing.Printing;
+
 using CcControl;
 
 using Common;
@@ -56,6 +58,24 @@ namespace DriversReport {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemPrint",
+                "ToolStripMenuItemPrintA4",
+                "ToolStripMenuItemHelp"
+            };
+            this.CcMenuStrip1.ChangeEnable(listString);
+            /*
+             * プリンターの一覧を取得後、通常使うプリンター名をセットする
+             */
+            foreach (string item in new PrintUtility().GetAllPrinterName())
+                this.ComboBoxExPrinterName.Items.Add(item);
+            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+
             CcDateTimePickerOperationStartDate.Value = _dateUtility.GetBeginOfMonth(DateTime.Now);
             CcDateTimePickerOperationEndDate.Value = _dateUtility.GetEndOfMonth(DateTime.Now);
             InitializeCcComboBoxStaffMaster();
@@ -77,6 +97,7 @@ namespace DriversReport {
                                                                                                                    ((CcComboBoxStaffMasterVo)CcComboBoxStaffMaster1.SelectedItem).StaffMasterVo.StaffCode));
         }
 
+        private PrintDocument _printDocument = new();
         /// <summary>
         /// 
         /// </summary>
@@ -84,7 +105,28 @@ namespace DriversReport {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                   // アプリケーションを終了する
+                /*
+                 * A4で印刷する
+                 */
+                case "ToolStripMenuItemPrintA4":
+                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);                         // Eventを登録
+                    _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;                           // 出力先プリンタを指定します。
+                    _printDocument.DefaultPageSettings.Landscape = false;                                                   // 用紙の向きを設定(横：true、縦：false)
+                    /*
+                     * プリンタがサポートしている用紙サイズを調べる
+                     */
+                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                        if (paperSize.Kind == PaperKind.A4) {                                                               // A4用紙に設定する
+                            _printDocument.DefaultPageSettings.PaperSize = paperSize;
+                            break;
+                        }
+                    }
+                    _printDocument.PrinterSettings.Copies = 1;                                                              // 印刷部数を指定します。
+                    _printDocument.PrinterSettings.Duplex = Duplex.Default;                                                 // 片面印刷に設定します。
+                    _printDocument.PrinterSettings.DefaultPageSettings.Color = true;                                        // カラー印刷に設定します。
+                    _printDocument.Print();                                                                                 // 印刷する
+                    break;
+                case "ToolStripMenuItemExit":                                                                               // アプリケーションを終了する
                     this.Close();
                     break;
             }
@@ -144,6 +186,9 @@ namespace DriversReport {
             return sheetView;
         }
 
+        /// <summary>
+        /// InitializeCcComboBoxStaffMaster
+        /// </summary>
         private void InitializeCcComboBoxStaffMaster() {
             CcComboBoxStaffMaster1.Items.Clear();
             foreach (StaffMasterVo staffMasterVo in _staffMasterDao.SelectAllStaffMaster(null, null, null, false)) {
@@ -172,6 +217,20 @@ namespace DriversReport {
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
+            // 印刷ページ（1ページ目）の描画を行う
+            Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
+            // e.Graphicsへ出力(page パラメータは、０からではなく１から始まります)
+            this.SpreadList.OwnerPrintDraw(e.Graphics, rectangle, 0, 1);
+            // 印刷終了を指定
+            e.HasMorePages = false;
         }
 
         /// <summary>

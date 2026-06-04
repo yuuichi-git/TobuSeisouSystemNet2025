@@ -1,5 +1,7 @@
 ﻿/*
  * 2026-05-18
+ * PdfiumViewer.Core                                // PdfiumViewer のコアライブラリー .NEt 6.0 以降で動作
+ * HiraokaHyperTools.PdfiumViewer.Native.Windows    // PdfiumViewer のネイティブライブラリー Windows 用
  */
 using PdfiumViewer;
 

@@ -9,6 +9,25 @@ using Vo;
 
 namespace StockBox {
     public partial class StockBoxs : Form {
+        /*
+         * 指定された FlowLayoutPanel 内の全コントロールを安全に削除するメソッド。
+         * 
+         * 【重要ポイント】
+         * 1. Controls.Clear() ではコントロールのハンドルが破棄されず、メモリリークの原因になる。
+         *    → 必ず Dispose() を明示的に呼び出す必要がある。
+         * 
+         * 2. FlowLayoutPanel はコントロール削除のたびにレイアウト再計算・再描画が走るため、
+         *    大量のコントロールを削除すると画面が激しくちらつく。
+         *    → SuspendLayout() と WM_SETREDRAW で描画を一時停止し、最後にまとめて再描画する。
+         * 
+         * 3. コントロールは「後ろから」Dispose することが重要。
+         *    → インデックスがずれず、安全に削除できる。
+         */
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, bool wParam, int lParam);
+        private const int WM_SETREDRAW = 0x000B;
+
+
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         /*
          * 参照
@@ -63,10 +82,9 @@ namespace StockBox {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"
             };
             this.MenuStripEx1.ChangeEnable(listString);
             /*
@@ -110,7 +128,7 @@ namespace StockBox {
                 case "ButtonExSet":
                     _selectedPanelName = "SetLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArraySetLabel());
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -119,7 +137,7 @@ namespace StockBox {
                 case "ButtonExCar":
                     _selectedPanelName = "CarLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayCarLabel(_board.GetAllCarLabel()));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -128,7 +146,7 @@ namespace StockBox {
                 case "ButtonExFullTime":
                     _selectedPanelName = "StaffLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExFullTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -137,7 +155,7 @@ namespace StockBox {
                 case "ButtonExPartTime":
                     _selectedPanelName = "StaffLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExPartTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -146,7 +164,7 @@ namespace StockBox {
                 case "ButtonExLongTime":
                     _selectedPanelName = "StaffLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExLongTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -155,7 +173,7 @@ namespace StockBox {
                 case "ButtonExShortTime":
                     _selectedPanelName = "StaffLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExShortTime"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -164,7 +182,7 @@ namespace StockBox {
                 case "ButtonExDispatch":
                     _selectedPanelName = "StaffLabel";
                     try {
-                        this.RemoveControls();
+                        this.RemoveControls(this._stockBoxPanel);
                         this._stockBoxPanel.Controls.AddRange(GetArrayStaffLabel(_board.GetAllStaffLabel(), "ButtonExDispatch"));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -210,7 +228,7 @@ namespace StockBox {
             setLabel.TelCallingFlag = false; // 電話連絡(2024-12-11の時点では、電話連絡確認機能は利用していない
             setLabel.FaxTransmissionFlag = false;
             //// Eventを登録
-            //setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+            setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             //setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //setLabel.SetLabel_OnMouseClick += OnMouseClick;
             //setLabel.SetLabel_OnMouseDoubleClick += OnMouseDoubleClick;
@@ -263,7 +281,7 @@ namespace StockBox {
             carLabel.ParentControl = this._stockBoxPanel;
             carLabel.ProxyFlag = false;
             //// Eventを登録
-            //carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+            carLabel.CarLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             //carLabel.CarLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //carLabel.CarLabel_OnMouseClick += OnMouseClick;
             //carLabel.CarLabel_OnMouseDoubleClick += OnMouseDoubleClick;
@@ -323,7 +341,7 @@ namespace StockBox {
             staffLabel.RollCallFlag = false;
             staffLabel.RollCallYmdHms = _defaultDateTime;
             //// Eventを登録
-            //staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
+            staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
             //staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             //staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
             //staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
@@ -331,6 +349,34 @@ namespace StockBox {
             //staffLabel.MouseMove += OnMouseMove;
             //staffLabel.MouseUp += OnMouseUp;
             return staffLabel;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
+            switch (((ContextMenuStrip)sender).SourceControl) {
+                case SetLabel setLabel:
+                    /*
+                     * ToolStripMenuItemを有効・無効にする
+                     */
+                    setLabel.SetToolStripMenuItemEnables(null);
+                    break;
+                case CarLabel carLabel:
+                    /*
+                     * ToolStripMenuItemを有効・無効にする
+                     */
+                    carLabel.SetToolStripMenuItemEnables(null);
+                    break;
+                case StaffLabel staffLabel:
+                    /*
+                     * ToolStripMenuItemを有効・無効にする
+                     */
+                    staffLabel.SetToolStripMenuItemEnables(null);
+                    break;
+            }
         }
 
         /// <summary>
@@ -383,11 +429,7 @@ namespace StockBox {
         /// </summary>
         /// <param name="e"></param>
         private void OnDragOver(object sender, DragEventArgs e) {
-            if (_selectedPanelName == _dragEnterObject.Name) {
-                e.Effect = DragDropEffects.Move;
-            } else {
-                e.Effect = DragDropEffects.None;
-            }
+            e.Effect = _selectedPanelName == _dragEnterObject.Name ? DragDropEffects.Move : DragDropEffects.None;
         }
 
         /// <summary>
@@ -446,13 +488,24 @@ namespace StockBox {
         /// <summary>
         /// 
         /// </summary>
-        public void RemoveControls() {
-            /*
-             * メソッドをClear呼び出してもコントロール ハンドルはメモリから削除されません。 メモリリークを回避するにはメソッドをDispose明示的に呼び出す必要があります。
-             * ※後ろから解放している点が重要らしい。
-             */
-            for (int i = this._stockBoxPanel.Controls.Count - 1; 0 <= i; i--)
-                this._stockBoxPanel.Controls[i].Dispose();
+        /// <param name="stockBoxPanel"></param>
+        public void RemoveControls(StockBoxPanel stockBoxPanel) {
+
+            SendMessage(stockBoxPanel.Handle, WM_SETREDRAW, false, 0);                  // 描画停止
+
+            try {
+                stockBoxPanel.SuspendLayout();
+
+                for (int i = stockBoxPanel.Controls.Count - 1; 0 <= i; i--)
+                    stockBoxPanel.Controls[i].Dispose();
+            } finally {
+                stockBoxPanel.ResumeLayout(true);
+
+                SendMessage(stockBoxPanel.Handle, WM_SETREDRAW, true, 0);               // 描画再開
+
+                stockBoxPanel.Invalidate();
+                stockBoxPanel.Update();
+            }
         }
 
         /// <summary>

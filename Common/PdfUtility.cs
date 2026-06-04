@@ -3,18 +3,19 @@
  */
 using System.Diagnostics;
 
+using PdfSharpCore.Drawing;
+
 using Windows.Data.Pdf;
 using Windows.Storage.Streams;
 
 namespace Common {
     public class PdfUtility {
+
         /// <summary>
-        /// 単一の PDF ページを Bitmap に変換する
+        /// 単一の PDF ページを Bitmap に変換する（Windows.Data.Pdf 使用）
         /// </summary>
-        /// <param name="contextMenuStrip"></param>
-        /// <returns></returns>
         public async Task<Bitmap?> ConvertPdfToImage(ContextMenuStrip contextMenuStrip) {
-            contextMenuStrip.Hide();                                                                                    // コンテキストメニューを閉じる
+            contextMenuStrip.Hide();
 
             using OpenFileDialog openFileDialog = new();
             openFileDialog.Title = "ファイルを選択してください";
@@ -22,9 +23,8 @@ namespace Common {
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             DialogResult result = openFileDialog.ShowDialog();
-            if (result != DialogResult.OK || result == DialogResult.None) {
+            if (result != DialogResult.OK)
                 return null;
-            }
 
             try {
                 using FileStream fileStream = File.OpenRead(openFileDialog.FileName);
@@ -33,54 +33,39 @@ namespace Common {
 
                 using PdfPage pdfPage = pdfDocument.GetPage(0);
 
-                /*
-                 * A4:210mm × 297mm 
-                 * 300dpi → 300 / 25.4 = 11.811 px / mm
-                 * 210mm × 11.811 = 2480px
-                 * 297mm × 11.811 = 3508px
-                 */
-                PdfPageRenderOptions pdfPageRenderOptions = new();
-                pdfPageRenderOptions.DestinationWidth = 2480;
-                pdfPageRenderOptions.DestinationHeight = 3508;
+                PdfPageRenderOptions options = new();
+                options.DestinationWidth = 2480;
+                options.DestinationHeight = 3508;
 
-                using InMemoryRandomAccessStream inMemoryRandomAccessStream = new();
-                await pdfPage.RenderToStreamAsync(inMemoryRandomAccessStream, pdfPageRenderOptions);
-                inMemoryRandomAccessStream.Seek(0);
+                using InMemoryRandomAccessStream renderStream = new();
+                await pdfPage.RenderToStreamAsync(renderStream, options);
+                renderStream.Seek(0);
 
-                /*
-                 * ストリームを完全コピーして安全な Bitmap を作る
-                 */
-                using MemoryStream memoryStream = new();
-                inMemoryRandomAccessStream.AsStream().CopyTo(memoryStream);
-                memoryStream.Position = 0;
+                using MemoryStream ms = new();
+                renderStream.AsStream().CopyTo(ms);
+                ms.Position = 0;
 
-                Bitmap bitmap = new(memoryStream);                                                                      // 呼び出し側で Dispose
+                Bitmap bitmap = new(ms);
                 return bitmap;
-            } catch (Exception exception) {
-                Debug.WriteLine(string.Concat("ConvertPdfToImage:", exception));
+            } catch (Exception ex) {
+                Debug.WriteLine("ConvertPdfToImage:" + ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// ファイル選択ダイアログを開いて PDF を byte[] に変換する
+        /// PDF を byte[] に変換する（File.ReadAllBytes）
         /// </summary>
-        /// <param name="contextMenuStrip"></param>
-        /// <returns></returns>
         public byte[]? ConvertPdfToByte(ContextMenuStrip contextMenuStrip) {
-            contextMenuStrip.Hide(); // コンテキストメニューを閉じる
+            contextMenuStrip.Hide();
 
             using OpenFileDialog openFileDialog = new();
             openFileDialog.Title = "PDFファイルを選択してください";
             openFileDialog.Filter = "PDF ファイル (*.pdf)|*.pdf";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
-            // ★ 重要：親ウィンドウを指定する
             IWin32Window owner = contextMenuStrip.SourceControl?.FindForm() ?? null;
-
-            DialogResult result = owner != null
-                ? openFileDialog.ShowDialog(owner)
-                : openFileDialog.ShowDialog();
+            DialogResult result = owner != null ? openFileDialog.ShowDialog(owner) : openFileDialog.ShowDialog();
 
             if (result != DialogResult.OK)
                 return null;
@@ -88,10 +73,35 @@ namespace Common {
             try {
                 return File.ReadAllBytes(openFileDialog.FileName);
             } catch (Exception ex) {
-                Debug.WriteLine($"ConvertPdfToByte: {ex}");
+                Debug.WriteLine("ConvertPdfToByte:" + ex);
                 return null;
             }
         }
 
+        /// <summary>
+        /// Bitmap を PDF に変換して byte[] として返す（PdfSharpCore 使用）
+        /// </summary>
+        public byte[] ConvertImageToPdfBytes(Bitmap bitmap) {
+            using (MemoryStream pdfStream = new()) {
+
+                PdfSharpCore.Pdf.PdfDocument pdfDocument = new();
+                PdfSharpCore.Pdf.PdfPage page = pdfDocument.AddPage();
+                page.Width = bitmap.Width;
+                page.Height = bitmap.Height;
+
+                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(page);
+
+                using (MemoryStream imgStream = new()) {
+                    bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
+                    imgStream.Position = 0;
+
+                    PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
+                    xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
+                }
+
+                pdfDocument.Save(pdfStream, false);
+                return pdfStream.ToArray();
+            }
+        }
     }
 }

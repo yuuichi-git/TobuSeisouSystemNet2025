@@ -23,7 +23,9 @@
     <ProjectReference Include="..\ControlEx\CcControl.csproj" />
     <ProjectReference Include="..\eGov\EGov.csproj" />
     <ProjectReference Include="..\EmploymentAgreement\EmploymentAgreement.csproj" />
+    <ProjectReference Include="..\Estra\Estra.csproj" />
     <ProjectReference Include="..\LegalTwelveItem\LegalTwelveItem.csproj" />
+    <ProjectReference Include="..\PaidLeave\PaidLeave.csproj" />
     <ProjectReference Include="..\Seisou\Seisou.csproj" />
     <ProjectReference Include="..\Set\Set.csproj" />
     <ProjectReference Include="..\Staff\Staff.csproj" />

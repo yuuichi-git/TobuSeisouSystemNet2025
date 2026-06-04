@@ -55,16 +55,15 @@ namespace CcControl {
          */
         private readonly Font fontStaffLabel = new("メイリオ", 14, FontStyle.Regular, GraphicsUnit.Pixel);
 
-
         // ToolTip
         private ToolTip _toolTip = new();
         /*
          * Timer
          */
         private Timer _timerControl = new();
-        bool _doubleClickFlag = false; // シングルとダブルクリックの判別用
-        private int _clickTime = 0;// クリック間の時間を保持
-        private int _doubleClickInterval = SystemInformation.DoubleClickTime;// ダブルクリックが有効な時間間隔(初期値500)
+        bool _doubleClickFlag = false;                                                                                          // シングルとダブルクリックの判別用
+        private int _clickTime = 0;                                                                                             // クリック間の時間を保持
+        private int _doubleClickInterval = SystemInformation.DoubleClickTime;                                                   // ダブルクリックが有効な時間間隔(初期値500)
 
         /// <summary>
         /// Constractor
@@ -92,30 +91,29 @@ namespace CcControl {
             /*
              * ToolTip初期化
              */
-            _toolTip.InitialDelay = 50; // ToolTipが表示されるまでの時間
-            _toolTip.ReshowDelay = 1000; // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
-            _toolTip.AutoPopDelay = 10000; // ToolTipを表示する時間
-            // Timer イベント登録
-            _timerControl.Tick += this.Timer_Tick;
+            _toolTip.InitialDelay = 50;                                                                                             // ToolTipが表示されるまでの時間
+            _toolTip.ReshowDelay = 1000;                                                                                            // ToolTipが表示されている時に、別のToolTipを表示するまでの時間
+            _toolTip.AutoPopDelay = 10000;                                                                                          // ToolTipを表示する時間
+            _timerControl.Tick += this.Timer_Tick;                                                                                  // Timer イベント登録
         }
-
         /*
          * ContextMenuStrip
+         * 外部参照しているのでPublicにしている
          */
         ContextMenuStrip contextMenuStrip = new();
-        ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
-        public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");// 外部参照しているのでPublicにしている
-        ToolStripMenuItem toolStripMenuItem02 = new("代番処理");// 親アイテム
-        ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");// 子アイテム１
-        ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");// 子アイテム２
-        ToolStripMenuItem toolStripMenuItem03 = new("職種設定");// 親アイテム
-        ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)");// 子アイテム１
-        ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする");// 子アイテム２
-        ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)");// 親アイテム
-        ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済");// 子アイテム１
-        ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認");// 子アイテム２
-        ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
-        ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
+        public ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
+        public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
+        public ToolStripMenuItem toolStripMenuItem02 = new("代番処理");                                                                  // 親アイテム
+        public ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");                                                      // 子アイテム１
+        public ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");// 子アイテム２
+        public ToolStripMenuItem toolStripMenuItem03 = new("職種設定");// 親アイテム
+        public ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)");// 子アイテム１
+        public ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする");// 子アイテム２
+        public ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)");// 親アイテム
+        public ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済");// 子アイテム１
+        public ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認");// 子アイテム２
+        public ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
+        public ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
         /// <summary>
         /// CreateContextMenuStrip
         /// </summary>
@@ -269,10 +267,7 @@ namespace CcControl {
                 FormatFlags = StringFormatFlags.DirectionVertical,
                 LineAlignment = StringAlignment.Center
             };
-            Brush brush = (StaffMasterVo.BirthDate.Month == DateTime.Now.Month &&
-                           StaffMasterVo.BirthDate.Day == DateTime.Now.Day)
-                           ? Brushes.Red
-                           : Brushes.Black;
+            Brush brush = (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) ? Brushes.Red : Brushes.Black;
             pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, brush, rectangle, stringFormat);
         }
 
@@ -282,10 +277,10 @@ namespace CcControl {
         /// <param name="arrayByte"></param>
         /// <returns></returns>
         private static Image ByteArrayToImage(byte[] arrayByte) {
-            using var ms = new MemoryStream(arrayByte);
+            using MemoryStream ms = new(arrayByte);
             // Image.FromStream はストリームを保持する可能性があるため、
             // Clone してストリームから独立させる
-            using var img = Image.FromStream(ms, useEmbeddedColorManagement: false, validateImageData: false);
+            using Image img = Image.FromStream(ms, useEmbeddedColorManagement: false, validateImageData: false);
             return (Image)img.Clone();
         }
 
@@ -298,9 +293,9 @@ namespace CcControl {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e) {
-            _clickTime += _timerControl.Interval; // 計測時間を保存しておく
-            if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
-                _timerControl.Stop(); // タイマー停止
+            _clickTime += _timerControl.Interval;                                                                                   // 計測時間を保存しておく
+            if (_clickTime > _doubleClickInterval) {                                                                                // インターバルを過ぎたら
+                _timerControl.Stop();                                                                                               // タイマー停止
                 _doubleClickFlag = false; // DoubleClickFlagを初期化
                 _clickTime = 0; // 計測時間を初期化
             }
@@ -459,21 +454,14 @@ namespace CcControl {
             set {
                 this._rollCallFlag = value;
                 Refresh();
-                if (this.RollCallFlag) {
-                    this.RollCallYmdHms = DateTime.Now;
-                } else {
-                    this.RollCallYmdHms = _defaultDateTime;
-                }
+                this.RollCallYmdHms = this.RollCallFlag ? DateTime.Now : _defaultDateTime;
             }
         }
         /// <summary>
         /// 点呼日時
         /// </summary>
         public DateTime RollCallYmdHms {
-            get => this._rollCallYmdHms;
-            set {
-                this._rollCallYmdHms = value;
-            }
+            get => this._rollCallYmdHms; set => this._rollCallYmdHms = value;
         }
         /// <summary>
         /// true:メモが存在する false:メモが存在しない
@@ -510,6 +498,44 @@ namespace CcControl {
         public int ManagedSpaceCode {
             get => this._managedSpaceCode;
             set => this._managedSpaceCode = value;
+        }
+
+        /// <summary>
+        /// 外部からToolStripMenuItemを有効/無効を切り替えるためのメソッド
+        /// 引数の文字列とToolStripMenuItemのNameプロパティが一致するものを有効にする
+        /// </summary>
+        /// <param name="toolStripMenuItemNames">Nullの場合は全て無効にする</param>
+        public void SetToolStripMenuItemEnables(string[]? toolStripMenuItemNames) {
+            // null の場合は全て false にする
+            if (toolStripMenuItemNames == null) {
+                SetEnableRecursive(contextMenuStrip.Items, Array.Empty<string>());
+                return;
+            }
+
+            // 指定された名前だけ true、それ以外 false
+            SetEnableRecursive(contextMenuStrip.Items, toolStripMenuItemNames);
+        }
+        private void SetEnableRecursive(ToolStripItemCollection items, string[] enableNames) {
+            int length = items.Count;
+
+            for (int i = 0; i < length; i++) {
+                ToolStripItem item = items[i];
+                ToolStripMenuItem? menuItem = item as ToolStripMenuItem;
+
+                if (menuItem == null) {
+                    continue;
+                }
+
+                // 名前一致で Enabled を決定
+                bool enable = enableNames.Contains(menuItem.Name);
+
+                menuItem.Enabled = enable;
+
+                // 子メニューがある場合は再帰処理
+                if (menuItem.HasDropDownItems) {
+                    SetEnableRecursive(menuItem.DropDownItems, enableNames);
+                }
+            }
         }
     }
 }

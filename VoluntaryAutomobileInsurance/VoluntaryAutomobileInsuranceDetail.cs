@@ -66,6 +66,7 @@ namespace VoluntaryAutomobileInsurance {
             for (int i = 0; i < 4; i++) {
                 _ccPdfViews[i] = new();
                 tabPages[i].Controls.Add(_ccPdfViews[i]);
+                _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
             }
 
             // 表示対象のデータを画面へ反映
@@ -86,7 +87,7 @@ namespace VoluntaryAutomobileInsurance {
              * 新規 or 更新用の VO を作成
              */
             VoluntaryAutomobileInsuranceVo vo = new();
-            vo.Id = Guid.NewGuid().ToString();                                                      // 一意な ID を生成
+            vo.Id = Guid.NewGuid().ToString();                                                                                  // 一意な ID を生成
             vo.StaffCode = _staffCode;
             vo.VehicleType = this.CcComboBoxVehicleType.Text;
             vo.CompanyName = this.CcComboBoxCompanyName.Text;
@@ -284,6 +285,47 @@ namespace VoluntaryAutomobileInsurance {
                     this.ShowPdfToViewer(ccPdfView, bytes);
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
+
+                case "ToolStripMenuItemPaste": {
+                        IDataObject data = Clipboard.GetDataObject();
+                        if (data == null) {
+                            MessageBox.Show("クリップボードが空です。");
+                            break;
+                        }
+
+                        // ★ クリップボードに画像があるか？
+                        if (data.GetDataPresent(DataFormats.Bitmap)) {
+                            Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
+                            if (bmp == null) {
+                                MessageBox.Show("画像の取得に失敗しました。");
+                                break;
+                            }
+
+                            // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
+                            byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
+                            if (pdfBytes == null || pdfBytes.Length == 0) {
+                                MessageBox.Show("画像を PDF に変換できませんでした。");
+                                break;
+                            }
+
+                            // ★ PdfiumViewer に表示（CcPdfView）
+                            this.ShowPdfToViewer(ccPdfView, pdfBytes);
+
+                            // ★ DB 保存用に MemoryStream を保持
+                            int imageNo1 = GetImageNoFromViewer(ccPdfView);
+                            int index = imageNo1 - 1;
+
+                            //_memoryStream[index]?.Dispose();
+                            _memoryStream[index] = new MemoryStream(pdfBytes);
+
+                            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
+                            break;
+                        }
+
+                        MessageBox.Show("クリップボードに画像がありません。");
+                        break;
+                    }
+
 
                 case "ToolStripMenuItemDelete":
                     this.ClearPdfViewer(ccPdfView);

@@ -13,6 +13,7 @@ using Vo;
 
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementDetail : Form {
+        int _code;
         /*
          * インスタンス作成
          */
@@ -62,7 +63,7 @@ namespace EmploymentAgreement {
              */
             _staffMasterVo = staffMasterVo;
             _employmentAgreementVo = employmentAgreementVo;
-            _listContractExpirationVo = _contractExpirationDao.SelectOneContractExpirationP(staffMasterVo.StaffCode);
+            _listContractExpirationVo = _contractExpirationDao.SelectSomeContractExpirationP(staffMasterVo.StaffCode);
             /*
              * Dictionary
              */
@@ -88,12 +89,12 @@ namespace EmploymentAgreement {
             };
             this.InitializeControl();
             if (_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
-                this.ButtonExUpdate.Text = "更　新";
+                this.CcButtonUpdate.Text = "更　新";
                 this.PutControlHead();
                 this.PutControlBody();
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "基本台帳を修正します。";
             } else {
-                this.ButtonExUpdate.Text = "新規登録";
+                this.CcButtonUpdate.Text = "新規登録";
                 this.PutControlHead();
                 this.PutControlInitializeBody();
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "基本台帳が存在しません。新規登録します。";
@@ -126,7 +127,7 @@ namespace EmploymentAgreement {
                         MessageBox.Show(exception.Message);
                     }
                     break;
-                // 体験入社期間
+                // 体験入社期間(新規登録)
                 case "CcButtonExpiration":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -145,9 +146,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutExpiration(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutExpiration(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 継続アルバイト更新期間
+                // 継続アルバイト更新期間(新規登録)
                 case "CcButtonContractExpirationPartTimeJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -177,9 +178,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 組合長期雇用期間
+                // 組合長期雇用期間(新規登録)
                 case "CcButtonContractExpirationLongJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -209,9 +210,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationLongJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationLongJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 組合短期雇用期間
+                // 組合短期雇用期間(新規登録)
                 case "CcButtonContractExpirationShortJob":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -241,9 +242,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationShortJob(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationShortJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 誓約書
+                // 誓約書(新規登録)
                 case "CcButtonContractExpirationWrittenPledge":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -273,9 +274,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationWrittenPledge(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 失墜行為
+                // 失墜行為(新規登録)
                 case "CcButtonContractExpirationLossWrittenPledge":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -305,9 +306,9 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationLossWrittenPledge(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationLossWrittenPledge(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
-                // 契約満了通知
+                // 契約満了通知(新規登録)
                 case "CcButtonContractExpirationNotice":
                     if (CcPictureBox1.Image == null) {
                         MessageBox.Show("画像を追加してください。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -337,10 +338,10 @@ namespace EmploymentAgreement {
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
-                    this.PutContractExpirationNotice(_contractExpirationDao.SelectOneContractExpirationP(_staffMasterVo.StaffCode));
+                    this.PutContractExpirationNotice(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
                     break;
 
-                // 体験入社期間 画像
+                // 体験入社期間 画像(閲覧)
                 case "CcButtonExpirationPicture":
                     if (this.CcButtonExpirationPicture.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonExpirationPicture.Tag).Show();
@@ -348,7 +349,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("体験入社期間の契約書が添付されていません。");
                     }
                     break;
-                // 長期アルバイト更新期間　画像１
+
+                // 長期アルバイト更新期間　画像１(閲覧)
                 case "CcButtonContractExpirationPartTimeJobPicture1":
                     if (this.CcButtonContractExpirationPartTimeJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationPartTimeJobPicture1.Tag).Show();
@@ -356,7 +358,7 @@ namespace EmploymentAgreement {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
                     break;
-                // 長期アルバイト更新期間　画像２
+                // 長期アルバイト更新期間　画像２(閲覧)
                 case "CcButtonContractExpirationPartTimeJobPicture2":
                     if (this.CcButtonContractExpirationPartTimeJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationPartTimeJobPicture2.Tag).Show();
@@ -364,7 +366,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("長期アルバイト更新期間の契約書が添付されていません。");
                     }
                     break;
-                // 組合長期雇用期間　画像１
+
+                // 組合長期雇用期間　画像１(閲覧)
                 case "CcButtonContractExpirationLongJobPicture1":
                     if (this.CcButtonContractExpirationLongJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLongJobPicture1.Tag).Show();
@@ -372,7 +375,7 @@ namespace EmploymentAgreement {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
                     break;
-                // 組合長期雇用期間　画像２
+                // 組合長期雇用期間　画像２(閲覧)
                 case "CcButtonContractExpirationLongJobPicture2":
                     if (this.CcButtonContractExpirationLongJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLongJobPicture2.Tag).Show();
@@ -380,7 +383,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("組合長期雇用期間の契約書が添付されていません。");
                     }
                     break;
-                // 組合短期雇用期間　画像１
+
+                // 組合短期雇用期間　画像１(閲覧)
                 case "CcButtonContractExpirationShortJobPicture1":
                     if (this.CcButtonContractExpirationShortJobPicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationShortJobPicture1.Tag).Show();
@@ -388,7 +392,7 @@ namespace EmploymentAgreement {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
                     break;
-                // 組合短期雇用期間　画像２
+                // 組合短期雇用期間　画像２(閲覧)
                 case "CcButtonContractExpirationShortJobPicture2":
                     if (this.CcButtonContractExpirationShortJobPicture2.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationShortJobPicture2.Tag).Show();
@@ -396,7 +400,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("組合短期雇用期間の契約書が添付されていません。");
                     }
                     break;
-                // 誓約書期間　画像１
+
+                // 誓約書期間　画像１(閲覧)
                 case "CcButtonContractExpirationWrittenPledgePicture1":
                     if (this.CcButtonContractExpirationWrittenPledgePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationWrittenPledgePicture1.Tag).Show();
@@ -404,7 +409,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("誓約書が添付されていません。");
                     }
                     break;
-                // 失墜行為書類期間　画像１
+
+                // 失墜行為書類期間　画像１(閲覧)
                 case "CcButtonContractExpirationLossWrittenPledgePicture1":
                     if (this.CcButtonContractExpirationLossWrittenPledgePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationLossWrittenPledgePicture1.Tag).Show();
@@ -412,7 +418,8 @@ namespace EmploymentAgreement {
                         MessageBox.Show("失墜行為確認書が添付されていません。");
                     }
                     break;
-                // 契約満了通知(事前通知書)　画像１
+
+                // 契約満了通知(事前通知書)　画像１(閲覧)
                 case "CcButtonContractExpirationNoticePicture1":
                     if (this.CcButtonContractExpirationNoticePicture1.Tag is not null) {
                         new EmploymentAgreementView((byte[])this.CcButtonContractExpirationNoticePicture1.Tag).Show();
@@ -420,6 +427,69 @@ namespace EmploymentAgreement {
                         MessageBox.Show("契約満了通知(事前通知書)が添付されていません。");
                     }
                     break;
+
+                /*
+                 * 削除ボタン
+                 */
+                case "CcButtonExpirationDelete":                                // 体験入社期間
+                    _code = 21;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeExpirationStartDate.GetDate(), CcDateTimeExpirationEndDate.GetDate());
+                    this.PutExpiration(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationPartTimeJobDelete1":            // 継続アルバイト更新期間
+                    _code = 20;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationPartTimeJobStartDate1.GetDate(), CcDateTimeContractExpirationPartTimeJobEndDate1.GetDate());
+                    this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationPartTimeJobDelete2":            // 継続アルバイト更新期間
+                    _code = 20;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationPartTimeJobStartDate2.GetDate(), CcDateTimeContractExpirationPartTimeJobEndDate2.GetDate());
+                    this.PutContractExpirationPartTimeJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationLongJobDelete1":                // 組合長期雇用期間
+                    _code = 10;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationLongJobStartDate1.GetDate(), CcDateTimeContractExpirationLongJobEndDate1.GetDate());
+                    this.PutContractExpirationLongJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationLongJobDelete2":                // 組合長期雇用期間
+                    _code = 10;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationLongJobStartDate2.GetDate(), CcDateTimeContractExpirationLongJobEndDate2.GetDate());
+                    this.PutContractExpirationLongJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationShortJobDelete1":               // 組合短期雇用期間
+                    _code = 11;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationShortJobStartDate1.GetDate(), CcDateTimeContractExpirationShortJobEndDate1.GetDate());
+                    this.PutContractExpirationShortJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationShortJobDelete2":               // 組合短期雇用期間
+                    _code = 11;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationShortJobStartDate2.GetDate(), CcDateTimeContractExpirationShortJobEndDate2.GetDate());
+                    this.PutContractExpirationShortJob(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationWrittenPledgeDelete":           // 誓約書
+                    _code = 30;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationWrittenPledgeStartDate1.GetDate(), CcDateTimeContractExpirationWrittenPledgeEndDate1.GetDate());
+                    this.PutContractExpirationWrittenPledge(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationLossWrittenPledgeDelete":       // 失墜行為
+                    _code = 40;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationLossWrittenPledgeStartDate1.GetDate(), CcDateTimeContractExpirationLossWrittenPledgeEndDate1.GetDate());
+                    this.PutContractExpirationLossWrittenPledge(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+                case "CcButtonContractExpirationNoticeDelete":                  // 契約満了通知(事前通知書)
+                    _code = 50;
+                    this.DeleteRecord(_code, _staffMasterVo.StaffCode, CcDateTimeContractExpirationNoticeStartDate1.GetDate(), CcDateTimeContractExpirationNoticeEndDate1.GetDate());
+                    this.PutContractExpirationNotice(_contractExpirationDao.SelectSomeContractExpirationP(_staffMasterVo.StaffCode));
+                    break;
+            }
+        }
+
+        private void DeleteRecord(int code, int staffCode, DateTime startDate, DateTime endDate) {
+            try {
+                _contractExpirationDao.DeleteOneContractExpiration(code, staffCode, startDate, endDate);
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "削除に成功しました。";
+            } catch (Exception exception) {
+                MessageBox.Show(exception.Message);
             }
         }
 

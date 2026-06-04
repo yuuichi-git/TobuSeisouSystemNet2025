@@ -23,9 +23,13 @@ using EGov;
 
 using EmploymentAgreement;
 
+using Estra;
+
 using LegalTwelveItem;
 
 using License;
+
+using PaidLeave;
 
 using RollCall;
 
@@ -274,6 +278,8 @@ namespace TobuSeisouSystemNet2025 {
         private SetList setList = null;                                                                                                         // 廃棄物スポット見積リスト
         private VoluntaryAutomobileInsuranceList voluntaryAutomobileInsuranceList = null;                                                       // 通勤用自動車任意保険加入状況一覧
         private ContinuousDrivingTimePaper continuousDrivingTimePaper = null;                                                                   // 陸運局監査
+        private EstraList estraList = null;                                                                                                     // エストラ一覧 
+        private PaidLeaveList paidLeaveList = null;                                                                                             // 有給休暇一覧
 
         /// <summary>
         /// 接続先がSQLServerの場合
@@ -535,6 +541,39 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（TabTransportBureauAudit）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
+                        /*
+                         * EstraListは、M_JYOUMUINとM_SHARYOの両方から起動することができるため、Tagで識別している。
+                         */
+                        case "M_JYOUMUIN":
+                            if (estraList is null || estraList.IsDisposed) {
+                                estraList = new(_connectionVo, "M_JYOUMUIN");
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, estraList);
+                                estraList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（EstraList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        /*
+                         * EstraListは、M_JYOUMUINとM_SHARYOの両方から起動することができるため、Tagで識別している。
+                         */
+                        case "M_SHARYO":
+                            if (estraList is null || estraList.IsDisposed) {
+                                estraList = new(_connectionVo, "M_SHARYO");
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, estraList);
+                                estraList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（EstraList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "PaidLeaveList":
+                            if (paidLeaveList is null || paidLeaveList.IsDisposed) {
+                                paidLeaveList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, paidLeaveList);
+                                paidLeaveList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（PaidLeaveList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
                     }
                     break;
                 case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
@@ -600,37 +639,6 @@ namespace TobuSeisouSystemNet2025 {
         /// <param name="e"></param>
         private void Label_MouseLeave(object sender, EventArgs e) {
             ((Label)sender).ForeColor = Color.Black;
-        }
-
-        /// <summary>
-        /// 内部クラス
-        /// </summary>
-        private class ComboBoxItem {
-            string _displayName = string.Empty;
-            Screen _screen = null;
-            /// <summary>
-            /// コンストラクター
-            /// </summary>
-            /// <param name="displayName"></param>
-            /// <param name="screen"></param>
-            public ComboBoxItem(string displayName, Screen screen) {
-                _displayName = displayName;
-                _screen = screen;
-            }
-            /// <summary>
-            /// DisplayName
-            /// </summary>
-            public string DisplayName {
-                get => this._displayName;
-                set => this._displayName = value;
-            }
-            /// <summary>
-            /// Screen
-            /// </summary>
-            public Screen Screen {
-                get => this._screen;
-                set => this._screen = value;
-            }
         }
 
         /// <summary>
@@ -931,6 +939,37 @@ namespace TobuSeisouSystemNet2025 {
         public string ConnectionLocation {
             get => this._connectionLocation;
             set => this._connectionLocation = value;
+        }
+
+        /// <summary>
+        /// 内部クラス
+        /// </summary>
+        private class ComboBoxItem {
+            string _displayName = string.Empty;
+            Screen _screen = null;
+            /// <summary>
+            /// コンストラクター
+            /// </summary>
+            /// <param name="displayName"></param>
+            /// <param name="screen"></param>
+            public ComboBoxItem(string displayName, Screen screen) {
+                _displayName = displayName;
+                _screen = screen;
+            }
+            /// <summary>
+            /// DisplayName
+            /// </summary>
+            public string DisplayName {
+                get => this._displayName;
+                set => this._displayName = value;
+            }
+            /// <summary>
+            /// Screen
+            /// </summary>
+            public Screen Screen {
+                get => this._screen;
+                set => this._screen = value;
+            }
         }
     }
 }

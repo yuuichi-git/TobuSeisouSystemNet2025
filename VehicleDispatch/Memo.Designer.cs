@@ -30,9 +30,9 @@
             // 
             // TextBoxExMemo
             // 
-            this.TextBoxExMemo.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            this.TextBoxExMemo.Font = new Font("Yu Gothic UI", 9.75F);
             this.TextBoxExMemo.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExMemo.Location = new Point(4, 4);
+            this.TextBoxExMemo.Location = new Point(4, 8);
             this.TextBoxExMemo.Multiline = true;
             this.TextBoxExMemo.Name = "TextBoxExMemo";
             this.TextBoxExMemo.Size = new Size(524, 100);
@@ -41,7 +41,8 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Location = new Point(356, 112);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            this.ButtonExUpdate.Location = new Point(356, 116);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
             this.ButtonExUpdate.Size = new Size(156, 36);
@@ -53,7 +54,8 @@
             // ButtonExTimeStamp
             // 
             this.ButtonExTimeStamp.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExTimeStamp.Location = new Point(40, 116);
+            this.ButtonExTimeStamp.ForeColor = SystemColors.ControlText;
+            this.ButtonExTimeStamp.Location = new Point(40, 120);
             this.ButtonExTimeStamp.Name = "ButtonExTimeStamp";
             this.ButtonExTimeStamp.SetTextDirectionVertical = "";
             this.ButtonExTimeStamp.Size = new Size(116, 28);
@@ -66,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(534, 158);
+            this.ClientSize = new Size(534, 161);
             this.Controls.Add(this.ButtonExTimeStamp);
             this.Controls.Add(this.ButtonExUpdate);
             this.Controls.Add(this.TextBoxExMemo);
@@ -75,7 +77,6 @@
             this.MinimizeBox = false;
             this.Name = "Memo";
             this.Text = "Memo";
-            this.FormClosing += this.Memo_FormClosing;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
