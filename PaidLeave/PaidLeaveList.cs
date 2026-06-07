@@ -364,15 +364,6 @@ namespace PaidLeave {
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PaidLeaveList_FormClosing(object sender, FormClosingEventArgs e) {
-
-        }
-
         /*
          * 
          * Drag & Drop
@@ -410,25 +401,10 @@ namespace PaidLeave {
 
             if (object.ReferenceEquals(_beforeParentControl, _afterParentControl)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "同じ場所にドロップされました";
+                return;
             } else {
-                DateTime targetDate = this.CcMonthCalendar1.TodayDate.Date;                                                     // TargetDateはCcMonthCalendar1のTodayDateを使用する
+                DateTime targetDate = this.CcMonthCalendar1.SelectionStart.Date;                                                // 対象日を取得する
                 StaffLabel staffLabel = (StaffLabel)e.Data.GetData(typeof(StaffLabel));                                         // ドロップされたStaffLabelを取得する
-
-                _beforeParentControl.Controls.Remove(staffLabel);
-                switch (_beforeParentControl.Name) {
-                    case "CcFlowLayoutPanelStock":
-
-                        break;
-                    case "CcFlowLayoutPanel1":
-                    case "CcFlowLayoutPanel2":
-                    case "CcFlowLayoutPanel3":
-                    case "CcFlowLayoutPanel4":
-                    case "CcFlowLayoutPanel5":
-
-                        break;
-
-                }
-
                 _afterParentControl.Controls.Add(staffLabel);
                 switch (_afterParentControl.Name) {
                     case "CcFlowLayoutPanelStock":
@@ -468,6 +444,24 @@ namespace PaidLeave {
                         }
                         break;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PaidLeaveList_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
             }
         }
     }

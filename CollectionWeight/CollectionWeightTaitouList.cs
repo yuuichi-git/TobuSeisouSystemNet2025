@@ -16,7 +16,7 @@ using Vo;
 
 namespace Collection {
     public partial class CollectionWeightTaitouList : Form {
-        private readonly DateUtility _dateUtility = new();
+        private DateUtility _dateUtility = new();
         private PrintDocument _printDocument = new();
         /*
          * Dao

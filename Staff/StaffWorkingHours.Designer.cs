@@ -58,14 +58,14 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 76F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(776, 1011);
+            this.TableLayoutPanelExBase.Size = new Size(838, 1011);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             this.MenuStripEx1.Location = new Point(0, 0);
             this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(776, 24);
+            this.MenuStripEx1.Size = new Size(838, 24);
             this.MenuStripEx1.TabIndex = 0;
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
@@ -74,7 +74,8 @@
             // 
             this.StatusStripEx1.Location = new Point(0, 989);
             this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(776, 22);
+            this.StatusStripEx1.Size = new Size(838, 22);
+            this.StatusStripEx1.SizingGrip = false;
             this.StatusStripEx1.TabIndex = 1;
             this.StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -90,7 +91,7 @@
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(770, 70);
+            this.PanelExUp.Size = new Size(832, 70);
             this.PanelExUp.TabIndex = 2;
             // 
             // labelEx3
@@ -156,10 +157,11 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Location = new Point(592, 16);
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            this.ButtonExUpdate.Location = new Point(654, 16);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(140, 36);
+            this.ButtonExUpdate.Size = new Size(144, 36);
             this.ButtonExUpdate.TabIndex = 0;
             this.ButtonExUpdate.Text = "最　新　化";
             this.ButtonExUpdate.UseVisualStyleBackColor = true;
@@ -169,18 +171,19 @@
             // 
             this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 103);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(770, 881);
+            this.SpreadList.Size = new Size(832, 881);
             this.SpreadList.TabIndex = 3;
             // 
             // StaffWorkingHours
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(776, 1011);
+            this.ClientSize = new Size(838, 1011);
             this.Controls.Add(this.TableLayoutPanelExBase);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

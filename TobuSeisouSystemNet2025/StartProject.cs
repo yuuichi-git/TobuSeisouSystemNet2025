@@ -280,7 +280,7 @@ namespace TobuSeisouSystemNet2025 {
         private ContinuousDrivingTimePaper continuousDrivingTimePaper = null;                                                                   // 陸運局監査
         private EstraList estraList = null;                                                                                                     // エストラ一覧 
         private PaidLeaveList paidLeaveList = null;                                                                                             // 有給休暇一覧
-
+        private WorkPerformanceSurveyForm workPerformanceSurveyForm = null;                                                                     // 東環保作業実績調査表
         /// <summary>
         /// 接続先がSQLServerの場合
         /// </summary>
@@ -414,24 +414,6 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（LicenseList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
-                        case "ToukanpoList":                                                                                                    // 東環保カード
-                            if (toukanpoList is null || toukanpoList.IsDisposed) {
-                                toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
-                                toukanpoList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（ToukanpoList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            break;
-                        case "ToukanpoSpeedSurvey":                                                                                             // 東環保速度超過表
-                            if (toukanpoSpeedSurvey is null || toukanpoSpeedSurvey.IsDisposed) {
-                                toukanpoSpeedSurvey = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoSpeedSurvey);
-                                toukanpoSpeedSurvey.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（ToukanpoSpeedSurvey）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            break;
                         case "AccountingParttimeList":                                                                                          // アルバイト出勤状況
                             if (accountingParttimeList is null || accountingParttimeList.IsDisposed) {
                                 accountingParttimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
@@ -542,9 +524,11 @@ namespace TobuSeisouSystemNet2025 {
                             }
                             break;
                         /*
-                         * EstraListは、M_JYOUMUINとM_SHARYOの両方から起動することができるため、Tagで識別している。
+                         * --------------------------------------------------
+                         * Estra
+                         * --------------------------------------------------
                          */
-                        case "M_JYOUMUIN":
+                        case "M_JYOUMUIN":                                                                                                      // 乗務員マスター
                             if (estraList is null || estraList.IsDisposed) {
                                 estraList = new(_connectionVo, "M_JYOUMUIN");
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, estraList);
@@ -553,10 +537,7 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（EstraList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
-                        /*
-                         * EstraListは、M_JYOUMUINとM_SHARYOの両方から起動することができるため、Tagで識別している。
-                         */
-                        case "M_SHARYO":
+                        case "M_SHARYO":                                                                                                        // 車両マスター
                             if (estraList is null || estraList.IsDisposed) {
                                 estraList = new(_connectionVo, "M_SHARYO");
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, estraList);
@@ -572,6 +553,38 @@ namespace TobuSeisouSystemNet2025 {
                                 paidLeaveList.Show(this);
                             } else {
                                 MessageBox.Show("このプログラム（PaidLeaveList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        /*
+                         * --------------------------------------------------
+                         * 東環保
+                         * --------------------------------------------------
+                         */
+                        case "ToukanpoList":                                                                                                    // 東環保カード
+                            if (toukanpoList is null || toukanpoList.IsDisposed) {
+                                toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
+                                toukanpoList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（ToukanpoList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "ToukanpoSpeedSurvey":                                                                                             // 東環保速度超過表
+                            if (toukanpoSpeedSurvey is null || toukanpoSpeedSurvey.IsDisposed) {
+                                toukanpoSpeedSurvey = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoSpeedSurvey);
+                                toukanpoSpeedSurvey.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（ToukanpoSpeedSurvey）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "WorkPerformanceSurveyForm":                                                                                       // 東環保作業実績調査表
+                            if (workPerformanceSurveyForm is null || workPerformanceSurveyForm.IsDisposed) {
+                                workPerformanceSurveyForm = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, workPerformanceSurveyForm);
+                                workPerformanceSurveyForm.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（WorkPerformanceSurveyForm）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
                     }

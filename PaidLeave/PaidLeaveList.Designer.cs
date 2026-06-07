@@ -327,6 +327,7 @@
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.CcMenuStrip1;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PaidLeaveList";
             this.Text = "PaidLeaveList";
             this.FormClosing += this.PaidLeaveList_FormClosing;

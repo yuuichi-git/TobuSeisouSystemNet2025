@@ -1,6 +1,8 @@
 ﻿/*
  * 2024-09-24
  */
+using System.Runtime.CompilerServices;
+
 namespace CcControl {
     public partial class CcButton : Button {
         /*
@@ -18,6 +20,13 @@ namespace CcControl {
         /// コンストラクター
         /// </summary>
         public CcButton() {
+            /*
+             * コンストラクターで共通の初期化処理を呼び出す
+             */
+            Constructor();
+        }
+
+        private void Constructor() {
             /*
              * ダブルバッファリングを有効にする
              */

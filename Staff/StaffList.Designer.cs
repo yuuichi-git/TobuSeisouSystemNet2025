@@ -573,7 +573,7 @@
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, ストレスチェック申請用リスト, Row 0, Column 0";
+            this.SpreadList.AccessibleDescription = "SpreadList, 従事者リスト, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
             this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 119);
