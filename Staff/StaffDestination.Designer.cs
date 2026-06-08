@@ -45,6 +45,8 @@
             this.checkBoxEx19 = new CcControl.CcCheckBox();
             this.checkBoxEx20 = new CcControl.CcCheckBox();
             this.GroupBoxExJobForm = new CcControl.CcGroupBox();
+            this.checkBoxEx8 = new CcControl.CcCheckBox();
+            this.checkBoxEx12 = new CcControl.CcCheckBox();
             this.checkBoxEx9 = new CcControl.CcCheckBox();
             this.checkBoxEx11 = new CcControl.CcCheckBox();
             this.checkBoxEx13 = new CcControl.CcCheckBox();
@@ -57,8 +59,6 @@
             this.checkBoxEx3 = new CcControl.CcCheckBox();
             this.checkBoxEx5 = new CcControl.CcCheckBox();
             this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.checkBoxEx8 = new CcControl.CcCheckBox();
-            this.checkBoxEx12 = new CcControl.CcCheckBox();
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
             this.PanelExUp.SuspendLayout();
@@ -83,22 +83,22 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 230F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1192, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1192, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // SpreadList
             // 
             this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadList.Location = new Point(3, 257);
             this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1186, 677);
+            this.SpreadList.Size = new Size(1186, 757);
             this.SpreadList.TabIndex = 0;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 939);
+            this.StatusStripEx1.Location = new Point(0, 1019);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1192, 22);
             this.StatusStripEx1.TabIndex = 3;
@@ -198,6 +198,7 @@
             // ButtonExUpdate
             // 
             this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
             this.ButtonExUpdate.Location = new Point(972, 20);
             this.ButtonExUpdate.Name = "ButtonExUpdate";
             this.ButtonExUpdate.SetTextDirectionVertical = "";
@@ -307,6 +308,32 @@
             this.GroupBoxExJobForm.TabIndex = 9;
             this.GroupBoxExJobForm.TabStop = false;
             this.GroupBoxExJobForm.Text = "雇用形態";
+            // 
+            // checkBoxEx8
+            // 
+            this.checkBoxEx8.AutoSize = true;
+            this.checkBoxEx8.Checked = true;
+            this.checkBoxEx8.CheckState = CheckState.Checked;
+            this.checkBoxEx8.Location = new Point(164, 20);
+            this.checkBoxEx8.Name = "checkBoxEx8";
+            this.checkBoxEx8.Size = new Size(70, 19);
+            this.checkBoxEx8.TabIndex = 4;
+            this.checkBoxEx8.Tag = "22";
+            this.checkBoxEx8.Text = "長期(自)";
+            this.checkBoxEx8.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxEx12
+            // 
+            this.checkBoxEx12.AutoSize = true;
+            this.checkBoxEx12.Checked = true;
+            this.checkBoxEx12.CheckState = CheckState.Checked;
+            this.checkBoxEx12.Location = new Point(240, 20);
+            this.checkBoxEx12.Name = "checkBoxEx12";
+            this.checkBoxEx12.Size = new Size(70, 19);
+            this.checkBoxEx12.TabIndex = 5;
+            this.checkBoxEx12.Tag = "23";
+            this.checkBoxEx12.Text = "短期(自)";
+            this.checkBoxEx12.UseVisualStyleBackColor = true;
             // 
             // checkBoxEx9
             // 
@@ -453,37 +480,11 @@
             this.MenuStripEx1.Text = "menuStripEx1";
             this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // checkBoxEx8
-            // 
-            this.checkBoxEx8.AutoSize = true;
-            this.checkBoxEx8.Checked = true;
-            this.checkBoxEx8.CheckState = CheckState.Checked;
-            this.checkBoxEx8.Location = new Point(164, 20);
-            this.checkBoxEx8.Name = "checkBoxEx8";
-            this.checkBoxEx8.Size = new Size(70, 19);
-            this.checkBoxEx8.TabIndex = 4;
-            this.checkBoxEx8.Tag = "22";
-            this.checkBoxEx8.Text = "長期(自)";
-            this.checkBoxEx8.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxEx12
-            // 
-            this.checkBoxEx12.AutoSize = true;
-            this.checkBoxEx12.Checked = true;
-            this.checkBoxEx12.CheckState = CheckState.Checked;
-            this.checkBoxEx12.Location = new Point(240, 20);
-            this.checkBoxEx12.Name = "checkBoxEx12";
-            this.checkBoxEx12.Size = new Size(70, 19);
-            this.checkBoxEx12.TabIndex = 5;
-            this.checkBoxEx12.Tag = "23";
-            this.checkBoxEx12.Text = "短期(自)";
-            this.checkBoxEx12.UseVisualStyleBackColor = true;
-            // 
             // StaffDestination
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1192, 961);
+            this.ClientSize = new Size(1192, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.MenuStripEx1;
             this.MaximizeBox = false;

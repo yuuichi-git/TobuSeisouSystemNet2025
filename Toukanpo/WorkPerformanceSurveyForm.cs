@@ -17,6 +17,7 @@ namespace Toukanpo {
          */
         private StaffMasterDao _staffMasterDao;
         private readonly BelongsMasterDao _belongsMasterDao;
+        private readonly ClassificationMasterDao _classificationMasterDao;
         private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
@@ -27,6 +28,7 @@ namespace Toukanpo {
          * Dictionary
          */
         private readonly Dictionary<int, string> _dictionaryBelongs = new();
+        private readonly Dictionary<int, string> _dictionaryClassification = new();
 
         /// <summary>
         /// コンストラクター
@@ -39,12 +41,15 @@ namespace Toukanpo {
              */
             _staffMasterDao = new(connectionVo);
             _belongsMasterDao = new(connectionVo);
+            _classificationMasterDao = new(connectionVo);
             _vehicleDispatchDetailDao = new(connectionVo);
             /*
              * Dictionary
              */
             foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
+            foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())
+                _dictionaryClassification.Add(classificationMasterVo.Code, classificationMasterVo.Name);
 
             InitializeComponent();
             /*
@@ -78,128 +83,45 @@ namespace Toukanpo {
             _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, null);
             _listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(startDateTime, endDateTime);
 
-            List<WorkPerformanceSurveyFormVo> listWorkPerformanceSurveyFormVo = new();
-
             /*
              * ①Staffを抽出する
              */
+            List<WorkPerformanceSurveyFormVo> listWorkPerformanceSurveyFormVo = new();
             foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in _listVehicleDispatchDetailVo) {
-                /*
-                 * 抽出する条件
-                 * SetCode > 0
-                 */
-                if (vehicleDispatchDetailVo.SetCode > 0) {
-                    /*
-                     * VehicleDispatchDetailVoからStaffを取得し、Voにセットする
-                     */
-                    for (int i = 0; i < 4; i++) {
 
-                        switch (i) {
-                            case 0:
-                                if (vehicleDispatchDetailVo.StaffCode1 != 0) {
-                                    WorkPerformanceSurveyFormVo workPerformanceSurveyFormVo0 = new();
-                                    workPerformanceSurveyFormVo0.Number = string.Empty;
-                                    workPerformanceSurveyFormVo0.StaffCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).StaffCode;
-                                    workPerformanceSurveyFormVo0.StaffName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).Name;
-                                    workPerformanceSurveyFormVo0.BelongsCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).Belongs;
-                                    workPerformanceSurveyFormVo0.BelongsName = _dictionaryBelongs[workPerformanceSurveyFormVo0.BelongsCode];
-                                    workPerformanceSurveyFormVo0.GenderCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).Gender == "男" ? "h" : "f";
-                                    workPerformanceSurveyFormVo0.GenderName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).Gender;
-                                    workPerformanceSurveyFormVo0.Age = _dateUtility.GetAge(_listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode1).BirthDate).ToString();
-                                    workPerformanceSurveyFormVo0.OperationDate = vehicleDispatchDetailVo.OperationDate;
-                                    workPerformanceSurveyFormVo0.ClassificationName = vehicleDispatchDetailVo.ClassificationCode == 10 ? "雇上" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 11 ? "区契" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 12 ? "臨時" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 20 ? "清掃工場" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 30 ? "社内" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 40 ? "水物" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 50 ? "一般" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 51 ? "社用車" : "指定なし";
-                                    workPerformanceSurveyFormVo0.Driver = true;
-                                    listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo0);
-                                }
+                if (vehicleDispatchDetailVo.SetCode <= 0)
+                    continue;
 
-                                break;
-                            case 1:
-                                if (vehicleDispatchDetailVo.StaffCode2 != 0) {
-                                    WorkPerformanceSurveyFormVo workPerformanceSurveyFormVo1 = new();
-                                    workPerformanceSurveyFormVo1.Number = string.Empty;
-                                    workPerformanceSurveyFormVo1.StaffCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).StaffCode;
-                                    workPerformanceSurveyFormVo1.StaffName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).Name;
-                                    workPerformanceSurveyFormVo1.BelongsCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).Belongs;
-                                    workPerformanceSurveyFormVo1.BelongsName = _dictionaryBelongs[workPerformanceSurveyFormVo1.BelongsCode];
-                                    workPerformanceSurveyFormVo1.GenderCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).Gender == "男" ? "h" : "f";
-                                    workPerformanceSurveyFormVo1.GenderName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).Gender;
-                                    workPerformanceSurveyFormVo1.Age = _dateUtility.GetAge(_listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode2).BirthDate).ToString();
-                                    workPerformanceSurveyFormVo1.OperationDate = vehicleDispatchDetailVo.OperationDate;
-                                    workPerformanceSurveyFormVo1.ClassificationName = vehicleDispatchDetailVo.ClassificationCode == 10 ? "雇上" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 11 ? "区契" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 12 ? "臨時" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 20 ? "清掃工場" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 30 ? "社内" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 40 ? "水物" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 50 ? "一般" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 51 ? "社用車" : "指定なし";
-                                    workPerformanceSurveyFormVo1.Driver = false;
-                                    listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo1);
-                                }
+                int[] arrayStaffCodes = new int[] {vehicleDispatchDetailVo.StaffCode1,
+                                                   vehicleDispatchDetailVo.StaffCode2,
+                                                   vehicleDispatchDetailVo.StaffCode3,
+                                                   vehicleDispatchDetailVo.StaffCode4};
 
-                                break;
-                            case 2:
-                                if (vehicleDispatchDetailVo.StaffCode3 != 0) {
-                                    WorkPerformanceSurveyFormVo workPerformanceSurveyFormVo2 = new();
-                                    workPerformanceSurveyFormVo2.Number = string.Empty;
-                                    workPerformanceSurveyFormVo2.StaffCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).StaffCode;
-                                    workPerformanceSurveyFormVo2.StaffName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).Name;
-                                    workPerformanceSurveyFormVo2.BelongsCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).Belongs;
-                                    workPerformanceSurveyFormVo2.BelongsName = _dictionaryBelongs[workPerformanceSurveyFormVo2.BelongsCode];
-                                    workPerformanceSurveyFormVo2.GenderCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).Gender == "男" ? "h" : "f";
-                                    workPerformanceSurveyFormVo2.GenderName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).Gender;
-                                    workPerformanceSurveyFormVo2.Age = _dateUtility.GetAge(_listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode3).BirthDate).ToString();
-                                    workPerformanceSurveyFormVo2.OperationDate = vehicleDispatchDetailVo.OperationDate;
-                                    workPerformanceSurveyFormVo2.ClassificationName = vehicleDispatchDetailVo.ClassificationCode == 10 ? "雇上" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 11 ? "区契" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 12 ? "臨時" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 20 ? "清掃工場" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 30 ? "社内" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 40 ? "水物" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 50 ? "一般" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 51 ? "社用車" : "指定なし";
-                                    workPerformanceSurveyFormVo2.Driver = false;
-                                    listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo2);
-                                }
+                for (int i = 0; i < arrayStaffCodes.Length; i++) {
+                    int staffCode = arrayStaffCodes[i];
+                    if (staffCode == 0)
+                        continue;
 
-                                break;
-                            case 3:
-                                if (vehicleDispatchDetailVo.StaffCode4 != 0) {
-                                    WorkPerformanceSurveyFormVo workPerformanceSurveyFormVo3 = new();
-                                    workPerformanceSurveyFormVo3.Number = string.Empty;
-                                    workPerformanceSurveyFormVo3.StaffCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).StaffCode;
-                                    workPerformanceSurveyFormVo3.StaffName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).Name;
-                                    workPerformanceSurveyFormVo3.BelongsCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).Belongs;
-                                    workPerformanceSurveyFormVo3.BelongsName = _dictionaryBelongs[workPerformanceSurveyFormVo3.BelongsCode];
-                                    workPerformanceSurveyFormVo3.GenderCode = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).Gender == "男" ? "h" : "f";
-                                    workPerformanceSurveyFormVo3.GenderName = _listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).Gender;
-                                    workPerformanceSurveyFormVo3.Age = _dateUtility.GetAge(_listStaffMasterVo.Find(staff => staff.StaffCode == vehicleDispatchDetailVo.StaffCode4).BirthDate).ToString();
-                                    workPerformanceSurveyFormVo3.OperationDate = vehicleDispatchDetailVo.OperationDate;
-                                    workPerformanceSurveyFormVo3.ClassificationName = vehicleDispatchDetailVo.ClassificationCode == 10 ? "雇上" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 11 ? "区契" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 12 ? "臨時" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 20 ? "清掃工場" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 30 ? "社内" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 40 ? "水物" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 50 ? "一般" :
-                                                                                      vehicleDispatchDetailVo.ClassificationCode == 51 ? "社用車" : "指定なし";
-                                    workPerformanceSurveyFormVo3.Driver = false;
-                                    listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo3);
-                                }
-                                break;
-                        }
-                    }
+                    StaffMasterVo staffMasterVo = _listStaffMasterVo.Find(x => x.StaffCode == staffCode);
+                    if (staffMasterVo == null)
+                        continue;
+
+                    WorkPerformanceSurveyFormVo workPerformanceSurveyFormVo = new();
+                    workPerformanceSurveyFormVo.Number = String.Empty;
+                    workPerformanceSurveyFormVo.StaffCode = staffMasterVo.StaffCode;
+                    workPerformanceSurveyFormVo.StaffName = staffMasterVo.Name;
+                    workPerformanceSurveyFormVo.BelongsCode = staffMasterVo.Belongs;
+                    workPerformanceSurveyFormVo.BelongsName = _dictionaryBelongs[workPerformanceSurveyFormVo.BelongsCode];
+                    workPerformanceSurveyFormVo.GenderCode = staffMasterVo.Gender == "男" ? "h" : "f";
+                    workPerformanceSurveyFormVo.GenderName = staffMasterVo.Gender;
+                    workPerformanceSurveyFormVo.Age = _dateUtility.GetAge(staffMasterVo.BirthDate).ToString();
+                    workPerformanceSurveyFormVo.OperationDate = vehicleDispatchDetailVo.OperationDate;
+                    workPerformanceSurveyFormVo.ClassificationCode = vehicleDispatchDetailVo.ClassificationCode;
+                    workPerformanceSurveyFormVo.ClassificationName = _dictionaryClassification[vehicleDispatchDetailVo.ClassificationCode];
+                    workPerformanceSurveyFormVo.Driver = i == 0 ? true : false;
+                    listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo);
                 }
             }
-
-
 
             /*
              * ②VoをSheetViewにセットする
@@ -262,24 +184,36 @@ namespace Toukanpo {
 
                     for (int day = 1; day <= 31; day++) {
                         if (workPerformanceSurveyFormVo.OperationDate.Day == day) {
-                            if ((workPerformanceSurveyFormVo.ClassificationName == "雇上" || workPerformanceSurveyFormVo.ClassificationName == "臨時" || workPerformanceSurveyFormVo.ClassificationName == "清掃工場") && workPerformanceSurveyFormVo.Driver)             // 区分が「雇上」で運転手の場合
+                            if ((workPerformanceSurveyFormVo.ClassificationCode == 10 ||                                                    // 雇上
+                                 workPerformanceSurveyFormVo.ClassificationCode == 12 ||                                                    // 臨時
+                                 workPerformanceSurveyFormVo.ClassificationCode == 20) &&                                                   // 清掃工場
+                                 workPerformanceSurveyFormVo.Driver)                                                                        // 運転手
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "a";
-                            if ((workPerformanceSurveyFormVo.ClassificationName == "雇上" || workPerformanceSurveyFormVo.ClassificationName == "臨時" || workPerformanceSurveyFormVo.ClassificationName == "清掃工場") && !workPerformanceSurveyFormVo.Driver)            // 区分が「雇上」で運転手以外の場合
+
+                            if ((workPerformanceSurveyFormVo.ClassificationCode == 10 ||                                                    // 雇上
+                                 workPerformanceSurveyFormVo.ClassificationCode == 12 ||                                                    // 臨時
+                                 workPerformanceSurveyFormVo.ClassificationCode == 20) &&                                                   // 清掃工場
+                                 !workPerformanceSurveyFormVo.Driver)                                                                       // 運転手以外
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "b";
-                            if (workPerformanceSurveyFormVo.ClassificationName == "区契" && workPerformanceSurveyFormVo.Driver)             // 区分が「区契」で運転手の場合
+
+                            if (workPerformanceSurveyFormVo.ClassificationCode == 11 &&                                                     // 区契
+                                workPerformanceSurveyFormVo.Driver)                                                                         // 運転手
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "c";
-                            if (workPerformanceSurveyFormVo.ClassificationName == "区契" && !workPerformanceSurveyFormVo.Driver)            // 区分が「区契」で運転手以外の場合
+
+                            if (workPerformanceSurveyFormVo.ClassificationCode == 11 &&                                                     // 区契
+                                !workPerformanceSurveyFormVo.Driver)                                                                        // 運転手以外
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "d";
-                            if ((workPerformanceSurveyFormVo.ClassificationName == "一般" || workPerformanceSurveyFormVo.ClassificationName == "水物" || workPerformanceSurveyFormVo.ClassificationName == "社内") && workPerformanceSurveyFormVo.Driver)             // 区分が「一般・水物」で運転手の場合
+
+                            if ((workPerformanceSurveyFormVo.ClassificationName == "一般" || workPerformanceSurveyFormVo.ClassificationName == "水物") && workPerformanceSurveyFormVo.Driver)             // 区分が「一般・水物」で運転手の場合
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "e";
-                            if ((workPerformanceSurveyFormVo.ClassificationName == "一般" || workPerformanceSurveyFormVo.ClassificationName == "水物" || workPerformanceSurveyFormVo.ClassificationName == "社内") && !workPerformanceSurveyFormVo.Driver)            // 区分が「一般・水物」で運転手以外の場合
+
+                            if ((workPerformanceSurveyFormVo.ClassificationName == "一般" || workPerformanceSurveyFormVo.ClassificationName == "水物") && !workPerformanceSurveyFormVo.Driver)            // 区分が「一般・水物」で運転手以外の場合
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "f";
+
                         }
 
                         SheetViewList.Cells[rowCount, 38].Text = groupWorkPerformanceSurveyFormVo.Count().ToString();                       // 勤務日数
                     }
-
-
                 }
                 rowCount++;
             }
@@ -296,7 +230,6 @@ namespace Toukanpo {
                 case "ToolStripMenuItemExit":
                     this.Close();
                     break;
-
             }
         }
 
@@ -356,12 +289,9 @@ namespace Toukanpo {
             private string _genderName = string.Empty;                                      // 性別名
             private string _age = string.Empty;                                             // 年齢
             private DateTime _operationDate = new(1900, 1, 1);                              // 対象日
-            private string _classificationName = string.Empty;                              // 区分名(10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 50:一般 51:社用車 99:指定なし)
+            private int _classificationCode = 0;                                            // 区分コード(10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 40:水物 50:一般 51:社用車 99:指定なし)
+            private string _classificationName = string.Empty;                              // 区分名
             private bool _driver = false;                                                   // true:運転手、false:運転手以外
-
-            public WorkPerformanceSurveyFormVo() {
-
-            }
 
             /// <summary>
             /// №
@@ -400,7 +330,11 @@ namespace Toukanpo {
             /// </summary>
             public DateTime OperationDate { get => this._operationDate; set => this._operationDate = value; }
             /// <summary>
-            /// 区分名(10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 50:一般 51:社用車 99:指定なし)
+            /// 区分コード(10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 50:一般 51:社用車 99:指定なし)
+            /// </summary>
+            public int ClassificationCode { get => this._classificationCode; set => this._classificationCode = value; }
+            /// <summary>
+            /// 区分名
             /// </summary>
             public string ClassificationName { get => this._classificationName; set => this._classificationName = value; }
             /// <summary>
