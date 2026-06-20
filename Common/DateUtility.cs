@@ -3,6 +3,8 @@
  */
 using System.Globalization;
 
+using Vo;
+
 namespace Common {
     public class DateUtility {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
@@ -248,6 +250,21 @@ namespace Common {
                                               DateTime.ParseExact(time, "HH:mm", null).Minute,
                                               DateTime.Now.Second);
             return lastRollCallYmdHms;
+        }
+
+        /// <summary>
+        /// 直近の有給起算日を取得する
+        /// </summary>
+        /// <param name="date">起算日</param>
+        /// <returns></returns>
+        public DateTime GetPaidLeaveCommencementDate(DateTime date) {
+            DateTime 直近の起算日 = new(DateTime.Today.Year,
+                                                date.Month,
+                                                date.Day);
+            if (直近の起算日.Date >= DateTime.Today.Date)
+                直近の起算日 = 直近の起算日.AddYears(-1);
+
+            return 直近の起算日;
         }
     }
 }

@@ -140,6 +140,9 @@ namespace Dao {
                                             "NotSelectionReason," +
                                             "ContractFlag," +
                                             "ContractDate," +
+                                            "PaidLeaveFlag," +                                   // 2026-06-11
+                                            "PaidLeaveReferenceDate," +                          // 2026-06-11
+                                            "PaidLeaveCommencementDate," +                       // 2026-06-11
                                             "RetirementFlag," +
                                             "RetirementDate," +
                                             "RetirementNote," +
@@ -205,6 +208,9 @@ namespace Dao {
                     staffMasterVo.NotSelectionReason = _defaultValue.GetDefaultValue<string>(sqlDataReader["NotSelectionReason"]);
                     staffMasterVo.ContractFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ContractFlag"]);
                     staffMasterVo.ContractDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ContractDate"]);
+                    staffMasterVo.PaidLeaveFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["PaidLeaveFlag"]);                                          // 2026-06-11
+                    staffMasterVo.PaidLeaveReferenceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveReferenceDate"]);                    // 2026-06-11
+                    staffMasterVo.PaidLeaveCommencementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveCommencementDate"]);              // 2026-06-11
                     staffMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
                     staffMasterVo.RetirementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["RetirementDate"]);
                     staffMasterVo.RetirementNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["RetirementNote"]);
@@ -275,6 +281,9 @@ namespace Dao {
                                             "NotSelectionReason," +
                                             "ContractFlag," +
                                             "ContractDate," +
+                                            "PaidLeaveFlag," +                                   // 2026-06-11
+                                            "PaidLeaveReferenceDate," +                          // 2026-06-11
+                                            "PaidLeaveCommencementDate," +                       // 2026-06-11
                                             "RetirementFlag," +
                                             "RetirementDate," +
                                             "RetirementNote," +
@@ -338,6 +347,9 @@ namespace Dao {
                     staffMasterVo.ListHStaffExperienceVo = _staffExperienceDao.SelectOneStaffExperienceMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.ContractFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ContractFlag"]);
                     staffMasterVo.ContractDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ContractDate"]);
+                    staffMasterVo.PaidLeaveFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["PaidLeaveFlag"]);                                          // 2026-06-11
+                    staffMasterVo.PaidLeaveReferenceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveReferenceDate"]);                    // 2026-06-11
+                    staffMasterVo.PaidLeaveCommencementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveCommencementDate"]);              // 2026-06-11
                     staffMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
                     staffMasterVo.RetirementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["RetirementDate"]);
                     staffMasterVo.RetirementNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["RetirementNote"]);
@@ -422,6 +434,9 @@ namespace Dao {
                                             "NotSelectionReason," +
                                             "ContractFlag," +
                                             "ContractDate," +
+                                            "PaidLeaveFlag," +                                   // 2026-06-11
+                                            "PaidLeaveReferenceDate," +                          // 2026-06-11
+                                            "PaidLeaveCommencementDate," +                       // 2026-06-11
                                             "RetirementFlag," +
                                             "RetirementDate," +
                                             "RetirementNote," +
@@ -484,6 +499,9 @@ namespace Dao {
                     staffMasterVo.NotSelectionReason = _defaultValue.GetDefaultValue<string>(sqlDataReader["NotSelectionReason"]);
                     staffMasterVo.ContractFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ContractFlag"]);
                     staffMasterVo.ContractDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ContractDate"]);
+                    staffMasterVo.PaidLeaveFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["PaidLeaveFlag"]);                                          // 2026-06-11
+                    staffMasterVo.PaidLeaveReferenceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveReferenceDate"]);                    // 2026-06-11
+                    staffMasterVo.PaidLeaveCommencementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["PaidLeaveCommencementDate"]);              // 2026-06-11
                     staffMasterVo.RetirementFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RetirementFlag"]);
                     staffMasterVo.RetirementDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["RetirementDate"]);
                     staffMasterVo.RetirementNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["RetirementNote"]);
@@ -553,6 +571,9 @@ namespace Dao {
                                                                "NotSelectionReason," +
                                                                "ContractFlag," +
                                                                "ContractDate," +
+                                                               "PaidLeaveFlag," +                                   // 2026-06-11
+                                                               "PaidLeaveReferenceDate," +                          // 2026-06-11
+                                                               "PaidLeaveCommencementDate," +                       // 2026-06-11
                                                                "RetirementFlag," +
                                                                "RetirementDate," +
                                                                "RetirementNote," +
@@ -609,6 +630,9 @@ namespace Dao {
                                             "'" + staffMasterVo.NotSelectionReason + "'," +
                                             "'" + staffMasterVo.ContractFlag + "'," +
                                             "'" + staffMasterVo.ContractDate + "'," +
+                                            "'" + staffMasterVo.PaidLeaveFlag + "'," +                              // 2026-06-11
+                                            "'" + staffMasterVo.PaidLeaveReferenceDate + "'," +                     // 2026-06-11
+                                            "'" + staffMasterVo.PaidLeaveCommencementDate + "'," +                  // 2026-06-11
                                             "'" + staffMasterVo.RetirementFlag + "'," +
                                             "'" + staffMasterVo.RetirementDate + "'," +
                                             "'" + staffMasterVo.RetirementNote + "'," +
@@ -682,6 +706,9 @@ namespace Dao {
                                          "NotSelectionReason = '" + staffMasterVo.NotSelectionReason + "'," +
                                          "ContractFlag = '" + staffMasterVo.ContractFlag + "'," +
                                          "ContractDate = '" + staffMasterVo.ContractDate + "'," +
+                                         "PaidLeaveFlag = '" + staffMasterVo.PaidLeaveFlag + "'," +                                                     // 2026-06-11
+                                         "PaidLeaveReferenceDate = '" + staffMasterVo.PaidLeaveReferenceDate + "'," +                                   // 2026-06-11
+                                         "PaidLeaveCommencementDate = '" + staffMasterVo.PaidLeaveCommencementDate + "'," +                             // 2026-06-11
                                          "RetirementFlag = '" + staffMasterVo.RetirementFlag + "'," +
                                          "RetirementDate = '" + staffMasterVo.RetirementDate + "'," +
                                          "RetirementNote = '" + staffMasterVo.RetirementNote + "'," +

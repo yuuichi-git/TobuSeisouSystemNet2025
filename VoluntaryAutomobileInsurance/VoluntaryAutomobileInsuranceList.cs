@@ -106,10 +106,9 @@ namespace VoluntaryAutomobileInsurance {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"
             };
             this.CcMenuStrip1.ChangeEnable(listString);
 
@@ -137,9 +136,9 @@ namespace VoluntaryAutomobileInsurance {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
-                        this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(CreateArray(GroupBoxExBelongs),
-                                                                                                                 CreateArray(GroupBoxExJobForm),
-                                                                                                                 CreateArray(GroupBoxExOccupation),
+                        this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs),
+                                                                                                                 this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm),
+                                                                                                                 this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation),
                                                                                                                  this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -271,20 +270,6 @@ namespace VoluntaryAutomobileInsurance {
             sheetView.RemoveRows(0, sheetView.Rows.Count);
 
             return sheetView;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="groupBoxEx"></param>
-        /// <returns></returns>
-        private List<int> CreateArray(CcGroupBox groupBoxEx) {
-            List<int> list = new();
-            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
-                if (checkBoxEx.Checked)
-                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
-            }
-            return list;
         }
 
         /// <summary>

@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Dao\Dao.csproj" />
     <ProjectReference Include="..\DriversReport\DriversReport.csproj" />
     <ProjectReference Include="..\License\License.csproj" />
+    <ProjectReference Include="..\PaidLeave\PaidLeave.csproj" />
     <ProjectReference Include="..\RollCall\RollCall.csproj" />
     <ProjectReference Include="..\Staff\Staff.csproj" />
     <ProjectReference Include="..\StockBox\StockBox.csproj" />

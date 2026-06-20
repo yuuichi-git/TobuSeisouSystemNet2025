@@ -26,6 +26,10 @@ namespace Dao {
             _connectionVo = connectionVo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<BelongsMasterVo> SelectAllBelongsMaster() {
             List<BelongsMasterVo> listBelongsMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();

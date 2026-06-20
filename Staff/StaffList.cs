@@ -116,7 +116,10 @@ namespace Staff {
         private void ButtonEx_Click(object sender, EventArgs e) {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
-                    _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(CreateArray(GroupBoxExBelongs), CreateArray(GroupBoxExJobForm), CreateArray(GroupBoxExOccupation), this.CheckBoxExRetirementFlag.Checked);
+                    _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs), 
+                                                                              this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm), 
+                                                                              this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation), 
+                                                                              this.CheckBoxExRetirementFlag.Checked);
                     switch (this.SpreadList.ActiveSheet.SheetName) {
                         case "従事者リスト":
                             this.PutSheetViewList(this.SheetViewList);
@@ -669,20 +672,6 @@ namespace Staff {
             // Spread 活性化
             this.SpreadList.ResumeLayout();
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="groupBoxEx"></param>
-        /// <returns></returns>
-        private List<int> CreateArray(CcGroupBox groupBoxEx) {
-            List<int> list = new();
-            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
-                if (checkBoxEx.Checked)
-                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
-            }
-            return list;
         }
 
         /// <summary>

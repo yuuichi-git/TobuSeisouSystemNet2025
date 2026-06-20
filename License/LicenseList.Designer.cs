@@ -41,8 +41,8 @@
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.PanelExUp = new CcControl.CcPanel();
             this.CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            this.CcButtonUpdate = new CcControl.CcButton();
+            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
             this.SheetViewList = this.SpreadList.GetSheet(0);
             this.SheetViewToukaidenshi = this.SpreadList.GetSheet(1);
             this.TableLayoutPanelExBase.SuspendLayout();
@@ -214,7 +214,7 @@
             // PanelExUp
             // 
             this.PanelExUp.Controls.Add(this.CheckBoxExRetirementFlag);
-            this.PanelExUp.Controls.Add(this.ButtonExUpdate);
+            this.PanelExUp.Controls.Add(this.CcButtonUpdate);
             this.PanelExUp.Dock = DockStyle.Fill;
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
@@ -231,18 +231,18 @@
             this.CheckBoxExRetirementFlag.Text = "退職者も表示";
             this.CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
-            // ButtonExUpdate
+            // CcButtonUpdate
             // 
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
-            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            this.ButtonExUpdate.Location = new Point(1700, 8);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(160, 32);
-            this.ButtonExUpdate.TabIndex = 0;
-            this.ButtonExUpdate.Text = "最　新　化";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonExUpdate_Click;
+            this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            this.CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            this.CcButtonUpdate.Location = new Point(1700, 8);
+            this.CcButtonUpdate.Name = "CcButtonUpdate";
+            this.CcButtonUpdate.SetTextDirectionVertical = "";
+            this.CcButtonUpdate.Size = new Size(160, 32);
+            this.CcButtonUpdate.TabIndex = 0;
+            this.CcButtonUpdate.Text = "最　新　化";
+            this.CcButtonUpdate.UseVisualStyleBackColor = true;
+            this.CcButtonUpdate.Click += this.ButtonExUpdate_Click;
             // 
             // SpreadList
             // 
@@ -282,7 +282,7 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton CcButtonUpdate;
         private CcControl.CcTabControl TabControlExKana;
         private TabPage tabPage1;
         private TabPage tabPage2;

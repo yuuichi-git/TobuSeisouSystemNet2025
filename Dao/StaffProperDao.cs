@@ -37,7 +37,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '初任診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
-            if (data is not null) {
+            if(data is not null) {
                 return (DateTime)sqlCommand.ExecuteScalar();
             } else {
                 return _defaultDateTime;
@@ -54,7 +54,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '初任診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
-            if (data is not null) {
+            if(data is not null) {
                 return true;
             } else {
                 return false;
@@ -71,7 +71,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '適齢診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
-            if (data is not null) {
+            if(data is not null) {
                 timeSpan = ((DateTime)sqlCommand.ExecuteScalar()).AddYears(3) - DateTime.Now.Date;
                 return string.Concat(timeSpan.Days, "日後");
             } else {
@@ -91,9 +91,9 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '適齢診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
 
-            if (data is not null) {
+            if(data is not null) {
                 timeSpan = ((DateTime)sqlCommand.ExecuteScalar()).AddYears(3) - DateTime.Now.Date;
-                if (timeSpan.Days >= 0) {                       // 3年以内
+                if(timeSpan.Days >= 0) {                       // 3年以内
                     return true;
                 } else {
                     return false;
@@ -123,8 +123,8 @@ namespace Dao {
                                             "DeleteFlag " +
                                      "FROM H_StaffProperMaster " +
                                      "WHERE StaffCode = " + staffCode + "";
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StaffProperVo staffProperVo = new();
                     staffProperVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffProperVo.ProperKind = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperKind"]);
@@ -162,8 +162,8 @@ namespace Dao {
                                             "DeleteFlag " +
                                      "FROM H_StaffProperMaster " +
                                      "WHERE DeleteFlag = 'False'";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StaffProperVo staffProperVo = new();
                     staffProperVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffProperVo.ProperKind = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperKind"]);

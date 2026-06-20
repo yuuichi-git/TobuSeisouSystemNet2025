@@ -3,9 +3,9 @@
  */
 using System.Drawing.Printing;
 
-using Common;
-
 using CcControl;
+
+using Common;
 
 using FarPoint.Win.Spread;
 
@@ -13,7 +13,7 @@ using Vo;
 
 namespace DriversReport {
     public partial class DriversReportPaper : Form {
-        private PrintDocument _printDocument = new();
+        private readonly PrintDocument _printDocument = new();
 
         /// <summary>
         /// コンストラクター(未記入の日報用)
@@ -23,31 +23,31 @@ namespace DriversReport {
             /*
              * InitializeControl
              */
-            InitializeComponent();
+            this.InitializeComponent();
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintB5",
-                "ToolStripMenuItemPrintB5Dialog",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = ["ToolStripMenuItemFile",
+                                       "ToolStripMenuItemExit",
+                                       "ToolStripMenuItemPrint",
+                                       "ToolStripMenuItemPrintB5",
+                                       "ToolStripMenuItemPrintB5Dialog",
+                                       "ToolStripMenuItemHelp"];
             this.MenuStripEx1.ChangeEnable(listString);
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
-            foreach (string item in new PrintUtility().GetAllPrinterName())
-                this.ComboBoxExPrinterName.Items.Add(item);
-            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+            foreach (string item in new PrintUtility().GetAllPrinterName()) {
+                _ = this.ComboBoxExPrinterName.Items.Add(item);
+            }
+
+            this.ComboBoxExPrinterName.Text = this._printDocument.PrinterSettings.PrinterName;
 
             this.InitializeSheetView(this.SheetViewDriversReport);
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -59,33 +59,33 @@ namespace DriversReport {
             /*
              * InitializeControl
              */
-            InitializeComponent();
+            this.InitializeComponent();
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
+            List<string> listString = [
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
                 "ToolStripMenuItemPrint",
                 "ToolStripMenuItemPrintB5",
                 "ToolStripMenuItemPrintB5Dialog",
                 "ToolStripMenuItemHelp"
-            };
+            ];
             this.MenuStripEx1.ChangeEnable(listString);
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
             foreach (string item in new PrintUtility().GetAllPrinterName()) {
-                this.ComboBoxExPrinterName.Items.Add(item);
+                _ = this.ComboBoxExPrinterName.Items.Add(item);
             }
-            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+            this.ComboBoxExPrinterName.Text = this._printDocument.PrinterSettings.PrinterName;
 
             this.InitializeSheetView(this.SheetViewDriversReport);
             this.SetSheetView(this.SheetViewDriversReport, setControl);
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -99,22 +99,22 @@ namespace DriversReport {
                  * B5で印刷する
                  */
                 case "ToolStripMenuItemPrintB5":
-                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);                         // Eventを登録
-                    _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;                           // 出力先プリンタを指定します。
-                    _printDocument.DefaultPageSettings.Landscape = false;                                                   // 用紙の向きを設定(横：true、縦：false)
+                    this._printDocument.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);                         // Eventを登録
+                    this._printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;                           // 出力先プリンタを指定します。
+                    this._printDocument.DefaultPageSettings.Landscape = false;                                                   // 用紙の向きを設定(横：true、縦：false)
                     /*
                      * プリンタがサポートしている用紙サイズを調べる
                      */
-                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                    foreach (PaperSize paperSize in this._printDocument.PrinterSettings.PaperSizes) {
                         if (paperSize.Kind == PaperKind.B5) {                                                               // B5用紙に設定する
-                            _printDocument.DefaultPageSettings.PaperSize = paperSize;
+                            this._printDocument.DefaultPageSettings.PaperSize = paperSize;
                             break;
                         }
                     }
-                    _printDocument.PrinterSettings.Copies = 1;                                                              // 印刷部数を指定します。
-                    _printDocument.PrinterSettings.Duplex = Duplex.Default;                                                 // 片面印刷に設定します。
-                    _printDocument.PrinterSettings.DefaultPageSettings.Color = true;                                        // カラー印刷に設定します。
-                    _printDocument.Print();                                                                                 // 印刷する
+                    this._printDocument.PrinterSettings.Copies = 1;                                                              // 印刷部数を指定します。
+                    this._printDocument.PrinterSettings.Duplex = Duplex.Default;                                                 // 片面印刷に設定します。
+                    this._printDocument.PrinterSettings.DefaultPageSettings.Color = true;                                        // カラー印刷に設定します。
+                    this._printDocument.Print();                                                                                 // 印刷する
                     break;
                 /*
                  * B5で印刷する
@@ -124,13 +124,13 @@ namespace DriversReport {
                     this.SheetViewDriversReport.PrintInfo.Preview = true;
                     this.SheetViewDriversReport.PrintInfo.ShowBorder = false;
                     this.SheetViewDriversReport.PrintInfo.ShowColor = true;
-                    this.SpreadDriversReportPaper.PrintSheet(SheetViewDriversReport);                                       // 印刷を実行します
+                    this.SpreadDriversReportPaper.PrintSheet(this.SheetViewDriversReport);                                       // 印刷を実行します
                     break;
                 /*
                  * アプリケーションを終了する
                  */
                 case "ToolStripMenuItemExit":
-                    Close();
+                    this.Close();
                     break;
             }
         }
@@ -263,7 +263,10 @@ namespace DriversReport {
                     sheetView.Cells[15, 22].Text = "：";        // 正味重量⑧
                     break;
                 case 1310417:                                                                                               // 新宿２－５１
-                    sheetView.Cells[10, 17].Text = "新宿清掃事務所　駐車場 /";// 休憩場所
+                    sheetView.Cells[10, 17].Text = "新宿清掃事務所　駐車場 /";                                                 // 休憩場所
+                    break;
+                case 1310418:                                                                                               // 新宿２－５１
+                    sheetView.Cells[10, 17].Text = "新宿清掃事務所　B2駐車場 /";                                               // 休憩場所
                     break;
                 case 1311512:                                                                                               // 方南８１８
                 case 1311511:                                                                                               // 方南２３２

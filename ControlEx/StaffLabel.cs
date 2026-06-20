@@ -41,6 +41,9 @@ namespace CcControl {
         private bool _syoninFlag = false;
         private bool _tekireiFlag = false;
         private int _managedSpaceCode = 0;
+
+        private bool _paidLeaveFlag;
+        private int _paidLeaveDays;
         /*
          * Vo
          */
@@ -78,6 +81,13 @@ namespace CcControl {
              * InitializeControl
              */
             InitializeComponent();
+            this.CommonConstractor();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CommonConstractor() {
             this.AllowDrop = false;
             this.BackColor = Color.Transparent;
             this.BorderStyle = BorderStyle.None;
@@ -96,6 +106,7 @@ namespace CcControl {
             _toolTip.AutoPopDelay = 10000;                                                                                          // ToolTipを表示する時間
             _timerControl.Tick += this.Timer_Tick;                                                                                  // Timer イベント登録
         }
+
         /*
          * ContextMenuStrip
          * 外部参照しているのでPublicにしている
@@ -113,6 +124,7 @@ namespace CcControl {
         public ToolStripMenuItem toolStripMenuItem04_0 = new("出勤を確認済");// 子アイテム１
         public ToolStripMenuItem toolStripMenuItem04_1 = new("出勤を未確認");// 子アイテム２
         public ToolStripMenuItem toolStripMenuItem05 = new("メモを作成・編集する('Ctrl + Click')");
+        public ToolStripMenuItem toolStripMenuItem06 = new("有給詳細情報を表示");
         public ToolStripMenuItem toolStripMenuItem07 = new("プロパティ");
         /// <summary>
         /// CreateContextMenuStrip
@@ -180,6 +192,12 @@ namespace CcControl {
             toolStripMenuItem05.Click += this.ToolStripMenuItem_Click;
             contextMenuStrip.Items.Add(toolStripMenuItem05);
             /*
+             * 有給詳細情報を表示
+             */
+            toolStripMenuItem06.Name = "ToolStripMenuItemPaidLeaveDetail";
+            toolStripMenuItem06.Click += this.ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem06);
+            /*
              * プロパティ
              */
             toolStripMenuItem07.Name = "ToolStripMenuItemStaffProperty";
@@ -215,14 +233,14 @@ namespace CcControl {
             base.OnPaint(pe);
 
             // 背景画像
-            switch (this.StaffMasterVo.Belongs) {
+            switch(this.StaffMasterVo.Belongs) {
                 case 12:
                     pe.Graphics.DrawImage(Cache.PartTime, 0, 0, Width, Height);
                     break;
                 case 20:
                 case 21:
                 case 22:
-                    switch (this.StaffMasterVo.JobForm) {
+                    switch(this.StaffMasterVo.JobForm) {
                         case 20:
                         case 22:
                             pe.Graphics.DrawImage(Cache.Normal, 0, 0, Width, Height);
@@ -239,25 +257,25 @@ namespace CcControl {
             }
 
             // オーバーレイ
-            if (MemoFlag)
+            if(MemoFlag)
                 pe.Graphics.DrawImage(Cache.Memo, 0, 0, Width, Height);
 
-            if (ProxyFlag)
+            if(ProxyFlag)
                 pe.Graphics.DrawImage(Cache.Proxy, 0, 0, Width, Height);
 
-            if (OccupationCode == 11)
+            if(OccupationCode == 11)
                 pe.Graphics.DrawImage(Cache.Sagyouin, 0, 0, Width, Height);
 
-            if (!RollCallFlag)
+            if(!RollCallFlag)
                 pe.Graphics.DrawImage(Cache.Tenko, 0, 0, Width, Height);
 
-            if (SyoninFlag)
+            if(SyoninFlag)
                 pe.Graphics.DrawImage(Cache.Syonin, 0, 0, Width, Height);
 
-            if (TekireiFlag)
+            if(TekireiFlag)
                 pe.Graphics.DrawImage(Cache.Tekirei, 0, 0, Width, Height);
 
-            if (CursorEnterFlag)
+            if(CursorEnterFlag)
                 pe.Graphics.DrawImage(Cache.Filter, 0, 0, Width, Height);
 
             // 氏名描画
@@ -269,6 +287,25 @@ namespace CcControl {
             };
             Brush brush = (StaffMasterVo.BirthDate.Month == DateTime.Now.Month && StaffMasterVo.BirthDate.Day == DateTime.Now.Day) ? Brushes.Red : Brushes.Black;
             pe.Graphics.DrawString(StaffMasterVo.DisplayName, fontStaffLabel, brush, rectangle, stringFormat);
+
+            // 有給消化回数
+            if(this.PaidLeaveFlag) {
+                using(Pen pen = new Pen(Color.IndianRed, 4)) {
+                    int days = this.PaidLeaveDays;
+
+                    if(days > 5)
+                        days = 5;
+
+                    for(int i = 1; i <= days; i++) {
+                        int row = i * 17;
+                        pe.Graphics.DrawLine(pen, 6, row, 6, row + 15);
+                    }
+                }
+            } else {
+                using(Pen pen = new Pen(Color.DarkGray, 4)) {
+                    pe.Graphics.DrawLine(pen, 6, 17, 6, 32);
+                }
+            }
         }
 
         /// <summary>
@@ -294,7 +331,7 @@ namespace CcControl {
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e) {
             _clickTime += _timerControl.Interval;                                                                                   // 計測時間を保存しておく
-            if (_clickTime > _doubleClickInterval) {                                                                                // インターバルを過ぎたら
+            if(_clickTime > _doubleClickInterval) {                                                                                 // インターバルを過ぎたら
                 _timerControl.Stop();                                                                                               // タイマー停止
                 _doubleClickFlag = false; // DoubleClickFlagを初期化
                 _clickTime = 0; // 計測時間を初期化
@@ -326,18 +363,18 @@ namespace CcControl {
             /*
              * Click DoubleClickを判別
              */
-            if (e.Clicks == 1) {
+            if(e.Clicks == 1) {
                 _timerControl.Start(); // タイマーをスタートする
             } else {
-                if (_clickTime < _doubleClickInterval)
+                if(_clickTime < _doubleClickInterval)
                     _doubleClickFlag = true;
             }
 
-            if (!_doubleClickFlag) {
-                if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+            if(!_doubleClickFlag) {
+                if((ModifierKeys & Keys.Shift) == Keys.Shift) {
                     StaffLabel_OnMouseClick.Invoke(this, e);
-                } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
-                    if (this.MemoFlag) {
+                } else if((ModifierKeys & Keys.Control) == Keys.Control) {
+                    if(this.MemoFlag) {
                         _toolTip.Show(this.Memo, this, 4, 4);
                         return;
                     }
@@ -431,7 +468,7 @@ namespace CcControl {
             get => this._occupationCode;
             set {
                 this._occupationCode = value;
-                if (this.OccupationCode == 10) {
+                if(this.OccupationCode == 10) {
                 }
                 Refresh();
             }
@@ -501,13 +538,40 @@ namespace CcControl {
         }
 
         /// <summary>
+        /// 有給フラグ
+        /// true:有給付与あり false:有給付与なし
+        /// </summary>
+        public bool PaidLeaveFlag {
+            get {
+                return _paidLeaveFlag;
+            }
+
+            set {
+                _paidLeaveFlag = value;
+            }
+        }
+
+        /// <summary>
+        /// 有給取得日数
+        /// 直近の起算日以降の取得日数
+        /// </summary>
+        public int PaidLeaveDays {
+            get {
+                return _paidLeaveDays;
+            }
+            set {
+                _paidLeaveDays = value;
+            }
+        }
+
+        /// <summary>
         /// 外部からToolStripMenuItemを有効/無効を切り替えるためのメソッド
         /// 引数の文字列とToolStripMenuItemのNameプロパティが一致するものを有効にする
         /// </summary>
         /// <param name="toolStripMenuItemNames">Nullの場合は全て無効にする</param>
         public void SetToolStripMenuItemEnables(string[]? toolStripMenuItemNames) {
             // null の場合は全て false にする
-            if (toolStripMenuItemNames == null) {
+            if(toolStripMenuItemNames == null) {
                 SetEnableRecursive(contextMenuStrip.Items, Array.Empty<string>());
                 return;
             }
@@ -518,11 +582,11 @@ namespace CcControl {
         private void SetEnableRecursive(ToolStripItemCollection items, string[] enableNames) {
             int length = items.Count;
 
-            for (int i = 0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 ToolStripItem item = items[i];
                 ToolStripMenuItem? menuItem = item as ToolStripMenuItem;
 
-                if (menuItem == null) {
+                if(menuItem == null) {
                     continue;
                 }
 
@@ -532,7 +596,7 @@ namespace CcControl {
                 menuItem.Enabled = enable;
 
                 // 子メニューがある場合は再帰処理
-                if (menuItem.HasDropDownItems) {
+                if(menuItem.HasDropDownItems) {
                     SetEnableRecursive(menuItem.DropDownItems, enableNames);
                 }
             }

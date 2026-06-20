@@ -280,6 +280,7 @@ namespace TobuSeisouSystemNet2025 {
         private ContinuousDrivingTimePaper continuousDrivingTimePaper = null;                                                                   // 陸運局監査
         private EstraList estraList = null;                                                                                                     // エストラ一覧 
         private PaidLeaveList paidLeaveList = null;                                                                                             // 有給休暇一覧
+        private PaidLeaveForm paidLeaveForm = null;                                                                                             // 有給休暇一覧
         private WorkPerformanceSurveyForm workPerformanceSurveyForm = null;                                                                     // 東環保作業実績調査表
         /// <summary>
         /// 接続先がSQLServerの場合
@@ -546,13 +547,22 @@ namespace TobuSeisouSystemNet2025 {
                                 MessageBox.Show("このプログラム（EstraList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
-                        case "PaidLeaveList":
+                        case "PaidLeaveList":                                                                                                   // 有給休暇一覧
                             if (paidLeaveList is null || paidLeaveList.IsDisposed) {
                                 paidLeaveList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, paidLeaveList);
                                 paidLeaveList.Show(this);
                             } else {
                                 MessageBox.Show("このプログラム（PaidLeaveList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "PaidLeaveForm":                                                                                                 // 有給休暇詳細
+                            if (paidLeaveForm is null || paidLeaveForm.IsDisposed) {
+                                paidLeaveForm = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, paidLeaveForm);
+                                paidLeaveForm.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（PaidLeaveDetail）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
                         /*

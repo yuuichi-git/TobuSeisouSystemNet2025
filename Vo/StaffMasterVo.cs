@@ -39,6 +39,9 @@ namespace Vo {
         private List<StaffExperienceVo> _listStaffExperienceVo;
         private bool _contractFlag;
         private DateTime _contractDate;
+        private bool _paidLeaveFlag;                                                    // 2026-06-11
+        private DateTime _paidLeaveReferenceDate;                                       // 2026-06-11
+        private DateTime _paidLeaveCommencementDate;                                    // 2026-06-11
         private bool _retirementFlag;
         private DateTime _retirementDate;
         private string _retirementNote;
@@ -109,6 +112,9 @@ namespace Vo {
             _listStaffExperienceVo = new List<StaffExperienceVo>();
             _contractFlag = false;
             _contractDate = _defaultDateTime;
+            _paidLeaveFlag = false;
+            _paidLeaveReferenceDate = _defaultDateTime;
+            _paidLeaveCommencementDate = _defaultDateTime;
             _retirementFlag = false;
             _retirementDate = _defaultDateTime;
             _retirementNote = string.Empty;
@@ -362,6 +368,27 @@ namespace Vo {
         public DateTime ContractDate {
             get => _contractDate;
             set => _contractDate = value;
+        }
+        /// <summary>
+        /// 有給フラグ
+        /// </summary>
+        public bool PaidLeaveFlag {
+            get => this._paidLeaveFlag;
+            set => this._paidLeaveFlag = value;
+        }
+        /// <summary>
+        /// 有給基準日
+        /// </summary>
+        public DateTime PaidLeaveReferenceDate {
+            get => this._paidLeaveReferenceDate;
+            set => this._paidLeaveReferenceDate = value;
+        }
+        /// <summary>
+        /// 有給起算日
+        /// </summary>
+        public DateTime PaidLeaveCommencementDate {
+            get => this._paidLeaveCommencementDate;
+            set => this._paidLeaveCommencementDate = value;
         }
         /// <summary>
         /// 退職フラグ

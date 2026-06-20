@@ -106,12 +106,11 @@ namespace Staff {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
             /*
@@ -209,9 +208,9 @@ namespace Staff {
                      * SQL発行
                      */
                     _listSheetViewVo = GetListSheetViewVo(_staffDestinationDao.SelectAllStaffDestinationVo(this.DateTimePickerExOperationDate1.GetDate(), this.DateTimePickerExOperationDate2.GetDate()));
-                    _listSheetViewVo = _listSheetViewVo.Where(x => CreateList(this.GroupBoxExBelongs).Contains(x.StaffBelongs) &&
-                                                                   CreateList(this.GroupBoxExJobForm).Contains(x.StaffJobForm) &&
-                                                                   CreateList(this.GroupBoxExOccupation).Contains(x.StaffOccupation)).ToList();
+                    _listSheetViewVo = _listSheetViewVo.Where(x => this.GroupBoxExBelongs.CreateArray(this.GroupBoxExBelongs).Contains(x.StaffBelongs) &&
+                                                                   this.GroupBoxExJobForm.CreateArray(this.GroupBoxExJobForm).Contains(x.StaffJobForm) &&
+                                                                   this.GroupBoxExOccupation.CreateArray(this.GroupBoxExOccupation).Contains(x.StaffOccupation)).ToList();
                     break;
                 default: // 1名検索
                     /*
@@ -329,20 +328,6 @@ namespace Staff {
                 listSheetViewVo.Add(sheetViewVo4);
             }
             return listSheetViewVo;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="groupBoxEx"></param>
-        /// <returns></returns>
-        private List<int> CreateList(CcGroupBox groupBoxEx) {
-            List<int> list = new();
-            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
-                if (checkBoxEx.Checked)
-                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
-            }
-            return list;
         }
 
         /// <summary>

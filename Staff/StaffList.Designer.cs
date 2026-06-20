@@ -167,7 +167,7 @@
             this.GroupBoxExOccupation.Controls.Add(this.CheckBoxEx13);
             this.GroupBoxExOccupation.Location = new Point(952, 5);
             this.GroupBoxExOccupation.Name = "GroupBoxExOccupation";
-            this.GroupBoxExOccupation.Size = new Size(624, 44);
+            this.GroupBoxExOccupation.Size = new Size(600, 44);
             this.GroupBoxExOccupation.TabIndex = 4;
             this.GroupBoxExOccupation.TabStop = false;
             this.GroupBoxExOccupation.Text = "職種(第三条件)";

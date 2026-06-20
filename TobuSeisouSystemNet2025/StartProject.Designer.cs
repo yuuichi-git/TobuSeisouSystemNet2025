@@ -162,6 +162,8 @@
             this.labelEx6 = new CcControl.CcLabel();
             this.labelEx7 = new CcControl.CcLabel();
             this.TabPageAdachi = new TabPage();
+            this.ccLabel15 = new CcControl.CcLabel();
+            this.ccLabel16 = new CcControl.CcLabel();
             this.ccLabel11 = new CcControl.CcLabel();
             this.labelEx54 = new CcControl.CcLabel();
             this.ccLabel12 = new CcControl.CcLabel();
@@ -964,6 +966,8 @@
             // 
             // TabPageAdachi
             // 
+            this.TabPageAdachi.Controls.Add(this.ccLabel15);
+            this.TabPageAdachi.Controls.Add(this.ccLabel16);
             this.TabPageAdachi.Controls.Add(this.ccLabel11);
             this.TabPageAdachi.Controls.Add(this.labelEx54);
             this.TabPageAdachi.Controls.Add(this.ccLabel12);
@@ -986,10 +990,35 @@
             this.TabPageAdachi.Text = "本社";
             this.TabPageAdachi.UseVisualStyleBackColor = true;
             // 
+            // ccLabel15
+            // 
+            this.ccLabel15.ForeColor = Color.DimGray;
+            this.ccLabel15.Location = new Point(376, 36);
+            this.ccLabel15.Name = "ccLabel15";
+            this.ccLabel15.Size = new Size(344, 20);
+            this.ccLabel15.TabIndex = 51;
+            this.ccLabel15.Text = "　有給休暇他、休に関する記録を閲覧する";
+            this.ccLabel15.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ccLabel16
+            // 
+            this.ccLabel16.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
+            this.ccLabel16.ForeColor = Color.Black;
+            this.ccLabel16.Location = new Point(376, 16);
+            this.ccLabel16.Name = "ccLabel16";
+            this.ccLabel16.Size = new Size(344, 20);
+            this.ccLabel16.TabIndex = 50;
+            this.ccLabel16.Tag = "PaidLeaveList";
+            this.ccLabel16.Text = "有給休暇等取得一覧表";
+            this.ccLabel16.TextAlign = ContentAlignment.MiddleLeft;
+            this.ccLabel16.Click += this.Label_SqlServer_Click;
+            this.ccLabel16.MouseEnter += this.Label_MouseEnter;
+            this.ccLabel16.MouseLeave += this.Label_MouseLeave;
+            // 
             // ccLabel11
             // 
             this.ccLabel11.ForeColor = Color.DimGray;
-            this.ccLabel11.Location = new Point(376, 32);
+            this.ccLabel11.Location = new Point(376, 88);
             this.ccLabel11.Name = "ccLabel11";
             this.ccLabel11.Size = new Size(344, 20);
             this.ccLabel11.TabIndex = 49;
@@ -1010,11 +1039,11 @@
             // 
             this.ccLabel12.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold);
             this.ccLabel12.ForeColor = Color.Black;
-            this.ccLabel12.Location = new Point(376, 12);
+            this.ccLabel12.Location = new Point(376, 68);
             this.ccLabel12.Name = "ccLabel12";
             this.ccLabel12.Size = new Size(344, 20);
             this.ccLabel12.TabIndex = 48;
-            this.ccLabel12.Tag = "PaidLeaveList";
+            this.ccLabel12.Tag = "PaidLeaveForm";
             this.ccLabel12.Text = "有給休暇等取得詳細";
             this.ccLabel12.TextAlign = ContentAlignment.MiddleLeft;
             this.ccLabel12.Click += this.Label_SqlServer_Click;
@@ -1862,5 +1891,7 @@
         private TabPage TabPageToukanpo;
         private CcControl.CcLabel ccLabel13;
         private CcControl.CcLabel ccLabel14;
+        private CcControl.CcLabel ccLabel15;
+        private CcControl.CcLabel ccLabel16;
     }
 }

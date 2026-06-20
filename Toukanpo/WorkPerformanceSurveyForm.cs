@@ -15,10 +15,10 @@ namespace Toukanpo {
         /*
          * Dao
          */
-        private StaffMasterDao _staffMasterDao;
+        private readonly StaffMasterDao _staffMasterDao;
         private readonly BelongsMasterDao _belongsMasterDao;
         private readonly ClassificationMasterDao _classificationMasterDao;
-        private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
+        private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
          */
@@ -87,7 +87,11 @@ namespace Toukanpo {
              * ①Staffを抽出する
              */
             List<WorkPerformanceSurveyFormVo> listWorkPerformanceSurveyFormVo = new();
-            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in _listVehicleDispatchDetailVo) {
+            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in _listVehicleDispatchDetailVo.Where(x => x.SetCode != 1312129 &&         // ルート(自家用)
+                                                                                                                x.SetCode != 1312109 &&         // 本社事務所
+                                                                                                                x.SetCode != 1312111 &&         // 本社整備
+                                                                                                                x.SetCode != 1312110 &&         // 三郷事務所
+                                                                                                                x.SetCode != 1312112)) {        // 三郷整備
 
                 if (vehicleDispatchDetailVo.SetCode <= 0)
                     continue;
@@ -119,6 +123,8 @@ namespace Toukanpo {
                     workPerformanceSurveyFormVo.ClassificationCode = vehicleDispatchDetailVo.ClassificationCode;
                     workPerformanceSurveyFormVo.ClassificationName = _dictionaryClassification[vehicleDispatchDetailVo.ClassificationCode];
                     workPerformanceSurveyFormVo.Driver = i == 0 ? true : false;
+                    workPerformanceSurveyFormVo.StaffMasterVo = staffMasterVo;
+                    workPerformanceSurveyFormVo.VehicleDispatchDetailVo = vehicleDispatchDetailVo;
                     listWorkPerformanceSurveyFormVo.Add(workPerformanceSurveyFormVo);
                 }
             }
@@ -209,9 +215,7 @@ namespace Toukanpo {
 
                             if ((workPerformanceSurveyFormVo.ClassificationName == "一般" || workPerformanceSurveyFormVo.ClassificationName == "水物") && !workPerformanceSurveyFormVo.Driver)            // 区分が「一般・水物」で運転手以外の場合
                                 SheetViewList.Cells[rowCount, 6 + day].Text = "f";
-
                         }
-
                         SheetViewList.Cells[rowCount, 38].Text = groupWorkPerformanceSurveyFormVo.Count().ToString();                       // 勤務日数
                     }
                 }
@@ -274,6 +278,24 @@ namespace Toukanpo {
             return sheetView;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WorkPerformanceSurveyForm_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch (dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
+        }
+
         /*
          * ------------------------------------------------
          * WorkPerformanceSurveyFormVo
@@ -292,6 +314,8 @@ namespace Toukanpo {
             private int _classificationCode = 0;                                            // 区分コード(10:雇上 11:区契 12:臨時 20:清掃工場 30:社内 40:水物 50:一般 51:社用車 99:指定なし)
             private string _classificationName = string.Empty;                              // 区分名
             private bool _driver = false;                                                   // true:運転手、false:運転手以外
+            private StaffMasterVo _staffMasterVo;                                           // StaffMasterVo
+            private VehicleDispatchDetailVo _vehicleDispatchDetailVo;                       // VehicleDispatchDetailVo
 
             /// <summary>
             /// №
@@ -341,24 +365,14 @@ namespace Toukanpo {
             /// true:運転手、false:運転手以外
             /// </summary>
             public bool Driver { get => this._driver; set => this._driver = value; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WorkPerformanceSurveyForm_FormClosing(object sender, FormClosingEventArgs e) {
-            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
-                case DialogResult.OK:
-                    e.Cancel = false;
-                    Dispose();
-                    break;
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-            }
+            /// <summary>
+            /// StaffMasterVo
+            /// </summary>
+            public StaffMasterVo StaffMasterVo { get => this._staffMasterVo; set => this._staffMasterVo = value; }
+            /// <summary>
+            /// VehicleDispatchDetailVo
+            /// </summary>
+            public VehicleDispatchDetailVo VehicleDispatchDetailVo { get => this._vehicleDispatchDetailVo; set => this._vehicleDispatchDetailVo = value; }
         }
     }
 }

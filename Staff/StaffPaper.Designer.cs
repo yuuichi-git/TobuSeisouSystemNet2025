@@ -27,9 +27,9 @@
             this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
             this.CcMenuStrip1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.SpreadStaffRegisterHead = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
+            this.SpreadStaffRegisterHead = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             this.SheetViewHead = this.SpreadStaffRegisterHead.GetSheet(0);
-            this.SpreadStaffRegisterTail = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource2"));
+            this.SpreadStaffRegisterTail = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls1"));
             this.SheetViewTail = this.SpreadStaffRegisterTail.GetSheet(0);
             this.TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)this.SpreadStaffRegisterHead).BeginInit();
@@ -53,7 +53,7 @@
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Size = new Size(1634, 961);
+            this.TableLayoutPanelExBase.Size = new Size(1634, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
             // CcMenuStrip1
@@ -69,7 +69,7 @@
             // StatusStripEx1
             // 
             this.TableLayoutPanelExBase.SetColumnSpan(this.StatusStripEx1, 2);
-            this.StatusStripEx1.Location = new Point(0, 939);
+            this.StatusStripEx1.Location = new Point(0, 1019);
             this.StatusStripEx1.Name = "StatusStripEx1";
             this.StatusStripEx1.Size = new Size(1634, 22);
             this.StatusStripEx1.TabIndex = 1;
@@ -82,7 +82,7 @@
             this.SpreadStaffRegisterHead.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadStaffRegisterHead.Location = new Point(3, 27);
             this.SpreadStaffRegisterHead.Name = "SpreadStaffRegisterHead";
-            this.SpreadStaffRegisterHead.Size = new Size(811, 907);
+            this.SpreadStaffRegisterHead.Size = new Size(811, 987);
             this.SpreadStaffRegisterHead.TabIndex = 2;
             // 
             // SpreadStaffRegisterTail
@@ -92,14 +92,14 @@
             this.SpreadStaffRegisterTail.Font = new Font("ＭＳ Ｐゴシック", 11F);
             this.SpreadStaffRegisterTail.Location = new Point(820, 27);
             this.SpreadStaffRegisterTail.Name = "SpreadStaffRegisterTail";
-            this.SpreadStaffRegisterTail.Size = new Size(811, 907);
+            this.SpreadStaffRegisterTail.Size = new Size(811, 987);
             this.SpreadStaffRegisterTail.TabIndex = 3;
             // 
             // StaffPaper
             // 
             this.AutoScaleDimensions = new SizeF(7F, 15F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1634, 961);
+            this.ClientSize = new Size(1634, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
             this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "StaffPaper";

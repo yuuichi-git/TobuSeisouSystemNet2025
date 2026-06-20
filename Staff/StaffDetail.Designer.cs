@@ -24,13 +24,64 @@
         /// </summary>
         private void InitializeComponent() {
             this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
+            this.CcMenuStrip1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();
             this.PanelExUp = new CcControl.CcPanel();
             this.CcButtonUpdate = new CcControl.CcButton();
             this.PanelExLeft = new CcControl.CcPanel();
-            this.CcCheckBoxMedicalCheckupFlag = new CcControl.CcCheckBox();
+            this.ccGroupBox2 = new CcControl.CcGroupBox();
+            this.PictureBoxExStaff = new CcControl.CcPictureBox();
+            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
+            this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
+            this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
+            this.labelEx1 = new CcControl.CcLabel();
+            this.CcCheckBoxPaidLeaveFlag = new CcControl.CcCheckBox();
+            this.LabelExStaffCode = new CcControl.CcLabel();
+            this.CcDateTimePaidLeaveCommencementDate = new CcControl.CcDateTime();
+            this.labelEx4 = new CcControl.CcLabel();
+            this.ccLabel2 = new CcControl.CcLabel();
+            this.TextBoxExUnionCode = new CcControl.CcTextBox();
+            this.CcDateTimePaidLeaveReferenceDate = new CcControl.CcDateTime();
+            this.TextBoxExNameKana = new CcControl.CcTextBox();
+            this.ccLabel1 = new CcControl.CcLabel();
+            this.labelEx3 = new CcControl.CcLabel();
             this.labelEx41 = new CcControl.CcLabel();
+            this.TextBoxExOtherNameKana = new CcControl.CcTextBox();
+            this.labelEx5 = new CcControl.CcLabel();
+            this.TextBoxExName = new CcControl.CcTextBox();
+            this.labelEx6 = new CcControl.CcLabel();
+            this.TextBoxExOtherName = new CcControl.CcTextBox();
+            this.labelEx17 = new CcControl.CcLabel();
+            this.labelEx7 = new CcControl.CcLabel();
+            this.PictureBoxExStamp = new CcControl.CcPictureBox();
+            this.ContextMenuStripEx2 = new CcControl.CcContextMenuStrip();
+            this.ToolStripMenuItemStampClip = new ToolStripMenuItem();
+            this.ToolStripMenuItemStampDelete = new ToolStripMenuItem();
+            this.TextBoxExDisplayName = new CcControl.CcTextBox();
+            this.labelEx8 = new CcControl.CcLabel();
+            this.labelEx16 = new CcControl.CcLabel();
+            this.labelEx9 = new CcControl.CcLabel();
+            this.TextBoxExCellphoneNumber = new CcControl.CcTextBox();
+            this.CcDateTimeBirthDate = new CcControl.CcDateTime();
+            this.labelEx15 = new CcControl.CcLabel();
+            this.labelEx10 = new CcControl.CcLabel();
+            this.TextBoxExTelephoneNumber = new CcControl.CcTextBox();
+            this.ComboBoxExGender = new CcControl.CcComboBox();
+            this.labelEx14 = new CcControl.CcLabel();
+            this.labelEx11 = new CcControl.CcLabel();
+            this.TextBoxExRemarks = new CcControl.CcTextBox();
+            this.ComboBoxExBloodType = new CcControl.CcComboBox();
+            this.labelEx13 = new CcControl.CcLabel();
+            this.labelEx12 = new CcControl.CcLabel();
+            this.TextBoxExCurrentAddress = new CcControl.CcTextBox();
+            this.CcDateTimeEmploymentDate = new CcControl.CcDateTime();
+            this.CcDateTimePickerContractDate = new CcControl.CcDateTime();
+            this.CheckBoxExContractFlag = new CcControl.CcCheckBox();
+            this.ccGroupBox1 = new CcControl.CcGroupBox();
+            this.CheckBoxExToukanpoFlag = new CcControl.CcCheckBox();
+            this.CheckBoxExTargetFlag = new CcControl.CcCheckBox();
+            this.CheckBoxExLegalTwelveItemFlag = new CcControl.CcCheckBox();
+            this.CcCheckBoxMedicalCheckupFlag = new CcControl.CcCheckBox();
             this.GroupBoxExRetirement = new CcControl.CcGroupBox();
             this.labelEx40 = new CcControl.CcLabel();
             this.TextBoxExDeathNote = new CcControl.CcTextBox();
@@ -81,8 +132,6 @@
             this.TextBoxExCompanyName = new CcControl.CcTextBox();
             this.labelEx25 = new CcControl.CcLabel();
             this.DateTimeExHistoryDate = new CcControl.CcDateTime();
-            this.CheckBoxExToukanpoFlag = new CcControl.CcCheckBox();
-            this.CheckBoxExLegalTwelveItemFlag = new CcControl.CcCheckBox();
             this.GroupBoxExDrive = new CcControl.CcGroupBox();
             this.ComboBoxExLicenseCondition = new CcControl.CcComboBox();
             this.DateTimeExLicenseTypeExpirationDate = new CcControl.CcDateTime();
@@ -98,48 +147,6 @@
             this.labelEx19 = new CcControl.CcLabel();
             this.DateTimeExSelectionDate = new CcControl.CcDateTime();
             this.labelEx18 = new CcControl.CcLabel();
-            this.labelEx17 = new CcControl.CcLabel();
-            this.PictureBoxExStamp = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx2 = new CcControl.CcContextMenuStrip();
-            this.ToolStripMenuItemStampClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemStampDelete = new ToolStripMenuItem();
-            this.PictureBoxExStaff = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
-            this.ToolStripMenuItemPictureClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemPictureDelete = new ToolStripMenuItem();
-            this.labelEx16 = new CcControl.CcLabel();
-            this.TextBoxExCellphoneNumber = new CcControl.CcTextBox();
-            this.labelEx15 = new CcControl.CcLabel();
-            this.CheckBoxExTargetFlag = new CcControl.CcCheckBox();
-            this.TextBoxExTelephoneNumber = new CcControl.CcTextBox();
-            this.labelEx14 = new CcControl.CcLabel();
-            this.TextBoxExRemarks = new CcControl.CcTextBox();
-            this.labelEx13 = new CcControl.CcLabel();
-            this.TextBoxExCurrentAddress = new CcControl.CcTextBox();
-            this.CcDateTimePickerContractDate = new CcControl.CcDateTime();
-            this.CheckBoxExContractFlag = new CcControl.CcCheckBox();
-            this.CcDateTimeEmploymentDate = new CcControl.CcDateTime();
-            this.labelEx12 = new CcControl.CcLabel();
-            this.ComboBoxExBloodType = new CcControl.CcComboBox();
-            this.labelEx11 = new CcControl.CcLabel();
-            this.ComboBoxExGender = new CcControl.CcComboBox();
-            this.labelEx10 = new CcControl.CcLabel();
-            this.CcDateTimeBirthDate = new CcControl.CcDateTime();
-            this.labelEx9 = new CcControl.CcLabel();
-            this.labelEx8 = new CcControl.CcLabel();
-            this.TextBoxExDisplayName = new CcControl.CcTextBox();
-            this.labelEx7 = new CcControl.CcLabel();
-            this.TextBoxExOtherName = new CcControl.CcTextBox();
-            this.labelEx6 = new CcControl.CcLabel();
-            this.TextBoxExName = new CcControl.CcTextBox();
-            this.labelEx5 = new CcControl.CcLabel();
-            this.TextBoxExOtherNameKana = new CcControl.CcTextBox();
-            this.labelEx3 = new CcControl.CcLabel();
-            this.TextBoxExNameKana = new CcControl.CcTextBox();
-            this.TextBoxExUnionCode = new CcControl.CcTextBox();
-            this.labelEx4 = new CcControl.CcLabel();
-            this.LabelExStaffCode = new CcControl.CcLabel();
-            this.labelEx1 = new CcControl.CcLabel();
             this.CcGroupBoxOccupation = new CcControl.CcGroupBox();
             this.ccRadioButton1 = new CcControl.CcRadioButton();
             this.radioButtonEx18 = new CcControl.CcRadioButton();
@@ -302,14 +309,16 @@
             this.TableLayoutPanelExBase.SuspendLayout();
             this.PanelExUp.SuspendLayout();
             this.PanelExLeft.SuspendLayout();
+            this.ccGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).BeginInit();
+            this.ContextMenuStripEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).BeginInit();
+            this.ContextMenuStripEx2.SuspendLayout();
+            this.ccGroupBox1.SuspendLayout();
             this.GroupBoxExRetirement.SuspendLayout();
             this.GroupBoxExExperience.SuspendLayout();
             this.GroupBoxExHistory.SuspendLayout();
             this.GroupBoxExDrive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).BeginInit();
-            this.ContextMenuStripEx2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).BeginInit();
-            this.ContextMenuStripEx1.SuspendLayout();
             this.CcGroupBoxOccupation.SuspendLayout();
             this.CcGroupBoxJobForm.SuspendLayout();
             this.CcGroupBoxBelongs.SuspendLayout();
@@ -329,7 +338,7 @@
             this.TableLayoutPanelExBase.ColumnCount = 2;
             this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
+            this.TableLayoutPanelExBase.Controls.Add(this.CcMenuStrip1, 0, 0);
             this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
             this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
             this.TableLayoutPanelExBase.Controls.Add(this.PanelExLeft, 0, 2);
@@ -345,15 +354,15 @@
             this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
             this.TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            this.TableLayoutPanelExBase.SetColumnSpan(this.MenuStripEx1, 2);
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1904, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            this.TableLayoutPanelExBase.SetColumnSpan(this.CcMenuStrip1, 2);
+            this.CcMenuStrip1.Location = new Point(0, 0);
+            this.CcMenuStrip1.Name = "CcMenuStrip1";
+            this.CcMenuStrip1.Size = new Size(1904, 24);
+            this.CcMenuStrip1.TabIndex = 0;
+            this.CcMenuStrip1.Text = "menuStripEx1";
+            this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
@@ -373,7 +382,7 @@
             this.PanelExUp.Location = new Point(3, 27);
             this.PanelExUp.Name = "PanelExUp";
             this.PanelExUp.Size = new Size(1898, 54);
-            this.PanelExUp.TabIndex = 2;
+            this.PanelExUp.TabIndex = 1;
             // 
             // CcButtonUpdate
             // 
@@ -391,50 +400,12 @@
             // 
             this.PanelExLeft.AutoScroll = true;
             this.PanelExLeft.BorderStyle = BorderStyle.Fixed3D;
-            this.PanelExLeft.Controls.Add(this.CcCheckBoxMedicalCheckupFlag);
-            this.PanelExLeft.Controls.Add(this.labelEx41);
+            this.PanelExLeft.Controls.Add(this.ccGroupBox2);
+            this.PanelExLeft.Controls.Add(this.ccGroupBox1);
             this.PanelExLeft.Controls.Add(this.GroupBoxExRetirement);
             this.PanelExLeft.Controls.Add(this.GroupBoxExExperience);
             this.PanelExLeft.Controls.Add(this.GroupBoxExHistory);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExToukanpoFlag);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExLegalTwelveItemFlag);
             this.PanelExLeft.Controls.Add(this.GroupBoxExDrive);
-            this.PanelExLeft.Controls.Add(this.labelEx17);
-            this.PanelExLeft.Controls.Add(this.PictureBoxExStamp);
-            this.PanelExLeft.Controls.Add(this.PictureBoxExStaff);
-            this.PanelExLeft.Controls.Add(this.labelEx16);
-            this.PanelExLeft.Controls.Add(this.TextBoxExCellphoneNumber);
-            this.PanelExLeft.Controls.Add(this.labelEx15);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExTargetFlag);
-            this.PanelExLeft.Controls.Add(this.TextBoxExTelephoneNumber);
-            this.PanelExLeft.Controls.Add(this.labelEx14);
-            this.PanelExLeft.Controls.Add(this.TextBoxExRemarks);
-            this.PanelExLeft.Controls.Add(this.labelEx13);
-            this.PanelExLeft.Controls.Add(this.TextBoxExCurrentAddress);
-            this.PanelExLeft.Controls.Add(this.CcDateTimePickerContractDate);
-            this.PanelExLeft.Controls.Add(this.CheckBoxExContractFlag);
-            this.PanelExLeft.Controls.Add(this.CcDateTimeEmploymentDate);
-            this.PanelExLeft.Controls.Add(this.labelEx12);
-            this.PanelExLeft.Controls.Add(this.ComboBoxExBloodType);
-            this.PanelExLeft.Controls.Add(this.labelEx11);
-            this.PanelExLeft.Controls.Add(this.ComboBoxExGender);
-            this.PanelExLeft.Controls.Add(this.labelEx10);
-            this.PanelExLeft.Controls.Add(this.CcDateTimeBirthDate);
-            this.PanelExLeft.Controls.Add(this.labelEx9);
-            this.PanelExLeft.Controls.Add(this.labelEx8);
-            this.PanelExLeft.Controls.Add(this.TextBoxExDisplayName);
-            this.PanelExLeft.Controls.Add(this.labelEx7);
-            this.PanelExLeft.Controls.Add(this.TextBoxExOtherName);
-            this.PanelExLeft.Controls.Add(this.labelEx6);
-            this.PanelExLeft.Controls.Add(this.TextBoxExName);
-            this.PanelExLeft.Controls.Add(this.labelEx5);
-            this.PanelExLeft.Controls.Add(this.TextBoxExOtherNameKana);
-            this.PanelExLeft.Controls.Add(this.labelEx3);
-            this.PanelExLeft.Controls.Add(this.TextBoxExNameKana);
-            this.PanelExLeft.Controls.Add(this.TextBoxExUnionCode);
-            this.PanelExLeft.Controls.Add(this.labelEx4);
-            this.PanelExLeft.Controls.Add(this.LabelExStaffCode);
-            this.PanelExLeft.Controls.Add(this.labelEx1);
             this.PanelExLeft.Controls.Add(this.CcGroupBoxOccupation);
             this.PanelExLeft.Controls.Add(this.CcGroupBoxJobForm);
             this.PanelExLeft.Controls.Add(this.CcGroupBoxBelongs);
@@ -444,24 +415,538 @@
             this.PanelExLeft.Size = new Size(946, 927);
             this.PanelExLeft.TabIndex = 3;
             // 
-            // CcCheckBoxMedicalCheckupFlag
+            // ccGroupBox2
             // 
-            this.CcCheckBoxMedicalCheckupFlag.AutoSize = true;
-            this.CcCheckBoxMedicalCheckupFlag.Location = new Point(296, 12);
-            this.CcCheckBoxMedicalCheckupFlag.Name = "CcCheckBoxMedicalCheckupFlag";
-            this.CcCheckBoxMedicalCheckupFlag.Size = new Size(158, 19);
-            this.CcCheckBoxMedicalCheckupFlag.TabIndex = 59;
-            this.CcCheckBoxMedicalCheckupFlag.Text = "定期健康診断受診対象者";
-            this.CcCheckBoxMedicalCheckupFlag.UseVisualStyleBackColor = true;
+            this.ccGroupBox2.Controls.Add(this.PictureBoxExStaff);
+            this.ccGroupBox2.Controls.Add(this.labelEx1);
+            this.ccGroupBox2.Controls.Add(this.CcCheckBoxPaidLeaveFlag);
+            this.ccGroupBox2.Controls.Add(this.LabelExStaffCode);
+            this.ccGroupBox2.Controls.Add(this.CcDateTimePaidLeaveCommencementDate);
+            this.ccGroupBox2.Controls.Add(this.labelEx4);
+            this.ccGroupBox2.Controls.Add(this.ccLabel2);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExUnionCode);
+            this.ccGroupBox2.Controls.Add(this.CcDateTimePaidLeaveReferenceDate);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExNameKana);
+            this.ccGroupBox2.Controls.Add(this.ccLabel1);
+            this.ccGroupBox2.Controls.Add(this.labelEx3);
+            this.ccGroupBox2.Controls.Add(this.labelEx41);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExOtherNameKana);
+            this.ccGroupBox2.Controls.Add(this.labelEx5);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExName);
+            this.ccGroupBox2.Controls.Add(this.labelEx6);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExOtherName);
+            this.ccGroupBox2.Controls.Add(this.labelEx17);
+            this.ccGroupBox2.Controls.Add(this.labelEx7);
+            this.ccGroupBox2.Controls.Add(this.PictureBoxExStamp);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExDisplayName);
+            this.ccGroupBox2.Controls.Add(this.labelEx8);
+            this.ccGroupBox2.Controls.Add(this.labelEx16);
+            this.ccGroupBox2.Controls.Add(this.labelEx9);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExCellphoneNumber);
+            this.ccGroupBox2.Controls.Add(this.CcDateTimeBirthDate);
+            this.ccGroupBox2.Controls.Add(this.labelEx15);
+            this.ccGroupBox2.Controls.Add(this.labelEx10);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExTelephoneNumber);
+            this.ccGroupBox2.Controls.Add(this.ComboBoxExGender);
+            this.ccGroupBox2.Controls.Add(this.labelEx14);
+            this.ccGroupBox2.Controls.Add(this.labelEx11);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExRemarks);
+            this.ccGroupBox2.Controls.Add(this.ComboBoxExBloodType);
+            this.ccGroupBox2.Controls.Add(this.labelEx13);
+            this.ccGroupBox2.Controls.Add(this.labelEx12);
+            this.ccGroupBox2.Controls.Add(this.TextBoxExCurrentAddress);
+            this.ccGroupBox2.Controls.Add(this.CcDateTimeEmploymentDate);
+            this.ccGroupBox2.Controls.Add(this.CcDateTimePickerContractDate);
+            this.ccGroupBox2.Controls.Add(this.CheckBoxExContractFlag);
+            this.ccGroupBox2.Location = new Point(8, 240);
+            this.ccGroupBox2.Name = "ccGroupBox2";
+            this.ccGroupBox2.Size = new Size(920, 484);
+            this.ccGroupBox2.TabIndex = 1;
+            this.ccGroupBox2.TabStop = false;
+            // 
+            // PictureBoxExStaff
+            // 
+            this.PictureBoxExStaff.BorderStyle = BorderStyle.FixedSingle;
+            this.PictureBoxExStaff.ContextMenuStrip = this.ContextMenuStripEx1;
+            this.PictureBoxExStaff.Location = new Point(116, 288);
+            this.PictureBoxExStaff.Name = "PictureBoxExStaff";
+            this.PictureBoxExStaff.Size = new Size(144, 176);
+            this.PictureBoxExStaff.SizeMode = PictureBoxSizeMode.Zoom;
+            this.PictureBoxExStaff.TabIndex = 36;
+            this.PictureBoxExStaff.TabStop = false;
+            // 
+            // ContextMenuStripEx1
+            // 
+            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPictureClip, this.ToolStripMenuItemPictureDelete });
+            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            this.ContextMenuStripEx1.Size = new Size(108, 48);
+            // 
+            // ToolStripMenuItemPictureClip
+            // 
+            this.ToolStripMenuItemPictureClip.Name = "ToolStripMenuItemPictureClip";
+            this.ToolStripMenuItemPictureClip.Size = new Size(107, 22);
+            this.ToolStripMenuItemPictureClip.Text = "Copy";
+            this.ToolStripMenuItemPictureClip.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemPictureDelete
+            // 
+            this.ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
+            this.ToolStripMenuItemPictureDelete.Size = new Size(107, 22);
+            this.ToolStripMenuItemPictureDelete.Text = "Delete";
+            this.ToolStripMenuItemPictureDelete.Click += this.ToolStripMenuItem_Click;
+            // 
+            // labelEx1
+            // 
+            this.labelEx1.AutoSize = true;
+            this.labelEx1.Location = new Point(20, 24);
+            this.labelEx1.Name = "labelEx1";
+            this.labelEx1.Size = new Size(46, 15);
+            this.labelEx1.TabIndex = 0;
+            this.labelEx1.Text = "社員CD";
+            // 
+            // CcCheckBoxPaidLeaveFlag
+            // 
+            this.CcCheckBoxPaidLeaveFlag.AutoSize = true;
+            this.CcCheckBoxPaidLeaveFlag.ForeColor = Color.Blue;
+            this.CcCheckBoxPaidLeaveFlag.Location = new Point(12, 166);
+            this.CcCheckBoxPaidLeaveFlag.Name = "CcCheckBoxPaidLeaveFlag";
+            this.CcCheckBoxPaidLeaveFlag.Size = new Size(110, 19);
+            this.CcCheckBoxPaidLeaveFlag.TabIndex = 24;
+            this.CcCheckBoxPaidLeaveFlag.Text = "有給計算対象者";
+            this.CcCheckBoxPaidLeaveFlag.UseVisualStyleBackColor = true;
+            this.CcCheckBoxPaidLeaveFlag.CheckedChanged += this.CcCheckBox_CheckedChanged;
+            // 
+            // LabelExStaffCode
+            // 
+            this.LabelExStaffCode.BorderStyle = BorderStyle.FixedSingle;
+            this.LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F);
+            this.LabelExStaffCode.Location = new Point(72, 20);
+            this.LabelExStaffCode.Name = "LabelExStaffCode";
+            this.LabelExStaffCode.Size = new Size(56, 23);
+            this.LabelExStaffCode.TabIndex = 1;
+            this.LabelExStaffCode.Text = "88888";
+            this.LabelExStaffCode.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // CcDateTimePaidLeaveCommencementDate
+            // 
+            this.CcDateTimePaidLeaveCommencementDate.CultureFlag = false;
+            this.CcDateTimePaidLeaveCommencementDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePaidLeaveCommencementDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePaidLeaveCommencementDate.Location = new Point(472, 164);
+            this.CcDateTimePaidLeaveCommencementDate.Name = "CcDateTimePaidLeaveCommencementDate";
+            this.CcDateTimePaidLeaveCommencementDate.Size = new Size(188, 23);
+            this.CcDateTimePaidLeaveCommencementDate.TabIndex = 28;
+            this.CcDateTimePaidLeaveCommencementDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // labelEx4
+            // 
+            this.labelEx4.AutoSize = true;
+            this.labelEx4.Location = new Point(136, 24);
+            this.labelEx4.Name = "labelEx4";
+            this.labelEx4.Size = new Size(46, 15);
+            this.labelEx4.TabIndex = 2;
+            this.labelEx4.Text = "組合CD";
+            // 
+            // ccLabel2
+            // 
+            this.ccLabel2.AutoSize = true;
+            this.ccLabel2.ForeColor = Color.Blue;
+            this.ccLabel2.Location = new Point(400, 168);
+            this.ccLabel2.Name = "ccLabel2";
+            this.ccLabel2.Size = new Size(67, 15);
+            this.ccLabel2.TabIndex = 27;
+            this.ccLabel2.Text = "有給起算日";
+            // 
+            // TextBoxExUnionCode
+            // 
+            this.TextBoxExUnionCode.Location = new Point(188, 20);
+            this.TextBoxExUnionCode.Name = "TextBoxExUnionCode";
+            this.TextBoxExUnionCode.Size = new Size(44, 23);
+            this.TextBoxExUnionCode.TabIndex = 3;
+            this.TextBoxExUnionCode.Text = "8888";
+            this.TextBoxExUnionCode.TextAlign = HorizontalAlignment.Center;
+            // 
+            // CcDateTimePaidLeaveReferenceDate
+            // 
+            this.CcDateTimePaidLeaveReferenceDate.CultureFlag = false;
+            this.CcDateTimePaidLeaveReferenceDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePaidLeaveReferenceDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePaidLeaveReferenceDate.Location = new Point(204, 164);
+            this.CcDateTimePaidLeaveReferenceDate.Name = "CcDateTimePaidLeaveReferenceDate";
+            this.CcDateTimePaidLeaveReferenceDate.Size = new Size(188, 23);
+            this.CcDateTimePaidLeaveReferenceDate.TabIndex = 26;
+            this.CcDateTimePaidLeaveReferenceDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // TextBoxExNameKana
+            // 
+            this.TextBoxExNameKana.ImeMode = ImeMode.Katakana;
+            this.TextBoxExNameKana.Location = new Point(72, 48);
+            this.TextBoxExNameKana.Name = "TextBoxExNameKana";
+            this.TextBoxExNameKana.Size = new Size(264, 23);
+            this.TextBoxExNameKana.TabIndex = 5;
+            this.TextBoxExNameKana.Text = "ツジユウイチ";
+            // 
+            // ccLabel1
+            // 
+            this.ccLabel1.AutoSize = true;
+            this.ccLabel1.ForeColor = Color.Blue;
+            this.ccLabel1.Location = new Point(132, 168);
+            this.ccLabel1.Name = "ccLabel1";
+            this.ccLabel1.Size = new Size(67, 15);
+            this.ccLabel1.TabIndex = 25;
+            this.ccLabel1.Text = "有給基準日";
+            // 
+            // labelEx3
+            // 
+            this.labelEx3.AutoSize = true;
+            this.labelEx3.Location = new Point(24, 52);
+            this.labelEx3.Name = "labelEx3";
+            this.labelEx3.Size = new Size(41, 15);
+            this.labelEx3.TabIndex = 4;
+            this.labelEx3.Text = "フリガナ";
             // 
             // labelEx41
             // 
             this.labelEx41.AutoSize = true;
-            this.labelEx41.Location = new Point(84, 524);
+            this.labelEx41.Location = new Point(76, 368);
             this.labelEx41.Name = "labelEx41";
             this.labelEx41.Size = new Size(31, 15);
             this.labelEx41.TabIndex = 58;
             this.labelEx41.Text = "写真";
+            // 
+            // TextBoxExOtherNameKana
+            // 
+            this.TextBoxExOtherNameKana.ImeMode = ImeMode.Katakana;
+            this.TextBoxExOtherNameKana.Location = new Point(448, 48);
+            this.TextBoxExOtherNameKana.Name = "TextBoxExOtherNameKana";
+            this.TextBoxExOtherNameKana.Size = new Size(264, 23);
+            this.TextBoxExOtherNameKana.TabIndex = 7;
+            this.TextBoxExOtherNameKana.Text = "ツジ　ユウイチ";
+            // 
+            // labelEx5
+            // 
+            this.labelEx5.AutoSize = true;
+            this.labelEx5.Location = new Point(344, 52);
+            this.labelEx5.Name = "labelEx5";
+            this.labelEx5.Size = new Size(97, 15);
+            this.labelEx5.TabIndex = 6;
+            this.labelEx5.Text = "フリガナ(スペース入)";
+            // 
+            // TextBoxExName
+            // 
+            this.TextBoxExName.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExName.Location = new Point(72, 76);
+            this.TextBoxExName.Name = "TextBoxExName";
+            this.TextBoxExName.Size = new Size(264, 23);
+            this.TextBoxExName.TabIndex = 9;
+            this.TextBoxExName.Text = "辻祐一";
+            // 
+            // labelEx6
+            // 
+            this.labelEx6.AutoSize = true;
+            this.labelEx6.Location = new Point(36, 80);
+            this.labelEx6.Name = "labelEx6";
+            this.labelEx6.Size = new Size(31, 15);
+            this.labelEx6.TabIndex = 8;
+            this.labelEx6.Text = "氏名";
+            // 
+            // TextBoxExOtherName
+            // 
+            this.TextBoxExOtherName.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExOtherName.Location = new Point(448, 76);
+            this.TextBoxExOtherName.Name = "TextBoxExOtherName";
+            this.TextBoxExOtherName.Size = new Size(264, 23);
+            this.TextBoxExOtherName.TabIndex = 11;
+            this.TextBoxExOtherName.Text = "辻　祐一";
+            // 
+            // labelEx17
+            // 
+            this.labelEx17.AutoSize = true;
+            this.labelEx17.Location = new Point(296, 368);
+            this.labelEx17.Name = "labelEx17";
+            this.labelEx17.Size = new Size(31, 15);
+            this.labelEx17.TabIndex = 38;
+            this.labelEx17.Text = "印影";
+            // 
+            // labelEx7
+            // 
+            this.labelEx7.AutoSize = true;
+            this.labelEx7.Location = new Point(356, 80);
+            this.labelEx7.Name = "labelEx7";
+            this.labelEx7.Size = new Size(87, 15);
+            this.labelEx7.TabIndex = 10;
+            this.labelEx7.Text = "氏名(スペース入)";
+            // 
+            // PictureBoxExStamp
+            // 
+            this.PictureBoxExStamp.BorderStyle = BorderStyle.FixedSingle;
+            this.PictureBoxExStamp.ContextMenuStrip = this.ContextMenuStripEx2;
+            this.PictureBoxExStamp.Location = new Point(336, 352);
+            this.PictureBoxExStamp.Name = "PictureBoxExStamp";
+            this.PictureBoxExStamp.Size = new Size(44, 44);
+            this.PictureBoxExStamp.SizeMode = PictureBoxSizeMode.Zoom;
+            this.PictureBoxExStamp.TabIndex = 37;
+            this.PictureBoxExStamp.TabStop = false;
+            // 
+            // ContextMenuStripEx2
+            // 
+            this.ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemStampClip, this.ToolStripMenuItemStampDelete });
+            this.ContextMenuStripEx2.Name = "ContextMenuStripEx2";
+            this.ContextMenuStripEx2.Size = new Size(108, 48);
+            // 
+            // ToolStripMenuItemStampClip
+            // 
+            this.ToolStripMenuItemStampClip.Name = "ToolStripMenuItemStampClip";
+            this.ToolStripMenuItemStampClip.Size = new Size(107, 22);
+            this.ToolStripMenuItemStampClip.Text = "Copy";
+            this.ToolStripMenuItemStampClip.Click += this.ToolStripMenuItem_Click;
+            // 
+            // ToolStripMenuItemStampDelete
+            // 
+            this.ToolStripMenuItemStampDelete.Name = "ToolStripMenuItemStampDelete";
+            this.ToolStripMenuItemStampDelete.Size = new Size(107, 22);
+            this.ToolStripMenuItemStampDelete.Text = "Delete";
+            this.ToolStripMenuItemStampDelete.Click += this.ToolStripMenuItem_Click;
+            // 
+            // TextBoxExDisplayName
+            // 
+            this.TextBoxExDisplayName.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExDisplayName.Location = new Point(824, 76);
+            this.TextBoxExDisplayName.Name = "TextBoxExDisplayName";
+            this.TextBoxExDisplayName.Size = new Size(84, 23);
+            this.TextBoxExDisplayName.TabIndex = 13;
+            this.TextBoxExDisplayName.Text = "〇〇〇〇〇〇";
+            // 
+            // labelEx8
+            // 
+            this.labelEx8.AutoSize = true;
+            this.labelEx8.Location = new Point(720, 80);
+            this.labelEx8.Name = "labelEx8";
+            this.labelEx8.Size = new Size(99, 15);
+            this.labelEx8.TabIndex = 12;
+            this.labelEx8.Text = "略称名(全角６字)";
+            // 
+            // labelEx16
+            // 
+            this.labelEx16.AutoSize = true;
+            this.labelEx16.Location = new Point(188, 260);
+            this.labelEx16.Name = "labelEx16";
+            this.labelEx16.Size = new Size(135, 15);
+            this.labelEx16.TabIndex = 35;
+            this.labelEx16.Text = "携帯番号(代番等連絡用)";
+            // 
+            // labelEx9
+            // 
+            this.labelEx9.AutoSize = true;
+            this.labelEx9.Location = new Point(12, 108);
+            this.labelEx9.Name = "labelEx9";
+            this.labelEx9.Size = new Size(55, 15);
+            this.labelEx9.TabIndex = 14;
+            this.labelEx9.Text = "生年月日";
+            // 
+            // TextBoxExCellphoneNumber
+            // 
+            this.TextBoxExCellphoneNumber.Location = new Point(328, 256);
+            this.TextBoxExCellphoneNumber.Name = "TextBoxExCellphoneNumber";
+            this.TextBoxExCellphoneNumber.Size = new Size(96, 23);
+            this.TextBoxExCellphoneNumber.TabIndex = 36;
+            this.TextBoxExCellphoneNumber.Text = "03-8888-8888";
+            // 
+            // CcDateTimeBirthDate
+            // 
+            this.CcDateTimeBirthDate.CultureFlag = false;
+            this.CcDateTimeBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimeBirthDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimeBirthDate.Location = new Point(72, 104);
+            this.CcDateTimeBirthDate.Name = "CcDateTimeBirthDate";
+            this.CcDateTimeBirthDate.Size = new Size(188, 23);
+            this.CcDateTimeBirthDate.TabIndex = 15;
+            this.CcDateTimeBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // labelEx15
+            // 
+            this.labelEx15.AutoSize = true;
+            this.labelEx15.Location = new Point(12, 260);
+            this.labelEx15.Name = "labelEx15";
+            this.labelEx15.Size = new Size(55, 15);
+            this.labelEx15.TabIndex = 33;
+            this.labelEx15.Text = "電話番号";
+            // 
+            // labelEx10
+            // 
+            this.labelEx10.AutoSize = true;
+            this.labelEx10.Location = new Point(268, 108);
+            this.labelEx10.Name = "labelEx10";
+            this.labelEx10.Size = new Size(31, 15);
+            this.labelEx10.TabIndex = 16;
+            this.labelEx10.Text = "性別";
+            // 
+            // TextBoxExTelephoneNumber
+            // 
+            this.TextBoxExTelephoneNumber.Location = new Point(72, 256);
+            this.TextBoxExTelephoneNumber.Name = "TextBoxExTelephoneNumber";
+            this.TextBoxExTelephoneNumber.Size = new Size(96, 23);
+            this.TextBoxExTelephoneNumber.TabIndex = 34;
+            this.TextBoxExTelephoneNumber.Text = "03-8888-8888";
+            // 
+            // ComboBoxExGender
+            // 
+            this.ComboBoxExGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExGender.FormattingEnabled = true;
+            this.ComboBoxExGender.Items.AddRange(new object[] { "男性", "女性" });
+            this.ComboBoxExGender.Location = new Point(304, 104);
+            this.ComboBoxExGender.Name = "ComboBoxExGender";
+            this.ComboBoxExGender.Size = new Size(52, 23);
+            this.ComboBoxExGender.TabIndex = 17;
+            // 
+            // labelEx14
+            // 
+            this.labelEx14.AutoSize = true;
+            this.labelEx14.Location = new Point(36, 232);
+            this.labelEx14.Name = "labelEx14";
+            this.labelEx14.Size = new Size(31, 15);
+            this.labelEx14.TabIndex = 31;
+            this.labelEx14.Text = "備考";
+            // 
+            // labelEx11
+            // 
+            this.labelEx11.AutoSize = true;
+            this.labelEx11.Location = new Point(364, 108);
+            this.labelEx11.Name = "labelEx11";
+            this.labelEx11.Size = new Size(43, 15);
+            this.labelEx11.TabIndex = 18;
+            this.labelEx11.Text = "血液型";
+            // 
+            // TextBoxExRemarks
+            // 
+            this.TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExRemarks.Location = new Point(72, 228);
+            this.TextBoxExRemarks.Name = "TextBoxExRemarks";
+            this.TextBoxExRemarks.Size = new Size(640, 23);
+            this.TextBoxExRemarks.TabIndex = 32;
+            this.TextBoxExRemarks.Text = "ツジユウイチ";
+            // 
+            // ComboBoxExBloodType
+            // 
+            this.ComboBoxExBloodType.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxExBloodType.FormattingEnabled = true;
+            this.ComboBoxExBloodType.Items.AddRange(new object[] { "A", "B", "AB", "O" });
+            this.ComboBoxExBloodType.Location = new Point(412, 104);
+            this.ComboBoxExBloodType.Name = "ComboBoxExBloodType";
+            this.ComboBoxExBloodType.Size = new Size(52, 23);
+            this.ComboBoxExBloodType.TabIndex = 19;
+            // 
+            // labelEx13
+            // 
+            this.labelEx13.AutoSize = true;
+            this.labelEx13.Location = new Point(24, 204);
+            this.labelEx13.Name = "labelEx13";
+            this.labelEx13.Size = new Size(43, 15);
+            this.labelEx13.TabIndex = 29;
+            this.labelEx13.Text = "現住所";
+            // 
+            // labelEx12
+            // 
+            this.labelEx12.AutoSize = true;
+            this.labelEx12.Location = new Point(0, 136);
+            this.labelEx12.Name = "labelEx12";
+            this.labelEx12.Size = new Size(67, 15);
+            this.labelEx12.TabIndex = 20;
+            this.labelEx12.Text = "雇用年月日";
+            // 
+            // TextBoxExCurrentAddress
+            // 
+            this.TextBoxExCurrentAddress.ImeMode = ImeMode.Hiragana;
+            this.TextBoxExCurrentAddress.Location = new Point(72, 200);
+            this.TextBoxExCurrentAddress.Name = "TextBoxExCurrentAddress";
+            this.TextBoxExCurrentAddress.Size = new Size(640, 23);
+            this.TextBoxExCurrentAddress.TabIndex = 30;
+            this.TextBoxExCurrentAddress.Text = "ツジユウイチ";
+            // 
+            // CcDateTimeEmploymentDate
+            // 
+            this.CcDateTimeEmploymentDate.CultureFlag = false;
+            this.CcDateTimeEmploymentDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimeEmploymentDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimeEmploymentDate.Location = new Point(72, 132);
+            this.CcDateTimeEmploymentDate.Name = "CcDateTimeEmploymentDate";
+            this.CcDateTimeEmploymentDate.Size = new Size(188, 23);
+            this.CcDateTimeEmploymentDate.TabIndex = 21;
+            this.CcDateTimeEmploymentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // CcDateTimePickerContractDate
+            // 
+            this.CcDateTimePickerContractDate.CultureFlag = false;
+            this.CcDateTimePickerContractDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            this.CcDateTimePickerContractDate.Format = DateTimePickerFormat.Custom;
+            this.CcDateTimePickerContractDate.Location = new Point(368, 132);
+            this.CcDateTimePickerContractDate.Name = "CcDateTimePickerContractDate";
+            this.CcDateTimePickerContractDate.Size = new Size(188, 23);
+            this.CcDateTimePickerContractDate.TabIndex = 23;
+            this.CcDateTimePickerContractDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // CheckBoxExContractFlag
+            // 
+            this.CheckBoxExContractFlag.AutoSize = true;
+            this.CheckBoxExContractFlag.Location = new Point(276, 136);
+            this.CheckBoxExContractFlag.Name = "CheckBoxExContractFlag";
+            this.CheckBoxExContractFlag.Size = new Size(86, 19);
+            this.CheckBoxExContractFlag.TabIndex = 22;
+            this.CheckBoxExContractFlag.Text = "契約満了日";
+            this.CheckBoxExContractFlag.UseVisualStyleBackColor = true;
+            this.CheckBoxExContractFlag.CheckedChanged += this.CcCheckBox_CheckedChanged;
+            // 
+            // ccGroupBox1
+            // 
+            this.ccGroupBox1.Controls.Add(this.CheckBoxExToukanpoFlag);
+            this.ccGroupBox1.Controls.Add(this.CheckBoxExTargetFlag);
+            this.ccGroupBox1.Controls.Add(this.CheckBoxExLegalTwelveItemFlag);
+            this.ccGroupBox1.Controls.Add(this.CcCheckBoxMedicalCheckupFlag);
+            this.ccGroupBox1.Location = new Point(8, 8);
+            this.ccGroupBox1.Name = "ccGroupBox1";
+            this.ccGroupBox1.Size = new Size(920, 44);
+            this.ccGroupBox1.TabIndex = 0;
+            this.ccGroupBox1.TabStop = false;
+            // 
+            // CheckBoxExToukanpoFlag
+            // 
+            this.CheckBoxExToukanpoFlag.AutoSize = true;
+            this.CheckBoxExToukanpoFlag.Location = new Point(452, 20);
+            this.CheckBoxExToukanpoFlag.Name = "CheckBoxExToukanpoFlag";
+            this.CheckBoxExToukanpoFlag.Size = new Size(146, 19);
+            this.CheckBoxExToukanpoFlag.TabIndex = 3;
+            this.CheckBoxExToukanpoFlag.Text = "東環保研修受講対象者";
+            this.CheckBoxExToukanpoFlag.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxExTargetFlag
+            // 
+            this.CheckBoxExTargetFlag.AutoSize = true;
+            this.CheckBoxExTargetFlag.Location = new Point(12, 20);
+            this.CheckBoxExTargetFlag.Name = "CheckBoxExTargetFlag";
+            this.CheckBoxExTargetFlag.Size = new Size(105, 19);
+            this.CheckBoxExTargetFlag.TabIndex = 0;
+            this.CheckBoxExTargetFlag.Text = "配車する対象者";
+            this.CheckBoxExTargetFlag.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxExLegalTwelveItemFlag
+            // 
+            this.CheckBoxExLegalTwelveItemFlag.AutoSize = true;
+            this.CheckBoxExLegalTwelveItemFlag.Location = new Point(124, 20);
+            this.CheckBoxExLegalTwelveItemFlag.Name = "CheckBoxExLegalTwelveItemFlag";
+            this.CheckBoxExLegalTwelveItemFlag.Size = new Size(158, 19);
+            this.CheckBoxExLegalTwelveItemFlag.TabIndex = 1;
+            this.CheckBoxExLegalTwelveItemFlag.Text = "法定１２項目受講対象者";
+            this.CheckBoxExLegalTwelveItemFlag.UseVisualStyleBackColor = true;
+            // 
+            // CcCheckBoxMedicalCheckupFlag
+            // 
+            this.CcCheckBoxMedicalCheckupFlag.AutoSize = true;
+            this.CcCheckBoxMedicalCheckupFlag.Location = new Point(288, 20);
+            this.CcCheckBoxMedicalCheckupFlag.Name = "CcCheckBoxMedicalCheckupFlag";
+            this.CcCheckBoxMedicalCheckupFlag.Size = new Size(158, 19);
+            this.CcCheckBoxMedicalCheckupFlag.TabIndex = 2;
+            this.CcCheckBoxMedicalCheckupFlag.Text = "定期健康診断受診対象者";
+            this.CcCheckBoxMedicalCheckupFlag.UseVisualStyleBackColor = true;
             // 
             // GroupBoxExRetirement
             // 
@@ -474,10 +959,10 @@
             this.GroupBoxExRetirement.Controls.Add(this.DateTimeExRetirementDate);
             this.GroupBoxExRetirement.Controls.Add(this.CheckBoxExRetirementFlag);
             this.GroupBoxExRetirement.Controls.Add(this.labelEx37);
-            this.GroupBoxExRetirement.Location = new Point(8, 1120);
+            this.GroupBoxExRetirement.Location = new Point(8, 1225);
             this.GroupBoxExRetirement.Name = "GroupBoxExRetirement";
-            this.GroupBoxExRetirement.Size = new Size(916, 143);
-            this.GroupBoxExRetirement.TabIndex = 57;
+            this.GroupBoxExRetirement.Size = new Size(920, 143);
+            this.GroupBoxExRetirement.TabIndex = 8;
             this.GroupBoxExRetirement.TabStop = false;
             this.GroupBoxExRetirement.Text = "解雇・退職の日付と理由";
             // 
@@ -590,10 +1075,10 @@
             this.GroupBoxExExperience.Controls.Add(this.labelEx33);
             this.GroupBoxExExperience.Controls.Add(this.TextBoxExExperienceNote);
             this.GroupBoxExExperience.Controls.Add(this.labelEx34);
-            this.GroupBoxExExperience.Location = new Point(8, 947);
+            this.GroupBoxExExperience.Location = new Point(8, 1052);
             this.GroupBoxExExperience.Name = "GroupBoxExExperience";
-            this.GroupBoxExExperience.Size = new Size(916, 164);
-            this.GroupBoxExExperience.TabIndex = 56;
+            this.GroupBoxExExperience.Size = new Size(920, 164);
+            this.GroupBoxExExperience.TabIndex = 7;
             this.GroupBoxExExperience.TabStop = false;
             this.GroupBoxExExperience.Text = "過去に運転経験のある自動車の種類及び経験期間等(Experience)";
             // 
@@ -828,10 +1313,10 @@
             this.GroupBoxExHistory.Controls.Add(this.TextBoxExCompanyName);
             this.GroupBoxExHistory.Controls.Add(this.labelEx25);
             this.GroupBoxExHistory.Controls.Add(this.DateTimeExHistoryDate);
-            this.GroupBoxExHistory.Location = new Point(8, 775);
+            this.GroupBoxExHistory.Location = new Point(8, 880);
             this.GroupBoxExHistory.Name = "GroupBoxExHistory";
-            this.GroupBoxExHistory.Size = new Size(916, 164);
-            this.GroupBoxExHistory.TabIndex = 42;
+            this.GroupBoxExHistory.Size = new Size(920, 164);
+            this.GroupBoxExHistory.TabIndex = 6;
             this.GroupBoxExHistory.TabStop = false;
             this.GroupBoxExHistory.Text = "職業履歴(History)";
             // 
@@ -978,26 +1463,6 @@
             this.DateTimeExHistoryDate.TabIndex = 43;
             this.DateTimeExHistoryDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // CheckBoxExToukanpoFlag
-            // 
-            this.CheckBoxExToukanpoFlag.AutoSize = true;
-            this.CheckBoxExToukanpoFlag.Location = new Point(460, 12);
-            this.CheckBoxExToukanpoFlag.Name = "CheckBoxExToukanpoFlag";
-            this.CheckBoxExToukanpoFlag.Size = new Size(146, 19);
-            this.CheckBoxExToukanpoFlag.TabIndex = 41;
-            this.CheckBoxExToukanpoFlag.Text = "東環保研修受講対象者";
-            this.CheckBoxExToukanpoFlag.UseVisualStyleBackColor = true;
-            // 
-            // CheckBoxExLegalTwelveItemFlag
-            // 
-            this.CheckBoxExLegalTwelveItemFlag.AutoSize = true;
-            this.CheckBoxExLegalTwelveItemFlag.Location = new Point(132, 12);
-            this.CheckBoxExLegalTwelveItemFlag.Name = "CheckBoxExLegalTwelveItemFlag";
-            this.CheckBoxExLegalTwelveItemFlag.Size = new Size(158, 19);
-            this.CheckBoxExLegalTwelveItemFlag.TabIndex = 40;
-            this.CheckBoxExLegalTwelveItemFlag.Text = "法定１２項目受講対象者";
-            this.CheckBoxExLegalTwelveItemFlag.UseVisualStyleBackColor = true;
-            // 
             // GroupBoxExDrive
             // 
             this.GroupBoxExDrive.Controls.Add(this.ComboBoxExLicenseCondition);
@@ -1014,10 +1479,10 @@
             this.GroupBoxExDrive.Controls.Add(this.labelEx19);
             this.GroupBoxExDrive.Controls.Add(this.DateTimeExSelectionDate);
             this.GroupBoxExDrive.Controls.Add(this.labelEx18);
-            this.GroupBoxExDrive.Location = new Point(8, 631);
+            this.GroupBoxExDrive.Location = new Point(8, 732);
             this.GroupBoxExDrive.Name = "GroupBoxExDrive";
-            this.GroupBoxExDrive.Size = new Size(916, 140);
-            this.GroupBoxExDrive.TabIndex = 39;
+            this.GroupBoxExDrive.Size = new Size(920, 140);
+            this.GroupBoxExDrive.TabIndex = 5;
             this.GroupBoxExDrive.TabStop = false;
             this.GroupBoxExDrive.Text = "運転に関する情報";
             // 
@@ -1152,384 +1617,6 @@
             this.labelEx18.TabIndex = 20;
             this.labelEx18.Text = "運転者に選任された日";
             // 
-            // labelEx17
-            // 
-            this.labelEx17.AutoSize = true;
-            this.labelEx17.Location = new Point(304, 524);
-            this.labelEx17.Name = "labelEx17";
-            this.labelEx17.Size = new Size(31, 15);
-            this.labelEx17.TabIndex = 38;
-            this.labelEx17.Text = "印影";
-            // 
-            // PictureBoxExStamp
-            // 
-            this.PictureBoxExStamp.BorderStyle = BorderStyle.FixedSingle;
-            this.PictureBoxExStamp.ContextMenuStrip = this.ContextMenuStripEx2;
-            this.PictureBoxExStamp.Location = new Point(344, 508);
-            this.PictureBoxExStamp.Name = "PictureBoxExStamp";
-            this.PictureBoxExStamp.Size = new Size(44, 44);
-            this.PictureBoxExStamp.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxExStamp.TabIndex = 37;
-            this.PictureBoxExStamp.TabStop = false;
-            // 
-            // ContextMenuStripEx2
-            // 
-            this.ContextMenuStripEx2.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemStampClip, this.ToolStripMenuItemStampDelete });
-            this.ContextMenuStripEx2.Name = "ContextMenuStripEx2";
-            this.ContextMenuStripEx2.Size = new Size(108, 48);
-            // 
-            // ToolStripMenuItemStampClip
-            // 
-            this.ToolStripMenuItemStampClip.Name = "ToolStripMenuItemStampClip";
-            this.ToolStripMenuItemStampClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemStampClip.Text = "Copy";
-            this.ToolStripMenuItemStampClip.Click += this.ToolStripMenuItem_Click;
-            // 
-            // ToolStripMenuItemStampDelete
-            // 
-            this.ToolStripMenuItemStampDelete.Name = "ToolStripMenuItemStampDelete";
-            this.ToolStripMenuItemStampDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemStampDelete.Text = "Delete";
-            this.ToolStripMenuItemStampDelete.Click += this.ToolStripMenuItem_Click;
-            // 
-            // PictureBoxExStaff
-            // 
-            this.PictureBoxExStaff.BorderStyle = BorderStyle.FixedSingle;
-            this.PictureBoxExStaff.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.PictureBoxExStaff.Location = new Point(124, 444);
-            this.PictureBoxExStaff.Name = "PictureBoxExStaff";
-            this.PictureBoxExStaff.Size = new Size(144, 176);
-            this.PictureBoxExStaff.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxExStaff.TabIndex = 36;
-            this.PictureBoxExStaff.TabStop = false;
-            // 
-            // ContextMenuStripEx1
-            // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemPictureClip, this.ToolStripMenuItemPictureDelete });
-            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
-            // 
-            // ToolStripMenuItemPictureClip
-            // 
-            this.ToolStripMenuItemPictureClip.Name = "ToolStripMenuItemPictureClip";
-            this.ToolStripMenuItemPictureClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemPictureClip.Text = "Copy";
-            this.ToolStripMenuItemPictureClip.Click += this.ToolStripMenuItem_Click;
-            // 
-            // ToolStripMenuItemPictureDelete
-            // 
-            this.ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
-            this.ToolStripMenuItemPictureDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemPictureDelete.Text = "Delete";
-            this.ToolStripMenuItemPictureDelete.Click += this.ToolStripMenuItem_Click;
-            // 
-            // labelEx16
-            // 
-            this.labelEx16.AutoSize = true;
-            this.labelEx16.Location = new Point(196, 416);
-            this.labelEx16.Name = "labelEx16";
-            this.labelEx16.Size = new Size(135, 15);
-            this.labelEx16.TabIndex = 35;
-            this.labelEx16.Text = "携帯番号(代番等連絡用)";
-            // 
-            // TextBoxExCellphoneNumber
-            // 
-            this.TextBoxExCellphoneNumber.Location = new Point(336, 412);
-            this.TextBoxExCellphoneNumber.Name = "TextBoxExCellphoneNumber";
-            this.TextBoxExCellphoneNumber.Size = new Size(96, 23);
-            this.TextBoxExCellphoneNumber.TabIndex = 34;
-            this.TextBoxExCellphoneNumber.Text = "03-8888-8888";
-            // 
-            // labelEx15
-            // 
-            this.labelEx15.AutoSize = true;
-            this.labelEx15.Location = new Point(20, 416);
-            this.labelEx15.Name = "labelEx15";
-            this.labelEx15.Size = new Size(55, 15);
-            this.labelEx15.TabIndex = 33;
-            this.labelEx15.Text = "電話番号";
-            // 
-            // CheckBoxExTargetFlag
-            // 
-            this.CheckBoxExTargetFlag.AutoSize = true;
-            this.CheckBoxExTargetFlag.Location = new Point(20, 12);
-            this.CheckBoxExTargetFlag.Name = "CheckBoxExTargetFlag";
-            this.CheckBoxExTargetFlag.Size = new Size(105, 19);
-            this.CheckBoxExTargetFlag.TabIndex = 0;
-            this.CheckBoxExTargetFlag.Text = "配車する対象者";
-            this.CheckBoxExTargetFlag.UseVisualStyleBackColor = true;
-            // 
-            // TextBoxExTelephoneNumber
-            // 
-            this.TextBoxExTelephoneNumber.Location = new Point(80, 412);
-            this.TextBoxExTelephoneNumber.Name = "TextBoxExTelephoneNumber";
-            this.TextBoxExTelephoneNumber.Size = new Size(96, 23);
-            this.TextBoxExTelephoneNumber.TabIndex = 32;
-            this.TextBoxExTelephoneNumber.Text = "03-8888-8888";
-            // 
-            // labelEx14
-            // 
-            this.labelEx14.AutoSize = true;
-            this.labelEx14.Location = new Point(44, 388);
-            this.labelEx14.Name = "labelEx14";
-            this.labelEx14.Size = new Size(31, 15);
-            this.labelEx14.TabIndex = 31;
-            this.labelEx14.Text = "備考";
-            // 
-            // TextBoxExRemarks
-            // 
-            this.TextBoxExRemarks.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExRemarks.Location = new Point(80, 384);
-            this.TextBoxExRemarks.Name = "TextBoxExRemarks";
-            this.TextBoxExRemarks.Size = new Size(640, 23);
-            this.TextBoxExRemarks.TabIndex = 30;
-            this.TextBoxExRemarks.Text = "ツジユウイチ";
-            // 
-            // labelEx13
-            // 
-            this.labelEx13.AutoSize = true;
-            this.labelEx13.Location = new Point(32, 360);
-            this.labelEx13.Name = "labelEx13";
-            this.labelEx13.Size = new Size(43, 15);
-            this.labelEx13.TabIndex = 29;
-            this.labelEx13.Text = "現住所";
-            // 
-            // TextBoxExCurrentAddress
-            // 
-            this.TextBoxExCurrentAddress.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExCurrentAddress.Location = new Point(80, 356);
-            this.TextBoxExCurrentAddress.Name = "TextBoxExCurrentAddress";
-            this.TextBoxExCurrentAddress.Size = new Size(640, 23);
-            this.TextBoxExCurrentAddress.TabIndex = 28;
-            this.TextBoxExCurrentAddress.Text = "ツジユウイチ";
-            // 
-            // CcDateTimePickerContractDate
-            // 
-            this.CcDateTimePickerContractDate.CultureFlag = false;
-            this.CcDateTimePickerContractDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimePickerContractDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimePickerContractDate.Location = new Point(376, 328);
-            this.CcDateTimePickerContractDate.Name = "CcDateTimePickerContractDate";
-            this.CcDateTimePickerContractDate.Size = new Size(188, 23);
-            this.CcDateTimePickerContractDate.TabIndex = 27;
-            this.CcDateTimePickerContractDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // CheckBoxExContractFlag
-            // 
-            this.CheckBoxExContractFlag.AutoSize = true;
-            this.CheckBoxExContractFlag.Location = new Point(284, 332);
-            this.CheckBoxExContractFlag.Name = "CheckBoxExContractFlag";
-            this.CheckBoxExContractFlag.Size = new Size(86, 19);
-            this.CheckBoxExContractFlag.TabIndex = 26;
-            this.CheckBoxExContractFlag.Text = "契約満了日";
-            this.CheckBoxExContractFlag.UseVisualStyleBackColor = true;
-            // 
-            // CcDateTimeEmploymentDate
-            // 
-            this.CcDateTimeEmploymentDate.CultureFlag = false;
-            this.CcDateTimeEmploymentDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimeEmploymentDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeEmploymentDate.Location = new Point(80, 328);
-            this.CcDateTimeEmploymentDate.Name = "CcDateTimeEmploymentDate";
-            this.CcDateTimeEmploymentDate.Size = new Size(188, 23);
-            this.CcDateTimeEmploymentDate.TabIndex = 25;
-            this.CcDateTimeEmploymentDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // labelEx12
-            // 
-            this.labelEx12.AutoSize = true;
-            this.labelEx12.Location = new Point(8, 332);
-            this.labelEx12.Name = "labelEx12";
-            this.labelEx12.Size = new Size(67, 15);
-            this.labelEx12.TabIndex = 24;
-            this.labelEx12.Text = "雇用年月日";
-            // 
-            // ComboBoxExBloodType
-            // 
-            this.ComboBoxExBloodType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExBloodType.FormattingEnabled = true;
-            this.ComboBoxExBloodType.Items.AddRange(new object[] { "A", "B", "AB", "O" });
-            this.ComboBoxExBloodType.Location = new Point(420, 300);
-            this.ComboBoxExBloodType.Name = "ComboBoxExBloodType";
-            this.ComboBoxExBloodType.Size = new Size(52, 23);
-            this.ComboBoxExBloodType.TabIndex = 23;
-            // 
-            // labelEx11
-            // 
-            this.labelEx11.AutoSize = true;
-            this.labelEx11.Location = new Point(372, 304);
-            this.labelEx11.Name = "labelEx11";
-            this.labelEx11.Size = new Size(43, 15);
-            this.labelEx11.TabIndex = 22;
-            this.labelEx11.Text = "血液型";
-            // 
-            // ComboBoxExGender
-            // 
-            this.ComboBoxExGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExGender.FormattingEnabled = true;
-            this.ComboBoxExGender.Items.AddRange(new object[] { "男性", "女性" });
-            this.ComboBoxExGender.Location = new Point(312, 300);
-            this.ComboBoxExGender.Name = "ComboBoxExGender";
-            this.ComboBoxExGender.Size = new Size(52, 23);
-            this.ComboBoxExGender.TabIndex = 21;
-            // 
-            // labelEx10
-            // 
-            this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(276, 304);
-            this.labelEx10.Name = "labelEx10";
-            this.labelEx10.Size = new Size(31, 15);
-            this.labelEx10.TabIndex = 20;
-            this.labelEx10.Text = "性別";
-            // 
-            // CcDateTimeBirthDate
-            // 
-            this.CcDateTimeBirthDate.CultureFlag = false;
-            this.CcDateTimeBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimeBirthDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeBirthDate.Location = new Point(80, 300);
-            this.CcDateTimeBirthDate.Name = "CcDateTimeBirthDate";
-            this.CcDateTimeBirthDate.Size = new Size(188, 23);
-            this.CcDateTimeBirthDate.TabIndex = 19;
-            this.CcDateTimeBirthDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // labelEx9
-            // 
-            this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(20, 304);
-            this.labelEx9.Name = "labelEx9";
-            this.labelEx9.Size = new Size(55, 15);
-            this.labelEx9.TabIndex = 18;
-            this.labelEx9.Text = "生年月日";
-            // 
-            // labelEx8
-            // 
-            this.labelEx8.AutoSize = true;
-            this.labelEx8.Location = new Point(728, 276);
-            this.labelEx8.Name = "labelEx8";
-            this.labelEx8.Size = new Size(99, 15);
-            this.labelEx8.TabIndex = 17;
-            this.labelEx8.Text = "略称名(全角６字)";
-            // 
-            // TextBoxExDisplayName
-            // 
-            this.TextBoxExDisplayName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExDisplayName.Location = new Point(832, 272);
-            this.TextBoxExDisplayName.Name = "TextBoxExDisplayName";
-            this.TextBoxExDisplayName.Size = new Size(84, 23);
-            this.TextBoxExDisplayName.TabIndex = 16;
-            this.TextBoxExDisplayName.Text = "〇〇〇〇〇〇";
-            // 
-            // labelEx7
-            // 
-            this.labelEx7.AutoSize = true;
-            this.labelEx7.Location = new Point(364, 276);
-            this.labelEx7.Name = "labelEx7";
-            this.labelEx7.Size = new Size(87, 15);
-            this.labelEx7.TabIndex = 15;
-            this.labelEx7.Text = "氏名(スペース入)";
-            // 
-            // TextBoxExOtherName
-            // 
-            this.TextBoxExOtherName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExOtherName.Location = new Point(456, 272);
-            this.TextBoxExOtherName.Name = "TextBoxExOtherName";
-            this.TextBoxExOtherName.Size = new Size(264, 23);
-            this.TextBoxExOtherName.TabIndex = 14;
-            this.TextBoxExOtherName.Text = "辻　祐一";
-            // 
-            // labelEx6
-            // 
-            this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(44, 276);
-            this.labelEx6.Name = "labelEx6";
-            this.labelEx6.Size = new Size(31, 15);
-            this.labelEx6.TabIndex = 13;
-            this.labelEx6.Text = "氏名";
-            // 
-            // TextBoxExName
-            // 
-            this.TextBoxExName.ImeMode = ImeMode.Hiragana;
-            this.TextBoxExName.Location = new Point(80, 272);
-            this.TextBoxExName.Name = "TextBoxExName";
-            this.TextBoxExName.Size = new Size(264, 23);
-            this.TextBoxExName.TabIndex = 12;
-            this.TextBoxExName.Text = "辻祐一";
-            // 
-            // labelEx5
-            // 
-            this.labelEx5.AutoSize = true;
-            this.labelEx5.Location = new Point(352, 248);
-            this.labelEx5.Name = "labelEx5";
-            this.labelEx5.Size = new Size(97, 15);
-            this.labelEx5.TabIndex = 11;
-            this.labelEx5.Text = "フリガナ(スペース入)";
-            // 
-            // TextBoxExOtherNameKana
-            // 
-            this.TextBoxExOtherNameKana.ImeMode = ImeMode.Katakana;
-            this.TextBoxExOtherNameKana.Location = new Point(456, 244);
-            this.TextBoxExOtherNameKana.Name = "TextBoxExOtherNameKana";
-            this.TextBoxExOtherNameKana.Size = new Size(264, 23);
-            this.TextBoxExOtherNameKana.TabIndex = 10;
-            this.TextBoxExOtherNameKana.Text = "ツジ　ユウイチ";
-            // 
-            // labelEx3
-            // 
-            this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(32, 248);
-            this.labelEx3.Name = "labelEx3";
-            this.labelEx3.Size = new Size(41, 15);
-            this.labelEx3.TabIndex = 9;
-            this.labelEx3.Text = "フリガナ";
-            // 
-            // TextBoxExNameKana
-            // 
-            this.TextBoxExNameKana.ImeMode = ImeMode.Katakana;
-            this.TextBoxExNameKana.Location = new Point(80, 244);
-            this.TextBoxExNameKana.Name = "TextBoxExNameKana";
-            this.TextBoxExNameKana.Size = new Size(264, 23);
-            this.TextBoxExNameKana.TabIndex = 8;
-            this.TextBoxExNameKana.Text = "ツジユウイチ";
-            // 
-            // TextBoxExUnionCode
-            // 
-            this.TextBoxExUnionCode.Location = new Point(196, 216);
-            this.TextBoxExUnionCode.Name = "TextBoxExUnionCode";
-            this.TextBoxExUnionCode.Size = new Size(44, 23);
-            this.TextBoxExUnionCode.TabIndex = 7;
-            this.TextBoxExUnionCode.Text = "8888";
-            this.TextBoxExUnionCode.TextAlign = HorizontalAlignment.Center;
-            // 
-            // labelEx4
-            // 
-            this.labelEx4.AutoSize = true;
-            this.labelEx4.Location = new Point(144, 220);
-            this.labelEx4.Name = "labelEx4";
-            this.labelEx4.Size = new Size(46, 15);
-            this.labelEx4.TabIndex = 6;
-            this.labelEx4.Text = "組合CD";
-            // 
-            // LabelExStaffCode
-            // 
-            this.LabelExStaffCode.BorderStyle = BorderStyle.FixedSingle;
-            this.LabelExStaffCode.Font = new Font("Yu Gothic UI", 9.75F);
-            this.LabelExStaffCode.Location = new Point(80, 216);
-            this.LabelExStaffCode.Name = "LabelExStaffCode";
-            this.LabelExStaffCode.Size = new Size(56, 23);
-            this.LabelExStaffCode.TabIndex = 5;
-            this.LabelExStaffCode.Text = "88888";
-            this.LabelExStaffCode.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // labelEx1
-            // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(28, 220);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(46, 15);
-            this.labelEx1.TabIndex = 4;
-            this.labelEx1.Text = "社員CD";
-            // 
             // CcGroupBoxOccupation
             // 
             this.CcGroupBoxOccupation.Controls.Add(this.ccRadioButton1);
@@ -1539,9 +1626,9 @@
             this.CcGroupBoxOccupation.Controls.Add(this.radioButtonEx15);
             this.CcGroupBoxOccupation.Controls.Add(this.RadioButtonExWorkers);
             this.CcGroupBoxOccupation.Controls.Add(this.RadioButtonExDrivers);
-            this.CcGroupBoxOccupation.Location = new Point(8, 156);
+            this.CcGroupBoxOccupation.Location = new Point(8, 180);
             this.CcGroupBoxOccupation.Name = "CcGroupBoxOccupation";
-            this.CcGroupBoxOccupation.Size = new Size(916, 52);
+            this.CcGroupBoxOccupation.Size = new Size(920, 52);
             this.CcGroupBoxOccupation.TabIndex = 3;
             this.CcGroupBoxOccupation.TabStop = false;
             this.CcGroupBoxOccupation.Text = "職種(Occupation)";
@@ -1552,7 +1639,7 @@
             this.ccRadioButton1.Location = new Point(364, 24);
             this.ccRadioButton1.Name = "ccRadioButton1";
             this.ccRadioButton1.Size = new Size(85, 19);
-            this.ccRadioButton1.TabIndex = 10;
+            this.ccRadioButton1.TabIndex = 4;
             this.ccRadioButton1.TabStop = true;
             this.ccRadioButton1.Tag = "14";
             this.ccRadioButton1.Text = "文京中継所";
@@ -1564,7 +1651,7 @@
             this.radioButtonEx18.Location = new Point(524, 24);
             this.radioButtonEx18.Name = "radioButtonEx18";
             this.radioButtonEx18.Size = new Size(67, 19);
-            this.radioButtonEx18.TabIndex = 9;
+            this.radioButtonEx18.TabIndex = 6;
             this.radioButtonEx18.TabStop = true;
             this.radioButtonEx18.Tag = "99";
             this.radioButtonEx18.Text = "指定なし";
@@ -1577,7 +1664,7 @@
             this.radioButtonEx17.Location = new Point(148, 24);
             this.radioButtonEx17.Name = "radioButtonEx17";
             this.radioButtonEx17.Size = new Size(97, 19);
-            this.radioButtonEx17.TabIndex = 8;
+            this.radioButtonEx17.TabIndex = 2;
             this.radioButtonEx17.TabStop = true;
             this.radioButtonEx17.Tag = "12";
             this.radioButtonEx17.Text = "自転車駐輪場";
@@ -1590,7 +1677,7 @@
             this.RadioButtonExOfficeWorker.Location = new Point(456, 24);
             this.RadioButtonExOfficeWorker.Name = "RadioButtonExOfficeWorker";
             this.RadioButtonExOfficeWorker.Size = new Size(61, 19);
-            this.RadioButtonExOfficeWorker.TabIndex = 7;
+            this.RadioButtonExOfficeWorker.TabIndex = 5;
             this.RadioButtonExOfficeWorker.TabStop = true;
             this.RadioButtonExOfficeWorker.Tag = "20";
             this.RadioButtonExOfficeWorker.Text = "事務員";
@@ -1603,7 +1690,7 @@
             this.radioButtonEx15.Location = new Point(252, 24);
             this.radioButtonEx15.Name = "radioButtonEx15";
             this.radioButtonEx15.Size = new Size(107, 19);
-            this.radioButtonEx15.TabIndex = 6;
+            this.radioButtonEx15.TabIndex = 3;
             this.radioButtonEx15.TabStop = true;
             this.radioButtonEx15.Tag = "13";
             this.radioButtonEx15.Text = "リサイクルセンター";
@@ -1616,7 +1703,7 @@
             this.RadioButtonExWorkers.Location = new Point(80, 24);
             this.RadioButtonExWorkers.Name = "RadioButtonExWorkers";
             this.RadioButtonExWorkers.Size = new Size(61, 19);
-            this.RadioButtonExWorkers.TabIndex = 5;
+            this.RadioButtonExWorkers.TabIndex = 1;
             this.RadioButtonExWorkers.TabStop = true;
             this.RadioButtonExWorkers.Tag = "11";
             this.RadioButtonExWorkers.Text = "作業員";
@@ -1629,7 +1716,7 @@
             this.RadioButtonExDrivers.Location = new Point(12, 24);
             this.RadioButtonExDrivers.Name = "RadioButtonExDrivers";
             this.RadioButtonExDrivers.Size = new Size(61, 19);
-            this.RadioButtonExDrivers.TabIndex = 4;
+            this.RadioButtonExDrivers.TabIndex = 0;
             this.RadioButtonExDrivers.TabStop = true;
             this.RadioButtonExDrivers.Tag = "10";
             this.RadioButtonExDrivers.Text = "運転手";
@@ -1643,9 +1730,9 @@
             this.CcGroupBoxJobForm.Controls.Add(this.RadioButtonExLongTimeJ);
             this.CcGroupBoxJobForm.Controls.Add(this.RadioButtonExShortTimeS);
             this.CcGroupBoxJobForm.Controls.Add(this.RadioButtonExLongTimeS);
-            this.CcGroupBoxJobForm.Location = new Point(8, 100);
+            this.CcGroupBoxJobForm.Location = new Point(8, 120);
             this.CcGroupBoxJobForm.Name = "CcGroupBoxJobForm";
-            this.CcGroupBoxJobForm.Size = new Size(916, 52);
+            this.CcGroupBoxJobForm.Size = new Size(920, 52);
             this.CcGroupBoxJobForm.TabIndex = 2;
             this.CcGroupBoxJobForm.TabStop = false;
             this.CcGroupBoxJobForm.Text = "雇用形態(JobForm)";
@@ -1656,7 +1743,7 @@
             this.RadioButtonExJobFormNothing.Location = new Point(316, 24);
             this.RadioButtonExJobFormNothing.Name = "RadioButtonExJobFormNothing";
             this.RadioButtonExJobFormNothing.Size = new Size(67, 19);
-            this.RadioButtonExJobFormNothing.TabIndex = 7;
+            this.RadioButtonExJobFormNothing.TabIndex = 4;
             this.RadioButtonExJobFormNothing.TabStop = true;
             this.RadioButtonExJobFormNothing.Tag = "99";
             this.RadioButtonExJobFormNothing.Text = "指定なし";
@@ -1669,7 +1756,7 @@
             this.RadioButtonExShortTimeJ.Location = new Point(240, 24);
             this.RadioButtonExShortTimeJ.Name = "RadioButtonExShortTimeJ";
             this.RadioButtonExShortTimeJ.Size = new Size(69, 19);
-            this.RadioButtonExShortTimeJ.TabIndex = 6;
+            this.RadioButtonExShortTimeJ.TabIndex = 3;
             this.RadioButtonExShortTimeJ.TabStop = true;
             this.RadioButtonExShortTimeJ.Tag = "23";
             this.RadioButtonExShortTimeJ.Text = "短期(自)";
@@ -1682,7 +1769,7 @@
             this.RadioButtonExLongTimeJ.Location = new Point(164, 24);
             this.RadioButtonExLongTimeJ.Name = "RadioButtonExLongTimeJ";
             this.RadioButtonExLongTimeJ.Size = new Size(69, 19);
-            this.RadioButtonExLongTimeJ.TabIndex = 5;
+            this.RadioButtonExLongTimeJ.TabIndex = 2;
             this.RadioButtonExLongTimeJ.TabStop = true;
             this.RadioButtonExLongTimeJ.Tag = "22";
             this.RadioButtonExLongTimeJ.Text = "長期(自)";
@@ -1695,7 +1782,7 @@
             this.RadioButtonExShortTimeS.Location = new Point(88, 24);
             this.RadioButtonExShortTimeS.Name = "RadioButtonExShortTimeS";
             this.RadioButtonExShortTimeS.Size = new Size(69, 19);
-            this.RadioButtonExShortTimeS.TabIndex = 4;
+            this.RadioButtonExShortTimeS.TabIndex = 1;
             this.RadioButtonExShortTimeS.TabStop = true;
             this.RadioButtonExShortTimeS.Tag = "21";
             this.RadioButtonExShortTimeS.Text = "短期(新)";
@@ -1708,7 +1795,7 @@
             this.RadioButtonExLongTimeS.Location = new Point(12, 24);
             this.RadioButtonExLongTimeS.Name = "RadioButtonExLongTimeS";
             this.RadioButtonExLongTimeS.Size = new Size(69, 19);
-            this.RadioButtonExLongTimeS.TabIndex = 3;
+            this.RadioButtonExLongTimeS.TabIndex = 0;
             this.RadioButtonExLongTimeS.TabStop = true;
             this.RadioButtonExLongTimeS.Tag = "20";
             this.RadioButtonExLongTimeS.Text = "長期(新)";
@@ -1724,9 +1811,9 @@
             this.CcGroupBoxBelongs.Controls.Add(this.RadioButtonExアルバイト);
             this.CcGroupBoxBelongs.Controls.Add(this.RadioButtonEx社員);
             this.CcGroupBoxBelongs.Controls.Add(this.RadioButtonEx役員);
-            this.CcGroupBoxBelongs.Location = new Point(8, 44);
+            this.CcGroupBoxBelongs.Location = new Point(8, 60);
             this.CcGroupBoxBelongs.Name = "CcGroupBoxBelongs";
-            this.CcGroupBoxBelongs.Size = new Size(916, 52);
+            this.CcGroupBoxBelongs.Size = new Size(920, 52);
             this.CcGroupBoxBelongs.TabIndex = 1;
             this.CcGroupBoxBelongs.TabStop = false;
             this.CcGroupBoxBelongs.Text = "所属(Belongs)";
@@ -1737,7 +1824,7 @@
             this.RadioButtonEx労供.Location = new Point(476, 24);
             this.RadioButtonEx労供.Name = "RadioButtonEx労供";
             this.RadioButtonEx労供.Size = new Size(49, 19);
-            this.RadioButtonEx労供.TabIndex = 7;
+            this.RadioButtonEx労供.TabIndex = 6;
             this.RadioButtonEx労供.TabStop = true;
             this.RadioButtonEx労供.Tag = "22";
             this.RadioButtonEx労供.Text = "労供";
@@ -1750,7 +1837,7 @@
             this.RadioButtonExパートタイマー.Location = new Point(384, 24);
             this.RadioButtonExパートタイマー.Name = "RadioButtonExパートタイマー";
             this.RadioButtonExパートタイマー.Size = new Size(86, 19);
-            this.RadioButtonExパートタイマー.TabIndex = 4;
+            this.RadioButtonExパートタイマー.TabIndex = 5;
             this.RadioButtonExパートタイマー.TabStop = true;
             this.RadioButtonExパートタイマー.Tag = "15";
             this.RadioButtonExパートタイマー.Text = "パートタイマー";
@@ -1763,7 +1850,7 @@
             this.RadioButtonEx嘱託雇用契約社員.Location = new Point(256, 24);
             this.RadioButtonEx嘱託雇用契約社員.Name = "RadioButtonEx嘱託雇用契約社員";
             this.RadioButtonEx嘱託雇用契約社員.Size = new Size(121, 19);
-            this.RadioButtonEx嘱託雇用契約社員.TabIndex = 6;
+            this.RadioButtonEx嘱託雇用契約社員.TabIndex = 4;
             this.RadioButtonEx嘱託雇用契約社員.TabStop = true;
             this.RadioButtonEx嘱託雇用契約社員.Tag = "14";
             this.RadioButtonEx嘱託雇用契約社員.Text = "嘱託雇用契約社員";
@@ -1776,7 +1863,7 @@
             this.RadioButtonEx派遣.Location = new Point(200, 24);
             this.RadioButtonEx派遣.Name = "RadioButtonEx派遣";
             this.RadioButtonEx派遣.Size = new Size(49, 19);
-            this.RadioButtonEx派遣.TabIndex = 5;
+            this.RadioButtonEx派遣.TabIndex = 3;
             this.RadioButtonEx派遣.TabStop = true;
             this.RadioButtonEx派遣.Tag = "13";
             this.RadioButtonEx派遣.Text = "派遣";
@@ -1789,7 +1876,7 @@
             this.RadioButtonExアルバイト.Location = new Point(124, 24);
             this.RadioButtonExアルバイト.Name = "RadioButtonExアルバイト";
             this.RadioButtonExアルバイト.Size = new Size(71, 19);
-            this.RadioButtonExアルバイト.TabIndex = 4;
+            this.RadioButtonExアルバイト.TabIndex = 2;
             this.RadioButtonExアルバイト.TabStop = true;
             this.RadioButtonExアルバイト.Tag = "12";
             this.RadioButtonExアルバイト.Text = "アルバイト";
@@ -1802,7 +1889,7 @@
             this.RadioButtonEx社員.Location = new Point(68, 24);
             this.RadioButtonEx社員.Name = "RadioButtonEx社員";
             this.RadioButtonEx社員.Size = new Size(49, 19);
-            this.RadioButtonEx社員.TabIndex = 3;
+            this.RadioButtonEx社員.TabIndex = 1;
             this.RadioButtonEx社員.TabStop = true;
             this.RadioButtonEx社員.Tag = "11";
             this.RadioButtonEx社員.Text = "社員";
@@ -1815,7 +1902,7 @@
             this.RadioButtonEx役員.Location = new Point(12, 24);
             this.RadioButtonEx役員.Name = "RadioButtonEx役員";
             this.RadioButtonEx役員.Size = new Size(49, 19);
-            this.RadioButtonEx役員.TabIndex = 2;
+            this.RadioButtonEx役員.TabIndex = 0;
             this.RadioButtonEx役員.TabStop = true;
             this.RadioButtonEx役員.Tag = "10";
             this.RadioButtonEx役員.Text = "役員";
@@ -3281,7 +3368,7 @@
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(1904, 1041);
             this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
+            this.MainMenuStrip = this.CcMenuStrip1;
             this.Name = "StaffDetail";
             this.Text = "StaffDetail";
             this.FormClosing += this.StaffDetail_FormClosing;
@@ -3289,7 +3376,14 @@
             this.TableLayoutPanelExBase.PerformLayout();
             this.PanelExUp.ResumeLayout(false);
             this.PanelExLeft.ResumeLayout(false);
-            this.PanelExLeft.PerformLayout();
+            this.ccGroupBox2.ResumeLayout(false);
+            this.ccGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).EndInit();
+            this.ContextMenuStripEx1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).EndInit();
+            this.ContextMenuStripEx2.ResumeLayout(false);
+            this.ccGroupBox1.ResumeLayout(false);
+            this.ccGroupBox1.PerformLayout();
             this.GroupBoxExRetirement.ResumeLayout(false);
             this.GroupBoxExRetirement.PerformLayout();
             this.GroupBoxExExperience.ResumeLayout(false);
@@ -3298,10 +3392,6 @@
             this.GroupBoxExHistory.PerformLayout();
             this.GroupBoxExDrive.ResumeLayout(false);
             this.GroupBoxExDrive.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStamp).EndInit();
-            this.ContextMenuStripEx2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxExStaff).EndInit();
-            this.ContextMenuStripEx1.ResumeLayout(false);
             this.CcGroupBoxOccupation.ResumeLayout(false);
             this.CcGroupBoxOccupation.PerformLayout();
             this.CcGroupBoxJobForm.ResumeLayout(false);
@@ -3330,7 +3420,7 @@
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExLeft;
@@ -3605,5 +3695,12 @@
         private ToolStripMenuItem ToolStripMenuItemStampDelete;
         private CcControl.CcRadioButton ccRadioButton1;
         private CcControl.CcCheckBox CcCheckBoxMedicalCheckupFlag;
+        private CcControl.CcDateTime CcDateTimePaidLeaveReferenceDate;
+        private CcControl.CcLabel ccLabel1;
+        private CcControl.CcDateTime CcDateTimePaidLeaveCommencementDate;
+        private CcControl.CcLabel ccLabel2;
+        private CcControl.CcCheckBox CcCheckBoxPaidLeaveFlag;
+        private CcControl.CcGroupBox ccGroupBox1;
+        private CcControl.CcGroupBox ccGroupBox2;
     }
 }

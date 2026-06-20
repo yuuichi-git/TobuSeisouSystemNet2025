@@ -2,28 +2,43 @@
  * 2024/10/03
  */
 using Car;
+
 using CcControl;
+
 using Collection;
+
 using Common;
+
 using Dao;
+
 using DriversReport;
+
 using License;
+
+using PaidLeave;
+
 using RollCall;
+
 using Staff;
+
 using StockBox;
+
 using Substitute;
+
 using System.Diagnostics;
+
 using Vo;
 
 namespace VehicleDispatch {
-    public partial class VehicleDispatchBoard: Form {
+    public partial class VehicleDispatchBoard : Form {
         /*
          * インスタンス作成
          */
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly ScreenForm _screenForm = new();
         private readonly DateUtility _dateUtility = new();
-        private readonly System.Windows.Forms.Timer _timer;
+        private readonly System.Windows.Forms.Timer _timerUpdate;                   // 変更監視用タイマー
+        private readonly System.Windows.Forms.Timer _timerPaidLeave;                // 有給取得数用タイマー
         /*
          * プロパティ
          */
@@ -38,6 +53,8 @@ namespace VehicleDispatch {
         private StaffProperDao _staffProperDao;
         private VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         private LicenseMasterDao _licenseMasterDao;
+        private PaidLeaveEntitlementDao _paidLeaveEntitlementDao;
+        private TimeOffMasterDao _timeOffMasterDao;
         /*
          * Vo
          */
@@ -63,6 +80,8 @@ namespace VehicleDispatch {
             _staffProperDao = new(connectionVo);
             _vehicleDispatchDetailDao = new(connectionVo);
             _licenseMasterDao = new(connectionVo);
+            _paidLeaveEntitlementDao = new(connectionVo);
+            _timeOffMasterDao = new(connectionVo);
             /*
              * Vo
              */
@@ -117,15 +136,25 @@ namespace VehicleDispatch {
              */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
             /*
-             * Timerを初期化する
+             * Timerを初期化する(更新監視用)
              */
-            _timer = new System.Windows.Forms.Timer {
-                Interval = 60 * 1000 // 1分（ミリ秒）
+            _timerUpdate = new System.Windows.Forms.Timer {
+                Interval = 30 * 1000 // 30秒（ミリ秒）
             };
-            _timer.Tick += Timer_Tick;      // イベントハンドラ登録
+            _timerUpdate.Tick += Timer_Tick_Update;                                                                 // イベントハンドラ登録
 
             // タイマー開始
-            _timer.Start();
+            _timerUpdate.Start();
+            /*
+             * Timerを初期化する(有給取得数)
+             */
+            _timerPaidLeave = new System.Windows.Forms.Timer {
+                Interval = 120 * 1000 // 2分
+            };
+            _timerPaidLeave.Tick += Timer_Tick_PaidLeave;                                                           // イベントハンドラ登録
+
+            // タイマー開始
+            _timerPaidLeave.Start();
         }
 
         /// <summary>
@@ -174,6 +203,7 @@ namespace VehicleDispatch {
                         _lastUpdateDateTime = DateTime.Now;                                                         // 最終更新日時を更新
                     }
                     break;
+
                 case "ButtonExStockBoxOpen":
                     if(_stockBoxs is null || _stockBoxs.IsDisposed) {
                         _stockBoxs = new(_connectionVo, _board);
@@ -1017,6 +1047,12 @@ namespace VehicleDispatch {
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffMemo);
                     staffMemo.ShowDialog(this);
                     break;
+                // 有給詳細
+                case "ToolStripMenuItemPaidLeaveDetail":
+                    PaidLeaveDetail paidLeaveDetail = new(_connectionVo,((StaffLabel)_contextMenuStripExOpendControl).StaffMasterVo);
+                    paidLeaveDetail.StartPosition = FormStartPosition.CenterScreen;
+                    paidLeaveDetail.ShowDialog();
+                    break;
                 default:
                     MessageBox.Show("ToolStripMenuItem_Click");
                     break;
@@ -1471,7 +1507,7 @@ namespace VehicleDispatch {
         /// 更新されたSetControlを監視してマークする
         /// </summary>
         /// 
-        private void Timer_Tick(object sender, EventArgs e) {
+        private void Timer_Tick_Update(object sender, EventArgs e) {
             // DBから当日の必要データを取得（タプル版）
             List<(int CellNumber, int SetCode, string UpdatePcName, DateTime UpdateYmdHms)> list = _vehicleDispatchDetailDao.SelectAllUpdateMark(this.DateTimePickerExOperationDate.GetDate());
 
@@ -1490,6 +1526,34 @@ namespace VehicleDispatch {
                         setControl.UpdateMarkFlag = true; // SetControlに更新マークフラグをセット
 
                         Debug.WriteLine($"SetControl更新マーク → Cell:{setControl.CellNumber}  " + $"SetCode:{record.SetCode}  DB:{record.UpdateYmdHms}  UI:{setControl.UpdateYmdHms}");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// StaffLabelに有給消化日数を表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer_Tick_PaidLeave(object sender, EventArgs e) {
+            foreach(Control control in _board.Controls) {
+                if(control is SetControl setControl) {
+                    foreach(Control child in setControl.Controls) {
+                        if(child is StaffLabel staffLabel) {
+
+                            DateTime paidLeaveCommencementDate = _dateUtility.GetPaidLeaveCommencementDate(staffLabel.StaffMasterVo.PaidLeaveCommencementDate);
+                            int 付与日数 = _paidLeaveEntitlementDao.GetGrantedDays(staffLabel.StaffMasterVo.StaffCode, paidLeaveCommencementDate);
+                            if(付与日数 == 0) {
+                                staffLabel.PaidLeaveFlag = false;
+                                staffLabel.Refresh();
+                            } else {
+                                int paidLeaveDays = _timeOffMasterDao.GetPaidLeave(paidLeaveCommencementDate, staffLabel.StaffMasterVo.StaffCode);
+                                staffLabel.PaidLeaveFlag = true;
+                                staffLabel.PaidLeaveDays = paidLeaveDays;
+                                staffLabel.Refresh();
+                            }
+                        }
                     }
                 }
             }

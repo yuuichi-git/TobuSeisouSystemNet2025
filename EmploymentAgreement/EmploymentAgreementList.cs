@@ -202,10 +202,9 @@ namespace EmploymentAgreement {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"
             };
             MenuStripEx1.ChangeEnable(listString);
 
@@ -227,9 +226,9 @@ namespace EmploymentAgreement {
                          */
                         _listEmploymentAgreementVo = _employmentAgreementDao.SelectAllEmploymentAgreement();
                         _listContractExpirationVo = _contractExpirationDao.SelectAllContractExpiration();
-                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(CreateArray(GroupBoxExBelongs),
-                                                                                   CreateArray(GroupBoxExJobForm),
-                                                                                   CreateArray(GroupBoxExOccupation),
+                        this.AddSheetViewList(_staffMasterDao.SelectAllStaffMaster(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs),
+                                                                                   this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm),
+                                                                                   this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation),
                                                                                    this.CheckBoxExRetirementFlag.Checked));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -547,20 +546,6 @@ namespace EmploymentAgreement {
                     employmentAgreementPaper.Show(this);
                     break;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="groupBoxEx"></param>
-        /// <returns></returns>
-        private List<int> CreateArray(CcGroupBox groupBoxEx) {
-            List<int> list = new();
-            foreach (CcCheckBox checkBoxEx in groupBoxEx.Controls) {
-                if (checkBoxEx.Checked)
-                    list.Add(Convert.ToInt32(checkBoxEx.Tag));
-            }
-            return list;
         }
 
         /// <summary>

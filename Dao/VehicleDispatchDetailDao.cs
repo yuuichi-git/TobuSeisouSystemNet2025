@@ -1,6 +1,7 @@
 ﻿/*
  * 2023-12-31 
  */
+using System.Data;
 using System.Data.SqlClient;
 
 using Common;
@@ -355,6 +356,44 @@ namespace Dao {
             }
             return listVehicleDispatchDetailVo;
         }
+
+        /// <summary>
+        /// 指定した期間内の出勤日数を返す
+        /// </summary>
+        /// <param name="operationDate1"></param>
+        /// <param name="operationDate2"></param>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        public int GetCountVehicleDispatchDetail(DateTime operationDate1, DateTime operationDate2, int staffCode) {
+            int matchTotal = 0;
+
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
+            sqlCommand.CommandText = "SELECT StaffCode1, StaffCode2, StaffCode3, StaffCode4 " +
+                                     "FROM H_VehicleDispatchDetail " +
+                                     "WHERE OperationDate BETWEEN @OperationDate1 AND @OperationDate2 " +
+                                     "  AND VehicleDispatchFlag = 'true' " +
+                                     "  AND (StaffCode1 = @StaffCode OR " +
+                                     "       StaffCode2 = @StaffCode OR " +
+                                     "       StaffCode3 = @StaffCode OR " +
+                                     "       StaffCode4 = @StaffCode)";
+
+            sqlCommand.Parameters.Add("@OperationDate1", SqlDbType.Date).Value = operationDate1.Date;
+            sqlCommand.Parameters.Add("@OperationDate2", SqlDbType.Date).Value = operationDate2.Date;
+            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
+
+            using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
+                while (reader.Read()) {
+                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode1"]) == staffCode) { matchTotal++; }
+                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode2"]) == staffCode) { matchTotal++; }
+                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode3"]) == staffCode) { matchTotal++; }
+                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode4"]) == staffCode) { matchTotal++; }
+                }
+            }
+
+            return matchTotal;
+        }
+
 
         /// <summary>
         /// 

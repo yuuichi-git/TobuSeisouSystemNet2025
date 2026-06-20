@@ -1,50 +1,58 @@
-/*
- * 2026-05-28
- * 休みの管理を行うフォーム
+﻿/*
+ * 2026-06-08 (refactored)
  */
-using CcControl;
+using Common;
 
 using Dao;
+
+using FarPoint.Win.Spread;
+using FarPoint.Win.Spread.Model;
 
 using Vo;
 
 namespace PaidLeave {
     public partial class PaidLeaveList : Form {
-        /*
-         * 指定された FlowLayoutPanel 内の全コントロールを安全に削除するメソッド。
-         * 
-         * 【重要ポイント】
-         * 1. Controls.Clear() ではコントロールのハンドルが破棄されず、メモリリークの原因になる。
-         *    → 必ず Dispose() を明示的に呼び出す必要がある。
-         * 
-         * 2. FlowLayoutPanel はコントロール削除のたびにレイアウト再計算・再描画が走るため、
-         *    大量のコントロールを削除すると画面が激しくちらつく。
-         *    → SuspendLayout() と WM_SETREDRAW で描画を一時停止し、最後にまとめて再描画する。
-         * 
-         * 3. コントロールは「後ろから」Dispose することが重要。
-         *    → インデックスがずれず、安全に削除できる。
-         */
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, bool wParam, int lParam);
-        private const int WM_SETREDRAW = 0x000B;
 
-        private CcFlowLayoutPanel[] arrayCcFlowLayoutPanels = new CcFlowLayoutPanel[5];
-        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
-        private StaffLabel _parentStaffLabel;
-        private int _timeOffCode;
+        /*
+         * Columns
+         */
+        private enum Col {
+            UnionCode = 0,
+            Name = 1,
+            ReferenceDate = 2,
+            YearsOfService = 3,
+            StartDate = 4,
+            WorkDays = 5,
+            GrantedDays = 6,
+            TimeOffStart = 7
+        }
+
+        private const int BlockRowCount = 3;
+        private const int MaxTimeOffColumns = 25;
+
+        private readonly DateUtility _dateUtility = new();
+        private readonly Dictionary<int, DateTime> _dictionaryStartDate = [];
+
         /*
          * Dao
          */
-        private StaffMasterDao _staffMasterDao;
-        private TimeOffMasterDao _timeOffMasterDao;
+        private readonly StaffMasterDao _staffMasterDao;
+        private readonly PaidLeaveEntitlementDao _paidLeaveEntitlementDao;
+        private readonly TimeOffMasterDao _timeOffMasterDao;
+        private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         /*
          * Vo
          */
-        private ConnectionVo _connectionVo;
+        private readonly ConnectionVo _connectionVo;
         private List<StaffMasterVo> _listStaffMasterVo;
+        private List<PaidLeaveEntitlementV0> _listPaidLeaveEntitlementV0;
+
+        private int _spreadListTopRow = 0;
+        private StaffMasterVo _pushStaffMasterVo = null;
+        private CellRange _cellRange = null;
 
         /// <summary>
-        /// Constructor
+        /// 
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="screen"></param>
@@ -52,79 +60,28 @@ namespace PaidLeave {
             /*
              * Dao
              */
-            _connectionVo = connectionVo;
-            _staffMasterDao = new(_connectionVo);
+            this._staffMasterDao = new StaffMasterDao(connectionVo);
+            this._paidLeaveEntitlementDao = new PaidLeaveEntitlementDao(connectionVo);
+            this._timeOffMasterDao = new TimeOffMasterDao(connectionVo);
+            this._vehicleDispatchDetailDao = new VehicleDispatchDetailDao(connectionVo);
             /*
              * Vo
              */
-            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
-            _timeOffMasterDao = new(connectionVo);
-            /*
-             * InitializeControl
-             */
-            InitializeComponent();
-            /*
-             * 配列にFlowLayoutPanelを格納
-             */
-            arrayCcFlowLayoutPanels[0] = this.CcFlowLayoutPanel1;
-            arrayCcFlowLayoutPanels[1] = this.CcFlowLayoutPanel2;
-            arrayCcFlowLayoutPanels[2] = this.CcFlowLayoutPanel3;
-            arrayCcFlowLayoutPanels[3] = this.CcFlowLayoutPanel4;
-            arrayCcFlowLayoutPanels[4] = this.CcFlowLayoutPanel5;
+            this._connectionVo = connectionVo;
 
-            this.CcFlowLayoutPanel1.DisplayText = "有給休暇";
-            this.CcFlowLayoutPanel2.DisplayText = "指名休暇";
-            this.CcFlowLayoutPanel3.DisplayText = "欠勤";
-            this.CcFlowLayoutPanel4.DisplayText = "代休";
-            this.CcFlowLayoutPanel5.DisplayText = "その他";
-
+            this.InitializeComponent();
+            this.InitializeSheetView(this.SheetViewList);
             /*
              * MenuStrip
              */
-            List<string> listString = new() {"ToolStripMenuItemFile",
-                                             "ToolStripMenuItemExit",
-                                             "ToolStripMenuItemHelp"
-            };
+            List<string> listString = ["ToolStripMenuItemFile",
+                                       "ToolStripMenuItemExit",
+                                       "ToolStripMenuItemHelp"];
             this.CcMenuStrip1.ChangeEnable(listString);
-            /*
-             * CcFlowLayoutPanelStockの件数を初期化
-             */
-            this.CcLabelRecordCount.Text = "レコード数：0件";
-            /*
-             * CcMonthCalendarを初期化
-             */
-            this.CcLabelDate.Text = DateTime.Now.ToString("yyyy年MM月dd日 (dddd)");
-            this.CcMonthCalendar1.TodayDate = DateTime.Now.Date;
-
-            this.SetControls(this.CcMonthCalendar1.TodayDate);
-
-            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";
             /*
              * Eventを登録する
              */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-        }
-
-        /// <summary>
-        /// 指定日のレコードを取得し、CcFlowLayoutPanel1～5にStaffLabelを配置する
-        /// </summary>
-        /// <param name="targetDate"></param>
-        private void SetControls(DateTime targetDate) {
-            RemoveControls(CcFlowLayoutPanel1);
-            RemoveControls(CcFlowLayoutPanel2);
-            RemoveControls(CcFlowLayoutPanel3);
-            RemoveControls(CcFlowLayoutPanel4);
-            RemoveControls(CcFlowLayoutPanel5);
-
-            List<TimeOffMasterVo> listTimeOffMasterVo = _timeOffMasterDao.SelectAllTimeOffMaster(targetDate.Date);                    // 指定日のレコードを取得する
-            if (listTimeOffMasterVo.Count == 0)
-                return;
-
-            List<StaffMasterVo> listStaffMasterVo = _staffMasterDao.SelectSomeStaffMaster(listTimeOffMasterVo.Select(x => x.StaffCode).ToArray());
-
-            foreach (TimeOffMasterVo timeOffMasterVo in listTimeOffMasterVo.OrderBy(x => x.Code)) {
-                this.arrayCcFlowLayoutPanels[timeOffMasterVo.Code - 1].Controls.Add(GetOneStaffLabel(listStaffMasterVo.Find(x => x.StaffCode == timeOffMasterVo.StaffCode)));
-            }
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -132,175 +89,212 @@ namespace PaidLeave {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
-                case "CcButtonFullTime":
-                    try {
-                        this.RemoveControls(CcFlowLayoutPanelStock);
-                        this.CcFlowLayoutPanelStock.Controls.AddRange(GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonFullTime"));
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "社員等で初期化しました";
-                    } catch (Exception exception) {
-                        MessageBox.Show(exception.Message);
-                    }
-                    break;
-                case "CcButtonPartTime":
-                    try {
-                        this.RemoveControls(CcFlowLayoutPanelStock);
-                        this.CcFlowLayoutPanelStock.Controls.AddRange(GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonPartTime"));
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "アルバイトで初期化しました";
-                    } catch (Exception exception) {
-                        MessageBox.Show(exception.Message);
-                    }
-                    break;
-                case "CcButtonLongTime":
-                    try {
-                        this.RemoveControls(CcFlowLayoutPanelStock);
-                        this.CcFlowLayoutPanelStock.Controls.AddRange(GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonLongTime"));
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "労供長期で初期化しました";
-                    } catch (Exception exception) {
-                        MessageBox.Show(exception.Message);
-                    }
-                    break;
-                case "CcButtonShortTime":
-                    try {
-                        this.RemoveControls(CcFlowLayoutPanelStock);
-                        this.CcFlowLayoutPanelStock.Controls.AddRange(GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonShortTime"));
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "労供短期で初期化しました";
-                    } catch (Exception exception) {
-                        MessageBox.Show(exception.Message);
-                    }
-                    break;
-                case "CcButtonTemporaryWorker":
-                    try {
-                        this.RemoveControls(CcFlowLayoutPanelStock);
-                        this.CcFlowLayoutPanelStock.Controls.AddRange(GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonTemporaryWorker"));
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "派遣で初期化しました";
-                    } catch (Exception exception) {
-                        MessageBox.Show(exception.Message);
-                    }
-                    break;
+        private void CcButtonUpdate_Click(object sender, EventArgs e) {
+            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(this.GroupBoxExBelongs.CreateArray(this.GroupBoxExBelongs),
+                                                                      this.GroupBoxExJobForm.CreateArray(this.GroupBoxExJobForm),
+                                                                      this.GroupBoxExOccupation.CreateArray(this.GroupBoxExOccupation),
+                                                                      false);
+            _listPaidLeaveEntitlementV0 = _paidLeaveEntitlementDao.SelectAllPaidLeaveEntitlementV0();
+            this.SetSheetViewList(SheetViewList, _listStaffMasterVo, _listPaidLeaveEntitlementV0);
+        }
+
+        /// <summary>
+        /// Spread全体の描画
+        /// </summary>
+        private void SetSheetViewList(SheetView sheetView, List<StaffMasterVo> listStaffMasterVo, List<PaidLeaveEntitlementV0> listPaidLeaveEntitlementV0) {
+
+            sheetView.RowHeader.Visible = false;
+
+            int rowCount = 0;
+            this.SpreadList.SuspendLayout();
+            _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);
+
+            if(sheetView.Rows.Count > 0) {
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+            }
+
+            foreach(StaffMasterVo staffMasterVo in listStaffMasterVo.Where(x => x.PaidLeaveFlag).OrderBy(x => x.UnionCode)) {
+                int baseRow = rowCount * BlockRowCount;
+                this.SetOneBlock(sheetView, baseRow, staffMasterVo, listPaidLeaveEntitlementV0);
+                rowCount++;
+            }
+
+            this.SpreadList.SetViewportTopRow(0, this._spreadListTopRow);
+            this.SpreadList.ResumeLayout();
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
+        }
+
+        /// <summary>
+        /// 1従事者分(3行)の描画
+        /// </summary>
+        private void SetOneBlock(SheetView sheetView,
+                                 int baseRow,
+                                 StaffMasterVo staffMasterVo,
+                                 List<PaidLeaveEntitlementV0> listPaidLeaveEntitlementV0) {
+
+            sheetView.Rows.Add(baseRow, BlockRowCount);
+            sheetView.Rows[baseRow].Height = 24;
+            sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
+
+            this.SetBlockHeader(sheetView, baseRow, staffMasterVo);
+            this.InitializeStartDateDictionary(staffMasterVo);
+
+            List<PaidLeaveEntitlementV0> listEntitlement = listPaidLeaveEntitlementV0.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.StartDate >= _dictionaryStartDate[2])
+                                                                                     .OrderBy(x => x.StartDate)
+                                                                                     .Take(3)
+                                                                                     .ToList();
+            foreach(PaidLeaveEntitlementV0 entitlement in listEntitlement) {
+                this.WriteEntitlementForBlock(sheetView, baseRow, staffMasterVo, entitlement);
             }
         }
 
         /// <summary>
-        /// 
+        /// ヘッダ部(氏名・コード・基準日・起算日)の描画
         /// </summary>
-        /// <param name="listStaffMasterVo">AllStaffMasterVo</param>
-        /// <param name="excludeListStaffMasterVo">CcFlowLayoutPanel2に配置されているStaffLabel</param>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public StaffLabel[] GetArrayStaffLabel(List<StaffMasterVo> listStaffMasterVo, List<StaffMasterVo> excludeListStaffMasterVo, string key) {
-            List<StaffMasterVo> newListStaffMasterVo = listStaffMasterVo.Where(x => !CreateStaffCodeList(excludeListStaffMasterVo).Contains(x.StaffCode)).ToList();
-            switch (key) {
-                case "CcButtonFullTime":                // 社員
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 10 || x.Belongs == 11 || x.Belongs == 14 || x.Belongs == 15) && x.RetirementFlag == false);
-                    break;
-                case "CcButtonPartTime":                // アルバイト
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 12 && x.RetirementFlag == false);
-                    break;
-                case "CcButtonLongTime":                // 長期
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 22 && (x.JobForm == 20 || x.JobForm == 22) && x.RetirementFlag == false);
-                    break;
-                case "CcButtonShortTime":               // 短期
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 22 && (x.JobForm == 21 || x.JobForm == 23) && x.RetirementFlag == false);
-                    break;
-                case "CcButtonTemporaryWorker":         // 派遣
-                    newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 13 && x.RetirementFlag == false);
-                    break;
-            }
-            this.CcLabelRecordCount.Text = $"レコード数：{newListStaffMasterVo.Count}件";
+        /// <param name="sheetView"></param>
+        /// <param name="baseRow"></param>
+        /// <param name="staffMasterVo"></param>
+        private void SetBlockHeader(SheetView sheetView, int baseRow, StaffMasterVo staffMasterVo) {
 
-            StaffLabel[] _arrayControl = new StaffLabel[newListStaffMasterVo.Count];
-            int i = 0;
-            foreach (StaffMasterVo staffMasterVo in newListStaffMasterVo.OrderBy(x => x.NameKana)) {
-                _arrayControl[i] = GetOneStaffLabel(staffMasterVo);
-                i++;
-            }
-            return _arrayControl;
+            /*
+             * 組合コード・従事者コード
+             */
+            sheetView.AddSpanCell(baseRow + 0, (int)Col.UnionCode, 2, 1);
+            sheetView.Cells[baseRow + 0, (int)Col.UnionCode].Text = staffMasterVo.UnionCode.ToString();
+            sheetView.Cells[baseRow + 2, (int)Col.UnionCode].Text = staffMasterVo.StaffCode.ToString();
+            sheetView.Cells[baseRow + 2, (int)Col.UnionCode].Tag = staffMasterVo;
+
+            /*
+             * 氏名
+             */
+            sheetView.AddSpanCell(baseRow + 0, (int)Col.Name, 3, 1);
+            sheetView.Cells[baseRow + 0, (int)Col.Name].Text = staffMasterVo.Name;
+
+            /*
+             * 基準日・起算日
+             */
+            sheetView.AddSpanCell(baseRow + 0, (int)Col.ReferenceDate, 2, 1);
+            sheetView.Cells[baseRow + 0, (int)Col.ReferenceDate].HorizontalAlignment = CellHorizontalAlignment.Center;
+            sheetView.Cells[baseRow + 0, (int)Col.ReferenceDate].Text = staffMasterVo.PaidLeaveReferenceDate.ToString("yyyy/MM/dd");
+
+            sheetView.Cells[baseRow + 2, (int)Col.ReferenceDate].ForeColor = Color.Red;
+            sheetView.Cells[baseRow + 2, (int)Col.ReferenceDate].HorizontalAlignment = CellHorizontalAlignment.Center;
+            sheetView.Cells[baseRow + 2, (int)Col.ReferenceDate].Text = staffMasterVo.PaidLeaveCommencementDate.ToString("yyyy/MM/dd");
         }
 
         /// <summary>
-        /// CcFlowLayoutPanel2に配置されているStaffLabelを走査する
+        /// 直近起算日と過去2年分をDictionaryに格納
         /// </summary>
-        /// <returns></returns>
-        public List<StaffMasterVo> GetAllStaffLabel() {
-            List<StaffMasterVo> listStaffMasterVo = new();
+        /// <param name="staffMasterVo"></param>
+        private void InitializeStartDateDictionary(StaffMasterVo staffMasterVo) {
+            DateTime recentCommencementDate = this._dateUtility.GetPaidLeaveCommencementDate(staffMasterVo.PaidLeaveCommencementDate);
+            _dictionaryStartDate.Clear();
+            _dictionaryStartDate.Add(0, recentCommencementDate.AddYears(0).Date);   // 直近の起算日
+            _dictionaryStartDate.Add(1, recentCommencementDate.AddYears(-1).Date);  // １年前の起算日
+            _dictionaryStartDate.Add(2, recentCommencementDate.AddYears(-2).Date);  // ２年前の起算日
+        }
 
-            // 対象となる FlowLayoutPanel を配列でまとめる
-            CcFlowLayoutPanel[] flowLayoutPanel = { this.CcFlowLayoutPanel1,
-                                                    this.CcFlowLayoutPanel2,
-                                                    this.CcFlowLayoutPanel3,
-                                                    this.CcFlowLayoutPanel4,
-                                                    this.CcFlowLayoutPanel5 };
-            foreach (CcFlowLayoutPanel panel in flowLayoutPanel) {
-                foreach (Control control in panel.Controls) {
-                    if (control is StaffLabel staffLabel)
-                        listStaffMasterVo.Add(staffLabel.StaffMasterVo);
+        /// <summary>
+        /// 3行分のうち該当する行に付与情報を書き込む
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <param name="baseRow"></param>
+        /// <param name="staffMasterVo"></param>
+        /// <param name="entitlement"></param>
+        private void WriteEntitlementForBlock(SheetView sheetView, int baseRow, StaffMasterVo staffMasterVo, PaidLeaveEntitlementV0 entitlement) {
+            for(int index = 0; index <= 2; index++) {
+                if(_dictionaryStartDate[index].Date == entitlement.StartDate.Date) {
+                    int targetRow = baseRow + (2 - index); // 2年前→0行目, 1年前→1行目, 0年前→2行目
+                    WriteEntitlementRow(sheetView, targetRow, staffMasterVo, entitlement, _dictionaryStartDate[index], index);
                 }
             }
-            return listStaffMasterVo;
-        }
-
-        private List<int> CreateStaffCodeList(List<StaffMasterVo> listStaffMasterVo) {
-            List<int> list = new();
-            foreach (StaffMasterVo staffMasterVo in listStaffMasterVo)
-                list.Add(staffMasterVo.StaffCode);
-            return list;
-        }
-
-        public StaffLabel GetOneStaffLabel(StaffMasterVo staffMasterVo) {
-            StaffLabel staffLabel = new(staffMasterVo);
-            staffLabel.ParentControl = null;
-            staffLabel.OccupationCode = 99;
-            staffLabel.Memo = string.Empty;
-            staffLabel.MemoFlag = false;
-            staffLabel.ProxyFlag = false;
-            staffLabel.RollCallFlag = false;
-            staffLabel.RollCallYmdHms = _defaultDateTime;
-            //// Eventを登録
-            staffLabel.StaffLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
-            staffLabel.StaffLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            //staffLabel.StaffLabel_OnMouseClick += OnMouseClick;
-            //staffLabel.StaffLabel_OnMouseDoubleClick += OnMouseDoubleClick;
-            staffLabel.StaffLabel_OnMouseDown += OnMouseDown;
-            //staffLabel.MouseMove += OnMouseMove;
-            //staffLabel.MouseUp += OnMouseUp;
-            return staffLabel;
         }
 
         /// <summary>
-        /// 
+        /// 1行分の付与情報を書き込む
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            switch (((ContextMenuStrip)sender).SourceControl) {
-                case StaffLabel staffLabel:
-                    switch (staffLabel.Parent.Name) {
-                        case "CcFlowLayoutPanelStock":
-                            staffLabel.SetToolStripMenuItemEnables(null);                                           // ToolStripMenuItemを有効・無効にする
-                            /*
-                             * ClickされたStaffLabelを退避する
-                             * ClickされたCodeを退避する
-                             */
-                            _parentStaffLabel = null;
-                            _timeOffCode = 0;
-                            break;
-                        case "CcFlowLayoutPanel1":
-                        case "CcFlowLayoutPanel2":
-                        case "CcFlowLayoutPanel3":
-                        case "CcFlowLayoutPanel4":
-                        case "CcFlowLayoutPanel5":
-                            staffLabel.SetToolStripMenuItemEnables(new string[] { "ToolStripMenuItemStaffMemo" }); // ToolStripMenuItemStaffMemoを有効にする
-                            /*
-                             * ClickされたStaffLabelを退避する
-                             * ClickされたCodeを退避する
-                             */
-                            _parentStaffLabel = staffLabel;
-                            _timeOffCode = int.Parse(((CcFlowLayoutPanel)staffLabel.Parent).Tag.ToString());
-                            break;
-                    }
+        /// <param name="sheetView"></param>
+        /// <param name="row"></param>
+        /// <param name="staffMasterVo"></param>
+        /// <param name="entitlement"></param>
+        /// <param name="startDate"></param>
+        /// <param name="index"></param>
+        private void WriteEntitlementRow(SheetView sheetView, int row, StaffMasterVo staffMasterVo, PaidLeaveEntitlementV0 entitlement, DateTime startDate, int index) {
+            int workDays;
+            if(CcCheckBoxWorkDaysFlag.Checked) {
+                workDays = this._vehicleDispatchDetailDao.GetCountVehicleDispatchDetail(startDate.AddYears(-1), startDate.AddDays(-1), staffMasterVo.StaffCode);
+            } else {
+                workDays = 0;
+            }
+
+            sheetView.Cells[row, (int)Col.YearsOfService].Text = string.Concat(entitlement.YearsOfService, "年6か月");
+            sheetView.Cells[row, (int)Col.StartDate].HorizontalAlignment = CellHorizontalAlignment.Center;
+            sheetView.Cells[row, (int)Col.StartDate].Text = entitlement.StartDate.ToString("yyyy/MM/dd");
+            sheetView.Cells[row, (int)Col.WorkDays].Text = workDays.ToString();
+            sheetView.Cells[row, (int)Col.GrantedDays].Text = entitlement.GrantedDays.ToString();
+
+            if(entitlement.GrantedDays > 0) {
+                int startCol = (int)Col.TimeOffStart;
+                int endCol = (int)Col.TimeOffStart + entitlement.GrantedDays - 1;
+
+                sheetView.Cells[row, startCol, row, endCol].BackColor = Color.LightYellow;
+
+                // 2年前の起算日が直近起算日から2年前の場合は破棄表示
+                if(index == 2 && entitlement.StartDate.Date == this._dictionaryStartDate[2].Date) {
+                    sheetView.Cells[row, (int)Col.YearsOfService, row, endCol].ForeColor = Color.White;
+                    sheetView.Cells[row, (int)Col.YearsOfService, row, endCol].BackColor = Color.DarkGray;
+                }
+            }
+
+            this.SetOneBody(row, staffMasterVo, index);
+        }
+
+        /// <summary>
+        /// TimeOffMasterを書き出し
+        /// </summary>
+        /// <param name="rowNumber"></param>
+        /// <param name="staffMasterVo"></param>
+        /// <param name="number"></param>
+        private void SetOneBody(int rowNumber, StaffMasterVo staffMasterVo, int number) {
+            List<TimeOffMasterVo> listTimeOffMasterVo =
+                this._timeOffMasterDao.SelectAllTimeOffMaster(staffMasterVo.StaffCode)
+                                      .Where(x => x.BaseDate.Date == this._dictionaryStartDate[number].Date)
+                                      .OrderBy(x => x.Date)
+                                      .ToList();
+            int colOffset = 0;
+            foreach(TimeOffMasterVo timeOffMasterVo in listTimeOffMasterVo) {
+                int colIndex = (int)Col.TimeOffStart + colOffset;
+                if(colIndex >= (int)Col.TimeOffStart + MaxTimeOffColumns) {
                     break;
+                }
+
+                if(this._dictionaryStartDate[0].Date <= timeOffMasterVo.Date.Date) {
+                    this.SheetViewList.Cells[rowNumber, colIndex].ForeColor = Color.Red;
+                }
+
+                this.SheetViewList.Cells[rowNumber, colIndex].Text = timeOffMasterVo.Date.ToString("yyyy/MM/dd");
+                colOffset++;
+            }
+        }
+
+        /// <summary>
+        /// CcContextMenuStripがOpenされたStaffMasterVoを取得する
+        /// </summary>
+        private void CcContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+            // ★ 右クリック位置のセルを取得
+            Point point = this.SpreadList.PointToClient(Cursor.Position);
+            CellRange cellRange = this.SpreadList.GetRootWorkbook().GetCellFromPixel(point.X, point.Y);
+
+            // ★ ヘッダ判定（Row < 0 または Column < 0）
+            if(cellRange.Row < 0 || cellRange.Column < 0) {
+                e.Cancel = true;   // ContextMenuStrip を開かせない
+                return;
+            }
+
+            // ★ 通常セルの場合のみ処理
+            CellRange[] ranges = this.SheetViewList.GetSelections();
+            foreach(CellRange range in ranges) {
+                _pushStaffMasterVo = this.SheetViewList.Cells[range.Row + 2, (int)Col.UnionCode].Tag as StaffMasterVo;
             }
         }
 
@@ -309,15 +303,44 @@ namespace PaidLeave {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void SpreadList_MouseMove(object sender, MouseEventArgs e) {
+            this._cellRange = this.SpreadList.GetRootWorkbook().GetCellFromPixel(e.X, e.Y);
+            this.SheetViewList.ClearSelection();
+            int startRow = this._cellRange.Row / BlockRowCount * BlockRowCount;
+            this.SheetViewList.AddSelection(startRow, 0, BlockRowCount, MaxTimeOffColumns);
+        }
+
+        /// <summary>
+        /// InitializeSheetView
+        /// </summary>
+        /// <param name="sheetView"></param>
+        /// <returns></returns>
+        private void InitializeSheetView(SheetView sheetView) {
+            this.SpreadList.AllowDragDrop = false;
+            this.SpreadList.PaintSelectionHeader = false;
+            this.SpreadList.ClipboardOptions = ClipboardOptions.AllHeaders;
+            sheetView.ColumnHeader.Rows[0].Height = 26;
+            sheetView.GrayAreaBackColor = Color.White;
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);
+            sheetView.RowHeader.Columns[0].Width = 48;
+            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
+            sheetView.RemoveRows(0, sheetView.Rows.Count);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemStaffMemo":
-                    Remark remark = new(_connectionVo,
-                                        CcMonthCalendar1.SelectionStart.Date,                       // 指定日
-                                        _timeOffCode,                                               // コード
-                                        _parentStaffLabel.StaffMasterVo.StaffCode);                 // 社員コード
-                    remark.ShowDialog();
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            switch(menuItem.Name) {
+                // 新規起算日を追加する
+                case "ToolStripMenuItemAdd":
+                    PaidLeaveDetail paidLeaveDetail = new (_connectionVo, _pushStaffMasterVo);
+                    paidLeaveDetail.StartPosition = FormStartPosition.CenterScreen;
+                    paidLeaveDetail.ShowDialog(this);
                     break;
+
+                // アプリケーションを終了する
                 case "ToolStripMenuItemExit":
                     Close();
                     break;
@@ -327,137 +350,12 @@ namespace PaidLeave {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CcMonthCalendar1_DateSelected(object sender, DateRangeEventArgs e) {
-            this.CcLabelDate.Text = e.Start.ToString("yyyy年MM月dd日 (dddd)");
-            /*
-             * 指定日が変更されたとき、CcFlowLayoutPanelStockに配置されているStaffLabelを削除する
-             * 削除しないと重複する可能性がある
-             */
-            RemoveControls(CcFlowLayoutPanelStock);
-            this.CcLabelRecordCount.Text = "レコード数：0件";
-            /*
-             * 指定日のレコードを取得し、CcFlowLayoutPanel1～5にStaffLabelを配置する
-             */
-            this.SetControls(e.Start.Date);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ccFlowLayoutPanel"></param>
-        public void RemoveControls(CcFlowLayoutPanel ccFlowLayoutPanel) {
-            SendMessage(ccFlowLayoutPanel.Handle, WM_SETREDRAW, false, 0);                  // 描画停止
-
-            try {
-                ccFlowLayoutPanel.SuspendLayout();                                          // レイアウトの一時停止
-                for (int i = ccFlowLayoutPanel.Controls.Count - 1; 0 <= i; i--)
-                    ccFlowLayoutPanel.Controls[i].Dispose();
-            } finally {
-                ccFlowLayoutPanel.ResumeLayout(true);                                       // レイアウトの再開
-
-                SendMessage(ccFlowLayoutPanel.Handle, WM_SETREDRAW, true, 0);               // 描画再開
-
-                ccFlowLayoutPanel.Invalidate();
-                ccFlowLayoutPanel.Update();
-            }
-        }
-
-        /*
-         * 
-         * Drag & Drop
-         * 
-         */
-        private CcFlowLayoutPanel _beforeParentControl = null;
-        private CcFlowLayoutPanel _afterParentControl = null;
-
-        /// <summary>
-        /// StaffLabelをOnMouseDownしたとき、ドラッグアンドドロップの開始処理を行う
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMouseDown(object sender, MouseEventArgs e) {
-            _beforeParentControl = (CcFlowLayoutPanel)((StaffLabel)sender).Parent;                          // Drag前の親コントロールを保存
-            if (e.Button == MouseButtons.Left)
-                ((StaffLabel)sender).DoDragDrop(sender, DragDropEffects.Move);
-        }
-
-        private void CcFlowLayoutPanel_DragEnter(object sender, DragEventArgs e) {
-
-        }
-
-        private void CcFlowLayoutPanel_DragOver(object sender, DragEventArgs e) {
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void CcFlowLayoutPanel_DragLeave(object sender, EventArgs e) {
-
-        }
-
-        private void CcFlowLayoutPanel_DragDrop(object sender, DragEventArgs e) {
-            _afterParentControl = (CcFlowLayoutPanel)sender;                                                // Drop後の親コントロールを保存
-            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = $"移動元：{_beforeParentControl.Name} → 移動先：{_afterParentControl.Name}";
-
-            if (object.ReferenceEquals(_beforeParentControl, _afterParentControl)) {
-                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "同じ場所にドロップされました";
-                return;
-            } else {
-                DateTime targetDate = this.CcMonthCalendar1.SelectionStart.Date;                                                // 対象日を取得する
-                StaffLabel staffLabel = (StaffLabel)e.Data.GetData(typeof(StaffLabel));                                         // ドロップされたStaffLabelを取得する
-                _afterParentControl.Controls.Add(staffLabel);
-                switch (_afterParentControl.Name) {
-                    case "CcFlowLayoutPanelStock":
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "SQL Delete";
-                        try {
-                            if (_timeOffMasterDao.ExistenceTimeOffMaster(targetDate, staffLabel.StaffMasterVo.StaffCode)) {
-                                _timeOffMasterDao.DeleteOneTimeOffMaster(targetDate, staffLabel.StaffMasterVo.StaffCode);
-                                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "１件のレコードを削除しました";
-                            } else {
-                                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "Deleteするレコードが見つかりません";
-                            }
-                        } catch (Exception exception) {
-                            MessageBox.Show(exception.Message);
-                        }
-                        break;
-                    case "CcFlowLayoutPanel1":
-                    case "CcFlowLayoutPanel2":
-                    case "CcFlowLayoutPanel3":
-                    case "CcFlowLayoutPanel4":
-                    case "CcFlowLayoutPanel5":
-                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "SQL Insert OR Update";
-                        try {
-                            if (_timeOffMasterDao.ExistenceTimeOffMaster(targetDate, staffLabel.StaffMasterVo.StaffCode)) {
-                                _timeOffMasterDao.UpdateOneTimeOffMaster(targetDate,
-                                                                         int.Parse(_afterParentControl.Tag.ToString()),
-                                                                         staffLabel.StaffMasterVo.StaffCode);
-                                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "１件のレコードをUPDATEしました";
-                            } else {
-
-                                _timeOffMasterDao.InsertOneTimeOffMaster(targetDate,
-                                                                         int.Parse(_afterParentControl.Tag.ToString()),
-                                                                         staffLabel.StaffMasterVo.StaffCode);
-                                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "１件のレコードをINSERTしました";
-                            }
-                        } catch (Exception exception) {
-                            MessageBox.Show(exception.Message);
-                        }
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void PaidLeaveList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
-                    Dispose();
+                    this.Dispose();
                     break;
                 case DialogResult.Cancel:
                     e.Cancel = true;
