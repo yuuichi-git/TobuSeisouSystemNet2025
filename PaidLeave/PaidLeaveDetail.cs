@@ -11,7 +11,7 @@ namespace PaidLeave {
     public partial class PaidLeaveDetail : Form {
         private readonly DateTime _defaultDateTime = new(1900,1,1);
         private readonly DateUtility _dateUtility = new();
-        DateTime 直近の起算日;
+        DateTime _mostRecentCommencementDate;
         /*
          * Dao
          */
@@ -39,7 +39,9 @@ namespace PaidLeave {
              */
             _connectionVo = connectionVo;
             _staffMasterVo = staffMasterVo;
-            
+            /*
+             * InitializeControls
+             */
             InitializeComponent();
         }
 
@@ -49,9 +51,9 @@ namespace PaidLeave {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PaidLeaveDetail_Load(object sender, EventArgs e) {
-            直近の起算日 = _dateUtility.GetPaidLeaveCommencementDate(_staffMasterVo.PaidLeaveCommencementDate);
+            MostRecentCommencementDate = _dateUtility.GetPaidLeaveCommencementDate(_staffMasterVo.PaidLeaveCommencementDate);
             /*
-             * InitializeControls
+             * InitializeControls　
              */
             // コンストラクター内での処理では無効になるよ
             switch(this.Owner) {
@@ -67,19 +69,19 @@ namespace PaidLeave {
                     break;
             }
             // １年間の勤務日数を計算
-            string numberOfWorkingDays = string.Concat(直近の起算日.AddDays(-364).Date.ToString("yyyy/MM/dd"), "～", 直近の起算日.Date.ToString("yyyy/MM/dd"), "までのの勤務日数：",
-                                                       _vehicleDispatchDetailDao.GetCountVehicleDispatchDetail(直近の起算日.AddDays(-364).Date, 直近の起算日.Date, _staffMasterVo.StaffCode), "日出勤");
+            string numberOfWorkingDays = string.Concat(MostRecentCommencementDate.AddYears(-1).Date.ToString("yyyy/MM/dd"), "～", MostRecentCommencementDate.AddDays(-1).Date.ToString("yyyy/MM/dd"), "までのの勤務日数：",
+                                                       _vehicleDispatchDetailDao.GetCountVehicleDispatchDetail(MostRecentCommencementDate.AddYears(-1).Date, MostRecentCommencementDate.AddDays(-1).Date, _staffMasterVo.StaffCode), "日出勤");
             this.CcLabelNumberOfWorkingDays.Text = numberOfWorkingDays;
             // 従事者名
             this.CcLabelStaffName.Text = _staffMasterVo.Name;
             // 勤務年数
-            this.CcNumericUpDownYearsOfService.Value = _paidLeaveEntitlementDao.GetYearsOfService(_staffMasterVo.StaffCode, 直近の起算日);
+            this.CcNumericUpDownYearsOfService.Value = _paidLeaveEntitlementDao.GetYearsOfService(_staffMasterVo.StaffCode, MostRecentCommencementDate);
             // 有給基準日
             this.CcLabelPaidLeaveReferenceDate.Text = _staffMasterVo.PaidLeaveReferenceDate.ToString("yyyy/MM/dd");
             // 直近の起算日
-            this.CcLabelPaidLeaveCommencementDate.Text = 直近の起算日.ToString("yyyy/MM/dd");
+            this.CcLabelPaidLeaveCommencementDate.Text = MostRecentCommencementDate.ToString("yyyy/MM/dd");
             // 直近の付与日数を取得
-            this.CcNumericUpDownGrantedDays.Value = _paidLeaveEntitlementDao.GetGrantedDays(_staffMasterVo.StaffCode, 直近の起算日);
+            this.CcNumericUpDownGrantedDays.Value = _paidLeaveEntitlementDao.GetGrantedDays(_staffMasterVo.StaffCode, MostRecentCommencementDate);
         }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace PaidLeave {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcButtonUpdate_Click(object sender, EventArgs e) {
-            if(_paidLeaveEntitlementDao.ExistenceHPaidLeaveEntitlement(_staffMasterVo.StaffCode, 直近の起算日.Date)) {
+            if(_paidLeaveEntitlementDao.ExistenceHPaidLeaveEntitlement(_staffMasterVo.StaffCode, MostRecentCommencementDate.Date)) {
                 /*
                  * UPDATE
                  */
@@ -98,7 +100,7 @@ namespace PaidLeave {
                 // 勤続年数
                 paidLeaveEntitlementV0.YearsOfService = Convert.ToInt32(this.CcNumericUpDownYearsOfService.Value);
                 // 直近の起算日
-                paidLeaveEntitlementV0.StartDate = 直近の起算日.Date;
+                paidLeaveEntitlementV0.StartDate = MostRecentCommencementDate.Date;
                 // 有給付与日数
                 paidLeaveEntitlementV0.GrantedDays = Convert.ToInt32(this.CcNumericUpDownGrantedDays.Value);
                 // 備考
@@ -127,7 +129,7 @@ namespace PaidLeave {
                 // 勤続年数
                 paidLeaveEntitlementV0.YearsOfService = Convert.ToInt32(this.CcNumericUpDownYearsOfService.Value);
                 // 直近の起算日
-                paidLeaveEntitlementV0.StartDate = 直近の起算日.Date;
+                paidLeaveEntitlementV0.StartDate = MostRecentCommencementDate.Date;
                 // 有給付与日数
                 paidLeaveEntitlementV0.GrantedDays = Convert.ToInt32(this.CcNumericUpDownGrantedDays.Value);
                 // 備考
@@ -153,6 +155,19 @@ namespace PaidLeave {
         /// <param name="e"></param>
         private void PaidLeaveDetail_FormClosing(object sender, FormClosingEventArgs e) {
 
+        }
+
+
+        /// <summary>
+        /// 直近の起算日
+        /// </summary>
+        public DateTime MostRecentCommencementDate {
+            get {
+                return _mostRecentCommencementDate;
+            }
+            set {
+                _mostRecentCommencementDate = value;
+            }
         }
     }
 }

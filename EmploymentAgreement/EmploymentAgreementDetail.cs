@@ -87,6 +87,7 @@ namespace EmploymentAgreement {
                 "ToolStripMenuItemExit",
                 "ToolStripMenuItemHelp"
             };
+            this.CcMenuStrip1.ChangeEnable(listString);
             this.InitializeControl();
             if (_employmentAgreementDao.ExistenceEmploymentAgreement(_staffMasterVo.StaffCode)) {
                 this.CcButtonUpdate.Text = "更　新";
@@ -102,7 +103,7 @@ namespace EmploymentAgreement {
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>

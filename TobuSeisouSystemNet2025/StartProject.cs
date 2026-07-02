@@ -280,7 +280,8 @@ namespace TobuSeisouSystemNet2025 {
         private ContinuousDrivingTimePaper continuousDrivingTimePaper = null;                                                                   // 陸運局監査
         private EstraList estraList = null;                                                                                                     // エストラ一覧 
         private PaidLeaveList paidLeaveList = null;                                                                                             // 有給休暇一覧
-        private PaidLeaveForm paidLeaveForm = null;                                                                                             // 有給休暇一覧
+        private PaidLeaveForm paidLeaveForm = null;                                                                                             // 有給休暇取得詳細
+        private PaidLeavePrint paidLeavePrint = null;                                                                                           // 有給休暇取得集計表
         private WorkPerformanceSurveyForm workPerformanceSurveyForm = null;                                                                     // 東環保作業実績調査表
         /// <summary>
         /// 接続先がSQLServerの場合
@@ -561,6 +562,15 @@ namespace TobuSeisouSystemNet2025 {
                                 paidLeaveForm = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, paidLeaveForm);
                                 paidLeaveForm.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（PaidLeaveDetail）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "PaidLeavePrint":                                                                                                 // 有給休暇詳細
+                            if(paidLeavePrint is null || paidLeavePrint.IsDisposed) {
+                                paidLeavePrint = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, paidLeavePrint);
+                                paidLeavePrint.Show(this);
                             } else {
                                 MessageBox.Show("このプログラム（PaidLeaveDetail）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }

@@ -226,8 +226,8 @@ namespace DriversReport {
                     sheetView.Cells[10, 17].Text = "江東区清掃事務所 /"; // 休憩場所
                     break;
                 case 1311902:                                                                                               // 板橋西軽１
-                case 1311903:                                                                                               // 板橋西軽２
-                case 1311904:                                                                                               // 板橋西軽３
+                //case 1311903:                                                                                               // 板橋西軽３
+                case 1311904:                                                                                               // 板橋西軽７
                     sheetView.Cells[10, 17].Text = "西台中継所/板橋清掃工場 /"; // 休憩場所
                     sheetView.Cells[12, 3].Text = "🔲　板橋清掃工場"; // 運搬先名①
                     sheetView.Cells[13, 3].Text = "🔲　板橋清掃工場"; // 運搬先名②

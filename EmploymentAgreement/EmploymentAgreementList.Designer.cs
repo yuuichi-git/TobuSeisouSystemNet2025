@@ -25,9 +25,9 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmploymentAgreementList));
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            MenuStripEx1 = new CcControl.CcMenuStrip();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
             StatusStripEx1 = new CcControl.CcStatusStrip();
-            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
             ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemExpiration = new ToolStripMenuItem();
             ToolStripMenuItemContractExpirationPartTimeJob = new ToolStripMenuItem();
@@ -44,6 +44,7 @@
             SheetViewList = SpreadList.GetSheet(0);
             PanelExTop = new CcControl.CcPanel();
             GroupBoxExOccupation = new CcControl.CcGroupBox();
+            ccCheckBox1 = new CcControl.CcCheckBox();
             CheckBoxEx18 = new CcControl.CcCheckBox();
             CheckBoxEx17 = new CcControl.CcCheckBox();
             CheckBoxEx16 = new CcControl.CcCheckBox();
@@ -66,7 +67,6 @@
             CheckBoxEx1 = new CcControl.CcCheckBox();
             CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             ButtonExUpdate = new CcControl.CcButton();
-            ccCheckBox1 = new CcControl.CcCheckBox();
             TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
             ContextMenuStripEx1.SuspendLayout();
@@ -80,7 +80,7 @@
             // 
             TableLayoutPanelExBase.ColumnCount = 1;
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
@@ -95,14 +95,14 @@
             TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            MenuStripEx1.Location = new Point(0, 0);
-            MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1904, 24);
-            MenuStripEx1.TabIndex = 0;
-            MenuStripEx1.Text = "menuStripEx1";
-            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
@@ -243,6 +243,19 @@
             GroupBoxExOccupation.TabIndex = 10;
             GroupBoxExOccupation.TabStop = false;
             GroupBoxExOccupation.Text = "職種(第三条件)";
+            // 
+            // ccCheckBox1
+            // 
+            ccCheckBox1.AutoSize = true;
+            ccCheckBox1.Checked = true;
+            ccCheckBox1.CheckState = CheckState.Checked;
+            ccCheckBox1.Location = new Point(364, 16);
+            ccCheckBox1.Name = "ccCheckBox1";
+            ccCheckBox1.Size = new Size(86, 19);
+            ccCheckBox1.TabIndex = 6;
+            ccCheckBox1.Tag = "14";
+            ccCheckBox1.Text = "文京中継所";
+            ccCheckBox1.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx18
             // 
@@ -522,26 +535,13 @@
             ButtonExUpdate.UseVisualStyleBackColor = true;
             ButtonExUpdate.Click += ButtonEx_Click;
             // 
-            // ccCheckBox1
-            // 
-            ccCheckBox1.AutoSize = true;
-            ccCheckBox1.Checked = true;
-            ccCheckBox1.CheckState = CheckState.Checked;
-            ccCheckBox1.Location = new Point(364, 16);
-            ccCheckBox1.Name = "ccCheckBox1";
-            ccCheckBox1.Size = new Size(86, 19);
-            ccCheckBox1.TabIndex = 6;
-            ccCheckBox1.Tag = "14";
-            ccCheckBox1.Text = "文京中継所";
-            ccCheckBox1.UseVisualStyleBackColor = true;
-            // 
             // EmploymentAgreementList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
-            MainMenuStrip = MenuStripEx1;
+            MainMenuStrip = CcMenuStrip1;
             Name = "EmploymentAgreementList";
             Text = "EmploymentAgreementList";
             FormClosing += EmploymentAgreementList_FormClosing;
@@ -563,7 +563,7 @@
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip StatusStripEx1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private CcControl.CcPanel PanelExTop;

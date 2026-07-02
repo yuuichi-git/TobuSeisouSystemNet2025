@@ -1548,7 +1548,7 @@ namespace VehicleDispatch {
                                 staffLabel.PaidLeaveFlag = false;
                                 staffLabel.Refresh();
                             } else {
-                                int paidLeaveDays = _timeOffMasterDao.GetPaidLeave(paidLeaveCommencementDate, staffLabel.StaffMasterVo.StaffCode);
+                                int paidLeaveDays = _timeOffMasterDao.GetPaidLeave(staffLabel.StaffMasterVo.StaffCode,paidLeaveCommencementDate );
                                 staffLabel.PaidLeaveFlag = true;
                                 staffLabel.PaidLeaveDays = paidLeaveDays;
                                 staffLabel.Refresh();

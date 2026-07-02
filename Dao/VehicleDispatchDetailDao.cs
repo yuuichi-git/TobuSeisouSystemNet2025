@@ -128,8 +128,8 @@ namespace Dao {
                                             "H_VehicleDispatchDetail.DeleteFlag " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE H_VehicleDispatchDetail.OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
                     vehicleDispatchDetailVo.CellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
                     vehicleDispatchDetailVo.OperationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OperationDate"]);
@@ -209,8 +209,8 @@ namespace Dao {
                 "FROM H_VehicleDispatchDetail " +
                 "WHERE OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
 
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read()) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read()) {
                     int cellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
                     int setCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["SetCode"]);
                     string updatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -291,8 +291,8 @@ namespace Dao {
                                             "H_VehicleDispatchDetail.DeleteFlag " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate BETWEEN '" + operationDate1.ToString("yyyy-MM-dd") + "' AND '" + operationDate2.ToString("yyyy-MM-dd") + "'";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
                     vehicleDispatchDetailVo.CellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
                     vehicleDispatchDetailVo.OperationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OperationDate"]);
@@ -368,7 +368,6 @@ namespace Dao {
             int matchTotal = 0;
 
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-
             sqlCommand.CommandText = "SELECT StaffCode1, StaffCode2, StaffCode3, StaffCode4 " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate BETWEEN @OperationDate1 AND @OperationDate2 " +
@@ -382,18 +381,25 @@ namespace Dao {
             sqlCommand.Parameters.Add("@OperationDate2", SqlDbType.Date).Value = operationDate2.Date;
             sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
 
-            using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                while (reader.Read()) {
-                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode1"]) == staffCode) { matchTotal++; }
-                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode2"]) == staffCode) { matchTotal++; }
-                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode3"]) == staffCode) { matchTotal++; }
-                    if (_defaultValue.GetDefaultValue<int>(reader["StaffCode4"]) == staffCode) { matchTotal++; }
+            using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
+                while(reader.Read()) {
+                    if(_defaultValue.GetDefaultValue<int>(reader["StaffCode1"]) == staffCode) {
+                        matchTotal++;
+                    }
+                    if(_defaultValue.GetDefaultValue<int>(reader["StaffCode2"]) == staffCode) {
+                        matchTotal++;
+                    }
+                    if(_defaultValue.GetDefaultValue<int>(reader["StaffCode3"]) == staffCode) {
+                        matchTotal++;
+                    }
+                    if(_defaultValue.GetDefaultValue<int>(reader["StaffCode4"]) == staffCode) {
+                        matchTotal++;
+                    }
                 }
             }
 
             return matchTotal;
         }
-
 
         /// <summary>
         /// 
@@ -463,8 +469,8 @@ namespace Dao {
                                             "H_VehicleDispatchDetail.DeleteFlag " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE CellNumber = " + cellNumber + " AND OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     vehicleDispatchDetailVo = new();
                     vehicleDispatchDetailVo.CellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
                     vehicleDispatchDetailVo.OperationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["OperationDate"]);
@@ -680,7 +686,7 @@ namespace Dao {
         public int InsertVehicleDispatchDetail(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             int count = 1;
             string sqlString = string.Empty;
-            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo) {
+            foreach(VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo) {
                 sqlString += "(" + _defaultValue.GetDefaultValue<int>(vehicleDispatchDetailVo.CellNumber) + "," +
                              "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.OperationDate) + "'," +
                              "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.OperationFlag) + "'," +
@@ -738,7 +744,7 @@ namespace Dao {
                              "'" + _defaultValue.GetDefaultValue<string>(vehicleDispatchDetailVo.DeletePcName) + "'," +
                              "'" + _defaultValue.GetDefaultValue<DateTime>(vehicleDispatchDetailVo.DeleteYmdHms) + "'," +
                              "'" + _defaultValue.GetDefaultValue<bool>(vehicleDispatchDetailVo.DeleteFlag) + "')";
-                if (count < listVehicleDispatchDetailVo.Count)
+                if(count < listVehicleDispatchDetailVo.Count)
                     sqlString += ",";
                 count++;
             }
@@ -1059,8 +1065,8 @@ namespace Dao {
                                                                           "AND H_VehicleDispatchHead.FinancialYear = H_VehicleDispatchBody.FinancialYear " +
                                      "WHERE H_VehicleDispatchHead.FinancialYear = " + financialYear + " " +
                                        "AND H_VehicleDispatchBody.DayOfWeek = '" + dayOfWeek + "'";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
                     vehicleDispatchDetailVo.CellNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["CellNumber"]);
                     vehicleDispatchDetailVo.VehicleDispatchFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["VehicleDispatchFlag"]);
@@ -1094,7 +1100,7 @@ namespace Dao {
                                        "AND H_VehicleDispatchDetail.OperationFlag = 'true' " +                                          // 稼働フラグ
                                        "AND (H_SetMaster.ClassificationCode IN (10,12) " +                                              // 雇上・臨時 ※基本臨時は雇上
                                        "OR H_SetMaster.FareCode = 21)";                                                                 // 運賃コード
-            if (sqlCommand.ExecuteScalar() != null)
+            if(sqlCommand.ExecuteScalar() != null)
                 count = (int)sqlCommand.ExecuteScalar();
             return count;
         }
@@ -1114,7 +1120,7 @@ namespace Dao {
                                      "WHERE OperationDate = '" + operationDate + "' " +                                                 // 配車日
                                        "AND H_VehicleDispatchDetail.OperationFlag = 'true' " +                                          // 稼働フラグ
                                        "AND H_SetMaster.ClassificationCode = 11";                                                       // 区契約
-            if (sqlCommand.ExecuteScalar() != null)
+            if(sqlCommand.ExecuteScalar() != null)
                 count = (int)sqlCommand.ExecuteScalar();
             return count;
         }
@@ -1133,7 +1139,7 @@ namespace Dao {
                                      "WHERE OperationDate = '" + dateTime + "' " +
                                        "AND VehicleDispatchFlag = 'True' " +
                                        "AND SetCode = " + setCode;
-            if (sqlCommand.ExecuteScalar() != null)
+            if(sqlCommand.ExecuteScalar() != null)
                 lastRollCallYmdHms = (DateTime)sqlCommand.ExecuteScalar();
             return lastRollCallYmdHms;
         }

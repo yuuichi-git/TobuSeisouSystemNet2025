@@ -206,10 +206,15 @@ namespace EmploymentAgreement {
                                              "ToolStripMenuItemExit",
                                              "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            this.CcMenuStrip1.ChangeEnable(listString);
 
             this.CheckBoxExRetirementFlag.Checked = false;
             this.InitializeSheetView(this.SheetViewList);
+
+            /*
+             * Eventを登録する
+             */
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -544,6 +549,9 @@ namespace EmploymentAgreement {
                     employmentAgreementPaper = new(_connectionVo, 51, staffMasterVo.StaffCode, _listEmploymentAgreementVo.Find(x => x.StaffCode == staffMasterVo.StaffCode));
                     _screenForm.SetPosition(_screen, employmentAgreementPaper);
                     employmentAgreementPaper.Show(this);
+                    break;
+                case "ToolStripMenuItemExit":
+                    Close();
                     break;
             }
         }

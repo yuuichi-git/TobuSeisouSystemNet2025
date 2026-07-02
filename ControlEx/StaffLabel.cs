@@ -114,10 +114,10 @@ namespace CcControl {
         ContextMenuStrip contextMenuStrip = new();
         public ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
         public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
-        public ToolStripMenuItem toolStripMenuItem02 = new("代番処理");                                                                  // 親アイテム
-        public ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");                                                      // 子アイテム１
-        public ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");// 子アイテム２
-        public ToolStripMenuItem toolStripMenuItem03 = new("職種設定");// 親アイテム
+        public ToolStripMenuItem toolStripMenuItem02 = new("代番処理");                                                              // 親アイテム
+        public ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");                                                    // 子アイテム１
+        public ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");                                                       // 子アイテム２
+        public ToolStripMenuItem toolStripMenuItem03 = new("職種設定");                                                             // 親アイテム
         public ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)");// 子アイテム１
         public ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする");// 子アイテム２
         public ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)");// 親アイテム
@@ -206,7 +206,7 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// 
+        /// Label用画像をキャッシュ
         /// </summary>
         static class Cache {
             public static readonly Image PartTime = ByteArrayToImage(Resources.StaffLabelImagePartTime);
@@ -228,7 +228,6 @@ namespace CcControl {
         protected override void OnPaint(PaintEventArgs pe) {
             /*
              * 2026-02-13
-             * AIによる画像キャッシュ対応
              */
             base.OnPaint(pe);
 

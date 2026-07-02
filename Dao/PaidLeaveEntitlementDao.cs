@@ -71,18 +71,18 @@ namespace Dao {
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while(sqlDataReader.Read() == true) {
                     PaidLeaveEntitlementV0 paidLeaveEntitlementV0 = new() {
-                        StaffCode = this._defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]),
-                        YearsOfService = this._defaultValue.GetDefaultValue<int>(sqlDataReader["YearsOfService"]),
-                        StartDate = this._defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]),
-                        GrantedDays = this._defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]),
-                        Remarks = this._defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]),
-                        InsertPcName = this._defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]),
-                        InsertYmdHms = this._defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]),
-                        UpdatePcName = this._defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]),
-                        UpdateYmdHms = this._defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]),
-                        DeletePcName = this._defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]),
-                        DeleteYmdHms = this._defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]),
-                        DeleteFlag = this._defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"])
+                        StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]),
+                        YearsOfService = _defaultValue.GetDefaultValue<int>(sqlDataReader["YearsOfService"]),
+                        StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]),
+                        GrantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]),
+                        Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]),
+                        InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]),
+                        InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]),
+                        UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]),
+                        UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]),
+                        DeletePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DeletePcName"]),
+                        DeleteYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeleteYmdHms"]),
+                        DeleteFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DeleteFlag"])
                     };
                     listPaidLeaveEntitlementV0.Add(paidLeaveEntitlementV0);
                 }
@@ -175,7 +175,7 @@ namespace Dao {
         public int GetGrantedDays(int staffCode, DateTime startDate) {
             int grantedDays = 0;
 
-            SqlCommand sqlCommand = this._connectionVo.SqlServerConnection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT GrantedDays " +
                                      "FROM H_PaidLeaveEntitlement " +
                                      "WHERE StaffCode = @StaffCode " +
@@ -187,7 +187,7 @@ namespace Dao {
 
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 if(sqlDataReader.Read() == true) {
-                    grantedDays = this._defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]);
+                    grantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]);
                 }
             }
 
@@ -203,7 +203,7 @@ namespace Dao {
         public int GetYearsOfService(int staffCode, DateTime startDate) {
             int grantedDays = 0;
 
-            SqlCommand sqlCommand = this._connectionVo.SqlServerConnection.CreateCommand();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT YearsOfService " +
                                      "FROM H_PaidLeaveEntitlement " +
                                      "WHERE StaffCode = @StaffCode " +
@@ -215,11 +215,63 @@ namespace Dao {
 
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 if(sqlDataReader.Read() == true) {
-                    grantedDays = this._defaultValue.GetDefaultValue<int>(sqlDataReader["YearsOfService"]);
+                    grantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["YearsOfService"]);
                 }
             }
 
             return grantedDays;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="endDate">指定期間の最終日</param>
+        /// <param name="staffCode"></param>
+        /// <returns></returns>
+        public List<PaidLeaveBalanceVo> SelectRemainingDays(DateTime endDate, int staffCode) {
+            List<PaidLeaveBalanceVo> listPaidLeaveBalanceVo = new ();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
+            sqlCommand.CommandText = "SELECT PaidLeaveEntitlement.StaffCode," +                                                                     // 従事者コード
+                                     "       PaidLeaveEntitlement.StartDate," +                                                                     // 起算日
+                                     "       PaidLeaveEntitlement.GrantedDays," +                                                                   // 有給付与日数
+                                     "       ISNULL(TimeOffMaster.UsedDays, 0) AS UsedDays," +                                                      // 使用済み日数
+                                     "       (PaidLeaveEntitlement.GrantedDays - ISNULL(TimeOffMaster.UsedDays, 0)) AS RemainingDays " +            // 有給残日数
+                                     "FROM H_PaidLeaveEntitlement AS PaidLeaveEntitlement " +
+                                     "LEFT JOIN (SELECT StaffCode, BaseDate, COUNT(*) AS UsedDays " +
+                                     "            FROM H_TimeOffMaster " +
+                                     "            WHERE StaffCode = @StaffCode " +
+                                     "              AND Date <= @EndDate " +
+                                     "              AND Code = 1 " +
+                                     "            GROUP BY StaffCode, BaseDate) AS TimeOffMaster " +
+                                     "     ON  PaidLeaveEntitlement.StaffCode = TimeOffMaster.StaffCode " +
+                                     "     AND PaidLeaveEntitlement.StartDate = TimeOffMaster.BaseDate " +
+                                     "WHERE PaidLeaveEntitlement.StaffCode = @StaffCode " +
+                                     "AND   PaidLeaveEntitlement.StartDate IN (" +
+                                     "                                          (SELECT MAX(StartDate)" +
+                                     "                                           FROM   H_PaidLeaveEntitlement " +
+                                     "                                           WHERE  StaffCode = @StaffCode)," +
+                                     "                                          (SELECT DATEADD(year, -1, MAX(StartDate)) " +
+                                     "                                           FROM   H_PaidLeaveEntitlement " +
+                                     "                                           WHERE  StaffCode = @StaffCode) " +
+                                     "                                          ) " +
+                                     "ORDER BY PaidLeaveEntitlement.StartDate ASC";
+
+            sqlCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = endDate;
+            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
+
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
+                    PaidLeaveBalanceVo paidLeaveBalanceVo = new ();
+                    paidLeaveBalanceVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);                                  // 従事者コード
+                    paidLeaveBalanceVo.StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]);                             // 起算日
+                    paidLeaveBalanceVo.GrantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]);                              // 有給付与日数
+                    paidLeaveBalanceVo.UsedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["UsedDays"]);                                    // 使用済み日数
+                    paidLeaveBalanceVo.RemainingDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["RemainingDays"]);                          // 有給残日数
+                    listPaidLeaveBalanceVo.Add(paidLeaveBalanceVo);
+                }
+            }
+            return listPaidLeaveBalanceVo;
         }
     }
 
@@ -380,6 +432,75 @@ namespace Dao {
 
             set {
                 this._deleteFlag = value;
+            }
+        }
+    }
+
+    public class PaidLeaveBalanceVo {
+        private int _staffCode;
+        private DateTime _startDate;
+        private int _GrantedDays;
+        private int _UsedDays;
+        private int _RemainingDays;
+
+        /// <summary>
+        /// 従事者コード
+        /// </summary>
+        public int StaffCode {
+            get {
+                return _staffCode;
+            }
+
+            set {
+                _staffCode = value;
+            }
+        }
+        /// <summary>
+        /// 起算日
+        /// </summary>
+        public DateTime StartDate {
+            get {
+                return _startDate;
+            }
+
+            set {
+                _startDate = value;
+            }
+        }
+        /// <summary>
+        /// 有給付与日数
+        /// </summary>
+        public int GrantedDays {
+            get {
+                return _GrantedDays;
+            }
+
+            set {
+                _GrantedDays = value;
+            }
+        }
+        /// <summary>
+        /// 使用済み日数
+        /// </summary>
+        public int UsedDays {
+            get {
+                return _UsedDays;
+            }
+
+            set {
+                _UsedDays = value;
+            }
+        }
+        /// <summary>
+        /// 有給残日数
+        /// </summary>
+        public int RemainingDays {
+            get {
+                return _RemainingDays;
+            }
+
+            set {
+                _RemainingDays = value;
             }
         }
     }

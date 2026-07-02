@@ -1,5 +1,5 @@
 ﻿namespace PaidLeave {
-    partial class PaidLeaveList {
+    partial class PaidLeavePrint {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+            if(disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -23,12 +23,14 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaidLeaveList));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaidLeavePrint));
             CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
-            CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             CcPanelTop = new CcControl.CcPanel();
-            CcCheckBoxWorkDaysFlag = new CcControl.CcCheckBox();
+            CcDateTimeOperationDate2 = new CcControl.CcDateTime();
+            ccLabel2 = new CcControl.CcLabel();
+            ccLabel1 = new CcControl.CcLabel();
+            CcDateTimeOperationDate1 = new CcControl.CcDateTime();
             GroupBoxExOccupation = new CcControl.CcGroupBox();
             ccCheckBox1 = new CcControl.CcCheckBox();
             CheckBoxEx18 = new CcControl.CcCheckBox();
@@ -52,9 +54,8 @@
             CheckBoxEx2 = new CcControl.CcCheckBox();
             CheckBoxEx1 = new CcControl.CcCheckBox();
             CcButtonUpdate = new CcControl.CcButton();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
-            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
-            ToolStripMenuItemAdd = new ToolStripMenuItem();
             SheetViewList = SpreadList.GetSheet(0);
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelTop.SuspendLayout();
@@ -62,49 +63,41 @@
             GroupBoxExJobForm.SuspendLayout();
             GroupBoxExBelongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
-            CcContextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // CcTableLayoutPanelBase
             // 
             CcTableLayoutPanelBase.ColumnCount = 1;
             CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 3);
             CcTableLayoutPanelBase.Controls.Add(CcPanelTop, 0, 1);
+            CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(SpreadList, 0, 2);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
             CcTableLayoutPanelBase.RowCount = 4;
             CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             CcTableLayoutPanelBase.Size = new Size(1904, 1041);
             CcTableLayoutPanelBase.TabIndex = 0;
-            // 
-            // CcMenuStrip1
-            // 
-            CcMenuStrip1.Location = new Point(0, 0);
-            CcMenuStrip1.Name = "CcMenuStrip1";
-            CcMenuStrip1.Size = new Size(1904, 24);
-            CcMenuStrip1.TabIndex = 0;
-            CcMenuStrip1.Text = "ccMenuStrip1";
-            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // CcStatusStrip1
             // 
             CcStatusStrip1.Location = new Point(0, 1019);
             CcStatusStrip1.Name = "CcStatusStrip1";
             CcStatusStrip1.Size = new Size(1904, 22);
-            CcStatusStrip1.SizingGrip = false;
-            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.TabIndex = 2;
             CcStatusStrip1.Text = "ccStatusStrip1";
             // 
             // CcPanelTop
             // 
-            CcPanelTop.Controls.Add(CcCheckBoxWorkDaysFlag);
+            CcPanelTop.Controls.Add(CcDateTimeOperationDate2);
+            CcPanelTop.Controls.Add(ccLabel2);
+            CcPanelTop.Controls.Add(ccLabel1);
+            CcPanelTop.Controls.Add(CcDateTimeOperationDate1);
             CcPanelTop.Controls.Add(GroupBoxExOccupation);
             CcPanelTop.Controls.Add(GroupBoxExJobForm);
             CcPanelTop.Controls.Add(GroupBoxExBelongs);
@@ -112,19 +105,50 @@
             CcPanelTop.Dock = DockStyle.Fill;
             CcPanelTop.Location = new Point(3, 27);
             CcPanelTop.Name = "CcPanelTop";
-            CcPanelTop.Size = new Size(1898, 84);
-            CcPanelTop.TabIndex = 2;
+            CcPanelTop.Size = new Size(1898, 94);
+            CcPanelTop.TabIndex = 0;
             // 
-            // CcCheckBoxWorkDaysFlag
+            // CcDateTimeOperationDate2
             // 
-            CcCheckBoxWorkDaysFlag.AutoSize = true;
-            CcCheckBoxWorkDaysFlag.Location = new Point(20, 58);
-            CcCheckBoxWorkDaysFlag.Name = "CcCheckBoxWorkDaysFlag";
-            CcCheckBoxWorkDaysFlag.Size = new Size(196, 19);
-            CcCheckBoxWorkDaysFlag.TabIndex = 6;
-            CcCheckBoxWorkDaysFlag.Tag = "15";
-            CcCheckBoxWorkDaysFlag.Text = "過去１年間の出勤日数を表示する";
-            CcCheckBoxWorkDaysFlag.UseVisualStyleBackColor = true;
+            CcDateTimeOperationDate2.CultureFlag = false;
+            CcDateTimeOperationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimeOperationDate2.Format = DateTimePickerFormat.Custom;
+            CcDateTimeOperationDate2.Location = new Point(284, 60);
+            CcDateTimeOperationDate2.Name = "CcDateTimeOperationDate2";
+            CcDateTimeOperationDate2.Size = new Size(184, 23);
+            CcDateTimeOperationDate2.TabIndex = 12;
+            CcDateTimeOperationDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimeOperationDate2.ValueChanged += CcDateTime_ValueChanged;
+            // 
+            // ccLabel2
+            // 
+            ccLabel2.AutoSize = true;
+            ccLabel2.Location = new Point(264, 64);
+            ccLabel2.Name = "ccLabel2";
+            ccLabel2.Size = new Size(19, 15);
+            ccLabel2.TabIndex = 11;
+            ccLabel2.Text = "～";
+            // 
+            // ccLabel1
+            // 
+            ccLabel1.AutoSize = true;
+            ccLabel1.Location = new Point(16, 64);
+            ccLabel1.Name = "ccLabel1";
+            ccLabel1.Size = new Size(55, 15);
+            ccLabel1.TabIndex = 10;
+            ccLabel1.Text = "集計期間";
+            // 
+            // CcDateTimeOperationDate1
+            // 
+            CcDateTimeOperationDate1.CultureFlag = false;
+            CcDateTimeOperationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimeOperationDate1.Format = DateTimePickerFormat.Custom;
+            CcDateTimeOperationDate1.Location = new Point(76, 60);
+            CcDateTimeOperationDate1.Name = "CcDateTimeOperationDate1";
+            CcDateTimeOperationDate1.Size = new Size(184, 23);
+            CcDateTimeOperationDate1.TabIndex = 9;
+            CcDateTimeOperationDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimeOperationDate1.ValueChanged += CcDateTime_ValueChanged;
             // 
             // GroupBoxExOccupation
             // 
@@ -138,7 +162,7 @@
             GroupBoxExOccupation.Location = new Point(952, 5);
             GroupBoxExOccupation.Name = "GroupBoxExOccupation";
             GroupBoxExOccupation.Size = new Size(600, 44);
-            GroupBoxExOccupation.TabIndex = 5;
+            GroupBoxExOccupation.TabIndex = 8;
             GroupBoxExOccupation.TabStop = false;
             GroupBoxExOccupation.Text = "職種(第三条件)";
             // 
@@ -243,7 +267,7 @@
             GroupBoxExJobForm.Location = new Point(552, 5);
             GroupBoxExJobForm.Name = "GroupBoxExJobForm";
             GroupBoxExJobForm.Size = new Size(392, 44);
-            GroupBoxExJobForm.TabIndex = 3;
+            GroupBoxExJobForm.TabIndex = 7;
             GroupBoxExJobForm.TabStop = false;
             GroupBoxExJobForm.Text = "雇用形態(第二条件)";
             // 
@@ -324,7 +348,7 @@
             GroupBoxExBelongs.Location = new Point(8, 5);
             GroupBoxExBelongs.Name = "GroupBoxExBelongs";
             GroupBoxExBelongs.Size = new Size(536, 44);
-            GroupBoxExBelongs.TabIndex = 2;
+            GroupBoxExBelongs.TabIndex = 6;
             GroupBoxExBelongs.TabStop = false;
             GroupBoxExBelongs.Text = "役職又は所属(第一条件)";
             // 
@@ -421,55 +445,47 @@
             // 
             // CcButtonUpdate
             // 
+            CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             CcButtonUpdate.ForeColor = SystemColors.ControlText;
-            CcButtonUpdate.Location = new Point(1692, 28);
+            CcButtonUpdate.Location = new Point(1695, 12);
             CcButtonUpdate.Name = "CcButtonUpdate";
             CcButtonUpdate.SetTextDirectionVertical = "";
             CcButtonUpdate.Size = new Size(160, 30);
-            CcButtonUpdate.TabIndex = 1;
+            CcButtonUpdate.TabIndex = 2;
             CcButtonUpdate.Text = "最　新　化";
             CcButtonUpdate.UseVisualStyleBackColor = true;
             CcButtonUpdate.Click += CcButtonUpdate_Click;
             // 
+            // CcMenuStrip1
+            // 
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 1;
+            CcMenuStrip1.Text = "ccMenuStrip1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
+            // 
             // SpreadList
             // 
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
-            SpreadList.ContextMenuStrip = CcContextMenuStrip1;
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 117);
+            SpreadList.Location = new Point(3, 127);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1898, 897);
+            SpreadList.Size = new Size(1898, 887);
             SpreadList.TabIndex = 3;
-            SpreadList.MouseMove += SpreadList_MouseMove;
             // 
-            // CcContextMenuStrip1
-            // 
-            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemAdd });
-            CcContextMenuStrip1.Name = "CcContextMenuStrip1";
-            CcContextMenuStrip1.Size = new Size(187, 26);
-            CcContextMenuStrip1.Opening += CcContextMenuStrip1_Opening;
-            // 
-            // ToolStripMenuItemAdd
-            // 
-            ToolStripMenuItemAdd.Name = "ToolStripMenuItemAdd";
-            ToolStripMenuItemAdd.Size = new Size(186, 22);
-            ToolStripMenuItemAdd.Text = "新規起算日を追加する";
-            ToolStripMenuItemAdd.Click += ToolStripMenuItem_Click;
-            // 
-            // PaidLeaveList
+            // PaidLeavePrint
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(CcTableLayoutPanelBase);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = CcMenuStrip1;
-            MinimizeBox = false;
-            Name = "PaidLeaveList";
-            Text = "PaidLeaveList";
-            FormClosing += PaidLeaveList_FormClosing;
+            Name = "PaidLeavePrint";
+            Text = "PaidLeavePrint";
+            FormClosing += PaidLeavePrint_FormClosing;
             CcTableLayoutPanelBase.ResumeLayout(false);
             CcTableLayoutPanelBase.PerformLayout();
             CcPanelTop.ResumeLayout(false);
@@ -481,32 +497,17 @@
             GroupBoxExBelongs.ResumeLayout(false);
             GroupBoxExBelongs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
-            CcContextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
-        private CcControl.CcMenuStrip CcMenuStrip1;
-        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel CcPanelTop;
-        private FarPoint.Win.Spread.FpSpread SpreadList;
+        private CcControl.CcStatusStrip CcStatusStrip1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcButton CcButtonUpdate;
-        private CcControl.CcGroupBox GroupBoxExBelongs;
-        private CcControl.CcCheckBox CheckBoxEx7;
-        private CcControl.CcCheckBox CheckBoxEx6;
-        private CcControl.CcCheckBox CheckBoxEx5;
-        private CcControl.CcCheckBox CheckBoxEx4;
-        private CcControl.CcCheckBox CheckBoxEx3;
-        private CcControl.CcCheckBox CheckBoxEx2;
-        private CcControl.CcCheckBox CheckBoxEx1;
-        private CcControl.CcGroupBox GroupBoxExJobForm;
-        private CcControl.CcCheckBox checkBoxEx8;
-        private CcControl.CcCheckBox checkBoxEx11;
-        private CcControl.CcCheckBox CheckBoxEx12;
-        private CcControl.CcCheckBox CheckBoxEx10;
-        private CcControl.CcCheckBox CheckBoxEx9;
+        private FarPoint.Win.Spread.FpSpread SpreadList;
         private CcControl.CcGroupBox GroupBoxExOccupation;
         private CcControl.CcCheckBox ccCheckBox1;
         private CcControl.CcCheckBox CheckBoxEx18;
@@ -515,9 +516,24 @@
         private CcControl.CcCheckBox CheckBoxEx15;
         private CcControl.CcCheckBox CheckBoxEx14;
         private CcControl.CcCheckBox CheckBoxEx13;
-        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
-        private ToolStripMenuItem ToolStripMenuItemAdd;
-        private CcControl.CcCheckBox CcCheckBoxWorkDaysFlag;
+        private CcControl.CcGroupBox GroupBoxExJobForm;
+        private CcControl.CcCheckBox checkBoxEx8;
+        private CcControl.CcCheckBox checkBoxEx11;
+        private CcControl.CcCheckBox CheckBoxEx12;
+        private CcControl.CcCheckBox CheckBoxEx10;
+        private CcControl.CcCheckBox CheckBoxEx9;
+        private CcControl.CcGroupBox GroupBoxExBelongs;
+        private CcControl.CcCheckBox CheckBoxEx7;
+        private CcControl.CcCheckBox CheckBoxEx6;
+        private CcControl.CcCheckBox CheckBoxEx5;
+        private CcControl.CcCheckBox CheckBoxEx4;
+        private CcControl.CcCheckBox CheckBoxEx3;
+        private CcControl.CcCheckBox CheckBoxEx2;
+        private CcControl.CcCheckBox CheckBoxEx1;
+        private CcControl.CcDateTime CcDateTimeOperationDate1;
+        private CcControl.CcDateTime CcDateTimeOperationDate2;
+        private CcControl.CcLabel ccLabel2;
+        private CcControl.CcLabel ccLabel1;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }
