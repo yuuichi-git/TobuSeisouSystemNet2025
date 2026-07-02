@@ -34,17 +34,12 @@ namespace Car {
          * Dictionary
          */
         private readonly Dictionary<int, ClassificationMasterVo> _dictionaryClassificationMaster = new();                       // 2025-12-18修正
-
         private readonly Dictionary<int, ManagedSpaceMasterVo> _dictionaryManagedSpaceMaster = new();
-
+        private readonly Dictionary<int, ShapeMasterVo> _dictionaryShapeMaster = new();
         private readonly Dictionary<string, int> _dictionaryCarKindCode = new() { { "軽自動車", 10 }, { "小型", 11 }, { "普通", 12 } };
         private readonly Dictionary<int, string> _dictionaryCarKindName = new() { { 10, "軽自動車" }, { 11, "小型" }, { 12, "普通" } };
-
         private readonly Dictionary<string, int> _dictionaryOtherCode = new() { { "事業用", 10 }, { "自家用", 11 } };
         private readonly Dictionary<int, string> _dictionaryOtherName = new() { { 10, "事業用" }, { 11, "自家用" } };
-
-        private readonly Dictionary<int, ShapeMasterVo> _dictionaryShapeMaster = new();
-
         private readonly Dictionary<string, int> _dictionaryManufacturerCode = new() { { "いすゞ", 10 }, { "日産", 11 }, { "ダイハツ", 12 }, { "日野", 13 }, { "スバル", 14 }, { "トヨタ", 15 } };
         private readonly Dictionary<int, string> _dictionaryManufacturerName = new() { { 10, "いすゞ" }, { 11, "日産" }, { 12, "ダイハツ" }, { 13, "日野" }, { 14, "スバル" }, { 15, "トヨタ" } };
 
@@ -67,11 +62,11 @@ namespace Car {
             /*
              * Dictionary
              */
-            foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
+            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
+            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
-            foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
+            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
             /*
              * InitializeControl
@@ -116,11 +111,11 @@ namespace Car {
             /*
              * Dictionary
              */
-            foreach (ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
+            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach (ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
+            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
-            foreach (ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
+            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
             /*
              * InitializeControl
@@ -138,7 +133,6 @@ namespace Car {
             };
             this.MenuStripEx1.ChangeEnable(listString);
 
-            this.InitializeControl();
             this.SetControl(_carMasterDao.SelectOneCarMasterP(carCode));
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Select Success";
             /*
@@ -156,9 +150,9 @@ namespace Car {
             DialogResult dialogResult = MessageBox.Show("データを更新します。よろしいですか？", "Messsage", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             CarMasterVo carMasterVo = SetVo();
             try {
-                switch (dialogResult) {
+                switch(dialogResult) {
                     case DialogResult.OK:
-                        if (_carMasterDao.ExistenceHCarMaster(carMasterVo.CarCode)) {
+                        if(_carMasterDao.ExistenceHCarMaster(carMasterVo.CarCode)) {
                             _carMasterDao.UpdateOneCarMaster(SetVo());
                             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Update Success";
                         } else {
@@ -171,7 +165,7 @@ namespace Car {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "処理を中止しました。";
                         break;
                 }
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
         }
@@ -182,23 +176,23 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if (sender is not ContextMenuStrip contextMenuStrip)
+            if(sender is not ContextMenuStrip contextMenuStrip)
                 return;
 
-            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+            if(contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
                 return;
 
-            switch (e.ClickedItem.Name) {
+            switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
                     Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
-                    if (bitmap is not null) {
+                    if(bitmap is not null) {
                         ccPictureBox.Image = bitmap;
                     }
                     break;
 
                 case "ToolStripMenuItemPaste":
                     IDataObject data = Clipboard.GetDataObject();
-                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
+                    if(data?.GetDataPresent(DataFormats.Bitmap) == true) {
                         ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
                     }
                     break;
@@ -215,7 +209,7 @@ namespace Car {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExit":                                                                                                               // アプロケーションを終了する
                     this.Close();
                     break;
@@ -271,8 +265,7 @@ namespace Car {
             carMasterVo.CarKindCode = _dictionaryCarKindCode[this.ComboBoxExCarKindCode.Text];                                                              // 自動車の種別
             carMasterVo.CarUse = this.ComboBoxExCarUse.Text;                                                                                                // 用途
             carMasterVo.OtherCode = _dictionaryOtherCode[this.ComboBoxExOtherCode.Text];                                                                    // 自家用・事業用の別
-
-            carMasterVo.ShapeCode = ((ComboBoxExShapeMasterVo)this.ComboBoxExShapeMaster.SelectedItem).Code;                                                // 車体の形状
+            carMasterVo.ShapeCode = ((ComboBoxExShapeMasterVo)this.CcComboBoxShapeMaster.SelectedItem).Code;                                                // 車体の形状
             carMasterVo.Capacity = this.NumericUpDownExCapacity.Value;                                                                                      // 乗車定員
             carMasterVo.MaximumLoadCapacity = this.NumericUpDownExMaximumLoadCapacity.Value;                                                                // 最大積載量
             carMasterVo.VehicleWeight = this.NumericUpDownExVehicleWeight.Value;                                                                            // 車両重量
@@ -293,8 +286,15 @@ namespace Car {
             carMasterVo.SubPicture = (byte[])new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));                             // 自動車検査証記録事項
             carMasterVo.EmergencyVehicleFlag = this.CheckBoxExEmergencyVehicleFlag.Checked;                                                                 // 緊急車両登録フラグ
             carMasterVo.EmergencyVehicleDate = this.DateTimePickerExEmergencyVehicleDate.GetValue();                                                        // 緊急車両登録期限
-            carMasterVo.DigitalTachographFlag = this.CheckBoxExDigitalTachographFlag.Checked;                                                               // デジタコ装着フラグ
+            carMasterVo.DigitalTachographFlag = this.CcCheckBoxDigitalTachographFlag.Checked;                                                               // デジタコ装着フラグ
             carMasterVo.DigitalTachographType = this.ComboBoxExDigitalTachographType.Text;                                                                  // デジタコ機種
+            carMasterVo.CameraFront = this.CcCheckBoxCameraFront.Checked;                                                                                   // 前方カメラ
+            carMasterVo.CameraBack = this.CcCheckBoxCameraBack.Checked;                                                                                     // 後方カメラ
+            carMasterVo.CameraLeftBack = this.CcCheckBoxCameraLeftBack.Checked;                                                                             // 左後方カメラ
+            carMasterVo.CameraRightBack = this.CcCheckBoxCameraRightBack.Checked;                                                                           // 右後方カメラ
+            carMasterVo.CameraLeftUnder = this.CcCheckBoxCameraLeftUnder.Checked;                                                                           // 左下方向カメラ
+            carMasterVo.CameraRoomMic = this.CcCheckBoxCameraRoomMic.Checked;                                                                               // 車内マイク
+
             return carMasterVo;
         }
 
@@ -314,13 +314,19 @@ namespace Car {
             this.TextBoxExRegistrationNumber2.SetEmpty();                                                                                                   // 車両ナンバー２
             this.TextBoxExRegistrationNumber3.SetEmpty();                                                                                                   // 車両ナンバー３
             this.TextBoxExRegistrationNumber4.SetEmpty();                                                                                                   // 車両ナンバー４
-            this.SetItems(_classificationMasterDao.SelectAllClassificationMaster());                                                                        // 分類名
-            this.SetItems(_managedSpaceDao.SelectAllManagedSpace());                                                                                        // 車庫地
+            this.SetItems(_classificationMasterDao.SelectAllClassificationMaster());                                                                        // 分類名(ComboBoxに初期値をセットするために必要)
+            this.SetItems(_managedSpaceDao.SelectAllManagedSpace());                                                                                        // 車庫地(ComboBoxに初期値をセットするために必要)
             this.ComboBoxExDisguiseKind1.DisplayClear();                                                                                                    // 仮装の名称(システム表示)
             this.ComboBoxExDisguiseKind2.DisplayClear();                                                                                                    // 仮装の名称(事故報告書)
             this.ComboBoxExDisguiseKind3.DisplayClear();                                                                                                    // 仮装の名称(整備工場等)
-            this.CheckBoxExDigitalTachographFlag.Checked = false;                                                                                           // デジタコ装着フラグ
+            this.CcCheckBoxDigitalTachographFlag.Checked = false;                                                                                           // デジタコ装着フラグ
             this.ComboBoxExDigitalTachographType.DisplayClear();                                                                                            // デジタコ機種
+            this.CcCheckBoxCameraFront.Checked = false;                                                                                                     // 前方カメラ
+            this.CcCheckBoxCameraBack.Checked = false;                                                                                                      // 後方カメラ
+            this.CcCheckBoxCameraLeftBack.Checked = false;                                                                                                  // 左後方カメラ
+            this.CcCheckBoxCameraRightBack.Checked = false;                                                                                                 // 右後方カメラ
+            this.CcCheckBoxCameraLeftUnder.Checked = false;                                                                                                 // 左下方位カメラ
+            this.CcCheckBoxCameraRoomMic.Checked = false;                                                                                                   // 室内マイクカメラ
             /*
              * １．基本情報
              */
@@ -380,23 +386,28 @@ namespace Car {
             this.TextBoxExRegistrationNumber.Text = carMasterVo.RegistrationNumber;                                                                         // 車両ナンバー
             this.TextBoxExDoorNumber.Text = carMasterVo.DoorNumber.ToString("#####");                                                                       // ドア番号
             this.CheckBoxExEmergencyVehicleFlag.Checked = carMasterVo.EmergencyVehicleFlag;                                                                 // 緊急車両フラグ
-            if (carMasterVo.EmergencyVehicleFlag) {                                                                                                         // 緊急車両登録期限
+            if(carMasterVo.EmergencyVehicleFlag) {                                                                                                          // 緊急車両登録期限
                 this.DateTimePickerExEmergencyVehicleDate.Value = carMasterVo.EmergencyVehicleDate;
             } else {
                 this.DateTimePickerExEmergencyVehicleDate.SetEmpty();
             }
-            this.CheckBoxExDigitalTachographFlag.Checked = carMasterVo.DigitalTachographFlag;                                                               // デジタコ装着フラグ
-            if (carMasterVo.DigitalTachographFlag) {                                                                                                        // デジタコ機種
-                this.ComboBoxExDigitalTachographType.Enabled = true;
-                this.ComboBoxExDigitalTachographType.Text = carMasterVo.DigitalTachographType;
-            } else {
-                this.ComboBoxExDigitalTachographType.Enabled = false;
-                this.ComboBoxExDigitalTachographType.DisplayClear();
-            }
+            this.CcCheckBoxDigitalTachographFlag.Checked = carMasterVo.DigitalTachographFlag;                                                               // デジタコ装着フラグ
+            this.CcGroupBoxDigitalTachograph.Enabled = carMasterVo.DigitalTachographFlag ? true : false;                                                    // GroupBox
+            this.ComboBoxExDigitalTachographType.Text = carMasterVo.DigitalTachographType;
+            this.CcCheckBoxCameraFront.Checked = carMasterVo.CameraFront;                                                                                   // 前方カメラ
+            this.CcCheckBoxCameraBack.Checked = carMasterVo.CameraBack;                                                                                     // 後方カメラ
+            this.CcCheckBoxCameraLeftBack.Checked = carMasterVo.CameraLeftBack;                                                                             // 左後方カメラ
+            this.CcCheckBoxCameraRightBack.Checked = carMasterVo.CameraRightBack;                                                                           // 右後方カメラ
+            this.CcCheckBoxCameraLeftUnder.Checked = carMasterVo.CameraLeftUnder;                                                                           // 左下方位カメラ
+            this.CcCheckBoxCameraRoomMic.Checked = carMasterVo.CameraRoomMic;                                                                               // 室内マイクカメラ
+
             this.ComboBoxExRegistrationNumber1.Text = carMasterVo.RegistrationNumber1;                                                                      // 車両ナンバー１
             this.TextBoxExRegistrationNumber2.Text = carMasterVo.RegistrationNumber2;                                                                       // 車両ナンバー２
             this.TextBoxExRegistrationNumber3.Text = carMasterVo.RegistrationNumber3;                                                                       // 車両ナンバー３
             this.TextBoxExRegistrationNumber4.Text = carMasterVo.RegistrationNumber4;                                                                       // 車両ナンバー４
+
+            this.SetItems(_classificationMasterDao.SelectAllClassificationMaster());                                                                        // 分類名(ComboBoxに初期値をセットするために必要)
+            this.SetItems(_managedSpaceDao.SelectAllManagedSpace());                                                                                        // 車庫地(ComboBoxに初期値をセットするために必要)
             this.ComboBoxExClassificationCode.SelectedIndex = this.ComboBoxExClassificationCode.FindStringExact(_dictionaryClassificationMaster[carMasterVo.ClassificationCode].Name);// 使用区分 2025-12-18修正
             this.ComboBoxExManagedSpace.SelectedIndex = this.ComboBoxExManagedSpace.FindStringExact(_dictionaryManagedSpaceMaster[carMasterVo.ManagedSpace].Name);// 車庫地 2025-12-18修正
 
@@ -427,8 +438,8 @@ namespace Car {
             this.ComboBoxExCarKindCode.Text = _dictionaryCarKindName[carMasterVo.CarKindCode];                                                              // 自動車の種別
             this.ComboBoxExCarUse.Text = carMasterVo.CarUse;                                                                                                // 用途
             this.ComboBoxExOtherCode.Text = _dictionaryOtherName[carMasterVo.OtherCode];                                                                    // 自家用・事業用の別
-
-            this.ComboBoxExShapeMaster.SelectedIndex = this.ComboBoxExShapeMaster.FindStringExact(_dictionaryShapeMaster[carMasterVo.ShapeCode].Name);      // 車体の形状
+            this.SetItems(_shapeMasterDao.SelectAllShapeMaster());                                                                                          // 車体の形状(ComboBoxに初期値をセットするために必要)
+            this.CcComboBoxShapeMaster.SelectedIndex = this.CcComboBoxShapeMaster.FindStringExact(_dictionaryShapeMaster[carMasterVo.ShapeCode].Name);      // 車体の形状
             this.NumericUpDownExCapacity.Value = carMasterVo.Capacity;                                                                                      // 乗車定員
             this.NumericUpDownExMaximumLoadCapacity.Value = carMasterVo.MaximumLoadCapacity;                                                                // 最大積載量
             this.NumericUpDownExVehicleWeight.Value = carMasterVo.VehicleWeight;                                                                            // 車両重量
@@ -445,11 +456,11 @@ namespace Car {
             this.TextBoxExVersionDesignateNumber.Text = carMasterVo.VersionDesignateNumber;                                                                 // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.Text = carMasterVo.CategoryDistinguishNumber;                                                           // 類別区分番号
             this.TextBoxExRemarks.Text = carMasterVo.Remarks;                                                                                               // 備考
-            if (carMasterVo.MainPicture.Length != 0) {
+            if(carMasterVo.MainPicture.Length != 0) {
                 ImageConverter imageConverter = new();
                 this.PictureBoxExMainPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.MainPicture);                                            // 写真
             }
-            if (carMasterVo.SubPicture.Length != 0) {
+            if(carMasterVo.SubPicture.Length != 0) {
                 ImageConverter imageConverter = new();
                 this.PictureBoxExSubPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.SubPicture);                                              // 写真
             }
@@ -460,13 +471,8 @@ namespace Car {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CheckBoxExDigitalTachographFlag_CheckedChanged(object sender, EventArgs e) {
-            if (((CcCheckBox)sender).Checked) {
-                this.ComboBoxExDigitalTachographType.Enabled = true;
-            } else {
-                this.ComboBoxExDigitalTachographType.Enabled = false;
-                this.ComboBoxExDigitalTachographType.DisplayClear();
-            }
+        private void CcCheckBoxDigitalTachographFlag_CheckedChanged(object sender, EventArgs e) {
+            this.CcGroupBoxDigitalTachograph.Enabled = ((CcCheckBox)sender).Checked ? true : false;
         }
 
         /// <summary>
@@ -516,11 +522,11 @@ namespace Car {
         private int _curPageNumber = 0; // 現在のページ番号
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
             try {
-                if (_curPageNumber == 0) {
+                if(_curPageNumber == 0) {
                     /*
                      * 新型車検証
                      */
-                    if (this.PictureBoxExMainPicture.Image is not null) {
+                    if(this.PictureBoxExMainPicture.Image is not null) {
                         // 新型車検証のサイズ(１０５＊１７７.８)
                         Rectangle rectangle = new(0, 0, 177 * 4, 105 * 4);
                         e.Graphics.DrawImage(this.PictureBoxExMainPicture.Image, rectangle);
@@ -530,14 +536,14 @@ namespace Car {
                     /*
                      * 記録事項と旧型車検証
                      */
-                    if (this.PictureBoxExSubPicture.Image is not null) {
+                    if(this.PictureBoxExSubPicture.Image is not null) {
                         Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
                         e.Graphics.DrawImage(this.PictureBoxExSubPicture.Image, rectangle);
                     }
                     e.HasMorePages = false;
                 }
                 _curPageNumber++;
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
         }
@@ -562,7 +568,7 @@ namespace Car {
         public void SetItems(List<ClassificationMasterVo> listClassificationMasterVo) {
             this.ComboBoxExClassificationCode.DisplayMember = "Name";                                                                                                               // 表示するプロパティ名
             this.ComboBoxExClassificationCode.ValueMember = "ClassificationMasterVo";                                                                                               // 値となるプロパティ名
-            foreach (ClassificationMasterVo classificationMasterVo in listClassificationMasterVo) {
+            foreach(ClassificationMasterVo classificationMasterVo in listClassificationMasterVo) {
                 this.ComboBoxExClassificationCode.Items.Add(new ComboBoxExClassificationVo(classificationMasterVo.Code, classificationMasterVo.Name, classificationMasterVo));
             }
         }
@@ -574,7 +580,7 @@ namespace Car {
         public void SetItems(List<ManagedSpaceMasterVo> listManagedSpaceVo) {
             this.ComboBoxExManagedSpace.DisplayMember = "Name";                                                                                                                     // 表示するプロパティ名
             this.ComboBoxExManagedSpace.ValueMember = "ManagedSpaceVo";                                                                                                             // 値となるプロパティ名
-            foreach (ManagedSpaceMasterVo managedSpaceVo in listManagedSpaceVo) {
+            foreach(ManagedSpaceMasterVo managedSpaceVo in listManagedSpaceVo) {
                 this.ComboBoxExManagedSpace.Items.Add(new ComboBoxExManagedSpaceVo(managedSpaceVo.Code, managedSpaceVo.Name, managedSpaceVo));
             }
         }
@@ -584,10 +590,10 @@ namespace Car {
         /// </summary>
         /// <param name="listShapeMasterVo"></param>
         public void SetItems(List<ShapeMasterVo> listShapeMasterVo) {
-            this.ComboBoxExShapeMaster.DisplayMember = "Name";                                                                                                                      // 表示するプロパティ名
-            this.ComboBoxExShapeMaster.ValueMember = "ShapeMasterVo";                                                                                                               // 値となるプロパティ名
-            foreach (ShapeMasterVo shapeMasterVo in listShapeMasterVo) {
-                this.ComboBoxExShapeMaster.Items.Add(new ComboBoxExShapeMasterVo(shapeMasterVo.Code, shapeMasterVo.Name, shapeMasterVo));
+            this.CcComboBoxShapeMaster.DisplayMember = "Name";                                                                                                                      // 表示するプロパティ名
+            this.CcComboBoxShapeMaster.ValueMember = "ShapeMasterVo";                                                                                                               // 値となるプロパティ名
+            foreach(ShapeMasterVo shapeMasterVo in listShapeMasterVo) {
+                this.CcComboBoxShapeMaster.Items.Add(new ComboBoxExShapeMasterVo(shapeMasterVo.Code, shapeMasterVo.Name, shapeMasterVo));
             }
         }
 

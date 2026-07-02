@@ -114,6 +114,12 @@ namespace Dao {
                                             "EmergencyVehicleDate," +
                                             "DigitalTachographFlag," +
                                             "DigitalTachographType," +
+                                            "CameraFront," +
+                                            "CameraBack," +
+                                            "CameraLeftBack," +
+                                            "CameraRightBack," +
+                                            "CameraLeftUnder," +
+                                            "CameraRoomMic," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -176,6 +182,12 @@ namespace Dao {
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
                     carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
                     carMasterVo.DigitalTachographType = _defaultValue.GetDefaultValue<string>(sqlDataReader["DigitalTachographType"]);
+                    carMasterVo.CameraFront = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraFront"]);
+                    carMasterVo.CameraBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraBack"]);
+                    carMasterVo.CameraLeftBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftBack"]);
+                    carMasterVo.CameraRightBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRightBack"]);
+                    carMasterVo.CameraLeftUnder = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftUnder"]);
+                    carMasterVo.CameraRoomMic = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRoomMic"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -286,6 +298,12 @@ namespace Dao {
                                             "EmergencyVehicleDate," +
                                             "DigitalTachographFlag," +
                                             "DigitalTachographType," +
+                                            "CameraFront," +
+                                            "CameraBack," +
+                                            "CameraLeftBack," +
+                                            "CameraRightBack," +
+                                            "CameraLeftUnder," +
+                                            "CameraRoomMic," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -348,6 +366,12 @@ namespace Dao {
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
                     carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
                     carMasterVo.DigitalTachographType = _defaultValue.GetDefaultValue<string>(sqlDataReader["DigitalTachographType"]);
+                    carMasterVo.CameraFront = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraFront"]);
+                    carMasterVo.CameraBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraBack"]);
+                    carMasterVo.CameraLeftBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftBack"]);
+                    carMasterVo.CameraRightBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRightBack"]);
+                    carMasterVo.CameraLeftUnder = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftUnder"]);
+                    carMasterVo.CameraRoomMic = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRoomMic"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -416,6 +440,12 @@ namespace Dao {
                                                              "EmergencyVehicleDate," +
                                                              "DigitalTachographFlag," +
                                                              "DigitalTachographType," +
+                                                             "CameraFront," +
+                                                             "CameraBack," +
+                                                             "CameraLeftBack," +
+                                                             "CameraRightBack," +
+                                                             "CameraLeftUnder," +
+                                                             "CameraRoomMic," +
                                                              "InsertPcName," +
                                                              "InsertYmdHms," +
                                                              "UpdatePcName," +
@@ -473,6 +503,12 @@ namespace Dao {
                                             "'" + _defaultDateTime + "'," +
                                             "'" + carMasterVo.DigitalTachographFlag + "'," +
                                             "'" + carMasterVo.DigitalTachographType + "'," +
+                                            "'" + carMasterVo.CameraFront + "'," +
+                                            "'" + carMasterVo.CameraBack + "'," +
+                                            "'" + carMasterVo.CameraLeftBack + "'," +
+                                            "'" + carMasterVo.CameraRightBack + "'," +
+                                            "'" + carMasterVo.CameraLeftUnder + "'," +
+                                            "'" + carMasterVo.CameraRoomMic + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -548,6 +584,12 @@ namespace Dao {
                                          "EmergencyVehicleDate = '" + carMasterVo.EmergencyVehicleDate + "'," +
                                          "DigitalTachographFlag = '" + carMasterVo.DigitalTachographFlag + "'," +
                                          "DigitalTachographType = '" + carMasterVo.DigitalTachographType + "'," +
+                                         "CameraFront = '" + carMasterVo.CameraFront + "'," +
+                                         "CameraBack = '" + carMasterVo.CameraBack + "'," +
+                                         "CameraLeftBack = '" + carMasterVo.CameraLeftBack + "'," +
+                                         "CameraRightBack = '" + carMasterVo.CameraRightBack + "'," +
+                                         "CameraLeftUnder = '" + carMasterVo.CameraLeftUnder + "'," +
+                                         "CameraRoomMic = '" + carMasterVo.CameraRoomMic + "'," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE CarCode = " + carMasterVo.CarCode;

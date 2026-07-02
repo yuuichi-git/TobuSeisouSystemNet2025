@@ -182,8 +182,8 @@ namespace Dao {
                                      "  AND StartDate = @StartDate " +
                                      "  AND DeleteFlag = 0";
 
-            _ = sqlCommand.Parameters.Add(new SqlParameter("@StaffCode", staffCode));
-            _ = sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
+            sqlCommand.Parameters.Add(new SqlParameter("@StaffCode", staffCode));
+            sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
 
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 if(sqlDataReader.Read() == true) {
@@ -210,8 +210,8 @@ namespace Dao {
                                      "  AND StartDate = @StartDate " +
                                      "  AND DeleteFlag = 0";
 
-            _ = sqlCommand.Parameters.Add(new SqlParameter("@StaffCode", staffCode));
-            _ = sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
+            sqlCommand.Parameters.Add(new SqlParameter("@StaffCode", staffCode));
+            sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
 
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 if(sqlDataReader.Read() == true) {
@@ -230,48 +230,47 @@ namespace Dao {
         /// <returns></returns>
         public List<PaidLeaveBalanceVo> SelectRemainingDays(DateTime endDate, int staffCode) {
             List<PaidLeaveBalanceVo> listPaidLeaveBalanceVo = new ();
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            try {
+                using(SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand()) {
+                    sqlCommand.CommandText = "SELECT PaidLeaveEntitlement.StaffCode," +                                                                     // 従事者コード
+                                             "       PaidLeaveEntitlement.StartDate," +                                                                     // 起算日
+                                             "       PaidLeaveEntitlement.GrantedDays," +                                                                   // 有給付与日数
+                                             "       ISNULL(TimeOffMaster.UsedDays, 0) AS UsedDays," +                                                      // 使用済み日数
+                                             "       (PaidLeaveEntitlement.GrantedDays - ISNULL(TimeOffMaster.UsedDays, 0)) AS RemainingDays " +            // 有給残日数
+                                             "FROM H_PaidLeaveEntitlement AS PaidLeaveEntitlement " +
+                                             "LEFT JOIN (SELECT StaffCode, BaseDate, COUNT(*) AS UsedDays " +
+                                             "            FROM H_TimeOffMaster " +
+                                             "            WHERE StaffCode = @StaffCode " +
+                                             "              AND Date <= @EndDate " +
+                                             "              AND Code = 1 " +
+                                             "            GROUP BY StaffCode, BaseDate) AS TimeOffMaster " +
+                                             "     ON  PaidLeaveEntitlement.StaffCode = TimeOffMaster.StaffCode " +
+                                             "     AND PaidLeaveEntitlement.StartDate = TimeOffMaster.BaseDate " +
+                                             "WHERE PaidLeaveEntitlement.StaffCode = @StaffCode " +
+                                             "AND   PaidLeaveEntitlement.StartDate IN (" +
+                                             "                                          (SELECT MAX(StartDate)                    FROM   H_PaidLeaveEntitlement WHERE StaffCode = @StaffCode)," +
+                                             "                                          (SELECT DATEADD(year, -1, MAX(StartDate)) FROM   H_PaidLeaveEntitlement WHERE StaffCode = @StaffCode) " +
+                                             "                                         ) " +
+                                             "ORDER BY PaidLeaveEntitlement.StartDate ASC";
 
-            sqlCommand.CommandText = "SELECT PaidLeaveEntitlement.StaffCode," +                                                                     // 従事者コード
-                                     "       PaidLeaveEntitlement.StartDate," +                                                                     // 起算日
-                                     "       PaidLeaveEntitlement.GrantedDays," +                                                                   // 有給付与日数
-                                     "       ISNULL(TimeOffMaster.UsedDays, 0) AS UsedDays," +                                                      // 使用済み日数
-                                     "       (PaidLeaveEntitlement.GrantedDays - ISNULL(TimeOffMaster.UsedDays, 0)) AS RemainingDays " +            // 有給残日数
-                                     "FROM H_PaidLeaveEntitlement AS PaidLeaveEntitlement " +
-                                     "LEFT JOIN (SELECT StaffCode, BaseDate, COUNT(*) AS UsedDays " +
-                                     "            FROM H_TimeOffMaster " +
-                                     "            WHERE StaffCode = @StaffCode " +
-                                     "              AND Date <= @EndDate " +
-                                     "              AND Code = 1 " +
-                                     "            GROUP BY StaffCode, BaseDate) AS TimeOffMaster " +
-                                     "     ON  PaidLeaveEntitlement.StaffCode = TimeOffMaster.StaffCode " +
-                                     "     AND PaidLeaveEntitlement.StartDate = TimeOffMaster.BaseDate " +
-                                     "WHERE PaidLeaveEntitlement.StaffCode = @StaffCode " +
-                                     "AND   PaidLeaveEntitlement.StartDate IN (" +
-                                     "                                          (SELECT MAX(StartDate)" +
-                                     "                                           FROM   H_PaidLeaveEntitlement " +
-                                     "                                           WHERE  StaffCode = @StaffCode)," +
-                                     "                                          (SELECT DATEADD(year, -1, MAX(StartDate)) " +
-                                     "                                           FROM   H_PaidLeaveEntitlement " +
-                                     "                                           WHERE  StaffCode = @StaffCode) " +
-                                     "                                          ) " +
-                                     "ORDER BY PaidLeaveEntitlement.StartDate ASC";
+                    sqlCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = endDate;
+                    sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
 
-            sqlCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = endDate;
-            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
-
-            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while(sqlDataReader.Read() == true) {
-                    PaidLeaveBalanceVo paidLeaveBalanceVo = new ();
-                    paidLeaveBalanceVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);                                  // 従事者コード
-                    paidLeaveBalanceVo.StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]);                             // 起算日
-                    paidLeaveBalanceVo.GrantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]);                              // 有給付与日数
-                    paidLeaveBalanceVo.UsedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["UsedDays"]);                                    // 使用済み日数
-                    paidLeaveBalanceVo.RemainingDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["RemainingDays"]);                          // 有給残日数
-                    listPaidLeaveBalanceVo.Add(paidLeaveBalanceVo);
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while(sqlDataReader.Read() == true) {
+                        PaidLeaveBalanceVo paidLeaveBalanceVo = new ();
+                        paidLeaveBalanceVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);                                  // 従事者コード
+                        paidLeaveBalanceVo.StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]);                             // 起算日
+                        paidLeaveBalanceVo.GrantedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["GrantedDays"]);                              // 有給付与日数
+                        paidLeaveBalanceVo.UsedDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["UsedDays"]);                                    // 使用済み日数
+                        paidLeaveBalanceVo.RemainingDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["RemainingDays"]);                          // 有給残日数
+                        listPaidLeaveBalanceVo.Add(paidLeaveBalanceVo);
+                    }
                 }
+                return listPaidLeaveBalanceVo;
+            } catch {
+                throw;
             }
-            return listPaidLeaveBalanceVo;
         }
     }
 
@@ -505,3 +504,4 @@ namespace Dao {
         }
     }
 }
+

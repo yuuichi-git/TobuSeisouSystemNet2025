@@ -119,15 +119,20 @@ namespace PaidLeave {
                 int 有給使用日数合計 = 0;
                 int 有給残日数合計 = 0;
 
-                foreach(PaidLeaveBalanceVo paidLeaveBalanceVo in PaidLeaveEntitlementDao.SelectRemainingDays(this.CcDateTimeOperationDate2.GetDate(), staffMasterVo.StaffCode)) {
-                    有給付与日数合計 += paidLeaveBalanceVo.GrantedDays;
-                    有給使用日数合計 += paidLeaveBalanceVo.UsedDays;
-                    有給残日数合計 += paidLeaveBalanceVo.RemainingDays;
+                try {
+                    foreach(PaidLeaveBalanceVo paidLeaveBalanceVo in PaidLeaveEntitlementDao.SelectRemainingDays(this.CcDateTimeOperationDate2.GetDate(), staffMasterVo.StaffCode)) {
+                        有給付与日数合計 += paidLeaveBalanceVo.GrantedDays;
+                        有給使用日数合計 += paidLeaveBalanceVo.UsedDays;
+                        有給残日数合計 += paidLeaveBalanceVo.RemainingDays;
+                    }
+                    sheetView.Cells[rowCount, 3].Text = string.Concat(有給付与日数合計, "日");
+                    sheetView.Cells[rowCount, 4].Text = string.Concat(有給使用日数合計, "日");
+                    sheetView.Cells[rowCount, 5].Text = string.Concat(_timeOffMasterDao.SelectAllTimeOffMaster(CcDateTimeOperationDate1.GetDate(), CcDateTimeOperationDate2.GetDate(), 1, staffMasterVo.StaffCode).ToList().Count.ToString(), "日");
+                    sheetView.Cells[rowCount, 6].Text = string.Concat(有給残日数合計, "日");
+                } catch(Exception ex) {
+                    MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                sheetView.Cells[rowCount, 3].Text = string.Concat(有給付与日数合計, "日");
-                sheetView.Cells[rowCount, 4].Text = string.Concat(有給使用日数合計, "日");
-                sheetView.Cells[rowCount, 5].Text = string.Concat(_timeOffMasterDao.SelectAllTimeOffMaster(CcDateTimeOperationDate1.GetDate(), CcDateTimeOperationDate2.GetDate(), 1, staffMasterVo.StaffCode).ToList().Count.ToString(), "日");
-                sheetView.Cells[rowCount, 6].Text = string.Concat(有給残日数合計, "日");
+
 
                 rowCount++;
             }

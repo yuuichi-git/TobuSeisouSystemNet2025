@@ -8,6 +8,8 @@ using Dao;
 using FarPoint.Win.Spread;
 using FarPoint.Win.Spread.Model;
 
+using GrapeCity.Win.Spread.InputMan.CellType;
+
 using Vo;
 
 namespace PaidLeave {
@@ -94,8 +96,10 @@ namespace PaidLeave {
             /*
              * Vo
              */
-            _connectionVo = connectionVo;
-
+            ConnectionVo = connectionVo;
+            /*
+             * InitializeControl
+             */
             InitializeComponent();
             /*
              * MenuStrip
@@ -175,7 +179,7 @@ namespace PaidLeave {
             _dictionaryStartDate.Add(2, RecentCommencementDate.AddYears(-2).Date);  // ２年前の起算日
 
             foreach(PaidLeaveEntitlementV0 paidLeaveEntitlementV0 in listPaidLeaveEntitlementV0.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.StartDate >= _dictionaryStartDate[2]).OrderBy(x => x.StartDate).Take(3).ToList())
-                this.SetPaidLeaveEntitlement(sheetView, baseRow, staffMasterVo, paidLeaveEntitlementV0);
+                SetPaidLeaveEntitlement(sheetView, baseRow, staffMasterVo, paidLeaveEntitlementV0);
         }
 
         /// <summary>
@@ -225,7 +229,7 @@ namespace PaidLeave {
 
                     int workDays;
                     if(CcCheckBoxWorkDaysFlag.Checked) {
-                        workDays = this._vehicleDispatchDetailDao.GetCountVehicleDispatchDetail(startDate.AddYears(-1), startDate.AddDays(-1), staffMasterVo.StaffCode);
+                        workDays = VehicleDispatchDetailDao.GetCountVehicleDispatchDetail(startDate.AddYears(-1), startDate.AddDays(-1), staffMasterVo.StaffCode);
                     } else {
                         workDays = 0;
                     }

@@ -67,12 +67,14 @@
             // 
             // CcTableLayoutPanelBase
             // 
-            CcTableLayoutPanelBase.ColumnCount = 1;
+            CcTableLayoutPanelBase.ColumnCount = 3;
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
             CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
             CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 3);
             CcTableLayoutPanelBase.Controls.Add(CcPanelTop, 0, 1);
             CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
-            CcTableLayoutPanelBase.Controls.Add(SpreadList, 0, 2);
+            CcTableLayoutPanelBase.Controls.Add(SpreadList, 1, 2);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
@@ -86,6 +88,7 @@
             // 
             // CcStatusStrip1
             // 
+            CcTableLayoutPanelBase.SetColumnSpan(CcStatusStrip1, 3);
             CcStatusStrip1.Location = new Point(0, 1019);
             CcStatusStrip1.Name = "CcStatusStrip1";
             CcStatusStrip1.Size = new Size(1904, 22);
@@ -94,6 +97,8 @@
             // 
             // CcPanelTop
             // 
+            CcPanelTop.BorderStyle = BorderStyle.FixedSingle;
+            CcTableLayoutPanelBase.SetColumnSpan(CcPanelTop, 3);
             CcPanelTop.Controls.Add(CcDateTimeOperationDate2);
             CcPanelTop.Controls.Add(ccLabel2);
             CcPanelTop.Controls.Add(ccLabel1);
@@ -448,7 +453,7 @@
             CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             CcButtonUpdate.ForeColor = SystemColors.ControlText;
-            CcButtonUpdate.Location = new Point(1695, 12);
+            CcButtonUpdate.Location = new Point(1693, 12);
             CcButtonUpdate.Name = "CcButtonUpdate";
             CcButtonUpdate.SetTextDirectionVertical = "";
             CcButtonUpdate.Size = new Size(160, 30);
@@ -459,6 +464,7 @@
             // 
             // CcMenuStrip1
             // 
+            CcTableLayoutPanelBase.SetColumnSpan(CcMenuStrip1, 3);
             CcMenuStrip1.Location = new Point(0, 0);
             CcMenuStrip1.Name = "CcMenuStrip1";
             CcMenuStrip1.Size = new Size(1904, 24);
@@ -471,9 +477,9 @@
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 127);
+            SpreadList.Location = new Point(353, 127);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1898, 887);
+            SpreadList.Size = new Size(1198, 887);
             SpreadList.TabIndex = 3;
             // 
             // PaidLeavePrint

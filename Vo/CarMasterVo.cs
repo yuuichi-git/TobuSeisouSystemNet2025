@@ -5,7 +5,6 @@
     [Serializable] // ←DeepCopyする場合には必要
     public class CarMasterVo {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
-
         private int _carCode;
         private int _classificationCode;
         private string _registrationNumber;
@@ -56,6 +55,12 @@
         private DateTime _emergencyVehicleDate;                 // 2024-08-13
         private bool _digitalTachographFlag;                    // 2025-08-02
         private string _digitalTachographType;                  // 2025-08-02
+        private bool _cameraFront;                              // 2026-07-03
+        private bool _cameraBack;                               // 2026-07-03
+        private bool _cameraLeftBack;                           // 2026-07-03
+        private bool _cameraRightBack;                          // 2026-07-03
+        private bool _cameraLeftUnder;                          // 2026-07-03
+        private bool _cameraRoomMic;                            // 2026-07-03
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -118,6 +123,12 @@
             _emergencyVehicleDate = _defaultDateTime;
             _digitalTachographFlag = false;
             _digitalTachographType = string.Empty;
+            _cameraFront = false;
+            _cameraBack = false;
+            _cameraLeftBack = false;
+            _cameraRightBack = false;
+            _cameraLeftUnder = false;
+            _cameraRoomMic = false;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -485,6 +496,72 @@
         public string DigitalTachographType {
             get => this._digitalTachographType;
             set => this._digitalTachographType = value;
+        }
+        /// <summary>
+        /// カメラ前方装着フラグ
+        /// </summary>
+        public bool CameraFront {
+            get {
+                return _cameraFront;
+            }
+            set {
+                _cameraFront = value;
+            }
+        }
+        /// <summary>
+        /// カメラ後方装着フラグ
+        /// </summary>
+        public bool CameraBack {
+            get {
+                return _cameraBack;
+            }
+            set {
+                _cameraBack = value;
+            }
+        }
+        /// <summary>
+        /// カメラ左後方装着フラグ
+        /// </summary>
+        public bool CameraLeftBack {
+            get {
+                return _cameraLeftBack;
+            }
+            set {
+                _cameraLeftBack = value;
+            }
+        }
+        /// <summary>
+        /// カメラ右後方装着フラグ
+        /// </summary>
+        public bool CameraRightBack {
+            get {
+                return _cameraRightBack;
+            }
+            set {
+                _cameraRightBack = value;
+            }
+        }
+        /// <summary>
+        /// カメラ左下装着フラグ
+        /// </summary>
+        public bool CameraLeftUnder {
+            get {
+                return _cameraLeftUnder;
+            }
+            set {
+                _cameraLeftUnder = value;
+            }
+        }
+        /// <summary>
+        /// カメラ車内マイク装着フラグ
+        /// </summary>
+        public bool CameraRoomMic {
+            get {
+                return _cameraRoomMic;
+            }
+            set {
+                _cameraRoomMic = value;
+            }
         }
         public string InsertPcName {
             get => _insertPcName;
