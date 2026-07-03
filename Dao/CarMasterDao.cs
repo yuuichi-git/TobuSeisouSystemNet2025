@@ -29,19 +29,17 @@ namespace Dao {
         }
 
         /// <summary>
-        /// ExistenceHCarMasterRecord
+        /// H_CarMaster のレコード存在チェック
         /// true:該当レコードあり false:該当レコードなし
         /// </summary>
         /// <param name="carCode"></param>
         /// <returns></returns>
-        public bool ExistenceHCarMaster(int carCode) {
+        public bool ExistsHCarMaster(int carCode) {
             using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT COUNT(CarCode) " +
-                                     "FROM H_CarMaster " +
-                                     "WHERE CarCode = @CarCode";
-            sqlCommand.Parameters.AddWithValue("@CarCode", carCode);
-            object result = sqlCommand.ExecuteScalar();
-            return Convert.ToInt32(result) > 0;
+            sqlCommand.CommandText = "SELECT CASE WHEN EXISTS (SELECT 1 FROM H_CarMaster WHERE CarCode = @CarCode) THEN 1 ELSE 0 END";
+            sqlCommand.Parameters.Add("@CarCode", SqlDbType.Int).Value = carCode;
+            int result = (int)sqlCommand.ExecuteScalar();
+            return result == 1;
         }
 
         /// <summary>
@@ -129,8 +127,8 @@ namespace Dao {
                                             "DeleteFlag " +
                                      "FROM H_CarMaster";
             // "WHERE delete_flag = 'False' " + // 2022-07-08 delete_flagを入れると過去の配車に削除済のCarLabelが反映出来なくなる
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     CarMasterVo carMasterVo = new();
                     carMasterVo.CarCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CarCode"]);
                     carMasterVo.ClassificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["ClassificationCode"]);
@@ -212,8 +210,8 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT MainPicture " +
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode + "";
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     byteImage = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
                 }
             }
@@ -231,8 +229,8 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT SubPicture " +
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode + "";
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     byteImage = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
                 }
             }
@@ -314,8 +312,8 @@ namespace Dao {
                                      "FROM H_CarMaster " +
                                      "WHERE CarCode = " + carCode + "";
             // "WHERE delete_flag = 'False' " + // 2022-07-08 delete_flagを入れると過去の配車に削除済のCarLabelが反映出来なくなる
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     carMasterVo.CarCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CarCode"]);
                     carMasterVo.ClassificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["ClassificationCode"]);
                     carMasterVo.RegistrationNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["RegistrationNumber"]);

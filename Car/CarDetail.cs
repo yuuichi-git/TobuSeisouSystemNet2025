@@ -82,7 +82,7 @@ namespace Car {
             };
             this.MenuStripEx1.ChangeEnable(listString);
 
-            this.InitializeControl();
+            InitializeControl();
             this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                                    // 新規での車両コード採番
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
             /*
@@ -152,7 +152,7 @@ namespace Car {
             try {
                 switch(dialogResult) {
                     case DialogResult.OK:
-                        if(_carMasterDao.ExistenceHCarMaster(carMasterVo.CarCode)) {
+                        if(_carMasterDao.ExistsHCarMaster(carMasterVo.CarCode)) {
                             _carMasterDao.UpdateOneCarMaster(SetVo());
                             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Update Success";
                         } else {

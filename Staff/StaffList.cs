@@ -70,11 +70,11 @@ namespace Staff {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
-            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
+            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
                 _dictionaryOccupation.Add(occupationMasterVo.Code, occupationMasterVo.Name);
-            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
+            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
                 _dictionaryJobForm.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
             /*
              * InitializeControl
@@ -97,7 +97,8 @@ namespace Staff {
             this.InitializeSheetView(SheetViewInfuru);
             this.InitializeSheetView(SheetViewDriver);
             this.InitializeSheetView(SheetViewToukanpo);
-            this.InitializeSheetView(SheetViewSutoresu);
+            this.InitializeSheetView(SheetViewSutoresuStart);
+            this.InitializeSheetView(SheetViewSutoresuEnd);
             /*
              * StatusStrip
              */
@@ -114,13 +115,13 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "ButtonExUpdate":
-                    _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs), 
-                                                                              this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm), 
-                                                                              this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation), 
+                    ListStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs),
+                                                                              this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm),
+                                                                              this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation),
                                                                               this.CheckBoxExRetirementFlag.Checked);
-                    switch (this.SpreadList.ActiveSheet.SheetName) {
+                    switch(this.SpreadList.ActiveSheet.SheetName) {
                         case "従事者リスト":
                             this.PutSheetViewList(this.SheetViewList);
                             break;
@@ -137,7 +138,10 @@ namespace Staff {
                             this.PutSheetViewToukanpo(this.SheetViewToukanpo);
                             break;
                         case "ストレスチェック申請用リスト":
-                            this.PutSheetViewSutoresu(this.SheetViewSutoresu);
+                            this.PutSheetViewSutoresuStart(this.SheetViewSutoresuStart);
+                            break;
+                        case "ストレスチェック完了時リスト":
+                            this.PutSheetViewSutoresuEnd(this.SheetViewSutoresuEnd);
                             break;
                     }
                     break;
@@ -150,7 +154,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":
                     StaffDetail staffDetail = new(_connectionVo);
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffDetail);
@@ -168,8 +172,8 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TabControlEx1_Click(object sender, EventArgs e) {
-            if (_listStaffMasterVo is not null) {
-                switch (this.SpreadList.ActiveSheet.SheetName) {
+            if(ListStaffMasterVo is not null) {
+                switch(this.SpreadList.ActiveSheet.SheetName) {
                     case "従事者リスト":
                         this.PutSheetViewList(this.SheetViewList);
                         break;
@@ -185,6 +189,12 @@ namespace Staff {
                     case "東環保研修対象者リスト":
                         this.PutSheetViewToukanpo(this.SheetViewToukanpo);
                         break;
+                    case "ストレスチェック申請用リスト":
+                        this.PutSheetViewSutoresuStart(this.SheetViewSutoresuStart);
+                        break;
+                    case "ストレスチェック完了時リスト":
+                        this.PutSheetViewSutoresuEnd(this.SheetViewSutoresuEnd);
+                        break;
                 }
             }
         }
@@ -196,13 +206,13 @@ namespace Staff {
         /// <param name="e"></param>
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
             // ダブルクリックされたのが従事者リストで無ければReturnする
-            if (((FpSpread)sender).ActiveSheet.SheetName != "従事者リスト")
+            if(((FpSpread)sender).ActiveSheet.SheetName != "従事者リスト")
                 return;
             // ヘッダーのDoubleClickを回避
-            if (e.ColumnHeader)
+            if(e.ColumnHeader)
                 return;
             // Shiftが押された場合
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+            if((ModifierKeys & Keys.Shift) == Keys.Shift) {
                 StaffPaper staffPaper = new(_connectionVo, ((StaffMasterVo)SheetViewList.Rows[e.Row].Tag).StaffCode);
                 _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffPaper);
                 staffPaper.Show(this);
@@ -214,6 +224,26 @@ namespace Staff {
             staffDetail.Show(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="listStaffMasterVo"></param>
+        /// <returns></returns>
+        private List<StaffMasterVo> GetFindListStaffMasterVo(List<StaffMasterVo> listStaffMasterVo) {
+            return this.TabControlEx1.SelectedTab.Text switch {
+                "あ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
+                "か行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
+                "さ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
+                "た行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
+                "な行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
+                "は行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
+                "ま行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
+                "や行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
+                "ら行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
+                "わ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
+                _ => listStaffMasterVo,
+            };
+        }
         int _spreadListTopRow = 0;
         /// <summary>
         /// 
@@ -223,24 +253,12 @@ namespace Staff {
             int rowCount = 0;
             this.SpreadList.SuspendLayout();// Spread 非活性化
             _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);// 先頭行（列）インデックスを取得
-            if (sheetView.Rows.Count > 0)// Rowを削除する
+            if(sheetView.Rows.Count > 0)// Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            _findListStaffMasterVo = this.TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.NameKana)) {
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black; // 退職済のレコードのForeColorをセット
@@ -270,7 +288,7 @@ namespace Staff {
                     // 雇用年月日
                     sheetView.Cells[rowCount, 10].Value = _dateUtility.GetEmploymentDate(staffMasterVo.EmploymentDate.Date);
                     // 勤続年数
-                    if (staffMasterVo.EmploymentDate.Date != _defaultDateTime.Date)
+                    if(staffMasterVo.EmploymentDate.Date != _defaultDateTime.Date)
                         sheetView.Cells[rowCount, 11].Value = string.Concat(_dateUtility.GetEmploymenteYear(staffMasterVo.EmploymentDate.Date).ToString("#0年"), _dateUtility.GetEmploymenteMonth(staffMasterVo.EmploymentDate.Date).ToString("00月"));
                     // 東環保研修カード
                     sheetView.Cells[rowCount, 12].Value = _toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(staffMasterVo.StaffCode);
@@ -294,8 +312,8 @@ namespace Staff {
                      * 1年以内の健康診断
                      */
                     DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(staffMasterVo.StaffCode);
-                    if (medicalExaminationDate != _defaultDateTime) {
-                        if (medicalExaminationDate.AddYears(1) > DateTime.Now) {
+                    if(medicalExaminationDate != _defaultDateTime) {
+                        if(medicalExaminationDate.AddYears(1) > DateTime.Now) {
                             sheetView.Cells[rowCount, 20].ForeColor = Color.Black;
                             sheetView.Cells[rowCount, 20].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         } else {
@@ -339,25 +357,13 @@ namespace Staff {
             // 先頭行（列）インデックスを取得
             _spreadListTopRow = SpreadList.GetViewportTopRow(0);
             // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.MedicalCheckupFlag == true && x.RetirementFlag == false);                               // 定期健康診断の対象者で、かつ退職していない従業員を抽出する
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            FindListStaffMasterVo = FindListStaffMasterVo?.FindAll(x => x.MedicalCheckupFlag == true && x.RetirementFlag == false);                               // 定期健康診断の対象者で、かつ退職していない従業員を抽出する
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black;    // 退職済のレコードのForeColorをセット
@@ -366,7 +372,7 @@ namespace Staff {
                     sheetView.Rows[rowCount].Tag = staffMasterVo;
 
                     string unionName = string.Empty;
-                    switch (staffMasterVo.JobForm) {
+                    switch(staffMasterVo.JobForm) {
                         case 20 or 21:
                             unionName = "(新運転)";
                             break;
@@ -378,10 +384,10 @@ namespace Staff {
                             break;
                     }
                     sheetView.Cells[rowCount, 0].Value = rowCount + 1;                                                                                              // 通しナンバー
-                    if (staffMasterVo.Belongs != 22) {                                                                                                              // 所属CD
+                    if(staffMasterVo.Belongs != 22) {                                                                                                              // 所属CD
                         sheetView.Cells[rowCount, 1].Text = staffMasterVo.Belongs.ToString("0000");
                     } else {
-                        switch (staffMasterVo.JobForm) {
+                        switch(staffMasterVo.JobForm) {
                             case 20 or 21:
                                 sheetView.Cells[rowCount, 1].Text = "0022"; // 所属CDが22で雇用形態が新運転の場合は0022をセットする
                                 break;
@@ -420,25 +426,13 @@ namespace Staff {
             // 先頭行（列）インデックスを取得
             _spreadListTopRow = SpreadList.GetViewportTopRow(0);
             // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.RetirementFlag == false);
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            FindListStaffMasterVo = FindListStaffMasterVo?.FindAll(x => x.RetirementFlag == false);
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                                                               // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black;                                                    // 退職済のレコードのForeColorをセット
@@ -447,7 +441,7 @@ namespace Staff {
                     sheetView.Rows[rowCount].Tag = staffMasterVo;
 
                     string unionName = string.Empty;
-                    switch (staffMasterVo.JobForm) {
+                    switch(staffMasterVo.JobForm) {
                         case 20 or 21:
                             unionName = "(新運転)";
                             break;
@@ -489,25 +483,13 @@ namespace Staff {
             // 先頭行（列）インデックスを取得
             _spreadListTopRow = SpreadList.GetViewportTopRow(0);
             // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.LegalTwelveItemFlag == true);   // 法定１２項目の講習対象者(つまり運転手)
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            FindListStaffMasterVo = FindListStaffMasterVo?.FindAll(x => x.LegalTwelveItemFlag == true);   // 法定１２項目の講習対象者(つまり運転手)
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black; // 退職済のレコードのForeColorをセット
@@ -543,25 +525,13 @@ namespace Staff {
             // 先頭行（列）インデックスを取得
             _spreadListTopRow = SpreadList.GetViewportTopRow(0);
             // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo> _findListStaffMasterVo = this.TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            _findListStaffMasterVo = _findListStaffMasterVo?.FindAll(x => x.ToukanpoFlag == true);   // 東環保研修対象者
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            FindListStaffMasterVo = FindListStaffMasterVo?.FindAll(x => x.ToukanpoFlag == true);   // 東環保研修対象者
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black; // 退職済のレコードのForeColorをセット
@@ -592,31 +562,23 @@ namespace Staff {
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
         }
 
-        private void PutSheetViewSutoresu(SheetView sheetView) {
+        /// <summary>
+        /// ストレスチェック申請時に必要なリストを作成する
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void PutSheetViewSutoresuStart(SheetView sheetView) {
             int rowCount = 0;
             // Spread 非活性化
             SpreadList.SuspendLayout();
             // 先頭行（列）インデックスを取得
             _spreadListTopRow = SpreadList.GetViewportTopRow(0);
             // Rowを削除する
-            if (sheetView.Rows.Count > 0)
+            if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
-            List<StaffMasterVo> _findListStaffMasterVo = TabControlEx1.SelectedTab.Text switch {
-                "あ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => _listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => _listStaffMasterVo,
-            };
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
 
-            if (_findListStaffMasterVo is not null) {
-                foreach (StaffMasterVo staffMasterVo in _findListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                     sheetView.Rows.Add(rowCount, 1);
                     sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
                     sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black; // 退職済のレコードのForeColorをセット
@@ -625,6 +587,7 @@ namespace Staff {
                     sheetView.Rows[rowCount].Tag = staffMasterVo;
 
                     // 個人ID
+                    sheetView.Cells[rowCount, 0].Text = string.Concat("TOB", staffMasterVo.StaffCode.ToString("00000"));
                     // 漢字氏名
                     sheetView.Cells[rowCount, 1].Text = staffMasterVo.OtherName;
                     // カナ氏名
@@ -632,7 +595,7 @@ namespace Staff {
                     // 顧客管理番号
                     sheetView.Cells[rowCount, 3].Text = staffMasterVo.StaffCode.ToString("00000");
                     // 性別
-                    switch (staffMasterVo.Gender) {
+                    switch(staffMasterVo.Gender) {
                         case "男性":
                             sheetView.Cells[rowCount, 4].Text = "1";
                             break;
@@ -652,7 +615,7 @@ namespace Staff {
                     // 会社名（団体名）
                     sheetView.Cells[rowCount, 9].Value = "東武清掃株式会社";
                     // 部署名
-                    switch (staffMasterVo.Belongs) {
+                    switch(staffMasterVo.Belongs) {
                         case 22:
                             sheetView.Cells[rowCount, 10].Value = string.Concat(_dictionaryBelongs[staffMasterVo.Belongs], "  ", _dictionaryOccupation[staffMasterVo.Occupation]);
                             break;
@@ -663,6 +626,57 @@ namespace Staff {
                     // 納品拠点NO
                     sheetView.Cells[rowCount, 11].Value = 1;
                     // 英語対応
+
+                    rowCount++;
+                }
+            }
+            // 先頭行（列）インデックスをセット
+            this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
+            // Spread 活性化
+            this.SpreadList.ResumeLayout();
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");
+        }
+
+        /// <summary>
+        /// ストレスチェック終了後に必要なリストを作成する
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void PutSheetViewSutoresuEnd(SheetView sheetView) {
+            int rowCount = 0;
+            // Spread 非活性化
+            SpreadList.SuspendLayout();
+            // 先頭行（列）インデックスを取得
+            _spreadListTopRow = SpreadList.GetViewportTopRow(0);
+            // Rowを削除する
+            if(sheetView.Rows.Count > 0)
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+            FindListStaffMasterVo = GetFindListStaffMasterVo(ListStaffMasterVo);
+
+            if(FindListStaffMasterVo is not null) {
+                foreach(StaffMasterVo staffMasterVo in FindListStaffMasterVo.OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+                    sheetView.Rows.Add(rowCount, 1);
+                    sheetView.RowHeader.Columns[0].Label = (rowCount + 1).ToString(); // Rowヘッダ
+                    sheetView.Rows[rowCount].ForeColor = staffMasterVo.RetirementFlag ? Color.Red : Color.Black; // 退職済のレコードのForeColorをセット
+                    sheetView.Rows[rowCount].Height = 20; // Rowの高さ
+                    sheetView.Rows[rowCount].Resizable = false; // RowのResizableを禁止
+                    sheetView.Rows[rowCount].Tag = staffMasterVo;
+
+                    // 個人ID
+                    sheetView.Cells[rowCount, 0].Text = string.Concat("TOB", staffMasterVo.StaffCode.ToString("00000"));
+                    // 漢字氏名
+                    sheetView.Cells[rowCount, 1].Text = staffMasterVo.OtherName;
+                    // カナ氏名
+                    sheetView.Cells[rowCount, 2].Text = staffMasterVo.OtherNameKana;
+                    // 顧客管理番号
+                    sheetView.Cells[rowCount, 3].Text = staffMasterVo.StaffCode.ToString("00000");
+                    // 電子メールアドレス
+
+                    // 性別
+                    sheetView.Cells[rowCount, 5].Text = staffMasterVo.Gender;
+                    // 生年月日（西暦）
+                    sheetView.Cells[rowCount, 6].Text = staffMasterVo.BirthDate.ToString("yyyy/MM/dd");
+                    // 閲覧範囲コード
+                    // 閲覧範囲
 
                     rowCount++;
                 }
@@ -703,7 +717,7 @@ namespace Staff {
         /// <param name="e"></param>
         private void StaffList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();
@@ -711,6 +725,27 @@ namespace Staff {
                 case DialogResult.Cancel:
                     e.Cancel = true;
                     break;
+            }
+        }
+
+
+        public List<StaffMasterVo> ListStaffMasterVo {
+            get {
+                return _listStaffMasterVo;
+            }
+
+            set {
+                _listStaffMasterVo = value;
+            }
+        }
+
+        public List<StaffMasterVo> FindListStaffMasterVo {
+            get {
+                return _findListStaffMasterVo;
+            }
+
+            set {
+                _findListStaffMasterVo = value;
             }
         }
     }

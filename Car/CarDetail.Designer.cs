@@ -973,7 +973,7 @@
             CcGroupBoxDigitalTachograph.Location = new Point(376, 72);
             CcGroupBoxDigitalTachograph.Name = "CcGroupBoxDigitalTachograph";
             CcGroupBoxDigitalTachograph.Size = new Size(320, 156);
-            CcGroupBoxDigitalTachograph.TabIndex = 0;
+            CcGroupBoxDigitalTachograph.TabIndex = 14;
             CcGroupBoxDigitalTachograph.TabStop = false;
             // 
             // CcCheckBoxCameraRoomMic
@@ -1068,7 +1068,7 @@
             CcCheckBoxDigitalTachographFlag.Location = new Point(388, 48);
             CcCheckBoxDigitalTachographFlag.Name = "CcCheckBoxDigitalTachographFlag";
             CcCheckBoxDigitalTachographFlag.Size = new Size(101, 19);
-            CcCheckBoxDigitalTachographFlag.TabIndex = 24;
+            CcCheckBoxDigitalTachographFlag.TabIndex = 13;
             CcCheckBoxDigitalTachographFlag.Text = "デジタコ・ドラレコ";
             CcCheckBoxDigitalTachographFlag.UseVisualStyleBackColor = true;
             CcCheckBoxDigitalTachographFlag.CheckedChanged += CcCheckBoxDigitalTachographFlag_CheckedChanged;
@@ -1080,7 +1080,7 @@
             ComboBoxExDisguiseKind3.Location = new Point(188, 188);
             ComboBoxExDisguiseKind3.Name = "ComboBoxExDisguiseKind3";
             ComboBoxExDisguiseKind3.Size = new Size(164, 23);
-            ComboBoxExDisguiseKind3.TabIndex = 21;
+            ComboBoxExDisguiseKind3.TabIndex = 12;
             // 
             // ComboBoxExDisguiseKind2
             // 
@@ -1089,7 +1089,7 @@
             ComboBoxExDisguiseKind2.Location = new Point(188, 160);
             ComboBoxExDisguiseKind2.Name = "ComboBoxExDisguiseKind2";
             ComboBoxExDisguiseKind2.Size = new Size(164, 23);
-            ComboBoxExDisguiseKind2.TabIndex = 20;
+            ComboBoxExDisguiseKind2.TabIndex = 11;
             // 
             // ComboBoxExDisguiseKind1
             // 
@@ -1098,7 +1098,7 @@
             ComboBoxExDisguiseKind1.Location = new Point(188, 132);
             ComboBoxExDisguiseKind1.Name = "ComboBoxExDisguiseKind1";
             ComboBoxExDisguiseKind1.Size = new Size(164, 23);
-            ComboBoxExDisguiseKind1.TabIndex = 19;
+            ComboBoxExDisguiseKind1.TabIndex = 10;
             // 
             // ComboBoxExManagedSpace
             // 
@@ -1107,7 +1107,7 @@
             ComboBoxExManagedSpace.Location = new Point(188, 104);
             ComboBoxExManagedSpace.Name = "ComboBoxExManagedSpace";
             ComboBoxExManagedSpace.Size = new Size(164, 23);
-            ComboBoxExManagedSpace.TabIndex = 18;
+            ComboBoxExManagedSpace.TabIndex = 9;
             // 
             // ComboBoxExClassificationCode
             // 
@@ -1116,14 +1116,14 @@
             ComboBoxExClassificationCode.Location = new Point(188, 76);
             ComboBoxExClassificationCode.Name = "ComboBoxExClassificationCode";
             ComboBoxExClassificationCode.Size = new Size(164, 23);
-            ComboBoxExClassificationCode.TabIndex = 17;
+            ComboBoxExClassificationCode.TabIndex = 8;
             // 
             // TextBoxExRegistrationNumber4
             // 
             TextBoxExRegistrationNumber4.Location = new Point(312, 48);
             TextBoxExRegistrationNumber4.Name = "TextBoxExRegistrationNumber4";
             TextBoxExRegistrationNumber4.Size = new Size(40, 23);
-            TextBoxExRegistrationNumber4.TabIndex = 16;
+            TextBoxExRegistrationNumber4.TabIndex = 7;
             TextBoxExRegistrationNumber4.Text = "8888";
             TextBoxExRegistrationNumber4.TextAlign = HorizontalAlignment.Center;
             TextBoxExRegistrationNumber4.TextChanged += TextBoxExRegistrationNumber_TextChanged;
@@ -1133,7 +1133,7 @@
             TextBoxExRegistrationNumber3.Location = new Point(276, 48);
             TextBoxExRegistrationNumber3.Name = "TextBoxExRegistrationNumber3";
             TextBoxExRegistrationNumber3.Size = new Size(32, 23);
-            TextBoxExRegistrationNumber3.TabIndex = 15;
+            TextBoxExRegistrationNumber3.TabIndex = 6;
             TextBoxExRegistrationNumber3.Text = "あ";
             TextBoxExRegistrationNumber3.TextAlign = HorizontalAlignment.Center;
             TextBoxExRegistrationNumber3.TextChanged += TextBoxExRegistrationNumber_TextChanged;
@@ -1143,7 +1143,7 @@
             TextBoxExRegistrationNumber2.Location = new Point(240, 48);
             TextBoxExRegistrationNumber2.Name = "TextBoxExRegistrationNumber2";
             TextBoxExRegistrationNumber2.Size = new Size(32, 23);
-            TextBoxExRegistrationNumber2.TabIndex = 14;
+            TextBoxExRegistrationNumber2.TabIndex = 5;
             TextBoxExRegistrationNumber2.Text = "888";
             TextBoxExRegistrationNumber2.TextAlign = HorizontalAlignment.Center;
             TextBoxExRegistrationNumber2.TextChanged += TextBoxExRegistrationNumber_TextChanged;
@@ -1156,7 +1156,7 @@
             ComboBoxExRegistrationNumber1.Location = new Point(188, 48);
             ComboBoxExRegistrationNumber1.Name = "ComboBoxExRegistrationNumber1";
             ComboBoxExRegistrationNumber1.Size = new Size(48, 23);
-            ComboBoxExRegistrationNumber1.TabIndex = 13;
+            ComboBoxExRegistrationNumber1.TabIndex = 4;
             ComboBoxExRegistrationNumber1.SelectedIndexChanged += ComboBoxExRegistrationNumber1_SelectedIndexChanged;
             // 
             // DateTimePickerExEmergencyVehicleDate
@@ -1167,7 +1167,7 @@
             DateTimePickerExEmergencyVehicleDate.Location = new Point(520, 20);
             DateTimePickerExEmergencyVehicleDate.Name = "DateTimePickerExEmergencyVehicleDate";
             DateTimePickerExEmergencyVehicleDate.Size = new Size(180, 23);
-            DateTimePickerExEmergencyVehicleDate.TabIndex = 12;
+            DateTimePickerExEmergencyVehicleDate.TabIndex = 3;
             DateTimePickerExEmergencyVehicleDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // CheckBoxExEmergencyVehicleFlag
@@ -1186,7 +1186,7 @@
             TextBoxExDoorNumber.Location = new Point(392, 20);
             TextBoxExDoorNumber.Name = "TextBoxExDoorNumber";
             TextBoxExDoorNumber.Size = new Size(32, 23);
-            TextBoxExDoorNumber.TabIndex = 10;
+            TextBoxExDoorNumber.TabIndex = 2;
             TextBoxExDoorNumber.Text = "888";
             TextBoxExDoorNumber.TextAlign = HorizontalAlignment.Center;
             // 
@@ -1205,7 +1205,7 @@
             TextBoxExRegistrationNumber.Name = "TextBoxExRegistrationNumber";
             TextBoxExRegistrationNumber.ReadOnly = true;
             TextBoxExRegistrationNumber.Size = new Size(92, 23);
-            TextBoxExRegistrationNumber.TabIndex = 8;
+            TextBoxExRegistrationNumber.TabIndex = 1;
             TextBoxExRegistrationNumber.Text = "足立800あ8888";
             // 
             // TextBoxExCarCode
@@ -1214,7 +1214,7 @@
             TextBoxExCarCode.Name = "TextBoxExCarCode";
             TextBoxExCarCode.ReadOnly = true;
             TextBoxExCarCode.Size = new Size(40, 23);
-            TextBoxExCarCode.TabIndex = 7;
+            TextBoxExCarCode.TabIndex = 0;
             TextBoxExCarCode.Text = "88888";
             TextBoxExCarCode.TextAlign = HorizontalAlignment.Center;
             // 
