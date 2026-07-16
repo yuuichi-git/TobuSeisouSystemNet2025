@@ -57,12 +57,15 @@
             CcMenuStrip1 = new CcControl.CcMenuStrip();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
             SheetViewList = SpreadList.GetSheet(0);
+            CcPanelLeft = new CcControl.CcPanel();
+            CcLabel3 = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelTop.SuspendLayout();
             GroupBoxExOccupation.SuspendLayout();
             GroupBoxExJobForm.SuspendLayout();
             GroupBoxExBelongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            CcPanelLeft.SuspendLayout();
             SuspendLayout();
             // 
             // CcTableLayoutPanelBase
@@ -75,6 +78,7 @@
             CcTableLayoutPanelBase.Controls.Add(CcPanelTop, 0, 1);
             CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(SpreadList, 1, 2);
+            CcTableLayoutPanelBase.Controls.Add(CcPanelLeft, 0, 2);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
@@ -482,6 +486,25 @@
             SpreadList.Size = new Size(1198, 887);
             SpreadList.TabIndex = 3;
             // 
+            // CcPanelLeft
+            // 
+            CcPanelLeft.Controls.Add(CcLabel3);
+            CcPanelLeft.Dock = DockStyle.Fill;
+            CcPanelLeft.Location = new Point(3, 127);
+            CcPanelLeft.Name = "CcPanelLeft";
+            CcPanelLeft.Size = new Size(344, 887);
+            CcPanelLeft.TabIndex = 4;
+            // 
+            // CcLabel3
+            // 
+            CcLabel3.AutoSize = true;
+            CcLabel3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcLabel3.Location = new Point(44, 40);
+            CcLabel3.Name = "CcLabel3";
+            CcLabel3.Size = new Size(240, 21);
+            CcLabel3.TabIndex = 11;
+            CcLabel3.Text = "集計期間内の使用日数合計：0日";
+            // 
             // PaidLeavePrint
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -503,6 +526,8 @@
             GroupBoxExBelongs.ResumeLayout(false);
             GroupBoxExBelongs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            CcPanelLeft.ResumeLayout(false);
+            CcPanelLeft.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -541,5 +566,7 @@
         private CcControl.CcLabel ccLabel2;
         private CcControl.CcLabel ccLabel1;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private CcControl.CcPanel CcPanelLeft;
+        private CcControl.CcLabel CcLabel3;
     }
 }

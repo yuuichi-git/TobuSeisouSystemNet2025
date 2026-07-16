@@ -10,6 +10,7 @@ namespace Vo {
         private string _properKind;
         private DateTime _properDate;
         private string _properNote;
+        private string _pdfId;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -26,6 +27,7 @@ namespace Vo {
             _properKind = string.Empty;
             _properDate = _defaultDateTime;
             _properNote = string.Empty;
+            _pdfId = string.Empty;
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -62,6 +64,18 @@ namespace Vo {
         public string ProperNote {
             get => _properNote;
             set => _properNote = value;
+        }
+        /// <summary>
+        /// PDFファイルのID
+        /// </summary>
+        public string PdfId {
+            get {
+                return _pdfId;
+            }
+
+            set {
+                _pdfId = value;
+            }
         }
         public string InsertPcName {
             get => _insertPcName;

@@ -69,7 +69,7 @@ namespace Dao {
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
-        public VoluntaryAutomobileInsuranceVo SelectOneByStaffCode(int staffCode) {
+        public VoluntaryAutomobileInsuranceVo? SelectOneByStaffCode(int staffCode) {
             using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
 
             sqlCommand.CommandText = "SELECT" +
@@ -102,47 +102,24 @@ namespace Dao {
                 return null;
 
             VoluntaryAutomobileInsuranceVo vo = new();
-
-            /*
-             * 文字列系
-             */
             vo.Id = reader["Id"].ToString() ?? "";
             vo.StaffCode = (int)reader["StaffCode"];
             vo.VehicleType = reader["VehicleType"].ToString() ?? "";
             vo.CompanyName = reader["CompanyName"].ToString() ?? "";
             vo.StartDate = reader["StartDate"].ToString() ?? "";
             vo.EndDate = reader["EndDate"].ToString() ?? "";
-
-            /*
-             * PDF（byte[]）
-             */
             vo.Image1 = reader["Image1"] as byte[] ?? Array.Empty<byte>();
             vo.Image2 = reader["Image2"] as byte[] ?? Array.Empty<byte>();
             vo.Image3 = reader["Image3"] as byte[] ?? Array.Empty<byte>();
             vo.Image4 = reader["Image4"] as byte[] ?? Array.Empty<byte>();
-
-            /*
-             * DateTime 系
-             */
             vo.InsertYmdHms = reader.GetDateTime(reader.GetOrdinal("InsertYmdHms"));
             vo.UpdateYmdHms = reader.GetDateTime(reader.GetOrdinal("UpdateYmdHms"));
             vo.DeleteYmdHms = reader.GetDateTime(reader.GetOrdinal("DeleteYmdHms"));
-
-            /*
-             * PC 名
-             */
             vo.InsertPcName = reader["InsertPcName"].ToString() ?? "";
             vo.UpdatePcName = reader["UpdatePcName"].ToString() ?? "";
             vo.DeletePcName = reader["DeletePcName"].ToString() ?? "";
-
-            /*
-             * 削除フラグ（bool）
-             */
             vo.DeleteFlag = (bool)reader["DeleteFlag"];
 
-            /*
-             * HasImageX のセット
-             */
             vo.HasImage1 = vo.Image1.Length > 0;
             vo.HasImage2 = vo.Image2.Length > 0;
             vo.HasImage3 = vo.Image3.Length > 0;
@@ -150,7 +127,6 @@ namespace Dao {
 
             return vo;
         }
-
 
         /// <summary>
         /// スタッフ情報と任意保険情報を JOIN して取得する。

@@ -24,127 +24,128 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingFulltimeList));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx = new CcControl.CcStatusStrip();
-            this.PanelExTop = new CcControl.CcPanel();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.labelEx1 = new CcControl.CcLabel();
-            this.DateTimePickerExOperationDate = new CcControl.CcDateTime();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx = new CcControl.CcStatusStrip();
+            PanelExTop = new CcControl.CcPanel();
+            ButtonExUpdate = new CcControl.CcButton();
+            labelEx1 = new CcControl.CcLabel();
+            DateTimePickerExOperationDate = new CcControl.CcDateTime();
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SheetViewList = SpreadList.GetSheet(0);
+            TableLayoutPanelExBase.SuspendLayout();
+            PanelExTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(829, 961);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(829, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(829, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(829, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx
             // 
-            this.StatusStripEx.Location = new Point(0, 939);
-            this.StatusStripEx.Name = "StatusStripEx";
-            this.StatusStripEx.Size = new Size(829, 22);
-            this.StatusStripEx.TabIndex = 1;
-            this.StatusStripEx.Text = "statusStripEx1";
+            StatusStripEx.Location = new Point(0, 1019);
+            StatusStripEx.Name = "StatusStripEx";
+            StatusStripEx.Size = new Size(829, 22);
+            StatusStripEx.TabIndex = 1;
+            StatusStripEx.Text = "statusStripEx1";
             // 
             // PanelExTop
             // 
-            this.PanelExTop.Controls.Add(this.ButtonExUpdate);
-            this.PanelExTop.Controls.Add(this.labelEx1);
-            this.PanelExTop.Controls.Add(this.DateTimePickerExOperationDate);
-            this.PanelExTop.Dock = DockStyle.Fill;
-            this.PanelExTop.Location = new Point(3, 27);
-            this.PanelExTop.Name = "PanelExTop";
-            this.PanelExTop.Size = new Size(823, 54);
-            this.PanelExTop.TabIndex = 2;
+            PanelExTop.Controls.Add(ButtonExUpdate);
+            PanelExTop.Controls.Add(labelEx1);
+            PanelExTop.Controls.Add(DateTimePickerExOperationDate);
+            PanelExTop.Dock = DockStyle.Fill;
+            PanelExTop.Location = new Point(3, 27);
+            PanelExTop.Name = "PanelExTop";
+            PanelExTop.Size = new Size(823, 54);
+            PanelExTop.TabIndex = 2;
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.ButtonExUpdate.Location = new Point(639, 9);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(164, 36);
-            this.ButtonExUpdate.TabIndex = 4;
-            this.ButtonExUpdate.Text = "最　新　化";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonExUpdate_Click;
+            ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            ButtonExUpdate.Location = new Point(639, 9);
+            ButtonExUpdate.Name = "ButtonExUpdate";
+            ButtonExUpdate.SetTextDirectionVertical = "";
+            ButtonExUpdate.Size = new Size(164, 36);
+            ButtonExUpdate.TabIndex = 4;
+            ButtonExUpdate.Text = "最　新　化";
+            ButtonExUpdate.UseVisualStyleBackColor = true;
+            ButtonExUpdate.Click += ButtonExUpdate_Click;
             // 
             // labelEx1
             // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(20, 20);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(43, 15);
-            this.labelEx1.TabIndex = 3;
-            this.labelEx1.Text = "配車日";
+            labelEx1.AutoSize = true;
+            labelEx1.Location = new Point(20, 20);
+            labelEx1.Name = "labelEx1";
+            labelEx1.Size = new Size(43, 15);
+            labelEx1.TabIndex = 3;
+            labelEx1.Text = "配車日";
             // 
             // DateTimePickerExOperationDate
             // 
-            this.DateTimePickerExOperationDate.CultureFlag = false;
-            this.DateTimePickerExOperationDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExOperationDate.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExOperationDate.Location = new Point(68, 16);
-            this.DateTimePickerExOperationDate.Name = "DateTimePickerExOperationDate";
-            this.DateTimePickerExOperationDate.Size = new Size(184, 23);
-            this.DateTimePickerExOperationDate.TabIndex = 2;
-            this.DateTimePickerExOperationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            DateTimePickerExOperationDate.CultureFlag = false;
+            DateTimePickerExOperationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            DateTimePickerExOperationDate.Format = DateTimePickerFormat.Custom;
+            DateTimePickerExOperationDate.Location = new Point(68, 16);
+            DateTimePickerExOperationDate.Name = "DateTimePickerExOperationDate";
+            DateTimePickerExOperationDate.Size = new Size(184, 23);
+            DateTimePickerExOperationDate.TabIndex = 2;
+            DateTimePickerExOperationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
-            this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(3, 87);
-            this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(823, 847);
-            this.SpreadList.TabIndex = 3;
+            SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            SpreadList.Dock = DockStyle.Fill;
+            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadList.Location = new Point(3, 87);
+            SpreadList.Name = "SpreadList";
+            SpreadList.Size = new Size(823, 927);
+            SpreadList.TabIndex = 3;
             // 
             // AccountingFulltimeList
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(829, 961);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "AccountingFulltimeList";
-            this.Text = "AccountingFulltimeList";
-            this.FormClosing += this.AccountingFulltime_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExTop.ResumeLayout(false);
-            this.PanelExTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(829, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            Name = "AccountingFulltimeList";
+            Text = "AccountingFulltimeList";
+            FormClosing += AccountingFulltime_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            PanelExTop.ResumeLayout(false);
+            PanelExTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

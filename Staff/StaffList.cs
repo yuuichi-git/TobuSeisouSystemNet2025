@@ -7,6 +7,7 @@ using Common;
 
 using Dao;
 
+using FarPoint.Excel;
 using FarPoint.Win.Spread;
 
 using Microsoft.VisualBasic;
@@ -18,6 +19,7 @@ namespace Staff {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly DateUtility _dateUtility = new();
         private readonly ScreenForm _screenForm = new();
+        private readonly Screen _screen;
         /*
          * Dao
          */
@@ -49,6 +51,7 @@ namespace Staff {
         /// <param name="connectionVo"></param>
         /// <param name="screen"></param>
         public StaffList(ConnectionVo connectionVo, Screen screen) {
+            _screen = screen;
             /*
              * Dao
              */
@@ -86,6 +89,8 @@ namespace Staff {
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
                                              "ToolStripMenuItemEdit",
+                                             "ToolStripMenuItemExport",
+                                             "ToolStripMenuItemExportExcel",
                                              "ToolStripMenuItemInsertNewRecord",
                                              "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
@@ -156,9 +161,15 @@ namespace Staff {
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":
-                    StaffDetail staffDetail = new(_connectionVo);
+                    StaffDetail staffDetail = new(_connectionVo,_screen);
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffDetail);
                     staffDetail.Show(this);
+                    break;
+                case "ToolStripMenuItemExportExcel":
+                    //xlsx形式ファイルをエクスポートします
+                    string fileName = string.Concat(this.SpreadList.ActiveSheet.SheetName, DateTime.Now.ToString("MM月dd日"), "作成");
+                    this.SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat | ExcelSaveFlags.SaveBothCustomRowAndColumnHeaders);
+                    MessageBox.Show("デスクトップへエクスポートしました", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
                     this.Close();
@@ -219,7 +230,7 @@ namespace Staff {
                 return;
             }
             // 修飾キーが無い場合
-            StaffDetail staffDetail = new(_connectionVo, ((StaffMasterVo)SheetViewList.Rows[e.Row].Tag).StaffCode);
+            StaffDetail staffDetail = new(_connectionVo,_screen, ((StaffMasterVo)SheetViewList.Rows[e.Row].Tag).StaffCode);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), staffDetail);
             staffDetail.Show(this);
         }
@@ -728,8 +739,10 @@ namespace Staff {
             }
         }
 
-
-        public List<StaffMasterVo> ListStaffMasterVo {
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<StaffMasterVo> ListStaffMasterVo {
             get {
                 return _listStaffMasterVo;
             }
@@ -738,8 +751,10 @@ namespace Staff {
                 _listStaffMasterVo = value;
             }
         }
-
-        public List<StaffMasterVo> FindListStaffMasterVo {
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<StaffMasterVo> FindListStaffMasterVo {
             get {
                 return _findListStaffMasterVo;
             }

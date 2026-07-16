@@ -3,7 +3,11 @@
  */
 using CcControl;
 
+using Common;
+
 using Dao;
+
+using PdfView;
 
 using Vo;
 
@@ -11,6 +15,9 @@ namespace Staff {
     public partial class StaffDetail : Form {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly ErrorProvider _errorProvider = new();
+        private readonly ScreenForm _screenForm = new();
+        private readonly Screen _screen;
+        PdfControlView pdfControlView;
         /*
          * Dao
          */
@@ -28,6 +35,11 @@ namespace Staff {
         private readonly StaffProperDao _staffProperDao;
         private readonly StaffPunishmentDao _staffPunishmentDao;
         /*
+         * Vo
+         */
+        private ConnectionVo _connectionVo;
+        StaffProperVo _staffProperVo;                                                   // 共通で使用するためにクラス変数として定義する
+        /*
          * Dictionary
          */
         private readonly Dictionary<int, string> _dictionaryBelongsIS = new();          // コード基準
@@ -41,7 +53,10 @@ namespace Staff {
         /// Staffを新規登録するためのコンストラクタ
         /// </summary>
         /// <param name="connectionVo"></param>
-        public StaffDetail(ConnectionVo connectionVo) {
+        /// <param name="screen"></param>
+        public StaffDetail(ConnectionVo connectionVo, Screen screen) {
+            _connectionVo = connectionVo;
+            _screen = screen;
             /*
              * Dao
              */
@@ -61,15 +76,15 @@ namespace Staff {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster()) {
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster()) {
                 _dictionaryBelongsIS.Add(belongsMasterVo.Code, belongsMasterVo.Name);
                 _dictionaryBelongsSI.Add(belongsMasterVo.Name, belongsMasterVo.Code);
             }
-            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster()) {
+            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster()) {
                 _dictionaryOccupationIS.Add(occupationMasterVo.Code, occupationMasterVo.Name);
                 _dictionaryOccupationSI.Add(occupationMasterVo.Name, occupationMasterVo.Code);
             }
-            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster()) {
+            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster()) {
                 _dictionaryJobFormIS.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
                 _dictionaryJobFormSI.Add(jobFormMasterVo.Name, jobFormMasterVo.Code);
             }
@@ -92,7 +107,7 @@ namespace Staff {
              * 新規と更新で共通のControlはInitializeControls()で初期化する
              */
             this.InitializeControls();
-            this.LabelExStaffCode.Text = (_staffMasterDao.GetStaffCode(24000) + 1).ToString("#####");        // 新規従事者コードを採番
+            this.CCLabelStaffCode.Text = (_staffMasterDao.GetStaffCode(24000) + 1).ToString("#####");        // 新規従事者コードを採番
             /*
              * Eventを登録する
              */
@@ -104,14 +119,16 @@ namespace Staff {
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="staffCode"></param>
-        public StaffDetail(ConnectionVo connectionVo, int staffCode) {
+        /// <param name="screen"></param>
+        public StaffDetail(ConnectionVo connectionVo, Screen screen, int staffCode) {
+            _connectionVo = connectionVo;
+            _screen = screen;
             /*
              * Dao
              */
             _belongsMasterDao = new(connectionVo);
             _jobFormMasterDao = new(connectionVo);
             _occupationMasterDao = new(connectionVo);
-
             _staffMasterDao = new(connectionVo);
             _staffHistoryDao = new(connectionVo);
             _staffExperienceDao = new(connectionVo);
@@ -124,15 +141,15 @@ namespace Staff {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster()) {
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster()) {
                 _dictionaryBelongsIS.Add(belongsMasterVo.Code, belongsMasterVo.Name);
                 _dictionaryBelongsSI.Add(belongsMasterVo.Name, belongsMasterVo.Code);
             }
-            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster()) {
+            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster()) {
                 _dictionaryOccupationIS.Add(occupationMasterVo.Code, occupationMasterVo.Name);
                 _dictionaryOccupationSI.Add(occupationMasterVo.Name, occupationMasterVo.Code);
             }
-            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster()) {
+            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster()) {
                 _dictionaryJobFormIS.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
                 _dictionaryJobFormSI.Add(jobFormMasterVo.Name, jobFormMasterVo.Code);
             }
@@ -156,9 +173,9 @@ namespace Staff {
              */
             this.InitializeControls();
             try {
-                StaffMasterVo staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
+                //StaffMasterVo staffMasterVo = _staffMasterDao.SelectOneStaffMaster(staffCode);
                 this.SetControls(_staffMasterDao.SelectOneStaffMaster(staffCode));
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             /*
@@ -175,16 +192,16 @@ namespace Staff {
             this.CheckBoxExLegalTwelveItemFlag.Checked = false;                         // 法定１２項目受講対象者
             this.CcCheckBoxMedicalCheckupFlag.Checked = false;                          // 健康診断受講対象者
             this.CheckBoxExToukanpoFlag.Checked = false;                                // 東環保研修受講対象者
-            foreach (CcRadioButton radioButtonEx in CcGroupBoxBelongs.Controls)         // 所属
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxBelongs.Controls)         // 所属
                 radioButtonEx.Checked = false;
-            foreach (CcRadioButton radioButtonEx in CcGroupBoxJobForm.Controls)         // 雇用形態
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxJobForm.Controls)         // 雇用形態
                 radioButtonEx.Checked = false;
-            foreach (CcRadioButton radioButtonEx in CcGroupBoxOccupation.Controls)      // 職種
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxOccupation.Controls)      // 職種
                 radioButtonEx.Checked = false;
             /*
              * 個人情報
              */
-            LabelExStaffCode.Text = string.Empty;
+            CCLabelStaffCode.Text = string.Empty;
             TextBoxExUnionCode.Text = string.Empty;
             TextBoxExNameKana.Text = string.Empty;
             TextBoxExOtherNameKana.Text = string.Empty;
@@ -387,23 +404,23 @@ namespace Staff {
             staffMasterVo.LegalTwelveItemFlag = CheckBoxExLegalTwelveItemFlag.Checked;                                                  // 法定１２項目受講対象者
             staffMasterVo.MedicalCheckupFlag = CcCheckBoxMedicalCheckupFlag.Checked;                                                    // 健康診断受講対象者
             staffMasterVo.ToukanpoFlag = CheckBoxExToukanpoFlag.Checked;                                                                // 東環保研修受講対象者
-            foreach (CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls) {                                                // 所属
-                if (radioButtonExBelongs.Checked)
+            foreach(CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls) {                                                 // 所属
+                if(radioButtonExBelongs.Checked)
                     staffMasterVo.Belongs = _dictionaryBelongsSI[radioButtonExBelongs.Text];
             }
-            foreach (CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls) {                                                // 雇用形態
-                if (radioButtonExJobForm.Checked)
+            foreach(CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls) {                                                 // 雇用形態
+                if(radioButtonExJobForm.Checked)
                     staffMasterVo.JobForm = _dictionaryJobFormSI[radioButtonExJobForm.Text];
             }
-            foreach (CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls) {                                          // 職種
-                if (radioButtonExOccupation.Checked)
+            foreach(CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls) {                                           // 職種
+                if(radioButtonExOccupation.Checked)
                     staffMasterVo.Occupation = _dictionaryOccupationSI[radioButtonExOccupation.Text];
             }
             /*
              * GroupBoxExPersonalData
              * 個人情報
              */
-            int.TryParse(LabelExStaffCode.Text, out int _staffCode);                                                                    // StaffCode
+            int.TryParse(CCLabelStaffCode.Text, out int _staffCode);                                                                    // StaffCode
             staffMasterVo.StaffCode = _staffCode;
             int.TryParse(TextBoxExUnionCode.Text, out int _unionCode);                                                                  // 組合コード
             staffMasterVo.UnionCode = _unionCode;
@@ -453,28 +470,28 @@ namespace Staff {
              * GroupBoxExInsurance
              * 保険関係
              */
-            if (DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                    // 健康保険加入日
+            if(DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                    // 健康保険加入日
                 staffMasterVo.HealthInsuranceDate = DateTimeExHealthInsuranceDate.GetValue();
             } else {
                 staffMasterVo.HealthInsuranceDate = _defaultDateTime;
             }
             staffMasterVo.HealthInsuranceNumber = ComboBoxExHealthInsuranceNumber.Text;                                                 // 健康保険番号
             staffMasterVo.HealthInsuranceNote = TextBoxExHealthInsuranceNote.Text;                                                      // 健康保険備考
-            if (DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                     // 年金保険加入日
+            if(DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                     // 年金保険加入日
                 staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();
             } else {
                 staffMasterVo.WelfarePensionDate = _defaultDateTime;
             }
             staffMasterVo.WelfarePensionNumber = ComboBoxExWelfarePensionNumber.Text;                                                   // 年金保険番号
             staffMasterVo.WelfarePensionNote = TextBoxExWelfarePensionNote.Text;                                                        // 年金保険備考
-            if (DateTimeExEmploymentInsuranceDate.CustomFormat != " ") {                                                                // 雇用保険加入日
+            if(DateTimeExEmploymentInsuranceDate.CustomFormat != " ") {                                                                // 雇用保険加入日
                 staffMasterVo.EmploymentInsuranceDate = DateTimeExEmploymentInsuranceDate.GetValue();
             } else {
                 staffMasterVo.EmploymentInsuranceDate = _defaultDateTime;
             }
             staffMasterVo.EmploymentInsuranceNumber = ComboBoxExEmploymentInsuranceNumber.Text;                                         // 雇用保険番号
             staffMasterVo.EmploymentInsuranceNote = TextBoxExEmploymentInsuranceNote.Text;                                              // 雇用保険備考
-            if (DateTimeExWorkerAccidentInsuranceDate.CustomFormat != " ") {                                                            // 労災保険加入日
+            if(DateTimeExWorkerAccidentInsuranceDate.CustomFormat != " ") {                                                            // 労災保険加入日
                 staffMasterVo.WorkerAccidentInsuranceDate = DateTimeExWorkerAccidentInsuranceDate.GetValue();
             } else {
                 staffMasterVo.WorkerAccidentInsuranceDate = _defaultDateTime;
@@ -493,7 +510,7 @@ namespace Staff {
             /*
              * Nullチェック
              */
-            if (staffMasterVo is null)
+            if(staffMasterVo is null)
                 return;
             CheckBoxExTargetFlag.Checked = staffMasterVo.VehicleDispatchTarget;                                                         // 配車する対象者
             CheckBoxExLegalTwelveItemFlag.Checked = staffMasterVo.LegalTwelveItemFlag;                                                  // 法定１２項目受講対象者
@@ -502,26 +519,26 @@ namespace Staff {
             /*
              * GroupBoxExBelongs
              */
-            foreach (CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls)                                                  // 所属
-                if (radioButtonExBelongs.Text == _dictionaryBelongsIS[staffMasterVo.Belongs])
+            foreach(CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls)                                                  // 所属
+                if(radioButtonExBelongs.Text == _dictionaryBelongsIS[staffMasterVo.Belongs])
                     radioButtonExBelongs.Checked = true;
             /*
              * GroupBoxExJobForm
              */
-            foreach (CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls)                                                  // 雇用形態
-                if (radioButtonExJobForm.Text == _dictionaryJobFormIS[staffMasterVo.JobForm])
+            foreach(CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls)                                                  // 雇用形態
+                if(radioButtonExJobForm.Text == _dictionaryJobFormIS[staffMasterVo.JobForm])
                     radioButtonExJobForm.Checked = true;
             /*
              * GroupBoxExOccupation
              */
-            foreach (CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls)                                            // 職種
-                if (radioButtonExOccupation.Text == _dictionaryOccupationIS[staffMasterVo.Occupation])
+            foreach(CcRadioButton radioButtonExOccupation in CcGroupBoxOccupation.Controls)                                            // 職種
+                if(radioButtonExOccupation.Text == _dictionaryOccupationIS[staffMasterVo.Occupation])
                     radioButtonExOccupation.Checked = true;
             /*
              * GroupBoxExPersonalData
              * 個人情報
              */
-            LabelExStaffCode.Text = staffMasterVo.StaffCode.ToString();                                                                 // 従事者コード
+            CCLabelStaffCode.Text = staffMasterVo.StaffCode.ToString();                                                                 // 従事者コード
             TextBoxExUnionCode.Text = staffMasterVo.UnionCode.ToString();                                                               // 組合コード
             TextBoxExNameKana.Text = staffMasterVo.NameKana;
             TextBoxExOtherNameKana.Text = staffMasterVo.OtherNameKana;
@@ -538,7 +555,7 @@ namespace Staff {
              * 有給情報
              */
             this.CcCheckBoxPaidLeaveFlag.Checked = staffMasterVo.PaidLeaveFlag;                                                         // 有給フラグ
-            if (staffMasterVo.PaidLeaveFlag) {
+            if(staffMasterVo.PaidLeaveFlag) {
                 this.CcDateTimePaidLeaveReferenceDate.Enabled = true;                                                                   // 有給基準日
                 this.CcDateTimePaidLeaveReferenceDate.CustomFormat = "yyyy/MM/dd";
                 this.CcDateTimePaidLeaveReferenceDate.SetValue(staffMasterVo.PaidLeaveReferenceDate != _defaultDateTime ? staffMasterVo.PaidLeaveReferenceDate : DateTime.Today.Date);
@@ -570,13 +587,13 @@ namespace Staff {
             TextBoxExLicenseNumber.Text = staffMasterVo.LicenseMasterVo.LicenseNumber;
             ComboBoxExLicenseCondition.Text = staffMasterVo.LicenseMasterVo.LicenseCondition;
             string type = string.Empty;
-            if (staffMasterVo.LicenseMasterVo.Large)
+            if(staffMasterVo.LicenseMasterVo.Large)
                 type += "(大型) ";
-            if (staffMasterVo.LicenseMasterVo.Medium)
+            if(staffMasterVo.LicenseMasterVo.Medium)
                 type += "(中型) ";
-            if (staffMasterVo.LicenseMasterVo.QuasiMedium)
+            if(staffMasterVo.LicenseMasterVo.QuasiMedium)
                 type += "(準中型) ";
-            if (staffMasterVo.LicenseMasterVo.Ordinary)
+            if(staffMasterVo.LicenseMasterVo.Ordinary)
                 type += "(普通)";
             TextBoxExLicenseType.Text = type; // 免許証の種類１
             DateTimeExLicenseTypeExpirationDate.SetValueJp(staffMasterVo.LicenseMasterVo.ExpirationDate);
@@ -658,11 +675,11 @@ namespace Staff {
             DateTimeExHistoryDate.SetClear();
             TextBoxExCompanyName.Text = string.Empty;
             int countGroupBoxExHistory = 0;
-            foreach (StaffHistoryVo staffHistoryVo in listStaffHistoryVo) {
+            foreach(StaffHistoryVo staffHistoryVo in listStaffHistoryVo) {
                 dictionaryHistoryDate[countGroupBoxExHistory].SetValueJp(staffHistoryVo.HistoryDate);
                 dictionaryHistoryNote[countGroupBoxExHistory].Text = staffHistoryVo.CompanyName;
                 countGroupBoxExHistory++;
-                if (countGroupBoxExHistory > 2)
+                if(countGroupBoxExHistory > 2)
                     break;
             }
         }
@@ -680,13 +697,13 @@ namespace Staff {
             TextBoxExExperienceDuration.Text = string.Empty;
             TextBoxExExperienceNote.Text = string.Empty;
             int countGroupBoxExExperience = 0;
-            foreach (StaffExperienceVo staffExperienceVo in listStaffExperienceVo) {
+            foreach(StaffExperienceVo staffExperienceVo in listStaffExperienceVo) {
                 dictionaryExperienceKind[countGroupBoxExExperience].Text = staffExperienceVo.ExperienceKind;
                 dictionaryExperienceLoad[countGroupBoxExExperience].Text = staffExperienceVo.ExperienceLoad;
                 dictionaryExperienceDuration[countGroupBoxExExperience].Text = staffExperienceVo.ExperienceDuration;
                 dictionaryExperienceNote[countGroupBoxExExperience].Text += staffExperienceVo.ExperienceNote;
                 countGroupBoxExExperience++;
-                if (countGroupBoxExExperience > 2)
+                if(countGroupBoxExExperience > 2)
                     break;
             }
         }
@@ -702,12 +719,12 @@ namespace Staff {
             DateTimeExFamilyBirthDate.SetClear();
             ComboBoxExFamilyRelationship.SelectedIndex = -1;
             int countGroupBoxExFamily = 0;
-            foreach (StaffFamilyVo staffFamilyVo in listStaffFamilyVo) {
+            foreach(StaffFamilyVo staffFamilyVo in listStaffFamilyVo) {
                 dictionaryFamilyName[countGroupBoxExFamily].Text = staffFamilyVo.FamilyName;
                 dictionaryFamilyBirthDate[countGroupBoxExFamily].SetValueJp(staffFamilyVo.FamilyBirthDay);
                 dictionaryFamilyRelationship[countGroupBoxExFamily].Text = staffFamilyVo.FamilyRelationship;
                 countGroupBoxExFamily++;
-                if (countGroupBoxExFamily > 2)
+                if(countGroupBoxExFamily > 2)
                     break;
             }
 
@@ -724,12 +741,12 @@ namespace Staff {
             ComboBoxExMedicalInstitutionName.SelectedIndex = -1;
             TextBoxExMedicalExaminationNote.Text = string.Empty;
             int countGroupBoxExMedical = 0;
-            foreach (StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo.OrderByDescending(x => x.MedicalExaminationDate)) {
+            foreach(StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo.OrderByDescending(x => x.MedicalExaminationDate)) {
                 dictionaryMedicalDate[countGroupBoxExMedical].SetValueJp(staffMedicalExaminationVo.MedicalExaminationDate);
                 dictionaryMedicalName[countGroupBoxExMedical].Text = staffMedicalExaminationVo.MedicalInstitutionName;
                 dictionaryMedicalNote[countGroupBoxExMedical].Text += staffMedicalExaminationVo.MedicalExaminationNote;
                 countGroupBoxExMedical++;
-                if (countGroupBoxExMedical > 2)
+                if(countGroupBoxExMedical > 2)
                     break;
             }
         }
@@ -745,12 +762,12 @@ namespace Staff {
             ComboBoxExCarViolateContent.SelectedIndex = -1;
             TextBoxExCarViolatePlace.Text = string.Empty;
             int countGroupBoxExCarViolate = 0;
-            foreach (StaffCarViolateVo staffCarViolateVo in listStaffCarViolateVo) {
+            foreach(StaffCarViolateVo staffCarViolateVo in listStaffCarViolateVo) {
                 dictionaryCarViolateDate[countGroupBoxExCarViolate].SetValueJp(staffCarViolateVo.CarViolateDate);
                 dictionaryCarViolateContent[countGroupBoxExCarViolate].Text = staffCarViolateVo.CarViolateContent;
                 dictionaryCarViolatePlace[countGroupBoxExCarViolate].Text += staffCarViolateVo.CarViolatePlace;
                 countGroupBoxExCarViolate++;
-                if (countGroupBoxExCarViolate > 2)
+                if(countGroupBoxExCarViolate > 2)
                     break;
             }
         }
@@ -764,11 +781,11 @@ namespace Staff {
             DateTimeExEducateDate.SetClear();
             ComboBoxExEducateName.SelectedIndex = -1;
             int countGroupBoxEducate = 0;
-            foreach (StaffEducateVo staffEducateVo in listStaffEducateVo) {
+            foreach(StaffEducateVo staffEducateVo in listStaffEducateVo) {
                 dictionaryEducateDate[countGroupBoxEducate].SetValueJp(staffEducateVo.EducateDate);
                 dictionaryEducateName[countGroupBoxEducate].Text = staffEducateVo.EducateName;
                 countGroupBoxEducate++;
-                if (countGroupBoxEducate > 2)
+                if(countGroupBoxEducate > 2)
                     break;
             }
         }
@@ -777,19 +794,36 @@ namespace Staff {
         /// 適正診断(NASVA他)
         /// </summary>
         private void ScreenOutputGroupBoxProper(List<StaffProperVo> listStaffProperVo) {
-            Dictionary<int, CcComboBox> dictionaryProperKind = new() { { 0, ComboBoxExProperKind1 }, { 1, ComboBoxExProperKind2 }, { 2, ComboBoxExProperKind3 } };
             Dictionary<int, CcDateTime> dictionaryProperDate = new() { { 0, DateTimeExProperDate1 }, { 1, DateTimeExProperDate2 }, { 2, DateTimeExProperDate3 } };
+            Dictionary<int, CcComboBox> dictionaryProperKind = new() { { 0, ComboBoxExProperKind1 }, { 1, ComboBoxExProperKind2 }, { 2, ComboBoxExProperKind3 } };
             Dictionary<int, CcTextBox> dictionaryProperNote = new() { { 0, TextBoxExProperNote1 }, { 1, TextBoxExProperNote2 }, { 2, TextBoxExProperNote3 } };
-            ComboBoxExProperKind.SelectedIndex = -1;
-            DateTimeExProperDate.SetClear();
-            TextBoxExProperNote.Text = string.Empty;
+            Dictionary<int, CcButton> dictionaryProperDeleteButton = new() { { 0, DeleteGroupBoxProperPDF1 }, { 1, DeleteGroupBoxProperPDF2 }, { 2, DeleteGroupBoxProperPDF3 } };
+            Dictionary<int, CcButton> dictionaryProperShowButton = new() { { 0, ShowGroupBoxProperPDF1 }, { 1, ShowGroupBoxProperPDF2 }, { 2, ShowGroupBoxProperPDF3 } };
+            /*
+             * Controlの初期化
+             */
+            for(int i = 0; i < 3; i++) {
+                dictionaryProperDate[i].SetClear();
+                dictionaryProperKind[i].DisplayClear();
+                dictionaryProperNote[i].Text = string.Empty;
+                dictionaryProperDeleteButton[i].Tag = null;
+                dictionaryProperShowButton[i].Enabled = false;
+                dictionaryProperShowButton[i].Tag = null;
+            }
+            /*
+             * GroupBoxProperの表示
+             */
             int countGroupBoxProper = 0;
-            foreach (StaffProperVo staffProperVo in listStaffProperVo.OrderByDescending(x => x.ProperDate)) {
+            foreach(StaffProperVo staffProperVo in listStaffProperVo.OrderByDescending(x => x.ProperDate)) {
+                dictionaryProperNote[countGroupBoxProper].Text = staffProperVo.ProperNote;
                 dictionaryProperKind[countGroupBoxProper].Text = staffProperVo.ProperKind;
                 dictionaryProperDate[countGroupBoxProper].SetValueJp(staffProperVo.ProperDate);
-                dictionaryProperNote[countGroupBoxProper].Text = staffProperVo.ProperNote;
+                dictionaryProperDeleteButton[countGroupBoxProper].Tag = staffProperVo;
+                dictionaryProperShowButton[countGroupBoxProper].Enabled = staffProperVo.PdfId != null;
+                dictionaryProperShowButton[countGroupBoxProper].Tag = staffProperVo;
+
                 countGroupBoxProper++;
-                if (countGroupBoxProper > 2)
+                if(countGroupBoxProper > 2)
                     break;
             }
         }
@@ -803,11 +837,11 @@ namespace Staff {
             DateTimeExPunishmentDate.SetClear();
             ComboBoxExPunishmentNote.Text = string.Empty;
             int countGroupBoxExPunishment = 0;
-            foreach (StaffPunishmentVo staffPunishmentVo in listStaffPunishmentVo) {
+            foreach(StaffPunishmentVo staffPunishmentVo in listStaffPunishmentVo) {
                 dictionaryPunishmentDate[countGroupBoxExPunishment].SetValueJp(staffPunishmentVo.PunishmentDate);
                 dictionaryPunishmentNote[countGroupBoxExPunishment].Text = staffPunishmentVo.PunishmentNote;
                 countGroupBoxExPunishment++;
-                if (countGroupBoxExPunishment > 2)
+                if(countGroupBoxExPunishment > 2)
                     break;
             }
         }
@@ -818,37 +852,37 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((Button)sender).Name) {
+            switch(((Button)sender).Name) {
                 case "CcButtonUpdate":
                     /*
                      * バリデーション
                      */
-                    if (!CcGroupBoxBelongs.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                    if(!CcGroupBoxBelongs.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "所属を選択してください。";
                         break;
                     }
-                    if (!CcGroupBoxJobForm.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                    if(!CcGroupBoxJobForm.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "雇用形態を選択してください。";
                         break;
                     }
-                    if (!CcGroupBoxOccupation.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
+                    if(!CcGroupBoxOccupation.Controls.OfType<CcRadioButton>().Any(rb => rb.Checked)) {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "職種を選択してください。";
                         break;
                     }
-                    if (CcDateTimeBirthDate.GetEmpty()) {
+                    if(CcDateTimeBirthDate.GetEmpty()) {
                         _errorProvider.SetError(CcDateTimeBirthDate, "生年月日を選択してください");
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "生年月日を選択してください。";
                         break;
                     }
-                    if (CcDateTimeEmploymentDate.GetEmpty()) {
+                    if(CcDateTimeEmploymentDate.GetEmpty()) {
                         _errorProvider.SetError(CcDateTimeEmploymentDate, "入社日を選択してください");
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "入社日を選択してください。";
                         break;
                     }
 
                     try {
-                        int.TryParse(LabelExStaffCode.Text, out int staffCode);
-                        if (_staffMasterDao.ExistenceStaffMaster(staffCode)) {
+                        int.TryParse(CCLabelStaffCode.Text, out int staffCode);
+                        if(_staffMasterDao.ExistenceStaffMaster(staffCode)) {
                             _staffMasterDao.UpdateOneStaffMaster(SetVo());          // UPDATE
                             StatusStripEx1.ToolStripStatusLabelDetail.Text = "Update Success";
                             this.Close();
@@ -857,7 +891,7 @@ namespace Staff {
                             StatusStripEx1.ToolStripStatusLabelDetail.Text = "Insert Success";
                             this.Close();
                         }
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -865,17 +899,17 @@ namespace Staff {
                     try {
                         // 更新
                         StaffHistoryVo staffHistoryVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffHistoryVo.StaffCode = _staffCode;
                         staffHistoryVo.HistoryDate = DateTimeExHistoryDate.GetValue();
                         staffHistoryVo.CompanyName = TextBoxExCompanyName.Text;
                         /*
                          * Validation
                          */
-                        if (DateTimeExHistoryDate.GetValue().Date == _defaultDateTime.Date) {
+                        if(DateTimeExHistoryDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExHistoryDate, "入社日");
                             break;
-                        } else if (TextBoxExCompanyName.Text.Length == 0) {
+                        } else if(TextBoxExCompanyName.Text.Length == 0) {
                             _errorProvider.SetError(TextBoxExCompanyName, "在籍記録");
                             break;
                         }
@@ -889,7 +923,7 @@ namespace Staff {
                         TextBoxExCompanyName.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxExHistory(_staffHistoryDao.SelectOneStaffHistoryMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -897,7 +931,7 @@ namespace Staff {
                     try {
                         // 更新
                         StaffExperienceVo staffExperienceVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffExperienceVo.StaffCode = _staffCode;
                         staffExperienceVo.ExperienceKind = ComboBoxExExperienceKind.Text;
                         staffExperienceVo.ExperienceLoad = TextBoxExExperienceLoad.Text;
@@ -906,13 +940,13 @@ namespace Staff {
                         /*
                          * Validation
                          */
-                        if (ComboBoxExExperienceKind.Text.Length == 0) {
+                        if(ComboBoxExExperienceKind.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExExperienceKind, "過去に運転経験のある自動車の種類");
                             break;
-                        } else if (TextBoxExExperienceLoad.Text.Length == 0) {
+                        } else if(TextBoxExExperienceLoad.Text.Length == 0) {
                             _errorProvider.SetError(TextBoxExExperienceLoad, "過去に運転経験のある自動車の積載量");
                             break;
-                        } else if (TextBoxExExperienceDuration.Text.Length == 0) {
+                        } else if(TextBoxExExperienceDuration.Text.Length == 0) {
                             _errorProvider.SetError(TextBoxExExperienceDuration, "過去に運転経験のある自動車の経験期間");
                             break;
                         }
@@ -928,7 +962,7 @@ namespace Staff {
                         TextBoxExExperienceNote.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxExExperience(_staffExperienceDao.SelectOneStaffExperienceMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -936,7 +970,7 @@ namespace Staff {
                     try {
                         // 更新
                         StaffFamilyVo staffFamilyVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffFamilyVo.StaffCode = _staffCode;
                         staffFamilyVo.FamilyName = TextBoxExFamilyName.Text;
                         staffFamilyVo.FamilyBirthDay = DateTimeExFamilyBirthDate.GetValue();
@@ -944,13 +978,13 @@ namespace Staff {
                         /*
                          * Validation
                          */
-                        if (TextBoxExFamilyName.Text.Length == 0) {
+                        if(TextBoxExFamilyName.Text.Length == 0) {
                             _errorProvider.SetError(TextBoxExFamilyName, "家族氏名");
                             break;
-                        } else if (DateTimeExFamilyBirthDate.GetValue().Date == _defaultDateTime.Date) {
+                        } else if(DateTimeExFamilyBirthDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExFamilyBirthDate, "生年月日");
                             break;
-                        } else if (ComboBoxExFamilyRelationship.Text.Length == 0) {
+                        } else if(ComboBoxExFamilyRelationship.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExFamilyRelationship, "従業員との関係");
                             break;
                         }
@@ -965,7 +999,7 @@ namespace Staff {
                         ComboBoxExFamilyRelationship.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxExFamily(_staffFamilyDao.SelectOneStaffFamilyMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -973,7 +1007,7 @@ namespace Staff {
                     try {
                         // 更新
                         StaffMedicalExaminationVo staffMedicalExaminationVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffMedicalExaminationVo.StaffCode = _staffCode;
                         staffMedicalExaminationVo.MedicalExaminationDate = DateTimeExMedicalExaminationDate.GetValue();
                         staffMedicalExaminationVo.MedicalInstitutionName = ComboBoxExMedicalInstitutionName.Text;
@@ -981,10 +1015,10 @@ namespace Staff {
                         /*
                          * Validation
                          */
-                        if (DateTimeExMedicalExaminationDate.GetValue().Date == _defaultDateTime.Date) {
+                        if(DateTimeExMedicalExaminationDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExMedicalExaminationDate, "健診実施日");
                             break;
-                        } else if (ComboBoxExMedicalInstitutionName.Text.Length == 0) {
+                        } else if(ComboBoxExMedicalInstitutionName.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExMedicalInstitutionName, "受診機関名");
                             break;
                         }
@@ -999,7 +1033,7 @@ namespace Staff {
                         TextBoxExMedicalExaminationNote.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxExMedical(_staffMedicalExaminationDao.SelectOneStaffMedicalExaminationMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -1007,7 +1041,7 @@ namespace Staff {
                     try {
                         // 更新
                         StaffCarViolateVo staffCarViolateVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffCarViolateVo.StaffCode = _staffCode;
                         staffCarViolateVo.CarViolateDate = DateTimeExCarViolateDate.GetValue();
                         staffCarViolateVo.CarViolateContent = ComboBoxExCarViolateContent.Text;
@@ -1015,10 +1049,10 @@ namespace Staff {
                         /*
                          * Validation
                          */
-                        if (DateTimeExCarViolateDate.GetValue().Date == _defaultDateTime.Date) {
+                        if(DateTimeExCarViolateDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExCarViolateDate, "違反年月日");
                             break;
-                        } else if (ComboBoxExCarViolateContent.Text.Length == 0) {
+                        } else if(ComboBoxExCarViolateContent.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExCarViolateContent, "違反名");
                             break;
                         }
@@ -1033,7 +1067,7 @@ namespace Staff {
                         TextBoxExCarViolatePlace.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxExCarViolate(_staffCarViolateDao.SelectOneStaffCarViolateMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -1041,17 +1075,17 @@ namespace Staff {
                     try {
                         // 更新
                         StaffEducateVo staffEducateVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
+                        int.TryParse(CCLabelStaffCode.Text, out int _staffCode); // StaffCode
                         staffEducateVo.StaffCode = _staffCode;
                         staffEducateVo.EducateDate = DateTimeExEducateDate.GetValue();
                         staffEducateVo.EducateName = ComboBoxExEducateName.Text;
                         /*
                          * Validation
                          */
-                        if (DateTimeExEducateDate.GetValue().Date == _defaultDateTime.Date) {
+                        if(DateTimeExEducateDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExEducateDate, "教育を受けた年月日");
                             return;
-                        } else if (ComboBoxExEducateName.Text.Length == 0) {
+                        } else if(ComboBoxExEducateName.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExEducateName, "教育名称");
                             return;
                         }
@@ -1065,30 +1099,33 @@ namespace Staff {
                         ComboBoxExEducateName.Text = string.Empty;
                         // 再表示
                         this.ScreenOutputGroupBoxEducate(_staffEducateDao.SelectOneStaffEducateMaster(_staffCode));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
-                case "AddGroupBoxProper": // 適正診断(NASVA他)
+                case "AddGroupBoxProper": // 適正診断　新規挿入(NASVA他)
                     try {
-                        // 更新
-                        StaffProperVo staffProperVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
-                        staffProperVo.StaffCode = _staffCode;
-                        staffProperVo.ProperKind = ComboBoxExProperKind.Text;
-                        staffProperVo.ProperDate = DateTimeExProperDate.GetValue();
-                        staffProperVo.ProperNote = TextBoxExProperNote.Text;
+                        _staffProperVo = new();
+                        int.TryParse(CCLabelStaffCode.Text, out int _properStaffCode); // StaffCode
+                        _staffProperVo.StaffCode = _properStaffCode;
+                        _staffProperVo.ProperKind = ComboBoxExProperKind.Text;
+                        _staffProperVo.ProperDate = DateTimeExProperDate.GetValue();
+                        _staffProperVo.ProperNote = TextBoxExProperNote.Text;
+                        _staffProperVo.PdfId = AddGroupBoxProperPDF.Tag?.ToString() ?? string.Empty;
                         /*
-                        * Validation
-                        */
-                        if (ComboBoxExProperKind.Text.Length == 0) {
-                            _errorProvider.SetError(ComboBoxExProperKind, "診断の種類");
-                            break;
-                        } else if (DateTimeExProperDate.GetValue().Date == _defaultDateTime.Date) {
+                         * Validation
+                         */
+                        if(DateTimeExProperDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExProperDate, "診断年月日");
                             break;
+                        } else if(ComboBoxExProperKind.Text.Length == 0) {
+                            _errorProvider.SetError(ComboBoxExProperKind, "診断の種類");
+                            break;
                         }
-                        _staffProperDao.InsertOneStaffProperMaster(staffProperVo);
+                        /*
+                         * StaffProperMasterの更新処理
+                         */
+                        _staffProperDao.InsertOneStaffProperMaster(_staffProperVo);
                         StatusStripEx1.ToolStripStatusLabelDetail.Text = "AddGroupBoxProperを更新しました。";
                         /*
                          * 更新後の初期化
@@ -1098,31 +1135,77 @@ namespace Staff {
                         DateTimeExProperDate.SetClear();
                         TextBoxExProperNote.Text = string.Empty;
                         // 再表示
-                        this.ScreenOutputGroupBoxProper(_staffProperDao.SelectOneStaffProperMaster(_staffCode));
-                    } catch (Exception exception) {
+                        this.ScreenOutputGroupBoxProper(_staffProperDao.SelectOneStaffProperMaster(_properStaffCode));
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
+                    }
+                    break;
+                case "AddGroupBoxProperPDF": // 適正診断　PDFファイルの選択
+                    pdfControlView = new(_connectionVo, _screen);
+                    _screenForm.SetPosition(_screen, pdfControlView);
+                    DialogResult result = pdfControlView.ShowDialog();
+                    if(result == DialogResult.OK) {
+                        AddGroupBoxProperPDF.Tag = pdfControlView.ReturnValue;   // ← ここで値を受け取る
+                    }
+                    break;
+                case "ShowGroupBoxProperPDF1":  // 適正診断　PDFファイルの表示
+                case "ShowGroupBoxProperPDF2":
+                case "ShowGroupBoxProperPDF3":
+                    if(((Button)sender).Tag is not null) {
+                        pdfControlView = new(_connectionVo, _screen, ((StaffProperVo)((Button)sender).Tag).PdfId);
+                        _screenForm.SetPosition(_screen, pdfControlView);
+                        pdfControlView.ShowDialog(this);
+
+                    } else {
+                        MessageBox.Show("表示するPDFファイルが選択されていません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+
+                    }
+                    break;
+                case "DeleteGroupBoxProperPDF1":    // 適正診断　PDFファイルの削除
+                case "DeleteGroupBoxProperPDF2":
+                case "DeleteGroupBoxProperPDF3":
+                    DialogResult dialogResult = MessageBox.Show("この記録を削除します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    switch(dialogResult) {
+                        case DialogResult.OK:
+                            try {
+                                // 適正診断の削除対象Vo
+                                StaffProperVo staffProperVo = (StaffProperVo)((Button)sender).Tag;
+                                // StaffProperMasterの削除処理
+                                _staffProperDao.DeleteOneStaffProperMaster(staffProperVo);
+                                // 削除後の再表示
+                                this.ScreenOutputGroupBoxProper(_staffProperDao.SelectOneStaffProperMaster(staffProperVo.StaffCode));
+                                // ステータスバーに削除件数を表示
+                                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "StaffProperMasterを1件削除しました。";
+
+                            } catch(Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case DialogResult.Cancel:
+                            return;
                     }
                     break;
                 case "AddGroupBoxExPunishment": // 賞罰・譴責
                     try {
                         // 更新
                         StaffPunishmentVo staffPunishmentVo = new();
-                        int.TryParse(LabelExStaffCode.Text, out int _staffCode); // StaffCode
-                        staffPunishmentVo.StaffCode = _staffCode;
+                        int.TryParse(CCLabelStaffCode.Text, out int _PunishmentStaffCode); // StaffCode
+                        staffPunishmentVo.StaffCode = _PunishmentStaffCode;
                         staffPunishmentVo.PunishmentDate = DateTimeExPunishmentDate.GetValue();
                         staffPunishmentVo.PunishmentNote = ComboBoxExPunishmentNote.Text;
                         /*
                          * Validation
                          */
-                        if (DateTimeExPunishmentDate.GetValue().Date == _defaultDateTime.Date) {
+                        if(DateTimeExPunishmentDate.GetValue().Date == _defaultDateTime.Date) {
                             _errorProvider.SetError(DateTimeExPunishmentDate, "年月日");
                             break;
-                        } else if (ComboBoxExPunishmentNote.Text.Length == 0) {
+                        } else if(ComboBoxExPunishmentNote.Text.Length == 0) {
                             _errorProvider.SetError(ComboBoxExPunishmentNote, "備考");
                             break;
                         }
                         _staffPunishmentDao.InsertOneStaffPunishmentMasters(staffPunishmentVo);
-                        StatusStripEx1.ToolStripStatusLabelDetail.Text = "AddGroupBoxExPunishmentを更新しました。";
+                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "AddGroupBoxExPunishmentを更新しました。";
                         /*
                          * 更新後の初期化
                          */
@@ -1130,8 +1213,8 @@ namespace Staff {
                         DateTimeExPunishmentDate.SetClear();
                         ComboBoxExPunishmentNote.Text = string.Empty;
                         // 再表示
-                        this.ScreenOutputGroupBoxExPunishment(_staffPunishmentDao.SelectOneStaffPunishmentMaster(_staffCode));
-                    } catch (Exception exception) {
+                        this.ScreenOutputGroupBoxExPunishment(_staffPunishmentDao.SelectOneStaffPunishmentMaster(_PunishmentStaffCode));
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -1144,7 +1227,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 /*
                  * Picture クリップボード
                  */
@@ -1184,7 +1267,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RadioButtonEx_CheckedChanged(object sender, EventArgs e) {
-            switch (((CcRadioButton)sender).Text) {
+            switch(((CcRadioButton)sender).Text) {
                 case "役員":
                     this.RadioButtonExLongTimeS.Enabled = false;
                     this.RadioButtonExShortTimeS.Enabled = false;
@@ -1306,7 +1389,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcCheckBox_CheckedChanged(object sender, EventArgs e) {
-            switch (((CcCheckBox)sender).Name) {
+            switch(((CcCheckBox)sender).Name) {
                 case "CheckBoxExContractFlag":
                     this.CcDateTimePickerContractDate.Enabled = ((CcCheckBox)sender).Checked;
                     break;
@@ -1324,7 +1407,7 @@ namespace Staff {
         /// <param name="e"></param>
         private void StaffDetail_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

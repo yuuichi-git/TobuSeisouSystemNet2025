@@ -1,16 +1,16 @@
-﻿namespace EGov {
-    partial class LawList {
+﻿namespace PdfView {
+    partial class PdfControlView {
         /// <summary>
-        /// Required designer variable.
+        ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+            if(disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -19,32 +19,28 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawList));
             CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
             CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
+            CcPdfView1 = new CcControl.CcPdfView();
             CcPanelTop = new CcControl.CcPanel();
-            CcLabel1 = new CcControl.CcLabel();
-            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
-            SheetViewList = SpreadList.GetSheet(0);
+            CcButtonUpdate = new CcControl.CcButton();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
             SuspendLayout();
             // 
             // CcTableLayoutPanelBase
             // 
             CcTableLayoutPanelBase.ColumnCount = 1;
             CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 3);
+            CcTableLayoutPanelBase.Controls.Add(CcPdfView1, 0, 2);
             CcTableLayoutPanelBase.Controls.Add(CcPanelTop, 0, 1);
-            CcTableLayoutPanelBase.Controls.Add(SpreadList, 0, 2);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
@@ -73,50 +69,49 @@
             CcStatusStrip1.TabIndex = 1;
             CcStatusStrip1.Text = "ccStatusStrip1";
             // 
+            // CcPdfView1
+            // 
+            CcPdfView1.Dock = DockStyle.Fill;
+            CcPdfView1.Location = new Point(4, 87);
+            CcPdfView1.Margin = new Padding(4, 3, 4, 3);
+            CcPdfView1.Name = "CcPdfView1";
+            CcPdfView1.Size = new Size(1896, 927);
+            CcPdfView1.TabIndex = 2;
+            // 
             // CcPanelTop
             // 
-            CcPanelTop.Controls.Add(CcLabel1);
+            CcPanelTop.Controls.Add(CcButtonUpdate);
             CcPanelTop.Dock = DockStyle.Fill;
             CcPanelTop.Location = new Point(3, 27);
             CcPanelTop.Name = "CcPanelTop";
             CcPanelTop.Size = new Size(1898, 54);
-            CcPanelTop.TabIndex = 2;
+            CcPanelTop.TabIndex = 3;
             // 
-            // CcLabel1
+            // CcButtonUpdate
             // 
-            CcLabel1.Font = new Font("Yu Gothic UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            CcLabel1.Location = new Point(508, 4);
-            CcLabel1.Name = "CcLabel1";
-            CcLabel1.Size = new Size(864, 44);
-            CcLabel1.TabIndex = 0;
-            CcLabel1.Text = "6.1.3　法的要求事項及びその他の要求事項";
-            CcLabel1.TextAlign = ContentAlignment.MiddleCenter;
+            CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            CcButtonUpdate.Location = new Point(1673, 10);
+            CcButtonUpdate.Name = "CcButtonUpdate";
+            CcButtonUpdate.SetTextDirectionVertical = "";
+            CcButtonUpdate.Size = new Size(180, 30);
+            CcButtonUpdate.TabIndex = 1;
+            CcButtonUpdate.Text = "UPDATE";
+            CcButtonUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Click += CcButtonUpdate_Click;
             // 
-            // SpreadList
-            // 
-            SpreadList.AccessibleDescription = "SpreadList, LawViewList, Row 0, Column 0";
-            SpreadList.Dock = DockStyle.Fill;
-            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 87);
-            SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1898, 927);
-            SpreadList.TabIndex = 3;
-            SpreadList.CellDoubleClick += SheetViewList_CellDoubleClick;
-            // 
-            // LawList
+            // PdfControlView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(CcTableLayoutPanelBase);
             MainMenuStrip = CcMenuStrip1;
-            Name = "LawList";
-            Text = "LawList";
-            FormClosing += LawList_FormClosing;
+            Name = "PdfControlView";
+            Text = "PdfView";
             CcTableLayoutPanelBase.ResumeLayout(false);
             CcTableLayoutPanelBase.PerformLayout();
             CcPanelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
             ResumeLayout(false);
         }
 
@@ -125,9 +120,8 @@
         private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
         private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip CcStatusStrip1;
+        private CcControl.CcPdfView CcPdfView1;
         private CcControl.CcPanel CcPanelTop;
-        private FarPoint.Win.Spread.FpSpread SpreadList;
-        private CcControl.CcLabel CcLabel1;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
+        private CcControl.CcButton CcButtonUpdate;
     }
 }

@@ -66,6 +66,11 @@ namespace CcControl {
             CreateMenuItem("ToolStripMenuItemExportExcel", "xls形式ファイルをエクスポートします", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
             CreateMenuItem("ToolStripMenuItemExportCSV", "csv形式ファイルをエクスポートします", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
             /*
+             * PDF
+             */
+            ToolStripMenuItem toolStripMenuItemPDF =CreateMenuItem("ToolStripMenuItemPDF","PDF",null,this.Items);
+            CreateMenuItem("ToolStripMenuItemPDFOpen", "PDFファイルを開く", ToolStripMenuItem_Click, toolStripMenuItemPDF.DropDownItems);
+            /*
              * Print
              */
             ToolStripMenuItem toolStripMenuItemPrint =CreateMenuItem("ToolStripMenuItemPrint","Print",null,this.Items);

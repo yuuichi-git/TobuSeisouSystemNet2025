@@ -3,8 +3,6 @@
  */
 using System.Diagnostics;
 
-using PdfSharpCore.Drawing;
-
 using Windows.Data.Pdf;
 using Windows.Storage.Streams;
 
@@ -23,7 +21,7 @@ namespace Common {
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             DialogResult result = openFileDialog.ShowDialog();
-            if (result != DialogResult.OK)
+            if(result != DialogResult.OK)
                 return null;
 
             try {
@@ -47,15 +45,41 @@ namespace Common {
 
                 Bitmap bitmap = new(ms);
                 return bitmap;
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 Debug.WriteLine("ConvertPdfToImage:" + ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// PDF を byte[] に変換する（File.ReadAllBytes）
+        /// OpenFileDialogで選択された PDF ファイルを byte[] として返す
         /// </summary>
+        /// <param name="ownerForm"></param>
+        /// <returns></returns>
+        public byte[]? ConvertPdfToByte(Form ownerForm) {
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Title = "PDFファイルを選択してください";
+            openFileDialog.Filter = "PDF ファイル (*.pdf)|*.pdf";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+            DialogResult result = openFileDialog.ShowDialog(ownerForm);
+
+            if(result != DialogResult.OK)
+                return null;
+
+            try {
+                return File.ReadAllBytes(openFileDialog.FileName);
+            } catch(Exception ex) {
+                Debug.WriteLine("ConvertPdfToByte:" + ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// OpenFileDialogで選択された PDF ファイルを byte[] として返す
+        /// </summary>
+        /// <param name="contextMenuStrip"></param>
+        /// <returns></returns>
         public byte[]? ConvertPdfToByte(ContextMenuStrip contextMenuStrip) {
             contextMenuStrip.Hide();
 
@@ -67,31 +91,33 @@ namespace Common {
             IWin32Window owner = contextMenuStrip.SourceControl?.FindForm() ?? null;
             DialogResult result = owner != null ? openFileDialog.ShowDialog(owner) : openFileDialog.ShowDialog();
 
-            if (result != DialogResult.OK)
+            if(result != DialogResult.OK)
                 return null;
 
             try {
                 return File.ReadAllBytes(openFileDialog.FileName);
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 Debug.WriteLine("ConvertPdfToByte:" + ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// Bitmap を PDF に変換して byte[] として返す（PdfSharpCore 使用）
+        /// Bitmap を byte[] として返す
         /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
         public byte[] ConvertImageToPdfBytes(Bitmap bitmap) {
-            using (MemoryStream pdfStream = new()) {
+            using(MemoryStream pdfStream = new()) {
 
                 PdfSharpCore.Pdf.PdfDocument pdfDocument = new();
-                PdfSharpCore.Pdf.PdfPage page = pdfDocument.AddPage();
-                page.Width = bitmap.Width;
-                page.Height = bitmap.Height;
+                PdfSharpCore.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
+                pdfPage.Width = bitmap.Width;
+                pdfPage.Height = bitmap.Height;
 
-                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(page);
+                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
 
-                using (MemoryStream imgStream = new()) {
+                using(MemoryStream imgStream = new()) {
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
                     imgStream.Position = 0;
 

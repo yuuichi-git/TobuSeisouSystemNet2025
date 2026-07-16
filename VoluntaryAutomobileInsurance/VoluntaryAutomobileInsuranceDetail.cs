@@ -87,7 +87,7 @@ namespace VoluntaryAutomobileInsurance {
              * 新規 or 更新用の VO を作成
              */
             VoluntaryAutomobileInsuranceVo vo = new();
-            vo.Id = Guid.NewGuid().ToString();                                                                                  // 一意な ID を生成
+            vo.Id = Guid.NewGuid().ToString("N");                                                                                  // 一意な ID を生成
             vo.StaffCode = _staffCode;
             vo.VehicleType = this.CcComboBoxVehicleType.Text;
             vo.CompanyName = this.CcComboBoxCompanyName.Text;
@@ -285,7 +285,6 @@ namespace VoluntaryAutomobileInsurance {
                     this.ShowPdfToViewer(ccPdfView, bytes);
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
-
                 case "ToolStripMenuItemPaste": {
                         IDataObject data = Clipboard.GetDataObject();
                         if (data == null) {

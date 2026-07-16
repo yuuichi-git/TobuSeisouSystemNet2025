@@ -35,6 +35,7 @@ namespace Dao {
         /// <returns>初任診断の受診日を返す。存在しない場合はstring.Emptyを返す</returns>
         public DateTime GetSyoninProperDate(int staffCode) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '初任診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
             if(data is not null) {
@@ -52,6 +53,7 @@ namespace Dao {
         /// <returns>初任診断の受講履歴を返す。True:受講済 False:未受講</returns>
         public bool GetSyoninWorkshopFlag(int staffCode) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '初任診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
             if(data is not null) {
@@ -63,12 +65,14 @@ namespace Dao {
 
         /// <summary>
         /// GetTekireiProperDate
+        /// 適齢診断の受診日を取得する
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
         public string GetTekireiProperDate(int staffCode) {
             TimeSpan timeSpan;
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '適齢診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
             if(data is not null) {
@@ -88,6 +92,7 @@ namespace Dao {
         public bool GetTekireiWorkshopFlag(int staffCode) {
             TimeSpan timeSpan;
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT TOP 1 ProperDate FROM H_StaffProperMaster WHERE StaffCode = " + staffCode + " AND ProperKind = '適齢診断' ORDER BY ProperDate DESC";
             var data = sqlCommand.ExecuteScalar();
 
@@ -110,10 +115,12 @@ namespace Dao {
         public List<StaffProperVo> SelectOneStaffProperMaster(int staffCode) {
             List<StaffProperVo> listStaffProperVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "ProperKind," +
                                             "ProperDate," +
                                             "ProperNote," +
+                                            "PdfId," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -130,6 +137,7 @@ namespace Dao {
                     staffProperVo.ProperKind = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperKind"]);
                     staffProperVo.ProperDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ProperDate"]);
                     staffProperVo.ProperNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperNote"]);
+                    staffProperVo.PdfId = _defaultValue.GetDefaultValue<string>(sqlDataReader["PdfId"]);
                     staffProperVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     staffProperVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     staffProperVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
@@ -149,10 +157,12 @@ namespace Dao {
         public List<StaffProperVo> SelectAllStaffProperMaster() {
             List<StaffProperVo> listStaffProperVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "SELECT StaffCode," +
                                             "ProperKind," +
                                             "ProperDate," +
                                             "ProperNote," +
+                                            "PdfId," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -169,6 +179,7 @@ namespace Dao {
                     staffProperVo.ProperKind = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperKind"]);
                     staffProperVo.ProperDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ProperDate"]);
                     staffProperVo.ProperNote = _defaultValue.GetDefaultValue<string>(sqlDataReader["ProperNote"]);
+                    staffProperVo.PdfId = _defaultValue.GetDefaultValue<string>(sqlDataReader["PdfId"]);
                     staffProperVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     staffProperVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
                     staffProperVo.UpdateYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["UpdateYmdHms"]);
@@ -185,12 +196,14 @@ namespace Dao {
         /// InsertOneHStaffProperMaster
         /// </summary>
         /// <param name="staffProperVo"></param>
-        public void InsertOneStaffProperMaster(StaffProperVo staffProperVo) {
+        public int InsertOneStaffProperMaster(StaffProperVo staffProperVo) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
             sqlCommand.CommandText = "INSERT INTO H_StaffProperMaster(StaffCode," +
                                                                      "ProperKind," +
                                                                      "ProperDate," +
                                                                      "ProperNote," +
+                                                                     "PdfId," +
                                                                      "InsertPcName," +
                                                                      "InsertYmdHms," +
                                                                      "UpdatePcName," +
@@ -202,6 +215,7 @@ namespace Dao {
                                             "'" + _defaultValue.GetDefaultValue<string>(staffProperVo.ProperKind) + "'," +
                                             "'" + _defaultValue.GetDefaultValue<DateTime>(staffProperVo.ProperDate) + "'," +
                                             "'" + _defaultValue.GetDefaultValue<string>(staffProperVo.ProperNote) + "'," +
+                                            "'" + _defaultValue.GetDefaultValue<string>(staffProperVo.PdfId) + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + "" + "'," +
@@ -211,7 +225,49 @@ namespace Dao {
                                             "'False'" +
                                             ");";
             try {
-                sqlCommand.ExecuteNonQuery();
+                return sqlCommand.ExecuteNonQuery();
+
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// PDF ファイルを更新する（StaffProperMaster）
+        /// </summary>
+        /// <param name="staffProperVo"></param>
+        public int UpdateOneStaffProperMaster(StaffProperVo staffProperVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
+            sqlCommand.CommandText =
+                "UPDATE H_StaffProperMaster SET " +
+                "       ProperKind     = '" + _defaultValue.GetDefaultValue<string>(staffProperVo.ProperKind) + "'," +
+                "       ProperDate     = '" + _defaultValue.GetDefaultValue<DateTime>(staffProperVo.ProperDate) + "'," +
+                "       ProperNote     = '" + _defaultValue.GetDefaultValue<string>(staffProperVo.ProperNote) + "'," +
+                "       PdfId          = '" + _defaultValue.GetDefaultValue<string>(staffProperVo.PdfId) + "'," +
+                "       UpdatePcName   = '" + Environment.MachineName + "'," +
+                "       UpdateYmdHms   = '" + DateTime.Now + "' " +
+                "WHERE  StaffCode      = " + _defaultValue.GetDefaultValue<int>(staffProperVo.StaffCode) + ";";
+            try {
+                return sqlCommand.ExecuteNonQuery();
+            } catch {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// StaffProperMaster を物理削除する
+        /// </summary>
+        /// <param name="staffProperVo"></param>
+        public int DeleteOneStaffProperMaster(StaffProperVo staffProperVo) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+
+            sqlCommand.CommandText =
+                "DELETE FROM H_StaffProperMaster " +
+                "WHERE StaffCode  = " + _defaultValue.GetDefaultValue<int>(staffProperVo.StaffCode) + " " +
+                "  AND ProperDate = '" + _defaultValue.GetDefaultValue<DateTime>(staffProperVo.ProperDate) + "';";
+            try {
+                return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
             }

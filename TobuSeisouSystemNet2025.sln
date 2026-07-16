@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estra", "Estra\Estra.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaidLeave", "PaidLeave\PaidLeave.csproj", "{465F5D70-AFFD-4B8C-AE42-1175A278874C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfControl", "PdfView\PdfControl.csproj", "{0B43F68A-9643-4252-AFEC-02F696B16819}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -311,6 +313,14 @@ Global
 		{465F5D70-AFFD-4B8C-AE42-1175A278874C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{465F5D70-AFFD-4B8C-AE42-1175A278874C}.Release|x64.ActiveCfg = Release|Any CPU
 		{465F5D70-AFFD-4B8C-AE42-1175A278874C}.Release|x64.Build.0 = Release|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Debug|x64.Build.0 = Debug|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

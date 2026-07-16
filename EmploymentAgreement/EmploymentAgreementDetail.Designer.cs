@@ -767,7 +767,7 @@
             // CcButtonExpirationDelete
             // 
             CcButtonExpirationDelete.ForeColor = SystemColors.ControlText;
-            CcButtonExpirationDelete.Location = new Point(1140, 48);
+            CcButtonExpirationDelete.Location = new Point(1048, 48);
             CcButtonExpirationDelete.Name = "CcButtonExpirationDelete";
             CcButtonExpirationDelete.SetTextDirectionVertical = "";
             CcButtonExpirationDelete.Size = new Size(68, 22);
@@ -803,12 +803,12 @@
             // CcButtonExpirationPicture
             // 
             CcButtonExpirationPicture.ForeColor = SystemColors.ControlText;
-            CcButtonExpirationPicture.Location = new Point(1048, 48);
+            CcButtonExpirationPicture.Location = new Point(1120, 48);
             CcButtonExpirationPicture.Name = "CcButtonExpirationPicture";
             CcButtonExpirationPicture.SetTextDirectionVertical = "";
             CcButtonExpirationPicture.Size = new Size(84, 22);
             CcButtonExpirationPicture.TabIndex = 30;
-            CcButtonExpirationPicture.Text = "契約・誓約書";
+            CcButtonExpirationPicture.Text = "書類確認";
             CcButtonExpirationPicture.UseVisualStyleBackColor = true;
             CcButtonExpirationPicture.Click += ButtonEx_Click;
             // 
@@ -894,7 +894,7 @@
             // CcButtonContractExpirationNoticeDelete
             // 
             CcButtonContractExpirationNoticeDelete.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationNoticeDelete.Location = new Point(1140, 48);
+            CcButtonContractExpirationNoticeDelete.Location = new Point(1048, 48);
             CcButtonContractExpirationNoticeDelete.Name = "CcButtonContractExpirationNoticeDelete";
             CcButtonContractExpirationNoticeDelete.SetTextDirectionVertical = "";
             CcButtonContractExpirationNoticeDelete.Size = new Size(68, 22);
@@ -907,12 +907,12 @@
             // CcButtonContractExpirationNoticePicture1
             // 
             CcButtonContractExpirationNoticePicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationNoticePicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationNoticePicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationNoticePicture1.Name = "CcButtonContractExpirationNoticePicture1";
             CcButtonContractExpirationNoticePicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationNoticePicture1.Size = new Size(84, 22);
             CcButtonContractExpirationNoticePicture1.TabIndex = 59;
-            CcButtonContractExpirationNoticePicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationNoticePicture1.Text = "書類確認";
             CcButtonContractExpirationNoticePicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationNoticePicture1.Click += ButtonEx_Click;
             // 
@@ -1033,7 +1033,7 @@
             // CcButtonContractExpirationLossWrittenPledgeDelete
             // 
             CcButtonContractExpirationLossWrittenPledgeDelete.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLossWrittenPledgeDelete.Location = new Point(1140, 48);
+            CcButtonContractExpirationLossWrittenPledgeDelete.Location = new Point(1048, 48);
             CcButtonContractExpirationLossWrittenPledgeDelete.Name = "CcButtonContractExpirationLossWrittenPledgeDelete";
             CcButtonContractExpirationLossWrittenPledgeDelete.SetTextDirectionVertical = "";
             CcButtonContractExpirationLossWrittenPledgeDelete.Size = new Size(68, 22);
@@ -1046,12 +1046,12 @@
             // CcButtonContractExpirationLossWrittenPledgePicture1
             // 
             CcButtonContractExpirationLossWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLossWrittenPledgePicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationLossWrittenPledgePicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationLossWrittenPledgePicture1.Name = "CcButtonContractExpirationLossWrittenPledgePicture1";
             CcButtonContractExpirationLossWrittenPledgePicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationLossWrittenPledgePicture1.Size = new Size(84, 22);
             CcButtonContractExpirationLossWrittenPledgePicture1.TabIndex = 57;
-            CcButtonContractExpirationLossWrittenPledgePicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationLossWrittenPledgePicture1.Text = "書類確認";
             CcButtonContractExpirationLossWrittenPledgePicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationLossWrittenPledgePicture1.Click += ButtonEx_Click;
             // 
@@ -1172,7 +1172,7 @@
             // CcButtonContractExpirationWrittenPledgeDelete
             // 
             CcButtonContractExpirationWrittenPledgeDelete.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationWrittenPledgeDelete.Location = new Point(1140, 48);
+            CcButtonContractExpirationWrittenPledgeDelete.Location = new Point(1048, 48);
             CcButtonContractExpirationWrittenPledgeDelete.Name = "CcButtonContractExpirationWrittenPledgeDelete";
             CcButtonContractExpirationWrittenPledgeDelete.SetTextDirectionVertical = "";
             CcButtonContractExpirationWrittenPledgeDelete.Size = new Size(68, 22);
@@ -1185,12 +1185,12 @@
             // CcButtonContractExpirationWrittenPledgePicture1
             // 
             CcButtonContractExpirationWrittenPledgePicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationWrittenPledgePicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationWrittenPledgePicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationWrittenPledgePicture1.Name = "CcButtonContractExpirationWrittenPledgePicture1";
             CcButtonContractExpirationWrittenPledgePicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationWrittenPledgePicture1.Size = new Size(84, 22);
             CcButtonContractExpirationWrittenPledgePicture1.TabIndex = 55;
-            CcButtonContractExpirationWrittenPledgePicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationWrittenPledgePicture1.Text = "書類確認";
             CcButtonContractExpirationWrittenPledgePicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationWrittenPledgePicture1.Click += ButtonEx_Click;
             // 
@@ -1317,7 +1317,7 @@
             // CcButtonContractExpirationShortJobDelete2
             // 
             CcButtonContractExpirationShortJobDelete2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationShortJobDelete2.Location = new Point(1140, 76);
+            CcButtonContractExpirationShortJobDelete2.Location = new Point(1048, 76);
             CcButtonContractExpirationShortJobDelete2.Name = "CcButtonContractExpirationShortJobDelete2";
             CcButtonContractExpirationShortJobDelete2.SetTextDirectionVertical = "";
             CcButtonContractExpirationShortJobDelete2.Size = new Size(68, 22);
@@ -1330,19 +1330,19 @@
             // CcButtonContractExpirationShortJobPicture2
             // 
             CcButtonContractExpirationShortJobPicture2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationShortJobPicture2.Location = new Point(1048, 76);
+            CcButtonContractExpirationShortJobPicture2.Location = new Point(1120, 76);
             CcButtonContractExpirationShortJobPicture2.Name = "CcButtonContractExpirationShortJobPicture2";
             CcButtonContractExpirationShortJobPicture2.SetTextDirectionVertical = "";
             CcButtonContractExpirationShortJobPicture2.Size = new Size(84, 22);
             CcButtonContractExpirationShortJobPicture2.TabIndex = 54;
-            CcButtonContractExpirationShortJobPicture2.Text = "契約・誓約書";
+            CcButtonContractExpirationShortJobPicture2.Text = "書類確認";
             CcButtonContractExpirationShortJobPicture2.UseVisualStyleBackColor = true;
             CcButtonContractExpirationShortJobPicture2.Click += ButtonEx_Click;
             // 
             // CcButtonContractExpirationShortJobDelete1
             // 
             CcButtonContractExpirationShortJobDelete1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationShortJobDelete1.Location = new Point(1140, 48);
+            CcButtonContractExpirationShortJobDelete1.Location = new Point(1048, 48);
             CcButtonContractExpirationShortJobDelete1.Name = "CcButtonContractExpirationShortJobDelete1";
             CcButtonContractExpirationShortJobDelete1.SetTextDirectionVertical = "";
             CcButtonContractExpirationShortJobDelete1.Size = new Size(68, 22);
@@ -1355,12 +1355,12 @@
             // CcButtonContractExpirationShortJobPicture1
             // 
             CcButtonContractExpirationShortJobPicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationShortJobPicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationShortJobPicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationShortJobPicture1.Name = "CcButtonContractExpirationShortJobPicture1";
             CcButtonContractExpirationShortJobPicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationShortJobPicture1.Size = new Size(84, 22);
             CcButtonContractExpirationShortJobPicture1.TabIndex = 53;
-            CcButtonContractExpirationShortJobPicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationShortJobPicture1.Text = "書類確認";
             CcButtonContractExpirationShortJobPicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationShortJobPicture1.Click += ButtonEx_Click;
             // 
@@ -1530,7 +1530,7 @@
             // CcButtonContractExpirationLongJobDelete2
             // 
             CcButtonContractExpirationLongJobDelete2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLongJobDelete2.Location = new Point(1140, 76);
+            CcButtonContractExpirationLongJobDelete2.Location = new Point(1048, 76);
             CcButtonContractExpirationLongJobDelete2.Name = "CcButtonContractExpirationLongJobDelete2";
             CcButtonContractExpirationLongJobDelete2.SetTextDirectionVertical = "";
             CcButtonContractExpirationLongJobDelete2.Size = new Size(68, 22);
@@ -1543,7 +1543,7 @@
             // CcButtonContractExpirationLongJobDelete1
             // 
             CcButtonContractExpirationLongJobDelete1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLongJobDelete1.Location = new Point(1140, 48);
+            CcButtonContractExpirationLongJobDelete1.Location = new Point(1048, 48);
             CcButtonContractExpirationLongJobDelete1.Name = "CcButtonContractExpirationLongJobDelete1";
             CcButtonContractExpirationLongJobDelete1.SetTextDirectionVertical = "";
             CcButtonContractExpirationLongJobDelete1.Size = new Size(68, 22);
@@ -1556,24 +1556,24 @@
             // CcButtonContractExpirationLongJobPicture2
             // 
             CcButtonContractExpirationLongJobPicture2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLongJobPicture2.Location = new Point(1048, 76);
+            CcButtonContractExpirationLongJobPicture2.Location = new Point(1120, 76);
             CcButtonContractExpirationLongJobPicture2.Name = "CcButtonContractExpirationLongJobPicture2";
             CcButtonContractExpirationLongJobPicture2.SetTextDirectionVertical = "";
             CcButtonContractExpirationLongJobPicture2.Size = new Size(84, 22);
             CcButtonContractExpirationLongJobPicture2.TabIndex = 52;
-            CcButtonContractExpirationLongJobPicture2.Text = "契約・誓約書";
+            CcButtonContractExpirationLongJobPicture2.Text = "書類確認";
             CcButtonContractExpirationLongJobPicture2.UseVisualStyleBackColor = true;
             CcButtonContractExpirationLongJobPicture2.Click += ButtonEx_Click;
             // 
             // CcButtonContractExpirationLongJobPicture1
             // 
             CcButtonContractExpirationLongJobPicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationLongJobPicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationLongJobPicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationLongJobPicture1.Name = "CcButtonContractExpirationLongJobPicture1";
             CcButtonContractExpirationLongJobPicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationLongJobPicture1.Size = new Size(84, 22);
             CcButtonContractExpirationLongJobPicture1.TabIndex = 51;
-            CcButtonContractExpirationLongJobPicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationLongJobPicture1.Text = "書類確認";
             CcButtonContractExpirationLongJobPicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationLongJobPicture1.Click += ButtonEx_Click;
             // 
@@ -1743,7 +1743,7 @@
             // CcButtonContractExpirationPartTimeJobDelete2
             // 
             CcButtonContractExpirationPartTimeJobDelete2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationPartTimeJobDelete2.Location = new Point(1140, 76);
+            CcButtonContractExpirationPartTimeJobDelete2.Location = new Point(1048, 76);
             CcButtonContractExpirationPartTimeJobDelete2.Name = "CcButtonContractExpirationPartTimeJobDelete2";
             CcButtonContractExpirationPartTimeJobDelete2.SetTextDirectionVertical = "";
             CcButtonContractExpirationPartTimeJobDelete2.Size = new Size(68, 22);
@@ -1756,7 +1756,7 @@
             // CcButtonContractExpirationPartTimeJobDelete1
             // 
             CcButtonContractExpirationPartTimeJobDelete1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationPartTimeJobDelete1.Location = new Point(1140, 48);
+            CcButtonContractExpirationPartTimeJobDelete1.Location = new Point(1048, 48);
             CcButtonContractExpirationPartTimeJobDelete1.Name = "CcButtonContractExpirationPartTimeJobDelete1";
             CcButtonContractExpirationPartTimeJobDelete1.SetTextDirectionVertical = "";
             CcButtonContractExpirationPartTimeJobDelete1.Size = new Size(68, 22);
@@ -1769,24 +1769,24 @@
             // CcButtonContractExpirationPartTimeJobPicture2
             // 
             CcButtonContractExpirationPartTimeJobPicture2.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationPartTimeJobPicture2.Location = new Point(1048, 76);
+            CcButtonContractExpirationPartTimeJobPicture2.Location = new Point(1120, 76);
             CcButtonContractExpirationPartTimeJobPicture2.Name = "CcButtonContractExpirationPartTimeJobPicture2";
             CcButtonContractExpirationPartTimeJobPicture2.SetTextDirectionVertical = "";
             CcButtonContractExpirationPartTimeJobPicture2.Size = new Size(84, 22);
             CcButtonContractExpirationPartTimeJobPicture2.TabIndex = 50;
-            CcButtonContractExpirationPartTimeJobPicture2.Text = "契約・誓約書";
+            CcButtonContractExpirationPartTimeJobPicture2.Text = "書類確認";
             CcButtonContractExpirationPartTimeJobPicture2.UseVisualStyleBackColor = true;
             CcButtonContractExpirationPartTimeJobPicture2.Click += ButtonEx_Click;
             // 
             // CcButtonContractExpirationPartTimeJobPicture1
             // 
             CcButtonContractExpirationPartTimeJobPicture1.ForeColor = SystemColors.ControlText;
-            CcButtonContractExpirationPartTimeJobPicture1.Location = new Point(1048, 48);
+            CcButtonContractExpirationPartTimeJobPicture1.Location = new Point(1120, 48);
             CcButtonContractExpirationPartTimeJobPicture1.Name = "CcButtonContractExpirationPartTimeJobPicture1";
             CcButtonContractExpirationPartTimeJobPicture1.SetTextDirectionVertical = "";
             CcButtonContractExpirationPartTimeJobPicture1.Size = new Size(84, 22);
             CcButtonContractExpirationPartTimeJobPicture1.TabIndex = 49;
-            CcButtonContractExpirationPartTimeJobPicture1.Text = "契約・誓約書";
+            CcButtonContractExpirationPartTimeJobPicture1.Text = "書類確認";
             CcButtonContractExpirationPartTimeJobPicture1.UseVisualStyleBackColor = true;
             CcButtonContractExpirationPartTimeJobPicture1.Click += ButtonEx_Click;
             // 

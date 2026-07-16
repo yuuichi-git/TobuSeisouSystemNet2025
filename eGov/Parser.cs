@@ -14,7 +14,7 @@ namespace EGov {
     public sealed class LawParser : IParser<XDocument, LawDataResponse> {
         public LawDataResponse Parse(XDocument doc) {
             var root = doc.Root;
-            if (root == null)
+            if(root == null)
                 return new LawDataResponse();
 
             var result = new LawDataResponse {
@@ -31,14 +31,14 @@ namespace EGov {
     public sealed class AttachedFilesParser : IParser<XElement?, AttachedFilesInfo> {
         public AttachedFilesInfo Parse(XElement? node) {
             var info = new AttachedFilesInfo();
-            if (node == null)
+            if(node == null)
                 return info;
 
             info.ImageData = ElementNormalizer.Get(node, "image_data");
 
             var attachedFilesNode = node.Element("attached_files");
-            if (attachedFilesNode != null) {
-                foreach (var af in attachedFilesNode.Elements("attached_file")) {
+            if(attachedFilesNode != null) {
+                foreach(var af in attachedFilesNode.Elements("attached_file")) {
                     var file = new AttachedFile {
                         LawRevisionId = ElementNormalizer.Get(af, "law_revision_id"),
                         Src = ElementNormalizer.Get(af, "src"),
@@ -55,7 +55,7 @@ namespace EGov {
     public sealed class LawInfoParser : IParser<XElement?, LawInfo> {
         public LawInfo Parse(XElement? node) {
             var info = new LawInfo();
-            if (node == null)
+            if(node == null)
                 return info;
 
             info.LawType = ElementNormalizer.Get(node, "law_type");
@@ -74,7 +74,7 @@ namespace EGov {
     public sealed class RevisionInfoParser : IParser<XElement?, RevisionInfo> {
         public RevisionInfo Parse(XElement? node) {
             var info = new RevisionInfo();
-            if (node == null)
+            if(node == null)
                 return info;
 
             info.LawRevisionId = ElementNormalizer.Get(node, "law_revision_id");
@@ -106,11 +106,11 @@ namespace EGov {
     public sealed class LawBodyParser : IParser<XElement?, LawFullText> {
         public LawFullText Parse(XElement? node) {
             var full = new LawFullText();
-            if (node == null)
+            if(node == null)
                 return full;
 
             var lawNode = node.Element("Law");
-            if (lawNode == null)
+            if(lawNode == null)
                 return full;
 
             var law = new Law {
@@ -125,11 +125,11 @@ namespace EGov {
             };
 
             var body = lawNode.Element("LawBody");
-            if (body != null) {
+            if(body != null) {
                 var lawBody = new LawBody();
 
                 var titleNode = body.Element("LawTitle");
-                if (titleNode != null) {
+                if(titleNode != null) {
                     lawBody.LawTitle = new LawTitle {
                         Kana = AttributeNormalizer.Get(titleNode, "Kana"),
                         AbbrevKana = AttributeNormalizer.Get(titleNode, "AbbrevKana"),
@@ -139,11 +139,11 @@ namespace EGov {
                 }
 
                 var mainNode = body.Element("MainProvision");
-                if (mainNode != null)
+                if(mainNode != null)
                     lawBody.MainProvision = new MainProvisionParser().Parse(mainNode);
 
                 var supplNode = body.Element("SupplProvision");
-                if (supplNode != null)
+                if(supplNode != null)
                     lawBody.SupplProvision = new SupplProvisionParser().Parse(supplNode);
 
                 law.LawBody = lawBody;
@@ -161,7 +161,7 @@ namespace EGov {
             // -----------------------------
             // 1. Chapter（章）
             // -----------------------------
-            foreach (var chapterNode in node.Elements("Chapter")) {
+            foreach(var chapterNode in node.Elements("Chapter")) {
                 var chapter = new Chapter {
                     Num = AttributeNormalizer.Get(chapterNode, "Num"),
                     ChapterTitle = ElementNormalizer.Get(chapterNode, "ChapterTitle")
@@ -170,7 +170,7 @@ namespace EGov {
                 // -----------------------------
                 // 1-1. Section（節）
                 // -----------------------------
-                foreach (var sectionNode in chapterNode.Elements("Section")) {
+                foreach(var sectionNode in chapterNode.Elements("Section")) {
                     var section = new Section {
                         Num = AttributeNormalizer.Get(sectionNode, "Num"),
                         SectionTitle = ElementNormalizer.Get(sectionNode, "SectionTitle")
@@ -179,14 +179,14 @@ namespace EGov {
                     // -----------------------------
                     // 1-1-1. Subsection（款）★ 新規追加
                     // -----------------------------
-                    foreach (var subNode in sectionNode.Elements("Subsection")) {
+                    foreach(var subNode in sectionNode.Elements("Subsection")) {
                         var subsection = new Subsection {
                             Num = AttributeNormalizer.Get(subNode, "Num"),
                             SubsectionTitle = ElementNormalizer.Get(subNode, "SubsectionTitle")
                         };
 
                         // 款の下の条
-                        foreach (var artNode in subNode.Elements("Article")) {
+                        foreach(var artNode in subNode.Elements("Article")) {
                             var article = new ArticleParser().Parse(artNode);
                             subsection.Articles.Add(article);
                         }
@@ -197,7 +197,7 @@ namespace EGov {
                     // -----------------------------
                     // 1-1-2. 節直下の Article（条）
                     // -----------------------------
-                    foreach (var artNode in sectionNode.Elements("Article")) {
+                    foreach(var artNode in sectionNode.Elements("Article")) {
                         var article = new ArticleParser().Parse(artNode);
                         section.Articles.Add(article);
                     }
@@ -208,13 +208,13 @@ namespace EGov {
                 // -----------------------------
                 // 1-2. Chapter 直下の Subsection（款）★ 任意対応
                 // -----------------------------
-                foreach (var subNode in chapterNode.Elements("Subsection")) {
+                foreach(var subNode in chapterNode.Elements("Subsection")) {
                     var subsection = new Subsection {
                         Num = AttributeNormalizer.Get(subNode, "Num"),
                         SubsectionTitle = ElementNormalizer.Get(subNode, "SubsectionTitle")
                     };
 
-                    foreach (var artNode in subNode.Elements("Article")) {
+                    foreach(var artNode in subNode.Elements("Article")) {
                         var article = new ArticleParser().Parse(artNode);
                         subsection.Articles.Add(article);
                     }
@@ -225,7 +225,7 @@ namespace EGov {
                 // -----------------------------
                 // 1-3. Chapter 直下の Article（条）
                 // -----------------------------
-                foreach (var artNode in chapterNode.Elements("Article")) {
+                foreach(var artNode in chapterNode.Elements("Article")) {
                     var article = new ArticleParser().Parse(artNode);
                     chapter.Articles.Add(article);
                 }
@@ -236,7 +236,7 @@ namespace EGov {
             // -----------------------------
             // 2. MainProvision 直下の Article（章なし法令）
             // -----------------------------
-            foreach (var artNode in node.Elements("Article")) {
+            foreach(var artNode in node.Elements("Article")) {
                 var article = new ArticleParser().Parse(artNode);
                 mp.Articles.Add(article);
             }
@@ -251,7 +251,7 @@ namespace EGov {
                 SupplProvisionLabel = ElementNormalizer.Get(node, "SupplProvisionLabel")
             };
 
-            foreach (var aNode in node.Elements("Article")) {
+            foreach(var aNode in node.Elements("Article")) {
                 var article = new ArticleParser().Parse(aNode);
                 sp.Articles.Add(article);
             }
@@ -274,7 +274,7 @@ namespace EGov {
             article.Num = NormalizeArticleNum(article.Num, article.ArticleTitle);
 
             // ★ Paragraph パース
-            foreach (var pNode in node.Elements("Paragraph")) {
+            foreach(var pNode in node.Elements("Paragraph")) {
                 var para = new ParagraphParser().Parse(pNode);
                 article.Paragraphs.Add(para);
             }
@@ -287,27 +287,27 @@ namespace EGov {
         // ============================================================
         private string NormalizeArticleNum(string? rawNum, string? articleTitle) {
             // 1. XML の Num 属性がある場合（最優先）
-            if (!string.IsNullOrWhiteSpace(rawNum)) {
+            if(!string.IsNullOrWhiteSpace(rawNum)) {
                 // 50_2 → 50-2
-                if (rawNum.Contains("_"))
+                if(rawNum.Contains("_"))
                     return rawNum.Replace("_", "-");
 
                 return rawNum;
             }
 
             // 2. Num 属性が無い場合 → ArticleTitle から抽出
-            if (string.IsNullOrWhiteSpace(articleTitle))
+            if(string.IsNullOrWhiteSpace(articleTitle))
                 return "";
 
             // 例：第五十条の二
             var m = Regex.Match(articleTitle, @"第(.+?)条(?:の(.+))?");
-            if (!m.Success)
+            if(!m.Success)
                 return "";
 
             var left = m.Groups[1].Value;   // 五十
             var right = m.Groups[2].Value;  // 二（存在しない場合もある）
 
-            if (string.IsNullOrWhiteSpace(right)) {
+            if(string.IsNullOrWhiteSpace(right)) {
                 // 第五十条 → 50
                 return NumberConverter.KanjiOrNumberToInt(left).ToString();
             } else {
@@ -326,12 +326,12 @@ namespace EGov {
 
             chapter.Num = NormalizeChapterNum(chapter.Num, chapter.ChapterTitle);
 
-            foreach (var sNode in node.Elements("Section")) {
+            foreach(var sNode in node.Elements("Section")) {
                 var section = new SectionParser().Parse(sNode);
                 chapter.Sections.Add(section);
             }
 
-            foreach (var aNode in node.Elements("Article")) {
+            foreach(var aNode in node.Elements("Article")) {
                 var article = new ArticleParser().Parse(aNode);
                 chapter.Articles.Add(article);
             }
@@ -340,15 +340,15 @@ namespace EGov {
         }
 
         private string NormalizeChapterNum(string? rawNum, string? title) {
-            if (!string.IsNullOrWhiteSpace(rawNum))
+            if(!string.IsNullOrWhiteSpace(rawNum))
                 return rawNum;
 
-            if (string.IsNullOrWhiteSpace(title))
+            if(string.IsNullOrWhiteSpace(title))
                 return "";
 
             // 例：第三章
             var m = Regex.Match(title, @"第(.+?)章");
-            if (!m.Success)
+            if(!m.Success)
                 return "";
 
             return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
@@ -364,12 +364,12 @@ namespace EGov {
 
             section.Num = NormalizeSectionNum(section.Num, section.SectionTitle);
 
-            foreach (var ssNode in node.Elements("Subsection")) {
+            foreach(var ssNode in node.Elements("Subsection")) {
                 var subsection = new SubsectionParser().Parse(ssNode);
                 section.Subsections.Add(subsection);
             }
 
-            foreach (var aNode in node.Elements("Article")) {
+            foreach(var aNode in node.Elements("Article")) {
                 var article = new ArticleParser().Parse(aNode);
                 section.Articles.Add(article);
             }
@@ -378,15 +378,15 @@ namespace EGov {
         }
 
         private string NormalizeSectionNum(string? rawNum, string? title) {
-            if (!string.IsNullOrWhiteSpace(rawNum))
+            if(!string.IsNullOrWhiteSpace(rawNum))
                 return rawNum;
 
-            if (string.IsNullOrWhiteSpace(title))
+            if(string.IsNullOrWhiteSpace(title))
                 return "";
 
             // 例：第一節
             var m = Regex.Match(title, @"第(.+?)節");
-            if (!m.Success)
+            if(!m.Success)
                 return "";
 
             return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
@@ -402,7 +402,7 @@ namespace EGov {
 
             subsection.Num = NormalizeSubsectionNum(subsection.Num, subsection.SubsectionTitle);
 
-            foreach (var aNode in node.Elements("Article")) {
+            foreach(var aNode in node.Elements("Article")) {
                 var article = new ArticleParser().Parse(aNode);
                 subsection.Articles.Add(article);
             }
@@ -411,15 +411,15 @@ namespace EGov {
         }
 
         private string NormalizeSubsectionNum(string? rawNum, string? title) {
-            if (!string.IsNullOrWhiteSpace(rawNum))
+            if(!string.IsNullOrWhiteSpace(rawNum))
                 return rawNum;
 
-            if (string.IsNullOrWhiteSpace(title))
+            if(string.IsNullOrWhiteSpace(title))
                 return "";
 
             // 例：第一款
             var m = Regex.Match(title, @"第(.+?)款");
-            if (!m.Success)
+            if(!m.Success)
                 return "";
 
             return NumberConverter.KanjiOrNumberToInt(m.Groups[1].Value).ToString();
@@ -435,12 +435,12 @@ namespace EGov {
 
             para.Num = NormalizeParagraphNum(para.Num, para.ParagraphNum);
 
-            foreach (var sNode in node.Elements("ParagraphSentence")) {
+            foreach(var sNode in node.Elements("ParagraphSentence")) {
                 var sentence = new ParagraphSentenceParser().Parse(sNode);
                 para.ParagraphSentence = sentence;
             }
 
-            foreach (var iNode in node.Elements("Item")) {
+            foreach(var iNode in node.Elements("Item")) {
                 var item = new ItemParser().Parse(iNode);
                 para.Items.Add(item);
             }
@@ -449,10 +449,10 @@ namespace EGov {
         }
 
         private string NormalizeParagraphNum(string? rawNum, string? title) {
-            if (!string.IsNullOrWhiteSpace(rawNum))
+            if(!string.IsNullOrWhiteSpace(rawNum))
                 return rawNum;
 
-            if (string.IsNullOrWhiteSpace(title))
+            if(string.IsNullOrWhiteSpace(title))
                 return "";
 
             // 例：２
@@ -465,14 +465,14 @@ namespace EGov {
             var ps = new ParagraphSentence();
 
             // 1. 直接 Sentence がある場合
-            foreach (var sNode in node.Elements("Sentence")) {
+            foreach(var sNode in node.Elements("Sentence")) {
                 var sent = new SentenceParser().Parse(sNode);
                 ps.Sentences.Add(sent);
             }
 
             // 2. Column の中に Sentence がある場合
-            foreach (var col in node.Elements("Column")) {
-                foreach (var sNode in col.Elements("Sentence")) {
+            foreach(var col in node.Elements("Column")) {
+                foreach(var sNode in col.Elements("Sentence")) {
                     var sent = new SentenceParser().Parse(sNode);
                     ps.Sentences.Add(sent);
                 }
@@ -494,18 +494,18 @@ namespace EGov {
 
             // ★ ItemSentence パース（Column 対応）
             var isNode = node.Element("ItemSentence");
-            if (isNode != null) {
+            if(isNode != null) {
                 var isent = new ItemSentence();
 
                 // 1. 直接 Sentence
-                foreach (var sNode in isNode.Elements("Sentence")) {
+                foreach(var sNode in isNode.Elements("Sentence")) {
                     var sent = new SentenceParser().Parse(sNode);
                     isent.Sentences.Add(sent);
                 }
 
                 // 2. Column の中の Sentence
-                foreach (var col in isNode.Elements("Column")) {
-                    foreach (var sNode in col.Elements("Sentence")) {
+                foreach(var col in isNode.Elements("Column")) {
+                    foreach(var sNode in col.Elements("Sentence")) {
                         var sent = new SentenceParser().Parse(sNode);
                         isent.Sentences.Add(sent);
                     }
@@ -522,11 +522,11 @@ namespace EGov {
         // ============================================================
         private string NormalizeItemNum(string? rawNum, string? title) {
             // 1. XML の Num 属性がある場合（最優先）
-            if (!string.IsNullOrWhiteSpace(rawNum))
+            if(!string.IsNullOrWhiteSpace(rawNum))
                 return rawNum;
 
             // 2. Num が無い場合 → ItemTitle から抽出
-            if (string.IsNullOrWhiteSpace(title))
+            if(string.IsNullOrWhiteSpace(title))
                 return "";
 
             // 例：一 → 1

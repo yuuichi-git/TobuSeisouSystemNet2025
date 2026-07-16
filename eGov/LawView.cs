@@ -32,6 +32,14 @@ namespace EGov {
         // ============================================================
         // ★ コンストラクタ
         // ============================================================
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lawTitle">法律タイトル</param>
+        /// <param name="lawNum">法律番号</param>
+        /// <param name="lawArticle">条</param>
+        /// <param name="lawParagraph">項</param>
+        /// <param name="lawItem">号</param>
         public LawView(string lawTitle, string lawNum, string? lawArticle = null, string? lawParagraph = null, string? lawItem = null) {
             _lawTitle = lawTitle;
             _lawNum = LawNumberConverter.ConvertLawNotation(lawNum);
@@ -43,6 +51,15 @@ namespace EGov {
              * InitializeControl
              */
             InitializeComponent();
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.CcMenuStrip1.ChangeEnable(listString);
 
             this.CcTextBoxLawId.Text = "";
             this.CcTextBoxLawNum.Text = "";
@@ -53,6 +70,10 @@ namespace EGov {
             this.CcTextBoxLawItem.Text = "";
 
             this.CcTreeView1.AfterSelect += CcTreeView1_AfterSelect;
+            /*
+             * Event
+             */
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         // ============================================================
@@ -60,7 +81,7 @@ namespace EGov {
         // ============================================================
         public async Task InitializeAsync() {
             XDocument? xDocument = await LawApiClient.GetLawDataXmlByLawNumAsync(_lawNum);
-            if (xDocument == null || xDocument.Root == null) {
+            if(xDocument == null || xDocument.Root == null) {
                 Debug.WriteLine("GetLawDataAsync: xDocument or Root is null");
                 return;
             }
@@ -101,10 +122,19 @@ namespace EGov {
             mainNode.Tag = body.MainProvision;
             rootNode.Nodes.Add(mainNode);
 
-            AddMainProvision(mainNode, body.MainProvision);
+            //AddMainProvision(mainNode, body.MainProvision);
+            // ============================================================
+            // ★ 編が存在する場合は「編 → 章 → 節 → 款 → 条」
+            //    編がない場合は従来通り「章 → 節 → 款 → 条」
+            // ============================================================
+            if(body.MainProvision.Parts != null && body.MainProvision.Parts.Count > 0) {
+                AddParts(mainNode, body.MainProvision.Parts);
+            } else {
+                AddMainProvision(mainNode, body.MainProvision);
+            }
 
             // 附則
-            if (body.SupplProvision != null) {
+            if(body.SupplProvision != null) {
                 string supplLabel = string.IsNullOrEmpty(body.SupplProvision.SupplProvisionLabel)
                     ? "附則"
                     : body.SupplProvision.SupplProvisionLabel;
@@ -121,25 +151,95 @@ namespace EGov {
         }
 
         /// <summary>
+        /// 編（Part）
+        ///
+        /// TreeView に Part（編）階層を追加する。
+        /// 対応階層は以下のとおり：
+        ///
+        /// Part（編）
+        /// ├─ Chapter（章）
+        /// │    ├─ Section（節）
+        /// │    │    ├─ Subsection（款）
+        /// │    │    └─ Article（条）
+        /// │    └─ Article（条）   // 章直下の条
+        /// └─ Article（条）        // 編直下の条
+        ///
+        /// AddParts は、編 → 章 → 節 → 款 → 条 の順にノードを生成し、
+        /// 各階層に存在する Article を追加する。
+        /// </summary>
+        /// <param name="parent">TreeView 上の親ノード（本則の Part をぶら下げる位置）</param>
+        /// <param name="parts">Part のコレクション</param>
+        private void AddParts(TreeNode parent, List<Part> parts) {
+            foreach(Part part in parts) {
+                // 編タイトル
+                string partTitle = $"{part.PartTitle}";
+                TreeNode partNode = CreateNode(partTitle, part);
+                parent.Nodes.Add(partNode);
+
+                // -----------------------------
+                // 編 → 章
+                // -----------------------------
+                foreach(Chapter chapter in part.Chapters) {
+                    string chapterTitle = $"{chapter.ChapterTitle}";
+                    TreeNode chapterNode = CreateNode(chapterTitle, chapter);
+                    partNode.Nodes.Add(chapterNode);
+
+                    // 章 → 節
+                    foreach(Section section in chapter.Sections) {
+                        string sectionTitle = $"{section.SectionTitle}";
+                        TreeNode sectionNode = CreateNode(sectionTitle, section);
+                        chapterNode.Nodes.Add(sectionNode);
+
+                        // 節 → 款
+                        foreach(Subsection subsection in section.Subsections) {
+                            string subsectionTitle = $"{subsection.SubsectionTitle}";
+                            TreeNode subsectionNode = CreateNode(subsectionTitle, subsection);
+                            sectionNode.Nodes.Add(subsectionNode);
+
+                            // 款 → 条
+                            AddArticles(subsectionNode, subsection.Articles);
+                        }
+
+                        // 節直下の条
+                        AddArticles(sectionNode, section.Articles);
+                    }
+
+                    // 章直下の条
+                    AddArticles(chapterNode, chapter.Articles);
+                }
+
+                // 編直下の条
+                AddArticles(partNode, part.Articles);
+            }
+        }
+
+        /// <summary>
         /// 本則
         /// AddMainProvision（章・節・款・条を追加）
         /// </summary>
         /// <param name="parent"></param>
         /// <param name="main"></param>
         private void AddMainProvision(TreeNode parent, MainProvision main) {
-            foreach (var chapter in main.Chapters) {
-                var chapterTitle = $"{chapter.ChapterTitle}";
-                var chapterNode = CreateNode(chapterTitle, chapter);
+            // 1. Part（編）がある場合は優先
+            if(main.Parts.Count > 0) {
+                AddParts(parent, main.Parts);
+                return;
+            }
+
+            // 2. Part が無い法律は従来通り Chapter を追加
+            foreach(Chapter chapter in main.Chapters) {
+                string chapterTitle = $"{chapter.ChapterTitle}";
+                TreeNode chapterNode = CreateNode(chapterTitle, chapter);
                 parent.Nodes.Add(chapterNode);
 
-                foreach (var section in chapter.Sections) {
-                    var sectionTitle = $"{section.SectionTitle}";
-                    var sectionNode = CreateNode(sectionTitle, section);
+                foreach(Section section in chapter.Sections) {
+                    string sectionTitle = $"{section.SectionTitle}";
+                    TreeNode sectionNode = CreateNode(sectionTitle, section);
                     chapterNode.Nodes.Add(sectionNode);
 
-                    foreach (var subsection in section.Subsections) {
-                        var subsectionTitle = $"{subsection.SubsectionTitle}";
-                        var subsectionNode = CreateNode(subsectionTitle, subsection);
+                    foreach(Subsection subsection in section.Subsections) {
+                        string subsectionTitle = $"{subsection.SubsectionTitle}";
+                        TreeNode subsectionNode = CreateNode(subsectionTitle, subsection);
                         sectionNode.Nodes.Add(subsectionNode);
 
                         AddArticles(subsectionNode, subsection.Articles);
@@ -158,7 +258,7 @@ namespace EGov {
         // ★ AddArticles（条 → 項 → 号）
         // ============================================================
         private void AddArticles(TreeNode parent, List<Article> articles) {
-            if (articles == null)
+            if(articles == null)
                 return;
 
             // ============================================================
@@ -183,7 +283,7 @@ namespace EGov {
             // ============================================================
             // 条（Article）の追加
             // ============================================================
-            foreach (var article in articles) {
+            foreach(var article in articles) {
                 // ★ 条タイトルの揺れ吸収 + Caption 表示
                 string baseTitle = string.IsNullOrEmpty(article.ArticleTitle)
                     ? $"{prefix}第{ToKanjiFlexible(article.Num)}条"
@@ -210,10 +310,10 @@ namespace EGov {
                 //
                 // 空 or 数字だけ → Num を漢数字化して「項」を付ける。
                 // ============================================================
-                foreach (var para in article.Paragraphs) {
+                foreach(var para in article.Paragraphs) {
                     string paraTitle;
 
-                    if (string.IsNullOrWhiteSpace(para.ParagraphNum) ||
+                    if(string.IsNullOrWhiteSpace(para.ParagraphNum) ||
                         Regex.IsMatch(para.ParagraphNum, @"^\d+$")) {
                         paraTitle = $"{ToKanjiFlexible(para.Num)}項";
                     } else {
@@ -227,13 +327,13 @@ namespace EGov {
                     // ============================================================
                     // ★ Sentence（本文）の追加
                     // ============================================================
-                    foreach (var s in para.ParagraphSentence.Sentences)
+                    foreach(var s in para.ParagraphSentence.Sentences)
                         paraNode.Nodes.Add(CreateNode(s.Text, s));
 
                     // ============================================================
                     // ★ 号（Item）の追加 — 本文と完全統一
                     // ============================================================
-                    foreach (var item in para.Items) {
+                    foreach(var item in para.Items) {
 
                         // ★ 右側と同じロジックで号タイトルを生成
                         string itemTitle = ToKanjiFlexible(item.Num, isItem: true);
@@ -242,7 +342,7 @@ namespace EGov {
                         itemNode.Name = NormalizeItemLoose(item.Num);            // ★追加
                         paraNode.Nodes.Add(itemNode);
 
-                        foreach (var s in item.ItemSentence.Sentences)
+                        foreach(var s in item.ItemSentence.Sentences)
                             itemNode.Nodes.Add(CreateNode(s.Text, s));
                     }
                 }
@@ -263,38 +363,64 @@ namespace EGov {
             var node = e.Node;
 
             // ============================================================
-            // ★ 構造ノード（章・節・款・条・項・号）は自動展開
+            // ★ 構造ノードの自動展開（編 → 章 → 節 → 款 → 条 → 項 → 号）
             //
-            // Text に「章」「節」「条」などが含まれるかどうかではなく、
-            // Tag の型（Chapter / Section / Article / Paragraph / Item）で判定する。
+            // e-Gov 法令 XML は法令ごとに階層構造が異なる：
             //
-            // これにより：
-            //   - 本文中の「条」「項」「号」で誤爆しない
-            //   - 構造とロジックが 1:1 で対応し、未来の自分が読んでも一瞬で理解できる
+            //   編（Part）
+            //     └ 章（Chapter）
+            //         └ 節（Section）
+            //             └ 款（Subsection）
+            //                 └ 条（Article）
+            //                     └ 項（Paragraph）
+            //                         └ 号（Item）
+            //
+            // そのため、TreeView の Text に「章」「節」「条」などが含まれるかどうかで
+            // 判定すると誤爆する（本文中の「第○条」など）。
+            //
+            // → Tag の型で厳密に判定することで、構造ノードだけを確実に自動展開できる。
             // ============================================================
-            if (node?.Tag is Chapter or Section or Subsection or Article or Paragraph or Item) {
+            if(node?.Tag is Part or Chapter or Section or Subsection or Article or Paragraph or Item) {
                 node.Expand();
             }
 
-            if (node?.Tag == null) {
+            // ============================================================
+            // ★ Tag が null の場合は本文なし
+            // ============================================================
+            if(node?.Tag == null) {
                 CcRichTextBox1.Text = "";
                 return;
             }
 
-            string text = node.Tag switch {
-                Chapter chapter => BuildChapterText(chapter),
-                Section section => BuildSectionText(section),
+            // ============================================================
+            // ★ 本文表示（編 → 章 → 節 → 款 → 条 → 項 → 号 → 文）
+            //
+            // Tag の型に応じて、対応する BuildXXXText を呼び出す。
+            // これにより TreeView と本文表示の階層構造が完全に一致する。
+            //
+            // ※ Sentence（文）は Text をそのまま表示する。
+            // ============================================================
+            string text = node.Tag switch{
+                Part part           => BuildPartText(part),
+                Chapter chapter     => BuildChapterText(chapter),
+                Section section     => BuildSectionText(section),
                 Subsection subsection => BuildSubsectionText(subsection),
-                Article article => BuildArticleText(article),
-                Paragraph para => BuildParagraphText(para),
-                Item item => BuildItemText(item),
-                Sentence sentence => sentence.Text,
-                _ => ""
+                Article article     => BuildArticleText(article),
+                Paragraph para      => BuildParagraphText(para),
+                Item item           => BuildItemText(item),
+                Sentence sentence   => sentence.Text,
+                _                   => ""
             };
 
+            // ============================================================
+            // ★ RichTextBox へ反映
+            // ============================================================
             CcRichTextBox1.Font = new Font("Meiryo", 9);
             CcRichTextBox1.Text = text;
 
+            // ============================================================
+            // ★ 見出し（編・章・節・款・条・項・号）の強調表示
+            // ============================================================
             ApplyFormatting();
         }
 
@@ -349,7 +475,7 @@ namespace EGov {
                 RegexOptions.Multiline
             );
 
-            foreach (Match m in matches) {
+            foreach(Match m in matches) {
                 // 対象範囲を選択
                 CcRichTextBox1.Select(m.Index, m.Length);
 
@@ -385,11 +511,11 @@ namespace EGov {
             sb.AppendLine(title);
 
             // 章内の節をすべて展開
-            foreach (var section in chapter.Sections)
+            foreach(var section in chapter.Sections)
                 sb.AppendLine(BuildSectionText(section));
 
             // 章直下に条がある場合（節なし構造）
-            foreach (var article in chapter.Articles)
+            foreach(var article in chapter.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
             return sb.ToString();
@@ -410,11 +536,11 @@ namespace EGov {
             sb.AppendLine(title);
 
             // 節内の款を展開
-            foreach (var subsection in section.Subsections)
+            foreach(var subsection in section.Subsections)
                 sb.AppendLine(BuildSubsectionText(subsection));
 
             // 節直下の条を展開
-            foreach (var article in section.Articles)
+            foreach(var article in section.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
             return sb.ToString();
@@ -435,7 +561,52 @@ namespace EGov {
             sb.AppendLine(title);
 
             // 款直下の条を展開
-            foreach (var article in subsection.Articles)
+            foreach(var article in subsection.Articles)
+                sb.AppendLine(BuildArticleText(article));
+
+            return sb.ToString();
+        }
+
+        // ============================================================
+        // ★ 編の本文表示
+        // ------------------------------------------------------------
+        // 「第○編 ○○」を出力し、編内の章・条を展開する。
+        // BuildChapterText / BuildSectionText / BuildSubsectionText / BuildArticleText
+        // と完全に統一された本文生成ロジック。
+        // ============================================================
+        private string BuildPartText(Part part) {
+            var sb = new StringBuilder();
+
+            // ============================================================
+            // ★ 編タイトルの出力
+            //
+            // PartTitle が空の場合：
+            //   Num → 漢数字化 → 「第○編」
+            //
+            // PartTitle が存在する場合：
+            //   そのまま表示（TreeView と本文の統一）
+            // ============================================================
+            string title = string.IsNullOrEmpty(part.PartTitle) ? $"第{ToKanjiFlexible(part.Num.ToString())}編" : part.PartTitle;
+
+            sb.AppendLine(title);
+
+            // ============================================================
+            // ★ 編 → 章
+            //
+            // BuildChapterText を呼び出すことで、
+            //   章 → 節 → 款 → 条 → 項 → 号 → 文
+            // の階層を自動的に展開する。
+            // ============================================================
+            foreach(var chapter in part.Chapters)
+                sb.AppendLine(BuildChapterText(chapter));
+
+            // ============================================================
+            // ★ 編直下の条
+            //
+            // 節や款が存在しない法律では、編直下に条が来る。
+            // BuildArticleText により、条 → 項 → 号 → 文 を展開。
+            // ============================================================
+            foreach(var article in part.Articles)
                 sb.AppendLine(BuildArticleText(article));
 
             return sb.ToString();
@@ -462,13 +633,13 @@ namespace EGov {
                 ? article.ArticleTitle
                 : $"第{ToKanjiFlexible(article.Num)}条";
 
-            if (!string.IsNullOrWhiteSpace(article.ArticleCaption))
+            if(!string.IsNullOrWhiteSpace(article.ArticleCaption))
                 title += $"{article.ArticleCaption}";
 
             sb.AppendLine(title);
 
             // 条内の項を展開
-            foreach (var para in article.Paragraphs)
+            foreach(var para in article.Paragraphs)
                 sb.AppendLine(BuildParagraphText(para));
 
             return sb.ToString();
@@ -495,7 +666,7 @@ namespace EGov {
             //   1) 空 or 数字だけ → Num を漢数字化して「項」を付ける
             //   2) それ以外（例：一項 / 第一項）→ そのまま使う
             // ============================================================
-            if (string.IsNullOrWhiteSpace(para.ParagraphNum) ||
+            if(string.IsNullOrWhiteSpace(para.ParagraphNum) ||
                 Regex.IsMatch(para.ParagraphNum, @"^\d+$")) {
                 // Num は揺れゼロ（1,2,3…）なので ToKanjiFlexible で漢数字化
                 title = $"{ToKanjiFlexible(para.Num)}項";
@@ -510,13 +681,13 @@ namespace EGov {
             // ============================================================
             // ★ Sentence（本文）を出力
             // ============================================================
-            foreach (var s in para.ParagraphSentence.Sentences)
+            foreach(var s in para.ParagraphSentence.Sentences)
                 sb.AppendLine(INDENT1 + s.Text);
 
             // ============================================================
             // ★ 号（Item）を出力
             // ============================================================
-            foreach (var item in para.Items)
+            foreach(var item in para.Items)
                 sb.AppendLine(BuildItemText(item));
 
             return sb.ToString();
@@ -534,68 +705,81 @@ namespace EGov {
 
             sb.AppendLine(INDENT2 + title);
 
-            foreach (var s in item.ItemSentence.Sentences)
+            foreach(var s in item.ItemSentence.Sentences)
                 sb.AppendLine(INDENT2 + s.Text);
 
             return sb.ToString();
         }
 
         // ============================================================
-        // ★ ジャンプ処理（条 → 項 → 号）
+        // ★ ジャンプ処理（編 → 章 → 節 → 款 → 条 → 項 → 号）
+        // ------------------------------------------------------------
+        // 労働安全衛生規則のように「編 → 章 → 節 → 款 → 条」の
+        // 深い階層構造を持つ法令でも確実にジャンプできるようにする。
         // ============================================================
         private void JumpToInitialPosition() {
-
             // ★ 条が指定されていない場合はジャンプしない
-            if (_lawArticle == null)
+            if(_lawArticle == null)
                 return;
 
-            // ★ 条へジャンプ
+            // ============================================================
+            // ★ 1. 条ノードを検索（Parts → Chapters → Sections → Subsections → Articles）
+            // ============================================================
             var articleNode = FindArticleNodeStrict(CcTreeView1.Nodes, _lawArticle);
-            if (articleNode == null)
+            if(articleNode == null)
                 return;
-            // ハイライト＋展開
+
             SelectAndHighlight(articleNode);
 
             // ★ 項が指定されていない場合 → 条だけハイライトして終了
-            if (_lawParagraph == null)
+            if(_lawParagraph == null)
                 return;
 
-            // ★ 項へジャンプ
+            // ============================================================
+            // ★ 2. 項ノードを検索
+            // ============================================================
             var paragraphNode = FindParagraphNodeStrict(articleNode, _lawParagraph);
-            if (paragraphNode == null)
+            if(paragraphNode == null)
                 return;
-            // ハイライト＋展開
+
             SelectAndHighlight(paragraphNode);
 
             // ★ 号が指定されていない場合 → 項だけハイライトして終了
-            if (_lawItem == null)
+            if(_lawItem == null)
                 return;
 
-            // ★ 号へジャンプ
+            // ============================================================
+            // ★ 3. 号ノードを検索
+            // ============================================================
             var itemNode = FindItemNodeStrict(paragraphNode, _lawItem);
-            if (itemNode == null)
+            if(itemNode == null)
                 return;
-            // ハイライト＋展開
+
             SelectAndHighlight(itemNode);
         }
 
+        // ============================================================
+        // ★ 条ノード検索（編 → 章 → 節 → 款 → 条）
+        // ------------------------------------------------------------
+        // NormalizeArticleLoose により揺れを完全吸収したキーで比較。
+        // ============================================================
         private TreeNode? FindArticleNodeStrict(TreeNodeCollection nodes, string target) {
             string normalizedTarget = NormalizeArticleLoose(target);
 
-            foreach (TreeNode node in nodes) {
-                // ★ 条ノード判定は Tag でやる
-                if (node.Tag is Article) {
-                    // ★ Text を正規化するのではなく、Name（＝正規化キー）と比較する
-                    if (node.Name == normalizedTarget)
+            foreach(TreeNode node in nodes) {
+                // ★ 条ノード判定は Tag の型で行う
+                if(node.Tag is Article) {
+                    if(node.Name == normalizedTarget)
                         return node;
                 }
 
-                // 項・号はスキップ（条の下だけ検索）
-                if (node.Tag is Paragraph || node.Tag is Item)
+                // ★ Paragraph / Item は条の下なので探索不要
+                if(node.Tag is Paragraph || node.Tag is Item)
                     continue;
 
+                // ★ 再帰的に探索（Part / Chapter / Section / Subsection）
                 var child = FindArticleNodeStrict(node.Nodes, normalizedTarget);
-                if (child != null)
+                if(child != null)
                     return child;
             }
 
@@ -606,13 +790,13 @@ namespace EGov {
          * 条の枝番パターン（例：50の2、50-2、50_2）に対応するための揺れ吸収ロジック
          */
         private string NormalizeArticleLoose(string text) {
-            if (string.IsNullOrWhiteSpace(text))
+            if(string.IsNullOrWhiteSpace(text))
                 return "";
 
             string s = text.Trim();
 
             // 「第」を除去
-            if (s.StartsWith("第"))
+            if(s.StartsWith("第"))
                 s = s.Substring(1);
 
             // 「条」を除去
@@ -622,21 +806,21 @@ namespace EGov {
             s = ToHalfWidthDigits(s);
 
             // 「の」で枝番をすべて分離（例：百十七の二の二）
-            if (s.Contains("の")) {
+            if(s.Contains("の")) {
                 var parts = s.Split('の');
                 var normalizedParts = parts.Select(p => NormalizeNumber(p));
                 return string.Join("-", normalizedParts);
             }
 
             // アンダースコア（117_2_2）
-            if (s.Contains("_")) {
+            if(s.Contains("_")) {
                 var parts = s.Split('_');
                 var normalizedParts = parts.Select(p => NormalizeNumber(p));
                 return string.Join("-", normalizedParts);
             }
 
             // ハイフン（117-2-2）
-            if (s.Contains("-")) {
+            if(s.Contains("-")) {
                 var parts = s.Split('-');
                 var normalizedParts = parts.Select(p => NormalizeNumber(p));
                 return string.Join("-", normalizedParts);
@@ -649,7 +833,7 @@ namespace EGov {
 
         private string NormalizeNumber(string s) {
             // 数字ならそのまま
-            if (int.TryParse(s, out int n))
+            if(int.TryParse(s, out int n))
                 return n.ToString();
 
             // 漢数字 → 数字
@@ -659,11 +843,11 @@ namespace EGov {
         private TreeNode? FindParagraphNodeStrict(TreeNode articleNode, string targetParagraph) {
             string normalizedTarget = NormalizeParagraphLoose(targetParagraph);
 
-            foreach (TreeNode node in articleNode.Nodes) {
-                if (node.Tag is not Paragraph)
+            foreach(TreeNode node in articleNode.Nodes) {
+                if(node.Tag is not Paragraph)
                     continue;
 
-                if (node.Name == normalizedTarget)
+                if(node.Name == normalizedTarget)
                     return node;
             }
 
@@ -673,11 +857,11 @@ namespace EGov {
         private TreeNode? FindItemNodeStrict(TreeNode paragraphNode, string targetItem) {
             string normalizedTarget = NormalizeItemLoose(targetItem);
 
-            foreach (TreeNode node in paragraphNode.Nodes) {
-                if (node.Tag is not Item)
+            foreach(TreeNode node in paragraphNode.Nodes) {
+                if(node.Tag is not Item)
                     continue;
 
-                if (node.Name == normalizedTarget)
+                if(node.Name == normalizedTarget)
                     return node;
             }
 
@@ -685,7 +869,7 @@ namespace EGov {
         }
 
         private string NormalizeParagraphLoose(string text) {
-            if (string.IsNullOrWhiteSpace(text))
+            if(string.IsNullOrWhiteSpace(text))
                 return "";
 
             string s = text.Trim();
@@ -694,14 +878,14 @@ namespace EGov {
             s = s.Replace("項", "");
 
             // 「第」を除去（例：第一項 → 一）
-            if (s.StartsWith("第"))
+            if(s.StartsWith("第"))
                 s = s.Substring(1);
 
             // 全角数字 → 半角数字
             s = ToHalfWidthDigits(s);
 
             // 数字ならそのまま
-            if (int.TryParse(s, out int n))
+            if(int.TryParse(s, out int n))
                 return n.ToString();
 
             // 漢数字 → 数字
@@ -712,13 +896,13 @@ namespace EGov {
          * 号の枝番パターン（例：2の2、二の三）に対応するための揺れ吸収ロジック
          */
         private string NormalizeItemLoose(string text) {
-            if (string.IsNullOrWhiteSpace(text))
+            if(string.IsNullOrWhiteSpace(text))
                 return "";
 
             string s = text.Trim();
 
             // 「第」を除去（例：第一号 → 一号）
-            if (s.StartsWith("第"))
+            if(s.StartsWith("第"))
                 s = s.Substring(1);
 
             // 「号」を除去
@@ -728,19 +912,19 @@ namespace EGov {
             s = ToHalfWidthDigits(s);
 
             // 「の」で枝番を分離（例：二の三）
-            if (s.Contains("の")) {
+            if(s.Contains("の")) {
                 var parts = s.Split('の');
                 return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
             }
 
             // アンダースコア（2_2）
-            if (s.Contains("_")) {
+            if(s.Contains("_")) {
                 var parts = s.Split('_');
                 return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
             }
 
             // ハイフン（2-2）
-            if (s.Contains("-")) {
+            if(s.Contains("-")) {
                 var parts = s.Split('-');
                 return $"{NormalizeNumber(parts[0])}-{NormalizeNumber(parts[1])}";
             }
@@ -792,12 +976,12 @@ namespace EGov {
                 int total = 0;
                 int current = 0;
 
-                foreach (char c in kanji) {
-                    if (!KanjiMap.TryGetValue(c, out int val))
+                foreach(char c in kanji) {
+                    if(!KanjiMap.TryGetValue(c, out int val))
                         continue;
 
-                    if (val >= 10) {
-                        if (current == 0)
+                    if(val >= 10) {
+                        if(current == 0)
                             current = 1;
                         current *= val;
                     } else {
@@ -810,7 +994,7 @@ namespace EGov {
             }
 
             public static int KanjiOrNumberToInt(string s) {
-                if (int.TryParse(s, out var n))
+                if(int.TryParse(s, out var n))
                     return n;
 
                 return KanjiToNumber(s);
@@ -821,32 +1005,32 @@ namespace EGov {
         // ★ NumberToKanjiFlexible（1〜9999対応）
         // ============================================================
         public static string NumberToKanjiFlexible(string s) {
-            if (string.IsNullOrWhiteSpace(s))
+            if(string.IsNullOrWhiteSpace(s))
                 return s;
 
-            if (s.All(c => NumberConverter.KanjiMap.ContainsKey(c)))
+            if(s.All(c => NumberConverter.KanjiMap.ContainsKey(c)))
                 return s;
 
-            if (!int.TryParse(s, out int n))
+            if(!int.TryParse(s, out int n))
                 return s;
 
-            if (n == 0)
+            if(n == 0)
                 return "〇";
 
             var sb = new StringBuilder();
 
-            if (n >= 1000) {
+            if(n >= 1000) {
                 sb.Append(NumberToKanjiFlexible((n / 1000).ToString()));
                 sb.Append("千");
                 n %= 1000;
             }
-            if (n >= 100) {
+            if(n >= 100) {
                 sb.Append(NumberToKanjiFlexible((n / 100).ToString()));
                 sb.Append("百");
                 n %= 100;
             }
-            if (n >= 10) {
-                if (n / 10 == 1)
+            if(n >= 10) {
+                if(n / 10 == 1)
                     sb.Append("十");
                 else {
                     sb.Append(NumberToKanjiFlexible((n / 10).ToString()));
@@ -854,7 +1038,7 @@ namespace EGov {
                 }
                 n %= 10;
             }
-            if (n > 0)
+            if(n > 0)
                 sb.Append("〇一二三四五六七八九"[n]);
 
             return sb.ToString();
@@ -866,13 +1050,13 @@ namespace EGov {
         //    ・枝番（50-2 / 5-4 / 2-2）すべて吸収
         // ============================================================
         private string ToKanjiFlexible(string raw, bool isItem = false) {
-            if (string.IsNullOrWhiteSpace(raw))
+            if(string.IsNullOrWhiteSpace(raw))
                 return raw;
 
             string s = raw.Trim();
 
             // 0. アンダースコア → ハイフン
-            if (s.Contains('_'))
+            if(s.Contains('_'))
                 s = s.Replace('_', '-');
 
             // --------------------------------------------
@@ -880,14 +1064,14 @@ namespace EGov {
             //    ・条 → 第五十条の二
             //    ・号 → 五号の二
             // --------------------------------------------
-            if (s.Contains('-')) {
+            if(s.Contains('-')) {
                 var parts = s.Split('-');
-                if (parts.Length == 2) {
+                if(parts.Length == 2) {
 
                     string left = NumberToKanjiFlexible(parts[0]);
                     string right = NumberToKanjiFlexible(parts[1]);
 
-                    if (isItem) {
+                    if(isItem) {
                         // ★ 号モード（五号の二）
                         return $"{left}号の{right}";
                     } else {
@@ -901,7 +1085,7 @@ namespace EGov {
             // 2. 第〇章 / 第〇節 / 第〇款
             // --------------------------------------------
             var m = Regex.Match(s, @"^第?(.+?)(章|節|款)$");
-            if (m.Success) {
+            if(m.Success) {
                 return $"第{NumberToKanjiFlexible(m.Groups[1].Value)}{m.Groups[2].Value}";
             }
 
@@ -909,12 +1093,12 @@ namespace EGov {
             // 3. 〇項 / 〇号
             // --------------------------------------------
             m = Regex.Match(s, @"^(.+?)(項|号)$");
-            if (m.Success) {
+            if(m.Success) {
                 string num = NumberToKanjiFlexible(m.Groups[1].Value);
                 string unit = m.Groups[2].Value;
 
                 // 号モードなら「号」を優先
-                if (isItem)
+                if(isItem)
                     return $"{num}号";
 
                 return $"{num}{unit}";
@@ -925,7 +1109,7 @@ namespace EGov {
             // --------------------------------------------
             string kanji = NumberToKanjiFlexible(s);
 
-            if (isItem)
+            if(isItem)
                 return $"{kanji}号";
 
             return kanji;
@@ -943,7 +1127,7 @@ namespace EGov {
         }
 
         private void HighlightArticleText(string keyword) {
-            if (string.IsNullOrWhiteSpace(keyword))
+            if(string.IsNullOrWhiteSpace(keyword))
                 return;
 
             var rtb = CcRichTextBox1;
@@ -957,7 +1141,7 @@ namespace EGov {
 
             // キーワード検索
             int index = rtb.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase);
-            if (index >= 0) {
+            if(index >= 0) {
                 rtb.Select(index, keyword.Length);
                 rtb.SelectionBackColor = Color.Yellow;
                 rtb.ScrollToCaret();
@@ -965,6 +1149,28 @@ namespace EGov {
 
             // 元の選択に戻す
             rtb.Select(selStart, selLength);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Click(object sender, EventArgs e) {
+            switch(((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemExit":
+                    this.Close();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LawView_FormClosing(object sender, FormClosingEventArgs e) {
+
         }
     }
 }

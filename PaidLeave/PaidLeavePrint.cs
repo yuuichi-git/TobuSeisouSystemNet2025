@@ -65,7 +65,7 @@ namespace PaidLeave {
              */
             this.CcDateTimeOperationDate1.SetValue(_dateUtility.GetBeginOfMonth(DateTime.Today.AddMonths(-1)));
             this.CcDateTimeOperationDate2.SetValue(_dateUtility.GetEndOfMonth(DateTime.Today.AddMonths(-1)));
-
+            this.CcLabel3.Text = "集計期間内の使用日数合計：0日";
             this.InitializeSheetView(this.SheetViewList);
             this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
             /*
@@ -99,6 +99,11 @@ namespace PaidLeave {
         /// </summary>
         private void SetSheetViewList(SheetView sheetView) {
             int rowCount = 0;
+            // 集計期間内の有給使用日数
+            int paidLeaveUsageDuringThePeriod = 0;
+            // 集計期間内の有給使用日数合計
+            int sumPaidLeaveUsageDuringThePeriod = 0;
+
             this.SpreadList.SuspendLayout();
             _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);
 
@@ -118,25 +123,33 @@ namespace PaidLeave {
                 int 有給付与日数合計 = 0;
                 int 有給使用日数合計 = 0;
                 int 有給残日数合計 = 0;
-
                 try {
                     foreach(PaidLeaveBalanceVo paidLeaveBalanceVo in PaidLeaveEntitlementDao.SelectRemainingDays(this.CcDateTimeOperationDate2.GetDate(), staffMasterVo.StaffCode)) {
                         有給付与日数合計 += paidLeaveBalanceVo.GrantedDays;
                         有給使用日数合計 += paidLeaveBalanceVo.UsedDays;
                         有給残日数合計 += paidLeaveBalanceVo.RemainingDays;
                     }
+
+                    // 有給付与日数合計
                     sheetView.Cells[rowCount, 3].Text = string.Concat(有給付与日数合計, "日");
+                    // 有給使用日数合計
                     sheetView.Cells[rowCount, 4].Text = string.Concat(有給使用日数合計, "日");
-                    sheetView.Cells[rowCount, 5].Text = string.Concat(_timeOffMasterDao.SelectAllTimeOffMaster(CcDateTimeOperationDate1.GetDate(), CcDateTimeOperationDate2.GetDate(), 1, staffMasterVo.StaffCode).ToList().Count.ToString(), "日");
+                    // 集計期間内の有給使用日数を取得する
+                    paidLeaveUsageDuringThePeriod = TimeOffMasterDao.SelectAllTimeOffMaster(CcDateTimeOperationDate1.GetDate(), CcDateTimeOperationDate2.GetDate(), 1, staffMasterVo.StaffCode).ToList().Count;
+                    sheetView.Cells[rowCount, 5].Text = string.Concat(paidLeaveUsageDuringThePeriod, "日");
+                    // 有給残日数合計
                     sheetView.Cells[rowCount, 6].Text = string.Concat(有給残日数合計, "日");
                 } catch(Exception ex) {
                     MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
+                // 集計期間内の有給使用日数合計を更新する
+                sumPaidLeaveUsageDuringThePeriod += paidLeaveUsageDuringThePeriod;
 
                 rowCount++;
             }
 
+            this.CcLabel3.Text = string.Concat("集計期間内の使用日数合計：", sumPaidLeaveUsageDuringThePeriod, "日");
             this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
             this.SpreadList.ResumeLayout();
             this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", rowCount, " 件を処理しました");

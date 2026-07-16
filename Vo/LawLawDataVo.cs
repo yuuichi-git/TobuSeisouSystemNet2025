@@ -312,26 +312,87 @@ namespace Vo {
     // ============================================================
     // ★ 本則（MainProvision）
     //
-    //   章（Chapter）
-    //   ├─ 節（Section）
-    //   │    ├─ 款（Subsection）
-    //   │    └─ 条（Article）
-    //   └─ 条（Article）
+    //   e-Gov 法令 XML の本則は、法令によって階層構造が異なる。
+    //   代表的な構造は次のとおり：
     //
-    //   という構造を持つ。
+    //   1. 編（Part）
+    //       └─ 章（Chapter）
+    //            └─ 節（Section）
+    //                 └─ 款（Subsection）
+    //                      └─ 条（Article）
+    //                           └─ 項（Paragraph）
+    //                                └─ 号（Item）
+    //
+    //   2. 編を持たない法令：
+    //       └─ 章 → 節 → 款 → 条 → 項 → 号
+    //
+    //   3. 章を持たない法令：
+    //       └─ 条 → 項 → 号
+    //
+    //   そのため MainProvision には、
+    //     ・Part（編）
+    //     ・Chapter（章）
+    //     ・Article（条）
+    //   の 3 種類の直下要素が来る可能性がある。
     // ============================================================
     public class MainProvision {
 
         /// <summary>
+        /// 編（Part）の一覧
+        /// 法令によっては複数の編を持つ。
+        /// 例：第一編 総則、第二編 手続、第三編 罰則
+        /// </summary>
+        [XmlElement("Part")]
+        public List<Part> Parts { get; set; } = new();
+
+        /// <summary>
         /// 章（Chapter）の一覧
+        /// 編を持たない法令では、MainProvision 直下に章が並ぶ。
         /// </summary>
         [XmlElement("Chapter")]
         public List<Chapter> Chapters { get; set; } = new();
 
         /// <summary>
-        /// 章を持たない法令のために、MainProvision 直下にも条が来る可能性がある
+        /// 条（Article）の一覧
+        /// 章を持たない法令（例：罰則のみの短い法令）では、
+        /// MainProvision 直下に条が直接並ぶ場合がある。
         /// </summary>
         [XmlElement("Article")]
+        public List<Article> Articles { get; set; } = new();
+    }
+
+    /// <summary>
+    /// 編（Part）
+    /// e-Gov API の <Part> に対応する。
+    /// 章の上位階層として扱う。
+    /// </summary>
+    public class Part {
+        /// <summary>
+        /// 編番号（例：1 → 第一編）
+        /// Num は揺れゼロのため int で保持する。
+        /// </summary>
+        public int Num {
+            get; set;
+        }
+
+        /// <summary>
+        /// 編タイトル（例：総則）
+        /// e-Gov API の <PartTitle> に対応。
+        /// 空の場合もある。
+        /// </summary>
+        public string? PartTitle {
+            get; set;
+        }
+
+        /// <summary>
+        /// 編直下の章（Chapter）
+        /// </summary>
+        public List<Chapter> Chapters { get; set; } = new();
+
+        /// <summary>
+        /// 編直下の条（Article）
+        /// 節や章を持たない構造の法律に対応するため存在する。
+        /// </summary>
         public List<Article> Articles { get; set; } = new();
     }
 
