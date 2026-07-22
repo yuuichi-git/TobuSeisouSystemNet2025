@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Estra\Estra.csproj" />
     <ProjectReference Include="..\LegalTwelveItem\LegalTwelveItem.csproj" />
     <ProjectReference Include="..\PaidLeave\PaidLeave.csproj" />
+    <ProjectReference Include="..\PeakSeason\PeakSeason.csproj" />
     <ProjectReference Include="..\Seisou\Seisou.csproj" />
     <ProjectReference Include="..\Set\Set.csproj" />
     <ProjectReference Include="..\Staff\Staff.csproj" />

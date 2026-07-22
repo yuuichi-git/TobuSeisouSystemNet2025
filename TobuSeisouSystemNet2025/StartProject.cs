@@ -31,6 +31,8 @@ using License;
 
 using PaidLeave;
 
+using PeakSeason;
+
 using RollCall;
 
 using Seisou;
@@ -273,6 +275,7 @@ namespace TobuSeisouSystemNet2025 {
         private AccountingParttimeList accountingParttimeList = null;
         private AccountingFulltimeList accountingFulltimeList = null;
         private StatusOfResidenceList statusOfResidenceList = null;
+        private PeakSeasonAllowanceList peakSeasonAllowanceList = null;
         private RollCallRecordSheet rollCallRecordSheet = null;
         private LegalTwelveItemList legalTwelveItemList = null;
         private CertificationList certificationList = null;
@@ -443,6 +446,15 @@ namespace TobuSeisouSystemNet2025 {
                                 statusOfResidenceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
                                 _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, statusOfResidenceList);
                                 statusOfResidenceList.Show(this);
+                            } else {
+                                MessageBox.Show("このプログラム（StatusOfResidenceList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            break;
+                        case "PeakSeasonAllowanceList":
+                            if(peakSeasonAllowanceList is null || peakSeasonAllowanceList.IsDisposed) {
+                                peakSeasonAllowanceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
+                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, peakSeasonAllowanceList);
+                                peakSeasonAllowanceList.Show(this);
                             } else {
                                 MessageBox.Show("このプログラム（StatusOfResidenceList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }

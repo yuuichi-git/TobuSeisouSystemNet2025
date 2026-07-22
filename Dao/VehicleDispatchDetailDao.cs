@@ -358,7 +358,10 @@ namespace Dao {
         }
 
         /// <summary>
-        /// 指定した期間内の出勤日数を返す
+        /// 指定した期間内の出勤日数を返す（下記は除外）
+        /// 1312140:当日無断
+        /// 1312141:当日朝電
+        /// ※1312145:有給休暇は出勤扱い
         /// </summary>
         /// <param name="operationDate1"></param>
         /// <param name="operationDate2"></param>
@@ -371,7 +374,9 @@ namespace Dao {
             sqlCommand.CommandText = "SELECT StaffCode1, StaffCode2, StaffCode3, StaffCode4 " +
                                      "FROM H_VehicleDispatchDetail " +
                                      "WHERE OperationDate BETWEEN @OperationDate1 AND @OperationDate2 " +
+                                     "  AND OperationFlag = 'true' " +
                                      "  AND VehicleDispatchFlag = 'true' " +
+                                     "  AND SetCode NOT IN (1312140, 1312141) " +
                                      "  AND (StaffCode1 = @StaffCode OR " +
                                      "       StaffCode2 = @StaffCode OR " +
                                      "       StaffCode3 = @StaffCode OR " +

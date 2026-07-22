@@ -123,11 +123,11 @@ namespace RollCall {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
-            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
+            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
                 _dictionaryOccupation.Add(occupationMasterVo.Code, occupationMasterVo.Name);
-            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
+            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
                 _dictionaryJobForm.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
 
             InitializeComponent();
@@ -158,7 +158,7 @@ namespace RollCall {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
                         /*
@@ -167,21 +167,21 @@ namespace RollCall {
                          * 点呼執行者が選択されているかの確認
                          * 
                          */
-                        if (this.ComboBoxEx1.Text == string.Empty || this.ComboBoxEx2.Text == string.Empty || this.ComboBoxEx3.Text == string.Empty || this.ComboBoxEx4.Text == string.Empty || this.ComboBoxEx5.Text == string.Empty) {
+                        if(this.ComboBoxEx1.Text == string.Empty || this.ComboBoxEx2.Text == string.Empty || this.ComboBoxEx3.Text == string.Empty || this.ComboBoxEx4.Text == string.Empty || this.ComboBoxEx5.Text == string.Empty) {
                             MessageBox.Show("点呼執行者を選択して下さい", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         /*
                          * 天候が選択されているかを確認
                          */
-                        if (this.ComboBoxExWeather.Text == string.Empty) {
+                        if(this.ComboBoxExWeather.Text == string.Empty) {
                             MessageBox.Show("天候を選択して下さい", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         /*
                          * 指示事項が
                          */
-                        if (this.ComboBoxEx7.Text.Length < 10) {
+                        if(this.ComboBoxEx7.Text.Length < 10) {
                             MessageBox.Show("指示事項(10文字以上)を入力して下さい", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
@@ -197,12 +197,12 @@ namespace RollCall {
                          * H_FirstRollCallVo書換え
                          */
                         try {
-                            if (_firstRollCallDao.ExistenceFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue().Date)) {
+                            if(_firstRollCallDao.ExistenceFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue().Date)) {
                                 _firstRollCallDao.UpdateOneFirstRollCallVo(this.SetFirstRollCallVo());
                             } else {
                                 _firstRollCallDao.InsertOneFirstRollCallVo(this.SetFirstRollCallVo());
                             }
-                        } catch (Exception exception) {
+                        } catch(Exception exception) {
                             MessageBox.Show(exception.Message);
                         }
                         this.PutSheetViewFirstRollCall();
@@ -218,7 +218,7 @@ namespace RollCall {
                          * 
                          */
                         this.PutSheetViewFullStaff(_vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue().Date));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -231,7 +231,7 @@ namespace RollCall {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExportExcel":
                     //xls形式ファイルをエクスポートします
                     string fileName = string.Concat("配車当日", DateTime.Now.ToString("MM月dd日"), "作成");
@@ -326,31 +326,31 @@ namespace RollCall {
              * 解析１
              */
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
-            foreach (FareMasterVo fareMasterVo in _listFareMasterVo.OrderBy(x => x.Code)) {
+            foreach(FareMasterVo fareMasterVo in _listFareMasterVo.OrderBy(x => x.Code)) {
                 blockRowCount = 0;
-                foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.OrderBy(x => x.CellNumber)) {
+                foreach(VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.OrderBy(x => x.CellNumber)) {
                     /*
                      * 配車表に表示する条件
                      * SetCode > 0
                      */
-                    if (vehicleDispatchDetailVo.SetCode > 0 && _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).FareCode == fareMasterVo.Code) {
+                    if(vehicleDispatchDetailVo.SetCode > 0 && _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).FareCode == fareMasterVo.Code) {
                         /*
                          * 区分セルを作成する
                          */
-                        if (blockRowCount == 0)
+                        if(blockRowCount == 0)
                             CreateSpan(GetNextCellPosition(), fareMasterVo.Name);
                         entryCellPosition = GetNextCellPosition();
                         /*
                          * 列が”AA"に変わった場合はBlockNameを挿入する
                          */
-                        if (entryCellPosition != null && entryCellPosition.Row == _startRow && entryCellPosition.Col == _dictionaryColNumber[1]) {
+                        if(entryCellPosition != null && entryCellPosition.Row == _startRow && entryCellPosition.Col == _dictionaryColNumber[1]) {
                             CreateSpan(entryCellPosition, fareMasterVo.Name);
                             entryCellPosition.Row++;
                         }
                         /*
                          * セルへ出力する
                          */
-                        if (entryCellPosition is not null) {
+                        if(entryCellPosition is not null) {
                             CreateSetRow(entryCellPosition, vehicleDispatchDetailVo);
                             CreateCarRow(entryCellPosition, vehicleDispatchDetailVo);
                             CreateOperator1Row(entryCellPosition, vehicleDispatchDetailVo);
@@ -378,11 +378,11 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0) {
+            if(vehicleDispatchDetailVo.SetCode > 0) {
                 /*
                  * 区契の場合の表示は”〇〇区”とするため、条件分岐する
                  */
-                if (_listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).ClassificationCode != 11) {
+                if(_listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).ClassificationCode != 11) {
 
                     setName1 = _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName1;
                     setName2 = _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName2;
@@ -403,11 +403,11 @@ namespace RollCall {
                  * setName2
                  * 北区軽粗大・資源(１３１１７０６)は金曜日だけ資源車になって、作業員の料金が変わる。だから印を付ける
                  */
-                switch (vehicleDispatchDetailVo.SetCode) {
+                switch(vehicleDispatchDetailVo.SetCode) {
                     case 1311706: // 北区軽粗大・資源
                         SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 1].Font = new System.Drawing.Font("Yu Gothic UI", 9);
                         SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 1].ForeColor = vehicleDispatchDetailVo.OperationFlag ? System.Drawing.Color.Black : System.Drawing.Color.Red;
-                        if (this.DateTimePickerExOperationDate.GetValue().DayOfWeek != DayOfWeek.Friday) {
+                        if(this.DateTimePickerExOperationDate.GetValue().DayOfWeek != DayOfWeek.Friday) {
                             SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 1].Text = setName2;
                         } else {
                             SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 1].BackColor = System.Drawing.Color.Yellow;
@@ -439,7 +439,7 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.CarCode > 0) {
+            if(vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.CarCode > 0) {
                 doorNumber = _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode).DoorNumber.ToString();
                 registrationNumber = string.Concat(_listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode).RegistrationNumber3, _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode).RegistrationNumber4);
                 /*
@@ -468,9 +468,9 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode1 > 0) {
+            if(vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode1 > 0) {
                 displayName = new RichText(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).DisplayName);
-                switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).Belongs) {
+                switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).Belongs) {
                     case 10:
                     case 11:
                         belongs = string.Empty;
@@ -486,7 +486,7 @@ namespace RollCall {
                         belongs = string.Empty;
                         break;
                     case 22:
-                        switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).JobForm) {
+                        switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).JobForm) {
                             case 20:
                             case 21:
                                 belongs = "新";
@@ -502,7 +502,7 @@ namespace RollCall {
                  * "作"を追加するかどうか
                  * ここは基本運転手の欄だから”作”はいらないと思われるけど
                  */
-                if (vehicleDispatchDetailVo.StaffOccupation1 == 11) {
+                if(vehicleDispatchDetailVo.StaffOccupation1 == 11) {
                     belongs = string.Concat(belongs, "作");
                 }
                 /*
@@ -528,7 +528,7 @@ namespace RollCall {
                 /*
                  * 指定された配車先の点呼を除外する
                  */
-                switch (vehicleDispatchDetailVo.SetCode) {
+                switch(vehicleDispatchDetailVo.SetCode) {
                     case 1312109: // 本社事務所
                     case 1312110: // 三郷事務所
                     case 1312111: // 整備本社
@@ -577,14 +577,14 @@ namespace RollCall {
                 /*
                  * 点呼執行者
                  */
-                switch (vehicleDispatchDetailVo.CarGarageCode) {
+                switch(vehicleDispatchDetailVo.CarGarageCode) {
                     case 1:
                         /*
                          * 点呼時刻の秒数が偶数なら”点呼執行者本社１”、奇数なら”点呼執行者本社２”を選択する
                          */
                         int second = vehicleDispatchDetailVo.StaffRollCallYmdHms1.Second; //秒（0～59）
                         SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 23].Font = new System.Drawing.Font("Yu Gothic UI", 9);
-                        if (vehicleDispatchDetailVo.StaffRollCallFlag1)
+                        if(vehicleDispatchDetailVo.StaffRollCallFlag1)
                             SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 23].Text = (second % 2 == 0) ? this.ComboBoxEx1.Text : this.ComboBoxEx2.Text;
                         break;
                     case 2:
@@ -592,7 +592,7 @@ namespace RollCall {
                          * ”点呼執行者三郷”を選択する
                          */
                         SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 23].Font = new System.Drawing.Font("Yu Gothic UI", 9);
-                        if (vehicleDispatchDetailVo.StaffRollCallFlag1)
+                        if(vehicleDispatchDetailVo.StaffRollCallFlag1)
                             SheetViewFirstRollCall.Cells[entryCellPosition.Row, entryCellPosition.Col + 23].Text = this.ComboBoxEx5.Text;
                         break;
                 }
@@ -609,8 +609,8 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode2 > 0) {
-                switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode2).Belongs) {
+            if(vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode2 > 0) {
+                switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode2).Belongs) {
                     case 10:
                     case 11:
                         belongs = string.Empty;
@@ -626,7 +626,7 @@ namespace RollCall {
                         belongs = string.Empty;
                         break;
                     case 22:
-                        switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode2).JobForm) {
+                        switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode2).JobForm) {
                             case 20:
                             case 21:
                                 belongs = "新";
@@ -641,7 +641,7 @@ namespace RollCall {
                 /*
                  * "作"を追加するかどうか
                  */
-                if (vehicleDispatchDetailVo.StaffOccupation2 == 11) {
+                if(vehicleDispatchDetailVo.StaffOccupation2 == 11) {
                     belongs = string.Concat(belongs, "作");
                 }
                 /*
@@ -675,8 +675,8 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode3 > 0) {
-                switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode3).Belongs) {
+            if(vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode3 > 0) {
+                switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode3).Belongs) {
                     case 10:
                     case 11:
                         belongs = string.Empty;
@@ -692,7 +692,7 @@ namespace RollCall {
                         belongs = string.Empty;
                         break;
                     case 22:
-                        switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode3).JobForm) {
+                        switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode3).JobForm) {
                             case 20:
                             case 21:
                                 belongs = "新";
@@ -707,7 +707,7 @@ namespace RollCall {
                 /*
                  * "作"を追加するかどうか
                  */
-                if (vehicleDispatchDetailVo.StaffOccupation3 == 11) {
+                if(vehicleDispatchDetailVo.StaffOccupation3 == 11) {
                     belongs = string.Concat(belongs, "作");
                 }
                 /*
@@ -741,8 +741,8 @@ namespace RollCall {
             /*
              * 組がセットされていなければ何もしない
              */
-            if (vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode4 > 0) {
-                switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode4).Belongs) {
+            if(vehicleDispatchDetailVo.SetCode > 0 && vehicleDispatchDetailVo.StaffCode4 > 0) {
+                switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode4).Belongs) {
                     case 10:
                     case 11:
                         belongs = string.Empty;
@@ -758,7 +758,7 @@ namespace RollCall {
                         belongs = string.Empty;
                         break;
                     case 22:
-                        switch (_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode4).JobForm) {
+                        switch(_listStaffMasterVo.Find(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode4).JobForm) {
                             case 20:
                             case 21:
                                 belongs = "新";
@@ -773,7 +773,7 @@ namespace RollCall {
                 /*
                  * "作"を追加するかどうか
                  */
-                if (vehicleDispatchDetailVo.StaffOccupation4 == 11) {
+                if(vehicleDispatchDetailVo.StaffOccupation4 == 11) {
                     belongs = string.Concat(belongs, "作");
                 }
                 /*
@@ -809,14 +809,14 @@ namespace RollCall {
              * 2023-02-26
              * operator_occupationの値によって”作業員"を追加する処理
              */
-            switch (occupation) {
+            switch(occupation) {
                 // 10:運転手 11:作業員 20:事務職　99:指定なし
                 case 11:
                     displayName = string.Concat("作業員", staffMasterVo.DisplayName);
                     /*
                      * リッチテキスト文字列の作成
                      */
-                    using (RichTextBox richTextBox = new()) {
+                    using(RichTextBox richTextBox = new()) {
                         richTextBox.Text = displayName;
                         richTextBox.SelectionStart = 0;
                         richTextBox.SelectionLength = 3;
@@ -853,9 +853,9 @@ namespace RollCall {
         /// <returns></returns>
         private EntryCellPosition GetNextCellPosition() {
             EntryCellPosition entryCellPosition = new();
-            for (int colPosition = 0; colPosition <= 1; colPosition++) { // 0:A列 1:AA列
-                for (int row = _startRow; row <= _rowMax - 1; row++) {
-                    if (this.SheetViewFirstRollCall.Cells[row, _dictionaryColNumber[colPosition] + 0].Text == "" &&  // 運賃コード又は配車先の位置
+            for(int colPosition = 0; colPosition <= 1; colPosition++) { // 0:A列 1:AA列
+                for(int row = _startRow; row <= _rowMax - 1; row++) {
+                    if(this.SheetViewFirstRollCall.Cells[row, _dictionaryColNumber[colPosition] + 0].Text == "" &&  // 運賃コード又は配車先の位置
                         this.SheetViewFirstRollCall.Cells[row, _dictionaryColNumber[colPosition] + 8].Text == "" &&  // 運転手の位置
                         this.SheetViewFirstRollCall.Cells[row, _dictionaryColNumber[colPosition] + 11].Text == "" &&  // 作業員2の位置
                         this.SheetViewFirstRollCall.Cells[row + 1, _dictionaryColNumber[colPosition] + 11].Text == "") { // 作業員3の位置
@@ -915,8 +915,8 @@ namespace RollCall {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CheckBoxEx1_CheckedChanged(object sender, EventArgs e) {
-            if (((CheckBox)sender).Checked) {
-                if (_firstRollCallDao.ExistenceFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue())) {
+            if(((CheckBox)sender).Checked) {
+                if(_firstRollCallDao.ExistenceFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue())) {
                     /*
                      * レコードを表示
                      */
@@ -962,7 +962,7 @@ namespace RollCall {
             // 日付
             this.SheetViewPartTimeStaff.Cells["E2"].Text = this.DateTimePickerExOperationDate.GetValueJp();
 
-            foreach (StaffMasterVo staffMasterVo in _listStaffMasterVo.FindAll(x => x.Belongs == 12 && x.VehicleDispatchTarget == true && x.RetirementFlag == false).OrderBy(x => x.EmploymentDate)) {
+            foreach(StaffMasterVo staffMasterVo in _listStaffMasterVo.FindAll(x => x.Belongs == 12 && x.VehicleDispatchTarget == true && x.RetirementFlag == false).OrderBy(x => x.EmploymentDate)) {
                 this.SheetViewPartTimeStaff.Cells[startRow, startCol].Text = staffMasterVo.DisplayName;
                 VehicleDispatchDetailVo vehicleDispatchDetailVo = listVehicleDispatchDetailVo.Find(x => (x.StaffCode1 == staffMasterVo.StaffCode ||
                                                                                                          x.StaffCode2 == staffMasterVo.StaffCode ||
@@ -973,8 +973,8 @@ namespace RollCall {
                  * 配車先が設定されてなくてStaffLabelExだけ置いてある場合処理をしない
                  * ”vehicleDispatchDetailVo.Set_code > 0” → この部分
                  */
-                if (vehicleDispatchDetailVo != null && vehicleDispatchDetailVo.SetCode > 0) {
-                    switch (vehicleDispatchDetailVo.SetCode) {
+                if(vehicleDispatchDetailVo != null && vehicleDispatchDetailVo.SetCode > 0) {
+                    switch(vehicleDispatchDetailVo.SetCode) {
                         case 1312140: // 当日朝電・無断
                         case 1312141:
                             this.SheetViewPartTimeStaff.Cells[startRow, startCol + 1].Text = "欠勤";
@@ -987,7 +987,7 @@ namespace RollCall {
                      * 除外を設定
                      * ①整備本社は全て【運転手】にする（真由美さん依頼）
                      */
-                    switch (vehicleDispatchDetailVo.SetCode) {
+                    switch(vehicleDispatchDetailVo.SetCode) {
                         case 1312111: // 整備本社
                             _operationName = "【運転手】";
                             break;
@@ -1000,9 +1000,9 @@ namespace RollCall {
                      * 車種
                      */
                     CarMasterVo carMasterVo = _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode);
-                    if (carMasterVo != null && vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
+                    if(carMasterVo != null && vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
                         var carKidName = "";
-                        switch (carMasterVo.CarKindCode) {
+                        switch(carMasterVo.CarKindCode) {
                             case 10:
                                 carKidName = "軽自動車";
                                 break;
@@ -1018,7 +1018,7 @@ namespace RollCall {
                     /*
                      * 出勤地
                      */
-                    if (vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
+                    if(vehicleDispatchDetailVo.StaffCode1 == staffMasterVo.StaffCode) {
                         this.SheetViewPartTimeStaff.Cells[startRow, startCol + 4].Text = vehicleDispatchDetailVo.CarGarageCode == 1 ? "本社" : "三郷";
                     } else {
                         this.SheetViewPartTimeStaff.Cells[startRow, startCol + 4].Text = "本社";
@@ -1036,39 +1036,39 @@ namespace RollCall {
         private void PutSheetViewFullStaff(List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo) {
             this.SpreadFirstRollCall.SuspendLayout();                                                                                                                                   // 非活性化
             int spreadListTopRow = SpreadFirstRollCall.GetViewportTopRow(0);                                                                                                            // 先頭行（列）インデックスを取得
-            if (this.SheetViewFullStaff.Rows.Count > 0)                                                                                                                                 // Rowを削除する
+            if(this.SheetViewFullStaff.Rows.Count > 0)                                                                                                                                 // Rowを削除する
                 this.SheetViewFullStaff.RemoveRows(0, this.SheetViewFullStaff.Rows.Count);
 
             int i = 0;
             List<AccountingFulltimeVo> listAccountingFulltimeVo;
-            foreach (VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.FindAll(x => x.OperationFlag == true && x.VehicleDispatchFlag == true)) {
+            foreach(VehicleDispatchDetailVo vehicleDispatchDetailVo in listVehicleDispatchDetailVo.FindAll(x => x.OperationFlag == true && x.VehicleDispatchFlag == true)) {
                 listAccountingFulltimeVo = new();
-                if (vehicleDispatchDetailVo.StaffCode1 != 0) {
+                if(vehicleDispatchDetailVo.StaffCode1 != 0) {
                     AccountingFulltimeVo accountingFulltimeVo = new();
                     accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode1;
                     accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation1;
                     listAccountingFulltimeVo.Add(accountingFulltimeVo);
                 }
-                if (vehicleDispatchDetailVo.StaffCode2 != 0) {
+                if(vehicleDispatchDetailVo.StaffCode2 != 0) {
                     AccountingFulltimeVo accountingFulltimeVo = new();
                     accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode2;
                     accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation2;
                     listAccountingFulltimeVo.Add(accountingFulltimeVo);
                 }
-                if (vehicleDispatchDetailVo.StaffCode3 != 0) {
+                if(vehicleDispatchDetailVo.StaffCode3 != 0) {
                     AccountingFulltimeVo accountingFulltimeVo = new();
                     accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode3;
                     accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation3;
                     listAccountingFulltimeVo.Add(accountingFulltimeVo);
                 }
-                if (vehicleDispatchDetailVo.StaffCode4 != 0) {
+                if(vehicleDispatchDetailVo.StaffCode4 != 0) {
                     AccountingFulltimeVo accountingFulltimeVo = new();
                     accountingFulltimeVo.StaffCode = vehicleDispatchDetailVo.StaffCode4;
                     accountingFulltimeVo.Occupation = vehicleDispatchDetailVo.StaffOccupation4;
                     listAccountingFulltimeVo.Add(accountingFulltimeVo);
                 }
 
-                foreach (AccountingFulltimeVo accountingFulltimeVo in listAccountingFulltimeVo) {
+                foreach(AccountingFulltimeVo accountingFulltimeVo in listAccountingFulltimeVo) {
                     this.SheetViewFullStaff.Rows.Add(i, 1);
                     this.SheetViewFullStaff.RowHeader.Columns[0].Label = (i + 1).ToString();                                                                                            // Rowヘッダ
                     this.SheetViewFullStaff.Rows[i].Height = 20;                                                                                                                        // Rowの高さ
@@ -1076,12 +1076,12 @@ namespace RollCall {
 
                     this.SheetViewFullStaff.Cells[i, 0].Value = _listStaffMasterVo.Find(x => x.StaffCode == accountingFulltimeVo.StaffCode).UnionCode;
                     this.SheetViewFullStaff.Cells[i, 1].Text = string.Concat("【", _dictionaryOccupation[accountingFulltimeVo.Occupation], "】", _listStaffMasterVo.Find(x => x.StaffCode == accountingFulltimeVo.StaffCode).DisplayName);
-                    if (vehicleDispatchDetailVo.CarCode > 0) {
+                    if(vehicleDispatchDetailVo.CarCode > 0) {
                         this.SheetViewFullStaff.Cells[i, 3].Text = _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode).DisguiseKind2;
                     }
                     this.SheetViewFullStaff.Cells[i, 4].Text = _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode).SetName;
 
-                    switch (vehicleDispatchDetailVo.ManagedSpaceCode) {
+                    switch(vehicleDispatchDetailVo.ManagedSpaceCode) {
                         case 0:
                             break;
                         case 1:
@@ -1124,7 +1124,7 @@ namespace RollCall {
         /// <param name="e"></param>
         private void FirstRollColl_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

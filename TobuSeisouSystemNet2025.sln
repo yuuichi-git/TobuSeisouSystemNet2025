@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaidLeave", "PaidLeave\Paid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfControl", "PdfView\PdfControl.csproj", "{0B43F68A-9643-4252-AFEC-02F696B16819}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeakSeason", "PeakSeason\PeakSeason.csproj", "{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -321,6 +323,14 @@ Global
 		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|x64.ActiveCfg = Release|Any CPU
 		{0B43F68A-9643-4252-AFEC-02F696B16819}.Release|x64.Build.0 = Release|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Debug|x64.Build.0 = Debug|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Release|x64.ActiveCfg = Release|Any CPU
+		{CCEBB85D-0843-4919-8B7A-60FA48C9ADAC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

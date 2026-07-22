@@ -815,9 +815,9 @@ namespace Staff {
              */
             int countGroupBoxProper = 0;
             foreach(StaffProperVo staffProperVo in listStaffProperVo.OrderByDescending(x => x.ProperDate)) {
-                dictionaryProperNote[countGroupBoxProper].Text = staffProperVo.ProperNote;
+                dictionaryProperDate[countGroupBoxProper].SetValue(staffProperVo.ProperDate);
                 dictionaryProperKind[countGroupBoxProper].Text = staffProperVo.ProperKind;
-                dictionaryProperDate[countGroupBoxProper].SetValueJp(staffProperVo.ProperDate);
+                dictionaryProperNote[countGroupBoxProper].Text = staffProperVo.ProperNote;
                 dictionaryProperDeleteButton[countGroupBoxProper].Tag = staffProperVo;
                 dictionaryProperShowButton[countGroupBoxProper].Enabled = staffProperVo.PdfId != null;
                 dictionaryProperShowButton[countGroupBoxProper].Tag = staffProperVo;

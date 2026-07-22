@@ -8,8 +8,6 @@ using Dao;
 using FarPoint.Win.Spread;
 using FarPoint.Win.Spread.Model;
 
-using GrapeCity.Win.Spread.InputMan.CellType;
-
 using Vo;
 
 namespace PaidLeave {
@@ -201,6 +199,12 @@ namespace PaidLeave {
              * 氏名
              */
             sheetView.AddSpanCell(baseRow + 0, (int)Col.Name, 3, 1);
+            // 2026-06-08 (refactored) 起算月が今月の場合は背景色を変更する
+            if(staffMasterVo.PaidLeaveCommencementDate.Month == DateTime.Now.Month) {
+                sheetView.Cells[baseRow + 0, (int)Col.Name].BackColor = Color.Yellow;
+            } else {
+                sheetView.Cells[baseRow + 0, (int)Col.Name].BackColor = Color.White;
+            }
             sheetView.Cells[baseRow + 0, (int)Col.Name].Text = staffMasterVo.Name;
             /*
              * 基準日・起算日

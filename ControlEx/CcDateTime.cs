@@ -129,8 +129,15 @@ namespace CcControl {
         /// </summary>
         /// <param name="dateTime"></param>
         public void SetValue(DateTime dateTime) {
-            this.Value = dateTime;
-            this.Refresh();
+            if(dateTime.Date != _defaultDateTime.Date) {
+                this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
+                this.Value = dateTime;
+                this.Refresh();
+            } else {
+                this.CustomFormat = " ";
+                this.Value = _defaultDateTime;
+                this.Refresh();
+            }
         }
 
         /// <summary>

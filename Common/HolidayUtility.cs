@@ -28,7 +28,34 @@ namespace Common {
                 string[] cols = data.Split(',');
                 _dictionary.Add(DateTime.Parse(cols[0]), cols[1]);
             }
+
             return _dictionary;
+        }
+
+        /// <summary>
+        /// 祝祭日と会社指定休日の日数合計を取得する
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="holidaySet"></param>
+        /// <returns></returns>
+        public int GetWorkingDays(DateTime startDate, DateTime endDate, Dictionary<DateTime, string> holidaySet) {
+            int count = 0;
+
+            DateTime date = startDate.Date;
+
+            while(date <= endDate.Date) {
+                bool isSunday  = date.DayOfWeek == DayOfWeek.Sunday;
+                bool isHoliday = holidaySet.Keys.Contains(date);
+
+                if(isSunday || isHoliday) {
+                    count++;
+                }
+
+                date = date.AddDays(1);
+            }
+
+            return count;
         }
     }
 }
