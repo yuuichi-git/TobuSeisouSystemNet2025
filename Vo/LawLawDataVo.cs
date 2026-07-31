@@ -309,38 +309,30 @@ namespace Vo {
         public XmlElement[]? OtherElements { get; set; }
     }
 
-    // ============================================================
-    // ★ 本則（MainProvision）
-    //
-    //   e-Gov 法令 XML の本則は、法令によって階層構造が異なる。
-    //   代表的な構造は次のとおり：
-    //
-    //   1. 編（Part）
-    //       └─ 章（Chapter）
-    //            └─ 節（Section）
-    //                 └─ 款（Subsection）
-    //                      └─ 条（Article）
-    //                           └─ 項（Paragraph）
-    //                                └─ 号（Item）
-    //
-    //   2. 編を持たない法令：
-    //       └─ 章 → 節 → 款 → 条 → 項 → 号
-    //
-    //   3. 章を持たない法令：
-    //       └─ 条 → 項 → 号
-    //
-    //   そのため MainProvision には、
-    //     ・Part（編）
-    //     ・Chapter（章）
-    //     ・Article（条）
-    //   の 3 種類の直下要素が来る可能性がある。
-    // ============================================================
+    /// <summary>
+    /// 本則（MainProvision）
+    ///
+    /// e-Gov 法令 XML の <MainProvision> に対応する要素。
+    /// 法令によって階層構造が異なるため、
+    ///   ・編（Part）
+    ///   ・章（Chapter）
+    ///   ・条（Article）
+    /// の 3 種類の直下要素を持つ可能性がある。
+    ///
+    /// 代表的な構造：
+    ///   1. 編 → 章 → 節 → 款 → 条 → 項 → 号
+    ///   2. 編を持たない法令：章 → 節 → 款 → 条 → 項 → 号
+    ///   3. 章を持たない法令：条 → 項 → 号
+    ///
+    /// 法令ごとに階層が揺れるため、
+    /// ここで柔軟に Part / Chapter / Article を受け取る設計が重要となる。
+    /// </summary>
     public class MainProvision {
 
         /// <summary>
         /// 編（Part）の一覧
         /// 法令によっては複数の編を持つ。
-        /// 例：第一編 総則、第二編 手続、第三編 罰則
+        /// 例：第一編 総則、第二編 手続、第三編 罰則。
         /// </summary>
         [XmlElement("Part")]
         public List<Part> Parts { get; set; } = new();
@@ -354,7 +346,7 @@ namespace Vo {
 
         /// <summary>
         /// 条（Article）の一覧
-        /// 章を持たない法令（例：罰則のみの短い法令）では、
+        /// 章を持たない法令（短い法令など）では、
         /// MainProvision 直下に条が直接並ぶ場合がある。
         /// </summary>
         [XmlElement("Article")]
@@ -363,36 +355,45 @@ namespace Vo {
 
     /// <summary>
     /// 編（Part）
-    /// e-Gov API の <Part> に対応する。
-    /// 章の上位階層として扱う。
+    ///
+    /// e-Gov 法令 XML の <Part> に対応する上位階層。
+    /// 法令によっては複数の編を持ち、章や条を内包する。
+    /// 例：第一編 総則、第二編 手続、第三編 罰則。
     /// </summary>
     public class Part {
+
         /// <summary>
         /// 編番号（例：1 → 第一編）
-        /// Num は揺れゼロのため int で保持する。
+        /// e-Gov XML の Num 属性に対応。
+        /// 数字のみのため int で保持する。
         /// </summary>
+        [XmlAttribute("Num")]
         public int Num {
             get; set;
         }
 
         /// <summary>
         /// 編タイトル（例：総則）
-        /// e-Gov API の <PartTitle> に対応。
-        /// 空の場合もある。
+        /// e-Gov XML の <PartTitle> に対応。
+        /// タイトルが存在しない法令もあるため null 許容。
         /// </summary>
+        [XmlElement("PartTitle")]
         public string? PartTitle {
             get; set;
         }
 
         /// <summary>
-        /// 編直下の章（Chapter）
+        /// 編直下の章（Chapter）の一覧
+        /// 章構造を持つ法令では <Chapter> が複数並ぶ。
         /// </summary>
+        [XmlElement("Chapter")]
         public List<Chapter> Chapters { get; set; } = new();
 
         /// <summary>
-        /// 編直下の条（Article）
-        /// 節や章を持たない構造の法律に対応するため存在する。
+        /// 編直下の条（Article）の一覧
+        /// 章を持たない法令（短い法令など）では <Article> が直接並ぶ。
         /// </summary>
+        [XmlElement("Article")]
         public List<Article> Articles { get; set; } = new();
     }
 

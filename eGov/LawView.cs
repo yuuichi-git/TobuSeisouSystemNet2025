@@ -362,66 +362,68 @@ namespace EGov {
         private void CcTreeView1_AfterSelect(object? sender, TreeViewEventArgs e) {
             var node = e.Node;
 
-            // ============================================================
-            // ★ 構造ノードの自動展開（編 → 章 → 節 → 款 → 条 → 項 → 号）
-            //
-            // e-Gov 法令 XML は法令ごとに階層構造が異なる：
-            //
-            //   編（Part）
-            //     └ 章（Chapter）
-            //         └ 節（Section）
-            //             └ 款（Subsection）
-            //                 └ 条（Article）
-            //                     └ 項（Paragraph）
-            //                         └ 号（Item）
-            //
-            // そのため、TreeView の Text に「章」「節」「条」などが含まれるかどうかで
-            // 判定すると誤爆する（本文中の「第○条」など）。
-            //
-            // → Tag の型で厳密に判定することで、構造ノードだけを確実に自動展開できる。
-            // ============================================================
-            if(node?.Tag is Part or Chapter or Section or Subsection or Article or Paragraph or Item) {
-                node.Expand();
-            }
+            // ------------------------------------------------------------
+            // ★ 構造ノードの自動展開（最適化版）
+            // ------------------------------------------------------------
+            AutoExpandStructureNode(node);
 
-            // ============================================================
-            // ★ Tag が null の場合は本文なし
-            // ============================================================
+            // ------------------------------------------------------------
+            // ★ 本文表示（既存ロジック）
+            // ------------------------------------------------------------
             if(node?.Tag == null) {
                 CcRichTextBox1.Text = "";
                 return;
             }
 
-            // ============================================================
-            // ★ 本文表示（編 → 章 → 節 → 款 → 条 → 項 → 号 → 文）
-            //
-            // Tag の型に応じて、対応する BuildXXXText を呼び出す。
-            // これにより TreeView と本文表示の階層構造が完全に一致する。
-            //
-            // ※ Sentence（文）は Text をそのまま表示する。
-            // ============================================================
             string text = node.Tag switch{
-                Part part           => BuildPartText(part),
-                Chapter chapter     => BuildChapterText(chapter),
-                Section section     => BuildSectionText(section),
-                Subsection subsection => BuildSubsectionText(subsection),
-                Article article     => BuildArticleText(article),
-                Paragraph para      => BuildParagraphText(para),
-                Item item           => BuildItemText(item),
-                Sentence sentence   => sentence.Text,
-                _                   => ""
+                Part part               => BuildPartText(part),
+                Chapter chapter         => BuildChapterText(chapter),
+                Section section         => BuildSectionText(section),
+                Subsection subsection   => BuildSubsectionText(subsection),
+                Article article         => BuildArticleText(article),
+                Paragraph para          => BuildParagraphText(para),
+                Item item               => BuildItemText(item),
+                Sentence sentence       => sentence.Text,
+                _                       => ""
             };
 
-            // ============================================================
-            // ★ RichTextBox へ反映
-            // ============================================================
             CcRichTextBox1.Font = new Font("Meiryo", 9);
             CcRichTextBox1.Text = text;
 
-            // ============================================================
-            // ★ 見出し（編・章・節・款・条・項・号）の強調表示
-            // ============================================================
             ApplyFormatting();
+        }
+
+        /// <summary>
+        /// TreeView の構造ノード（編・章・節・款・条・項・号）を自動展開する。
+        /// 
+        /// ・本文中の「第○条」などのテキストには反応しない
+        /// ・Tag の型で厳密に判定するため誤爆しない
+        /// ・Sentence（文）は展開しない
+        /// 
+        /// ※ 展開は「そのノードだけ」ではなく「子ノードも展開」する。
+        /// </summary>
+        private void AutoExpandStructureNode(TreeNode node) {
+            if(node == null || node.Tag == null)
+                return;
+
+            // 構造ノードの型一覧
+            bool isStructure = node.Tag is Part
+                            || node.Tag is Chapter
+                            || node.Tag is Section
+                            || node.Tag is Subsection
+                            || node.Tag is Article
+                            || node.Tag is Paragraph
+                            || node.Tag is Item;
+
+            if(!isStructure)
+                return;
+
+            // 自分を展開
+            node.Expand();
+
+            // 子ノードも展開（階層を一気に開く）
+            foreach(TreeNode child in node.Nodes)
+                child.Expand();
         }
 
         // ============================================================
