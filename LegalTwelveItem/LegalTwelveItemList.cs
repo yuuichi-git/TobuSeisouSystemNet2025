@@ -114,9 +114,9 @@ namespace LegalTwelveItem {
             /*
              * SheetViewListの準備
              */
-            this.SpreadList.SuspendLayout();                                                                                    // Spread 非活性化
-            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                            // 先頭行（列）インデックスを取得
-            if (this.SheetViewList.Rows.Count > 0)                                                                              // Rowを削除する
+            this.SpreadList.SuspendLayout();                                                                                                // Spread 非活性化
+            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                        // 先頭行（列）インデックスを取得
+            if (this.SheetViewList.Rows.Count > 0)                                                                                          // Rowを削除する
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
             /*
              * SheetViewListへ表示
@@ -124,9 +124,9 @@ namespace LegalTwelveItem {
             int i = 0;
             foreach (LegalTwelveItemListVo legalTwelveItemListVo in listLegalTwelveItemVo) {
                 this.SheetViewList.Rows.Add(i, 1);
-                this.SheetViewList.RowHeader.Columns[0].Label = (i + 1).ToString();                                             // Rowヘッダ
-                this.SheetViewList.Rows[i].ForeColor = legalTwelveItemListVo.JobForm == 11 ? Color.Blue : Color.Black;              // 手帳のレコードのForeColorをセット
-                this.SheetViewList.Rows[i].Tag = legalTwelveItemListVo;                                                             // H_LegalTwelveItemVoを退避
+                this.SheetViewList.RowHeader.Columns[0].Label = (i + 1).ToString();                                                         // Rowヘッダ
+                this.SheetViewList.Rows[i].ForeColor = legalTwelveItemListVo.JobForm == 11 ? Color.Blue : Color.Black;                      // 手帳のレコードのForeColorをセット
+                this.SheetViewList.Rows[i].Tag = legalTwelveItemListVo;                                                                     // H_LegalTwelveItemVoを退避
                 this.SheetViewList.Cells[i, _colBelongsName].Text = legalTwelveItemListVo.BelongsName;
                 this.SheetViewList.Cells[i, _colJobFormName].Text = legalTwelveItemListVo.JobFormName;
                 this.SheetViewList.Cells[i, _colOccupation].Text = legalTwelveItemListVo.OccupationName;
@@ -146,8 +146,8 @@ namespace LegalTwelveItem {
                 this.SheetViewList.Cells[i, _colStudentsFlag12].Text = legalTwelveItemListVo.Students12Flag ? "〇" : string.Empty;
                 i++;
             }
-            this.SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                             // 先頭行（列）インデックスをセット
-            this.SpreadList.ResumeLayout();                                                                                     // Spread 活性化
+            this.SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                         // 先頭行（列）インデックスをセット
+            this.SpreadList.ResumeLayout();                                                                                                 // Spread 活性化
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
@@ -178,24 +178,24 @@ namespace LegalTwelveItem {
         /// <param name="sheetView"></param>
         /// <returns></returns>
         private SheetView InitializeSheetViewList(SheetView sheetView) {
-            this.SpreadList.AllowDragDrop = false; // DrugDropを禁止する
-            this.SpreadList.PaintSelectionHeader = false; // ヘッダの選択状態をしない
+            this.SpreadList.AllowDragDrop = false;                                                                                          // DrugDropを禁止する
+            this.SpreadList.PaintSelectionHeader = false;                                                                                   // ヘッダの選択状態をしない
             this.SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
-            this.SpreadList.TabStripPolicy = TabStripPolicy.Never; // シートタブを非表示
-            sheetView.AlternatingRows.Count = 2; // 行スタイルを２行単位とします
-            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke; // 1行目の背景色を設定します
-            sheetView.AlternatingRows[1].BackColor = Color.White; // 2行目の背景色を設定します
-            sheetView.ColumnHeader.Rows[0].Height = 22; // Columnヘッダの高さ
+            this.SpreadList.TabStripPolicy = TabStripPolicy.Never;                                                                          // シートタブを非表示
+            sheetView.AlternatingRows.Count = 2;                                                                                            // 行スタイルを２行単位とします
+            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                                                                      // 1行目の背景色を設定します
+            sheetView.AlternatingRows[1].BackColor = Color.White;                                                                           // 2行目の背景色を設定します
+            sheetView.ColumnHeader.Rows[0].Height = 22;                                                                                     // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = Color.White;
             sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
-            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9); // 行ヘッダのFont
-            sheetView.RowHeader.Columns[0].Width = 48; // 行ヘッダの幅を変更します
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                                              // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 48;                                                                                      // 行ヘッダの幅を変更します
             sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
             sheetView.RemoveRows(0, sheetView.Rows.Count);
             return sheetView;
         }
 
-        /// <summary>
+        /// <summary>       
         /// 
         /// </summary>
         /// <param name="sender"></param>

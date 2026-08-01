@@ -1,8 +1,12 @@
 ﻿using Common;
+
 using Dao;
+
 using FarPoint.Excel;
 using FarPoint.Win.Spread;
+
 using System.Drawing.Printing;
+
 using Vo;
 
 namespace RollCall {
@@ -46,7 +50,6 @@ namespace RollCall {
             DetectorStart = 11,
             Instruction = 12,
             RollCallNameStart = 13,
-
             LastPlantName = 14,
             LastPlantCount = 15,
             LastPlantTime = 16,
@@ -59,26 +62,33 @@ namespace RollCall {
         }
 
         /// <summary>
-        /// 点呼記録簿画面
+        /// 
         /// </summary>
+        /// <param name="connectionVo"></param>
+        /// <param name="screen"></param>
         public RollCallRecordSheet(ConnectionVo connectionVo, Screen screen) {
-
-            // Dao 初期化
+            /*
+             * Dao
+             */
             _setMasterDao = new(connectionVo);
             _carMasterDao = new(connectionVo);
             _staffMasterDao = new(connectionVo);
             _vehicleDispatchDetailDao = new(connectionVo);
             _firstRollCallDao = new(connectionVo);
             _lastRollCallDao = new(connectionVo);
-
-            // マスター読込
+            /*
+             * Vo
+             */
             _listSetMasterVo = _setMasterDao.SelectAllSetMaster();
             _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
             _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, null);
-
+            /*
+             * InitializeControl
+             */
             InitializeComponent();
-
-            // メニューの有効化設定
+            /*
+             * MenuStripEx の有効化
+             */
             List<string> listString = new() {
                 "ToolStripMenuItemFile",
                 "ToolStripMenuItemExit",
@@ -95,7 +105,7 @@ namespace RollCall {
             this.ComboBoxExManagedSpace.Text = "本社営業所";
 
             // プリンタ一覧
-            foreach (string item in new PrintUtility().GetAllPrinterName()) {
+            foreach(string item in new PrintUtility().GetAllPrinterName()) {
                 this.ComboBoxExPrinterName.Items.Add(item);
             }
             this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
@@ -114,6 +124,8 @@ namespace RollCall {
         /// <summary>
         /// Spread の初期設定
         /// </summary>
+        /// <param name="sheetView"></param>
+        /// <returns></returns>
         private SheetView InitializeSheetView(SheetView sheetView) {
             this.SpreadList.AllowDragDrop = false;
             this.SpreadList.PaintSelectionHeader = false;
@@ -125,6 +137,8 @@ namespace RollCall {
         /// <summary>
         /// 点呼記録簿の更新処理
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
             // Spread のクリア
             this.SheetViewList.ClearRange(START_ROW, 1, 70, 22, true);
@@ -133,7 +147,7 @@ namespace RollCall {
 
             // 点呼実施者（始業点呼）を取得
             _firstRollCallVo = _firstRollCallDao.SelectOneFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue());
-            if (_firstRollCallVo is null) {
+            if(_firstRollCallVo is null) {
                 MessageBox.Show("選択日付の点呼実施者記録が存在しません。処理を終了します。", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -145,43 +159,49 @@ namespace RollCall {
             _listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
 
             int row = 0;
-            foreach (var detail in _listVehicleDispatchDetailVo.Where(x => x.OperationFlag && x.ManagedSpaceCode == managedSpaceCode).OrderBy(x => x.StaffRollCallYmdHms1)) {
+            foreach(VehicleDispatchDetailVo vehicleDispatchDetailVo in _listVehicleDispatchDetailVo.Where(x => x.OperationFlag && x.ManagedSpaceCode == managedSpaceCode).OrderBy(x => x.StaffRollCallYmdHms1)) {
                 // マスターキャッシュ
-                var set = _listSetMasterVo.Find(x => x.SetCode == detail.SetCode);
-                var car = _listCarMasterVo.Find(x => x.CarCode == detail.CarCode);
-                var staff = _listStaffMasterVo.Find(x => x.StaffCode == detail.StaffCode1);
+                SetMasterVo setMasterVo = _listSetMasterVo.Where(x => x.SetCode == vehicleDispatchDetailVo.SetCode).FirstOrDefault();
+                CarMasterVo carMasterVo = _listCarMasterVo.Where(x => x.CarCode == vehicleDispatchDetailVo.CarCode).FirstOrDefault();
+                StaffMasterVo staffMasterVo = _listStaffMasterVo.Where(x => x.StaffCode == vehicleDispatchDetailVo.StaffCode1).FirstOrDefault();
 
-                /*
-                 * マスターが欠けている場合はスキップ
-                 * 2026/4/27追記：自家用もスキップする。
-                 */
-                if (set is null || (car is null || car.OtherCode == 11) || staff is null)
+                // 条件に合わない場合はスキップ
+                if(setMasterVo is not null && (setMasterVo.ClassificationCode == 10 || setMasterVo.ClassificationCode == 11 || setMasterVo.ClassificationCode == 12 || setMasterVo.ClassificationCode == 20)) {
+
+                } else {
                     continue;
+                }
+                if(carMasterVo is null) {
+                    continue;
+                }
+                if(staffMasterVo is null) {
+                    continue;
+                }
 
                 // 第五週の休車判定
-                if (detail.OperationDate.Day > 28 && set.FiveLap == false)
+                if(vehicleDispatchDetailVo.OperationDate.Day > 28 && setMasterVo.FiveLap == false)
                     continue;
 
                 // 車両未指定は除外
-                if (detail.CarCode <= 0)
+                if(vehicleDispatchDetailVo.CarCode <= 0)
                     continue;
 
                 int r = START_ROW + row;
 
                 // 配車先
-                this.SheetViewList.Cells[r, (int)Col.SetName].Text = $"{set.SetName1}{set.SetName2}";
+                this.SheetViewList.Cells[r, (int)Col.SetName].Text = $"{setMasterVo.SetName1}{setMasterVo.SetName2}";
 
                 // 自動車登録番号
-                this.SheetViewList.Cells[r, (int)Col.CarNumber].Text = car.RegistrationNumber;
+                this.SheetViewList.Cells[r, (int)Col.CarNumber].Text = carMasterVo.RegistrationNumber;
 
                 // 運転手
-                this.SheetViewList.Cells[r, (int)Col.Driver].Text = staff.DisplayName;
+                this.SheetViewList.Cells[r, (int)Col.Driver].Text = staffMasterVo.DisplayName;
 
                 // 点呼方法
                 this.SheetViewList.Cells[r, (int)Col.RollCallMethodStart].Text = "対面";
 
                 // 点呼時刻
-                this.SheetViewList.Cells[r, (int)Col.RollCallTimeStart].Text = detail.StaffRollCallYmdHms1.ToString("H:mm");
+                this.SheetViewList.Cells[r, (int)Col.RollCallTimeStart].Text = vehicleDispatchDetailVo.StaffRollCallYmdHms1.ToString("H:mm");
 
                 // チェック項目
                 this.SheetViewList.Cells[r, (int)Col.License].Text = "✓";
@@ -194,16 +214,16 @@ namespace RollCall {
                 this.SheetViewList.Cells[r, (int)Col.Instruction].Text = $"{_firstRollCallVo.Instruction1}\r\n\r\n{_firstRollCallVo.Instruction2}";
 
                 // 点呼実施者（始業）
-                this.SheetViewList.Cells[r, (int)Col.RollCallNameStart].Text = GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, false);
+                this.SheetViewList.Cells[r, (int)Col.RollCallNameStart].Text = GetRollCallName(managedSpaceCode, vehicleDispatchDetailVo.StaffRollCallYmdHms1, false);
 
                 /*
                  * 乗務後点呼
                  */
-                if (detail.LastRollCallFlag) {
+                if(vehicleDispatchDetailVo.LastRollCallFlag) {
                     _lastRollCallVo = _lastRollCallDao.SelectOneLastRollCall(
-                        detail.SetCode, detail.OperationDate, detail.LastRollCallYmdHms);
+                        vehicleDispatchDetailVo.SetCode, vehicleDispatchDetailVo.OperationDate, vehicleDispatchDetailVo.LastRollCallYmdHms);
 
-                    if (_lastRollCallVo != null) {
+                    if(_lastRollCallVo != null) {
                         this.SheetViewList.Cells[r, (int)Col.LastPlantName].Text = _lastRollCallVo.LastPlantName;
                         this.SheetViewList.Cells[r, (int)Col.LastPlantCount].Text = _lastRollCallVo.LastPlantCount.ToString();
                         this.SheetViewList.Cells[r, (int)Col.LastPlantTime].Text = _lastRollCallVo.LastPlantYmdHms.ToString("HH:mm");
@@ -213,13 +233,12 @@ namespace RollCall {
                         this.SheetViewList.Cells[r, (int)Col.AlcoholEnd].Text = "✓";
                         this.SheetViewList.Cells[r, (int)Col.DetectorEnd].Text = "有";
 
-                        this.SheetViewList.Cells[r, (int)Col.Memo].Text = detail.SetMemo;
+                        this.SheetViewList.Cells[r, (int)Col.Memo].Text = vehicleDispatchDetailVo.SetMemo;
 
                         // 点呼実施者（終業）
-                        this.SheetViewList.Cells[r, (int)Col.RollCallNameEnd].Text = GetRollCallName(managedSpaceCode, detail.StaffRollCallYmdHms1, true);
+                        this.SheetViewList.Cells[r, (int)Col.RollCallNameEnd].Text = GetRollCallName(managedSpaceCode, vehicleDispatchDetailVo.StaffRollCallYmdHms1, true);
                     }
                 }
-
                 row++;
             }
         }
@@ -229,13 +248,13 @@ namespace RollCall {
         /// </summary>
         private string GetRollCallName(int managedSpaceCode, DateTime time, bool isLast) {
             // 三郷車庫は固定
-            if (managedSpaceCode == 2)
+            if(managedSpaceCode == 2)
                 return _firstRollCallVo.RollCallName5;
 
             int sec = time.Second;
 
             // 始業点呼
-            if (!isLast)
+            if(!isLast)
                 return (sec % 2 == 0) ? _firstRollCallVo.RollCallName1 : _firstRollCallVo.RollCallName2;
 
             // 終業点呼（秒の下1桁で振り分け）
@@ -246,9 +265,10 @@ namespace RollCall {
         /// メニュークリックイベント
         /// </summary>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (sender is not ToolStripMenuItem menu) return;
+            if(sender is not ToolStripMenuItem menu)
+                return;
 
-            switch (menu.Name) {
+            switch(menu.Name) {
                 case "ToolStripMenuItemExportExcel":
                     ExportExcel();
                     break;
@@ -284,8 +304,8 @@ namespace RollCall {
                 _printDocument.DefaultPageSettings.Landscape = false;
 
                 // B4 用紙を設定（存在しない場合は既定のまま）
-                foreach (PaperSize ps in _printDocument.PrinterSettings.PaperSizes) {
-                    if (ps.Kind == PaperKind.B4) {
+                foreach(PaperSize ps in _printDocument.PrinterSettings.PaperSizes) {
+                    if(ps.Kind == PaperKind.B4) {
                         _printDocument.DefaultPageSettings.PaperSize = ps;
                         break;
                     }
@@ -298,7 +318,7 @@ namespace RollCall {
 
                 // 印刷開始
                 _printDocument.Print();
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 MessageBox.Show($"印刷中にエラーが発生しました。\n{ex.Message}", "印刷エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -328,7 +348,7 @@ namespace RollCall {
         private void RollCallRecordSheet_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dr = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (dr == DialogResult.OK) {
+            if(dr == DialogResult.OK) {
                 e.Cancel = false;
                 Dispose();
             } else {

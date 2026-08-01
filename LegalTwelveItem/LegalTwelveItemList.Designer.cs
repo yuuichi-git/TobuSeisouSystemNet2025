@@ -43,13 +43,14 @@
             // 
             // TableLayoutPanelExBase
             // 
-            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnCount = 3;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330F));
             TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
-            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 1, 2);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -58,29 +59,32 @@
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            TableLayoutPanelExBase.Size = new Size(1231, 1041);
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
+            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 3);
             MenuStripEx1.Location = new Point(0, 0);
             MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1231, 24);
+            MenuStripEx1.Size = new Size(1904, 24);
             MenuStripEx1.TabIndex = 0;
             MenuStripEx1.Text = "menuStripEx1";
             MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
+            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 3);
             StatusStripEx1.Location = new Point(0, 1019);
             StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1231, 22);
+            StatusStripEx1.Size = new Size(1904, 22);
             StatusStripEx1.SizingGrip = false;
             StatusStripEx1.TabIndex = 1;
             StatusStripEx1.Text = "statusStripEx1";
             // 
             // PanelExTop
             // 
+            TableLayoutPanelExBase.SetColumnSpan(PanelExTop, 3);
             PanelExTop.Controls.Add(labelEx2);
             PanelExTop.Controls.Add(ComboBoxExPrinterName);
             PanelExTop.Controls.Add(labelEx1);
@@ -89,7 +93,7 @@
             PanelExTop.Dock = DockStyle.Fill;
             PanelExTop.Location = new Point(3, 27);
             PanelExTop.Name = "PanelExTop";
-            PanelExTop.Size = new Size(1225, 54);
+            PanelExTop.Size = new Size(1898, 54);
             PanelExTop.TabIndex = 2;
             // 
             // labelEx2
@@ -124,7 +128,7 @@
             ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            ButtonExUpdate.Location = new Point(1023, 12);
+            ButtonExUpdate.Location = new Point(1696, 12);
             ButtonExUpdate.Name = "ButtonExUpdate";
             ButtonExUpdate.SetTextDirectionVertical = null;
             ButtonExUpdate.Size = new Size(160, 32);
@@ -149,9 +153,9 @@
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 87);
+            SpreadList.Location = new Point(333, 87);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1225, 927);
+            SpreadList.Size = new Size(1238, 927);
             SpreadList.TabIndex = 3;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
@@ -159,7 +163,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1231, 1041);
+            ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = MenuStripEx1;
