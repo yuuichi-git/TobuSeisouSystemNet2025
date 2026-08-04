@@ -28,6 +28,9 @@
             CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             CcPanelTop = new CcControl.CcPanel();
+            CcRadioButton3 = new CcControl.CcRadioButton();
+            CcRadioButton2 = new CcControl.CcRadioButton();
+            CcRadioButton1 = new CcControl.CcRadioButton();
             CcDateTimeOperationDate2 = new CcControl.CcDateTime();
             ccLabel2 = new CcControl.CcLabel();
             ccLabel1 = new CcControl.CcLabel();
@@ -36,8 +39,8 @@
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
             SheetViewList = SpreadList.GetSheet(0);
             CcPanelLeft = new CcControl.CcPanel();
-            CcLabelPeakSeasonAllowanceCount = new CcControl.CcLabel();
             ccTextBox1 = new CcControl.CcTextBox();
+            CcLabelPeakSeasonAllowanceCount = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
@@ -47,9 +50,9 @@
             // CcTableLayoutPanelBase
             // 
             CcTableLayoutPanelBase.ColumnCount = 3;
-            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500F));
             CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500F));
             CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 3);
             CcTableLayoutPanelBase.Controls.Add(CcPanelTop, 0, 1);
@@ -88,6 +91,9 @@
             // CcPanelTop
             // 
             CcTableLayoutPanelBase.SetColumnSpan(CcPanelTop, 3);
+            CcPanelTop.Controls.Add(CcRadioButton3);
+            CcPanelTop.Controls.Add(CcRadioButton2);
+            CcPanelTop.Controls.Add(CcRadioButton1);
             CcPanelTop.Controls.Add(CcDateTimeOperationDate2);
             CcPanelTop.Controls.Add(ccLabel2);
             CcPanelTop.Controls.Add(ccLabel1);
@@ -98,6 +104,41 @@
             CcPanelTop.Name = "CcPanelTop";
             CcPanelTop.Size = new Size(1898, 46);
             CcPanelTop.TabIndex = 2;
+            // 
+            // CcRadioButton3
+            // 
+            CcRadioButton3.AutoSize = true;
+            CcRadioButton3.Location = new Point(828, 14);
+            CcRadioButton3.Name = "CcRadioButton3";
+            CcRadioButton3.Size = new Size(94, 19);
+            CcRadioButton3.TabIndex = 23;
+            CcRadioButton3.Tag = "労供";
+            CcRadioButton3.Text = "労供のみ表示";
+            CcRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // CcRadioButton2
+            // 
+            CcRadioButton2.AutoSize = true;
+            CcRadioButton2.Location = new Point(684, 14);
+            CcRadioButton2.Name = "CcRadioButton2";
+            CcRadioButton2.Size = new Size(116, 19);
+            CcRadioButton2.TabIndex = 22;
+            CcRadioButton2.Tag = "アルバイト";
+            CcRadioButton2.Text = "アルバイトのみ表示";
+            CcRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // CcRadioButton1
+            // 
+            CcRadioButton1.AutoSize = true;
+            CcRadioButton1.Checked = true;
+            CcRadioButton1.Location = new Point(536, 14);
+            CcRadioButton1.Name = "CcRadioButton1";
+            CcRadioButton1.Size = new Size(122, 19);
+            CcRadioButton1.TabIndex = 21;
+            CcRadioButton1.TabStop = true;
+            CcRadioButton1.Tag = "ALL";
+            CcRadioButton1.Text = "全てのレコードを表示";
+            CcRadioButton1.UseVisualStyleBackColor = true;
             // 
             // CcDateTimeOperationDate2
             // 
@@ -160,10 +201,11 @@
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(353, 79);
+            SpreadList.Location = new Point(503, 79);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1198, 935);
+            SpreadList.Size = new Size(898, 935);
             SpreadList.TabIndex = 3;
+            SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
             // CcPanelLeft
             // 
@@ -172,8 +214,18 @@
             CcPanelLeft.Dock = DockStyle.Fill;
             CcPanelLeft.Location = new Point(3, 79);
             CcPanelLeft.Name = "CcPanelLeft";
-            CcPanelLeft.Size = new Size(344, 935);
+            CcPanelLeft.Size = new Size(494, 935);
             CcPanelLeft.TabIndex = 4;
+            // 
+            // ccTextBox1
+            // 
+            ccTextBox1.Enabled = false;
+            ccTextBox1.Location = new Point(8, 112);
+            ccTextBox1.Multiline = true;
+            ccTextBox1.Name = "ccTextBox1";
+            ccTextBox1.Size = new Size(480, 812);
+            ccTextBox1.TabIndex = 13;
+            ccTextBox1.Text = resources.GetString("ccTextBox1.Text");
             // 
             // CcLabelPeakSeasonAllowanceCount
             // 
@@ -184,16 +236,6 @@
             CcLabelPeakSeasonAllowanceCount.Size = new Size(240, 21);
             CcLabelPeakSeasonAllowanceCount.TabIndex = 12;
             CcLabelPeakSeasonAllowanceCount.Text = "集計期間内の対象日数合計：0日";
-            // 
-            // ccTextBox1
-            // 
-            ccTextBox1.Enabled = false;
-            ccTextBox1.Location = new Point(8, 112);
-            ccTextBox1.Multiline = true;
-            ccTextBox1.Name = "ccTextBox1";
-            ccTextBox1.Size = new Size(328, 812);
-            ccTextBox1.TabIndex = 13;
-            ccTextBox1.Text = resources.GetString("ccTextBox1.Text");
             // 
             // PeakSeasonAllowanceList
             // 
@@ -232,5 +274,8 @@
         private CcControl.CcPanel CcPanelLeft;
         private CcControl.CcLabel CcLabelPeakSeasonAllowanceCount;
         private CcControl.CcTextBox ccTextBox1;
+        private CcControl.CcRadioButton CcRadioButton3;
+        private CcControl.CcRadioButton CcRadioButton2;
+        private CcControl.CcRadioButton CcRadioButton1;
     }
 }

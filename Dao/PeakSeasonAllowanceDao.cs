@@ -16,6 +16,10 @@ namespace Dao {
          */
         private ConnectionVo _connectionVo;
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="connectionVO"></param>
         public PeakSeasonAllowanceDao(ConnectionVo connectionVO) {
             /*
              * Vo
@@ -25,41 +29,45 @@ namespace Dao {
 
         /// <summary>
         /// 繁忙期割り増し費 対象者集計表用
-        /// 
-        /// 条件定義
-        /// ①指定した期間内
-        /// ②H_StaffMaster.Belongs IN (12, 22)
-        /// ③H_StaffMaster.JobForm IN (20, 22, 99)
-        /// ④-1 VehicleDispatchDetail.StaffOccupation = 11 作業員
-        /// ④-2 VehicleDispatchDetail.StaffOccupation = 10 AND (H_CarMaster.CarKindCode = 10 OR (H_CarMaster.CarKindCode = 11 AND H_CarMaster.ShapeCode = 10)) 運転手 AND 軽自動車 OR (小型ANDキャブオーバー)
         /// </summary>
         /// <param name="operationDate1"></param>
         /// <param name="operationDate2"></param>
         /// <returns></returns>
         public List<PeakSeasonAllowanceVo> SelectListPeakSeasonAllowanceVo(DateTime operationDate1, DateTime operationDate2) {
             List<PeakSeasonAllowanceVo> listPeakSeasonAllowanceVo = new ();
-
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT VehicleDispatchDetail.StaffCode, " +
                                      "       H_StaffMaster.UnionCode, " +
                                      "       H_BelongsMaster.Name AS BelongsName, " +
                                      "       H_StaffMaster.DisplayName, " +
                                      "       COUNT(*) AS HitCount " +
-                                     "FROM (SELECT StaffCode1 AS StaffCode, StaffOccupation1 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +
+                                     "FROM (SELECT StaffCode1 AS StaffCode, StaffOccupation1 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +     // StaffCode1
                                      "      FROM H_VehicleDispatchDetail " +
-                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 AND ClassificationCode IN (10, 11, 12, 30) " +
+                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 " +
+                                     "        AND ClassificationCode IN (10, 11, 12, 30) " +                                                                        // 分類コード 10:雇上 11:区契 12:臨時 30:社内
+                                     "        AND SetCode NOT IN (1312117) " +                                                                                      // 2026/8/3 家電を除くを追加
+                                     "        AND DATEPART(WEEKDAY, OperationDate) <> 1 " +                                                                         // 2026/8/3 日曜日を除くを追加
                                      "UNION ALL " +
-                                     "      SELECT StaffCode2 AS StaffCode, StaffOccupation2 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +
+                                     "      SELECT StaffCode2 AS StaffCode, StaffOccupation2 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +     // StaffCode2
                                      "      FROM H_VehicleDispatchDetail " +
-                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 AND ClassificationCode IN (10, 11, 12, 30) " +
+                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 " +
+                                     "        AND ClassificationCode IN (10, 11, 12, 30) " +                                                                        // 分類コード 10:雇上 11:区契 12:臨時 30:社内
+                                     "        AND SetCode NOT IN (1312117) " +                                                                                      // 2026/8/3 家電を除くを追加
+                                     "        AND DATEPART(WEEKDAY, OperationDate) <> 1 " +                                                                         // 2026/8/3 日曜日を除くを追加
                                      "UNION ALL " +
-                                     "      SELECT StaffCode3 AS StaffCode, StaffOccupation3 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +
+                                     "      SELECT StaffCode3 AS StaffCode, StaffOccupation3 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +     // StaffCode3
                                      "      FROM H_VehicleDispatchDetail " +
-                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 AND ClassificationCode IN (10, 11, 12, 30) " +
+                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 " +
+                                     "        AND ClassificationCode IN (10, 11, 12, 30) " +                                                                        // 分類コード 10:雇上 11:区契 12:臨時 30:社内
+                                     "        AND SetCode NOT IN (1312117) " +                                                                                      // 2026/8/3 家電を除くを追加
+                                     "        AND DATEPART(WEEKDAY, OperationDate) <> 1 " +                                                                         // 2026/8/3 日曜日を除くを追加
                                      "UNION ALL " +
-                                     "      SELECT StaffCode4 AS StaffCode, StaffOccupation4 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +
+                                     "      SELECT StaffCode4 AS StaffCode, StaffOccupation4 AS StaffOccupation, OperationDate, CarCode, ClassificationCode " +     // StaffCode4
                                      "      FROM H_VehicleDispatchDetail " +
-                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 AND ClassificationCode IN (10, 11, 12, 30)) AS VehicleDispatchDetail " +
+                                     "      WHERE OperationFlag = 1 AND VehicleDispatchFlag = 1 " +
+                                     "        AND ClassificationCode IN (10, 11, 12, 30) " +                                                                        // 分類コード 10:雇上 11:区契 12:臨時 30:社内
+                                     "        AND SetCode NOT IN (1312117) " +                                                                                      // 2026/8/3 家電を除くを追加
+                                     "        AND DATEPART(WEEKDAY, OperationDate) <> 1) AS VehicleDispatchDetail " +                                               // 2026/8/3 日曜日を除くを追加
                                      "INNER JOIN H_StaffMaster ON VehicleDispatchDetail.StaffCode = H_StaffMaster.StaffCode " +
                                      "LEFT JOIN H_CarMaster ON VehicleDispatchDetail.CarCode = H_CarMaster.CarCode " +
                                      "LEFT JOIN H_BelongsMaster ON H_StaffMaster.Belongs = H_BelongsMaster.Code " +
@@ -74,13 +82,13 @@ namespace Dao {
             sqlCommand.Parameters.Add("@OperationDate1", SqlDbType.Date).Value = operationDate1.Date;
             sqlCommand.Parameters.Add("@OperationDate2", SqlDbType.Date).Value = operationDate2.Date;
 
-            using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                while(reader.Read()) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read()) {
                     PeakSeasonAllowanceVo peakSeasonAllowanceVo = new ();
-                    peakSeasonAllowanceVo.UnionCode = _defaultValue.GetDefaultValue<int>(reader["UnionCode"]);
-                    peakSeasonAllowanceVo.BelongsName = _defaultValue.GetDefaultValue<string>(reader["BelongsName"]);
-                    peakSeasonAllowanceVo.DisplayName = _defaultValue.GetDefaultValue<string>(reader["DisplayName"]);
-                    peakSeasonAllowanceVo.CountDays = _defaultValue.GetDefaultValue<int>(reader["HitCount"]);
+                    peakSeasonAllowanceVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
+                    peakSeasonAllowanceVo.BelongsName = _defaultValue.GetDefaultValue<string>(sqlDataReader["BelongsName"]);
+                    peakSeasonAllowanceVo.DisplayName = _defaultValue.GetDefaultValue<string>(sqlDataReader["DisplayName"]);
+                    peakSeasonAllowanceVo.CountDays = _defaultValue.GetDefaultValue<int>(sqlDataReader["HitCount"]);
                     listPeakSeasonAllowanceVo.Add(peakSeasonAllowanceVo);
                 }
             }

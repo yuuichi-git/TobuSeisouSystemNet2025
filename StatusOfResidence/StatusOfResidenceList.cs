@@ -148,7 +148,8 @@ namespace StatusOfResidence {
              */
             if (this.SheetViewList.Rows.Count > 0)
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
-            foreach (StatusOfResidenceMasterVo statusOfResidenceMasterVo in listStatusOfResidenceMasterVo.OrderBy(x => x.DeadlineDate)) {
+            foreach (StatusOfResidenceMasterVo statusOfResidenceMasterVo in listStatusOfResidenceMasterVo.Where(x => this.CheckBoxExRetirementFlag.Checked == true || x.RetirementFlag == false)
+                                                                                                         .OrderBy(x => x.DeadlineDate)) {
                 this.SheetViewList.Rows.Add(rowCount, 1);
                 this.SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                          // Rowヘッダ
                 this.SheetViewList.Rows[rowCount].ForeColor = statusOfResidenceMasterVo.RetirementFlag ? Color.Red : Color.Black;   // 退職済のレコードのForeColorをセット

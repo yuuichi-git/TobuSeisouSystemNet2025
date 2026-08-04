@@ -24,103 +24,117 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatusOfResidenceList));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.PanelExTop = new CcControl.CcPanel();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            PanelExTop = new CcControl.CcPanel();
+            ButtonExUpdate = new CcControl.CcButton();
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SheetViewList = SpreadList.GetSheet(0);
+            CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
+            TableLayoutPanelExBase.SuspendLayout();
+            PanelExTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1904, 1041);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1904, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(1904, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 1019);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1904, 22);
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            StatusStripEx1.Location = new Point(0, 1019);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(1904, 22);
+            StatusStripEx1.TabIndex = 1;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // PanelExTop
             // 
-            this.PanelExTop.Controls.Add(this.ButtonExUpdate);
-            this.PanelExTop.Dock = DockStyle.Fill;
-            this.PanelExTop.Location = new Point(3, 27);
-            this.PanelExTop.Name = "PanelExTop";
-            this.PanelExTop.Size = new Size(1898, 54);
-            this.PanelExTop.TabIndex = 2;
+            PanelExTop.Controls.Add(CheckBoxExRetirementFlag);
+            PanelExTop.Controls.Add(ButtonExUpdate);
+            PanelExTop.Dock = DockStyle.Fill;
+            PanelExTop.Location = new Point(3, 27);
+            PanelExTop.Name = "PanelExTop";
+            PanelExTop.Size = new Size(1898, 54);
+            PanelExTop.TabIndex = 2;
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
-            this.ButtonExUpdate.Location = new Point(1696, 12);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = null;
-            this.ButtonExUpdate.Size = new Size(160, 32);
-            this.ButtonExUpdate.TabIndex = 6;
-            this.ButtonExUpdate.Text = "最　新　化";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonEx_Click;
+            ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            ButtonExUpdate.Location = new Point(1696, 12);
+            ButtonExUpdate.Name = "ButtonExUpdate";
+            ButtonExUpdate.SetTextDirectionVertical = null;
+            ButtonExUpdate.Size = new Size(160, 32);
+            ButtonExUpdate.TabIndex = 6;
+            ButtonExUpdate.Text = "最　新　化";
+            ButtonExUpdate.UseVisualStyleBackColor = true;
+            ButtonExUpdate.Click += ButtonEx_Click;
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "Book1, StatusOfResidenceList, Row 0, Column 0";
-            this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(3, 87);
-            this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1898, 927);
-            this.SpreadList.TabIndex = 3;
-            this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
+            SpreadList.AccessibleDescription = "Book1, StatusOfResidenceList, Row 0, Column 0";
+            SpreadList.Dock = DockStyle.Fill;
+            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadList.Location = new Point(3, 87);
+            SpreadList.Name = "SpreadList";
+            SpreadList.Size = new Size(1898, 927);
+            SpreadList.TabIndex = 3;
+            SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
+            // 
+            // CheckBoxExRetirementFlag
+            // 
+            CheckBoxExRetirementFlag.AutoSize = true;
+            CheckBoxExRetirementFlag.Location = new Point(1596, 20);
+            CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
+            CheckBoxExRetirementFlag.Size = new Size(95, 19);
+            CheckBoxExRetirementFlag.TabIndex = 7;
+            CheckBoxExRetirementFlag.Text = "退職者も表示";
+            CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
             // StatusOfResidenceList
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1904, 1041);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "StatusOfResidenceList";
-            this.Text = "StatusOfResidenceList";
-            this.FormClosing += this.StatusOfResidenceList_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            Name = "StatusOfResidenceList";
+            Text = "StatusOfResidenceList";
+            FormClosing += StatusOfResidenceList_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            PanelExTop.ResumeLayout(false);
+            PanelExTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -132,5 +146,6 @@
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcCheckBox CheckBoxExRetirementFlag;
     }
 }

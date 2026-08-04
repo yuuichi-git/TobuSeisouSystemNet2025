@@ -89,6 +89,15 @@ namespace PeakSeason {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            //MessageBox.Show("ダブルクリックされました。");
+        }
+
+        /// <summary>
         /// 現在のSpreadListの表示位置を保持するための変数
         /// </summary>
         int _spreadListTopRow = 0;
@@ -100,6 +109,8 @@ namespace PeakSeason {
         private void SetSheetViewList(SheetView sheetView) {
             int rowCount = 0;
             int peakSeasonAllowanceCount = 0;
+            CcRadioButton[] ccRadioButtons = { this.CcRadioButton1, this.CcRadioButton2, this.CcRadioButton3 };
+            CcRadioButton selectedCcRadioButton = ccRadioButtons.FirstOrDefault(rb => rb.Checked);
 
             this.SpreadList.SuspendLayout();
             _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);
@@ -107,7 +118,8 @@ namespace PeakSeason {
             if(sheetView.Rows.Count > 0)
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
 
-            foreach(PeakSeasonAllowanceVo peakSeasonAllowanceVo in ListPeakSeasonAllowanceVo) {
+
+            foreach(PeakSeasonAllowanceVo peakSeasonAllowanceVo in ListPeakSeasonAllowanceVo.Where(x => (string)selectedCcRadioButton.Tag == "ALL" || x.BelongsName == (string)selectedCcRadioButton.Tag)) {
                 sheetView.Rows.Add(rowCount, 1);
                 sheetView.Rows[rowCount].Height = 24;
                 sheetView.HorizontalGridLine = new GridLine(GridLineType.Flat);
