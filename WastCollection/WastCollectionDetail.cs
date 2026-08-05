@@ -1,9 +1,11 @@
 ﻿/*
  * 2026-01-28
  */
-using Common;
+using System.Text;
 
 using CcControl;
+
+using Common;
 
 using Dao;
 
@@ -13,10 +15,6 @@ using Vo;
 
 namespace WastCollection {
     public partial class WastCollectionDetail : Form {
-        private PdfUtility _pdfUtility = new();
-        private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
-        private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
-
         private DateTime _defaultDateTime = new(1900, 1, 1);
         /*
          * Column Index
@@ -65,18 +63,16 @@ namespace WastCollection {
         /*
          * インスタンス作成
          */
-        private readonly ScreenForm _screenForm = new();
         private readonly PdfUtility _pdfUtility = new();
+        private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（メモ１～４）
+        private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
         /*
          * Dao
          */
         private WordMasterDao _wordMasterDao;
         private WasteCollectionHeadDao _wasteCollectionHeadDao;
         private WasteCollectionBodyDao _wasteCollectionBodyDao;
-        /*
-         * Vo
-         */
-        private readonly ConnectionVo _connectionVo;
+
         /// <summary>
         /// コンストラクター(新規登録)
         /// </summary>
@@ -89,35 +85,19 @@ namespace WastCollection {
             _wasteCollectionHeadDao = new(connectionVo);
             _wasteCollectionBodyDao = new(connectionVo);
             /*
-             * Vo
-             */
-            _connectionVo = connectionVo;
-            /*
              * Idを取得
              */
             try {
                 _id = _wasteCollectionHeadDao.GetNewId();
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 MessageBox.Show(string.Concat("データの取得に失敗しました。", Environment.NewLine, ex.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             /*
              * InitializeControl
              */
             InitializeComponent();
-            /*
-             * MenuStrip
-             */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
-            this.MenuStripEx1.ChangeEnable(listString);
-            /*
-             * Control
-             */
-            this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
             this.CcTextBoxId.Text = _id.ToString();                                                                                         // Idをセット
+            this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
             this.InitializeControl();
             /*
              * FpSpread/Viewを初期化
@@ -126,11 +106,11 @@ namespace WastCollection {
             /*
              * StatusStrip
              */
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "新規登録モードで開かれました。";
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "新規登録モードで開かれました。";
             /*
-             * Eventを登録する
+             * 入力用Controlsを初期化
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.InitializeMsiControls();
         }
 
         /// <summary>
@@ -146,10 +126,6 @@ namespace WastCollection {
             _wasteCollectionHeadDao = new(connectionVo);
             _wasteCollectionBodyDao = new(connectionVo);
             /*
-             * Vo
-             */
-            _connectionVo = connectionVo;
-            /*
              * Idを取得
              */
             _id = id;
@@ -157,20 +133,8 @@ namespace WastCollection {
              * InitializeControl
              */
             InitializeComponent();
-            /*
-             * MenuStrip
-             */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
-            this.MenuStripEx1.ChangeEnable(listString);
-            /*
-             * Control
-             */
-            this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
             this.CcTextBoxId.Text = id.ToString();                                                                                          // Idをセット
+            this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
             this.InitializeControl();
             /*
              * FpSpread/Viewを初期化
@@ -179,16 +143,15 @@ namespace WastCollection {
             /*
              * StatusStrip
              */
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "修正登録モードで開かれました。";
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "修正登録モードで開かれました。";
             /*
              * データを表示する
              */
             this.SetHeadControls(_wasteCollectionHeadDao.SelectOneWasteCollectionHead(id));
             this.SetBodyControls(this.SheetViewList, _wasteCollectionBodyDao.SelectAllWasteCollectionBody(id));
+            /*
+             *入力用Controlsを初期化
+             */
             this.InitializeMsiControls();
         }
 
@@ -198,22 +161,22 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcButton_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "CcButtonUpdate":
                     /*
                      * HEADの更新・追加
                      */
-                    if (_wasteCollectionHeadDao.ExistenceWasteCollectionHead(_id)) {
+                    if(_wasteCollectionHeadDao.ExistenceWasteCollectionHead(_id)) {
                         try {
                             _wasteCollectionHeadDao.UpdateOneWasteCollectionHead(this.GetWasteCollectionHeadVo());
-                        } catch (Exception exception) {
+                        } catch(Exception exception) {
                             MessageBox.Show(string.Concat("WasteCollectionHeadのUPDATEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     } else {
                         try {
                             _wasteCollectionHeadDao.InsertOneWasteCollectionHead(this.GetWasteCollectionHeadVo());
-                        } catch (Exception exception) {
+                        } catch(Exception exception) {
                             MessageBox.Show(string.Concat("WasteCollectionHeadのINSERTに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -222,13 +185,13 @@ namespace WastCollection {
                     break;
 
                 case "CcButtonOk":
-                    switch (_rowUpdateFlag) {
+                    switch(_rowUpdateFlag) {
                         case false:                                                                                                         // Insertモード
                             this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
                             //this.SheetViewListMsiNoReset(this.SheetViewList);
                             try {
                                 _wasteCollectionBodyDao.InsertOneWasteCollectionBody(_id, this.SheetViewList.RowCount, (WasteCollectionBodyVo)this.SheetViewList.Rows[this.SheetViewList.RowCount - 1].Tag);
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(string.Concat("WasteCollectionBodyのINSERTに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
@@ -239,7 +202,7 @@ namespace WastCollection {
                             this.InitializeMsiControls();
                             try {
                                 _wasteCollectionBodyDao.UpdateOneWasteCollectionBody(_id, _doubleClickRowIndex + 1, (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag);
-                            } catch (Exception exception) {
+                            } catch(Exception exception) {
                                 MessageBox.Show(string.Concat("WasteCollectionBodyのUPDATEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
@@ -254,7 +217,7 @@ namespace WastCollection {
                     //this.SheetViewListMsiNoReset(this.SheetViewList);
                     try {
                         _wasteCollectionBodyDao.DeleteOneWasteCollectionBody(_id, _doubleClickRowIndex + 1);
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(string.Concat("WasteCollectionBodyのDELETEに失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -281,11 +244,11 @@ namespace WastCollection {
             _doubleClickRowIndex = e.Row;                                                                                                   // DoubleClickしたRowIndexを保存
             _rowUpdateFlag = true;                                                                                                          // Updateモードに変更
 
-            if (e.ColumnHeader)                                                                                                             // ヘッダーのDoubleClickを回避
+            if(e.ColumnHeader)                                                                                                              // ヘッダーのDoubleClickを回避
                 return;
 
             WasteCollectionBodyVo wasteCollectionBodyVo = (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag;
-            if (wasteCollectionBodyVo is null || wasteCollectionBodyVo.DeleteFlag == true) {
+            if(wasteCollectionBodyVo is null || wasteCollectionBodyVo.DeleteFlag == true) {
                 this.CcButtonDelete.Enabled = false;                                                                                        // 削除済みのレコードの場合、削除ボタンを無効化
             } else {
                 this.CcButtonDelete.Enabled = true;                                                                                         // 削除ボタンを有効化
@@ -316,21 +279,20 @@ namespace WastCollection {
             /*
              * 回収日
              */
-            if (wasteCollectionHeadVo.PickupDate.Date != _defaultDateTime.Date) {
+            if(wasteCollectionHeadVo.PickupDate.Date != _defaultDateTime.Date) {
                 this.CcDateTimePickupDate.Value = wasteCollectionHeadVo.PickupDate;
             } else {
                 this.CcDateTimePickupDate.SetEmpty();
             }
             this.CcTextBoxRemarks.Text = wasteCollectionHeadVo.Remarks;
 
-            if (wasteCollectionHeadVo.MainPicture.Length != 0) {
-                ImageConverter imageConverter = new();
-                this.CcPictureBox1.Image = (Image)imageConverter.ConvertFrom(wasteCollectionHeadVo.MainPicture);
-            }
-            if (wasteCollectionHeadVo.SubPicture.Length != 0) {
-                ImageConverter imageConverter = new();
-                this.CcPictureBox2.Image = (Image)imageConverter.ConvertFrom(wasteCollectionHeadVo.SubPicture);
-            }
+            /*
+             * PDF 表示（Image1〜4）
+             */
+            ShowPdfIfExists(_ccPdfViews[0], wasteCollectionHeadVo.MainPicture, 0);
+            ShowPdfIfExists(_ccPdfViews[1], wasteCollectionHeadVo.SubPicture, 1);
+            ShowPdfIfExists(_ccPdfViews[2], wasteCollectionHeadVo.AdditionalPicture1, 2);
+            ShowPdfIfExists(_ccPdfViews[3], wasteCollectionHeadVo.AdditionalPicture2, 3);
         }
 
         /// <summary>
@@ -339,16 +301,16 @@ namespace WastCollection {
         /// <param name="listWasteCollectionBodyVo"></param>
         private void SetBodyControls(SheetView sheetView, List<WasteCollectionBodyVo> listWasteCollectionBodyVo) {
             int rowIndex = 0;
-            if (sheetView.Rows.Count > 0)                                                                                               // Rowを削除する
+            if(sheetView.Rows.Count > 0)                                                                                               // Rowを削除する
                 sheetView.RemoveRows(0, sheetView.Rows.Count);
             try {
-                foreach (WasteCollectionBodyVo wasteCollectionBodyVo in listWasteCollectionBodyVo) {
+                foreach(WasteCollectionBodyVo wasteCollectionBodyVo in listWasteCollectionBodyVo) {
                     this.AddNewRow(sheetView, rowIndex, wasteCollectionBodyVo);
                     rowIndex++;
                 }
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(string.Concat("List<WasteCollectionBodyVo>の取得に失敗しました。", Environment.NewLine, exception.Message), "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = " データの取得に失敗しました。";
+                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = " データの取得に失敗しました。";
                 return;
             }
         }
@@ -432,8 +394,10 @@ namespace WastCollection {
             wasteCollectionHeadVo.WorkSiteAddress = this.CcTextBoxWorkSiteAddress.Text;
             wasteCollectionHeadVo.PickupDate = this.CcDateTimePickupDate.GetValue();
             wasteCollectionHeadVo.Remarks = this.CcTextBoxRemarks.Text;
-            wasteCollectionHeadVo.MainPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBox1.Image, typeof(byte[]));
-            wasteCollectionHeadVo.SubPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBox2.Image, typeof(byte[]));
+            wasteCollectionHeadVo.MainPicture = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.SubPicture = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.AdditionalPicture1 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.AdditionalPicture2 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();
             //wasteCollectionHeadVo.InsertPcName = ;
             //wasteCollectionHeadVo.InsertYmdHms = ;
             //wasteCollectionHeadVo.UpdatePcName = ;
@@ -473,29 +437,69 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ContextMenuStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if (sender is not ContextMenuStrip contextMenuStrip)
+            if(sender is not ContextMenuStrip menu)
                 return;
 
-            if (contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+            if(menu.SourceControl is not CcPdfView ccPdfView)
                 return;
 
-            switch (e.ClickedItem.Name) {
+            int imageNo = GetImageNoFromViewer(ccPdfView);
+            if(imageNo == 0)
+                return;
+
+            switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
-                    if (bitmap is not null) {
-                        ccPictureBox.Image = bitmap;
-                    }
+                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
+                    if(bytes is null)
+                        return;
+
+                    this.ShowPdfToViewer(ccPdfView, bytes);
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
 
-                case "ToolStripMenuItemPaste":
+                case "ToolStripMenuItemPaste": {
                     IDataObject data = Clipboard.GetDataObject();
-                    if (data?.GetDataPresent(DataFormats.Bitmap) == true) {
-                        ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
+                    if(data == null) {
+                        MessageBox.Show("クリップボードが空です。");
+                        break;
                     }
+
+                    // ★ クリップボードに画像があるか？
+                    if(data.GetDataPresent(DataFormats.Bitmap)) {
+                        Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
+                        if(bmp == null) {
+                            MessageBox.Show("画像の取得に失敗しました。");
+                            break;
+                        }
+
+                        // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
+                        byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
+                        if(pdfBytes == null || pdfBytes.Length == 0) {
+                            MessageBox.Show("画像を PDF に変換できませんでした。");
+                            break;
+                        }
+
+                        // ★ PdfiumViewer に表示（CcPdfView）
+                        this.ShowPdfToViewer(ccPdfView, pdfBytes);
+
+                        // ★ DB 保存用に MemoryStream を保持
+                        int imageNo1 = GetImageNoFromViewer(ccPdfView);
+                        int index = imageNo1 - 1;
+
+                        //_memoryStream[index]?.Dispose();
+                        _memoryStream[index] = new MemoryStream(pdfBytes);
+
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
+                        break;
+                    }
+
+                    MessageBox.Show("クリップボードに画像がありません。");
                     break;
+                }
 
                 case "ToolStripMenuItemDelete":
-                    ccPictureBox.Image = null;
+                    this.ClearPdfViewer(ccPdfView);
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }
         }
@@ -506,7 +510,7 @@ namespace WastCollection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExit":                                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
@@ -532,11 +536,180 @@ namespace WastCollection {
         }
 
         /// <summary>
+        /// PDF が存在すれば表示する（画像 byte[] にも対応）
+        /// </summary>
+        /// <param name="ccPdfView">表示先の PDF ビューア</param>
+        /// <param name="bytes">DB から取得した byte[]（PDF または画像）</param>
+        /// <param name="index">MemoryStream のインデックス（0〜3）</param>
+        private void ShowPdfIfExists(CcPdfView ccPdfView, byte[] bytes, int index) {
+            // ★ viewer が null の場合は何もできない
+            if(ccPdfView is null)
+                return;
+
+            // ★ byte[] が null または空なら PDF をクリア
+            if(bytes is null || bytes.Length == 0) {
+                ClearPdfViewer(ccPdfView);
+                return;
+            }
+
+            // ★ _memoryStream 配列が未初期化なら初期化
+            if(_memoryStream is null)
+                _memoryStream = new MemoryStream[4];
+
+            // ★ index が範囲外なら return（安全対策）
+            if(index < 0 || index >= _memoryStream.Length)
+                return;
+
+            // ★ PDF 形式かどうか判定（画像 byte[] の場合は PDF に変換）
+            byte[] pdfBytes;
+            if(IsPdfFormat(bytes)) {
+                // そのまま PDF として扱う
+                pdfBytes = bytes;
+            } else {
+                // ★ 画像 byte[] → Bitmap → PDF に変換
+                try {
+                    using(var ms = new MemoryStream(bytes))
+                    using(var bmp = new Bitmap(ms)) {
+                        pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
+                    }
+                } catch {
+                    MessageBox.Show("画像データが不正です。PDF に変換できませんでした。");
+                    ClearPdfViewer(ccPdfView);
+                    return;
+                }
+            }
+
+            // ★ MemoryStream を再生成（Dispose → 新規作成）
+            _memoryStream[index]?.Dispose();
+            _memoryStream[index] = new MemoryStream(pdfBytes, false); // 読み取り専用
+
+            // ★ PDF をビューアに表示
+            try {
+                ccPdfView.SetPdfStream(_memoryStream[index]);
+            } catch(Exception ex) {
+                MessageBox.Show("PDF の読み込みに失敗しました。" + Environment.NewLine + ex.Message);
+                ClearPdfViewer(ccPdfView);
+            }
+        }
+
+        /// <summary>
+        /// byte[] が PDF 形式かどうか判定する
+        /// </summary>
+        private bool IsPdfFormat(byte[] bytes) {
+            if(bytes.Length < 5)
+                return false;
+
+            // PDF は必ず "%PDF-" で始まる
+            string header = Encoding.ASCII.GetString(bytes, 0, 5);
+            return header.StartsWith("%PDF-");
+        }
+
+        /// <summary>
+        /// PdfViewer がどの ImageNo に対応しているかを返す
+        /// </summary>
+        private int GetImageNoFromViewer(CcPdfView viewer) {
+            for(int i = 0; i < _ccPdfViews.Length; i++) {
+                if(_ccPdfViews[i] == viewer) {
+                    return i + 1;
+                }
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 指定された PdfViewer に PDF（byte[]）を表示する
+        /// </summary>
+        private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
+            int imageNo = GetImageNoFromViewer(ccPdfView);
+            if(imageNo == 0)
+                return;
+
+            int index = imageNo - 1;
+
+            _memoryStream[index]?.Dispose();
+            _memoryStream[index] = new MemoryStream(pdfBytes);
+
+            ccPdfView.Unload();
+            ccPdfView.SetPdfStream(_memoryStream[index]);
+        }
+
+        /// <summary>
+        /// PDF ビューアをクリアする（Null 安全化）
+        /// </summary>
+        private void ClearPdfViewer(CcPdfView ccPdfView) {
+            if(ccPdfView is null)
+                return;
+
+            int imageNo = GetImageNoFromViewer(ccPdfView);
+            if(imageNo == 0)
+                return;
+
+            int index = imageNo - 1;
+
+            // MemoryStream を破棄
+            _memoryStream[index]?.Dispose();
+            _memoryStream[index] = null;
+
+            // viewer をアンロード
+            try {
+                ccPdfView.Unload();
+            } catch {
+                // Unload が失敗してもアプリは落とさない
+            }
+        }
+
+        /// <summary>
+        /// WastCollectionDetail_FormClosing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch(dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
+        }
+
+        /// <summary>
         /// コントロールを初期化する
         /// </summary>
         private void InitializeControl() {
+            /*
+             * MenuStrip
+             */
+            List<string> listString = new() {
+                "ToolStripMenuItemFile",
+                "ToolStripMenuItemExit",
+                "ToolStripMenuItemHelp"
+            };
+            this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
+            /*
+             * PDF 表示エリア
+             */
+            TabPage[] tabPages = new TabPage[4];
+            tabPages[0] = this.TabPage1;
+            tabPages[1] = this.TabPage2;
+            tabPages[2] = this.TabPage3;
+            tabPages[3] = this.TabPage4;
+            /*
+             * 4つの CcPdfView を生成して TabPage に配置
+             */
+            for(int i = 0; i < 4; i++) {
+                _ccPdfViews[i] = new();
+                tabPages[i].Controls.Add(_ccPdfViews[i]);
+                _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                                 // 共通の ContextMenuStrip を設定
+            }
+
             this.CcDateTimeOfficeQuotationDate.SetToday();
-            this.CcComboBoxWordName.SelectedIndex = 20;                                                                                 // 足立区
+            this.CcComboBoxWordName.SelectedIndex = 20;                                                                                     // 足立区
             /*
              * 本社(依頼主)
              */
@@ -545,9 +718,12 @@ namespace WastCollection {
             this.CcTextBoxOfficeAddress.SetEmpty();
             this.CcTextBoxOfficeTelephoneNumber.SetEmpty();
             this.CcTextBoxOfficeCellphoneNumber.SetEmpty();
-
-            this.CcPictureBox1.Image = null;
-            this.CcPictureBox2.Image = null;
+            /*
+             * PDF クリア
+             */
+            for(int i = 0; i < 4; i++) {
+                ClearPdfViewer(_ccPdfViews[i]);
+            }
             /*
              * 現場(回収場所)
              */
@@ -586,17 +762,6 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// CcPictureBox_DoubleClick
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CcPictureBox_DoubleClick(object sender, EventArgs e) {
-            WastCollectionView wastCollectionPaper = new(_connectionVo, ((CcPictureBox)sender).Image);
-            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionPaper);
-            wastCollectionPaper.ShowDialog(this);
-        }
-
-        /// <summary>
         /// CcComboBoxItemNameを初期化する
         /// </summary>
         private void InitializeCcComboBoxItemName() {
@@ -604,24 +769,6 @@ namespace WastCollection {
             foreach(string data in _wasteCollectionBodyDao.SelectGroupItemName())
                 this.CcComboBoxItemName.Items.Add(data);
             this.CcComboBoxItemName.DisplayEmpty();
-        }
-
-        /// <summary>
-        /// WastCollectionDetail_FormClosing
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WastCollectionDetail_FormClosing(object sender, FormClosingEventArgs e) {
-            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
-                case DialogResult.OK:
-                    e.Cancel = false;
-                    Dispose();
-                    break;
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-            }
         }
     }
 }

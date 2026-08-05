@@ -57,18 +57,14 @@
             labelEx3 = new CcControl.CcLabel();
             CcComboBoxWordName = new CcControl.CcComboBoxWordMaster();
             CcDateTimeOfficeQuotationDate = new CcControl.CcDateTime();
-            StatusStripEx1 = new CcControl.CcStatusStrip();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             SheetViewList = SpreadList.GetSheet(0);
             TabControlEx1 = new CcControl.CcTabControl();
             TabPage1 = new TabPage();
-            CcPictureBox1 = new CcControl.CcPictureBox();
-            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
-            ToolStripMenuItemOpen = new ToolStripMenuItem();
-            ToolStripMenuItemPaste = new ToolStripMenuItem();
-            ToolStripMenuItemDelete = new ToolStripMenuItem();
             TabPage2 = new TabPage();
-            CcPictureBox2 = new CcControl.CcPictureBox();
+            TabPage3 = new TabPage();
+            TabPage4 = new TabPage();
             CcPanelDown = new CcControl.CcPanel();
             CcComboBoxItemName = new CcControl.CcComboBox();
             CcButtonDelete = new CcControl.CcButton();
@@ -85,24 +81,22 @@
             CcNumericUpDownUnitPrice = new CcControl.CcNumericUpDown();
             CcNumericUpDownNumberOfUnits = new CcControl.CcNumericUpDown();
             CcTextBoxItemSize = new CcControl.CcTextBox();
+            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
+            ToolStripMenuItemOpen = new ToolStripMenuItem();
+            ToolStripMenuItemPaste = new ToolStripMenuItem();
+            ToolStripMenuItemDelete = new ToolStripMenuItem();
             ToolTip1 = new ToolTip(components);
-            TabPage3 = new TabPage();
-            TabPage4 = new TabPage();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExUp.SuspendLayout();
             PanelExMiddle.SuspendLayout();
             ccPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
             TabControlEx1.SuspendLayout();
-            TabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).BeginInit();
-            ContextMenuStripEx1.SuspendLayout();
-            TabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox2).BeginInit();
             CcPanelDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownAmount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownUnitPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownNumberOfUnits).BeginInit();
+            CcContextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -114,7 +108,7 @@
             TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
             TableLayoutPanelExBase.Controls.Add(PanelExMiddle, 0, 2);
-            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 5);
+            TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 5);
             TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 3);
             TableLayoutPanelExBase.Controls.Add(TabControlEx1, 1, 2);
             TableLayoutPanelExBase.Controls.Add(CcPanelDown, 0, 4);
@@ -475,15 +469,15 @@
             CcDateTimeOfficeQuotationDate.TabIndex = 0;
             CcDateTimeOfficeQuotationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 2);
-            StatusStripEx1.Location = new Point(2, 1017);
-            StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1900, 22);
-            StatusStripEx1.SizingGrip = false;
-            StatusStripEx1.TabIndex = 5;
-            StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(CcStatusStrip1, 2);
+            CcStatusStrip1.Location = new Point(2, 1017);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1900, 22);
+            CcStatusStrip1.SizingGrip = false;
+            CcStatusStrip1.TabIndex = 5;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // SpreadList
             // 
@@ -513,7 +507,6 @@
             // 
             // TabPage1
             // 
-            TabPage1.Controls.Add(CcPictureBox1);
             TabPage1.Location = new Point(4, 24);
             TabPage1.Name = "TabPage1";
             TabPage1.Padding = new Padding(3);
@@ -522,49 +515,8 @@
             TabPage1.Text = "メモ１";
             TabPage1.UseVisualStyleBackColor = true;
             // 
-            // CcPictureBox1
-            // 
-            CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            CcPictureBox1.ContextMenuStrip = ContextMenuStripEx1;
-            CcPictureBox1.Dock = DockStyle.Fill;
-            CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
-            CcPictureBox1.Location = new Point(3, 3);
-            CcPictureBox1.Name = "CcPictureBox1";
-            CcPictureBox1.Size = new Size(678, 883);
-            CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            CcPictureBox1.TabIndex = 0;
-            CcPictureBox1.TabStop = false;
-            CcPictureBox1.DoubleClick += CcPictureBox_DoubleClick;
-            // 
-            // ContextMenuStripEx1
-            // 
-            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
-            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            ContextMenuStripEx1.Size = new Size(133, 70);
-            ContextMenuStripEx1.ItemClicked += ContextMenuStripEx1_ItemClicked;
-            // 
-            // ToolStripMenuItemOpen
-            // 
-            ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            ToolStripMenuItemOpen.Size = new Size(132, 22);
-            ToolStripMenuItemOpen.Text = "Open(PDF)";
-            ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
-            // 
-            // ToolStripMenuItemPaste
-            // 
-            ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            ToolStripMenuItemPaste.Size = new Size(132, 22);
-            ToolStripMenuItemPaste.Text = "Paste";
-            // 
-            // ToolStripMenuItemDelete
-            // 
-            ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
-            ToolStripMenuItemDelete.Size = new Size(132, 22);
-            ToolStripMenuItemDelete.Text = "Delete";
-            // 
             // TabPage2
             // 
-            TabPage2.Controls.Add(CcPictureBox2);
             TabPage2.Location = new Point(4, 24);
             TabPage2.Name = "TabPage2";
             TabPage2.Padding = new Padding(3);
@@ -573,19 +525,23 @@
             TabPage2.Text = "メモ２";
             TabPage2.UseVisualStyleBackColor = true;
             // 
-            // CcPictureBox2
+            // TabPage3
             // 
-            CcPictureBox2.BorderStyle = BorderStyle.Fixed3D;
-            CcPictureBox2.ContextMenuStrip = ContextMenuStripEx1;
-            CcPictureBox2.Dock = DockStyle.Fill;
-            CcPictureBox2.Image = (Image)resources.GetObject("CcPictureBox2.Image");
-            CcPictureBox2.Location = new Point(3, 3);
-            CcPictureBox2.Name = "CcPictureBox2";
-            CcPictureBox2.Size = new Size(678, 883);
-            CcPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            CcPictureBox2.TabIndex = 0;
-            CcPictureBox2.TabStop = false;
-            CcPictureBox2.DoubleClick += CcPictureBox_DoubleClick;
+            TabPage3.Location = new Point(4, 24);
+            TabPage3.Name = "TabPage3";
+            TabPage3.Size = new Size(684, 889);
+            TabPage3.TabIndex = 2;
+            TabPage3.Text = "メモ３";
+            TabPage3.UseVisualStyleBackColor = true;
+            // 
+            // TabPage4
+            // 
+            TabPage4.Location = new Point(4, 24);
+            TabPage4.Name = "TabPage4";
+            TabPage4.Size = new Size(684, 889);
+            TabPage4.TabIndex = 3;
+            TabPage4.Text = "メモ４";
+            TabPage4.UseVisualStyleBackColor = true;
             // 
             // CcPanelDown
             // 
@@ -763,23 +719,31 @@
             CcTextBoxItemSize.TabIndex = 1;
             CcTextBoxItemSize.Text = "1000*1000";
             // 
-            // TabPage3
+            // CcContextMenuStrip1
             // 
-            TabPage3.Location = new Point(4, 24);
-            TabPage3.Name = "TabPage3";
-            TabPage3.Size = new Size(684, 889);
-            TabPage3.TabIndex = 2;
-            TabPage3.Text = "メモ３";
-            TabPage3.UseVisualStyleBackColor = true;
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
+            CcContextMenuStrip1.Name = "ContextMenuStripEx1";
+            CcContextMenuStrip1.Size = new Size(133, 70);
+            CcContextMenuStrip1.ItemClicked += ContextMenuStripEx1_ItemClicked;
             // 
-            // TabPage4
+            // ToolStripMenuItemOpen
             // 
-            TabPage4.Location = new Point(4, 24);
-            TabPage4.Name = "TabPage4";
-            TabPage4.Size = new Size(684, 889);
-            TabPage4.TabIndex = 3;
-            TabPage4.Text = "メモ４";
-            TabPage4.UseVisualStyleBackColor = true;
+            ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            ToolStripMenuItemOpen.Size = new Size(132, 22);
+            ToolStripMenuItemOpen.Text = "Open(PDF)";
+            ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            ToolStripMenuItemPaste.Size = new Size(132, 22);
+            ToolStripMenuItemPaste.Text = "Paste";
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            ToolStripMenuItemDelete.Size = new Size(132, 22);
+            ToolStripMenuItemDelete.Text = "Delete";
             // 
             // WastCollectionDetail
             // 
@@ -803,16 +767,12 @@
             ccPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
             TabControlEx1.ResumeLayout(false);
-            TabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).EndInit();
-            ContextMenuStripEx1.ResumeLayout(false);
-            TabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox2).EndInit();
             CcPanelDown.ResumeLayout(false);
             CcPanelDown.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownAmount).EndInit();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownUnitPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)CcNumericUpDownNumberOfUnits).EndInit();
+            CcContextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -839,7 +799,7 @@
         private CcControl.CcLabel labelEx10;
         private CcControl.CcTextBox CcTextBoxWorkSiteAddress;
         private CcControl.CcLabel labelEx12;
-        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcLabel labelEx8;
         private CcControl.CcDateTime CcDateTimePickupDate;
         private FarPoint.Win.Spread.FpSpread SpreadList;
@@ -864,11 +824,9 @@
         private CcControl.CcTabControl TabControlEx1;
         private TabPage TabPage1;
         private TabPage TabPage2;
-        private CcControl.CcPictureBox CcPictureBox1;
-        private CcControl.CcPictureBox CcPictureBox2;
         private CcControl.CcLabel labelEx18;
         private CcControl.CcTextBox CcTextBoxId;
-        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private CcControl.CcButton CcButtonMaps1;

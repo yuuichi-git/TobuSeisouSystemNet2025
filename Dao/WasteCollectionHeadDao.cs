@@ -84,6 +84,8 @@ namespace Dao {
                                             "H_WasteCollectionHead.Remarks," +
                                             "H_WasteCollectionHead.MainPicture," +
                                             "H_WasteCollectionHead.SubPicture," +
+                                            "H_WasteCollectionHead.AdditionalPicture1," +
+                                            "H_WasteCollectionHead.AdditionalPicture2," +
                                             "H_WasteCollectionHead.InsertPcName," +
                                             "H_WasteCollectionHead.InsertYmdHms," +
                                             "H_WasteCollectionHead.UpdatePcName," +
@@ -112,6 +114,8 @@ namespace Dao {
                     wasteCollectionHeadVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
                     wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
                     wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    wasteCollectionHeadVo.AdditionalPicture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["AdditionalPicture1"]);
+                    wasteCollectionHeadVo.AdditionalPicture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["AdditionalPicture2"]);
                     wasteCollectionHeadVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     wasteCollectionHeadVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     wasteCollectionHeadVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -146,6 +150,8 @@ namespace Dao {
                                             "H_WasteCollectionHead.Remarks," +
                                             //"H_WasteCollectionHead.MainPicture," +
                                             //"H_WasteCollectionHead.SubPicture," +
+                                            //"H_WasteCollectionHead.AdditionalPicture1," +
+                                            //"H_WasteCollectionHead.AdditionalPicture2," +
                                             "H_WasteCollectionHead.InsertPcName," +
                                             "H_WasteCollectionHead.InsertYmdHms," +
                                             "H_WasteCollectionHead.UpdatePcName," +
@@ -174,6 +180,8 @@ namespace Dao {
                     wasteCollectionHeadVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
                     //wasteCollectionHeadVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
                     //wasteCollectionHeadVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    //wasteCollectionHeadVo.AdditionalPicture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["AdditionalPicture1"]);
+                    //wasteCollectionHeadVo.AdditionalPicture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["AdditionalPicture2"]);
                     wasteCollectionHeadVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     wasteCollectionHeadVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     wasteCollectionHeadVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -207,6 +215,8 @@ namespace Dao {
                                                                        "Remarks," +
                                                                        "MainPicture," +
                                                                        "SubPicture," +
+                                                                       "AdditionalPicture1," +
+                                                                       "AdditionalPicture2," +
                                                                        "InsertPcName," +
                                                                        "InsertYmdHms," +
                                                                        "UpdatePcName," +
@@ -228,6 +238,8 @@ namespace Dao {
                                             "'" + wasteCollectionHeadVo.Remarks + "'," +
                                             "@member_MainPicture," +
                                             "@member_SubPicture," +
+                                            "@member_AdditionalPicture1," +
+                                            "@member_AdditionalPicture2," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -239,6 +251,8 @@ namespace Dao {
             try {
                 sqlCommand.Parameters.Add("@member_MainPicture", SqlDbType.Image, wasteCollectionHeadVo.MainPicture.Length).Value = wasteCollectionHeadVo.MainPicture;
                 sqlCommand.Parameters.Add("@member_SubPicture", SqlDbType.Image, wasteCollectionHeadVo.SubPicture.Length).Value = wasteCollectionHeadVo.SubPicture;
+                sqlCommand.Parameters.Add("@member_AdditionalPicture1", SqlDbType.Image, wasteCollectionHeadVo.AdditionalPicture1.Length).Value = wasteCollectionHeadVo.AdditionalPicture1;
+                sqlCommand.Parameters.Add("@member_AdditionalPicture2", SqlDbType.Image, wasteCollectionHeadVo.AdditionalPicture2.Length).Value = wasteCollectionHeadVo.AdditionalPicture2;
                 sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -266,12 +280,16 @@ namespace Dao {
                                          "Remarks = '" + wasteCollectionHeadVo.Remarks + "'," +
                                          "MainPicture = @member_MainPicture," +
                                          "SubPicture = @member_SubPicture," +
+                                         "AdditionalPicture1 = @member_AdditionalPicture1," +
+                                         "AdditionalPicture2 = @member_AdditionalPicture2," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE Id = " + wasteCollectionHeadVo.Id + "";
             try {
                 sqlCommand.Parameters.Add("@member_MainPicture", SqlDbType.Image, wasteCollectionHeadVo.MainPicture.Length).Value = wasteCollectionHeadVo.MainPicture;
                 sqlCommand.Parameters.Add("@member_SubPicture", SqlDbType.Image, wasteCollectionHeadVo.SubPicture.Length).Value = wasteCollectionHeadVo.SubPicture;
+                sqlCommand.Parameters.Add("@member_AdditionalPicture1", SqlDbType.Image, wasteCollectionHeadVo.AdditionalPicture1.Length).Value = wasteCollectionHeadVo.AdditionalPicture1;
+                sqlCommand.Parameters.Add("@member_AdditionalPicture2", SqlDbType.Image, wasteCollectionHeadVo.AdditionalPicture2.Length).Value = wasteCollectionHeadVo.AdditionalPicture2;
                 sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

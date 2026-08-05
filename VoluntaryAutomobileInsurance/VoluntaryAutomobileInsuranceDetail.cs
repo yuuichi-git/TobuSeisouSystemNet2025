@@ -171,6 +171,9 @@ namespace VoluntaryAutomobileInsurance {
         /// <summary>
         /// PDF が存在すれば表示する
         /// </summary>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <param name="bytes">PDF のバイト配列</param>
+        /// <param name="index">MemoryStream のインデックス</param>
         private void ShowPdfIfExists(CcPdfView ccPdfView, byte[] bytes, int index) {
             if (bytes is null || bytes.Length == 0) {
                 ClearPdfViewer(ccPdfView);
@@ -187,9 +190,11 @@ namespace VoluntaryAutomobileInsurance {
         /// <summary>
         /// PdfViewer がどの ImageNo に対応しているかを返す
         /// </summary>
-        private int GetImageNoFromViewer(CcPdfView viewer) {
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <returns>ImageNo</returns>
+        private int GetImageNoFromViewer(CcPdfView ccPdfView) {
             for (int i = 0; i < _ccPdfViews.Length; i++) {
-                if (_ccPdfViews[i] == viewer) {
+                if (_ccPdfViews[i] == ccPdfView) {
                     return i + 1;
                 }
             }
@@ -199,6 +204,8 @@ namespace VoluntaryAutomobileInsurance {
         /// <summary>
         /// 指定された PdfViewer に PDF（byte[]）を表示する
         /// </summary>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <param name="pdfBytes">PDF のバイト配列</param>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
             int imageNo = GetImageNoFromViewer(ccPdfView);
             if (imageNo == 0)
@@ -216,6 +223,7 @@ namespace VoluntaryAutomobileInsurance {
         /// <summary>
         /// 指定された PdfViewer をクリアする
         /// </summary>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
         private void ClearPdfViewer(CcPdfView ccPdfView) {
             int imageNo = GetImageNoFromViewer(ccPdfView);
             if (imageNo == 0)

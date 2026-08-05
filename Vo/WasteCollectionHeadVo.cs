@@ -19,6 +19,8 @@ namespace Vo {
         private string _remarks;
         private byte[] _mainPicture;
         private byte[] _subPicture;
+        private byte[] _additionalPicture1;
+        private byte[] _additionalPicture2;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -46,6 +48,8 @@ namespace Vo {
             this._remarks = string.Empty;
             this._mainPicture = Array.Empty<byte>();
             this._subPicture = Array.Empty<byte>();
+            this._additionalPicture1 = Array.Empty<byte>();
+            this._additionalPicture2 = Array.Empty<byte>();
             this._insertPcName = string.Empty;
             this._insertYmdHms = this._defaultDateTime;
             this._updatePcName = string.Empty;
@@ -159,6 +163,20 @@ namespace Vo {
         public byte[] SubPicture {
             get => this._subPicture;
             set => this._subPicture = value;
+        }
+        /// <summary>
+        /// 追加写真１
+        /// </summary>
+        public byte[] AdditionalPicture1 {
+            get => this._additionalPicture1;
+            set => this._additionalPicture1 = value;
+        }
+        /// <summary>
+        /// 追加写真２
+        /// </summary>
+        public byte[] AdditionalPicture2 {
+            get => this._additionalPicture2;
+            set => this._additionalPicture2 = value;
         }
         public string InsertPcName {
             get => this._insertPcName;

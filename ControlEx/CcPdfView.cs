@@ -55,21 +55,26 @@ namespace CcControl {
         /// 表示中の PDF を破棄する
         /// </summary>
         public void Unload() {
-            this.Document = null;                                           // PdfViewer の Document を解除
-            /*
-             * PdfDocument を破棄
-             */
-            if (_document is not null) {
+
+            // PdfViewer の Document を解除
+            this.Document = null;
+
+            // PdfDocument を破棄
+            if(_document is not null) {
                 _document.Dispose();
                 _document = null;
             }
-            /*
-             * MemoryStream を破棄
-             */
-            if (_stream is not null) {
+
+            // MemoryStream を破棄
+            if(_stream is not null) {
                 _stream.Dispose();
                 _stream = null;
             }
+
+            // ★ 表示を確実に消すための再描画
+            this.Invalidate();
+            this.Refresh();
         }
+
     }
 }
