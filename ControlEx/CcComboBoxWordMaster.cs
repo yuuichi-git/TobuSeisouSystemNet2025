@@ -44,9 +44,9 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// 画面表示をクリア
+        /// 画面表示(Items)をクリア
         /// </summary>
-        public void DisplayClear() {
+        public void DisplayEmpty() {
             this.SelectedIndex = -1;
             this.Text = string.Empty;
         }

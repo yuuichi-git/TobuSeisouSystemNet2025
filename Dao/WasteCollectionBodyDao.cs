@@ -90,6 +90,26 @@ namespace Dao {
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        public List<string> SelectGroupItemName() {
+            List<string> listGroupItemName = new();
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT ItemName " +
+                                     "FROM H_WasteCollectionBody " +
+                                     "GROUP BY ItemName " +
+                                     "ORDER BY ItemName ASC";
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
+                    string itemName = _defaultValue.GetDefaultValue<string>(sqlDataReader["ItemName"]);
+                    listGroupItemName.Add(itemName);
+                }
+            }
+            return listGroupItemName;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="wasteCollectionBodyVo"></param>
         public void InsertOneWasteCollectionBody(int id, int numberOfRow, WasteCollectionBodyVo wasteCollectionBodyVo) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();

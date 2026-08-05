@@ -44,13 +44,14 @@
             // 
             // TableLayoutPanelExBase
             // 
-            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnCount = 3;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 450F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 450F));
             TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
-            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 1, 2);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -64,6 +65,7 @@
             // 
             // MenuStripEx1
             // 
+            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 3);
             MenuStripEx1.Location = new Point(0, 0);
             MenuStripEx1.Name = "MenuStripEx1";
             MenuStripEx1.Size = new Size(1904, 24);
@@ -73,6 +75,7 @@
             // 
             // StatusStripEx1
             // 
+            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 3);
             StatusStripEx1.Location = new Point(0, 1019);
             StatusStripEx1.Name = "StatusStripEx1";
             StatusStripEx1.Size = new Size(1904, 22);
@@ -81,6 +84,7 @@
             // 
             // PanelExTop
             // 
+            TableLayoutPanelExBase.SetColumnSpan(PanelExTop, 3);
             PanelExTop.Controls.Add(ComboBoxExCarMaster1);
             PanelExTop.Controls.Add(labelEx4);
             PanelExTop.Controls.Add(ButtonExUpdate);
@@ -171,9 +175,9 @@
             SpreadList.AccessibleDescription = "SpreadList, 稼働車両一覧, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 87);
+            SpreadList.Location = new Point(453, 87);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1898, 927);
+            SpreadList.Size = new Size(998, 927);
             SpreadList.TabIndex = 3;
             // 
             // CarWorkingDays

@@ -804,7 +804,7 @@ namespace Staff {
              */
             for(int i = 0; i < 3; i++) {
                 dictionaryProperDate[i].SetClear();
-                dictionaryProperKind[i].DisplayClear();
+                dictionaryProperKind[i].DisplayEmpty();
                 dictionaryProperNote[i].Text = string.Empty;
                 dictionaryProperDeleteButton[i].Tag = null;
                 dictionaryProperShowButton[i].Enabled = false;

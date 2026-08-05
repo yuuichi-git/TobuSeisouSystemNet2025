@@ -24,7 +24,7 @@ namespace CcControl {
                         this.Text = this.Text.Substring(0, this.Text.Length);
                     break;
                 case Keys.Delete:                                                                                           // Deleteキー
-                    this.DisplayClear();
+                    this.DisplayEmpty();
                     break;
                 case Keys.Enter:                                                                                            // Enterキー
                     SendKeys.Send("{TAB}");
@@ -36,9 +36,16 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// 画面表示をクリア
+        /// 画面表示(Text)をクリア
         /// </summary>
         public void DisplayClear() {
+            this.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// 画面表示(Items)をクリア
+        /// </summary>
+        public void DisplayEmpty() {
             this.SelectedIndex = -1;
             this.Text = string.Empty;
         }

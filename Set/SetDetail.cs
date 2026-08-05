@@ -196,9 +196,9 @@ namespace Set {
             this.SetItems(_fareMasterDao.SelectAllFareMasterVo());                                                                                                                      // 運賃区分
             this.SetItems(_managedSpaceDao.SelectAllManagedSpace());                                                                                                                    // 車両管理地
             this.SetItems(_classificationMasterDao.SelectAllClassificationMaster());                                                                                                    // 分類名
-            this.ComboBoxExContactMethod.DisplayClear();                                                                                                                                // 代番連絡方法
+            this.ComboBoxExContactMethod.DisplayEmpty();                                                                                                                                // 代番連絡方法
             this.NumericUpDownExNumberOfPeople.Value = 0;                                                                                                                               // 基本人数
-            this.ComboBoxExSpareOfPeople.DisplayClear();                                                                                                                                // スペアフラグ
+            this.ComboBoxExSpareOfPeople.DisplayEmpty();                                                                                                                                // スペアフラグ
             this.CheckBoxExMon.Checked = false;                                                                                                                                         // 月
             this.CheckBoxExTue.Checked = false;                                                                                                                                         // 火
             this.CheckBoxExWed.Checked = false;                                                                                                                                         // 水
@@ -206,8 +206,8 @@ namespace Set {
             this.CheckBoxExFri.Checked = false;                                                                                                                                         // 金
             this.CheckBoxExSat.Checked = false;                                                                                                                                         // 土
             this.CheckBoxExSun.Checked = false;                                                                                                                                         // 日
-            this.ComboBoxExFiveLap.DisplayClear();                                                                                                                                      // 第五週稼働フラグ
-            this.ComboBoxExMoveFlag.DisplayClear();                                                                                                                                     // 移動可能フラグ
+            this.ComboBoxExFiveLap.DisplayEmpty();                                                                                                                                      // 第五週稼働フラグ
+            this.ComboBoxExMoveFlag.DisplayEmpty();                                                                                                                                     // 移動可能フラグ
             this.TextBoxExRemarks.SetEmpty();                                                                                                                                           // 備考
         }
 

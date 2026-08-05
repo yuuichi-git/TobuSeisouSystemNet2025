@@ -23,769 +23,797 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WastCollectionDetail));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.PanelExUp = new CcControl.CcPanel();
-            this.labelEx18 = new CcControl.CcLabel();
-            this.CcButtonUpdate = new CcControl.CcButton();
-            this.CcTextBoxId = new CcControl.CcTextBox();
-            this.PanelExMiddle = new CcControl.CcPanel();
-            this.CcButtonMaps2 = new CcControl.CcButton();
-            this.CcButtonMaps1 = new CcControl.CcButton();
-            this.labelEx10 = new CcControl.CcLabel();
-            this.TabControlEx1 = new CcControl.CcTabControl();
-            this.TabPage1 = new TabPage();
-            this.CcPictureBox1 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
-            this.ToolStripMenuItemOpen = new ToolStripMenuItem();
-            this.ToolStripMenuItemPaste = new ToolStripMenuItem();
-            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.TabPage2 = new TabPage();
-            this.CcPictureBox2 = new CcControl.CcPictureBox();
-            this.CcTextBoxWorkSiteAddress = new CcControl.CcTextBox();
-            this.labelEx7 = new CcControl.CcLabel();
-            this.labelEx12 = new CcControl.CcLabel();
-            this.ccPanel1 = new CcControl.CcPanel();
-            this.CcDateTimePickupDate = new CcControl.CcDateTime();
-            this.CcComboBoxWorkSiteLocation = new CcControl.CcComboBoxWordMaster();
-            this.CcTextBoxOfficeCellphoneNumber = new CcControl.CcTextBox();
-            this.labelEx9 = new CcControl.CcLabel();
-            this.labelEx6 = new CcControl.CcLabel();
-            this.labelEx8 = new CcControl.CcLabel();
-            this.CcTextBoxOfficeTelephoneNumber = new CcControl.CcTextBox();
-            this.CcTextBoxRemarks = new CcControl.CcTextBox();
-            this.labelEx5 = new CcControl.CcLabel();
-            this.CcTextBoxOfficeAddress = new CcControl.CcTextBox();
-            this.labelEx4 = new CcControl.CcLabel();
-            this.labelEx2 = new CcControl.CcLabel();
-            this.CcTextBoxOfficeContactPerson = new CcControl.CcTextBox();
-            this.labelEx1 = new CcControl.CcLabel();
-            this.labelEx3 = new CcControl.CcLabel();
-            this.CcComboBoxOfficeCompanyName = new CcControl.CcComboBoxWordMaster();
-            this.CcComboBoxWordName = new CcControl.CcComboBoxWordMaster();
-            this.CcDateTimeOfficeQuotationDate = new CcControl.CcDateTime();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.CcPanelDown = new CcControl.CcPanel();
-            this.CcButtonDelete = new CcControl.CcButton();
-            this.CcButtonOk = new CcControl.CcButton();
-            this.CcNumericUpDownAmount = new CcControl.CcNumericUpDown();
-            this.labelEx17 = new CcControl.CcLabel();
-            this.labelEx16 = new CcControl.CcLabel();
-            this.labelEx15 = new CcControl.CcLabel();
-            this.labelEx14 = new CcControl.CcLabel();
-            this.labelEx13 = new CcControl.CcLabel();
-            this.labelEx11 = new CcControl.CcLabel();
-            this.CcTextBoxNumber = new CcControl.CcTextBox();
-            this.CcTextBoxOthers = new CcControl.CcTextBox();
-            this.CcNumericUpDownUnitPrice = new CcControl.CcNumericUpDown();
-            this.CcNumericUpDownNumberOfUnits = new CcControl.CcNumericUpDown();
-            this.CcTextBoxItemSize = new CcControl.CcTextBox();
-            this.CcComboBoxItemName = new CcControl.CcComboBoxWordMaster();
-            this.ToolTip1 = new ToolTip(this.components);
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExUp.SuspendLayout();
-            this.PanelExMiddle.SuspendLayout();
-            this.TabControlEx1.SuspendLayout();
-            this.TabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox1).BeginInit();
-            this.ContextMenuStripEx1.SuspendLayout();
-            this.TabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox2).BeginInit();
-            this.ccPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
-            this.CcPanelDown.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownAmount).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownUnitPrice).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownNumberOfUnits).BeginInit();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            PanelExUp = new CcControl.CcPanel();
+            labelEx18 = new CcControl.CcLabel();
+            CcButtonUpdate = new CcControl.CcButton();
+            CcTextBoxId = new CcControl.CcTextBox();
+            PanelExMiddle = new CcControl.CcPanel();
+            CcComboBoxWorkSiteLocation = new CcControl.CcComboBox();
+            CcComboBoxOfficeCompanyName = new CcControl.CcComboBox();
+            CcButtonMaps2 = new CcControl.CcButton();
+            CcButtonMaps1 = new CcControl.CcButton();
+            labelEx10 = new CcControl.CcLabel();
+            CcTextBoxWorkSiteAddress = new CcControl.CcTextBox();
+            labelEx7 = new CcControl.CcLabel();
+            labelEx12 = new CcControl.CcLabel();
+            ccPanel1 = new CcControl.CcPanel();
+            CcDateTimePickupDate = new CcControl.CcDateTime();
+            CcTextBoxOfficeCellphoneNumber = new CcControl.CcTextBox();
+            labelEx9 = new CcControl.CcLabel();
+            labelEx6 = new CcControl.CcLabel();
+            labelEx8 = new CcControl.CcLabel();
+            CcTextBoxOfficeTelephoneNumber = new CcControl.CcTextBox();
+            CcTextBoxRemarks = new CcControl.CcTextBox();
+            labelEx5 = new CcControl.CcLabel();
+            CcTextBoxOfficeAddress = new CcControl.CcTextBox();
+            labelEx4 = new CcControl.CcLabel();
+            labelEx2 = new CcControl.CcLabel();
+            CcTextBoxOfficeContactPerson = new CcControl.CcTextBox();
+            labelEx1 = new CcControl.CcLabel();
+            labelEx3 = new CcControl.CcLabel();
+            CcComboBoxWordName = new CcControl.CcComboBoxWordMaster();
+            CcDateTimeOfficeQuotationDate = new CcControl.CcDateTime();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SheetViewList = SpreadList.GetSheet(0);
+            TabControlEx1 = new CcControl.CcTabControl();
+            TabPage1 = new TabPage();
+            CcPictureBox1 = new CcControl.CcPictureBox();
+            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
+            ToolStripMenuItemOpen = new ToolStripMenuItem();
+            ToolStripMenuItemPaste = new ToolStripMenuItem();
+            ToolStripMenuItemDelete = new ToolStripMenuItem();
+            TabPage2 = new TabPage();
+            CcPictureBox2 = new CcControl.CcPictureBox();
+            CcPanelDown = new CcControl.CcPanel();
+            CcComboBoxItemName = new CcControl.CcComboBox();
+            CcButtonDelete = new CcControl.CcButton();
+            CcButtonOk = new CcControl.CcButton();
+            CcNumericUpDownAmount = new CcControl.CcNumericUpDown();
+            labelEx17 = new CcControl.CcLabel();
+            labelEx16 = new CcControl.CcLabel();
+            labelEx15 = new CcControl.CcLabel();
+            labelEx14 = new CcControl.CcLabel();
+            labelEx13 = new CcControl.CcLabel();
+            labelEx11 = new CcControl.CcLabel();
+            CcTextBoxNumber = new CcControl.CcTextBox();
+            CcTextBoxOthers = new CcControl.CcTextBox();
+            CcNumericUpDownUnitPrice = new CcControl.CcNumericUpDown();
+            CcNumericUpDownNumberOfUnits = new CcControl.CcNumericUpDown();
+            CcTextBoxItemSize = new CcControl.CcTextBox();
+            ToolTip1 = new ToolTip(components);
+            TabPage3 = new TabPage();
+            TabPage4 = new TabPage();
+            TableLayoutPanelExBase.SuspendLayout();
+            PanelExUp.SuspendLayout();
+            PanelExMiddle.SuspendLayout();
+            ccPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            TabControlEx1.SuspendLayout();
+            TabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).BeginInit();
+            ContextMenuStripEx1.SuspendLayout();
+            TabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox2).BeginInit();
+            CcPanelDown.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownUnitPrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownNumberOfUnits).BeginInit();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExMiddle, 0, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 5);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.CcPanelDown, 0, 4);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 6;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 400F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1125, 861);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
+            TableLayoutPanelExBase.ColumnCount = 2;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1200F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(PanelExMiddle, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 5);
+            TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(TabControlEx1, 1, 2);
+            TableLayoutPanelExBase.Controls.Add(CcPanelDown, 0, 4);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 6;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 400F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(2, 2);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1121, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 2);
+            MenuStripEx1.Location = new Point(2, 2);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(1900, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // PanelExUp
             // 
-            this.PanelExUp.Controls.Add(this.labelEx18);
-            this.PanelExUp.Controls.Add(this.CcButtonUpdate);
-            this.PanelExUp.Controls.Add(this.CcTextBoxId);
-            this.PanelExUp.Dock = DockStyle.Fill;
-            this.PanelExUp.Location = new Point(5, 31);
-            this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1115, 54);
-            this.PanelExUp.TabIndex = 1;
+            TableLayoutPanelExBase.SetColumnSpan(PanelExUp, 2);
+            PanelExUp.Controls.Add(labelEx18);
+            PanelExUp.Controls.Add(CcButtonUpdate);
+            PanelExUp.Controls.Add(CcTextBoxId);
+            PanelExUp.Dock = DockStyle.Fill;
+            PanelExUp.Location = new Point(5, 31);
+            PanelExUp.Name = "PanelExUp";
+            PanelExUp.Size = new Size(1894, 54);
+            PanelExUp.TabIndex = 1;
             // 
             // labelEx18
             // 
-            this.labelEx18.AutoSize = true;
-            this.labelEx18.Location = new Point(32, 18);
-            this.labelEx18.Name = "labelEx18";
-            this.labelEx18.Size = new Size(17, 15);
-            this.labelEx18.TabIndex = 20;
-            this.labelEx18.Text = "Id";
+            labelEx18.AutoSize = true;
+            labelEx18.Location = new Point(32, 18);
+            labelEx18.Name = "labelEx18";
+            labelEx18.Size = new Size(17, 15);
+            labelEx18.TabIndex = 20;
+            labelEx18.Text = "Id";
             // 
             // CcButtonUpdate
             // 
-            this.CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.CcButtonUpdate.Location = new Point(916, 10);
-            this.CcButtonUpdate.Name = "CcButtonUpdate";
-            this.CcButtonUpdate.SetTextDirectionVertical = "";
-            this.CcButtonUpdate.Size = new Size(160, 32);
-            this.CcButtonUpdate.TabIndex = 1;
-            this.CcButtonUpdate.TabStop = false;
-            this.CcButtonUpdate.Text = "アップデート";
-            this.CcButtonUpdate.UseVisualStyleBackColor = true;
-            this.CcButtonUpdate.Click += this.CcButton_Click;
+            CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            CcButtonUpdate.Location = new Point(1695, 10);
+            CcButtonUpdate.Name = "CcButtonUpdate";
+            CcButtonUpdate.SetTextDirectionVertical = "";
+            CcButtonUpdate.Size = new Size(160, 32);
+            CcButtonUpdate.TabIndex = 1;
+            CcButtonUpdate.TabStop = false;
+            CcButtonUpdate.Text = "アップデート";
+            CcButtonUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Click += CcButton_Click;
             // 
             // CcTextBoxId
             // 
-            this.CcTextBoxId.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxId.Enabled = false;
-            this.CcTextBoxId.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.CcTextBoxId.Location = new Point(56, 14);
-            this.CcTextBoxId.Name = "CcTextBoxId";
-            this.CcTextBoxId.Size = new Size(84, 25);
-            this.CcTextBoxId.TabIndex = 0;
-            this.CcTextBoxId.Text = "12345678901";
-            this.CcTextBoxId.TextAlign = HorizontalAlignment.Right;
+            CcTextBoxId.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxId.Enabled = false;
+            CcTextBoxId.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcTextBoxId.Location = new Point(56, 14);
+            CcTextBoxId.Name = "CcTextBoxId";
+            CcTextBoxId.Size = new Size(84, 25);
+            CcTextBoxId.TabIndex = 0;
+            CcTextBoxId.Text = "12345678901";
+            CcTextBoxId.TextAlign = HorizontalAlignment.Right;
             // 
             // PanelExMiddle
             // 
-            this.PanelExMiddle.Controls.Add(this.CcButtonMaps2);
-            this.PanelExMiddle.Controls.Add(this.CcButtonMaps1);
-            this.PanelExMiddle.Controls.Add(this.labelEx10);
-            this.PanelExMiddle.Controls.Add(this.TabControlEx1);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxWorkSiteAddress);
-            this.PanelExMiddle.Controls.Add(this.labelEx7);
-            this.PanelExMiddle.Controls.Add(this.labelEx12);
-            this.PanelExMiddle.Controls.Add(this.ccPanel1);
-            this.PanelExMiddle.Controls.Add(this.CcComboBoxWorkSiteLocation);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxOfficeCellphoneNumber);
-            this.PanelExMiddle.Controls.Add(this.labelEx9);
-            this.PanelExMiddle.Controls.Add(this.labelEx6);
-            this.PanelExMiddle.Controls.Add(this.labelEx8);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxOfficeTelephoneNumber);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxRemarks);
-            this.PanelExMiddle.Controls.Add(this.labelEx5);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxOfficeAddress);
-            this.PanelExMiddle.Controls.Add(this.labelEx4);
-            this.PanelExMiddle.Controls.Add(this.labelEx2);
-            this.PanelExMiddle.Controls.Add(this.CcTextBoxOfficeContactPerson);
-            this.PanelExMiddle.Controls.Add(this.labelEx1);
-            this.PanelExMiddle.Controls.Add(this.labelEx3);
-            this.PanelExMiddle.Controls.Add(this.CcComboBoxOfficeCompanyName);
-            this.PanelExMiddle.Controls.Add(this.CcComboBoxWordName);
-            this.PanelExMiddle.Controls.Add(this.CcDateTimeOfficeQuotationDate);
-            this.PanelExMiddle.Dock = DockStyle.Fill;
-            this.PanelExMiddle.Location = new Point(5, 93);
-            this.PanelExMiddle.Name = "PanelExMiddle";
-            this.PanelExMiddle.Size = new Size(1115, 394);
-            this.PanelExMiddle.TabIndex = 2;
-            // 
-            // CcButtonMaps2
-            // 
-            this.CcButtonMaps2.Location = new Point(644, 216);
-            this.CcButtonMaps2.Name = "CcButtonMaps2";
-            this.CcButtonMaps2.SetTextDirectionVertical = "";
-            this.CcButtonMaps2.Size = new Size(108, 24);
-            this.CcButtonMaps2.TabIndex = 10;
-            this.CcButtonMaps2.Text = "GoogleMaps";
-            this.ToolTip1.SetToolTip(this.CcButtonMaps2, "左記に登録されている住所をGoogleMapsで表示します");
-            this.CcButtonMaps2.UseVisualStyleBackColor = true;
-            this.CcButtonMaps2.Click += this.CcButton_Click;
-            // 
-            // CcButtonMaps1
-            // 
-            this.CcButtonMaps1.Location = new Point(644, 116);
-            this.CcButtonMaps1.Name = "CcButtonMaps1";
-            this.CcButtonMaps1.SetTextDirectionVertical = "";
-            this.CcButtonMaps1.Size = new Size(108, 24);
-            this.CcButtonMaps1.TabIndex = 5;
-            this.CcButtonMaps1.Text = "GoogleMaps";
-            this.ToolTip1.SetToolTip(this.CcButtonMaps1, "左記に登録されている住所をGoogleMapsで表示します");
-            this.CcButtonMaps1.UseVisualStyleBackColor = true;
-            this.CcButtonMaps1.Click += this.CcButton_Click;
-            // 
-            // labelEx10
-            // 
-            this.labelEx10.AutoSize = true;
-            this.labelEx10.Location = new Point(44, 220);
-            this.labelEx10.Name = "labelEx10";
-            this.labelEx10.Size = new Size(67, 15);
-            this.labelEx10.TabIndex = 10;
-            this.labelEx10.Text = "現場　住所";
-            // 
-            // TabControlEx1
-            // 
-            this.TabControlEx1.Controls.Add(this.TabPage1);
-            this.TabControlEx1.Controls.Add(this.TabPage2);
-            this.TabControlEx1.Location = new Point(860, 4);
-            this.TabControlEx1.Name = "TabControlEx1";
-            this.TabControlEx1.SelectedIndex = 0;
-            this.TabControlEx1.Size = new Size(248, 368);
-            this.TabControlEx1.TabIndex = 19;
-            // 
-            // TabPage1
-            // 
-            this.TabPage1.Controls.Add(this.CcPictureBox1);
-            this.TabPage1.Location = new Point(4, 24);
-            this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Padding = new Padding(3);
-            this.TabPage1.Size = new Size(240, 340);
-            this.TabPage1.TabIndex = 0;
-            this.TabPage1.Text = "メモ１";
-            this.TabPage1.UseVisualStyleBackColor = true;
-            // 
-            // CcPictureBox1
-            // 
-            this.CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            this.CcPictureBox1.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.CcPictureBox1.Dock = DockStyle.Fill;
-            this.CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
-            this.CcPictureBox1.Location = new Point(3, 3);
-            this.CcPictureBox1.Name = "CcPictureBox1";
-            this.CcPictureBox1.Size = new Size(234, 334);
-            this.CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.CcPictureBox1.TabIndex = 0;
-            this.CcPictureBox1.TabStop = false;
-            this.CcPictureBox1.DoubleClick += this.CcPictureBox_DoubleClick;
-            // 
-            // ContextMenuStripEx1
-            // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemOpen, this.ToolStripMenuItemPaste, this.ToolStripMenuItemDelete });
-            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(133, 70);
-            this.ContextMenuStripEx1.ItemClicked += this.ContextMenuStripEx1_ItemClicked;
-            // 
-            // ToolStripMenuItemOpen
-            // 
-            this.ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            this.ToolStripMenuItemOpen.Size = new Size(180, 22);
-            this.ToolStripMenuItemOpen.Text = "Open(PDF)";
-            this.ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
-            // 
-            // ToolStripMenuItemPaste
-            // 
-            this.ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            this.ToolStripMenuItemPaste.Size = new Size(180, 22);
-            this.ToolStripMenuItemPaste.Text = "Paste";
-            // 
-            // ToolStripMenuItemDelete
-            // 
-            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
-            this.ToolStripMenuItemDelete.Size = new Size(180, 22);
-            this.ToolStripMenuItemDelete.Text = "Delete";
-            // 
-            // TabPage2
-            // 
-            this.TabPage2.Controls.Add(this.CcPictureBox2);
-            this.TabPage2.Location = new Point(4, 24);
-            this.TabPage2.Name = "TabPage2";
-            this.TabPage2.Padding = new Padding(3);
-            this.TabPage2.Size = new Size(240, 340);
-            this.TabPage2.TabIndex = 1;
-            this.TabPage2.Text = "メモ２";
-            this.TabPage2.UseVisualStyleBackColor = true;
-            // 
-            // CcPictureBox2
-            // 
-            this.CcPictureBox2.BorderStyle = BorderStyle.Fixed3D;
-            this.CcPictureBox2.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.CcPictureBox2.Dock = DockStyle.Fill;
-            this.CcPictureBox2.Image = (Image)resources.GetObject("CcPictureBox2.Image");
-            this.CcPictureBox2.Location = new Point(3, 3);
-            this.CcPictureBox2.Name = "CcPictureBox2";
-            this.CcPictureBox2.Size = new Size(234, 334);
-            this.CcPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            this.CcPictureBox2.TabIndex = 0;
-            this.CcPictureBox2.TabStop = false;
-            this.CcPictureBox2.DoubleClick += this.CcPictureBox_DoubleClick;
-            // 
-            // CcTextBoxWorkSiteAddress
-            // 
-            this.CcTextBoxWorkSiteAddress.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxWorkSiteAddress.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxWorkSiteAddress.Location = new Point(116, 216);
-            this.CcTextBoxWorkSiteAddress.Name = "CcTextBoxWorkSiteAddress";
-            this.CcTextBoxWorkSiteAddress.Size = new Size(524, 23);
-            this.CcTextBoxWorkSiteAddress.TabIndex = 9;
-            this.CcTextBoxWorkSiteAddress.Text = "ラーメン東武";
-            // 
-            // labelEx7
-            // 
-            this.labelEx7.AutoSize = true;
-            this.labelEx7.Location = new Point(256, 148);
-            this.labelEx7.Name = "labelEx7";
-            this.labelEx7.Size = new Size(43, 15);
-            this.labelEx7.TabIndex = 14;
-            this.labelEx7.Text = "携　帯";
-            // 
-            // labelEx12
-            // 
-            this.labelEx12.AutoSize = true;
-            this.labelEx12.Location = new Point(44, 192);
-            this.labelEx12.Name = "labelEx12";
-            this.labelEx12.Size = new Size(67, 15);
-            this.labelEx12.TabIndex = 6;
-            this.labelEx12.Text = "回収現場名";
-            // 
-            // ccPanel1
-            // 
-            this.ccPanel1.BackColor = Color.Red;
-            this.ccPanel1.Controls.Add(this.CcDateTimePickupDate);
-            this.ccPanel1.Location = new Point(116, 260);
-            this.ccPanel1.Name = "ccPanel1";
-            this.ccPanel1.Size = new Size(192, 32);
-            this.ccPanel1.TabIndex = 18;
-            // 
-            // CcDateTimePickupDate
-            // 
-            this.CcDateTimePickupDate.CultureFlag = false;
-            this.CcDateTimePickupDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimePickupDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimePickupDate.ImeMode = ImeMode.Off;
-            this.CcDateTimePickupDate.Location = new Point(4, 4);
-            this.CcDateTimePickupDate.Name = "CcDateTimePickupDate";
-            this.CcDateTimePickupDate.Size = new Size(184, 23);
-            this.CcDateTimePickupDate.TabIndex = 0;
-            this.ToolTip1.SetToolTip(this.CcDateTimePickupDate, "回収日が未定の場合は空白”esc\"にしてください。");
-            this.CcDateTimePickupDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            PanelExMiddle.Controls.Add(CcComboBoxWorkSiteLocation);
+            PanelExMiddle.Controls.Add(CcComboBoxOfficeCompanyName);
+            PanelExMiddle.Controls.Add(CcButtonMaps2);
+            PanelExMiddle.Controls.Add(CcButtonMaps1);
+            PanelExMiddle.Controls.Add(labelEx10);
+            PanelExMiddle.Controls.Add(CcTextBoxWorkSiteAddress);
+            PanelExMiddle.Controls.Add(labelEx7);
+            PanelExMiddle.Controls.Add(labelEx12);
+            PanelExMiddle.Controls.Add(ccPanel1);
+            PanelExMiddle.Controls.Add(CcTextBoxOfficeCellphoneNumber);
+            PanelExMiddle.Controls.Add(labelEx9);
+            PanelExMiddle.Controls.Add(labelEx6);
+            PanelExMiddle.Controls.Add(labelEx8);
+            PanelExMiddle.Controls.Add(CcTextBoxOfficeTelephoneNumber);
+            PanelExMiddle.Controls.Add(CcTextBoxRemarks);
+            PanelExMiddle.Controls.Add(labelEx5);
+            PanelExMiddle.Controls.Add(CcTextBoxOfficeAddress);
+            PanelExMiddle.Controls.Add(labelEx4);
+            PanelExMiddle.Controls.Add(labelEx2);
+            PanelExMiddle.Controls.Add(CcTextBoxOfficeContactPerson);
+            PanelExMiddle.Controls.Add(labelEx1);
+            PanelExMiddle.Controls.Add(labelEx3);
+            PanelExMiddle.Controls.Add(CcComboBoxWordName);
+            PanelExMiddle.Controls.Add(CcDateTimeOfficeQuotationDate);
+            PanelExMiddle.Dock = DockStyle.Fill;
+            PanelExMiddle.Location = new Point(5, 93);
+            PanelExMiddle.Name = "PanelExMiddle";
+            PanelExMiddle.Size = new Size(1194, 394);
+            PanelExMiddle.TabIndex = 2;
             // 
             // CcComboBoxWorkSiteLocation
             // 
-            this.CcComboBoxWorkSiteLocation.FormattingEnabled = true;
-            this.CcComboBoxWorkSiteLocation.ImeMode = ImeMode.Hiragana;
-            this.CcComboBoxWorkSiteLocation.Location = new Point(116, 188);
-            this.CcComboBoxWorkSiteLocation.Name = "CcComboBoxWorkSiteLocation";
-            this.CcComboBoxWorkSiteLocation.Size = new Size(524, 23);
-            this.CcComboBoxWorkSiteLocation.TabIndex = 8;
-            this.CcComboBoxWorkSiteLocation.Text = "世田谷区";
-            // 
-            // CcTextBoxOfficeCellphoneNumber
-            // 
-            this.CcTextBoxOfficeCellphoneNumber.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxOfficeCellphoneNumber.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.CcTextBoxOfficeCellphoneNumber.ImeMode = ImeMode.Off;
-            this.CcTextBoxOfficeCellphoneNumber.Location = new Point(304, 144);
-            this.CcTextBoxOfficeCellphoneNumber.Name = "CcTextBoxOfficeCellphoneNumber";
-            this.CcTextBoxOfficeCellphoneNumber.Size = new Size(128, 25);
-            this.CcTextBoxOfficeCellphoneNumber.TabIndex = 7;
-            this.CcTextBoxOfficeCellphoneNumber.Text = "03-3899-2004";
-            // 
-            // labelEx9
-            // 
-            this.labelEx9.AutoSize = true;
-            this.labelEx9.Location = new Point(80, 304);
-            this.labelEx9.Name = "labelEx9";
-            this.labelEx9.Size = new Size(31, 15);
-            this.labelEx9.TabIndex = 12;
-            this.labelEx9.Text = "備考";
-            // 
-            // labelEx6
-            // 
-            this.labelEx6.AutoSize = true;
-            this.labelEx6.Location = new Point(68, 148);
-            this.labelEx6.Name = "labelEx6";
-            this.labelEx6.Size = new Size(43, 15);
-            this.labelEx6.TabIndex = 12;
-            this.labelEx6.Text = "連絡先";
-            // 
-            // labelEx8
-            // 
-            this.labelEx8.AutoSize = true;
-            this.labelEx8.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            this.labelEx8.ForeColor = Color.Red;
-            this.labelEx8.Location = new Point(68, 268);
-            this.labelEx8.Name = "labelEx8";
-            this.labelEx8.Size = new Size(43, 15);
-            this.labelEx8.TabIndex = 17;
-            this.labelEx8.Text = "回収日";
-            // 
-            // CcTextBoxOfficeTelephoneNumber
-            // 
-            this.CcTextBoxOfficeTelephoneNumber.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxOfficeTelephoneNumber.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            this.CcTextBoxOfficeTelephoneNumber.ImeMode = ImeMode.Off;
-            this.CcTextBoxOfficeTelephoneNumber.Location = new Point(116, 144);
-            this.CcTextBoxOfficeTelephoneNumber.Name = "CcTextBoxOfficeTelephoneNumber";
-            this.CcTextBoxOfficeTelephoneNumber.Size = new Size(128, 25);
-            this.CcTextBoxOfficeTelephoneNumber.TabIndex = 6;
-            this.CcTextBoxOfficeTelephoneNumber.Text = "03-3899-2004";
-            // 
-            // CcTextBoxRemarks
-            // 
-            this.CcTextBoxRemarks.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxRemarks.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxRemarks.Location = new Point(116, 300);
-            this.CcTextBoxRemarks.Multiline = true;
-            this.CcTextBoxRemarks.Name = "CcTextBoxRemarks";
-            this.CcTextBoxRemarks.Size = new Size(736, 68);
-            this.CcTextBoxRemarks.TabIndex = 11;
-            this.CcTextBoxRemarks.Text = "✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗";
-            // 
-            // labelEx5
-            // 
-            this.labelEx5.AutoSize = true;
-            this.labelEx5.Location = new Point(68, 120);
-            this.labelEx5.Name = "labelEx5";
-            this.labelEx5.Size = new Size(43, 15);
-            this.labelEx5.TabIndex = 10;
-            this.labelEx5.Text = "住　所";
-            // 
-            // CcTextBoxOfficeAddress
-            // 
-            this.CcTextBoxOfficeAddress.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxOfficeAddress.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxOfficeAddress.Location = new Point(116, 116);
-            this.CcTextBoxOfficeAddress.Name = "CcTextBoxOfficeAddress";
-            this.CcTextBoxOfficeAddress.Size = new Size(524, 23);
-            this.CcTextBoxOfficeAddress.TabIndex = 4;
-            this.CcTextBoxOfficeAddress.Text = "東京都足立区西伊興１－８－１６";
-            // 
-            // labelEx4
-            // 
-            this.labelEx4.AutoSize = true;
-            this.labelEx4.Location = new Point(68, 92);
-            this.labelEx4.Name = "labelEx4";
-            this.labelEx4.Size = new Size(43, 15);
-            this.labelEx4.TabIndex = 8;
-            this.labelEx4.Text = "担当者";
-            // 
-            // labelEx2
-            // 
-            this.labelEx2.AutoSize = true;
-            this.labelEx2.Location = new Point(340, 20);
-            this.labelEx2.Name = "labelEx2";
-            this.labelEx2.Size = new Size(43, 15);
-            this.labelEx2.TabIndex = 3;
-            this.labelEx2.Text = "依頼区";
-            // 
-            // CcTextBoxOfficeContactPerson
-            // 
-            this.CcTextBoxOfficeContactPerson.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxOfficeContactPerson.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxOfficeContactPerson.Location = new Point(116, 88);
-            this.CcTextBoxOfficeContactPerson.Name = "CcTextBoxOfficeContactPerson";
-            this.CcTextBoxOfficeContactPerson.Size = new Size(128, 23);
-            this.CcTextBoxOfficeContactPerson.TabIndex = 3;
-            this.CcTextBoxOfficeContactPerson.Text = "栗原";
-            // 
-            // labelEx1
-            // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            this.labelEx1.ForeColor = Color.Blue;
-            this.labelEx1.Location = new Point(68, 20);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(43, 15);
-            this.labelEx1.TabIndex = 2;
-            this.labelEx1.Text = "見積日";
-            // 
-            // labelEx3
-            // 
-            this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(68, 64);
-            this.labelEx3.Name = "labelEx3";
-            this.labelEx3.Size = new Size(43, 15);
-            this.labelEx3.TabIndex = 0;
-            this.labelEx3.Text = "会社名";
+            CcComboBoxWorkSiteLocation.FormattingEnabled = true;
+            CcComboBoxWorkSiteLocation.ImeMode = ImeMode.Hiragana;
+            CcComboBoxWorkSiteLocation.Location = new Point(116, 188);
+            CcComboBoxWorkSiteLocation.Name = "CcComboBoxWorkSiteLocation";
+            CcComboBoxWorkSiteLocation.Size = new Size(524, 23);
+            CcComboBoxWorkSiteLocation.TabIndex = 21;
             // 
             // CcComboBoxOfficeCompanyName
             // 
-            this.CcComboBoxOfficeCompanyName.FormattingEnabled = true;
-            this.CcComboBoxOfficeCompanyName.ImeMode = ImeMode.Hiragana;
-            this.CcComboBoxOfficeCompanyName.Location = new Point(116, 60);
-            this.CcComboBoxOfficeCompanyName.Name = "CcComboBoxOfficeCompanyName";
-            this.CcComboBoxOfficeCompanyName.Size = new Size(524, 23);
-            this.CcComboBoxOfficeCompanyName.TabIndex = 2;
-            this.CcComboBoxOfficeCompanyName.Text = "東武清掃株式会社";
+            CcComboBoxOfficeCompanyName.FormattingEnabled = true;
+            CcComboBoxOfficeCompanyName.ImeMode = ImeMode.Hiragana;
+            CcComboBoxOfficeCompanyName.Location = new Point(116, 60);
+            CcComboBoxOfficeCompanyName.Name = "CcComboBoxOfficeCompanyName";
+            CcComboBoxOfficeCompanyName.Size = new Size(524, 23);
+            CcComboBoxOfficeCompanyName.TabIndex = 20;
+            // 
+            // CcButtonMaps2
+            // 
+            CcButtonMaps2.ForeColor = SystemColors.ControlText;
+            CcButtonMaps2.Location = new Point(644, 216);
+            CcButtonMaps2.Name = "CcButtonMaps2";
+            CcButtonMaps2.SetTextDirectionVertical = "";
+            CcButtonMaps2.Size = new Size(108, 24);
+            CcButtonMaps2.TabIndex = 10;
+            CcButtonMaps2.Text = "GoogleMaps";
+            ToolTip1.SetToolTip(CcButtonMaps2, "左記に登録されている住所をGoogleMapsで表示します");
+            CcButtonMaps2.UseVisualStyleBackColor = true;
+            CcButtonMaps2.Click += CcButton_Click;
+            // 
+            // CcButtonMaps1
+            // 
+            CcButtonMaps1.ForeColor = SystemColors.ControlText;
+            CcButtonMaps1.Location = new Point(644, 116);
+            CcButtonMaps1.Name = "CcButtonMaps1";
+            CcButtonMaps1.SetTextDirectionVertical = "";
+            CcButtonMaps1.Size = new Size(108, 24);
+            CcButtonMaps1.TabIndex = 5;
+            CcButtonMaps1.Text = "GoogleMaps";
+            ToolTip1.SetToolTip(CcButtonMaps1, "左記に登録されている住所をGoogleMapsで表示します");
+            CcButtonMaps1.UseVisualStyleBackColor = true;
+            CcButtonMaps1.Click += CcButton_Click;
+            // 
+            // labelEx10
+            // 
+            labelEx10.AutoSize = true;
+            labelEx10.Location = new Point(44, 220);
+            labelEx10.Name = "labelEx10";
+            labelEx10.Size = new Size(67, 15);
+            labelEx10.TabIndex = 10;
+            labelEx10.Text = "現場　住所";
+            // 
+            // CcTextBoxWorkSiteAddress
+            // 
+            CcTextBoxWorkSiteAddress.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxWorkSiteAddress.ImeMode = ImeMode.Hiragana;
+            CcTextBoxWorkSiteAddress.Location = new Point(116, 216);
+            CcTextBoxWorkSiteAddress.Name = "CcTextBoxWorkSiteAddress";
+            CcTextBoxWorkSiteAddress.Size = new Size(524, 23);
+            CcTextBoxWorkSiteAddress.TabIndex = 9;
+            CcTextBoxWorkSiteAddress.Text = "ラーメン東武";
+            // 
+            // labelEx7
+            // 
+            labelEx7.AutoSize = true;
+            labelEx7.Location = new Point(256, 148);
+            labelEx7.Name = "labelEx7";
+            labelEx7.Size = new Size(43, 15);
+            labelEx7.TabIndex = 14;
+            labelEx7.Text = "携　帯";
+            // 
+            // labelEx12
+            // 
+            labelEx12.AutoSize = true;
+            labelEx12.Location = new Point(44, 192);
+            labelEx12.Name = "labelEx12";
+            labelEx12.Size = new Size(67, 15);
+            labelEx12.TabIndex = 6;
+            labelEx12.Text = "回収現場名";
+            // 
+            // ccPanel1
+            // 
+            ccPanel1.BackColor = Color.Red;
+            ccPanel1.Controls.Add(CcDateTimePickupDate);
+            ccPanel1.Location = new Point(116, 260);
+            ccPanel1.Name = "ccPanel1";
+            ccPanel1.Size = new Size(192, 32);
+            ccPanel1.TabIndex = 18;
+            // 
+            // CcDateTimePickupDate
+            // 
+            CcDateTimePickupDate.CultureFlag = false;
+            CcDateTimePickupDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimePickupDate.Format = DateTimePickerFormat.Custom;
+            CcDateTimePickupDate.ImeMode = ImeMode.Off;
+            CcDateTimePickupDate.Location = new Point(4, 4);
+            CcDateTimePickupDate.Name = "CcDateTimePickupDate";
+            CcDateTimePickupDate.Size = new Size(184, 23);
+            CcDateTimePickupDate.TabIndex = 0;
+            ToolTip1.SetToolTip(CcDateTimePickupDate, "回収日が未定の場合は空白”esc\"にしてください。");
+            CcDateTimePickupDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // CcTextBoxOfficeCellphoneNumber
+            // 
+            CcTextBoxOfficeCellphoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxOfficeCellphoneNumber.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcTextBoxOfficeCellphoneNumber.ImeMode = ImeMode.Off;
+            CcTextBoxOfficeCellphoneNumber.Location = new Point(304, 144);
+            CcTextBoxOfficeCellphoneNumber.Name = "CcTextBoxOfficeCellphoneNumber";
+            CcTextBoxOfficeCellphoneNumber.Size = new Size(128, 25);
+            CcTextBoxOfficeCellphoneNumber.TabIndex = 7;
+            CcTextBoxOfficeCellphoneNumber.Text = "03-3899-2004";
+            // 
+            // labelEx9
+            // 
+            labelEx9.AutoSize = true;
+            labelEx9.Location = new Point(80, 304);
+            labelEx9.Name = "labelEx9";
+            labelEx9.Size = new Size(31, 15);
+            labelEx9.TabIndex = 12;
+            labelEx9.Text = "備考";
+            // 
+            // labelEx6
+            // 
+            labelEx6.AutoSize = true;
+            labelEx6.Location = new Point(68, 148);
+            labelEx6.Name = "labelEx6";
+            labelEx6.Size = new Size(43, 15);
+            labelEx6.TabIndex = 12;
+            labelEx6.Text = "連絡先";
+            // 
+            // labelEx8
+            // 
+            labelEx8.AutoSize = true;
+            labelEx8.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            labelEx8.ForeColor = Color.Red;
+            labelEx8.Location = new Point(68, 268);
+            labelEx8.Name = "labelEx8";
+            labelEx8.Size = new Size(43, 15);
+            labelEx8.TabIndex = 17;
+            labelEx8.Text = "回収日";
+            // 
+            // CcTextBoxOfficeTelephoneNumber
+            // 
+            CcTextBoxOfficeTelephoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxOfficeTelephoneNumber.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcTextBoxOfficeTelephoneNumber.ImeMode = ImeMode.Off;
+            CcTextBoxOfficeTelephoneNumber.Location = new Point(116, 144);
+            CcTextBoxOfficeTelephoneNumber.Name = "CcTextBoxOfficeTelephoneNumber";
+            CcTextBoxOfficeTelephoneNumber.Size = new Size(128, 25);
+            CcTextBoxOfficeTelephoneNumber.TabIndex = 6;
+            CcTextBoxOfficeTelephoneNumber.Text = "03-3899-2004";
+            // 
+            // CcTextBoxRemarks
+            // 
+            CcTextBoxRemarks.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxRemarks.ImeMode = ImeMode.Hiragana;
+            CcTextBoxRemarks.Location = new Point(116, 300);
+            CcTextBoxRemarks.Multiline = true;
+            CcTextBoxRemarks.Name = "CcTextBoxRemarks";
+            CcTextBoxRemarks.Size = new Size(736, 68);
+            CcTextBoxRemarks.TabIndex = 11;
+            CcTextBoxRemarks.Text = "✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗\r\n✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗✗";
+            // 
+            // labelEx5
+            // 
+            labelEx5.AutoSize = true;
+            labelEx5.Location = new Point(68, 120);
+            labelEx5.Name = "labelEx5";
+            labelEx5.Size = new Size(43, 15);
+            labelEx5.TabIndex = 10;
+            labelEx5.Text = "住　所";
+            // 
+            // CcTextBoxOfficeAddress
+            // 
+            CcTextBoxOfficeAddress.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxOfficeAddress.ImeMode = ImeMode.Hiragana;
+            CcTextBoxOfficeAddress.Location = new Point(116, 116);
+            CcTextBoxOfficeAddress.Name = "CcTextBoxOfficeAddress";
+            CcTextBoxOfficeAddress.Size = new Size(524, 23);
+            CcTextBoxOfficeAddress.TabIndex = 4;
+            CcTextBoxOfficeAddress.Text = "東京都足立区西伊興１－８－１６";
+            // 
+            // labelEx4
+            // 
+            labelEx4.AutoSize = true;
+            labelEx4.Location = new Point(68, 92);
+            labelEx4.Name = "labelEx4";
+            labelEx4.Size = new Size(43, 15);
+            labelEx4.TabIndex = 8;
+            labelEx4.Text = "担当者";
+            // 
+            // labelEx2
+            // 
+            labelEx2.AutoSize = true;
+            labelEx2.Location = new Point(340, 20);
+            labelEx2.Name = "labelEx2";
+            labelEx2.Size = new Size(43, 15);
+            labelEx2.TabIndex = 3;
+            labelEx2.Text = "依頼区";
+            // 
+            // CcTextBoxOfficeContactPerson
+            // 
+            CcTextBoxOfficeContactPerson.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxOfficeContactPerson.ImeMode = ImeMode.Hiragana;
+            CcTextBoxOfficeContactPerson.Location = new Point(116, 88);
+            CcTextBoxOfficeContactPerson.Name = "CcTextBoxOfficeContactPerson";
+            CcTextBoxOfficeContactPerson.Size = new Size(128, 23);
+            CcTextBoxOfficeContactPerson.TabIndex = 3;
+            CcTextBoxOfficeContactPerson.Text = "栗原";
+            // 
+            // labelEx1
+            // 
+            labelEx1.AutoSize = true;
+            labelEx1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            labelEx1.ForeColor = Color.Blue;
+            labelEx1.Location = new Point(68, 20);
+            labelEx1.Name = "labelEx1";
+            labelEx1.Size = new Size(43, 15);
+            labelEx1.TabIndex = 2;
+            labelEx1.Text = "見積日";
+            // 
+            // labelEx3
+            // 
+            labelEx3.AutoSize = true;
+            labelEx3.Location = new Point(68, 64);
+            labelEx3.Name = "labelEx3";
+            labelEx3.Size = new Size(43, 15);
+            labelEx3.TabIndex = 0;
+            labelEx3.Text = "会社名";
             // 
             // CcComboBoxWordName
             // 
-            this.CcComboBoxWordName.FormattingEnabled = true;
-            this.CcComboBoxWordName.ImeMode = ImeMode.Off;
-            this.CcComboBoxWordName.Location = new Point(388, 16);
-            this.CcComboBoxWordName.Name = "CcComboBoxWordName";
-            this.CcComboBoxWordName.Size = new Size(184, 23);
-            this.CcComboBoxWordName.TabIndex = 1;
-            this.CcComboBoxWordName.Text = "世田谷区";
+            CcComboBoxWordName.FormattingEnabled = true;
+            CcComboBoxWordName.ImeMode = ImeMode.Off;
+            CcComboBoxWordName.Location = new Point(388, 16);
+            CcComboBoxWordName.Name = "CcComboBoxWordName";
+            CcComboBoxWordName.Size = new Size(184, 23);
+            CcComboBoxWordName.TabIndex = 1;
+            CcComboBoxWordName.Text = "世田谷区";
             // 
             // CcDateTimeOfficeQuotationDate
             // 
-            this.CcDateTimeOfficeQuotationDate.CultureFlag = false;
-            this.CcDateTimeOfficeQuotationDate.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.CcDateTimeOfficeQuotationDate.Format = DateTimePickerFormat.Custom;
-            this.CcDateTimeOfficeQuotationDate.ImeMode = ImeMode.Off;
-            this.CcDateTimeOfficeQuotationDate.Location = new Point(116, 16);
-            this.CcDateTimeOfficeQuotationDate.Name = "CcDateTimeOfficeQuotationDate";
-            this.CcDateTimeOfficeQuotationDate.Size = new Size(184, 23);
-            this.CcDateTimeOfficeQuotationDate.TabIndex = 0;
-            this.CcDateTimeOfficeQuotationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimeOfficeQuotationDate.CultureFlag = false;
+            CcDateTimeOfficeQuotationDate.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimeOfficeQuotationDate.Format = DateTimePickerFormat.Custom;
+            CcDateTimeOfficeQuotationDate.ImeMode = ImeMode.Off;
+            CcDateTimeOfficeQuotationDate.Location = new Point(116, 16);
+            CcDateTimeOfficeQuotationDate.Name = "CcDateTimeOfficeQuotationDate";
+            CcDateTimeOfficeQuotationDate.Size = new Size(184, 23);
+            CcDateTimeOfficeQuotationDate.TabIndex = 0;
+            CcDateTimeOfficeQuotationDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(2, 837);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1121, 22);
-            this.StatusStripEx1.SizingGrip = false;
-            this.StatusStripEx1.TabIndex = 5;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 2);
+            StatusStripEx1.Location = new Point(2, 1017);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(1900, 22);
+            StatusStripEx1.SizingGrip = false;
+            StatusStripEx1.TabIndex = 5;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
-            this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(5, 495);
-            this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(1115, 253);
-            this.SpreadList.TabIndex = 3;
-            this.ToolTip1.SetToolTip(this.SpreadList, "登録されている明細です。ダブルクリックすることで編集します。\r\n※削除された明細はグレーで表示されます。");
-            this.SpreadList.CellDoubleClick += this.SpreadList_CellDoubleClick;
+            SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            SpreadList.Dock = DockStyle.Fill;
+            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadList.Location = new Point(5, 495);
+            SpreadList.Name = "SpreadList";
+            SpreadList.Size = new Size(1194, 433);
+            SpreadList.TabIndex = 3;
+            ToolTip1.SetToolTip(SpreadList, "登録されている明細です。ダブルクリックすることで編集します。\r\n※削除された明細はグレーで表示されます。");
+            SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
+            // 
+            // TabControlEx1
+            // 
+            TabControlEx1.Controls.Add(TabPage1);
+            TabControlEx1.Controls.Add(TabPage2);
+            TabControlEx1.Controls.Add(TabPage3);
+            TabControlEx1.Controls.Add(TabPage4);
+            TabControlEx1.Dock = DockStyle.Fill;
+            TabControlEx1.Location = new Point(1207, 93);
+            TabControlEx1.Name = "TabControlEx1";
+            TableLayoutPanelExBase.SetRowSpan(TabControlEx1, 3);
+            TabControlEx1.SelectedIndex = 0;
+            TabControlEx1.Size = new Size(692, 917);
+            TabControlEx1.TabIndex = 19;
+            // 
+            // TabPage1
+            // 
+            TabPage1.Controls.Add(CcPictureBox1);
+            TabPage1.Location = new Point(4, 24);
+            TabPage1.Name = "TabPage1";
+            TabPage1.Padding = new Padding(3);
+            TabPage1.Size = new Size(684, 889);
+            TabPage1.TabIndex = 0;
+            TabPage1.Text = "メモ１";
+            TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CcPictureBox1
+            // 
+            CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
+            CcPictureBox1.ContextMenuStrip = ContextMenuStripEx1;
+            CcPictureBox1.Dock = DockStyle.Fill;
+            CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
+            CcPictureBox1.Location = new Point(3, 3);
+            CcPictureBox1.Name = "CcPictureBox1";
+            CcPictureBox1.Size = new Size(678, 883);
+            CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            CcPictureBox1.TabIndex = 0;
+            CcPictureBox1.TabStop = false;
+            CcPictureBox1.DoubleClick += CcPictureBox_DoubleClick;
+            // 
+            // ContextMenuStripEx1
+            // 
+            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
+            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
+            ContextMenuStripEx1.Size = new Size(133, 70);
+            ContextMenuStripEx1.ItemClicked += ContextMenuStripEx1_ItemClicked;
+            // 
+            // ToolStripMenuItemOpen
+            // 
+            ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            ToolStripMenuItemOpen.Size = new Size(132, 22);
+            ToolStripMenuItemOpen.Text = "Open(PDF)";
+            ToolStripMenuItemOpen.ToolTipText = "ファイルを選択しPDFを直接貼り付けます";
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            ToolStripMenuItemPaste.Size = new Size(132, 22);
+            ToolStripMenuItemPaste.Text = "Paste";
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            ToolStripMenuItemDelete.Size = new Size(132, 22);
+            ToolStripMenuItemDelete.Text = "Delete";
+            // 
+            // TabPage2
+            // 
+            TabPage2.Controls.Add(CcPictureBox2);
+            TabPage2.Location = new Point(4, 24);
+            TabPage2.Name = "TabPage2";
+            TabPage2.Padding = new Padding(3);
+            TabPage2.Size = new Size(684, 889);
+            TabPage2.TabIndex = 1;
+            TabPage2.Text = "メモ２";
+            TabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CcPictureBox2
+            // 
+            CcPictureBox2.BorderStyle = BorderStyle.Fixed3D;
+            CcPictureBox2.ContextMenuStrip = ContextMenuStripEx1;
+            CcPictureBox2.Dock = DockStyle.Fill;
+            CcPictureBox2.Image = (Image)resources.GetObject("CcPictureBox2.Image");
+            CcPictureBox2.Location = new Point(3, 3);
+            CcPictureBox2.Name = "CcPictureBox2";
+            CcPictureBox2.Size = new Size(678, 883);
+            CcPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            CcPictureBox2.TabIndex = 0;
+            CcPictureBox2.TabStop = false;
+            CcPictureBox2.DoubleClick += CcPictureBox_DoubleClick;
             // 
             // CcPanelDown
             // 
-            this.CcPanelDown.Controls.Add(this.CcButtonDelete);
-            this.CcPanelDown.Controls.Add(this.CcButtonOk);
-            this.CcPanelDown.Controls.Add(this.CcNumericUpDownAmount);
-            this.CcPanelDown.Controls.Add(this.labelEx17);
-            this.CcPanelDown.Controls.Add(this.labelEx16);
-            this.CcPanelDown.Controls.Add(this.labelEx15);
-            this.CcPanelDown.Controls.Add(this.labelEx14);
-            this.CcPanelDown.Controls.Add(this.labelEx13);
-            this.CcPanelDown.Controls.Add(this.labelEx11);
-            this.CcPanelDown.Controls.Add(this.CcTextBoxNumber);
-            this.CcPanelDown.Controls.Add(this.CcTextBoxOthers);
-            this.CcPanelDown.Controls.Add(this.CcNumericUpDownUnitPrice);
-            this.CcPanelDown.Controls.Add(this.CcNumericUpDownNumberOfUnits);
-            this.CcPanelDown.Controls.Add(this.CcTextBoxItemSize);
-            this.CcPanelDown.Controls.Add(this.CcComboBoxItemName);
-            this.CcPanelDown.Dock = DockStyle.Fill;
-            this.CcPanelDown.Location = new Point(5, 756);
-            this.CcPanelDown.Name = "CcPanelDown";
-            this.CcPanelDown.Size = new Size(1115, 74);
-            this.CcPanelDown.TabIndex = 4;
-            // 
-            // CcButtonDelete
-            // 
-            this.CcButtonDelete.ForeColor = Color.Red;
-            this.CcButtonDelete.Location = new Point(1080, 36);
-            this.CcButtonDelete.Name = "CcButtonDelete";
-            this.CcButtonDelete.SetTextDirectionVertical = "";
-            this.CcButtonDelete.Size = new Size(24, 24);
-            this.CcButtonDelete.TabIndex = 7;
-            this.CcButtonDelete.Text = "✗";
-            this.ToolTip1.SetToolTip(this.CcButtonDelete, "明細を削除します");
-            this.CcButtonDelete.UseVisualStyleBackColor = true;
-            this.CcButtonDelete.Click += this.CcButton_Click;
-            // 
-            // CcButtonOk
-            // 
-            this.CcButtonOk.ForeColor = Color.FromArgb(0, 192, 0);
-            this.CcButtonOk.Location = new Point(1056, 36);
-            this.CcButtonOk.Name = "CcButtonOk";
-            this.CcButtonOk.SetTextDirectionVertical = "";
-            this.CcButtonOk.Size = new Size(24, 24);
-            this.CcButtonOk.TabIndex = 6;
-            this.CcButtonOk.Text = "✓";
-            this.ToolTip1.SetToolTip(this.CcButtonOk, "明細の新規登録や修正登録をします");
-            this.CcButtonOk.UseVisualStyleBackColor = true;
-            this.CcButtonOk.Click += this.CcButton_Click;
-            // 
-            // CcNumericUpDownAmount
-            // 
-            this.CcNumericUpDownAmount.DecimalPlaces = 1;
-            this.CcNumericUpDownAmount.ImeMode = ImeMode.Off;
-            this.CcNumericUpDownAmount.Location = new Point(580, 36);
-            this.CcNumericUpDownAmount.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
-            this.CcNumericUpDownAmount.Name = "CcNumericUpDownAmount";
-            this.CcNumericUpDownAmount.ReadOnly = true;
-            this.CcNumericUpDownAmount.Size = new Size(80, 23);
-            this.CcNumericUpDownAmount.TabIndex = 4;
-            this.CcNumericUpDownAmount.TextAlign = HorizontalAlignment.Right;
-            // 
-            // labelEx17
-            // 
-            this.labelEx17.Location = new Point(668, 8);
-            this.labelEx17.Name = "labelEx17";
-            this.labelEx17.Size = new Size(380, 24);
-            this.labelEx17.TabIndex = 5;
-            this.labelEx17.Text = "そ　　の　　他";
-            this.labelEx17.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx16
-            // 
-            this.labelEx16.Location = new Point(584, 8);
-            this.labelEx16.Name = "labelEx16";
-            this.labelEx16.Size = new Size(72, 24);
-            this.labelEx16.TabIndex = 4;
-            this.labelEx16.Text = "金　　額";
-            this.labelEx16.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx15
-            // 
-            this.labelEx15.Location = new Point(500, 8);
-            this.labelEx15.Name = "labelEx15";
-            this.labelEx15.Size = new Size(72, 24);
-            this.labelEx15.TabIndex = 3;
-            this.labelEx15.Text = "単　　価";
-            this.labelEx15.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx14
-            // 
-            this.labelEx14.Location = new Point(416, 8);
-            this.labelEx14.Name = "labelEx14";
-            this.labelEx14.Size = new Size(72, 24);
-            this.labelEx14.TabIndex = 2;
-            this.labelEx14.Text = "数　量";
-            this.labelEx14.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx13
-            // 
-            this.labelEx13.Location = new Point(252, 9);
-            this.labelEx13.Name = "labelEx13";
-            this.labelEx13.Size = new Size(152, 23);
-            this.labelEx13.TabIndex = 1;
-            this.labelEx13.Text = "サ　　イ　　ズ";
-            this.labelEx13.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelEx11
-            // 
-            this.labelEx11.Location = new Point(32, 9);
-            this.labelEx11.Name = "labelEx11";
-            this.labelEx11.Size = new Size(208, 23);
-            this.labelEx11.TabIndex = 0;
-            this.labelEx11.Text = "品　　　　　名";
-            this.labelEx11.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // CcTextBoxNumber
-            // 
-            this.CcTextBoxNumber.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxNumber.Enabled = false;
-            this.CcTextBoxNumber.ImeMode = ImeMode.Off;
-            this.CcTextBoxNumber.Location = new Point(4, 36);
-            this.CcTextBoxNumber.Name = "CcTextBoxNumber";
-            this.CcTextBoxNumber.Size = new Size(20, 23);
-            this.CcTextBoxNumber.TabIndex = 15;
-            this.CcTextBoxNumber.Text = "8";
-            this.CcTextBoxNumber.TextAlign = HorizontalAlignment.Center;
-            // 
-            // CcTextBoxOthers
-            // 
-            this.CcTextBoxOthers.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxOthers.ImeMode = ImeMode.Hiragana;
-            this.CcTextBoxOthers.Location = new Point(664, 36);
-            this.CcTextBoxOthers.Name = "CcTextBoxOthers";
-            this.CcTextBoxOthers.Size = new Size(388, 23);
-            this.CcTextBoxOthers.TabIndex = 5;
-            this.CcTextBoxOthers.Text = "〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇";
-            // 
-            // CcNumericUpDownUnitPrice
-            // 
-            this.CcNumericUpDownUnitPrice.DecimalPlaces = 1;
-            this.CcNumericUpDownUnitPrice.ImeMode = ImeMode.Off;
-            this.CcNumericUpDownUnitPrice.Location = new Point(496, 36);
-            this.CcNumericUpDownUnitPrice.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
-            this.CcNumericUpDownUnitPrice.Name = "CcNumericUpDownUnitPrice";
-            this.CcNumericUpDownUnitPrice.Size = new Size(80, 23);
-            this.CcNumericUpDownUnitPrice.TabIndex = 3;
-            this.CcNumericUpDownUnitPrice.TextAlign = HorizontalAlignment.Right;
-            // 
-            // CcNumericUpDownNumberOfUnits
-            // 
-            this.CcNumericUpDownNumberOfUnits.ImeMode = ImeMode.Off;
-            this.CcNumericUpDownNumberOfUnits.Location = new Point(412, 36);
-            this.CcNumericUpDownNumberOfUnits.Name = "CcNumericUpDownNumberOfUnits";
-            this.CcNumericUpDownNumberOfUnits.Size = new Size(80, 23);
-            this.CcNumericUpDownNumberOfUnits.TabIndex = 2;
-            this.CcNumericUpDownNumberOfUnits.TextAlign = HorizontalAlignment.Right;
-            // 
-            // CcTextBoxItemSize
-            // 
-            this.CcTextBoxItemSize.BorderStyle = BorderStyle.FixedSingle;
-            this.CcTextBoxItemSize.ImeMode = ImeMode.Off;
-            this.CcTextBoxItemSize.Location = new Point(248, 36);
-            this.CcTextBoxItemSize.Name = "CcTextBoxItemSize";
-            this.CcTextBoxItemSize.Size = new Size(160, 23);
-            this.CcTextBoxItemSize.TabIndex = 1;
-            this.CcTextBoxItemSize.Text = "1000*1000";
+            CcPanelDown.Controls.Add(CcComboBoxItemName);
+            CcPanelDown.Controls.Add(CcButtonDelete);
+            CcPanelDown.Controls.Add(CcButtonOk);
+            CcPanelDown.Controls.Add(CcNumericUpDownAmount);
+            CcPanelDown.Controls.Add(labelEx17);
+            CcPanelDown.Controls.Add(labelEx16);
+            CcPanelDown.Controls.Add(labelEx15);
+            CcPanelDown.Controls.Add(labelEx14);
+            CcPanelDown.Controls.Add(labelEx13);
+            CcPanelDown.Controls.Add(labelEx11);
+            CcPanelDown.Controls.Add(CcTextBoxNumber);
+            CcPanelDown.Controls.Add(CcTextBoxOthers);
+            CcPanelDown.Controls.Add(CcNumericUpDownUnitPrice);
+            CcPanelDown.Controls.Add(CcNumericUpDownNumberOfUnits);
+            CcPanelDown.Controls.Add(CcTextBoxItemSize);
+            CcPanelDown.Dock = DockStyle.Fill;
+            CcPanelDown.Location = new Point(5, 936);
+            CcPanelDown.Name = "CcPanelDown";
+            CcPanelDown.Size = new Size(1194, 74);
+            CcPanelDown.TabIndex = 4;
             // 
             // CcComboBoxItemName
             // 
-            this.CcComboBoxItemName.FormattingEnabled = true;
-            this.CcComboBoxItemName.ImeMode = ImeMode.Hiragana;
-            this.CcComboBoxItemName.Location = new Point(28, 36);
-            this.CcComboBoxItemName.Name = "CcComboBoxItemName";
-            this.CcComboBoxItemName.Size = new Size(216, 23);
-            this.CcComboBoxItemName.TabIndex = 0;
-            this.CcComboBoxItemName.Text = "四角パイプ椅子";
+            CcComboBoxItemName.FormattingEnabled = true;
+            CcComboBoxItemName.ImeMode = ImeMode.Hiragana;
+            CcComboBoxItemName.Location = new Point(28, 36);
+            CcComboBoxItemName.Name = "CcComboBoxItemName";
+            CcComboBoxItemName.Size = new Size(212, 23);
+            CcComboBoxItemName.TabIndex = 16;
+            // 
+            // CcButtonDelete
+            // 
+            CcButtonDelete.ForeColor = Color.Red;
+            CcButtonDelete.Location = new Point(1080, 36);
+            CcButtonDelete.Name = "CcButtonDelete";
+            CcButtonDelete.SetTextDirectionVertical = "";
+            CcButtonDelete.Size = new Size(24, 24);
+            CcButtonDelete.TabIndex = 7;
+            CcButtonDelete.Text = "✗";
+            ToolTip1.SetToolTip(CcButtonDelete, "明細を削除します");
+            CcButtonDelete.UseVisualStyleBackColor = true;
+            CcButtonDelete.Click += CcButton_Click;
+            // 
+            // CcButtonOk
+            // 
+            CcButtonOk.ForeColor = Color.FromArgb(0, 192, 0);
+            CcButtonOk.Location = new Point(1056, 36);
+            CcButtonOk.Name = "CcButtonOk";
+            CcButtonOk.SetTextDirectionVertical = "";
+            CcButtonOk.Size = new Size(24, 24);
+            CcButtonOk.TabIndex = 6;
+            CcButtonOk.Text = "✓";
+            ToolTip1.SetToolTip(CcButtonOk, "明細の新規登録や修正登録をします");
+            CcButtonOk.UseVisualStyleBackColor = true;
+            CcButtonOk.Click += CcButton_Click;
+            // 
+            // CcNumericUpDownAmount
+            // 
+            CcNumericUpDownAmount.DecimalPlaces = 1;
+            CcNumericUpDownAmount.ImeMode = ImeMode.Off;
+            CcNumericUpDownAmount.Location = new Point(580, 36);
+            CcNumericUpDownAmount.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            CcNumericUpDownAmount.Name = "CcNumericUpDownAmount";
+            CcNumericUpDownAmount.ReadOnly = true;
+            CcNumericUpDownAmount.Size = new Size(80, 23);
+            CcNumericUpDownAmount.TabIndex = 4;
+            CcNumericUpDownAmount.TextAlign = HorizontalAlignment.Right;
+            // 
+            // labelEx17
+            // 
+            labelEx17.Location = new Point(668, 8);
+            labelEx17.Name = "labelEx17";
+            labelEx17.Size = new Size(380, 24);
+            labelEx17.TabIndex = 5;
+            labelEx17.Text = "そ　　の　　他";
+            labelEx17.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelEx16
+            // 
+            labelEx16.Location = new Point(584, 8);
+            labelEx16.Name = "labelEx16";
+            labelEx16.Size = new Size(72, 24);
+            labelEx16.TabIndex = 4;
+            labelEx16.Text = "金　　額";
+            labelEx16.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelEx15
+            // 
+            labelEx15.Location = new Point(500, 8);
+            labelEx15.Name = "labelEx15";
+            labelEx15.Size = new Size(72, 24);
+            labelEx15.TabIndex = 3;
+            labelEx15.Text = "単　　価";
+            labelEx15.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelEx14
+            // 
+            labelEx14.Location = new Point(416, 8);
+            labelEx14.Name = "labelEx14";
+            labelEx14.Size = new Size(72, 24);
+            labelEx14.TabIndex = 2;
+            labelEx14.Text = "数　量";
+            labelEx14.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelEx13
+            // 
+            labelEx13.Location = new Point(252, 9);
+            labelEx13.Name = "labelEx13";
+            labelEx13.Size = new Size(152, 23);
+            labelEx13.TabIndex = 1;
+            labelEx13.Text = "サ　　イ　　ズ";
+            labelEx13.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelEx11
+            // 
+            labelEx11.Location = new Point(32, 9);
+            labelEx11.Name = "labelEx11";
+            labelEx11.Size = new Size(208, 23);
+            labelEx11.TabIndex = 0;
+            labelEx11.Text = "品　　　　　名";
+            labelEx11.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // CcTextBoxNumber
+            // 
+            CcTextBoxNumber.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxNumber.Enabled = false;
+            CcTextBoxNumber.ImeMode = ImeMode.Off;
+            CcTextBoxNumber.Location = new Point(4, 36);
+            CcTextBoxNumber.Name = "CcTextBoxNumber";
+            CcTextBoxNumber.Size = new Size(20, 23);
+            CcTextBoxNumber.TabIndex = 15;
+            CcTextBoxNumber.Text = "8";
+            CcTextBoxNumber.TextAlign = HorizontalAlignment.Center;
+            // 
+            // CcTextBoxOthers
+            // 
+            CcTextBoxOthers.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxOthers.ImeMode = ImeMode.Hiragana;
+            CcTextBoxOthers.Location = new Point(664, 36);
+            CcTextBoxOthers.Name = "CcTextBoxOthers";
+            CcTextBoxOthers.Size = new Size(388, 23);
+            CcTextBoxOthers.TabIndex = 5;
+            CcTextBoxOthers.Text = "〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇";
+            // 
+            // CcNumericUpDownUnitPrice
+            // 
+            CcNumericUpDownUnitPrice.DecimalPlaces = 1;
+            CcNumericUpDownUnitPrice.ImeMode = ImeMode.Off;
+            CcNumericUpDownUnitPrice.Location = new Point(496, 36);
+            CcNumericUpDownUnitPrice.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            CcNumericUpDownUnitPrice.Name = "CcNumericUpDownUnitPrice";
+            CcNumericUpDownUnitPrice.Size = new Size(80, 23);
+            CcNumericUpDownUnitPrice.TabIndex = 3;
+            CcNumericUpDownUnitPrice.TextAlign = HorizontalAlignment.Right;
+            // 
+            // CcNumericUpDownNumberOfUnits
+            // 
+            CcNumericUpDownNumberOfUnits.ImeMode = ImeMode.Off;
+            CcNumericUpDownNumberOfUnits.Location = new Point(412, 36);
+            CcNumericUpDownNumberOfUnits.Name = "CcNumericUpDownNumberOfUnits";
+            CcNumericUpDownNumberOfUnits.Size = new Size(80, 23);
+            CcNumericUpDownNumberOfUnits.TabIndex = 2;
+            CcNumericUpDownNumberOfUnits.TextAlign = HorizontalAlignment.Right;
+            // 
+            // CcTextBoxItemSize
+            // 
+            CcTextBoxItemSize.BorderStyle = BorderStyle.FixedSingle;
+            CcTextBoxItemSize.ImeMode = ImeMode.Off;
+            CcTextBoxItemSize.Location = new Point(248, 36);
+            CcTextBoxItemSize.Name = "CcTextBoxItemSize";
+            CcTextBoxItemSize.Size = new Size(160, 23);
+            CcTextBoxItemSize.TabIndex = 1;
+            CcTextBoxItemSize.Text = "1000*1000";
+            // 
+            // TabPage3
+            // 
+            TabPage3.Location = new Point(4, 24);
+            TabPage3.Name = "TabPage3";
+            TabPage3.Size = new Size(684, 889);
+            TabPage3.TabIndex = 2;
+            TabPage3.Text = "メモ３";
+            TabPage3.UseVisualStyleBackColor = true;
+            // 
+            // TabPage4
+            // 
+            TabPage4.Location = new Point(4, 24);
+            TabPage4.Name = "TabPage4";
+            TabPage4.Size = new Size(684, 889);
+            TabPage4.TabIndex = 3;
+            TabPage4.Text = "メモ４";
+            TabPage4.UseVisualStyleBackColor = true;
             // 
             // WastCollectionDetail
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1125, 861);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "WastCollectionDetail";
-            this.Text = "WastCollectionDetail";
-            this.FormClosing += this.WastCollectionDetail_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExUp.ResumeLayout(false);
-            this.PanelExUp.PerformLayout();
-            this.PanelExMiddle.ResumeLayout(false);
-            this.PanelExMiddle.PerformLayout();
-            this.TabControlEx1.ResumeLayout(false);
-            this.TabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox1).EndInit();
-            this.ContextMenuStripEx1.ResumeLayout(false);
-            this.TabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.CcPictureBox2).EndInit();
-            this.ccPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
-            this.CcPanelDown.ResumeLayout(false);
-            this.CcPanelDown.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownAmount).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownUnitPrice).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.CcNumericUpDownNumberOfUnits).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = MenuStripEx1;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "WastCollectionDetail";
+            Text = "WastCollectionDetail";
+            FormClosing += WastCollectionDetail_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            PanelExUp.ResumeLayout(false);
+            PanelExUp.PerformLayout();
+            PanelExMiddle.ResumeLayout(false);
+            PanelExMiddle.PerformLayout();
+            ccPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            TabControlEx1.ResumeLayout(false);
+            TabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).EndInit();
+            ContextMenuStripEx1.ResumeLayout(false);
+            TabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox2).EndInit();
+            CcPanelDown.ResumeLayout(false);
+            CcPanelDown.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownUnitPrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CcNumericUpDownNumberOfUnits).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -800,7 +828,6 @@
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
         private CcControl.CcLabel labelEx3;
-        private CcControl.CcComboBoxWordMaster CcComboBoxOfficeCompanyName;
         private CcControl.CcLabel labelEx4;
         private CcControl.CcTextBox CcTextBoxOfficeContactPerson;
         private CcControl.CcLabel labelEx7;
@@ -812,7 +839,6 @@
         private CcControl.CcLabel labelEx10;
         private CcControl.CcTextBox CcTextBoxWorkSiteAddress;
         private CcControl.CcLabel labelEx12;
-        private CcControl.CcComboBoxWordMaster CcComboBoxWorkSiteLocation;
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcLabel labelEx8;
         private CcControl.CcDateTime CcDateTimePickupDate;
@@ -824,7 +850,6 @@
         private CcControl.CcNumericUpDown CcNumericUpDownUnitPrice;
         private CcControl.CcNumericUpDown CcNumericUpDownNumberOfUnits;
         private CcControl.CcTextBox CcTextBoxItemSize;
-        private CcControl.CcComboBoxWordMaster CcComboBoxItemName;
         private CcControl.CcTextBox CcTextBoxNumber;
         private CcControl.CcLabel labelEx17;
         private CcControl.CcLabel labelEx16;
@@ -851,5 +876,10 @@
         private ToolTip ToolTip1;
         private ToolStripMenuItem ToolStripMenuItemOpen;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private CcControl.CcComboBox CcComboBoxOfficeCompanyName;
+        private CcControl.CcComboBox CcComboBoxWorkSiteLocation;
+        private CcControl.CcComboBox CcComboBoxItemName;
+        private TabPage TabPage3;
+        private TabPage TabPage4;
     }
 }

@@ -13,6 +13,10 @@ using Vo;
 
 namespace WastCollection {
     public partial class WastCollectionDetail : Form {
+        private PdfUtility _pdfUtility = new();
+        private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
+        private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
+
         private DateTime _defaultDateTime = new(1900, 1, 1);
         /*
          * Column Index
@@ -113,7 +117,7 @@ namespace WastCollection {
              * Control
              */
             this.CcComboBoxWordName.SetItems(_wordMasterDao.SelectAllWordMaster());
-            this.CcTextBoxId.Text = _id.ToString();                                                                                          // Idをセット
+            this.CcTextBoxId.Text = _id.ToString();                                                                                         // Idをセット
             this.InitializeControl();
             /*
              * FpSpread/Viewを初期化
@@ -536,7 +540,7 @@ namespace WastCollection {
             /*
              * 本社(依頼主)
              */
-            this.CcComboBoxOfficeCompanyName.DisplayClear();
+            this.CcComboBoxOfficeCompanyName.DisplayEmpty();
             this.CcTextBoxOfficeContactPerson.SetEmpty();
             this.CcTextBoxOfficeAddress.SetEmpty();
             this.CcTextBoxOfficeTelephoneNumber.SetEmpty();
@@ -547,7 +551,7 @@ namespace WastCollection {
             /*
              * 現場(回収場所)
              */
-            this.CcComboBoxWorkSiteLocation.DisplayClear();
+            this.CcComboBoxWorkSiteLocation.DisplayEmpty();
             this.CcTextBoxWorkSiteAddress.SetEmpty();
 
             this.CcDateTimePickupDate.SetEmpty();
@@ -556,7 +560,7 @@ namespace WastCollection {
              * 入力項目
              */
             this.CcTextBoxNumber.SetEmpty();
-            this.CcComboBoxItemName.DisplayClear();
+            //this.CcComboBoxItemName.DisplayClear();
             this.CcTextBoxItemSize.SetEmpty();
             this.CcNumericUpDownNumberOfUnits.Value = 0;
             this.CcNumericUpDownUnitPrice.Value = 0;
@@ -572,7 +576,7 @@ namespace WastCollection {
         /// </summary>
         private void InitializeMsiControls() {
             this.CcTextBoxNumber.SetEmpty();
-            this.CcComboBoxItemName.DisplayClear();
+            this.InitializeCcComboBoxItemName();                                                                                            // 明細入力の品名ComboBoxを初期化
             this.CcTextBoxItemSize.SetEmpty();
             this.CcNumericUpDownNumberOfUnits.Value = 0;
             this.CcNumericUpDownUnitPrice.Value = 0;
@@ -590,6 +594,16 @@ namespace WastCollection {
             WastCollectionView wastCollectionPaper = new(_connectionVo, ((CcPictureBox)sender).Image);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), wastCollectionPaper);
             wastCollectionPaper.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// CcComboBoxItemNameを初期化する
+        /// </summary>
+        private void InitializeCcComboBoxItemName() {
+            this.CcComboBoxItemName.Items.Clear();
+            foreach(string data in _wasteCollectionBodyDao.SelectGroupItemName())
+                this.CcComboBoxItemName.Items.Add(data);
+            this.CcComboBoxItemName.DisplayEmpty();
         }
 
         /// <summary>
