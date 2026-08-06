@@ -175,12 +175,12 @@
             // 
             CcTextBoxId.BorderStyle = BorderStyle.FixedSingle;
             CcTextBoxId.Enabled = false;
-            CcTextBoxId.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcTextBoxId.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
             CcTextBoxId.Location = new Point(56, 14);
             CcTextBoxId.Name = "CcTextBoxId";
-            CcTextBoxId.Size = new Size(92, 25);
+            CcTextBoxId.Size = new Size(76, 25);
             CcTextBoxId.TabIndex = 0;
-            CcTextBoxId.Text = "12345678901";
+            CcTextBoxId.Text = "0123456789";
             CcTextBoxId.TextAlign = HorizontalAlignment.Right;
             // 
             // PanelExMiddle

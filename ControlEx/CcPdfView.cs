@@ -87,10 +87,6 @@ namespace CcControl {
         /// 表示中の PDF を破棄する
         /// </summary>
         public void Unload() {
-
-            // PdfViewer の Document を解除
-            this.Document = null;
-
             // PdfDocument を破棄
             if(_pdfDocument is not null) {
                 _pdfDocument.Dispose();
@@ -111,10 +107,7 @@ namespace CcControl {
         /// <param name="bitmap">PDF に埋め込む Bitmap</param>
         /// <returns>PDF データの byte[]</returns>
         public byte[] ConvertImageToPdfBytes(Bitmap bitmap) {
-
-            // PDF を書き込むためのメモリストリーム
             using(MemoryStream pdfStream = new()) {
-
                 /*
                  * PdfSharpCore の PDF ドキュメントを作成
                  * AddPage() でページを追加し、画像サイズに合わせてページサイズを設定する。
@@ -125,14 +118,11 @@ namespace CcControl {
                 PdfSharpCore.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
                 pdfPage.Width = bitmap.Width;
                 pdfPage.Height = bitmap.Height;
-
                 /*
                  * PDF 描画用の XGraphics を取得。
                  * XGraphics は PDF ページに対する描画コンテキスト。
                  */
-                PdfSharpCore.Drawing.XGraphics xGraphics =
-            PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
-
+                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
                 /*
                  * Bitmap を PNG として一度 MemoryStream に保存し、
                  * その PNG データを XImage として読み込む。
@@ -141,21 +131,15 @@ namespace CcControl {
                  * 一度 PNG などの画像形式に変換する必要がある。
                  */
                 using(MemoryStream imgStream = new()) {
-
                     // Bitmap → PNG 形式で MemoryStream に保存
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
                     imgStream.Position = 0; // 読み込み位置を先頭に戻す
-
                     /*
                      * XImage.FromStream は「ストリームを返すデリゲート」を要求するため、
                      * imgStream の内容を新しい MemoryStream にコピーして渡す。
                      * （PdfSharpCore の仕様で、ストリームはクローズされる可能性があるため）
                      */
-                    PdfSharpCore.Drawing.XImage xImage =
-                PdfSharpCore.Drawing.XImage.FromStream(
-                    () => new MemoryStream(imgStream.ToArray())
-                );
-
+                    PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
                     // PDF ページに画像を描画（左上 0,0 に原寸で貼り付け）
                     xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
                 }
