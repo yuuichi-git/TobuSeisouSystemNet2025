@@ -498,19 +498,20 @@
             TabControlEx1.Controls.Add(TabPage3);
             TabControlEx1.Controls.Add(TabPage4);
             TabControlEx1.Dock = DockStyle.Fill;
-            TabControlEx1.Location = new Point(1207, 93);
+            TabControlEx1.Location = new Point(1204, 90);
+            TabControlEx1.Margin = new Padding(0);
             TabControlEx1.Name = "TabControlEx1";
             TableLayoutPanelExBase.SetRowSpan(TabControlEx1, 3);
             TabControlEx1.SelectedIndex = 0;
-            TabControlEx1.Size = new Size(692, 917);
+            TabControlEx1.Size = new Size(698, 923);
             TabControlEx1.TabIndex = 19;
             // 
             // TabPage1
             // 
             TabPage1.Location = new Point(4, 24);
+            TabPage1.Margin = new Padding(0);
             TabPage1.Name = "TabPage1";
-            TabPage1.Padding = new Padding(3);
-            TabPage1.Size = new Size(684, 889);
+            TabPage1.Size = new Size(690, 895);
             TabPage1.TabIndex = 0;
             TabPage1.Text = "メモ１";
             TabPage1.UseVisualStyleBackColor = true;
@@ -518,9 +519,9 @@
             // TabPage2
             // 
             TabPage2.Location = new Point(4, 24);
+            TabPage2.Margin = new Padding(0);
             TabPage2.Name = "TabPage2";
-            TabPage2.Padding = new Padding(3);
-            TabPage2.Size = new Size(684, 889);
+            TabPage2.Size = new Size(690, 895);
             TabPage2.TabIndex = 1;
             TabPage2.Text = "メモ２";
             TabPage2.UseVisualStyleBackColor = true;
@@ -528,8 +529,9 @@
             // TabPage3
             // 
             TabPage3.Location = new Point(4, 24);
+            TabPage3.Margin = new Padding(0);
             TabPage3.Name = "TabPage3";
-            TabPage3.Size = new Size(684, 889);
+            TabPage3.Size = new Size(690, 895);
             TabPage3.TabIndex = 2;
             TabPage3.Text = "メモ３";
             TabPage3.UseVisualStyleBackColor = true;
@@ -537,8 +539,9 @@
             // TabPage4
             // 
             TabPage4.Location = new Point(4, 24);
+            TabPage4.Margin = new Padding(0);
             TabPage4.Name = "TabPage4";
-            TabPage4.Size = new Size(684, 889);
+            TabPage4.Size = new Size(690, 895);
             TabPage4.TabIndex = 3;
             TabPage4.Text = "メモ４";
             TabPage4.UseVisualStyleBackColor = true;
@@ -724,7 +727,7 @@
             CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
             CcContextMenuStrip1.Name = "ContextMenuStripEx1";
             CcContextMenuStrip1.Size = new Size(133, 70);
-            CcContextMenuStrip1.ItemClicked += ContextMenuStripEx1_ItemClicked;
+            CcContextMenuStrip1.ItemClicked += CcContextMenuStrip1_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 

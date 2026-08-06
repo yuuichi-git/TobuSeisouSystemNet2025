@@ -63,8 +63,10 @@ namespace VoluntaryAutomobileInsurance {
             tabPages[3] = this.TabPage4;
 
             // 4つの CcPdfView を生成して TabPage に配置
-            for (int i = 0; i < 4; i++) {
+            for(int i = 0; i < 4; i++) {
                 _ccPdfViews[i] = new();
+                _ccPdfViews[i].Tag = i;
+
                 tabPages[i].Controls.Add(_ccPdfViews[i]);
                 _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
             }
@@ -105,7 +107,7 @@ namespace VoluntaryAutomobileInsurance {
             /*
              * INSERT or UPDATE の判定
              */
-            if (_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(vo.StaffCode)) {
+            if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(vo.StaffCode)) {
                 _voluntaryAutomobileInsuranceDao.UpdateOneVoluntaryAutomobileInsuranceVo(vo);
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "更新が完了しました。";
             } else {
@@ -124,32 +126,33 @@ namespace VoluntaryAutomobileInsurance {
         /// 画面へ PDF 等を表示する
         /// </summary>
         private void PutSheetViewList(int staffCode) {
-            if (_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(staffCode)) {
+            if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(staffCode)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在します。";
-                VoluntaryAutomobileInsuranceVo vo = _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
+                VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
 
-                if (vo is null)
+                if(voluntaryAutomobileInsuranceVo is null)
                     return;
 
                 /*
                  * 画面項目へ反映
                  */
-                this.CcComboBoxVehicleType.Text = vo.VehicleType;
-                this.CcComboBoxCompanyName.Text = vo.CompanyName;
+                this.CcComboBoxVehicleType.Text = voluntaryAutomobileInsuranceVo.VehicleType;
+                this.CcComboBoxCompanyName.Text = voluntaryAutomobileInsuranceVo.CompanyName;
 
-                if (DateTime.TryParse(vo.StartDate, out DateTime start))
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.StartDate, out DateTime start))
                     this.CcDateTimePickerStartDate.Value = start;
 
-                if (DateTime.TryParse(vo.EndDate, out DateTime end))
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out DateTime end))
                     this.CcDateTimePickerEndDate.Value = end;
 
                 /*
                  * PDF 表示（Image1〜4）
                  */
-                ShowPdfIfExists(_ccPdfViews[0], vo.Image1, 0);
-                ShowPdfIfExists(_ccPdfViews[1], vo.Image2, 1);
-                ShowPdfIfExists(_ccPdfViews[2], vo.Image3, 2);
-                ShowPdfIfExists(_ccPdfViews[3], vo.Image4, 3);
+                _ccPdfViews[0].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image1);
+                _ccPdfViews[1].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image2);
+                _ccPdfViews[2].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image3);
+                _ccPdfViews[3].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image4);
+
             } else {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在しません。";
 
@@ -162,43 +165,10 @@ namespace VoluntaryAutomobileInsurance {
                 /*
                  * PDF クリア
                  */
-                for (int i = 0; i < 4; i++) {
+                for(int i = 0; i < 4; i++) {
                     ClearPdfViewer(_ccPdfViews[i]);
                 }
             }
-        }
-
-        /// <summary>
-        /// PDF が存在すれば表示する
-        /// </summary>
-        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
-        /// <param name="bytes">PDF のバイト配列</param>
-        /// <param name="index">MemoryStream のインデックス</param>
-        private void ShowPdfIfExists(CcPdfView ccPdfView, byte[] bytes, int index) {
-            if (bytes is null || bytes.Length == 0) {
-                ClearPdfViewer(ccPdfView);
-                return;
-            }
-
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = new MemoryStream(bytes);
-
-            ccPdfView.Unload();
-            ccPdfView.SetPdfStream(_memoryStream[index]);
-        }
-
-        /// <summary>
-        /// PdfViewer がどの ImageNo に対応しているかを返す
-        /// </summary>
-        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
-        /// <returns>ImageNo</returns>
-        private int GetImageNoFromViewer(CcPdfView ccPdfView) {
-            for (int i = 0; i < _ccPdfViews.Length; i++) {
-                if (_ccPdfViews[i] == ccPdfView) {
-                    return i + 1;
-                }
-            }
-            return 0;
         }
 
         /// <summary>
@@ -207,17 +177,11 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="ccPdfView">PdfViewer のインスタンス</param>
         /// <param name="pdfBytes">PDF のバイト配列</param>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if (imageNo == 0)
-                return;
-
-            int index = imageNo - 1;
-
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = new MemoryStream(pdfBytes);
+            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
+            _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
             ccPdfView.Unload();
-            ccPdfView.SetPdfStream(_memoryStream[index]);
+            ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
         }
 
         /// <summary>
@@ -225,14 +189,8 @@ namespace VoluntaryAutomobileInsurance {
         /// </summary>
         /// <param name="ccPdfView">PdfViewer のインスタンス</param>
         private void ClearPdfViewer(CcPdfView ccPdfView) {
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if (imageNo == 0)
-                return;
-
-            int index = imageNo - 1;
-
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = null;
+            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
+            _memoryStream[(int)ccPdfView.Tag] = null;
 
             ccPdfView.Unload();
         }
@@ -242,7 +200,7 @@ namespace VoluntaryAutomobileInsurance {
         /// </summary>
         private void InitializeCcComboBoxVehicleType() {
             this.CcComboBoxVehicleType.Items.Clear();
-            foreach (string data in _voluntaryAutomobileInsuranceDao.SelectGroupVehicleType())
+            foreach(string data in _voluntaryAutomobileInsuranceDao.SelectGroupVehicleType())
                 this.CcComboBoxVehicleType.Items.Add(data);
         }
 
@@ -251,7 +209,7 @@ namespace VoluntaryAutomobileInsurance {
         /// </summary>
         private void InitializeCcComboBoxCompanyName() {
             this.CcComboBoxCompanyName.Items.Clear();
-            foreach (string data in _voluntaryAutomobileInsuranceDao.SelectGroupCompanyName())
+            foreach(string data in _voluntaryAutomobileInsuranceDao.SelectGroupCompanyName())
                 this.CcComboBoxCompanyName.Items.Add(data);
         }
 
@@ -261,7 +219,7 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
                     this.Close();
                     break;
@@ -274,64 +232,56 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if (sender is not ContextMenuStrip menu)
+            if(sender is not ContextMenuStrip menu)
                 return;
 
-            if (menu.SourceControl is not CcPdfView ccPdfView)
+            if(menu.SourceControl is not CcPdfView ccPdfView)
                 return;
 
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if (imageNo == 0)
-                return;
-
-            switch (e.ClickedItem.Name) {
+            switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
                     byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
-                    if (bytes is null)
+                    if(bytes is null)
                         return;
 
                     this.ShowPdfToViewer(ccPdfView, bytes);
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
                 case "ToolStripMenuItemPaste": {
-                        IDataObject data = Clipboard.GetDataObject();
-                        if (data == null) {
-                            MessageBox.Show("クリップボードが空です。");
-                            break;
-                        }
-
-                        // ★ クリップボードに画像があるか？
-                        if (data.GetDataPresent(DataFormats.Bitmap)) {
-                            Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
-                            if (bmp == null) {
-                                MessageBox.Show("画像の取得に失敗しました。");
-                                break;
-                            }
-
-                            // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
-                            byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
-                            if (pdfBytes == null || pdfBytes.Length == 0) {
-                                MessageBox.Show("画像を PDF に変換できませんでした。");
-                                break;
-                            }
-
-                            // ★ PdfiumViewer に表示（CcPdfView）
-                            this.ShowPdfToViewer(ccPdfView, pdfBytes);
-
-                            // ★ DB 保存用に MemoryStream を保持
-                            int imageNo1 = GetImageNoFromViewer(ccPdfView);
-                            int index = imageNo1 - 1;
-
-                            //_memoryStream[index]?.Dispose();
-                            _memoryStream[index] = new MemoryStream(pdfBytes);
-
-                            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
-                            break;
-                        }
-
-                        MessageBox.Show("クリップボードに画像がありません。");
+                    IDataObject data = Clipboard.GetDataObject();
+                    if(data == null) {
+                        MessageBox.Show("クリップボードが空です。");
                         break;
                     }
+
+                    // ★ クリップボードに画像があるか？
+                    if(data.GetDataPresent(DataFormats.Bitmap)) {
+                        Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
+                        if(bmp == null) {
+                            MessageBox.Show("画像の取得に失敗しました。");
+                            break;
+                        }
+
+                        // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
+                        byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
+                        if(pdfBytes == null || pdfBytes.Length == 0) {
+                            MessageBox.Show("画像を PDF に変換できませんでした。");
+                            break;
+                        }
+
+                        // ★ PdfiumViewer に表示（CcPdfView）
+                        this.ShowPdfToViewer(ccPdfView, pdfBytes);
+
+                        //_memoryStream[index]?.Dispose();
+                        _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
+
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
+                        break;
+                    }
+
+                    MessageBox.Show("クリップボードに画像がありません。");
+                    break;
+                }
 
 
                 case "ToolStripMenuItemDelete":

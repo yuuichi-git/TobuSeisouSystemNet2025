@@ -1,8 +1,6 @@
 ﻿/*
  * 2026-01-28
  */
-using System.Text;
-
 using CcControl;
 
 using Common;
@@ -15,7 +13,6 @@ using Vo;
 
 namespace WastCollection {
     public partial class WastCollectionDetail : Form {
-        private DateTime _defaultDateTime = new(1900, 1, 1);
         /*
          * Column Index
          */
@@ -63,7 +60,8 @@ namespace WastCollection {
         /*
          * インスタンス作成
          */
-        private readonly PdfUtility _pdfUtility = new();
+        private DateTime _defaultDateTime = new(1900, 1, 1);
+        private PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（メモ１～４）
         private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
         /*
@@ -188,7 +186,6 @@ namespace WastCollection {
                     switch(_rowUpdateFlag) {
                         case false:                                                                                                         // Insertモード
                             this.AddNewRow(this.SheetViewList, this.SheetViewList.RowCount, this.GetWasteCollectionBodyVo(_id, this.SheetViewList.RowCount + 1));
-                            //this.SheetViewListMsiNoReset(this.SheetViewList);
                             try {
                                 _wasteCollectionBodyDao.InsertOneWasteCollectionBody(_id, this.SheetViewList.RowCount, (WasteCollectionBodyVo)this.SheetViewList.Rows[this.SheetViewList.RowCount - 1].Tag);
                             } catch(Exception exception) {
@@ -198,7 +195,6 @@ namespace WastCollection {
                             break;
                         case true:                                                                                                          // Updateモード
                             this.AddUpdateRow(this.SheetViewList, _doubleClickRowIndex, this.GetWasteCollectionBodyVo(_id, _doubleClickRowIndex));
-                            //this.SheetViewListMsiNoReset(this.SheetViewList);
                             this.InitializeMsiControls();
                             try {
                                 _wasteCollectionBodyDao.UpdateOneWasteCollectionBody(_id, _doubleClickRowIndex + 1, (WasteCollectionBodyVo)this.SheetViewList.Rows[_doubleClickRowIndex].Tag);
@@ -214,7 +210,6 @@ namespace WastCollection {
 
                 case "CcButtonDelete":                                                                                                      // 行の削除ってことはUpdateモードで行呼び出ししてるよね
                     this.SheetViewList.RemoveRows(_doubleClickRowIndex, 1);
-                    //this.SheetViewListMsiNoReset(this.SheetViewList);
                     try {
                         _wasteCollectionBodyDao.DeleteOneWasteCollectionBody(_id, _doubleClickRowIndex + 1);
                     } catch(Exception exception) {
@@ -289,10 +284,10 @@ namespace WastCollection {
             /*
              * PDF 表示（Image1〜4）
              */
-            ShowPdfIfExists(_ccPdfViews[0], wasteCollectionHeadVo.MainPicture, 0);
-            ShowPdfIfExists(_ccPdfViews[1], wasteCollectionHeadVo.SubPicture, 1);
-            ShowPdfIfExists(_ccPdfViews[2], wasteCollectionHeadVo.AdditionalPicture1, 2);
-            ShowPdfIfExists(_ccPdfViews[3], wasteCollectionHeadVo.AdditionalPicture2, 3);
+            _ccPdfViews[0].SetPdfBytes(wasteCollectionHeadVo.MainPicture);
+            _ccPdfViews[1].SetPdfBytes(wasteCollectionHeadVo.SubPicture);
+            _ccPdfViews[2].SetPdfBytes(wasteCollectionHeadVo.AdditionalPicture1);
+            _ccPdfViews[3].SetPdfBytes(wasteCollectionHeadVo.AdditionalPicture2);
         }
 
         /// <summary>
@@ -432,27 +427,25 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// 
+        /// CcContextMenuStrip
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void ContextMenuStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if(sender is not ContextMenuStrip menu)
-                return;
-
-            if(menu.SourceControl is not CcPdfView ccPdfView)
-                return;
-
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if(imageNo == 0)
+        private async void CcContextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            /*
+             * CcContextMenuStripが開かれたときのSourceControlがCcPdfViewであることを確認する
+             */
+            if(((ContextMenuStrip)sender).SourceControl is not CcPdfView ccPdfView)
                 return;
 
             switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
+                    /*
+                     * ファイルエクスプローラでファイルを選択
+                     */
+                    byte[] bytes = _pdfUtility.ConvertPdfToByte((ContextMenuStrip)sender);
                     if(bytes is null)
                         return;
-
                     this.ShowPdfToViewer(ccPdfView, bytes);
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
@@ -482,12 +475,8 @@ namespace WastCollection {
                         // ★ PdfiumViewer に表示（CcPdfView）
                         this.ShowPdfToViewer(ccPdfView, pdfBytes);
 
-                        // ★ DB 保存用に MemoryStream を保持
-                        int imageNo1 = GetImageNoFromViewer(ccPdfView);
-                        int index = imageNo1 - 1;
-
                         //_memoryStream[index]?.Dispose();
-                        _memoryStream[index] = new MemoryStream(pdfBytes);
+                        _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
                         break;
@@ -536,126 +525,14 @@ namespace WastCollection {
         }
 
         /// <summary>
-        /// PDF が存在すれば表示する（画像 byte[] にも対応）
-        /// </summary>
-        /// <param name="ccPdfView">表示先の PDF ビューア</param>
-        /// <param name="bytes">DB から取得した byte[]（PDF または画像）</param>
-        /// <param name="index">MemoryStream のインデックス（0〜3）</param>
-        private void ShowPdfIfExists(CcPdfView ccPdfView, byte[] bytes, int index) {
-            // ★ viewer が null の場合は何もできない
-            if(ccPdfView is null)
-                return;
-
-            // ★ byte[] が null または空なら PDF をクリア
-            if(bytes is null || bytes.Length == 0) {
-                ClearPdfViewer(ccPdfView);
-                return;
-            }
-
-            // ★ _memoryStream 配列が未初期化なら初期化
-            if(_memoryStream is null)
-                _memoryStream = new MemoryStream[4];
-
-            // ★ index が範囲外なら return（安全対策）
-            if(index < 0 || index >= _memoryStream.Length)
-                return;
-
-            // ★ PDF 形式かどうか判定（画像 byte[] の場合は PDF に変換）
-            byte[] pdfBytes;
-            if(IsPdfFormat(bytes)) {
-                // そのまま PDF として扱う
-                pdfBytes = bytes;
-            } else {
-                // ★ 画像 byte[] → Bitmap → PDF に変換
-                try {
-                    using(var ms = new MemoryStream(bytes))
-                    using(var bmp = new Bitmap(ms)) {
-                        pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
-                    }
-                } catch {
-                    MessageBox.Show("画像データが不正です。PDF に変換できませんでした。");
-                    ClearPdfViewer(ccPdfView);
-                    return;
-                }
-            }
-
-            // ★ MemoryStream を再生成（Dispose → 新規作成）
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = new MemoryStream(pdfBytes, false); // 読み取り専用
-
-            // ★ PDF をビューアに表示
-            try {
-                ccPdfView.SetPdfStream(_memoryStream[index]);
-            } catch(Exception ex) {
-                MessageBox.Show("PDF の読み込みに失敗しました。" + Environment.NewLine + ex.Message);
-                ClearPdfViewer(ccPdfView);
-            }
-        }
-
-        /// <summary>
-        /// byte[] が PDF 形式かどうか判定する
-        /// </summary>
-        private bool IsPdfFormat(byte[] bytes) {
-            if(bytes.Length < 5)
-                return false;
-
-            // PDF は必ず "%PDF-" で始まる
-            string header = Encoding.ASCII.GetString(bytes, 0, 5);
-            return header.StartsWith("%PDF-");
-        }
-
-        /// <summary>
-        /// PdfViewer がどの ImageNo に対応しているかを返す
-        /// </summary>
-        private int GetImageNoFromViewer(CcPdfView viewer) {
-            for(int i = 0; i < _ccPdfViews.Length; i++) {
-                if(_ccPdfViews[i] == viewer) {
-                    return i + 1;
-                }
-            }
-            return 0;
-        }
-
-        /// <summary>
         /// 指定された PdfViewer に PDF（byte[]）を表示する
         /// </summary>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if(imageNo == 0)
-                return;
-
-            int index = imageNo - 1;
-
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = new MemoryStream(pdfBytes);
+            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
+            _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
             ccPdfView.Unload();
-            ccPdfView.SetPdfStream(_memoryStream[index]);
-        }
-
-        /// <summary>
-        /// PDF ビューアをクリアする（Null 安全化）
-        /// </summary>
-        private void ClearPdfViewer(CcPdfView ccPdfView) {
-            if(ccPdfView is null)
-                return;
-
-            int imageNo = GetImageNoFromViewer(ccPdfView);
-            if(imageNo == 0)
-                return;
-
-            int index = imageNo - 1;
-
-            // MemoryStream を破棄
-            _memoryStream[index]?.Dispose();
-            _memoryStream[index] = null;
-
-            // viewer をアンロード
-            try {
-                ccPdfView.Unload();
-            } catch {
-                // Unload が失敗してもアプリは落とさない
-            }
+            ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
         }
 
         /// <summary>
@@ -704,6 +581,8 @@ namespace WastCollection {
              */
             for(int i = 0; i < 4; i++) {
                 _ccPdfViews[i] = new();
+                _ccPdfViews[i].Tag = i;
+
                 tabPages[i].Controls.Add(_ccPdfViews[i]);
                 _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                                 // 共通の ContextMenuStrip を設定
             }
@@ -769,6 +648,24 @@ namespace WastCollection {
             foreach(string data in _wasteCollectionBodyDao.SelectGroupItemName())
                 this.CcComboBoxItemName.Items.Add(data);
             this.CcComboBoxItemName.DisplayEmpty();
+        }
+
+        /// <summary>
+        /// PDF ビューアをクリアする（Null 安全化）
+        /// </summary>
+        private void ClearPdfViewer(CcPdfView ccPdfView) {
+            if(ccPdfView is null)
+                return;
+            // MemoryStream を破棄
+            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
+            _memoryStream[(int)ccPdfView.Tag] = null;
+
+            // viewer をアンロード
+            try {
+                ccPdfView.Unload();
+            } catch {
+                // Unload が失敗してもアプリは落とさない
+            }
         }
     }
 }
