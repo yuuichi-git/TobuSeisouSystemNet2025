@@ -132,7 +132,7 @@ namespace PdfView {
                  * ConvertPdfToByte() → byte[] を取得 → Viewer に表示
                  */
                 case "ToolStripMenuItemPDFOpen":
-                    byte[] bytes = _pdfUtility.ConvertPdfToByte(this);
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(this);
                     /*
                      * ファイル選択がキャンセルされた場合は null が返るため、そのまま終了。
                      */

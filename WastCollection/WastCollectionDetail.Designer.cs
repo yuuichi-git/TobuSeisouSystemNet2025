@@ -178,7 +178,7 @@
             CcTextBoxId.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             CcTextBoxId.Location = new Point(56, 14);
             CcTextBoxId.Name = "CcTextBoxId";
-            CcTextBoxId.Size = new Size(84, 25);
+            CcTextBoxId.Size = new Size(92, 25);
             CcTextBoxId.TabIndex = 0;
             CcTextBoxId.Text = "12345678901";
             CcTextBoxId.TextAlign = HorizontalAlignment.Right;
@@ -504,6 +504,7 @@
             TableLayoutPanelExBase.SetRowSpan(TabControlEx1, 3);
             TabControlEx1.SelectedIndex = 0;
             TabControlEx1.Size = new Size(698, 923);
+            TabControlEx1.SizeMode = TabSizeMode.Fixed;
             TabControlEx1.TabIndex = 19;
             // 
             // TabPage1

@@ -2,35 +2,18 @@
  * 2026-02-05
  */
 using System.Diagnostics;
-using System.Text;
 
 using Windows.Data.Pdf;
 using Windows.Storage.Streams;
 
 namespace Common {
     public class PdfUtility {
-
-        /// <summary>
-        /// byte[] が PDF 形式かどうか判定する
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <returns>true:PDF形式 false:それ以外</returns>
-        public bool IsPdfFormat(byte[] bytes) {
-            /*
-             * PDF フォーマットかどうかを判定 "%PDF-"
-             */
-            if(bytes.Length < 5)
-                return false;
-
-            // PDF は必ず "%PDF-" で始まる
-            string header = Encoding.ASCII.GetString(bytes, 0, 5);
-            return header.StartsWith("%PDF-");
-        }
-
         /// <summary>
         /// 単一の PDF ページを Bitmap に変換する（Windows.Data.Pdf 使用）
         /// </summary>
-        public async Task<Bitmap?> ConvertPdfToImage(ContextMenuStrip contextMenuStrip) {
+        /// <param name="contextMenuStrip"></param>
+        /// <returns></returns>
+        public async Task<Bitmap> ConvertPdfToImage(ContextMenuStrip contextMenuStrip) {
             contextMenuStrip.Hide();
 
             using OpenFileDialog openFileDialog = new();
@@ -49,19 +32,19 @@ namespace Common {
 
                 using PdfPage pdfPage = pdfDocument.GetPage(0);
 
-                PdfPageRenderOptions options = new();
-                options.DestinationWidth = 2480;
-                options.DestinationHeight = 3508;
+                PdfPageRenderOptions pdfPageRenderOptions = new();
+                pdfPageRenderOptions.DestinationWidth = 2480;
+                pdfPageRenderOptions.DestinationHeight = 3508;
 
                 using InMemoryRandomAccessStream renderStream = new();
-                await pdfPage.RenderToStreamAsync(renderStream, options);
+                await pdfPage.RenderToStreamAsync(renderStream, pdfPageRenderOptions);
                 renderStream.Seek(0);
 
-                using MemoryStream ms = new();
-                renderStream.AsStream().CopyTo(ms);
-                ms.Position = 0;
+                using MemoryStream memoryStream = new();
+                renderStream.AsStream().CopyTo(memoryStream);
+                memoryStream.Position = 0;
 
-                Bitmap bitmap = new(ms);
+                Bitmap bitmap = new(memoryStream);
                 return bitmap;
             } catch(Exception ex) {
                 Debug.WriteLine("ConvertPdfToImage:" + ex);
@@ -74,7 +57,7 @@ namespace Common {
         /// </summary>
         /// <param name="ownerForm"></param>
         /// <returns></returns>
-        public byte[]? ConvertPdfToByte(Form ownerForm) {
+        public byte[] ConvertPdfToBytes(Form ownerForm) {
             using OpenFileDialog openFileDialog = new();
             openFileDialog.Title = "PDFファイルを選択してください";
             openFileDialog.Filter = "PDF ファイル (*.pdf)|*.pdf";
@@ -98,7 +81,7 @@ namespace Common {
         /// </summary>
         /// <param name="contextMenuStrip"></param>
         /// <returns></returns>
-        public byte[]? ConvertPdfToByte(ContextMenuStrip contextMenuStrip) {
+        public byte[] ConvertPdfToBytes(ContextMenuStrip contextMenuStrip) {
             contextMenuStrip.Hide();
 
             using OpenFileDialog openFileDialog = new();
@@ -127,10 +110,8 @@ namespace Common {
         /// <param name="bitmap">PDF に埋め込む Bitmap</param>
         /// <returns>PDF データの byte[]</returns>
         public byte[] ConvertImageToPdfBytes(Bitmap bitmap) {
-
             // PDF を書き込むためのメモリストリーム
             using(MemoryStream pdfStream = new()) {
-
                 /*
                  * PdfSharpCore の PDF ドキュメントを作成
                  * AddPage() でページを追加し、画像サイズに合わせてページサイズを設定する。
@@ -141,14 +122,11 @@ namespace Common {
                 PdfSharpCore.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
                 pdfPage.Width = bitmap.Width;
                 pdfPage.Height = bitmap.Height;
-
                 /*
                  * PDF 描画用の XGraphics を取得。
                  * XGraphics は PDF ページに対する描画コンテキスト。
                  */
-                PdfSharpCore.Drawing.XGraphics xGraphics =
-            PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
-
+                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
                 /*
                  * Bitmap を PNG として一度 MemoryStream に保存し、
                  * その PNG データを XImage として読み込む。
@@ -157,32 +135,24 @@ namespace Common {
                  * 一度 PNG などの画像形式に変換する必要がある。
                  */
                 using(MemoryStream imgStream = new()) {
-
                     // Bitmap → PNG 形式で MemoryStream に保存
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
                     imgStream.Position = 0; // 読み込み位置を先頭に戻す
-
                     /*
                      * XImage.FromStream は「ストリームを返すデリゲート」を要求するため、
                      * imgStream の内容を新しい MemoryStream にコピーして渡す。
                      * （PdfSharpCore の仕様で、ストリームはクローズされる可能性があるため）
                      */
-                    PdfSharpCore.Drawing.XImage xImage =
-                PdfSharpCore.Drawing.XImage.FromStream(
-                    () => new MemoryStream(imgStream.ToArray())
-                );
-
+                    PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
                     // PDF ページに画像を描画（左上 0,0 に原寸で貼り付け）
                     xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
                 }
-
                 /*
                  * PDF を MemoryStream に保存。
                  * 第二引数の "false" は「閉じるときにストリームをクローズしない」設定。
                  * （pdfStream を using で管理しているため、ここでは閉じない）
                  */
                 pdfDocument.Save(pdfStream, false);
-
                 // PDF の byte[] を返す
                 return pdfStream.ToArray();
             }

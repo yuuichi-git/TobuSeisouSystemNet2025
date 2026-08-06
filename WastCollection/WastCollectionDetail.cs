@@ -288,6 +288,14 @@ namespace WastCollection {
             _ccPdfViews[1].SetPdfBytes(wasteCollectionHeadVo.SubPicture);
             _ccPdfViews[2].SetPdfBytes(wasteCollectionHeadVo.AdditionalPicture1);
             _ccPdfViews[3].SetPdfBytes(wasteCollectionHeadVo.AdditionalPicture2);
+            /*
+             * _memoryStreamに保持
+             * 保持しておかないとUpdate時にPDFが存在しないので、MemoryStreamに保持しておく
+             */
+            _memoryStream[0] = new MemoryStream(wasteCollectionHeadVo.MainPicture ?? Array.Empty<byte>());
+            _memoryStream[1] = new MemoryStream(wasteCollectionHeadVo.SubPicture ?? Array.Empty<byte>());
+            _memoryStream[2] = new MemoryStream(wasteCollectionHeadVo.AdditionalPicture1 ?? Array.Empty<byte>());
+            _memoryStream[3] = new MemoryStream(wasteCollectionHeadVo.AdditionalPicture2 ?? Array.Empty<byte>());
         }
 
         /// <summary>
@@ -389,10 +397,10 @@ namespace WastCollection {
             wasteCollectionHeadVo.WorkSiteAddress = this.CcTextBoxWorkSiteAddress.Text;
             wasteCollectionHeadVo.PickupDate = this.CcDateTimePickupDate.GetValue();
             wasteCollectionHeadVo.Remarks = this.CcTextBoxRemarks.Text;
-            wasteCollectionHeadVo.MainPicture = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();
-            wasteCollectionHeadVo.SubPicture = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();
-            wasteCollectionHeadVo.AdditionalPicture1 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();
-            wasteCollectionHeadVo.AdditionalPicture2 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.MainPicture = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();                             // MemoryStreamがnullの場合は空のbyte[]をセットする
+            wasteCollectionHeadVo.SubPicture = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();                              // MemoryStreamがnullの場合は空のbyte[]をセットする
+            wasteCollectionHeadVo.AdditionalPicture1 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();                      // MemoryStreamがnullの場合は空のbyte[]をセットする
+            wasteCollectionHeadVo.AdditionalPicture2 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();                      // MemoryStreamがnullの場合は空のbyte[]をセットする
             //wasteCollectionHeadVo.InsertPcName = ;
             //wasteCollectionHeadVo.InsertYmdHms = ;
             //wasteCollectionHeadVo.UpdatePcName = ;
@@ -443,11 +451,14 @@ namespace WastCollection {
                     /*
                      * ファイルエクスプローラでファイルを選択
                      */
-                    byte[] bytes = _pdfUtility.ConvertPdfToByte((ContextMenuStrip)sender);
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes((ContextMenuStrip)sender);
                     if(bytes is null)
                         return;
                     this.ShowPdfToViewer(ccPdfView, bytes);
-                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
+                    // ★ MemoryStream を保持
+                    _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(bytes);
+
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat("CcPdfView[", (int)ccPdfView.Tag, "]に", "PDF を表示しました。");
                     break;
 
                 case "ToolStripMenuItemPaste": {
@@ -474,8 +485,7 @@ namespace WastCollection {
 
                         // ★ PdfiumViewer に表示（CcPdfView）
                         this.ShowPdfToViewer(ccPdfView, pdfBytes);
-
-                        //_memoryStream[index]?.Dispose();
+                        // ★ MemoryStream を保持
                         _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";

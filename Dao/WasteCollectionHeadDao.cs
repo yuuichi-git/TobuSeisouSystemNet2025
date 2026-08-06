@@ -40,29 +40,17 @@ namespace Dao {
         }
 
         /// <summary>
-        /// 
+        /// 新しいIDを取得する
         /// </summary>
         /// <returns></returns>
         public int GetNewId() {
-            /*
-             * 旧型
-             */
-            //SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            //sqlCommand.CommandText = "SELECT MAX(Id) " +
-            //                         "FROM H_WasteCollectionHead";
-            //try {
-            //    return sqlCommand.ExecuteScalar() is DBNull ? 1 : ((int)sqlCommand.ExecuteScalar() + 1);
-            //} catch {
-            //    throw;
-            //}
-
             using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT MAX(Id) FROM H_WasteCollectionHead";
             return (int)sqlCommand.ExecuteScalar() + 1;
         }
 
         /// <summary>
-        /// 
+        /// 指定されたIDのレコードを取得する
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -96,7 +84,6 @@ namespace Dao {
                                      "FROM H_WasteCollectionHead " +
                                      "LEFT OUTER JOIN H_WordMaster ON H_WasteCollectionHead.OfficeRequestWord = H_WordMaster.Code " +
                                      "WHERE Id = " + id + "";
-
             using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while (sqlDataReader.Read() == true) {
                     wasteCollectionHeadVo.Id = _defaultValue.GetDefaultValue<int>(sqlDataReader["Id"]);
@@ -129,7 +116,7 @@ namespace Dao {
         }
 
         /// <summary>
-        /// 
+        /// すべての廃棄物収集ヘッドレコードを取得する
         /// </summary>
         /// <returns></returns>
         public List<WasteCollectionHeadVo> SelectAllWasteCollectionHead() {
@@ -196,7 +183,7 @@ namespace Dao {
         }
 
         /// <summary>
-        /// InsertOneWasteCollectionHead
+        /// 1件の廃棄物収集ヘッドレコードを挿入する
         /// </summary>
         /// <param name="wasteCollectionHeadVo"></param>
         public void InsertOneWasteCollectionHead(WasteCollectionHeadVo wasteCollectionHeadVo) {
@@ -260,7 +247,7 @@ namespace Dao {
         }
 
         /// <summary>
-        /// UpdateOneWasteCollectionHead
+        /// 1件の廃棄物収集ヘッドレコードを更新する
         /// </summary>
         /// <param name="wasteCollectionHeadVo"></param>
         public void UpdateOneWasteCollectionHead(WasteCollectionHeadVo wasteCollectionHeadVo) {
@@ -297,7 +284,7 @@ namespace Dao {
         }
 
         /// <summary>
-        /// 
+        /// 1件の廃棄物収集ヘッドレコードを削除する
         /// </summary>
         /// <param name="id"></param>
         public void DeleteOneWasteCollectionHead(int id) {

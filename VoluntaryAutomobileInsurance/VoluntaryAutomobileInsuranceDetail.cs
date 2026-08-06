@@ -152,6 +152,14 @@ namespace VoluntaryAutomobileInsurance {
                 _ccPdfViews[1].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image2);
                 _ccPdfViews[2].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image3);
                 _ccPdfViews[3].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image4);
+                /*
+                 * _memoryStreamに保持
+                 * 保持しておかないとUpdate時にPDFが存在しないので、MemoryStreamに保持しておく
+                 */
+                _memoryStream[0] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image1 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
+                _memoryStream[1] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image2 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
+                _memoryStream[2] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image3 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
+                _memoryStream[3] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image4 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
 
             } else {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在しません。";
@@ -240,7 +248,7 @@ namespace VoluntaryAutomobileInsurance {
 
             switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    byte[] bytes = _pdfUtility.ConvertPdfToByte(menu);
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(menu);
                     if(bytes is null)
                         return;
 
