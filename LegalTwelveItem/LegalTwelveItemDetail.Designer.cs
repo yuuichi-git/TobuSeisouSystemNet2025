@@ -121,14 +121,14 @@
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            TableLayoutPanelExBase.Size = new Size(1316, 1041);
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
             MenuStripEx1.Location = new Point(0, 0);
             MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1316, 24);
+            MenuStripEx1.Size = new Size(1904, 24);
             MenuStripEx1.TabIndex = 0;
             MenuStripEx1.Text = "menuStripEx1";
             MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
@@ -137,7 +137,7 @@
             // 
             StatusStripEx1.Location = new Point(0, 1019);
             StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1316, 22);
+            StatusStripEx1.Size = new Size(1904, 22);
             StatusStripEx1.SizingGrip = false;
             StatusStripEx1.TabIndex = 1;
             StatusStripEx1.Text = "statusStripEx1";
@@ -148,7 +148,7 @@
             PanelExTop.Dock = DockStyle.Fill;
             PanelExTop.Location = new Point(3, 27);
             PanelExTop.Name = "PanelExTop";
-            PanelExTop.Size = new Size(1310, 54);
+            PanelExTop.Size = new Size(1898, 54);
             PanelExTop.TabIndex = 2;
             // 
             // ButtonExUpdate
@@ -156,7 +156,7 @@
             ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            ButtonExUpdate.Location = new Point(1108, 12);
+            ButtonExUpdate.Location = new Point(1696, 12);
             ButtonExUpdate.Name = "ButtonExUpdate";
             ButtonExUpdate.SetTextDirectionVertical = "";
             ButtonExUpdate.Size = new Size(160, 32);
@@ -233,7 +233,7 @@
             PanelExMiddle.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
             PanelExMiddle.Location = new Point(3, 87);
             PanelExMiddle.Name = "PanelExMiddle";
-            PanelExMiddle.Size = new Size(1310, 927);
+            PanelExMiddle.Size = new Size(1898, 927);
             PanelExMiddle.TabIndex = 3;
             // 
             // ComboBoxExBase
@@ -897,7 +897,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1316, 1041);
+            ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = MenuStripEx1;

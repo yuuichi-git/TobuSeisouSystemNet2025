@@ -24,194 +24,200 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWorkingHours));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.PanelExUp = new CcControl.CcPanel();
-            this.labelEx3 = new CcControl.CcLabel();
-            this.ComboBoxExStaffDisplayName = new CcControl.CcComboBox();
-            this.labelEx2 = new CcControl.CcLabel();
-            this.labelEx1 = new CcControl.CcLabel();
-            this.DateTimePickerExOperationDate2 = new CcControl.CcDateTime();
-            this.DateTimePickerExOperationDate1 = new CcControl.CcDateTime();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.SheetViewList = this.SpreadList.GetSheet(0);
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).BeginInit();
-            this.SuspendLayout();
+            CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
+            PanelExUp = new CcControl.CcPanel();
+            labelEx3 = new CcControl.CcLabel();
+            CcComboBoxStaffDisplayName = new CcControl.CcComboBox();
+            labelEx2 = new CcControl.CcLabel();
+            labelEx1 = new CcControl.CcLabel();
+            CcDateTimePickerOperationDate2 = new CcControl.CcDateTime();
+            CcDateTimePickerOperationDate1 = new CcControl.CcDateTime();
+            ButtonExUpdate = new CcControl.CcButton();
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
+            SheetViewList = SpreadList.GetSheet(0);
+            CcTableLayoutPanelBase.SuspendLayout();
+            PanelExUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            SuspendLayout();
             // 
-            // TableLayoutPanelExBase
+            // CcTableLayoutPanelBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadList, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 76F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(838, 1011);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            CcTableLayoutPanelBase.ColumnCount = 3;
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500F));
+            CcTableLayoutPanelBase.Controls.Add(CcMenuStrip1, 0, 0);
+            CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 3);
+            CcTableLayoutPanelBase.Controls.Add(PanelExUp, 0, 1);
+            CcTableLayoutPanelBase.Controls.Add(SpreadList, 1, 2);
+            CcTableLayoutPanelBase.Dock = DockStyle.Fill;
+            CcTableLayoutPanelBase.Location = new Point(0, 0);
+            CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
+            CcTableLayoutPanelBase.RowCount = 4;
+            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            CcTableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            CcTableLayoutPanelBase.Size = new Size(1904, 1041);
+            CcTableLayoutPanelBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(838, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            CcMenuStrip1.BackColor = SystemColors.Control;
+            CcTableLayoutPanelBase.SetColumnSpan(CcMenuStrip1, 3);
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            this.StatusStripEx1.Location = new Point(0, 989);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(838, 22);
-            this.StatusStripEx1.SizingGrip = false;
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            CcTableLayoutPanelBase.SetColumnSpan(CcStatusStrip1, 3);
+            CcStatusStrip1.Location = new Point(0, 1019);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1904, 22);
+            CcStatusStrip1.SizingGrip = false;
+            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
-            this.PanelExUp.Controls.Add(this.labelEx3);
-            this.PanelExUp.Controls.Add(this.ComboBoxExStaffDisplayName);
-            this.PanelExUp.Controls.Add(this.labelEx2);
-            this.PanelExUp.Controls.Add(this.labelEx1);
-            this.PanelExUp.Controls.Add(this.DateTimePickerExOperationDate2);
-            this.PanelExUp.Controls.Add(this.DateTimePickerExOperationDate1);
-            this.PanelExUp.Controls.Add(this.ButtonExUpdate);
-            this.PanelExUp.Dock = DockStyle.Fill;
-            this.PanelExUp.Location = new Point(3, 27);
-            this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(832, 70);
-            this.PanelExUp.TabIndex = 2;
+            CcTableLayoutPanelBase.SetColumnSpan(PanelExUp, 3);
+            PanelExUp.Controls.Add(labelEx3);
+            PanelExUp.Controls.Add(CcComboBoxStaffDisplayName);
+            PanelExUp.Controls.Add(labelEx2);
+            PanelExUp.Controls.Add(labelEx1);
+            PanelExUp.Controls.Add(CcDateTimePickerOperationDate2);
+            PanelExUp.Controls.Add(CcDateTimePickerOperationDate1);
+            PanelExUp.Controls.Add(ButtonExUpdate);
+            PanelExUp.Dock = DockStyle.Fill;
+            PanelExUp.Location = new Point(3, 27);
+            PanelExUp.Name = "PanelExUp";
+            PanelExUp.Size = new Size(1898, 40);
+            PanelExUp.TabIndex = 2;
             // 
             // labelEx3
             // 
-            this.labelEx3.AutoSize = true;
-            this.labelEx3.Location = new Point(8, 44);
-            this.labelEx3.Name = "labelEx3";
-            this.labelEx3.Size = new Size(67, 15);
-            this.labelEx3.TabIndex = 6;
-            this.labelEx3.Text = "従事者氏名";
+            labelEx3.AutoSize = true;
+            labelEx3.Location = new Point(568, 12);
+            labelEx3.Name = "labelEx3";
+            labelEx3.Size = new Size(67, 15);
+            labelEx3.TabIndex = 6;
+            labelEx3.Text = "従事者氏名";
             // 
-            // ComboBoxExStaffDisplayName
+            // CcComboBoxStaffDisplayName
             // 
-            this.ComboBoxExStaffDisplayName.FormattingEnabled = true;
-            this.ComboBoxExStaffDisplayName.ImeMode = ImeMode.Hiragana;
-            this.ComboBoxExStaffDisplayName.Location = new Point(80, 40);
-            this.ComboBoxExStaffDisplayName.Name = "ComboBoxExStaffDisplayName";
-            this.ComboBoxExStaffDisplayName.Size = new Size(244, 23);
-            this.ComboBoxExStaffDisplayName.TabIndex = 5;
+            CcComboBoxStaffDisplayName.FormattingEnabled = true;
+            CcComboBoxStaffDisplayName.ImeMode = ImeMode.Hiragana;
+            CcComboBoxStaffDisplayName.Location = new Point(640, 8);
+            CcComboBoxStaffDisplayName.Name = "CcComboBoxStaffDisplayName";
+            CcComboBoxStaffDisplayName.Size = new Size(244, 23);
+            CcComboBoxStaffDisplayName.TabIndex = 5;
             // 
             // labelEx2
             // 
-            this.labelEx2.AutoSize = true;
-            this.labelEx2.Location = new Point(32, 12);
-            this.labelEx2.Name = "labelEx2";
-            this.labelEx2.Size = new Size(43, 15);
-            this.labelEx2.TabIndex = 4;
-            this.labelEx2.Text = "配車日";
+            labelEx2.AutoSize = true;
+            labelEx2.Location = new Point(32, 12);
+            labelEx2.Name = "labelEx2";
+            labelEx2.Size = new Size(43, 15);
+            labelEx2.TabIndex = 4;
+            labelEx2.Text = "配車日";
             // 
             // labelEx1
             // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(268, 12);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(19, 15);
-            this.labelEx1.TabIndex = 3;
-            this.labelEx1.Text = "～";
+            labelEx1.AutoSize = true;
+            labelEx1.Location = new Point(268, 12);
+            labelEx1.Name = "labelEx1";
+            labelEx1.Size = new Size(19, 15);
+            labelEx1.TabIndex = 3;
+            labelEx1.Text = "～";
             // 
-            // DateTimePickerExOperationDate2
+            // CcDateTimePickerOperationDate2
             // 
-            this.DateTimePickerExOperationDate2.CultureFlag = false;
-            this.DateTimePickerExOperationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExOperationDate2.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExOperationDate2.Location = new Point(292, 8);
-            this.DateTimePickerExOperationDate2.Name = "DateTimePickerExOperationDate2";
-            this.DateTimePickerExOperationDate2.Size = new Size(184, 23);
-            this.DateTimePickerExOperationDate2.TabIndex = 2;
-            this.DateTimePickerExOperationDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.DateTimePickerExOperationDate2.ValueChanged += this.DateTimePickerExOperationDate2_ValueChanged;
+            CcDateTimePickerOperationDate2.CultureFlag = false;
+            CcDateTimePickerOperationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimePickerOperationDate2.Format = DateTimePickerFormat.Custom;
+            CcDateTimePickerOperationDate2.Location = new Point(292, 8);
+            CcDateTimePickerOperationDate2.Name = "CcDateTimePickerOperationDate2";
+            CcDateTimePickerOperationDate2.Size = new Size(184, 23);
+            CcDateTimePickerOperationDate2.TabIndex = 2;
+            CcDateTimePickerOperationDate2.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimePickerOperationDate2.ValueChanged += DateTimePickerExOperationDate2_ValueChanged;
             // 
-            // DateTimePickerExOperationDate1
+            // CcDateTimePickerOperationDate1
             // 
-            this.DateTimePickerExOperationDate1.CultureFlag = false;
-            this.DateTimePickerExOperationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
-            this.DateTimePickerExOperationDate1.Format = DateTimePickerFormat.Custom;
-            this.DateTimePickerExOperationDate1.Location = new Point(80, 8);
-            this.DateTimePickerExOperationDate1.Name = "DateTimePickerExOperationDate1";
-            this.DateTimePickerExOperationDate1.Size = new Size(184, 23);
-            this.DateTimePickerExOperationDate1.TabIndex = 1;
-            this.DateTimePickerExOperationDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.DateTimePickerExOperationDate1.ValueChanged += this.DateTimePickerExOperationDate1_ValueChanged;
+            CcDateTimePickerOperationDate1.CultureFlag = false;
+            CcDateTimePickerOperationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimePickerOperationDate1.Format = DateTimePickerFormat.Custom;
+            CcDateTimePickerOperationDate1.Location = new Point(80, 8);
+            CcDateTimePickerOperationDate1.Name = "CcDateTimePickerOperationDate1";
+            CcDateTimePickerOperationDate1.Size = new Size(184, 23);
+            CcDateTimePickerOperationDate1.TabIndex = 1;
+            CcDateTimePickerOperationDate1.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimePickerOperationDate1.ValueChanged += DateTimePickerExOperationDate1_ValueChanged;
             // 
             // ButtonExUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            this.ButtonExUpdate.Location = new Point(654, 16);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = "";
-            this.ButtonExUpdate.Size = new Size(144, 36);
-            this.ButtonExUpdate.TabIndex = 0;
-            this.ButtonExUpdate.Text = "最　新　化";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonEx_Click;
+            ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExUpdate.ForeColor = SystemColors.ControlText;
+            ButtonExUpdate.Location = new Point(1676, 4);
+            ButtonExUpdate.Name = "ButtonExUpdate";
+            ButtonExUpdate.SetTextDirectionVertical = "";
+            ButtonExUpdate.Size = new Size(180, 32);
+            ButtonExUpdate.TabIndex = 0;
+            ButtonExUpdate.Text = "最　新　化";
+            ButtonExUpdate.UseVisualStyleBackColor = true;
+            ButtonExUpdate.Click += CcButton_Click;
             // 
             // SpreadList
             // 
-            this.SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
-            this.SpreadList.Dock = DockStyle.Fill;
-            this.SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadList.Location = new Point(3, 103);
-            this.SpreadList.Name = "SpreadList";
-            this.SpreadList.Size = new Size(832, 881);
-            this.SpreadList.TabIndex = 3;
+            SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            SpreadList.Dock = DockStyle.Fill;
+            SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadList.Location = new Point(503, 73);
+            SpreadList.Name = "SpreadList";
+            SpreadList.Size = new Size(898, 941);
+            SpreadList.TabIndex = 3;
             // 
             // StaffWorkingHours
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(838, 1011);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "StaffWorkingHours";
-            this.Text = "StaffWorkingHours";
-            this.FormClosing += this.StaffWorkingHours_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExUp.ResumeLayout(false);
-            this.PanelExUp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadList).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(CcTableLayoutPanelBase);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = CcMenuStrip1;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "StaffWorkingHours";
+            Text = "StaffWorkingHours";
+            FormClosing += StaffWorkingHours_FormClosing;
+            CcTableLayoutPanelBase.ResumeLayout(false);
+            CcTableLayoutPanelBase.PerformLayout();
+            PanelExUp.ResumeLayout(false);
+            PanelExUp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
-        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcTableLayoutPanel CcTableLayoutPanelBase;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel PanelExUp;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private CcControl.CcButton ButtonExUpdate;
-        private CcControl.CcDateTime DateTimePickerExOperationDate1;
+        private CcControl.CcDateTime CcDateTimePickerOperationDate1;
         private CcControl.CcLabel labelEx1;
-        private CcControl.CcDateTime DateTimePickerExOperationDate2;
+        private CcControl.CcDateTime CcDateTimePickerOperationDate2;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx3;
-        private CcControl.CcComboBox ComboBoxExStaffDisplayName;
+        private CcControl.CcComboBox CcComboBoxStaffDisplayName;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

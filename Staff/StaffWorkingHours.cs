@@ -61,18 +61,18 @@ namespace Staff {
                 "ToolStripMenuItemPrintA4",
                 "ToolStripMenuItemHelp"
             };
-            MenuStripEx1.ChangeEnable(listString);
+            CcMenuStrip1.ChangeEnable(listString);
             /*
              * 配車日を設定
              */
-            this.DateTimePickerExOperationDate1.SetValue(_dateUtility.GetBeginOfMonth(DateTime.Now));
-            this.DateTimePickerExOperationDate2.SetValue(_dateUtility.GetEndOfMonth(DateTime.Now));
+            this.CcDateTimePickerOperationDate1.SetValue(_dateUtility.GetBeginOfMonth(DateTime.Now));
+            this.CcDateTimePickerOperationDate2.SetValue(_dateUtility.GetEndOfMonth(DateTime.Now));
             this.InitializeComboBoxExStaffDisplayName();
             this.InitializeSheetView(this.SheetViewList);
             /*
              * Eventを登録する
              */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -80,17 +80,17 @@ namespace Staff {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonEx_Click(object sender, EventArgs e) {
+        private void CcButton_Click(object sender, EventArgs e) {
             switch (((CcButton)sender).Name) {
                 case "ButtonExUpdate":
-                    if (this.ComboBoxExStaffDisplayName.SelectedIndex == -1) {
+                    if (this.CcComboBoxStaffDisplayName.SelectedIndex == -1) {
                         MessageBox.Show("従事者を選択して下さい", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
                     try {
-                        this.SetSheetView(this.SheetViewList, _staffWorkingHoursDao.SelectAllStaffWorkingHoursVo(this.DateTimePickerExOperationDate1.GetDate(),
-                                                                                                                 this.DateTimePickerExOperationDate2.GetDate(),
-                                                                                                                 ((HComboBoxExSelectNameVo)this.ComboBoxExStaffDisplayName.SelectedItem).StaffMasterVo.StaffCode));
+                        this.SetSheetView(this.SheetViewList, _staffWorkingHoursDao.SelectAllStaffWorkingHoursVo(this.CcDateTimePickerOperationDate1.GetDate(),
+                                                                                                                 this.CcDateTimePickerOperationDate2.GetDate(),
+                                                                                                                 ((HComboBoxExSelectNameVo)this.CcComboBoxStaffDisplayName.SelectedItem).StaffMasterVo.StaffCode));
                     } catch (Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
@@ -122,7 +122,7 @@ namespace Staff {
             this.SpreadList.AllowDragDrop = false;                  // DrugDropを禁止する
             this.SpreadList.PaintSelectionHeader = false;           // ヘッダの選択状態をしない
             this.SpreadList.TabStripPolicy = TabStripPolicy.Never;  // Tab非表示
-            sheetView.ClearRange(0, 1, 35, 6, true);
+            sheetView.ClearRange(0, 1, 42, 6, true);
         }
 
         /// <summary>
@@ -132,16 +132,16 @@ namespace Staff {
         /// <param name="listStaffWorkingHoursVo"></param>
         private void SetSheetView(SheetView sheetView, List<StaffWorkingHoursVo> listStaffWorkingHoursVo) {
             this.SpreadList.SuspendLayout();                // Spread 非活性化
-            sheetView.ColumnHeader.Cells[0, 0].Text = string.Concat(this.ComboBoxExStaffDisplayName.Text, " さんの労働時間集計表 (雇上・区契・臨時・工場)");
+            sheetView.ColumnHeader.Cells[0, 0].Text = string.Concat(this.CcComboBoxStaffDisplayName.Text, " さんの労働時間集計表 (雇上・区契・臨時・工場)");
             this.InitializeSheetView(this.SheetViewList);   // Spread 初期化
 
-            int startRow = (int)this.DateTimePickerExOperationDate1.GetDate().DayOfWeek;    // 曜日番号を取得
-            for (int row = 0; row < _dateUtility.GetEndOfMonth(this.DateTimePickerExOperationDate2.GetDate()).Day; row++) {
+            int startRow = (int)this.CcDateTimePickerOperationDate1.GetDate().DayOfWeek;    // 曜日番号を取得
+            for (int row = 0; row < _dateUtility.GetEndOfMonth(this.CcDateTimePickerOperationDate2.GetDate()).Day; row++) {
                 sheetView.Rows[startRow + row].ForeColor = Color.Black;                     // default色の設定
                 /*
                  * 日付を処理
                  */
-                DateTime targetOperationDate = _dateUtility.GetBeginOfMonth(this.DateTimePickerExOperationDate1.GetDate()).AddDays(row).Date;
+                DateTime targetOperationDate = _dateUtility.GetBeginOfMonth(this.CcDateTimePickerOperationDate1.GetDate()).AddDays(row).Date;
                 if (targetOperationDate.DayOfWeek == DayOfWeek.Sunday) {
                     sheetView.Cells[startRow + row, colOperationDate].ForeColor = Color.Red;
                     sheetView.Cells[startRow + row, colOperationDate].Text = string.Concat(targetOperationDate.ToString("yyyy年MM月dd日(dddd)"));
@@ -181,14 +181,14 @@ namespace Staff {
         /// ComboBoxExStaffDisplayNameを初期化
         /// </summary>
         private void InitializeComboBoxExStaffDisplayName() {
-            ComboBoxExStaffDisplayName.Items.Clear();
+            CcComboBoxStaffDisplayName.Items.Clear();
             //List<HComboBoxExSelectNameVo> listComboBoxSelectNameVo = new();
             foreach (StaffMasterVo staffMasterVo in _staffMasterDao.SelectAllStaffMaster(new List<int> { 11, 12, 14, 15, 22 },          // 社員・アルバイト・嘱託雇用契約社員・パートタイマー・労供
                                                                                          new List<int> { 20, 22, 99 },                  // 労供長期・労供短期・指定なし
                                                                                          new List<int> { 10, 11, 12, 13, 20, 99 },      // 運転手・作業員・自転車駐輪場・リサイクルセンター・事務員・指定なし
                                                                                          false))
-                ComboBoxExStaffDisplayName.Items.Add(new HComboBoxExSelectNameVo(staffMasterVo.Name, staffMasterVo));
-            ComboBoxExStaffDisplayName.DisplayMember = "Name";
+                CcComboBoxStaffDisplayName.Items.Add(new HComboBoxExSelectNameVo(staffMasterVo.Name, staffMasterVo));
+            CcComboBoxStaffDisplayName.DisplayMember = "Name";
         }
 
         /// <summary>
@@ -219,8 +219,8 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate1_ValueChanged(object sender, EventArgs e) {
-            if (((CcDateTime)sender).Value > this.DateTimePickerExOperationDate2.GetValue()) {
-                this.DateTimePickerExOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
+            if (((CcDateTime)sender).Value > this.CcDateTimePickerOperationDate2.GetValue()) {
+                this.CcDateTimePickerOperationDate2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 
@@ -230,8 +230,8 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerExOperationDate2_ValueChanged(object sender, EventArgs e) {
-            if (((CcDateTime)sender).Value < this.DateTimePickerExOperationDate1.GetValue()) {
-                this.DateTimePickerExOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
+            if (((CcDateTime)sender).Value < this.CcDateTimePickerOperationDate1.GetValue()) {
+                this.CcDateTimePickerOperationDate1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
 
