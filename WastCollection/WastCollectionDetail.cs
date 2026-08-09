@@ -541,7 +541,7 @@ namespace WastCollection {
             _memoryStream[(int)ccPdfView.Tag]?.Dispose();
             _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
-            ccPdfView.Unload();
+            ccPdfView.Clear();
             ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
         }
 
@@ -672,7 +672,7 @@ namespace WastCollection {
 
             // viewer をアンロード
             try {
-                ccPdfView.Unload();
+                ccPdfView.Clear();
             } catch {
                 // Unload が失敗してもアプリは落とさない
             }

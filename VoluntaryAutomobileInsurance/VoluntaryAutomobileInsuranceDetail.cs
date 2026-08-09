@@ -45,34 +45,11 @@ namespace VoluntaryAutomobileInsurance {
             };
             this.CcMenuStrip1.ChangeEnable(listString);
 
-            // 対象車両種別
-            this.InitializeCcComboBoxVehicleType();
-
-            // 保険会社名
-            this.InitializeCcComboBoxCompanyName();
-
-            // 開始日・終了日
-            this.CcDateTimePickerStartDate.Value = DateTime.Now.AddDays(1);
-            this.CcDateTimePickerEndDate.Value = DateTime.Now.AddYears(1);
-
-            // PDF 表示エリア
-            TabPage[] tabPages = new TabPage[4];
-            tabPages[0] = this.TabPage1;
-            tabPages[1] = this.TabPage2;
-            tabPages[2] = this.TabPage3;
-            tabPages[3] = this.TabPage4;
-
-            // 4つの CcPdfView を生成して TabPage に配置
-            for(int i = 0; i < 4; i++) {
-                _ccPdfViews[i] = new();
-                _ccPdfViews[i].Tag = i;
-
-                tabPages[i].Controls.Add(_ccPdfViews[i]);
-                _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
-            }
+            // コントロールの初期化
+            this.InitializeControl();
 
             // 表示対象のデータを画面へ反映
-            this.PutSheetViewList(staffCode);
+            this.SetControls(staffCode);
             /*
              * Eventを登録する
              */
@@ -85,47 +62,54 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcButtonUpdate_Click(object sender, EventArgs e) {
-            /*
-             * 新規 or 更新用の VO を作成
-             */
-            VoluntaryAutomobileInsuranceVo vo = new();
-            vo.Id = Guid.NewGuid().ToString("N");                                                                                  // 一意な ID を生成
-            vo.StaffCode = _staffCode;
-            vo.VehicleType = this.CcComboBoxVehicleType.Text;
-            vo.CompanyName = this.CcComboBoxCompanyName.Text;
-            vo.StartDate = this.CcDateTimePickerStartDate.Value.ToString("yyyy-MM-dd");
-            vo.EndDate = this.CcDateTimePickerEndDate.Value.ToString("yyyy-MM-dd");
+            DialogResult dialogResult = MessageBox.Show("登録します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch(dialogResult) {
+                case DialogResult.OK:
+                    /*
+                     * 新規 or 更新用の VO を作成
+                     */
+                    VoluntaryAutomobileInsuranceVo vo = new();
+                    vo.Id = Guid.NewGuid().ToString("N");                                                                                  // 一意な ID を生成
+                    vo.StaffCode = _staffCode;
+                    vo.VehicleType = this.CcComboBoxVehicleType.Text;
+                    vo.CompanyName = this.CcComboBoxCompanyName.Text;
+                    vo.StartDate = this.CcDateTimePickerStartDate.Value.ToString("yyyy-MM-dd");
+                    vo.EndDate = this.CcDateTimePickerEndDate.Value.ToString("yyyy-MM-dd");
 
-            /*
-             * PDF（byte[]）をセット
-             */
-            vo.Image1 = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();
-            vo.Image2 = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();
-            vo.Image3 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();
-            vo.Image4 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();
+                    /*
+                     * PDF（byte[]）をセット
+                     */
+                    vo.Image1 = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image2 = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image3 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image4 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();
 
-            /*
-             * INSERT or UPDATE の判定
-             */
-            if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(vo.StaffCode)) {
-                _voluntaryAutomobileInsuranceDao.UpdateOneVoluntaryAutomobileInsuranceVo(vo);
-                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "更新が完了しました。";
-            } else {
-                _voluntaryAutomobileInsuranceDao.InsertOneVoluntaryAutomobileInsuranceVo(vo);
-                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "新規登録が完了しました。";
+                    /*
+                     * INSERT or UPDATE の判定
+                     */
+                    if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(vo.StaffCode)) {
+                        _voluntaryAutomobileInsuranceDao.UpdateOneVoluntaryAutomobileInsuranceVo(vo);
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "更新が完了しました。";
+                    } else {
+                        _voluntaryAutomobileInsuranceDao.InsertOneVoluntaryAutomobileInsuranceVo(vo);
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "新規登録が完了しました。";
+                    }
+                    // 二度押し防止/更新後は編集不可にする
+                    ((CcButton)sender).Enabled = false;
+                    this.CcComboBoxVehicleType.Enabled = false;
+                    this.CcComboBoxCompanyName.Enabled = false;
+                    this.CcDateTimePickerStartDate.Enabled = false;
+                    this.CcDateTimePickerEndDate.Enabled = false;
+                    break;
+                case DialogResult.Cancel:
+                    break;
             }
-            // 二度押し防止/更新後は編集不可にする
-            ((CcButton)sender).Enabled = false;
-            this.CcComboBoxVehicleType.Enabled = false;
-            this.CcComboBoxCompanyName.Enabled = false;
-            this.CcDateTimePickerStartDate.Enabled = false;
-            this.CcDateTimePickerEndDate.Enabled = false;
         }
 
         /// <summary>
         /// 画面へ PDF 等を表示する
         /// </summary>
-        private void PutSheetViewList(int staffCode) {
+        private void SetControls(int staffCode) {
             if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(staffCode)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在します。";
                 VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
@@ -174,7 +158,7 @@ namespace VoluntaryAutomobileInsurance {
                  * PDF クリア
                  */
                 for(int i = 0; i < 4; i++) {
-                    ClearPdfViewer(_ccPdfViews[i]);
+                    _ccPdfViews[i].Clear();
                 }
             }
         }
@@ -185,22 +169,39 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="ccPdfView">PdfViewer のインスタンス</param>
         /// <param name="pdfBytes">PDF のバイト配列</param>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
             _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
 
-            ccPdfView.Unload();
+            ccPdfView.Clear();
             ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
         }
 
         /// <summary>
-        /// 指定された PdfViewer をクリアする
+        /// コントロールを初期化
         /// </summary>
-        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
-        private void ClearPdfViewer(CcPdfView ccPdfView) {
-            _memoryStream[(int)ccPdfView.Tag]?.Dispose();
-            _memoryStream[(int)ccPdfView.Tag] = null;
+        private void InitializeControl() {
+            // 対象車両種別
+            this.InitializeCcComboBoxVehicleType();
+            // 保険会社名
+            this.InitializeCcComboBoxCompanyName();
+            // 開始日・終了日
+            this.CcDateTimePickerStartDate.Value = DateTime.Now.AddDays(1);
+            this.CcDateTimePickerEndDate.Value = DateTime.Now.AddYears(1);
 
-            ccPdfView.Unload();
+            // PDF 表示エリア
+            TabPage[] tabPages = new TabPage[4];
+            tabPages[0] = this.TabPage1;
+            tabPages[1] = this.TabPage2;
+            tabPages[2] = this.TabPage3;
+            tabPages[3] = this.TabPage4;
+
+            // 4つの CcPdfView を生成して TabPage に配置
+            for(int i = 0; i < 4; i++) {
+                _ccPdfViews[i] = new();
+                _ccPdfViews[i].Tag = i;
+
+                tabPages[i].Controls.Add(_ccPdfViews[i]);
+                _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
+            }
         }
 
         /// <summary>
@@ -239,16 +240,16 @@ namespace VoluntaryAutomobileInsurance {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            if(sender is not ContextMenuStrip menu)
+        private void CcContextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if(sender is not ContextMenuStrip contextMenuStrip)
                 return;
 
-            if(menu.SourceControl is not CcPdfView ccPdfView)
+            if(contextMenuStrip.SourceControl is not CcPdfView ccPdfView)
                 return;
 
             switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(menu);
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(contextMenuStrip);
                     if(bytes is null)
                         return;
 
@@ -262,7 +263,6 @@ namespace VoluntaryAutomobileInsurance {
                         break;
                     }
 
-                    // ★ クリップボードに画像があるか？
                     if(data.GetDataPresent(DataFormats.Bitmap)) {
                         Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
                         if(bmp == null) {
@@ -270,18 +270,16 @@ namespace VoluntaryAutomobileInsurance {
                             break;
                         }
 
-                        // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
                         byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
                         if(pdfBytes == null || pdfBytes.Length == 0) {
                             MessageBox.Show("画像を PDF に変換できませんでした。");
                             break;
                         }
 
-                        // ★ PdfiumViewer に表示（CcPdfView）
-                        this.ShowPdfToViewer(ccPdfView, pdfBytes);
-
-                        //_memoryStream[index]?.Dispose();
                         _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
+
+                        ccPdfView.Clear();
+                        ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
                         break;
@@ -291,9 +289,11 @@ namespace VoluntaryAutomobileInsurance {
                     break;
                 }
 
-
                 case "ToolStripMenuItemDelete":
-                    this.ClearPdfViewer(ccPdfView);
+                    // PdfViewer の PDF を破棄
+                    ccPdfView.Clear();
+                    // ★ MemoryStream も破棄（Dispose は絶対にしない）
+                    _memoryStream[(int)ccPdfView.Tag] = null;
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }
@@ -305,7 +305,16 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void VoluntaryAutomobileInsuranceDetail_FormClosing(object sender, FormClosingEventArgs e) {
-
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            switch(dialogResult) {
+                case DialogResult.OK:
+                    e.Cancel = false;
+                    Dispose();
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+            }
         }
     }
 }

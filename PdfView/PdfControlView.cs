@@ -175,7 +175,7 @@ namespace PdfView {
              * CcPdfView の内部状態をリセット
              * Unload() は内部の PdfDocument と Stream を Dispose する。
              */
-            ccPdfView.Unload();
+            ccPdfView.Clear();
             /*
              * 新しい PDF を読み込ませる
              * SetPdfStream() 内で PdfDocument.Load(_memoryStream) が実行される。
@@ -199,7 +199,7 @@ namespace PdfView {
             /*
              * Viewer の内部状態をリセット
              */
-            ccPdfView.Unload();
+            ccPdfView.Clear();
         }
 
         /// <summary>
