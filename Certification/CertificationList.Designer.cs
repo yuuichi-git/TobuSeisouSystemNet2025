@@ -40,13 +40,14 @@
             // 
             // CcTableLayoutPanelBase
             // 
-            CcTableLayoutPanelBase.ColumnCount = 1;
+            CcTableLayoutPanelBase.ColumnCount = 3;
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            CcTableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             CcTableLayoutPanelBase.Controls.Add(MenuStripEx1, 0, 0);
             CcTableLayoutPanelBase.Controls.Add(StatusStripEx1, 0, 3);
             CcTableLayoutPanelBase.Controls.Add(PanelExTop, 0, 1);
-            CcTableLayoutPanelBase.Controls.Add(SpreadList, 0, 2);
+            CcTableLayoutPanelBase.Controls.Add(SpreadList, 1, 2);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
@@ -60,6 +61,7 @@
             // 
             // MenuStripEx1
             // 
+            CcTableLayoutPanelBase.SetColumnSpan(MenuStripEx1, 3);
             MenuStripEx1.Location = new Point(0, 0);
             MenuStripEx1.Name = "MenuStripEx1";
             MenuStripEx1.Size = new Size(1904, 24);
@@ -69,6 +71,7 @@
             // 
             // StatusStripEx1
             // 
+            CcTableLayoutPanelBase.SetColumnSpan(StatusStripEx1, 3);
             StatusStripEx1.Location = new Point(0, 1019);
             StatusStripEx1.Name = "StatusStripEx1";
             StatusStripEx1.Size = new Size(1904, 22);
@@ -77,6 +80,7 @@
             // 
             // PanelExTop
             // 
+            CcTableLayoutPanelBase.SetColumnSpan(PanelExTop, 3);
             PanelExTop.Controls.Add(ButtonExUpdate);
             PanelExTop.Controls.Add(labelEx2);
             PanelExTop.Controls.Add(ComboBoxExPrinterName);
@@ -91,10 +95,10 @@
             ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
             ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            ButtonExUpdate.Location = new Point(1688, 12);
+            ButtonExUpdate.Location = new Point(1668, 10);
             ButtonExUpdate.Name = "ButtonExUpdate";
             ButtonExUpdate.SetTextDirectionVertical = null;
-            ButtonExUpdate.Size = new Size(160, 32);
+            ButtonExUpdate.Size = new Size(180, 32);
             ButtonExUpdate.TabIndex = 12;
             ButtonExUpdate.Text = "最　新　化";
             ButtonExUpdate.UseVisualStyleBackColor = true;
@@ -123,9 +127,9 @@
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(3, 87);
+            SpreadList.Location = new Point(153, 87);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1898, 927);
+            SpreadList.Size = new Size(1598, 927);
             SpreadList.TabIndex = 3;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
@@ -135,7 +139,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(CcTableLayoutPanelBase);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = MenuStripEx1;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "CertificationList";
             Text = "CertificationList";
             FormClosing += CertificationList_FormClosing;

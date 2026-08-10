@@ -71,20 +71,18 @@ namespace Certification {
                                              "ToolStripMenuItemPrintA4",
                                              "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
             foreach(string item in new PrintUtility().GetAllPrinterName())
                 this.ComboBoxExPrinterName.Items.Add(item);
             this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+
             this.InitializeSheetView(SheetViewList);
             this.InitializeSheetViewList(SheetViewList);
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
