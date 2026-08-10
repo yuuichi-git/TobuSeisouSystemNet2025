@@ -56,7 +56,7 @@ namespace Certification {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
             /*
              * 
@@ -65,20 +65,17 @@ namespace Certification {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
-            foreach (string item in new PrintUtility().GetAllPrinterName()) {
+            foreach(string item in new PrintUtility().GetAllPrinterName())
                 this.ComboBoxExPrinterName.Items.Add(item);
-            }
             this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
             this.InitializeSheetView(SheetViewList);
             this.InitializeSheetViewList(SheetViewList);
@@ -108,12 +105,12 @@ namespace Certification {
             /*
              * CertificationCodeが101/102/103/104/238の場合は別処理をする
              */
-            if (e.Column > 6 && e.Row > 3 && ((CertificationMasterVo)SheetViewList.Cells[1, e.Column].Tag).CertificationCode != 238) {
+            if(e.Column > 6 && e.Row > 3 && ((CertificationMasterVo)SheetViewList.Cells[2, e.Column].Tag).CertificationCode != 238) {
                 /*
                  * TagからVoを取得
                  */
                 StaffMasterVo staffMasterVo = (StaffMasterVo)SheetViewList.Cells[e.Row, 1].Tag;
-                CertificationMasterVo certificationMasterVo = (CertificationMasterVo)SheetViewList.Cells[1, e.Column].Tag;
+                CertificationMasterVo certificationMasterVo = (CertificationMasterVo)SheetViewList.Cells[2, e.Column].Tag;
                 this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
                 /*
                  * Formを表示する
@@ -140,35 +137,41 @@ namespace Certification {
              * 初期値
              */
             sheetView.ColumnCount = 3;
-            sheetView.RowCount = 4;
+            sheetView.RowCount = 5;
             /*
              * Columnを追加する
              */
             int columnCount = sheetView.Columns.Count;
-            foreach (CertificationMasterVo certificationMasterVo in _certificationMasterDao.SelectAllCertificationMaster()) {
+            foreach(CertificationMasterVo certificationMasterVo in _certificationMasterDao.SelectAllCertificationMaster().OrderBy(x => x.DisplayNumber)) {
                 sheetView.Columns.Add(columnCount, 1);
                 sheetView.Columns[columnCount].Width = 25;
                 /*
-                 * 資格コード
+                 * DisplayNumber
                  */
                 sheetView.Cells[0, columnCount].Font = new Font("游ゴシック", 8);
-                sheetView.Cells[0, columnCount].Text = certificationMasterVo.CertificationCode.ToString("###");
+                sheetView.Cells[0, columnCount].Text = certificationMasterVo.DisplayNumber.ToString("###");
+
+                /*
+                 * 資格コード
+                 */
+                sheetView.Cells[1, columnCount].Font = new Font("游ゴシック", 8);
+                sheetView.Cells[1, columnCount].Text = certificationMasterVo.CertificationCode.ToString("###");
                 /*
                  * 資格名
                  * カスタムセルを使用している
                  */
-                sheetView.Cells[1, columnCount].Tag = certificationMasterVo;
+                sheetView.Cells[2, columnCount].Tag = certificationMasterVo;
                 //TextCellType textCellType = new();
                 //textCellType.TextOrientation = TextOrientation.TextVertical;
-                sheetView.Cells[1, columnCount].CellType = new VerticalTextCell();
-                sheetView.Cells[1, columnCount].Font = new Font("メイリオ", 9);
+                sheetView.Cells[2, columnCount].CellType = new VerticalTextCell();
+                sheetView.Cells[2, columnCount].Font = new Font("メイリオ", 9);
                 //sheetView.Cells[1, columnCount].VerticalAlignment = CellVerticalAlignment.Top;
-                sheetView.Cells[1, columnCount].Text = certificationMasterVo.CertificationDisplayName;
+                sheetView.Cells[2, columnCount].Text = certificationMasterVo.CertificationDisplayName;
                 /*
                  * 取得計画人数
                  */
-                sheetView.Cells[2, columnCount].Font = new Font("游ゴシック", 8);
-                sheetView.Cells[2, columnCount].Text = certificationMasterVo.NumberOfAppointments.ToString("###");
+                sheetView.Cells[3, columnCount].Font = new Font("游ゴシック", 8);
+                sheetView.Cells[3, columnCount].Text = certificationMasterVo.NumberOfAppointments.ToString("###");
 
                 columnCount++;
             }
@@ -177,10 +180,10 @@ namespace Certification {
              * Rowを追加する
              */
             int rowCount = sheetView.RowCount;
-            foreach (StaffMasterVo staffMasterVo in _staffMasterDao.SelectAllStaffMaster(new List<int> { 10, 11, 12, 14, 15, 22 },
-                                                                                         new List<int> { 20, 22, 99 },
-                                                                                         new List<int> { 10, 11, 20, 99 },
-                                                                                         false).OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
+            foreach(StaffMasterVo staffMasterVo in _staffMasterDao.SelectAllStaffMaster(new List<int> { 10, 11, 12, 14, 15, 22 },
+                                                                                        new List<int> { 20, 22, 99 },
+                                                                                        new List<int> { 10, 11, 20, 99 },
+                                                                                        false).OrderBy(x => x.Belongs).ThenBy(x => x.NameKana)) {
                 sheetView.Rows.Add(rowCount, 1);
                 sheetView.Rows[rowCount].Height = 20;
                 /*
@@ -220,12 +223,12 @@ namespace Certification {
             /*
              * Rowを追加する
              */
-            for (int rowCount = 4; rowCount < sheetView.RowCount; rowCount++) {
+            for(int rowCount = 5; rowCount < sheetView.RowCount; rowCount++) {
                 /*
                  * 免許区分
                  */
                 LicenseMasterVo licenseMasterVo = listLicenseMasterVo.Find(x => x.StaffCode == ((StaffMasterVo)sheetView.Cells[rowCount, 1].Tag).StaffCode);
-                if (licenseMasterVo is not null) {
+                if(licenseMasterVo is not null) {
                     // 大型
                     sheetView.Cells[rowCount, 3].ForeColor = Color.Red;
                     sheetView.Cells[rowCount, 3].Font = new Font("Yu Gothic UI", 12);
@@ -254,15 +257,15 @@ namespace Certification {
                 /*
                  * 資格区分
                  */
-                for (int columnCount = 7; columnCount < sheetView.ColumnCount; columnCount++) {
+                for(int columnCount = 7; columnCount < sheetView.ColumnCount; columnCount++) {
                     /*
                      * 238:作業員業務は、東環保カードの有無で判断する
                      */
-                    if (((CertificationMasterVo)sheetView.Cells[1, columnCount].Tag).CertificationCode == 238) {
+                    if(((CertificationMasterVo)sheetView.Cells[2, columnCount].Tag).CertificationCode == 238) {
                         /*
                          * 東環保処理
                          */
-                        if (_toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(((StaffMasterVo)sheetView.Cells[rowCount, 1].Tag).StaffCode)) {
+                        if(_toukanpoTrainingCardDao.ExistenceToukanpoTrainingCardMaster(((StaffMasterVo)sheetView.Cells[rowCount, 1].Tag).StaffCode)) {
                             sheetView.Cells[rowCount, columnCount].Font = new Font("Yu Gothic UI", 12);
                             sheetView.Cells[rowCount, columnCount].ForeColor = Color.Blue;
                             sheetView.Cells[rowCount, columnCount].HorizontalAlignment = CellHorizontalAlignment.Center;
@@ -275,13 +278,13 @@ namespace Certification {
                         /*
                          * その他処理
                          */
-                        CertificationFileVo certificationFileVo = listCertificationFileVo.Find(x => x.StaffCode == ((StaffMasterVo)sheetView.Cells[rowCount, 1].Tag).StaffCode &&
-                                                                                                    x.CertificationCode == ((CertificationMasterVo)sheetView.Cells[1, columnCount].Tag).CertificationCode);
-                        if (certificationFileVo is not null) {
+                        CertificationFileVo certificationFileVo = listCertificationFileVo.Find(x => x.StaffCode ==         ((StaffMasterVo)sheetView.Cells[rowCount, 1].Tag).StaffCode &&
+                                                                                                    x.CertificationCode == ((CertificationMasterVo)sheetView.Cells[2, columnCount].Tag).CertificationCode);
+                        if(certificationFileVo is not null) {
                             sheetView.Cells[rowCount, columnCount].Font = new Font("Yu Gothic UI", 12);
                             sheetView.Cells[rowCount, columnCount].ForeColor = Color.Blue;
                             sheetView.Cells[rowCount, columnCount].HorizontalAlignment = CellHorizontalAlignment.Center;
-                            if (certificationFileVo.Picture1Flag || certificationFileVo.Picture2Flag) {
+                            if(certificationFileVo.Picture1Flag || certificationFileVo.Picture2Flag) {
                                 sheetView.Cells[rowCount, columnCount].Text = "〇";
                             } else {
                                 sheetView.Cells[rowCount, columnCount].Text = "×";
@@ -291,21 +294,21 @@ namespace Certification {
                         }
                     }
                 }
-                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(rowCount - 4, "名");
+                this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(rowCount - 5, "名");
             }
 
             /*
              * 資格取得済人数を算出する
              */
             int checkCount;
-            for (int col = 3; col < SheetViewList.ColumnCount; col++) {
+            for(int col = 3; col < SheetViewList.ColumnCount; col++) {
                 checkCount = 0;
-                for (int row = 4; row < SheetViewList.RowCount; row++) {
-                    if (sheetView.Cells[row, col].Text != string.Empty)
+                for(int row = 5; row < SheetViewList.RowCount; row++) {
+                    if(sheetView.Cells[row, col].Text != string.Empty)
                         checkCount++;
                 }
-                sheetView.Cells[3, col].Font = new Font("Yu Gothic UI", 8);
-                sheetView.Cells[3, col].Value = checkCount;
+                sheetView.Cells[4, col].Font = new Font("Yu Gothic UI", 8);
+                sheetView.Cells[4, col].Value = checkCount;
             }
         }
 
@@ -315,7 +318,7 @@ namespace Certification {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 /*
                  * B5で印刷する
                  */
@@ -329,9 +332,9 @@ namespace Certification {
                     /*
                      * プリンタがサポートしている用紙サイズを調べる
                      */
-                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                    foreach(PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
                         // B5用紙に設定する
-                        if (paperSize.Kind == PaperKind.A4) {
+                        if(paperSize.Kind == PaperKind.A4) {
                             _printDocument.DefaultPageSettings.PaperSize = paperSize;
                             break;
                         }

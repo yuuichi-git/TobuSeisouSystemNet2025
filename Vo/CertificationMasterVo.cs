@@ -9,6 +9,7 @@ namespace Vo {
         private string _certificationName;
         private string _certificationDisplayName;
         private bool _displayFlag;
+        private int _displayNumber;
         private int _certificationType;
         private int _numberOfAppointments;
         private string _insertPcName;
@@ -27,6 +28,7 @@ namespace Vo {
             _certificationName = string.Empty;
             _certificationDisplayName = string.Empty;
             _displayFlag = false;
+            _displayNumber = 0;
             _certificationType = 0;
             _numberOfAppointments = 0;
             _insertPcName = string.Empty;
@@ -67,6 +69,17 @@ namespace Vo {
         public bool DisplayFlag {
             get => _displayFlag;
             set => _displayFlag = value;
+        }
+        /// <summary>
+        /// 画面表示順
+        /// </summary>
+        public int DisplayNumber {
+            get {
+                return _displayNumber;
+            }
+            set {
+                _displayNumber = value;
+            }
         }
         /// <summary>
         /// 資格の分類

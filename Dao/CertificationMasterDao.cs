@@ -38,6 +38,7 @@ namespace Dao {
                                             "CertificationName," +
                                             "CertificationDisplayName," +
                                             "DisplayFlag," +
+                                            "DisplayNumber," +
                                             "CertificationType," +
                                             "NumberOfAppointments," +
                                             "InsertPcName," +
@@ -58,6 +59,7 @@ namespace Dao {
                     certificationMasterVo.CertificationName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CertificationName"]);
                     certificationMasterVo.CertificationDisplayName = _defaultValue.GetDefaultValue<string>(sqlDataReader["CertificationDisplayName"]);
                     certificationMasterVo.DisplayFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DisplayFlag"]);
+                    certificationMasterVo.DisplayNumber = _defaultValue.GetDefaultValue<int>(sqlDataReader["DisplayNumber"]);
                     certificationMasterVo.CertificationType = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationType"]);
                     certificationMasterVo.NumberOfAppointments = _defaultValue.GetDefaultValue<int>(sqlDataReader["NumberOfAppointments"]);
                     certificationMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
