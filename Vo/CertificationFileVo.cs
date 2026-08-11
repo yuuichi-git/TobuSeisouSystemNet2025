@@ -8,10 +8,10 @@ namespace Vo {
         private int _staffCode;
         private int _certificationCode;
         private int _markCode;
-        private bool _picture1Flag;
-        private byte[] _picture1;
-        private bool _picture2Flag;
-        private byte[] _picture2;
+        private bool _image1Flag;
+        private byte[] _image1;
+        private bool _image2Flag;
+        private byte[] _image2;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -27,10 +27,10 @@ namespace Vo {
             _staffCode = 0;
             _certificationCode = 0;
             _markCode = 0;
-            _picture1Flag = false;
-            _picture1 = Array.Empty<byte>();
-            _picture2Flag = false;
-            _picture2 = Array.Empty<byte>();
+            _image1Flag = false;
+            _image1 = Array.Empty<byte>();
+            _image2Flag = false;
+            _image2 = Array.Empty<byte>();
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -63,28 +63,28 @@ namespace Vo {
             set => _markCode = value;
         }
         /// <summary>
-        /// Picture1の存在の有無
+        /// Image1の存在の有無
         /// True:画像あり False:画像なし
         /// </summary>
-        public bool Picture1Flag {
-            get => this._picture1Flag;
-            set => this._picture1Flag = value;
+        public bool Image1Flag {
+            get => this._image1Flag;
+            set => this._image1Flag = value;
         }
-        public byte[] Picture1 {
-            get => _picture1;
-            set => _picture1 = value;
+        public byte[] Image1 {
+            get => _image1;
+            set => _image1 = value;
         }
         /// <summary>
-        /// Picture２の存在の有無
+        /// Image2の存在の有無
         /// True:画像あり False:画像なし
         /// </summary>
-        public bool Picture2Flag {
-            get => this._picture2Flag;
-            set => this._picture2Flag = value;
+        public bool Image2Flag {
+            get => this._image2Flag;
+            set => this._image2Flag = value;
         }
-        public byte[] Picture2 {
-            get => _picture2;
-            set => _picture2 = value;
+        public byte[] Image2 {
+            get => _image2;
+            set => _image2 = value;
         }
         public string InsertPcName {
             get => _insertPcName;

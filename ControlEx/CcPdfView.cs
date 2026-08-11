@@ -27,11 +27,11 @@ namespace CcControl {
 
             this.Clear();                         // ★安全に破棄
 
-            _memoryStream = stream;
-            _memoryStream.Position = 0;           // ★必須
+            this.MemoryStream = stream;
+            this.MemoryStream.Position = 0;           // ★必須
 
-            _pdfDocument = PdfDocument.Load(_memoryStream);
-            this.Document = _pdfDocument;
+            this.PdfDocument = PdfDocument.Load(this.MemoryStream);
+            this.Document = this.PdfDocument;
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace CcControl {
             // PDF 判定
             if(!IsPdf(bytes)) {
                 try {
-                    using(MemoryStream ms = new MemoryStream(bytes))
-                    using(Bitmap bitmap = new Bitmap(ms)) {
+                    using(MemoryStream stream = new MemoryStream(bytes))
+                    using(Bitmap bitmap = new Bitmap(stream)) {
                         bytes = ConvertImageToPdfBytes(bitmap);
                     }
                 } catch {
@@ -57,11 +57,11 @@ namespace CcControl {
 
             this.Clear();
 
-            _memoryStream = new MemoryStream(bytes, false);
-            _memoryStream.Position = 0;
+            this.MemoryStream = new MemoryStream(bytes, false);
+            this.MemoryStream.Position = 0;                                                                     // 次に読み込むときのために、必ず Position を 0 に戻す
 
-            _pdfDocument = PdfDocument.Load(_memoryStream);
-            this.Document = _pdfDocument;
+            this.PdfDocument = PdfDocument.Load(this.MemoryStream);
+            this.Document = this.PdfDocument;
         }
         /// <summary>
         /// PDF かどうか判定（%PDF-）
@@ -89,21 +89,15 @@ namespace CcControl {
                 pdfPage.Width = bitmap.Width;
                 pdfPage.Height = bitmap.Height;
 
-                PdfSharpCore.Drawing.XGraphics xGraphics =
-                    PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
+                PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
 
                 using(MemoryStream imgStream = new MemoryStream()) {
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
                     imgStream.Position = 0;
 
-                    PdfSharpCore.Drawing.XImage xImage =
-                        PdfSharpCore.Drawing.XImage.FromStream(
-                            () => new MemoryStream(imgStream.ToArray())
-                        );
-
+                    PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
                     xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
                 }
-
                 pdfDocument.Save(pdfStream, false);
                 return pdfStream.ToArray();
             }
@@ -111,10 +105,39 @@ namespace CcControl {
 
         /// <summary>
         /// 表示中の PDF を破棄する
+        /// ※改良の余地あり　画面をクリアする方法を探して！
         /// </summary>
         public void Clear() {
-            _pdfDocument = null;
-            _memoryStream = null;
+            this.PdfDocument = null;
+            this.MemoryStream = null;
+        }
+
+        /*
+         * ----------------------------------------------------------------
+         * Getter / Setter
+         * ----------------------------------------------------------------
+         */
+        /// <summary>
+        /// PdfDocument
+        /// </summary>
+        public PdfDocument PdfDocument {
+            get {
+                return this._pdfDocument;
+            }
+            set {
+                this._pdfDocument = value;
+            }
+        }
+        /// <summary>
+        /// MemoryStream
+        /// </summary>
+        public MemoryStream MemoryStream {
+            get {
+                return this._memoryStream;
+            }
+            set {
+                this._memoryStream = value;
+            }
         }
     }
 }

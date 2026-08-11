@@ -206,7 +206,7 @@
             NumericUpDownExFirstOdoMeter.Font = new Font("Yu Gothic UI", 9.75F);
             NumericUpDownExFirstOdoMeter.ImeMode = ImeMode.Off;
             NumericUpDownExFirstOdoMeter.Location = new Point(148, 276);
-            NumericUpDownExFirstOdoMeter.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericUpDownExFirstOdoMeter.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             NumericUpDownExFirstOdoMeter.Name = "NumericUpDownExFirstOdoMeter";
             NumericUpDownExFirstOdoMeter.Size = new Size(104, 25);
             NumericUpDownExFirstOdoMeter.TabIndex = 7;
@@ -218,7 +218,7 @@
             NumericUpDownExLastOdoMeter.Font = new Font("Yu Gothic UI", 9.75F);
             NumericUpDownExLastOdoMeter.ImeMode = ImeMode.Off;
             NumericUpDownExLastOdoMeter.Location = new Point(148, 308);
-            NumericUpDownExLastOdoMeter.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericUpDownExLastOdoMeter.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             NumericUpDownExLastOdoMeter.Name = "NumericUpDownExLastOdoMeter";
             NumericUpDownExLastOdoMeter.Size = new Size(104, 25);
             NumericUpDownExLastOdoMeter.TabIndex = 8;

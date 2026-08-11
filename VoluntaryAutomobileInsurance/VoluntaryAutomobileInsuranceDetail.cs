@@ -14,7 +14,6 @@ namespace VoluntaryAutomobileInsurance {
         private int _staffCode;
         private PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
-        private MemoryStream[] _memoryStream = new MemoryStream[4];     // PdfViewer ごとに MemoryStream を保持する
         /*
          * Dao
          */
@@ -44,16 +43,12 @@ namespace VoluntaryAutomobileInsurance {
                 "ToolStripMenuItemHelp"
             };
             this.CcMenuStrip1.ChangeEnable(listString);
-
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             // コントロールの初期化
             this.InitializeControl();
 
             // 表示対象のデータを画面へ反映
             this.SetControls(staffCode);
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -79,10 +74,10 @@ namespace VoluntaryAutomobileInsurance {
                     /*
                      * PDF（byte[]）をセット
                      */
-                    vo.Image1 = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image2 = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image3 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image4 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image1 = _ccPdfViews[0].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image2 = _ccPdfViews[1].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image3 = _ccPdfViews[2].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    vo.Image4 = _ccPdfViews[3].MemoryStream?.ToArray() ?? Array.Empty<byte>();
 
                     /*
                      * INSERT or UPDATE の判定
@@ -136,14 +131,6 @@ namespace VoluntaryAutomobileInsurance {
                 _ccPdfViews[1].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image2);
                 _ccPdfViews[2].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image3);
                 _ccPdfViews[3].SetPdfBytes(voluntaryAutomobileInsuranceVo.Image4);
-                /*
-                 * _memoryStreamに保持
-                 * 保持しておかないとUpdate時にPDFが存在しないので、MemoryStreamに保持しておく
-                 */
-                _memoryStream[0] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image1 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
-                _memoryStream[1] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image2 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
-                _memoryStream[2] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image3 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
-                _memoryStream[3] = new MemoryStream(voluntaryAutomobileInsuranceVo.Image4 ?? Array.Empty<byte>());                      // MemoryStreamがnullの場合は空のbyte[]をセットする
 
             } else {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在しません。";
@@ -169,10 +156,8 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="ccPdfView">PdfViewer のインスタンス</param>
         /// <param name="pdfBytes">PDF のバイト配列</param>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
-
             ccPdfView.Clear();
-            ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
+            ccPdfView.SetPdfStream(new MemoryStream(pdfBytes));
         }
 
         /// <summary>
@@ -276,10 +261,10 @@ namespace VoluntaryAutomobileInsurance {
                             break;
                         }
 
-                        _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
+                        ccPdfView.MemoryStream = new MemoryStream(pdfBytes);
 
                         ccPdfView.Clear();
-                        ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
+                        ccPdfView.SetPdfStream(ccPdfView.MemoryStream);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
                         break;
@@ -290,10 +275,7 @@ namespace VoluntaryAutomobileInsurance {
                 }
 
                 case "ToolStripMenuItemDelete":
-                    // PdfViewer の PDF を破棄
                     ccPdfView.Clear();
-                    // ★ MemoryStream も破棄（Dispose は絶対にしない）
-                    _memoryStream[(int)ccPdfView.Tag] = null;
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }

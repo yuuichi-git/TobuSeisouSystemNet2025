@@ -23,177 +23,186 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.tableLayoutPanelEx1 = new CcControl.CcTableLayoutPanel();
-            this.PictureBoxEx1 = new CcControl.CcPictureBox();
-            this.ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
-            this.ToolStripMenuItemClip = new ToolStripMenuItem();
-            this.ToolStripMenuItemDelete = new ToolStripMenuItem();
-            this.PictureBoxEx2 = new CcControl.CcPictureBox();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.PanelExTop = new CcControl.CcPanel();
-            this.ButtonExUpdate = new CcControl.CcButton();
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.tableLayoutPanelEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
-            this.ContextMenuStripEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx2).BeginInit();
-            this.PanelExTop.SuspendLayout();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
+            tableLayoutPanelEx1 = new CcControl.CcTableLayoutPanel();
+            CcPdfView1 = new CcControl.CcPdfView();
+            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
+            ToolStripMenuItemOpen = new ToolStripMenuItem();
+            ToolStripMenuItemPaste = new ToolStripMenuItem();
+            ToolStripMenuItemDelete = new ToolStripMenuItem();
+            CcPdfView2 = new CcControl.CcPdfView();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
+            CcPanelTop = new CcControl.CcPanel();
+            CcButtonUpdate = new CcControl.CcButton();
+            TableLayoutPanelExBase.SuspendLayout();
+            tableLayoutPanelEx1.SuspendLayout();
+            CcContextMenuStrip1.SuspendLayout();
+            CcPanelTop.SuspendLayout();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.tableLayoutPanelEx1, 0, 2);
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExTop, 0, 1);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1034, 785);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(tableLayoutPanelEx1, 0, 2);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcPanelTop, 0, 1);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1219, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            this.StatusStripEx1.Location = new Point(0, 763);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1034, 22);
-            this.StatusStripEx1.TabIndex = 2;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            CcStatusStrip1.Location = new Point(0, 1019);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1219, 22);
+            CcStatusStrip1.TabIndex = 2;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // tableLayoutPanelEx1
             // 
-            this.tableLayoutPanelEx1.ColumnCount = 2;
-            this.tableLayoutPanelEx1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.tableLayoutPanelEx1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            this.tableLayoutPanelEx1.Controls.Add(this.PictureBoxEx1, 0, 0);
-            this.tableLayoutPanelEx1.Controls.Add(this.PictureBoxEx2, 1, 0);
-            this.tableLayoutPanelEx1.Dock = DockStyle.Fill;
-            this.tableLayoutPanelEx1.Location = new Point(3, 87);
-            this.tableLayoutPanelEx1.Name = "tableLayoutPanelEx1";
-            this.tableLayoutPanelEx1.RowCount = 1;
-            this.tableLayoutPanelEx1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.tableLayoutPanelEx1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            this.tableLayoutPanelEx1.Size = new Size(1028, 671);
-            this.tableLayoutPanelEx1.TabIndex = 0;
+            tableLayoutPanelEx1.ColumnCount = 2;
+            tableLayoutPanelEx1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelEx1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelEx1.Controls.Add(CcPdfView1, 0, 0);
+            tableLayoutPanelEx1.Controls.Add(CcPdfView2, 1, 0);
+            tableLayoutPanelEx1.Dock = DockStyle.Fill;
+            tableLayoutPanelEx1.Location = new Point(3, 87);
+            tableLayoutPanelEx1.Name = "tableLayoutPanelEx1";
+            tableLayoutPanelEx1.RowCount = 1;
+            tableLayoutPanelEx1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelEx1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelEx1.Size = new Size(1213, 927);
+            tableLayoutPanelEx1.TabIndex = 0;
             // 
-            // PictureBoxEx1
+            // CcPdfView1
             // 
-            this.PictureBoxEx1.BorderStyle = BorderStyle.Fixed3D;
-            this.PictureBoxEx1.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.PictureBoxEx1.Dock = DockStyle.Fill;
-            this.PictureBoxEx1.Location = new Point(3, 3);
-            this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(508, 665);
-            this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxEx1.TabIndex = 0;
-            this.PictureBoxEx1.TabStop = false;
+            CcPdfView1.ContextMenuStrip = CcContextMenuStrip1;
+            CcPdfView1.Dock = DockStyle.Fill;
+            CcPdfView1.Location = new Point(4, 3);
+            CcPdfView1.Margin = new Padding(4, 3, 4, 3);
+            CcPdfView1.MemoryStream = null;
+            CcPdfView1.Name = "CcPdfView1";
+            CcPdfView1.Padding = new Padding(4);
+            CcPdfView1.PdfDocument = null;
+            CcPdfView1.Size = new Size(598, 921);
+            CcPdfView1.TabIndex = 0;
+            CcPdfView1.Tag = "0";
+            CcPdfView1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitBest;
             // 
-            // ContextMenuStripEx1
+            // CcContextMenuStrip1
             // 
-            this.ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { this.ToolStripMenuItemClip, this.ToolStripMenuItemDelete });
-            this.ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            this.ContextMenuStripEx1.Size = new Size(108, 48);
-            this.ContextMenuStripEx1.Opened += this.ContextMenuStrip1_Opened;
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
+            CcContextMenuStrip1.Name = "ContextMenuStripEx1";
+            CcContextMenuStrip1.Size = new Size(162, 70);
+            CcContextMenuStrip1.ItemClicked += CcContextMenuStrip1_ItemClicked;
             // 
-            // ToolStripMenuItemClip
+            // ToolStripMenuItemOpen
             // 
-            this.ToolStripMenuItemClip.Name = "ToolStripMenuItemClip";
-            this.ToolStripMenuItemClip.Size = new Size(107, 22);
-            this.ToolStripMenuItemClip.Text = "Clip";
-            this.ToolStripMenuItemClip.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
+            ToolStripMenuItemOpen.Size = new Size(161, 22);
+            ToolStripMenuItemOpen.Text = "Open(PDF)";
+            // 
+            // ToolStripMenuItemPaste
+            // 
+            ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            ToolStripMenuItemPaste.Size = new Size(161, 22);
+            ToolStripMenuItemPaste.Text = "Paste(ClipBoard)";
             // 
             // ToolStripMenuItemDelete
             // 
-            this.ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
-            this.ToolStripMenuItemDelete.Size = new Size(107, 22);
-            this.ToolStripMenuItemDelete.Text = "Delete";
-            this.ToolStripMenuItemDelete.Click += this.ToolStripMenuItem_Click;
+            ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            ToolStripMenuItemDelete.Size = new Size(161, 22);
+            ToolStripMenuItemDelete.Text = "Delete";
             // 
-            // PictureBoxEx2
+            // CcPdfView2
             // 
-            this.PictureBoxEx2.BorderStyle = BorderStyle.Fixed3D;
-            this.PictureBoxEx2.ContextMenuStrip = this.ContextMenuStripEx1;
-            this.PictureBoxEx2.Dock = DockStyle.Fill;
-            this.PictureBoxEx2.Location = new Point(517, 3);
-            this.PictureBoxEx2.Name = "PictureBoxEx2";
-            this.PictureBoxEx2.Size = new Size(508, 665);
-            this.PictureBoxEx2.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxEx2.TabIndex = 1;
-            this.PictureBoxEx2.TabStop = false;
+            CcPdfView2.ContextMenuStrip = CcContextMenuStrip1;
+            CcPdfView2.Dock = DockStyle.Fill;
+            CcPdfView2.Location = new Point(610, 3);
+            CcPdfView2.Margin = new Padding(4, 3, 4, 3);
+            CcPdfView2.MemoryStream = null;
+            CcPdfView2.Name = "CcPdfView2";
+            CcPdfView2.Padding = new Padding(4);
+            CcPdfView2.PdfDocument = null;
+            CcPdfView2.Size = new Size(599, 921);
+            CcPdfView2.TabIndex = 1;
+            CcPdfView2.Tag = "1";
+            CcPdfView2.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitBest;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1034, 24);
-            this.MenuStripEx1.TabIndex = 1;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1219, 24);
+            CcMenuStrip1.TabIndex = 1;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // PanelExTop
+            // CcPanelTop
             // 
-            this.PanelExTop.Controls.Add(this.ButtonExUpdate);
-            this.PanelExTop.Dock = DockStyle.Fill;
-            this.PanelExTop.Location = new Point(3, 27);
-            this.PanelExTop.Name = "PanelExTop";
-            this.PanelExTop.Size = new Size(1028, 54);
-            this.PanelExTop.TabIndex = 3;
+            CcPanelTop.Controls.Add(CcButtonUpdate);
+            CcPanelTop.Dock = DockStyle.Fill;
+            CcPanelTop.Location = new Point(3, 27);
+            CcPanelTop.Name = "CcPanelTop";
+            CcPanelTop.Size = new Size(1213, 54);
+            CcPanelTop.TabIndex = 3;
             // 
-            // ButtonExUpdate
+            // CcButtonUpdate
             // 
-            this.ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
-            this.ButtonExUpdate.Location = new Point(820, 10);
-            this.ButtonExUpdate.Name = "ButtonExUpdate";
-            this.ButtonExUpdate.SetTextDirectionVertical = null;
-            this.ButtonExUpdate.Size = new Size(160, 32);
-            this.ButtonExUpdate.TabIndex = 13;
-            this.ButtonExUpdate.Text = "UPDATE";
-            this.ButtonExUpdate.UseVisualStyleBackColor = true;
-            this.ButtonExUpdate.Click += this.ButtonExUpdate_Click;
+            CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            CcButtonUpdate.Location = new Point(1005, 10);
+            CcButtonUpdate.Name = "CcButtonUpdate";
+            CcButtonUpdate.SetTextDirectionVertical = null;
+            CcButtonUpdate.Size = new Size(160, 32);
+            CcButtonUpdate.TabIndex = 13;
+            CcButtonUpdate.Text = "UPDATE";
+            CcButtonUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Click += ButtonExUpdate_Click;
             // 
             // CertificationDetail
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1034, 785);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.Name = "CertificationDetail";
-            this.Text = "CertificationDetail";
-            this.FormClosing += this.CertificationDetail_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.tableLayoutPanelEx1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).EndInit();
-            this.ContextMenuStripEx1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx2).EndInit();
-            this.PanelExTop.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1219, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = CcMenuStrip1;
+            Name = "CertificationDetail";
+            Text = "CertificationDetail";
+            FormClosing += CertificationDetail_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            tableLayoutPanelEx1.ResumeLayout(false);
+            CcContextMenuStrip1.ResumeLayout(false);
+            CcPanelTop.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
         private CcControl.CcTableLayoutPanel tableLayoutPanelEx1;
-        private CcControl.CcPictureBox PictureBoxEx1;
-        private CcControl.CcPictureBox PictureBoxEx2;
-        private CcControl.CcStatusStrip StatusStripEx1;
-        private CcControl.CcMenuStrip MenuStripEx1;
-        private CcControl.CcPanel PanelExTop;
-        private CcControl.CcButton ButtonExUpdate;
-        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
-        private ToolStripMenuItem ToolStripMenuItemClip;
+        private CcControl.CcStatusStrip CcStatusStrip1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcPanel CcPanelTop;
+        private CcControl.CcButton CcButtonUpdate;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
+        private ToolStripMenuItem ToolStripMenuItemOpen;
+        private CcControl.CcPdfView CcPdfView1;
+        private CcControl.CcPdfView CcPdfView2;
     }
 }

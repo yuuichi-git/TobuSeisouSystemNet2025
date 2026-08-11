@@ -17,7 +17,6 @@ namespace LegalTwelveItem {
         private readonly int _staffCode;
         private PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[3];             // 3つの PdfViewer（第一回目 / 第二回目 / 第三回目）
-        private MemoryStream[] _memoryStream = new MemoryStream[3];     // PdfViewer ごとに MemoryStream を保持する
         /*
          * Dao
          */
@@ -155,7 +154,7 @@ namespace LegalTwelveItem {
                             legalTwelveItemVo.StudentsCode = Convert.ToInt32(_arrayCcCheckBox[i].Tag);
                             legalTwelveItemVo.StudentsFlag = _arrayCcCheckBox[i].Checked;
                             legalTwelveItemVo.StaffCode = _staffCode;
-                            legalTwelveItemVo.StaffSign = _memoryStream[_arrayCcComboBox[i].SelectedIndex]?.ToArray() ?? Array.Empty<byte>();               // StaffSign は MemoryStream から取得する
+                            legalTwelveItemVo.StaffSign = _ccPdfViews[_arrayCcComboBox[i].SelectedIndex].MemoryStream?.ToArray() ?? Array.Empty<byte>();               // StaffSign は MemoryStream から取得する
                             legalTwelveItemVo.SignNumber = _arrayCcComboBox[i].SelectedIndex;
                             legalTwelveItemVo.Memo = _arrayCcTextBox[i].Text;
                             legalTwelveItemVo.InsertPcName = Environment.MachineName;
@@ -249,11 +248,6 @@ namespace LegalTwelveItem {
                  * PDF 表示（SignNumber が示すビューへ）
                  */
                 _ccPdfViews[index].SetPdfBytes(legalTwelveItemVo.StaffSign);
-                /*
-                 * MemoryStream に保持
-                 * Update 時に PDF が必要なので保持しておく
-                 */
-                _memoryStream[index] = new MemoryStream(legalTwelveItemVo.StaffSign ?? Array.Empty<byte>());
             }
         }
 
@@ -311,10 +305,10 @@ namespace LegalTwelveItem {
                             break;
                         }
 
-                        _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
+                        ccPdfView.MemoryStream = new MemoryStream(pdfBytes);
 
                         ccPdfView.Clear();
-                        ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
+                        ccPdfView.SetPdfStream(ccPdfView.MemoryStream);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
                         break;
@@ -328,7 +322,7 @@ namespace LegalTwelveItem {
                     // PdfViewer の PDF を破棄
                     ccPdfView.Clear();
                     // ★ MemoryStream も破棄（Dispose は絶対にしない）
-                    _memoryStream[(int)ccPdfView.Tag] = null;
+                    ccPdfView.MemoryStream = null;
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }
@@ -385,19 +379,12 @@ namespace LegalTwelveItem {
         }
 
         /// <summary>
-        /// 指定された CcPdfView に PDF（byte[]）を表示する
+        /// 指定された PdfViewer に PDF（byte[]）を表示する
         /// </summary>
-        /// <param name="ccPdfView"></param>
-        /// <param name="pdfBytes"></param>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <param name="pdfBytes">PDF のバイト配列</param>
         private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            // MemoryStream を新しく作成（Dispose は絶対にしない）
-            _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
-
-            // PdfViewer の内部状態を安全に破棄
-            ccPdfView.Clear();
-
-            // PdfiumViewer に読み込ませる（Position=0 は SetPdfStream 内で保証）
-            ccPdfView.SetPdfStream(_memoryStream[(int)ccPdfView.Tag]);
+            ccPdfView.SetPdfStream(new MemoryStream(pdfBytes));
         }
 
         /// <summary>

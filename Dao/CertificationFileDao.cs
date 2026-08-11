@@ -72,8 +72,8 @@ namespace Dao {
                     certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
                     certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
-                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
-                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
+                    certificationFileVo.Image1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
+                    certificationFileVo.Image2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
                     certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     certificationFileVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -116,10 +116,10 @@ namespace Dao {
                     certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
                     certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
-                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
-                    certificationFileVo.Picture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
-                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
-                    certificationFileVo.Picture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
+                    certificationFileVo.Image1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
+                    certificationFileVo.Image1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
+                    certificationFileVo.Image2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
+                    certificationFileVo.Image2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
                     certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     certificationFileVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -162,10 +162,10 @@ namespace Dao {
                     certificationFileVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     certificationFileVo.CertificationCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["CertificationCode"]);
                     certificationFileVo.MarkCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["MarkCode"]);
-                    certificationFileVo.Picture1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
-                    certificationFileVo.Picture1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
-                    certificationFileVo.Picture2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
-                    certificationFileVo.Picture2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
+                    certificationFileVo.Image1Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture1Flag"]);
+                    certificationFileVo.Image1 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture1"]);
+                    certificationFileVo.Image2Flag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["Picture2Flag"]);
+                    certificationFileVo.Image2 = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture2"]);
                     certificationFileVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     certificationFileVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     certificationFileVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -203,9 +203,9 @@ namespace Dao {
                                      "VALUES (" + certificationFileVo.StaffCode + "," +
                                                   certificationFileVo.CertificationCode + "," +
                                                   certificationFileVo.MarkCode + "," +
-                                            "'" + certificationFileVo.Picture1Flag + "'," +
+                                            "'" + certificationFileVo.Image1Flag + "'," +
                                                  "@member_picture1," +
-                                            "'" + certificationFileVo.Picture2Flag + "'," +
+                                            "'" + certificationFileVo.Image2Flag + "'," +
                                                  "@member_picture2," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
@@ -216,10 +216,10 @@ namespace Dao {
                                             "'False'" +
                                             ");";
             try {
-                if (certificationFileVo.Picture1 is not null)
-                    sqlCommand.Parameters.Add("@member_picture1", SqlDbType.Image, certificationFileVo.Picture1.Length).Value = certificationFileVo.Picture1;
-                if (certificationFileVo.Picture2 is not null)
-                    sqlCommand.Parameters.Add("@member_picture2", SqlDbType.Image, certificationFileVo.Picture2.Length).Value = certificationFileVo.Picture2;
+                if (certificationFileVo.Image1 is not null)
+                    sqlCommand.Parameters.Add("@member_picture1", SqlDbType.Image, certificationFileVo.Image1.Length).Value = certificationFileVo.Image1;
+                if (certificationFileVo.Image2 is not null)
+                    sqlCommand.Parameters.Add("@member_picture2", SqlDbType.Image, certificationFileVo.Image2.Length).Value = certificationFileVo.Image2;
                 sqlCommand.ExecuteReader();
             } catch {
                 throw;
@@ -237,16 +237,16 @@ namespace Dao {
                                      "SET StaffCode = " + certificationFileVo.StaffCode + "," +
                                          "CertificationCode = " + certificationFileVo.CertificationCode + "," +
                                          "MarkCode = " + certificationFileVo.MarkCode + "," +
-                                         "Picture1Flag = '" + certificationFileVo.Picture1Flag + "'," +
+                                         "Picture1Flag = '" + certificationFileVo.Image1Flag + "'," +
                                          "Picture1 = @member_picture1," +
-                                         "Picture2Flag = '" + certificationFileVo.Picture2Flag + "'," +
+                                         "Picture2Flag = '" + certificationFileVo.Image2Flag + "'," +
                                          "Picture2 = @member_picture2," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + certificationFileVo.StaffCode + " AND CertificationCode = " + certificationFileVo.CertificationCode + "";
             try {
-                sqlCommand.Parameters.Add("@member_picture1", SqlDbType.Image, certificationFileVo.Picture1.Length).Value = certificationFileVo.Picture1;
-                sqlCommand.Parameters.Add("@member_picture2", SqlDbType.Image, certificationFileVo.Picture2.Length).Value = certificationFileVo.Picture2;
+                sqlCommand.Parameters.Add("@member_picture1", SqlDbType.Image, certificationFileVo.Image1.Length).Value = certificationFileVo.Image1;
+                sqlCommand.Parameters.Add("@member_picture2", SqlDbType.Image, certificationFileVo.Image2.Length).Value = certificationFileVo.Image2;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

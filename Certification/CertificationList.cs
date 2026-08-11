@@ -282,7 +282,7 @@ namespace Certification {
                             sheetView.Cells[rowCount, columnCount].Font = new Font("Yu Gothic UI", 12);
                             sheetView.Cells[rowCount, columnCount].ForeColor = Color.Blue;
                             sheetView.Cells[rowCount, columnCount].HorizontalAlignment = CellHorizontalAlignment.Center;
-                            if(certificationFileVo.Picture1Flag || certificationFileVo.Picture2Flag) {
+                            if(certificationFileVo.Image1Flag || certificationFileVo.Image2Flag) {
                                 sheetView.Cells[rowCount, columnCount].Text = "ÅZ";
                             } else {
                                 sheetView.Cells[rowCount, columnCount].Text = "Å~";
