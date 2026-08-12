@@ -40,6 +40,7 @@ namespace EGov {
                 "ToolStripMenuItemHelp"
             };
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             InitializeSheetView(this.SheetViewList);
 
@@ -47,13 +48,22 @@ namespace EGov {
              * StatusStrip
              */
             this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Event
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SheetViewList_CellDoubleClick(object sender, CellClickEventArgs e) {
+            // 固定行の場合は処理を中断
+            if(e.Row < 7) {
+                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "この行でのクリックは無効です。";
+                return;
+            } else {
+                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
+            }
+
             ICellType cellType = this.SheetViewList.Cells[e.Row, _colLawTitle].CellType;
             // ハイパーリンクセルの場合は処理を中断
             if(cellType is HyperLinkCellType)
@@ -90,7 +100,6 @@ namespace EGov {
             sheetView.GrayAreaBackColor = Color.White;
             sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9); // 行ヘッダのFont
             sheetView.RowHeader.Columns[0].Width = 48; // 行ヘッダの幅を変更します
-            sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
             return sheetView;
         }
 

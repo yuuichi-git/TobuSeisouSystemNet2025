@@ -25,10 +25,8 @@ namespace CcControl {
             if(stream == null)
                 return;
 
-            this.Clear();                         // ★安全に破棄
-
             this.MemoryStream = stream;
-            this.MemoryStream.Position = 0;           // ★必須
+            this.MemoryStream.Position = 0;
 
             this.PdfDocument = PdfDocument.Load(this.MemoryStream);
             this.Document = this.PdfDocument;
@@ -54,8 +52,6 @@ namespace CcControl {
                     return;
                 }
             }
-
-            this.Clear();
 
             this.MemoryStream = new MemoryStream(bytes, false);
             this.MemoryStream.Position = 0;                                                                     // 次に読み込むときのために、必ず Position を 0 に戻す
@@ -110,6 +106,10 @@ namespace CcControl {
         public void Clear() {
             this.PdfDocument = null;
             this.MemoryStream = null;
+
+            // 再描画して確実に消す
+            this.Invalidate();
+            this.Refresh();
         }
 
         /*
@@ -118,6 +118,7 @@ namespace CcControl {
          * ----------------------------------------------------------------
          */
         /// <summary>
+        /// Getter / Setter
         /// PdfDocument
         /// </summary>
         public PdfDocument PdfDocument {
@@ -129,6 +130,7 @@ namespace CcControl {
             }
         }
         /// <summary>
+        /// Getter / Setter
         /// MemoryStream
         /// </summary>
         public MemoryStream MemoryStream {
