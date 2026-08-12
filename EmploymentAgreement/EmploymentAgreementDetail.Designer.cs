@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
             CcMenuStrip1 = new CcControl.CcMenuStrip();
-            StatusStripEx1 = new CcControl.CcStatusStrip();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
             PanelExUp = new CcControl.CcPanel();
             CcButtonUpdate = new CcControl.CcButton();
             labelEx34 = new CcControl.CcLabel();
@@ -172,7 +172,7 @@
             labelEx7 = new CcControl.CcLabel();
             CcDateTimeContractExpirationPartTimeJobStartDate2 = new CcControl.CcDateTime();
             CcTextBoxContractExpirationPartTimeJobMemo1 = new CcControl.CcTextBox();
-            CcPictureBox1 = new CcControl.CcPictureBox();
+            CcPdfView1 = new CcControl.CcPdfView();
             ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemOpen = new ToolStripMenuItem();
             ToolStripMenuItemPaste = new ToolStripMenuItem();
@@ -192,7 +192,6 @@
             CcGroupBoxContractExpirationShortJob.SuspendLayout();
             CcGroupBoxContractExpirationLongJob.SuspendLayout();
             CcGroupBoxContractExpirationPartTimeJob.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).BeginInit();
             ContextMenuStripEx1.SuspendLayout();
             SuspendLayout();
             // 
@@ -202,10 +201,10 @@
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1250F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
-            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
             TableLayoutPanelExBase.Controls.Add(PanelExMiddle, 0, 2);
-            TableLayoutPanelExBase.Controls.Add(CcPictureBox1, 1, 2);
+            TableLayoutPanelExBase.Controls.Add(CcPdfView1, 1, 2);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -227,14 +226,14 @@
             CcMenuStrip1.Text = "menuStripEx1";
             CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 2);
-            StatusStripEx1.Location = new Point(0, 1019);
-            StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1904, 22);
-            StatusStripEx1.TabIndex = 1;
-            StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(CcStatusStrip1, 2);
+            CcStatusStrip1.Location = new Point(0, 1019);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1904, 22);
+            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
@@ -1927,41 +1926,42 @@
             CcTextBoxContractExpirationPartTimeJobMemo1.Size = new Size(496, 23);
             CcTextBoxContractExpirationPartTimeJobMemo1.TabIndex = 18;
             // 
-            // CcPictureBox1
+            // CcPdfView1
             // 
-            CcPictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            CcPictureBox1.ContextMenuStrip = ContextMenuStripEx1;
-            CcPictureBox1.Dock = DockStyle.Fill;
-            CcPictureBox1.Location = new Point(1253, 67);
-            CcPictureBox1.Name = "CcPictureBox1";
-            CcPictureBox1.Size = new Size(648, 947);
-            CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            CcPictureBox1.TabIndex = 35;
-            CcPictureBox1.TabStop = false;
+            CcPdfView1.BorderStyle = BorderStyle.Fixed3D;
+            CcPdfView1.ContextMenuStrip = ContextMenuStripEx1;
+            CcPdfView1.Dock = DockStyle.Fill;
+            CcPdfView1.Location = new Point(1254, 67);
+            CcPdfView1.Margin = new Padding(4, 3, 4, 3);
+            CcPdfView1.MemoryStream = null;
+            CcPdfView1.Name = "CcPdfView1";
+            CcPdfView1.PdfDocument = null;
+            CcPdfView1.Size = new Size(646, 947);
+            CcPdfView1.TabIndex = 4;
             // 
             // ContextMenuStripEx1
             // 
             ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemPictureDelete });
             ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            ContextMenuStripEx1.Size = new Size(133, 70);
-            ContextMenuStripEx1.ItemClicked += ContextMenuStripEx_ItemClicked;
+            ContextMenuStripEx1.Size = new Size(162, 70);
+            ContextMenuStripEx1.ItemClicked += CcContextMenuStrip_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 
             ToolStripMenuItemOpen.Name = "ToolStripMenuItemOpen";
-            ToolStripMenuItemOpen.Size = new Size(132, 22);
+            ToolStripMenuItemOpen.Size = new Size(161, 22);
             ToolStripMenuItemOpen.Text = "Open(PDF)";
             // 
             // ToolStripMenuItemPaste
             // 
             ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
-            ToolStripMenuItemPaste.Size = new Size(132, 22);
-            ToolStripMenuItemPaste.Text = "Paste";
+            ToolStripMenuItemPaste.Size = new Size(161, 22);
+            ToolStripMenuItemPaste.Text = "Paste(ClipBoard)";
             // 
             // ToolStripMenuItemPictureDelete
             // 
             ToolStripMenuItemPictureDelete.Name = "ToolStripMenuItemPictureDelete";
-            ToolStripMenuItemPictureDelete.Size = new Size(132, 22);
+            ToolStripMenuItemPictureDelete.Size = new Size(161, 22);
             ToolStripMenuItemPictureDelete.Text = "Delete";
             // 
             // EmploymentAgreementDetail
@@ -1998,7 +1998,6 @@
             CcGroupBoxContractExpirationLongJob.PerformLayout();
             CcGroupBoxContractExpirationPartTimeJob.ResumeLayout(false);
             CcGroupBoxContractExpirationPartTimeJob.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).EndInit();
             ContextMenuStripEx1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -2007,7 +2006,7 @@
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
         private CcControl.CcMenuStrip CcMenuStrip1;
-        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExMiddle;
         private CcControl.CcButton CcButtonUpdate;
@@ -2087,7 +2086,6 @@
         private CcControl.CcDateTime CcDateTimeContractExpirationNoticeEndDate1;
         private CcControl.CcLabel labelEx28;
         private CcControl.CcTextBox CcTextBoxContractExpirationNoticeMemo1;
-        private CcControl.CcPictureBox CcPictureBox1;
         private CcControl.CcLabel CcLabelDisplayName;
         private CcControl.CcLabel CcLabelBelongs;
         private CcControl.CcLabel CcLabelOccupation;
@@ -2160,5 +2158,6 @@
         private CcControl.CcButton CcButtonContractExpirationLongJobDelete1;
         private CcControl.CcButton CcButtonContractExpirationPartTimeJobDelete2;
         private CcControl.CcButton CcButtonContractExpirationPartTimeJobDelete1;
+        private CcControl.CcPdfView CcPdfView1;
     }
 }

@@ -135,7 +135,7 @@ namespace Dao {
                     contractExpirationVo.StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]);
                     contractExpirationVo.EndDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EndDate"]);
                     contractExpirationVo.Memo = _defaultValue.GetDefaultValue<string>(sqlDataReader["Memo"]);
-                    contractExpirationVo.Picture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture"]);
+                    contractExpirationVo.Image = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture"]);
                     contractExpirationVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     contractExpirationVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     contractExpirationVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -180,7 +180,7 @@ namespace Dao {
                     contractExpirationVo.StartDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StartDate"]);
                     contractExpirationVo.EndDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EndDate"]);
                     contractExpirationVo.Memo = _defaultValue.GetDefaultValue<string>(sqlDataReader["Memo"]);
-                    contractExpirationVo.Picture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture"]);
+                    contractExpirationVo.Image = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["Picture"]);
                     contractExpirationVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     contractExpirationVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     contractExpirationVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -214,7 +214,7 @@ namespace Dao {
                                             "'" + contractExpirationVo.StartDate + "'," +
                                             "'" + contractExpirationVo.EndDate + "'," +
                                             "'" + contractExpirationVo.Memo + "'," +
-                                            "@Picture," +
+                                            "@Image1," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -224,7 +224,7 @@ namespace Dao {
                                              "'false'" +
                                              ");";
             try {
-                sqlCommand.Parameters.Add("@Picture", SqlDbType.Image, contractExpirationVo.Picture.Length).Value = contractExpirationVo.Picture;
+                sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)contractExpirationVo.Image ?? DBNull.Value;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -239,7 +239,7 @@ namespace Dao {
                                          "StartDate = '" + contractExpirationVo.StartDate + "'," +
                                          "EndDate = '" + contractExpirationVo.EndDate + "'," +
                                          "Memo = '" + contractExpirationVo.Memo + "'," +
-                                         "Picture = @Picture," +
+                                         "Picture = @Image1," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE Code = " + contractExpirationVo.Code + " " +
@@ -247,7 +247,7 @@ namespace Dao {
                                      "AND StartDate = '" + contractExpirationVo.StartDate + "' " +
                                      "AND EndDate = '" + contractExpirationVo.EndDate + "'";
             try {
-                sqlCommand.Parameters.Add("@Picture", SqlDbType.Image, contractExpirationVo.Picture.Length).Value = contractExpirationVo.Picture;
+                sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)contractExpirationVo.Image ?? DBNull.Value;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

@@ -3,32 +3,33 @@
  */
 namespace EmploymentAgreement {
     public partial class EmploymentAgreementView : Form {
-        private byte[] _picture;
+        private byte[] _image;
 
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        /// <param name="picture"></param>
-        public EmploymentAgreementView(byte[] picture) {
-            _picture = picture;
-            /*
-             * コントロール初期化
-             */
+        public EmploymentAgreementView(byte[] image) {
+            _image = image;
             InitializeComponent();
-            this.PictureBoxEx1.Image = Picture.Length != 0 ? (Image?)new ImageConverter().ConvertFrom(Picture) : null;
+
+            this.CcPdfView1.SetPdfBytes(image);
             this.TopMost = true;
         }
 
-        private void ShowPicture_SizeChanged(object sender, EventArgs e) {
+        private void EmploymentAgreementView_SizeChanged(object sender, EventArgs e) {
             this.Text = string.Concat("ShowPicture ", this.Size.Width, " - ", this.Size.Height);
         }
 
-        /// <summary>
-        /// 画像
-        /// </summary>
-        public byte[] Picture {
-            get => this._picture;
-            set => this._picture = value;
+        public byte[] Image {
+            get => _image;
+            set {
+                _image = value;
+                this.CcPdfView1.SetPdfBytes(value);
+            }
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e) {
+            base.OnFormClosed(e);
+
+            // PdfiumViewer の破棄
+            this.CcPdfView1.Dispose();
         }
     }
 }

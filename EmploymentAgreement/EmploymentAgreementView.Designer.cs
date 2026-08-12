@@ -23,35 +23,35 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.PictureBoxEx1 = new CcControl.CcPictureBox();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
-            this.SuspendLayout();
+            CcPdfView1 = new CcControl.CcPdfView();
+            SuspendLayout();
             // 
-            // PictureBoxEx1
+            // CcPdfView1
             // 
-            this.PictureBoxEx1.Dock = DockStyle.Fill;
-            this.PictureBoxEx1.Location = new Point(0, 0);
-            this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(714, 1007);
-            this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxEx1.TabIndex = 0;
-            this.PictureBoxEx1.TabStop = false;
+            CcPdfView1.BorderStyle = BorderStyle.Fixed3D;
+            CcPdfView1.Dock = DockStyle.Fill;
+            CcPdfView1.Location = new Point(0, 0);
+            CcPdfView1.Margin = new Padding(4, 3, 4, 3);
+            CcPdfView1.MemoryStream = null;
+            CcPdfView1.Name = "CcPdfView1";
+            CcPdfView1.PdfDocument = null;
+            CcPdfView1.Size = new Size(784, 1041);
+            CcPdfView1.TabIndex = 0;
             // 
-            // ShowPicture
+            // EmploymentAgreementView
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(714, 1007);
-            this.Controls.Add(this.PictureBoxEx1);
-            this.Name = "ShowPicture";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "ShowPicture";
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(784, 1041);
+            Controls.Add(CcPdfView1);
+            Name = "EmploymentAgreementView";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "ShowPicture";
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private CcControl.CcPictureBox PictureBoxEx1;
+        private CcControl.CcPdfView CcPdfView1;
     }
 }

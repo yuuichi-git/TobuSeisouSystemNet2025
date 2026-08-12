@@ -37,11 +37,9 @@ namespace VoluntaryAutomobileInsurance {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
             this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             // コントロールの初期化
@@ -183,7 +181,6 @@ namespace VoluntaryAutomobileInsurance {
             for(int i = 0; i < 4; i++) {
                 _ccPdfViews[i] = new();
                 _ccPdfViews[i].Tag = i;
-
                 tabPages[i].Controls.Add(_ccPdfViews[i]);
                 _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
             }

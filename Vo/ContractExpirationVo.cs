@@ -9,7 +9,7 @@ namespace Vo {
         private DateTime _startDate;
         private DateTime _endDate;
         private string _memo;
-        private byte[] _picture;
+        private byte[] _image;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -24,7 +24,7 @@ namespace Vo {
             _startDate = _defaultDateTime;
             _endDate = _defaultDateTime;
             _memo = string.Empty;
-            _picture = Array.Empty<byte>();
+            _image = Array.Empty<byte>();
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -77,11 +77,11 @@ namespace Vo {
             set => this._memo = value;
         }
         /// <summary>
-        /// 契約書画像
+        /// 添付PDF(契約書)
         /// </summary>
-        public byte[] Picture {
-            get => this._picture;
-            set => this._picture = value;
+        public byte[] Image {
+            get => this._image;
+            set => this._image = value;
         }
         public string InsertPcName {
             get => this._insertPcName;
