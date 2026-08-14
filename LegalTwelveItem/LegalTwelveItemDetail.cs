@@ -269,7 +269,7 @@ namespace LegalTwelveItem {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CcContextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+        private void CcContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
             if(sender is not ContextMenuStrip contextMenuStrip)
                 return;
 
@@ -292,6 +292,7 @@ namespace LegalTwelveItem {
                         break;
                     }
 
+                    // ★ クリップボードに画像があるか？
                     if(data.GetDataPresent(DataFormats.Bitmap)) {
                         Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
                         if(bmp == null) {
@@ -299,15 +300,18 @@ namespace LegalTwelveItem {
                             break;
                         }
 
+                        // ★ Bitmap → PDF(byte[]) に変換
                         byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
                         if(pdfBytes == null || pdfBytes.Length == 0) {
                             MessageBox.Show("画像を PDF に変換できませんでした。");
                             break;
                         }
 
+                        // ★ PdfiumViewer に表示
+                        //ccPdfView.MemoryStream?.Dispose();
                         ccPdfView.MemoryStream = new MemoryStream(pdfBytes);
 
-                        ccPdfView.Clear();
+                        //ccPdfView.Clear();
                         ccPdfView.SetPdfStream(ccPdfView.MemoryStream);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
@@ -319,10 +323,7 @@ namespace LegalTwelveItem {
                 }
 
                 case "ToolStripMenuItemDelete":
-                    // PdfViewer の PDF を破棄
                     ccPdfView.Clear();
-                    // ★ MemoryStream も破棄（Dispose は絶対にしない）
-                    ccPdfView.MemoryStream = null;
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }

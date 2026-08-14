@@ -103,9 +103,11 @@ namespace Common {
             }
         }
 
+
         /// <summary>
-        /// Bitmap を PDF に埋め込み、PDF の byte[] を返す
-        /// （1枚の画像をそのまま PDF ページとして保存する）
+        /// Bitmap を PDF に埋め込み、PDF の byte[] を返す。
+        /// 画像の DPI を考慮して PDF ページサイズを「物理サイズ（ポイント）」に変換し、
+        /// PdfiumViewer で正しく表示できる PDF を生成する。
         /// </summary>
         /// <param name="bitmap">PDF に埋め込む Bitmap</param>
         /// <returns>PDF データの byte[]</returns>
@@ -113,46 +115,60 @@ namespace Common {
             // PDF を書き込むためのメモリストリーム
             using(MemoryStream pdfStream = new()) {
                 /*
-                 * PdfSharpCore の PDF ドキュメントを作成
-                 * AddPage() でページを追加し、画像サイズに合わせてページサイズを設定する。
-                 * 画像を「そのままのピクセルサイズ」で PDF に貼り付けたい場合は、
-                 * Width / Height を bitmap のサイズに合わせる必要がある。
+                 * Bitmap の DPI（解像度）を取得する。
+                 * PDF の座標系は「ポイント（pt）」で、1pt = 1/72 inch。
+                 * 画像のピクセル数をそのまま PDF に使うと巨大ページになり、
+                 * PdfiumViewer が正しく表示できない場合があるため、
+                 * DPI を使って「物理サイズ（インチ）」→「ポイント」に変換する。
+                 */
+                float dpiX = bitmap.HorizontalResolution;
+                float dpiY = bitmap.VerticalResolution;
+
+                // ピクセル → ポイント（pt）へ変換
+                double widthPt  = bitmap.Width  / dpiX * 72.0;
+                double heightPt = bitmap.Height / dpiY * 72.0;
+
+                /*
+                 * PdfSharpCore の PDF ドキュメントを作成し、
+                 * ページサイズを画像の物理サイズに合わせて設定する。
                  */
                 PdfSharpCore.Pdf.PdfDocument pdfDocument = new();
                 PdfSharpCore.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
-                pdfPage.Width = bitmap.Width;
-                pdfPage.Height = bitmap.Height;
-                /*
-                 * PDF 描画用の XGraphics を取得。
-                 * XGraphics は PDF ページに対する描画コンテキスト。
-                 */
+                pdfPage.Width = widthPt;
+                pdfPage.Height = heightPt;
+
+                // PDF 描画用の XGraphics を取得
                 PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
+
                 /*
-                 * Bitmap を PNG として一度 MemoryStream に保存し、
-                 * その PNG データを XImage として読み込む。
-                 *
                  * PdfSharpCore は System.Drawing.Bitmap を直接扱えないため、
-                 * 一度 PNG などの画像形式に変換する必要がある。
+                 * 一度 PNG として MemoryStream に保存し、それを XImage として読み込む。
                  */
                 using(MemoryStream imgStream = new()) {
                     // Bitmap → PNG 形式で MemoryStream に保存
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
                     imgStream.Position = 0; // 読み込み位置を先頭に戻す
+
                     /*
                      * XImage.FromStream は「ストリームを返すデリゲート」を要求するため、
                      * imgStream の内容を新しい MemoryStream にコピーして渡す。
-                     * （PdfSharpCore の仕様で、ストリームはクローズされる可能性があるため）
+                     * PdfSharpCore が内部でストリームをクローズする可能性があるため、
+                     * 元の imgStream を直接渡すのは避ける。
                      */
                     PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
-                    // PDF ページに画像を描画（左上 0,0 に原寸で貼り付け）
-                    xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
+                    /*
+                     * PDF ページに画像を描画する。
+                     * PDF の座標系はポイントなので、描画サイズもポイントで指定する。
+                     */
+                    xGraphics.DrawImage(xImage, 0, 0, widthPt, heightPt);
                 }
                 /*
                  * PDF を MemoryStream に保存。
-                 * 第二引数の "false" は「閉じるときにストリームをクローズしない」設定。
-                 * （pdfStream を using で管理しているため、ここでは閉じない）
+                 * 第二引数 false は「ストリームを閉じない」設定。
+                 * （pdfStream は using により呼び出し元で破棄されるため）
                  */
                 pdfDocument.Save(pdfStream, false);
+
                 // PDF の byte[] を返す
                 return pdfStream.ToArray();
             }

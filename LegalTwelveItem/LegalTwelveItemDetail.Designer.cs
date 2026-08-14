@@ -853,7 +853,7 @@
             CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemClip, ToolStripMenuItemDelete });
             CcContextMenuStrip1.Name = "ContextMenuStrip1";
             CcContextMenuStrip1.Size = new Size(154, 70);
-            CcContextMenuStrip1.ItemClicked += CcContextMenuStrip1_ItemClicked;
+            CcContextMenuStrip1.ItemClicked += CcContextMenuStrip_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 

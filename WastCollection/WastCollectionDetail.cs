@@ -439,28 +439,22 @@ namespace WastCollection {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void CcContextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-            /*
-             * CcContextMenuStripが開かれたときのSourceControlがCcPdfViewであることを確認する
-             */
-            if(((ContextMenuStrip)sender).SourceControl is not CcPdfView ccPdfView)
+        private void CcContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            if(sender is not ContextMenuStrip contextMenuStrip)
+                return;
+
+            if(contextMenuStrip.SourceControl is not CcPdfView ccPdfView)
                 return;
 
             switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    /*
-                     * ファイルエクスプローラでファイルを選択
-                     */
-                    byte[] bytes = _pdfUtility.ConvertPdfToBytes((ContextMenuStrip)sender);
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(contextMenuStrip);
                     if(bytes is null)
                         return;
+
                     this.ShowPdfToViewer(ccPdfView, bytes);
-                    // ★ MemoryStream を保持
-                    _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(bytes);
-
-                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat("CcPdfView[", (int)ccPdfView.Tag, "]に", "PDF を表示しました。");
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
-
                 case "ToolStripMenuItemPaste": {
                     IDataObject data = Clipboard.GetDataObject();
                     if(data == null) {
@@ -476,17 +470,19 @@ namespace WastCollection {
                             break;
                         }
 
-                        // ★ Bitmap → PDF(byte[]) に変換（PdfUtility 使用）
+                        // ★ Bitmap → PDF(byte[]) に変換
                         byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
                         if(pdfBytes == null || pdfBytes.Length == 0) {
                             MessageBox.Show("画像を PDF に変換できませんでした。");
                             break;
                         }
 
-                        // ★ PdfiumViewer に表示（CcPdfView）
-                        this.ShowPdfToViewer(ccPdfView, pdfBytes);
-                        // ★ MemoryStream を保持
-                        _memoryStream[(int)ccPdfView.Tag] = new MemoryStream(pdfBytes);
+                        // ★ PdfiumViewer に表示
+                        //ccPdfView.MemoryStream?.Dispose();
+                        ccPdfView.MemoryStream = new MemoryStream(pdfBytes);
+
+                        //ccPdfView.Clear();
+                        ccPdfView.SetPdfStream(ccPdfView.MemoryStream);
 
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
                         break;
@@ -497,7 +493,7 @@ namespace WastCollection {
                 }
 
                 case "ToolStripMenuItemDelete":
-                    this.ClearPdfViewer(ccPdfView);
+                    ccPdfView.Clear();
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }
