@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            MenuStripEx1 = new CcControl.CcMenuStrip();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
             ComboBoxExBase = new CcControl.CcComboBox();
@@ -92,7 +92,7 @@
             TabPage3 = new TabPage();
             CcContextMenuStrip1 = new ContextMenuStrip(components);
             ToolStripMenuItemOpen = new ToolStripMenuItem();
-            ToolStripMenuItemClip = new ToolStripMenuItem();
+            ToolStripMenuItemPaste = new ToolStripMenuItem();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExTop.SuspendLayout();
@@ -107,7 +107,7 @@
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
-            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 4);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
             TableLayoutPanelExBase.Controls.Add(CcPanelCenter, 1, 2);
@@ -124,15 +124,15 @@
             TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 3);
-            MenuStripEx1.Location = new Point(0, 0);
-            MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1904, 24);
-            MenuStripEx1.TabIndex = 0;
-            MenuStripEx1.Text = "menuStripEx1";
-            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(CcMenuStrip1, 3);
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // CcStatusStrip1
             // 
@@ -833,7 +833,7 @@
             TabPage2.Location = new Point(4, 24);
             TabPage2.Margin = new Padding(0);
             TabPage2.Name = "TabPage2";
-            TabPage2.Size = new Size(1290, 479);
+            TabPage2.Size = new Size(1290, 519);
             TabPage2.TabIndex = 1;
             TabPage2.Text = "第二回目";
             TabPage2.UseVisualStyleBackColor = true;
@@ -843,14 +843,14 @@
             TabPage3.Location = new Point(4, 24);
             TabPage3.Margin = new Padding(0);
             TabPage3.Name = "TabPage3";
-            TabPage3.Size = new Size(1290, 479);
+            TabPage3.Size = new Size(1290, 519);
             TabPage3.TabIndex = 2;
             TabPage3.Text = "第三回目";
             TabPage3.UseVisualStyleBackColor = true;
             // 
             // CcContextMenuStrip1
             // 
-            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemClip, ToolStripMenuItemDelete });
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
             CcContextMenuStrip1.Name = "ContextMenuStrip1";
             CcContextMenuStrip1.Size = new Size(154, 70);
             CcContextMenuStrip1.ItemClicked += CcContextMenuStrip_ItemClicked;
@@ -861,12 +861,12 @@
             ToolStripMenuItemOpen.Size = new Size(153, 22);
             ToolStripMenuItemOpen.Text = "Open(PDF)";
             // 
-            // ToolStripMenuItemClip
+            // ToolStripMenuItemPaste
             // 
-            ToolStripMenuItemClip.Name = "ToolStripMenuItemClip";
-            ToolStripMenuItemClip.Size = new Size(153, 22);
-            ToolStripMenuItemClip.Text = "Clip(ClipBoard)";
-            ToolStripMenuItemClip.Click += ToolStripMenuItem_Click;
+            ToolStripMenuItemPaste.Name = "ToolStripMenuItemPaste";
+            ToolStripMenuItemPaste.Size = new Size(153, 22);
+            ToolStripMenuItemPaste.Text = "Clip(ClipBoard)";
+            ToolStripMenuItemPaste.Click += ToolStripMenuItem_Click;
             // 
             // ToolStripMenuItemDelete
             // 
@@ -882,7 +882,7 @@
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            MainMenuStrip = MenuStripEx1;
+            MainMenuStrip = CcMenuStrip1;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LegalTwelveItemDetail";
@@ -901,7 +901,7 @@
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel PanelExTop;
         private CcControl.CcButton ButtonExUpdate;
@@ -960,7 +960,7 @@
         private CcControl.CcTextBox TextBoxEx3;
         private CcControl.CcTextBox TextBoxEx2;
         private ContextMenuStrip CcContextMenuStrip1;
-        private ToolStripMenuItem ToolStripMenuItemClip;
+        private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private CcControl.CcComboBox ComboBoxExBase;
         private CcControl.CcDateTime DateTimePickerExBase;

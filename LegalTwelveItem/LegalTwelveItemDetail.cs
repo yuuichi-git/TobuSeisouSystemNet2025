@@ -125,8 +125,8 @@ namespace LegalTwelveItem {
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
                                              "ToolStripMenuItemHelp"};
-            this.MenuStripEx1.ChangeEnable(listString);
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeControl();
 
