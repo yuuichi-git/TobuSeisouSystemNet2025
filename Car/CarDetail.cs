@@ -62,12 +62,14 @@ namespace Car {
             /*
              * Dictionary
              */
-            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
+            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                  // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
+            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                            // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
-            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
+            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster()) {                                                    // 車両形状 _dictionaryShapeMaster[carMasterVo.ShapeCode].Name
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
+            }                                                     
+
             /*
              * InitializeControl
              */
@@ -111,12 +113,13 @@ namespace Car {
             /*
              * Dictionary
              */
-            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                 // 分類
+            foreach(ClassificationMasterVo classificationMasterVo in _classificationMasterDao.SelectAllClassificationMaster())                  // 分類
                 _dictionaryClassificationMaster.Add(classificationMasterVo.Code, classificationMasterVo);
-            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                           // 車両管理地
+            foreach(ManagedSpaceMasterVo managedSpaceVo in _managedSpaceDao.SelectAllManagedSpace())                                            // 車両管理地
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
-            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster())                                                     // 車両形状
+            foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster()) {                                                    // 車両形状 _dictionaryShapeMaster[carMasterVo.ShapeCode].Name
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
+            }
             /*
              * InitializeControl
              */

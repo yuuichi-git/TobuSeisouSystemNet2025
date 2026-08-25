@@ -31,7 +31,6 @@ namespace CcControl {
         private object _parentControl;
         private bool _cursorEnterFlag = false;
         private int _classificationCode = 0;
-
         private int _managedSpaceCode = 0;
         private bool _proxyFlag = false;
         private bool _memoFlag = false;
@@ -170,7 +169,7 @@ namespace CcControl {
             /*
              * 背景画像
              */
-            switch (ClassificationCode) {
+            switch(ClassificationCode) {
                 case 10:
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageY), 0, 0, Width, Height);
                     break;
@@ -182,22 +181,22 @@ namespace CcControl {
                     break;
             }
             // 三郷車庫
-            if (ManagedSpaceCode == 2)
+            if(ManagedSpaceCode == 2)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
             // メモ
-            if (MemoFlag)
+            if(MemoFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
             // 代車
-            if (ProxyFlag)
+            if(ProxyFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
             /*
              * 2025-07-31追加
              * 緊急車両登録
              */
-            if (!EmergencyVehicleFlag)
+            if(!EmergencyVehicleFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageEmergency), 0, 0, Width, Height);
             // カーソル関係
-            if (CursorEnterFlag)
+            if(CursorEnterFlag)
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             /*
              * 文字(車両)を描画
@@ -206,12 +205,18 @@ namespace CcControl {
             StringFormat stringFormat = new();
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.Alignment = StringAlignment.Center;
-            string number = string.Concat(CarMasterVo.RegistrationNumber1, CarMasterVo.RegistrationNumber2, "\r\n",
-                                          CarMasterVo.RegistrationNumber3, CarMasterVo.RegistrationNumber4, "\r\n",
-                                          CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n", " ");
-                                          //CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n",
-                                          //CarMasterVo.CarCode);
-            if (CarMasterVo.ExpirationDate < DateTime.Now.Date) {
+            string number = $"{CarMasterVo.RegistrationNumber1}{CarMasterVo.RegistrationNumber2}\r\n" +
+                            $"{CarMasterVo.RegistrationNumber3}{CarMasterVo.RegistrationNumber4}\r\n" +
+                            $"{CarMasterVo.DisguiseKind1}{(CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ")}\r\n ";
+            //string number = string.Concat(CarMasterVo.RegistrationNumber1, CarMasterVo.RegistrationNumber2, "\r\n",
+            //                              CarMasterVo.RegistrationNumber3, CarMasterVo.RegistrationNumber4, "\r\n",
+            //                              CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n", " ");
+            //CarMasterVo.DisguiseKind1, CarMasterVo.DoorNumber != 0 ? CarMasterVo.DoorNumber : " ", "\r\n",
+            //CarMasterVo.CarCode);
+            /*
+             * 車検日の処理
+             */
+            if(CarMasterVo.ExpirationDate < DateTime.Now.Date) {
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Red), rectangle, stringFormat);
             } else {
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
@@ -223,10 +228,15 @@ namespace CcControl {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
+        //private Image ByteArrayToImage(byte[] arrayByte) {
+        //    ImageConverter imageConverter = new();
+        //    return (Image)imageConverter.ConvertFrom(arrayByte);
+        //}
         private Image ByteArrayToImage(byte[] arrayByte) {
-            ImageConverter imageConverter = new();
-            return (Image)imageConverter.ConvertFrom(arrayByte);
+            using MemoryStream memoryStream = new (arrayByte);
+            return Image.FromStream(memoryStream);
         }
+
 
         /*
          * Event処理
@@ -237,11 +247,11 @@ namespace CcControl {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void _timer_Tick(object sender, EventArgs e) {
-            _clickTime += _timerControl.Interval; // 計測時間を保存しておく
-            if (_clickTime > _doubleClickInterval) { // インターバルを過ぎたら
-                _timerControl.Stop(); // タイマー停止
-                _doubleClickFlag = false; // DoubleClickFlagを初期化
-                _clickTime = 0; // 計測時間を初期化
+            _clickTime += _timerControl.Interval;                                           // 計測時間を保存しておく
+            if(_clickTime > _doubleClickInterval) {                                        // インターバルを過ぎたら
+                _timerControl.Stop();                                                       // タイマー停止
+                _doubleClickFlag = false;                                                   // DoubleClickFlagを初期化
+                _clickTime = 0;                                                             // 計測時間を初期化
             }
         }
         /// <summary>
@@ -274,18 +284,18 @@ namespace CcControl {
             /*
              * Click DoubleClickを判別
              */
-            if (e.Clicks == 1) {
+            if(e.Clicks == 1) {
                 _timerControl.Start(); // タイマーをスタートする
             } else {
-                if (_clickTime < _doubleClickInterval)
+                if(_clickTime < _doubleClickInterval)
                     _doubleClickFlag = true;
             }
 
-            if (!_doubleClickFlag) {
-                if ((ModifierKeys & Keys.Shift) == Keys.Shift) {
+            if(!_doubleClickFlag) {
+                if((ModifierKeys & Keys.Shift) == Keys.Shift) {
                     CarLabel_OnMouseClick.Invoke(this, e);
-                } else if ((ModifierKeys & Keys.Control) == Keys.Control) {
-                    if (this.MemoFlag) {
+                } else if((ModifierKeys & Keys.Control) == Keys.Control) {
+                    if(this.MemoFlag) {
                         _toolTip.Show(this.Memo, this, 4, 4);
                         return;
                     }
@@ -354,7 +364,7 @@ namespace CcControl {
             set => this._parentControl = value;
         }
         /// <summary>
-        /// 
+        /// CarMasterVoを
         /// </summary>
         public CarMasterVo CarMasterVo {
             get => this._carMasterVo;
@@ -425,7 +435,7 @@ namespace CcControl {
         /// <param name="toolStripMenuItemNames">Nullの場合は全て無効にする</param>
         public void SetToolStripMenuItemEnables(string[]? toolStripMenuItemNames) {
             // null の場合は全て false にする
-            if (toolStripMenuItemNames == null) {
+            if(toolStripMenuItemNames == null) {
                 SetEnableRecursive(contextMenuStrip.Items, Array.Empty<string>());
                 return;
             }
@@ -436,11 +446,11 @@ namespace CcControl {
         private void SetEnableRecursive(ToolStripItemCollection items, string[] enableNames) {
             int length = items.Count;
 
-            for (int i = 0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 ToolStripItem item = items[i];
                 ToolStripMenuItem? menuItem = item as ToolStripMenuItem;
 
-                if (menuItem == null) {
+                if(menuItem == null) {
                     continue;
                 }
 
@@ -450,7 +460,7 @@ namespace CcControl {
                 menuItem.Enabled = enable;
 
                 // 子メニューがある場合は再帰処理
-                if (menuItem.HasDropDownItems) {
+                if(menuItem.HasDropDownItems) {
                     SetEnableRecursive(menuItem.DropDownItems, enableNames);
                 }
             }

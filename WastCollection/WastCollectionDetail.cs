@@ -397,10 +397,10 @@ namespace WastCollection {
             wasteCollectionHeadVo.WorkSiteAddress = this.CcTextBoxWorkSiteAddress.Text;
             wasteCollectionHeadVo.PickupDate = this.CcDateTimePickupDate.GetValue();
             wasteCollectionHeadVo.Remarks = this.CcTextBoxRemarks.Text;
-            wasteCollectionHeadVo.MainPicture = _memoryStream[0]?.ToArray() ?? Array.Empty<byte>();                             // MemoryStreamがnullの場合は空のbyte[]をセットする
-            wasteCollectionHeadVo.SubPicture = _memoryStream[1]?.ToArray() ?? Array.Empty<byte>();                              // MemoryStreamがnullの場合は空のbyte[]をセットする
-            wasteCollectionHeadVo.AdditionalPicture1 = _memoryStream[2]?.ToArray() ?? Array.Empty<byte>();                      // MemoryStreamがnullの場合は空のbyte[]をセットする
-            wasteCollectionHeadVo.AdditionalPicture2 = _memoryStream[3]?.ToArray() ?? Array.Empty<byte>();                      // MemoryStreamがnullの場合は空のbyte[]をセットする
+            wasteCollectionHeadVo.MainPicture = _ccPdfViews[0].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.SubPicture = _ccPdfViews[1].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.AdditionalPicture1 = _ccPdfViews[2].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+            wasteCollectionHeadVo.AdditionalPicture2 = _ccPdfViews[3].MemoryStream?.ToArray() ?? Array.Empty<byte>();
             //wasteCollectionHeadVo.InsertPcName = ;
             //wasteCollectionHeadVo.InsertYmdHms = ;
             //wasteCollectionHeadVo.UpdatePcName = ;

@@ -13,6 +13,7 @@ using Vo;
 
 namespace StatusOfResidence {
     public partial class StatusOfResidenceList : Form {
+        private DateTime _defaultDateTime = new(1900, 1, 1);
         private readonly ScreenForm _screenForm = new();
         /*
          * Dao
@@ -85,20 +86,15 @@ namespace StatusOfResidence {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemEdit",
-                "ToolStripMenuItemInsertNewRecord",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemEdit",
+                                             "ToolStripMenuItemInsertNewRecord",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeSheetView(this.SheetViewList);
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -107,7 +103,7 @@ namespace StatusOfResidence {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":
                     StatusOfResidenceDetail statusOfResidenceDetail = new(_connectionVo);
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), statusOfResidenceDetail);
@@ -125,7 +121,7 @@ namespace StatusOfResidence {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonEx_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     this.PutSheetViewList(_statusOfResidenceMasterDao.SelectAllStatusOfResidenceMaster());
                     break;
@@ -146,9 +142,9 @@ namespace StatusOfResidence {
             /*
              * Rowを削除する
              */
-            if (this.SheetViewList.Rows.Count > 0)
+            if(this.SheetViewList.Rows.Count > 0)
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
-            foreach (StatusOfResidenceMasterVo statusOfResidenceMasterVo in listStatusOfResidenceMasterVo.Where(x => this.CheckBoxExRetirementFlag.Checked == true || x.RetirementFlag == false)
+            foreach(StatusOfResidenceMasterVo statusOfResidenceMasterVo in listStatusOfResidenceMasterVo.Where(x => this.CheckBoxExRetirementFlag.Checked == true || x.RetirementFlag == false)
                                                                                                          .OrderBy(x => x.DeadlineDate)) {
                 this.SheetViewList.Rows.Add(rowCount, 1);
                 this.SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                          // Rowヘッダ
@@ -162,7 +158,11 @@ namespace StatusOfResidence {
                 this.SheetViewList.Cells[rowCount, _colAddress].Text = statusOfResidenceMasterVo.Address;                           // 住居地
                 this.SheetViewList.Cells[rowCount, _colStatusOfResidence].Text = statusOfResidenceMasterVo.StatusOfResidence;       // 在留資格
                 this.SheetViewList.Cells[rowCount, _colWorkLimit].Text = statusOfResidenceMasterVo.WorkLimit;                       // 就労制限の有無
-                this.SheetViewList.Cells[rowCount, _colPeriodDate].Value = statusOfResidenceMasterVo.PeriodDate;                    // 在留期間
+                if(statusOfResidenceMasterVo.PeriodDate.Date == _defaultDateTime) {
+                    this.SheetViewList.Cells[rowCount, _colPeriodDate].Text = string.Empty;                                         // 在留期間
+                } else {
+                    this.SheetViewList.Cells[rowCount, _colPeriodDate].Value = statusOfResidenceMasterVo.PeriodDate;
+                }
                 this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;                // 有効期限
                 rowCount++;
             }
@@ -183,7 +183,7 @@ namespace StatusOfResidence {
             /*
              * ヘッダーのDoubleClickを回避
              */
-            if (e.ColumnHeader)
+            if(e.ColumnHeader)
                 return;
             /*
              * StatusOfResidenceDetailを表示する
@@ -224,7 +224,7 @@ namespace StatusOfResidence {
         /// <param name="e"></param>
         private void StatusOfResidenceList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

@@ -24,155 +24,162 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubstituteSheet));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.PanelExUp = new CcControl.CcPanel();
-            this.ButtonExPrint2 = new CcControl.CcButton();
-            this.ButtonExPrint1 = new CcControl.CcButton();
-            this.LabelExFaxNumber = new CcControl.CcLabel();
-            this.labelEx1 = new CcControl.CcLabel();
-            this.ComboBoxExPrinterName = new CcControl.CcComboBox();
-            this.SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            this.SheetView1 = this.SpreadSubstitute.GetSheet(0);
-            this.SheetView2 = this.SpreadSubstitute.GetSheet(1);
-            this.SheetView3 = this.SpreadSubstitute.GetSheet(2);
-            this.TableLayoutPanelExBase.SuspendLayout();
-            this.PanelExUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadSubstitute).BeginInit();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            PanelExUp = new CcControl.CcPanel();
+            ButtonExPrint2 = new CcControl.CcButton();
+            ButtonExPrint1 = new CcControl.CcButton();
+            LabelExFaxNumber = new CcControl.CcLabel();
+            labelEx1 = new CcControl.CcLabel();
+            ComboBoxExPrinterName = new CcControl.CcComboBox();
+            SpreadSubstitute = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SheetView1 = SpreadSubstitute.GetSheet(0);
+            SheetView2 = SpreadSubstitute.GetSheet(1);
+            SheetView3 = SpreadSubstitute.GetSheet(2);
+            TableLayoutPanelExBase.SuspendLayout();
+            PanelExUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadSubstitute).BeginInit();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 3);
-            this.TableLayoutPanelExBase.Controls.Add(this.PanelExUp, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.SpreadSubstitute, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 4;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(1564, 1041);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 3;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(SpreadSubstitute, 1, 2);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 4;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(1904, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(1564, 24);
-            this.MenuStripEx1.TabIndex = 0;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 3);
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(1904, 24);
+            MenuStripEx1.TabIndex = 0;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 1019);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(1564, 22);
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 3);
+            StatusStripEx1.Location = new Point(0, 1019);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(1904, 22);
+            StatusStripEx1.SizingGrip = false;
+            StatusStripEx1.TabIndex = 1;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
-            this.PanelExUp.Controls.Add(this.ButtonExPrint2);
-            this.PanelExUp.Controls.Add(this.ButtonExPrint1);
-            this.PanelExUp.Controls.Add(this.LabelExFaxNumber);
-            this.PanelExUp.Controls.Add(this.labelEx1);
-            this.PanelExUp.Controls.Add(this.ComboBoxExPrinterName);
-            this.PanelExUp.Dock = DockStyle.Fill;
-            this.PanelExUp.Location = new Point(3, 27);
-            this.PanelExUp.Name = "PanelExUp";
-            this.PanelExUp.Size = new Size(1558, 54);
-            this.PanelExUp.TabIndex = 2;
+            TableLayoutPanelExBase.SetColumnSpan(PanelExUp, 3);
+            PanelExUp.Controls.Add(ButtonExPrint2);
+            PanelExUp.Controls.Add(ButtonExPrint1);
+            PanelExUp.Controls.Add(LabelExFaxNumber);
+            PanelExUp.Controls.Add(labelEx1);
+            PanelExUp.Controls.Add(ComboBoxExPrinterName);
+            PanelExUp.Dock = DockStyle.Fill;
+            PanelExUp.Location = new Point(3, 27);
+            PanelExUp.Name = "PanelExUp";
+            PanelExUp.Size = new Size(1898, 54);
+            PanelExUp.TabIndex = 2;
             // 
             // ButtonExPrint2
             // 
-            this.ButtonExPrint2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExPrint2.Location = new Point(1348, 12);
-            this.ButtonExPrint2.Name = "ButtonExPrint2";
-            this.ButtonExPrint2.SetTextDirectionVertical = "";
-            this.ButtonExPrint2.Size = new Size(172, 32);
-            this.ButtonExPrint2.TabIndex = 4;
-            this.ButtonExPrint2.Text = "FAX(文京支部宛て)";
-            this.ButtonExPrint2.UseVisualStyleBackColor = true;
-            this.ButtonExPrint2.Click += this.ButtonExPrint2_Click;
+            ButtonExPrint2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExPrint2.ForeColor = SystemColors.ControlText;
+            ButtonExPrint2.Location = new Point(1688, 12);
+            ButtonExPrint2.Name = "ButtonExPrint2";
+            ButtonExPrint2.SetTextDirectionVertical = "";
+            ButtonExPrint2.Size = new Size(172, 32);
+            ButtonExPrint2.TabIndex = 4;
+            ButtonExPrint2.Text = "FAX(文京支部宛て)";
+            ButtonExPrint2.UseVisualStyleBackColor = true;
+            ButtonExPrint2.Click += ButtonExPrint2_Click;
             // 
             // ButtonExPrint1
             // 
-            this.ButtonExPrint1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.ButtonExPrint1.Location = new Point(1168, 12);
-            this.ButtonExPrint1.Name = "ButtonExPrint1";
-            this.ButtonExPrint1.SetTextDirectionVertical = "";
-            this.ButtonExPrint1.Size = new Size(172, 32);
-            this.ButtonExPrint1.TabIndex = 3;
-            this.ButtonExPrint1.Text = "印刷する";
-            this.ButtonExPrint1.UseVisualStyleBackColor = true;
-            this.ButtonExPrint1.Click += this.ButtonExPrint1_Click;
+            ButtonExPrint1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ButtonExPrint1.ForeColor = SystemColors.ControlText;
+            ButtonExPrint1.Location = new Point(1508, 12);
+            ButtonExPrint1.Name = "ButtonExPrint1";
+            ButtonExPrint1.SetTextDirectionVertical = "";
+            ButtonExPrint1.Size = new Size(172, 32);
+            ButtonExPrint1.TabIndex = 3;
+            ButtonExPrint1.Text = "印刷する";
+            ButtonExPrint1.UseVisualStyleBackColor = true;
+            ButtonExPrint1.Click += ButtonExPrint1_Click;
             // 
             // LabelExFaxNumber
             // 
-            this.LabelExFaxNumber.BorderStyle = BorderStyle.FixedSingle;
-            this.LabelExFaxNumber.Font = new Font("Yu Gothic UI", 11.25F);
-            this.LabelExFaxNumber.Location = new Point(552, 4);
-            this.LabelExFaxNumber.Name = "LabelExFaxNumber";
-            this.LabelExFaxNumber.Size = new Size(428, 44);
-            this.LabelExFaxNumber.TabIndex = 2;
-            this.LabelExFaxNumber.Text = "足立清掃事務所\r\nFAX 03-8888-8888";
-            this.LabelExFaxNumber.TextAlign = ContentAlignment.MiddleCenter;
+            LabelExFaxNumber.BorderStyle = BorderStyle.FixedSingle;
+            LabelExFaxNumber.Font = new Font("Yu Gothic UI", 11.25F);
+            LabelExFaxNumber.Location = new Point(740, 4);
+            LabelExFaxNumber.Name = "LabelExFaxNumber";
+            LabelExFaxNumber.Size = new Size(428, 44);
+            LabelExFaxNumber.TabIndex = 2;
+            LabelExFaxNumber.Text = "足立清掃事務所\r\nFAX 03-8888-8888";
+            LabelExFaxNumber.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelEx1
             // 
-            this.labelEx1.AutoSize = true;
-            this.labelEx1.Location = new Point(28, 20);
-            this.labelEx1.Name = "labelEx1";
-            this.labelEx1.Size = new Size(43, 15);
-            this.labelEx1.TabIndex = 1;
-            this.labelEx1.Text = "出力先";
+            labelEx1.AutoSize = true;
+            labelEx1.Location = new Point(28, 20);
+            labelEx1.Name = "labelEx1";
+            labelEx1.Size = new Size(43, 15);
+            labelEx1.TabIndex = 1;
+            labelEx1.Text = "出力先";
             // 
             // ComboBoxExPrinterName
             // 
-            this.ComboBoxExPrinterName.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxExPrinterName.FormattingEnabled = true;
-            this.ComboBoxExPrinterName.Location = new Point(76, 16);
-            this.ComboBoxExPrinterName.Name = "ComboBoxExPrinterName";
-            this.ComboBoxExPrinterName.Size = new Size(212, 23);
-            this.ComboBoxExPrinterName.TabIndex = 0;
+            ComboBoxExPrinterName.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxExPrinterName.FormattingEnabled = true;
+            ComboBoxExPrinterName.Location = new Point(76, 16);
+            ComboBoxExPrinterName.Name = "ComboBoxExPrinterName";
+            ComboBoxExPrinterName.Size = new Size(212, 23);
+            ComboBoxExPrinterName.TabIndex = 0;
             // 
             // SpreadSubstitute
             // 
-            this.SpreadSubstitute.AccessibleDescription = "SpreadSubstitute, 葛飾, Row 0, Column 0";
-            this.SpreadSubstitute.Dock = DockStyle.Fill;
-            this.SpreadSubstitute.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            this.SpreadSubstitute.Location = new Point(3, 87);
-            this.SpreadSubstitute.Name = "SpreadSubstitute";
-            this.SpreadSubstitute.Size = new Size(1558, 927);
-            this.SpreadSubstitute.TabIndex = 3;
+            SpreadSubstitute.AccessibleDescription = "SpreadSubstitute, 共通, Row 0, Column 0";
+            SpreadSubstitute.Dock = DockStyle.Fill;
+            SpreadSubstitute.Font = new Font("ＭＳ Ｐゴシック", 11F);
+            SpreadSubstitute.Location = new Point(173, 87);
+            SpreadSubstitute.Name = "SpreadSubstitute";
+            SpreadSubstitute.Size = new Size(1558, 927);
+            SpreadSubstitute.TabIndex = 3;
             // 
             // SubstituteSheet
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1564, 1041);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "SubstituteSheet";
-            this.Text = "SubstituteSheet";
-            this.FormClosing += this.SubstituteSheet_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            this.PanelExUp.ResumeLayout(false);
-            this.PanelExUp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.SpreadSubstitute).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1904, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "SubstituteSheet";
+            Text = "SubstituteSheet";
+            FormClosing += SubstituteSheet_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            PanelExUp.ResumeLayout(false);
+            PanelExUp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SpreadSubstitute).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -186,9 +193,9 @@
         private CcControl.CcComboBox ComboBoxExPrinterName;
         private CcControl.CcLabel LabelExFaxNumber;
         private CcControl.CcButton ButtonExPrint1;
+        private CcControl.CcButton ButtonExPrint2;
         private FarPoint.Win.Spread.SheetView SheetView1;
         private FarPoint.Win.Spread.SheetView SheetView2;
         private FarPoint.Win.Spread.SheetView SheetView3;
-        private CcControl.CcButton ButtonExPrint2;
     }
 }

@@ -150,8 +150,8 @@ namespace Substitute {
                 case 1310103: // 千代田紙１
                     _cleanOfficeName = "　日盛運輸　様";
                     _officerStaffName = "今村　修";
-                    _cleanOfficeFaxText = string.Concat("千代田区支部", "\r\n", "ＦＡＸ ０３－３６７８－２６８８");
-                    Clipboard.SetText("0336782688");
+                    _cleanOfficeFaxText = string.Concat("千代田区支部", "\r\n", "ＦＡＸ ０３－５６３６－５２３２");
+                    Clipboard.SetText("0356365232");
                     OutputSheetViewKYOTUU(SheetView1, _setControl);
                     this.ButtonExPrint1.Enabled = true;     // PrintButton1
                     this.ButtonExPrint2.Enabled = false;    // PrintButton2

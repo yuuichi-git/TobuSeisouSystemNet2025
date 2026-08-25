@@ -25,21 +25,22 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarList));
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            MenuStripEx1 = new CcControl.CcMenuStrip();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
-            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
+            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
             ToolStripMenuItemRemove = new ToolStripMenuItem();
             SheetViewList = SpreadList.GetSheet(0);
             SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = SpreadList.GetSheet(1);
-            PanelExUp = new CcControl.CcPanel();
+            SheetViewList緊急通行車両 = SpreadList.GetSheet(2);
+            CcPanelTop = new CcControl.CcPanel();
             ButtonExUpdate = new CcControl.CcButton();
             CheckBoxExDeleteFlag = new CcControl.CcCheckBox();
             TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
-            ContextMenuStripEx1.SuspendLayout();
-            PanelExUp.SuspendLayout();
+            CcContextMenuStrip1.SuspendLayout();
+            CcPanelTop.SuspendLayout();
             SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -47,10 +48,10 @@
             TableLayoutPanelExBase.ColumnCount = 1;
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(SpreadList, 0, 2);
-            TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(CcPanelTop, 0, 1);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -62,14 +63,14 @@
             TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            MenuStripEx1.Location = new Point(0, 0);
-            MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1904, 24);
-            MenuStripEx1.TabIndex = 0;
-            MenuStripEx1.Text = "menuStripEx1";
-            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // CcStatusStrip1
             // 
@@ -81,22 +82,23 @@
             // 
             // SpreadList
             // 
-            SpreadList.AccessibleDescription = "SpreadList, 車両台帳, Row 0, Column 0";
-            SpreadList.ContextMenuStrip = ContextMenuStripEx1;
+            SpreadList.AccessibleDescription = "SpreadList, 緊急通行車両, Row 0, Column 0";
+            SpreadList.ContextMenuStrip = CcContextMenuStrip1;
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             SpreadList.Location = new Point(3, 87);
             SpreadList.Name = "SpreadList";
             SpreadList.Size = new Size(1898, 927);
             SpreadList.TabIndex = 2;
+            SpreadList.SheetTabClick += SpreadList_SheetTabClick;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
-            // ContextMenuStripEx1
+            // CcContextMenuStrip1
             // 
-            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemDelete, ToolStripMenuItemRemove });
-            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            ContextMenuStripEx1.Size = new Size(178, 48);
-            ContextMenuStripEx1.Opening += ContextMenuStripEx1_Opening;
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemDelete, ToolStripMenuItemRemove });
+            CcContextMenuStrip1.Name = "ContextMenuStripEx1";
+            CcContextMenuStrip1.Size = new Size(178, 48);
+            CcContextMenuStrip1.Opening += ContextMenuStripEx1_Opening;
             // 
             // ToolStripMenuItemDelete
             // 
@@ -112,15 +114,15 @@
             ToolStripMenuItemRemove.Text = "このレコードを戻す";
             ToolStripMenuItemRemove.Click += ToolStripMenuItem_Click;
             // 
-            // PanelExUp
+            // CcPanelTop
             // 
-            PanelExUp.Controls.Add(ButtonExUpdate);
-            PanelExUp.Controls.Add(CheckBoxExDeleteFlag);
-            PanelExUp.Dock = DockStyle.Fill;
-            PanelExUp.Location = new Point(3, 27);
-            PanelExUp.Name = "PanelExUp";
-            PanelExUp.Size = new Size(1898, 54);
-            PanelExUp.TabIndex = 3;
+            CcPanelTop.Controls.Add(ButtonExUpdate);
+            CcPanelTop.Controls.Add(CheckBoxExDeleteFlag);
+            CcPanelTop.Dock = DockStyle.Fill;
+            CcPanelTop.Location = new Point(3, 27);
+            CcPanelTop.Name = "CcPanelTop";
+            CcPanelTop.Size = new Size(1898, 54);
+            CcPanelTop.TabIndex = 3;
             // 
             // ButtonExUpdate
             // 
@@ -133,7 +135,7 @@
             ButtonExUpdate.TabIndex = 1;
             ButtonExUpdate.Text = "最　新　化";
             ButtonExUpdate.UseVisualStyleBackColor = true;
-            ButtonExUpdate.Click += ButtonExUpdate_Click;
+            ButtonExUpdate.Click += CcButtonUpdate_Click;
             // 
             // CheckBoxExDeleteFlag
             // 
@@ -151,32 +153,33 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
-            MainMenuStrip = MenuStripEx1;
+            MainMenuStrip = CcMenuStrip1;
             Name = "CarList";
             Text = "CarList";
             FormClosing += CarList_FormClosing;
             TableLayoutPanelExBase.ResumeLayout(false);
             TableLayoutPanelExBase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
-            ContextMenuStripEx1.ResumeLayout(false);
-            PanelExUp.ResumeLayout(false);
-            PanelExUp.PerformLayout();
+            CcContextMenuStrip1.ResumeLayout(false);
+            CcPanelTop.ResumeLayout(false);
+            CcPanelTop.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip CcStatusStrip1;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private CcControl.CcPanel PanelExUp;
+        private CcControl.CcPanel CcPanelTop;
         private CcControl.CcCheckBox CheckBoxExDeleteFlag;
         private CcControl.CcButton ButtonExUpdate;
-        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private ToolStripMenuItem ToolStripMenuItemRemove;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
+        private FarPoint.Win.Spread.SheetView SheetViewList緊急通行車両;
     }
 }
