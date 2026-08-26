@@ -21,7 +21,7 @@ namespace Toukanpo {
         /// コンストラクタ
         /// </summary>
         /// <param name="connectionVo"></param>
-        public ToukanpoSpeedSurvey(ConnectionVo connectionVo, Screen screen) {
+        public ToukanpoSpeedSurvey(ConnectionVo connectionVo) {
             /*
              * Dao
              */

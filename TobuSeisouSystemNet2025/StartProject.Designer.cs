@@ -938,7 +938,7 @@
             labelEx15.Name = "labelEx15";
             labelEx15.Size = new Size(344, 20);
             labelEx15.TabIndex = 18;
-            labelEx15.Tag = "CollectionWeightChiyoda";
+            labelEx15.Tag = "CollectionStaffsChiyoda";
             labelEx15.Text = "千代田区配車集計表";
             labelEx15.TextAlign = ContentAlignment.MiddleLeft;
             labelEx15.Click += Label_SqlServer_Click;
@@ -1423,7 +1423,7 @@
             ccLabel5.Name = "ccLabel5";
             ccLabel5.Size = new Size(344, 20);
             ccLabel5.TabIndex = 15;
-            ccLabel5.Tag = "TabTransportBureauAudit";
+            ccLabel5.Tag = "ContinuousDrivingTimePaper";
             ccLabel5.Text = "連続運転時間管理表";
             ccLabel5.TextAlign = ContentAlignment.MiddleLeft;
             ccLabel5.Click += Label_SqlServer_Click;

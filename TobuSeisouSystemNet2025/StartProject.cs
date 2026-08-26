@@ -264,7 +264,7 @@ namespace TobuSeisouSystemNet2025 {
         private CarWorkingDays carWorkingDays = null;
         private EmploymentAgreementList employmentAgreementList = null;
         private StaffDestination staffDestination = null;
-        private CollectionStaffsChiyoda collectionWeightChiyoda = null;
+        private CollectionStaffsChiyoda collectionStaffsChiyoda = null;
         private CollectionStaffsTaitou collectionStaffsTaitou = null;
         private CollectionWeightTaitouList collectionWeightTaitouList = null;
         private StaffWorkingHours staffWorkingHours = null;
@@ -300,246 +300,89 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
                     switch((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
-                            if(vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
-                                _connectionVo.ConnectionLocation = "本社";
-                                vehicleDispatchBoard = new(_connectionVo);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
-                                vehicleDispatchBoard.Show();
-                            } else {
-                                MessageBox.Show("このプログラム（VehicleDispatchBoard）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            _connectionVo.ConnectionLocation = "本社";
+                            this.ShowSingleInstanceForm(ref vehicleDispatchBoard, () => new VehicleDispatchBoard(_connectionVo));
                             break;
                         case "VehicleDispatchBoardMisato":                                                                                      // 配車パネル（三郷車庫専用）
-                            if(vehicleDispatchBoard is null || vehicleDispatchBoard.IsDisposed) {
-                                _connectionVo.ConnectionLocation = "三郷車庫";
-                                vehicleDispatchBoard = new(_connectionVo);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
-                                vehicleDispatchBoard.Show();
-                            } else {
-                                MessageBox.Show("このプログラム（VehicleDispatchBoard）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            _connectionVo.ConnectionLocation = "三郷車庫";
+                            this.ShowSingleInstanceForm(ref vehicleDispatchBoard, () => new VehicleDispatchBoard(_connectionVo));
                             break;
                         case "FirstRollColl":                                                                                                   // 配車表
                             FirstRollColl firstRollColl = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
                             firstRollColl.Show();
                             break;
-                        case "StaffList":                                                                                                       // 従事者台帳
-                            if(staffList is null || staffList.IsDisposed) {
-                                staffList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffList);
-                                staffList.Show();
-                            } else {
-                                MessageBox.Show("このプログラム（StaffList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        case "StaffList":                                                                                                       // 従業員台帳
+                            this.ShowSingleInstanceForm(ref staffList, () => new StaffList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "CarList":                                                                                                         // 車両台帳
-                            if(carList is null || carList.IsDisposed) {
-                                carList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carList);
-                                carList.Show();
-                            } else {
-                                MessageBox.Show("このプログラム（CarList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref carList, () => new CarList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "CarWorkingDays":                                                                                                  // 車両稼働一覧
-                            if(carWorkingDays is null || carWorkingDays.IsDisposed) {
-                                carWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, carWorkingDays);
-                                carWorkingDays.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（CarWorkingDays）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref carWorkingDays, () => new CarWorkingDays(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "EmploymentAgreementList":                                                                                         // 契約書・誓約書等
-                            if(employmentAgreementList is null || employmentAgreementList.IsDisposed) {
-                                employmentAgreementList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, employmentAgreementList);
-                                employmentAgreementList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（EmploymentAgreementList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref employmentAgreementList, () => new EmploymentAgreementList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "StaffDestination":
-                            if(staffDestination is null || staffDestination.IsDisposed) {
-                                staffDestination = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffDestination);
-                                staffDestination.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（StaffDestination）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref staffDestination, () => new StaffDestination(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
-                        case "CollectionWeightChiyoda":                                                                                         // 千代田配車集計表
-                            if(collectionWeightChiyoda is null || collectionWeightChiyoda.IsDisposed) {
-                                collectionWeightChiyoda = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightChiyoda);
-                                collectionWeightChiyoda.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（CollectionWeightChiyoda）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        case "CollectionStaffsChiyoda":                                                                                         // 千代田配車集計表
+                            this.ShowSingleInstanceForm(ref collectionStaffsChiyoda, () => new CollectionStaffsChiyoda(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "CollectionStaffsTaitou":                                                                                          // 台東古紙配車人数集計表
-                            if(collectionStaffsTaitou is null || collectionStaffsTaitou.IsDisposed) {
-                                collectionStaffsTaitou = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionStaffsTaitou);
-                                collectionStaffsTaitou.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（CollectionStaffsTaitou）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref collectionStaffsTaitou, () => new CollectionStaffsTaitou(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "CollectionWeightTaitouList":                                                                                      // 台東古紙収集量集計表
-                            if(collectionWeightTaitouList is null || collectionWeightTaitouList.IsDisposed) {
-                                collectionWeightTaitouList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, collectionWeightTaitouList);
-                                collectionWeightTaitouList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（CollectionWeightTaitouList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref collectionWeightTaitouList, () => new CollectionWeightTaitouList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "StaffWorkingHours":                                                                                               // 個別労働時間集計表
-                            if(staffWorkingHours is null || staffWorkingHours.IsDisposed) {
-                                staffWorkingHours = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingHours);
-                                staffWorkingHours.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（StaffWorkingHours）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref staffWorkingHours, () => new StaffWorkingHours(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "StaffWorkingDays":                                                                                                // 個別労働時間集計表
-                            if(staffWorkingDays is null || staffWorkingDays.IsDisposed) {
-                                staffWorkingDays = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, staffWorkingDays);
-                                staffWorkingDays.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（StaffWorkingDays）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref staffWorkingDays, () => new StaffWorkingDays(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "LicenseList":                                                                                                     // 免許証台帳
-                            if(licenseList is null || licenseList.IsDisposed) {
-                                licenseList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, licenseList);
-                                licenseList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（LicenseList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref licenseList, () => new LicenseList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "AccountingParttimeList":                                                                                          // アルバイト出勤状況
-                            if(accountingParttimeList is null || accountingParttimeList.IsDisposed) {
-                                accountingParttimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingParttimeList);
-                                accountingParttimeList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（AccountingParttimeList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref accountingParttimeList, () => new AccountingParttimeList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "AccountingFulltime":                                                                                              // 全従事者出勤状況
-                            if(accountingFulltimeList is null || accountingFulltimeList.IsDisposed) {
-                                accountingFulltimeList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accountingFulltimeList);
-                                accountingFulltimeList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（AccountingFulltimeList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref accountingFulltimeList, () => new AccountingFulltimeList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "StatusOfResidenceList":                                                                                           // 在留カード
-                            if(statusOfResidenceList is null || statusOfResidenceList.IsDisposed) {
-                                statusOfResidenceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, statusOfResidenceList);
-                                statusOfResidenceList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（StatusOfResidenceList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref statusOfResidenceList, () => new StatusOfResidenceList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
-                        case "PeakSeasonAllowanceList":
-                            if(peakSeasonAllowanceList is null || peakSeasonAllowanceList.IsDisposed) {
-                                peakSeasonAllowanceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, peakSeasonAllowanceList);
-                                peakSeasonAllowanceList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（StatusOfResidenceList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        case "PeakSeasonAllowanceList":                                                                                         // 繁忙期割り増し費 対象者集計表
+                            this.ShowSingleInstanceForm(ref peakSeasonAllowanceList, () => new PeakSeasonAllowanceList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "RollCallRecordSheet":                                                                                             // 点呼記録簿
-                            if(rollCallRecordSheet is null || rollCallRecordSheet.IsDisposed) {
-                                rollCallRecordSheet = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, rollCallRecordSheet);
-                                rollCallRecordSheet.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（RollCallRecordSheet）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref rollCallRecordSheet, () => new RollCallRecordSheet(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "LegalTwelveItemList":                                                                                             // 法定１２項目の講習
-                            if(legalTwelveItemList is null || legalTwelveItemList.IsDisposed) {
-                                legalTwelveItemList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, legalTwelveItemList);
-                                legalTwelveItemList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（LegalTwelveItemList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref legalTwelveItemList, () => new LegalTwelveItemList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "CertificationList":                                                                                               // 有資格者証一覧
-                            if(certificationList is null || certificationList.IsDisposed) {
-                                certificationList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, certificationList);
-                                certificationList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（CertificationList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref certificationList, () => new CertificationList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "AccidentList":                                                                                                    // 事故記録簿
-                            if(accidentList is null || accidentList.IsDisposed) {
-                                accidentList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, accidentList);
-                                accidentList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（AccidentList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref accidentList, () => new AccidentList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "WasteList":                                                                                                       // 廃棄物顧客リスト
-                            if(wasteList is null || wasteList.IsDisposed) {
-                                wasteList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wasteList);
-                                wasteList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（WasteList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref wasteList, () => new WasteList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "WastCollectionList":                                                                                               // 廃棄物スポット見積リスト
-                            if(wastCollectionList is null || wastCollectionList.IsDisposed) {
-                                wastCollectionList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, wastCollectionList);
-                                wastCollectionList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（WastCollectionList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref wastCollectionList, () => new WastCollectionList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "SetList":                                                                                                         // 配車先マスター
-                            if(setList is null || setList.IsDisposed) {
-                                setList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, setList);
-                                setList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（SetList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref setList, () => new SetList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "VoluntaryAutomobileInsuranceList":                                                                                // 通勤用自動車任意保険加入状況一覧
-                            if(voluntaryAutomobileInsuranceList is null || voluntaryAutomobileInsuranceList.IsDisposed) {
-                                voluntaryAutomobileInsuranceList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, voluntaryAutomobileInsuranceList);
-                                voluntaryAutomobileInsuranceList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（VoluntaryAutomobileInsuranceList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref voluntaryAutomobileInsuranceList, () => new VoluntaryAutomobileInsuranceList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
-
-                        case "TabTransportBureauAudit":
-                            if(continuousDrivingTimePaper is null || continuousDrivingTimePaper.IsDisposed) {
-                                continuousDrivingTimePaper = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, continuousDrivingTimePaper);
-                                continuousDrivingTimePaper.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（TabTransportBureauAudit）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                        case "ContinuousDrivingTimePaper":                                                                                      // 連続運転時間（陸運局監査）
+                            this.ShowSingleInstanceForm(ref continuousDrivingTimePaper, () => new ContinuousDrivingTimePaper(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         /*
                          * --------------------------------------------------
@@ -597,31 +440,13 @@ namespace TobuSeisouSystemNet2025 {
                          * --------------------------------------------------
                          */
                         case "ToukanpoList":                                                                                                    // 東環保カード
-                            if(toukanpoList is null || toukanpoList.IsDisposed) {
-                                toukanpoList = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoList);
-                                toukanpoList.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（ToukanpoList）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref toukanpoList, () => new ToukanpoList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                         case "ToukanpoSpeedSurvey":                                                                                             // 東環保速度超過表
-                            if(toukanpoSpeedSurvey is null || toukanpoSpeedSurvey.IsDisposed) {
-                                toukanpoSpeedSurvey = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, toukanpoSpeedSurvey);
-                                toukanpoSpeedSurvey.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（ToukanpoSpeedSurvey）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref toukanpoSpeedSurvey, () => new ToukanpoSpeedSurvey(_connectionVo));
                             break;
                         case "WorkPerformanceSurveyForm":                                                                                       // 東環保作業実績調査表
-                            if(workPerformanceSurveyForm is null || workPerformanceSurveyForm.IsDisposed) {
-                                workPerformanceSurveyForm = new(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue);
-                                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, workPerformanceSurveyForm);
-                                workPerformanceSurveyForm.Show(this);
-                            } else {
-                                MessageBox.Show("このプログラム（WorkPerformanceSurveyForm）は、既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                            this.ShowSingleInstanceForm(ref workPerformanceSurveyForm, () => new WorkPerformanceSurveyForm(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
                     }
                     break;
@@ -636,6 +461,37 @@ namespace TobuSeisouSystemNet2025 {
                     break;
                 case ConnectionState.Broken:                                                                                                    //データ ソースへの接続が断絶しています。
                     break;
+            }
+        }
+
+        /// <summary>
+        /// フォームの多重起動を防止し、必要に応じて新規作成して表示する共通メソッド。
+        /// ・formInstance が null または破棄済み(IsDisposed) の場合のみ新規生成する。
+        /// ・既に起動中の場合は警告メッセージを表示する。
+        /// ・全フォームで同じロジックを使うため、StartProject のコード量を大幅削減できる。
+        /// </summary>
+        /// <typeparam name="T">対象となるフォームの型（Form を継承していること）</typeparam>
+        /// <param name="formInstance">フォームのインスタンスを保持するフィールド（ref で渡す）</param>
+        /// <param name="creator">フォームを生成するためのラムダ式（new 〇〇Form(...) を渡す）</param>
+        /// <param name="programName">メッセージ表示用のプログラム名</param>
+        private void ShowSingleInstanceForm<T>(ref T formInstance, Func<T> creator) where T : Form {
+            // フォームが未生成または破棄済みの場合は新規作成する
+            if(formInstance is null || formInstance.IsDisposed) {
+                // フォーム生成（creator は new 〇〇Form(...) を返すラムダ式）
+                formInstance = creator();
+
+                // 表示位置を設定（祐一さんの環境では複数モニター対応が必須）
+                _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, formInstance);
+
+                // StartProject をオーナーとしてフォームを表示
+                formInstance.Show(this);
+            } else {
+                // 既に起動している場合は多重起動禁止メッセージを表示
+                MessageBox.Show(
+                    $"このプログラムは既に起動しています。多重起動は禁止されています。",
+                    "多重起動メッセージ",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
         }
 
