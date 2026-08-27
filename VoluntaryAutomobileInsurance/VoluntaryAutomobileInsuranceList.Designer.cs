@@ -30,6 +30,7 @@
             CcPanelTop = new CcControl.CcPanel();
             CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             GroupBoxExOccupation = new CcControl.CcGroupBox();
+            ccCheckBox1 = new CcControl.CcCheckBox();
             CheckBoxEx18 = new CcControl.CcCheckBox();
             CheckBoxEx17 = new CcControl.CcCheckBox();
             CheckBoxEx16 = new CcControl.CcCheckBox();
@@ -52,14 +53,16 @@
             CheckBoxEx1 = new CcControl.CcCheckBox();
             ButtonExUpdate = new CcControl.CcButton();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
+            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
+            ToolStripMenuItemDelete = new ToolStripMenuItem();
             SheetViewList = SpreadList.GetSheet(0);
-            ccCheckBox1 = new CcControl.CcCheckBox();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelTop.SuspendLayout();
             GroupBoxExOccupation.SuspendLayout();
             GroupBoxExJobForm.SuspendLayout();
             GroupBoxExBelongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
+            CcContextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // CcTableLayoutPanelBase
@@ -138,6 +141,19 @@
             GroupBoxExOccupation.TabIndex = 7;
             GroupBoxExOccupation.TabStop = false;
             GroupBoxExOccupation.Text = "職種(第三条件)";
+            // 
+            // ccCheckBox1
+            // 
+            ccCheckBox1.AutoSize = true;
+            ccCheckBox1.Checked = true;
+            ccCheckBox1.CheckState = CheckState.Checked;
+            ccCheckBox1.Location = new Point(364, 16);
+            ccCheckBox1.Name = "ccCheckBox1";
+            ccCheckBox1.Size = new Size(86, 19);
+            ccCheckBox1.TabIndex = 6;
+            ccCheckBox1.Tag = "14";
+            ccCheckBox1.Text = "文京中継所";
+            ccCheckBox1.UseVisualStyleBackColor = true;
             // 
             // CheckBoxEx18
             // 
@@ -412,6 +428,7 @@
             // SpreadList
             // 
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
+            SpreadList.ContextMenuStrip = CcContextMenuStrip1;
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             SpreadList.Location = new Point(3, 87);
@@ -420,18 +437,19 @@
             SpreadList.TabIndex = 3;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
-            // ccCheckBox1
+            // CcContextMenuStrip1
             // 
-            ccCheckBox1.AutoSize = true;
-            ccCheckBox1.Checked = true;
-            ccCheckBox1.CheckState = CheckState.Checked;
-            ccCheckBox1.Location = new Point(364, 16);
-            ccCheckBox1.Name = "ccCheckBox1";
-            ccCheckBox1.Size = new Size(86, 19);
-            ccCheckBox1.TabIndex = 6;
-            ccCheckBox1.Tag = "14";
-            ccCheckBox1.Text = "文京中継所";
-            ccCheckBox1.UseVisualStyleBackColor = true;
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemDelete });
+            CcContextMenuStrip1.Name = "CcContextMenuStrip1";
+            CcContextMenuStrip1.Size = new Size(181, 48);
+            CcContextMenuStrip1.Opening += CcContextMenuStrip1_Opening;
+            // 
+            // ToolStripMenuItemDelete
+            // 
+            ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
+            ToolStripMenuItemDelete.Size = new Size(180, 22);
+            ToolStripMenuItemDelete.Text = "Delete Item";
+            ToolStripMenuItemDelete.Click += ToolStripMenuItem_Click;
             // 
             // VoluntaryAutomobileInsuranceList
             // 
@@ -455,6 +473,7 @@
             GroupBoxExBelongs.ResumeLayout(false);
             GroupBoxExBelongs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
+            CcContextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -490,5 +509,7 @@
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
         private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.CcCheckBox ccCheckBox1;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
+        private ToolStripMenuItem ToolStripMenuItemDelete;
     }
 }

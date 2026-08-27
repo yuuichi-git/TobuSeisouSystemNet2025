@@ -86,6 +86,11 @@ namespace VoluntaryAutomobileInsurance {
          */
         private ConnectionVo _connectionVo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionVo"></param>
+        /// <param name="screen"></param>
         public VoluntaryAutomobileInsuranceList(ConnectionVo connectionVo, Screen screen) {
             /*
              * インスタンス作成
@@ -108,15 +113,23 @@ namespace VoluntaryAutomobileInsurance {
              */
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
-                                             "ToolStripMenuItemHelp"
-            };
+                                             "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeSheetView(this.SheetViewList);
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CcContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+            if(this.SheetViewList.ActiveRowIndex < 0) {                                                             // ActiveRowIndexが0未満の場合、ContextMenuStripExを表示しない
+                e.Cancel = true;
+                return;
+            }
         }
 
         /// <summary>
@@ -125,22 +138,42 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
+            switch(((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemDelete":                                                                     // DeleteItem
+                    DialogResult dialogResult = MessageBox.Show("選択した項目を削除します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    switch(dialogResult) {
+                        case DialogResult.OK:
+                            try {
+                                // 選択した行のTagに格納されているVoluntaryAutomobileInsuranceVoのIdを取得して削除
+                                _voluntaryAutomobileInsuranceDao.DeleteOneVoluntaryAutomobileInsuranceVo(((VoluntaryAutomobileInsuranceVo)SheetViewList.Rows[this.SheetViewList.ActiveRowIndex].Tag).Id);
+                            } catch(Exception exception) {
+                                MessageBox.Show(exception.Message);
+                            }
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                    }
+                    break;
+                case "ToolStripMenuItemExit":                                                                       // アプリケーションを終了する
                     this.Close();
                     break;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonExUpdate_Click(object sender, EventArgs e) {
-            switch (((CcButton)sender).Name) {
+            switch(((CcButton)sender).Name) {
                 case "ButtonExUpdate":
                     try {
                         this.PutSheetViewList(_voluntaryAutomobileInsuranceDao.SelectStaffWithVoluntaryInsurance(this.GroupBoxExBelongs.CreateArray(GroupBoxExBelongs),
                                                                                                                  this.GroupBoxExJobForm.CreateArray(GroupBoxExJobForm),
                                                                                                                  this.GroupBoxExOccupation.CreateArray(GroupBoxExOccupation),
                                                                                                                  this.CheckBoxExRetirementFlag.Checked));
-                    } catch (Exception exception) {
+                    } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
                     }
                     break;
@@ -152,80 +185,84 @@ namespace VoluntaryAutomobileInsurance {
         /// 
         /// </summary>
         /// <param name="listData"></param>
-        private void PutSheetViewList(List<(StaffMasterVo staff, VoluntaryAutomobileInsuranceVo insurance, string belongsName, string occupationName, string jobFormName)> listData) {
+        private void PutSheetViewList(List<(StaffMasterVo staffMasterVo, VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo, string belongsName, string occupationName, string jobFormName)> listData) {
             SheetView sheetView = this.SheetViewList;
-            this.SpreadList.SuspendLayout();// Spread 非活性化
-            _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);// 先頭行（列）インデックスを取得
+            this.SpreadList.SuspendLayout();                                                                                            // Spread 非活性化
+            _spreadListTopRow = this.SpreadList.GetViewportTopRow(0);                                                                   // 先頭行（列）インデックスを取得
 
-            sheetView.RowCount = 0;
+            if(sheetView.Rows.Count > 0)                                                                                                // Rowを削除する
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
 
-            foreach (var (staff, insurance, belongsName, occupationName, jobFormName) in listData) {
-                int row = sheetView.RowCount++;
+            int row = 0;
+            foreach(var (staffMasterVo, voluntaryAutomobileInsuranceVo, belongsName, occupationName, jobFormName) in listData) {
+                sheetView.Rows.Add(row, 1);
+                sheetView.Rows[row].Tag = voluntaryAutomobileInsuranceVo;                                                              // TagにvoluntaryAutomobileInsuranceVo をセット
 
                 sheetView.Cells[row, _colBelongs].Value = belongsName;
                 sheetView.Cells[row, _colOccupation].Value = occupationName;
                 sheetView.Cells[row, _colJobForm].Value = jobFormName;
 
                 // --- 3: 組合№ ---
-                sheetView.Cells[row, _colUnionCode].Value = staff.UnionCode;
+                sheetView.Cells[row, _colUnionCode].Value = staffMasterVo.UnionCode;
 
                 // --- 4: 氏名 ---
-                sheetView.Cells[row, _colDisplayName].Value = staff.DisplayName;
-                sheetView.Cells[row, _colDisplayName].Tag = staff.StaffCode;
+                sheetView.Cells[row, _colDisplayName].Value = staffMasterVo.DisplayName;
+                sheetView.Cells[row, _colDisplayName].Tag = staffMasterVo.StaffCode;
 
                 // --- 5: カナ ---
-                sheetView.Cells[row, _colNameKana].Value = staff.NameKana;
+                sheetView.Cells[row, _colNameKana].Value = staffMasterVo.NameKana;
 
                 // --- 6: 生年月日 ---
-                sheetView.Cells[row, _colBirthDate].Value = staff.BirthDate.ToString("yyyy/MM/dd");
+                sheetView.Cells[row, _colBirthDate].Value = staffMasterVo.BirthDate.ToString("yyyy/MM/dd");
 
                 // --- 7: 年齢（補助メソッド使用）---
-                sheetView.Cells[row, _colAge].Value = _dateUtility.GetAge(staff.BirthDate);
+                sheetView.Cells[row, _colAge].Value = _dateUtility.GetAge(staffMasterVo.BirthDate);
 
                 // --- 8: 入社年月日 ---
                 // --- 9: 契約期間（月数）---
-                if (staff.EmploymentDate.Date == new DateTime(1900, 1, 1)) {
+                if(staffMasterVo.EmploymentDate.Date == new DateTime(1900, 1, 1)) {
                     // 1900-01-01 の場合は表示しない
                     sheetView.Cells[row, _colEmplomentDate].Value = string.Empty;
                     sheetView.Cells[row, _colContractExpirationPeriod].Value = "入社日未入力";
                 } else {
-                    sheetView.Cells[row, _colEmplomentDate].Value = staff.EmploymentDate.ToString("yyyy/MM/dd");
-                    sheetView.Cells[row, _colContractExpirationPeriod].Value = string.Concat(_dateUtility.GetEmploymenteYear(staff.EmploymentDate.Date).ToString("#0年"),
-                                                                                             _dateUtility.GetEmploymenteMonth(staff.EmploymentDate.Date).ToString("00月"));
+                    sheetView.Cells[row, _colEmplomentDate].Value = staffMasterVo.EmploymentDate.ToString("yyyy/MM/dd");
+                    sheetView.Cells[row, _colContractExpirationPeriod].Value = string.Concat(_dateUtility.GetEmploymenteYear(staffMasterVo.EmploymentDate.Date).ToString("#0年"),
+                                                                                             _dateUtility.GetEmploymenteMonth(staffMasterVo.EmploymentDate.Date).ToString("00月"));
                 }
 
                 // --- 10: 対象車両種別 ---
-                sheetView.Cells[row, _colVehicleType].Value = insurance.VehicleType;
+                sheetView.Cells[row, _colVehicleType].Value = voluntaryAutomobileInsuranceVo.VehicleType;
 
                 // --- 11: 保険会社名 ---
-                sheetView.Cells[row, _colCompanyName].Value = insurance.CompanyName;
+                sheetView.Cells[row, _colCompanyName].Value = voluntaryAutomobileInsuranceVo.CompanyName;
 
                 // --- 12: 保険開始日 ---
-                sheetView.Cells[row, _colStartDate].Value = insurance.StartDate;
+                sheetView.Cells[row, _colStartDate].Value = voluntaryAutomobileInsuranceVo.StartDate;
 
                 // --- 13: 保険終了日 ---
-                sheetView.Cells[row, _colEndDate].Value = insurance.EndDate;
+                sheetView.Cells[row, _colEndDate].Value = voluntaryAutomobileInsuranceVo.EndDate;
 
                 // --- 14: 経路図PDF（HasImage1）---
-                sheetView.Cells[row, _colRoutePdf].Value = insurance.HasImage1 ? "✓" : string.Empty;
+                sheetView.Cells[row, _colRoutePdf].Value = voluntaryAutomobileInsuranceVo.HasImage1 ? "✓" : string.Empty;
 
                 // --- 15: 自賠責PDF（HasImage2）---
-                sheetView.Cells[row, _colCompulsoryPdf].Value = insurance.HasImage2 ? "✓" : string.Empty;
+                sheetView.Cells[row, _colCompulsoryPdf].Value = voluntaryAutomobileInsuranceVo.HasImage2 ? "✓" : string.Empty;
 
                 // --- 16: 任意保険PDF（HasImage3）---
-                sheetView.Cells[row, _colVoluntaryPdf].Value = insurance.HasImage3 ? "✓" : string.Empty;
+                sheetView.Cells[row, _colVoluntaryPdf].Value = voluntaryAutomobileInsuranceVo.HasImage3 ? "✓" : string.Empty;
 
-                sheetView.Cells[row, _colAuthorizedVehiclePdf].Value = insurance.HasImage4 ? "✓" : string.Empty;
+                sheetView.Cells[row, _colAuthorizedVehiclePdf].Value = voluntaryAutomobileInsuranceVo.HasImage4 ? "✓" : string.Empty;
 
                 // --- 期限切れチェック ---
                 DateTime endDate;
-                if (DateTime.TryParse(insurance.EndDate, out endDate)) {
-                    if (endDate.Date < DateTime.Today) {
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out endDate)) {
+                    if(endDate.Date < DateTime.Today) {
                         // 行全体を赤色にする
-                        sheetView.Rows[row].BackColor = Color.LightCoral;   // 目に優しい赤
-                                                                            // sheetView.Rows[row].ForeColor = Color.White;     // 必要なら文字色も変更
+                        sheetView.Rows[row].BackColor = Color.LightCoral;                                                               // 目に優しい赤
+                                                                                                                                        // sheetView.Rows[row].ForeColor = Color.White;     // 必要なら文字色も変更
                     }
                 }
+                row++;
             }
             // 先頭行（列）インデックスをセット
             this.SpreadList.SetViewportTopRow(0, _spreadListTopRow);
@@ -239,12 +276,12 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SpreadList_CellDoubleClick(object sender, CellClickEventArgs e) {
-            if (e.ColumnHeader)                                                             // ヘッダーのDoubleClickを回避
+            if(e.ColumnHeader)                                                              // ヘッダーのDoubleClickを回避
                 return;
-            object? tag = SheetViewList.Cells[e.Row, _colDisplayName].Tag;                  // 行の Tag を取得            
-            if (tag is not int staffCode)
+            object? tag = this.SheetViewList.Rows[e.Row].Tag;                  // 行の Tag を取得            
+            if(tag is not VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo)
                 return;
-            VoluntaryAutomobileInsuranceDetail voluntaryAutomobileInsuranceDetail = new(_connectionVo, staffCode);
+            VoluntaryAutomobileInsuranceDetail voluntaryAutomobileInsuranceDetail = new(_connectionVo, voluntaryAutomobileInsuranceVo);
             _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), voluntaryAutomobileInsuranceDetail);
             voluntaryAutomobileInsuranceDetail.Show(this);
         }
@@ -279,7 +316,7 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="e"></param>
         private void VoluntaryAutomobileInsuranceList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

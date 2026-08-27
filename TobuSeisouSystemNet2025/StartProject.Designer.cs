@@ -499,7 +499,7 @@
             treeNode95.Name = "ノード3";
             treeNode95.Text = "労働基準監督署";
             TreeViewEx1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode54, treeNode94, treeNode95 });
-            TreeViewEx1.Size = new Size(312, 508);
+            TreeViewEx1.Size = new Size(324, 508);
             TreeViewEx1.TabIndex = 4;
             TreeViewEx1.NodeMouseDoubleClick += TreeView1_NodeMouseDoubleClick;
             // 

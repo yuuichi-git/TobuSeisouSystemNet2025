@@ -395,10 +395,10 @@
             // 
             CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             CcButtonUpdate.ForeColor = SystemColors.ControlText;
-            CcButtonUpdate.Location = new Point(1672, 10);
+            CcButtonUpdate.Location = new Point(1676, 10);
             CcButtonUpdate.Name = "CcButtonUpdate";
             CcButtonUpdate.SetTextDirectionVertical = "";
-            CcButtonUpdate.Size = new Size(184, 32);
+            CcButtonUpdate.Size = new Size(180, 32);
             CcButtonUpdate.TabIndex = 0;
             CcButtonUpdate.Text = "更　　新";
             CcButtonUpdate.UseVisualStyleBackColor = true;

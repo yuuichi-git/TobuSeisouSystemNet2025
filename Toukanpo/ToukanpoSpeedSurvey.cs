@@ -33,19 +33,15 @@ namespace Toukanpo {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                        "ToolStripMenuItemFile",
-                        "ToolStripMenuItemExit",
-                        "ToolStripMenuItemExport",
-                        "ToolStripMenuItemExportExcel",
-                        "ToolStripMenuItemHelp"
-                        };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemExport",
+                                             "ToolStripMenuItemExportExcel",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
-            this.InitializeSheetView(this.SheetViewList);                                                                               // InitializeSheetView
-            /*
-             * Eventを登録する
-             */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
+            this.InitializeSheetView(this.SheetViewList);                                                                               // InitializeSheetView
         }
 
         /// <summary>
@@ -69,13 +65,13 @@ namespace Toukanpo {
             this.SheetViewList.Cells["D1"].Value = string.Concat("速度超過実態調査表（", (int)NumericUpDownExYear.Value, "年", (int)NumericUpDownExMonth.Value, "月）");
 
             this.SheetViewList.Cells["A7"].Value = (int)NumericUpDownExMonth.Value;                                                     // 月
-            for (int i = 0; i < days; i++) {
-                
+            for(int i = 0; i < days; i++) {
+
                 DateTime operationDate = new DateTime((int)NumericUpDownExYear.Value, (int)NumericUpDownExMonth.Value, i + 1);          // 配車日を作成する
 
                 this.SheetViewList.Cells[i + 6, 1].Value = i + 1;
                 string week = operationDate.ToString("ddd");
-                switch (week) {
+                switch(week) {
                     case "土":
                         this.SheetViewList.Cells[i + 6, 2].ForeColor = Color.Blue;
                         break;
@@ -90,7 +86,6 @@ namespace Toukanpo {
                 this.SheetViewList.Cells[i + 6, 3].Value = _vehicleDispatchDetailDao.GetEmploymentCount(operationDate);                 // 雇上契約数
                 this.SheetViewList.Cells[i + 6, 4].Value = _vehicleDispatchDetailDao.GetWardCount(operationDate);                       // 区契約数
             }
-
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "集計が完了しました";
         }
 
@@ -108,7 +103,7 @@ namespace Toukanpo {
             // SheetViewList
             SheetViewList.Cells["D1"].Value = string.Empty;
             sheetView.Cells["A7"].Value = string.Empty; // 月
-            for (int i = 0; i < 31; i++) {
+            for(int i = 0; i < 31; i++) {
                 sheetView.Cells[i + 6, 1].Value = string.Empty;
                 sheetView.Cells[i + 6, 2].Value = string.Empty;
                 sheetView.Cells[i + 6, 3].Value = 0;
@@ -122,7 +117,7 @@ namespace Toukanpo {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 // Excel(xlsx)形式でエクスポートする
                 case "ToolStripMenuItemExportExcel":
                     //xlsx形式ファイルをエクスポートします
@@ -144,7 +139,7 @@ namespace Toukanpo {
         /// <param name="e"></param>
         private void ToukanpoSpeedSurvey_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

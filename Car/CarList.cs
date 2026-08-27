@@ -441,6 +441,26 @@ namespace Car {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void ContextMenuStripEx1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
+            if(this.SheetViewList.ActiveRowIndex < 0) {                                                                 // ActiveRowIndexが0未満の場合、ContextMenuStripExを表示しない
+                e.Cancel = true;
+                return;
+            }
+            CarMasterVo carMasterVo = (CarMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
+            if(carMasterVo.DeleteFlag) {
+                ToolStripMenuItemDelete.Enabled = false;
+                ToolStripMenuItemRemove.Enabled = true;
+            } else {
+                ToolStripMenuItemDelete.Enabled = true;
+                ToolStripMenuItemRemove.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemInsertNewRecord":                                                                // 新規レコード作成
@@ -462,22 +482,6 @@ namespace Car {
                 case "ToolStripMenuItemExit":                                                                           // アプリケーションを終了する
                     this.Close();
                     break;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContextMenuStripEx1_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
-            CarMasterVo carMasterVo = (CarMasterVo)SheetViewList.Rows[SheetViewList.ActiveRowIndex].Tag;
-            if(carMasterVo.DeleteFlag) {
-                ToolStripMenuItemDelete.Enabled = false;
-                ToolStripMenuItemRemove.Enabled = true;
-            } else {
-                ToolStripMenuItemDelete.Enabled = true;
-                ToolStripMenuItemRemove.Enabled = false;
             }
         }
 

@@ -14,6 +14,7 @@ namespace Vo {
             StaffCode = 0;
             VehicleType = string.Empty;
             CompanyName = string.Empty;
+            AutomaticRenewal = false;
             StartDate = string.Empty;
             EndDate = string.Empty;
 
@@ -42,6 +43,9 @@ namespace Vo {
 
         /// <summary>会社名。varchar(100)</summary>
         public string CompanyName { get; set; }
+
+        /// <summary>自動更新。bit</summary>
+        public bool AutomaticRenewal { get; set; }
 
         /// <summary>開始日。date</summary>
         public string StartDate { get; set; }

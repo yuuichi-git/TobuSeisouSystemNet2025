@@ -50,26 +50,26 @@ namespace Dao {
         // ============================================================
         //  スタッフコード存在チェック（int版）
         // ============================================================
-        public bool ExistsByStaffCode(int staffCode) {
-            using SqlCommand cmd = _connectionVo.SqlServerConnection.CreateCommand();
-            cmd.CommandText =
-                "SELECT CASE WHEN EXISTS (" +
-                "    SELECT 1 FROM H_VoluntaryAutomobileInsurance " +
-                "    WHERE StaffCode = @StaffCode" +
-                ") THEN 1 ELSE 0 END";
+        //public bool ExistsByStaffCode(int staffCode) {
+        //    using SqlCommand cmd = _connectionVo.SqlServerConnection.CreateCommand();
+        //    cmd.CommandText =
+        //        "SELECT CASE WHEN EXISTS (" +
+        //        "    SELECT 1 FROM H_VoluntaryAutomobileInsurance " +
+        //        "    WHERE StaffCode = @StaffCode" +
+        //        ") THEN 1 ELSE 0 END";
 
-            cmd.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
+        //    cmd.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
 
-            int result = (int)cmd.ExecuteScalar();
-            return result == 1;
-        }
+        //    int result = (int)cmd.ExecuteScalar();
+        //    return result == 1;
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="staffCode"></param>
         /// <returns></returns>
-        public VoluntaryAutomobileInsuranceVo? SelectOneByStaffCode(int staffCode) {
+        public VoluntaryAutomobileInsuranceVo? SelectOneById(string id) {
             using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
 
             sqlCommand.CommandText = "SELECT" +
@@ -77,6 +77,7 @@ namespace Dao {
                                      "       StaffCode," +
                                      "       VehicleType," +
                                      "       CompanyName," +
+                                     "       AutomaticRenewal," +
                                      "       StartDate," +
                                      "       EndDate," +
                                      "       Image1," +
@@ -91,20 +92,21 @@ namespace Dao {
                                      "       DeleteYmdHms," +
                                      "       DeleteFlag" +
                                      "  FROM H_VoluntaryAutomobileInsurance" +
-                                     " WHERE StaffCode = @StaffCode" +
+                                     " WHERE Id = @Id" +
                                      "   AND DeleteFlag = 'false'";
 
-            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = staffCode;
+            sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = id;
 
             using SqlDataReader reader = sqlCommand.ExecuteReader();
 
-            if (!reader.Read())
+            if(!reader.Read())
                 return null;
 
             VoluntaryAutomobileInsuranceVo vo = new();
             vo.Id = reader["Id"].ToString() ?? "";
             vo.StaffCode = (int)reader["StaffCode"];
             vo.VehicleType = reader["VehicleType"].ToString() ?? "";
+            vo.AutomaticRenewal = (bool)reader["AutomaticRenewal"];
             vo.CompanyName = reader["CompanyName"].ToString() ?? "";
             vo.StartDate = reader["StartDate"].ToString() ?? "";
             vo.EndDate = reader["EndDate"].ToString() ?? "";
@@ -144,8 +146,7 @@ namespace Dao {
         /// のタプルリスト。
         /// </summary>
         public List<(StaffMasterVo Staff, VoluntaryAutomobileInsuranceVo Insurance, string BelongsName, string OccupationName, string JobFormName)>
-            SelectStaffWithVoluntaryInsurance(List<int>? sqlBelongs, List<int>? sqlJobForm, List<int>? sqlOccupation, bool? sqlRetirementFlag) {
-
+                     SelectStaffWithVoluntaryInsurance(List<int>? sqlBelongs, List<int>? sqlJobForm, List<int>? sqlOccupation, bool? sqlRetirementFlag) {
             // ▼ JOIN 結果を格納するリスト
             var list = new List<(StaffMasterVo, VoluntaryAutomobileInsuranceVo, string, string, string)>();
 
@@ -176,8 +177,10 @@ namespace Dao {
                 "   V.Id AS V_Id," +
                 "   V.VehicleType AS V_VehicleType," +
                 "   V.CompanyName AS V_CompanyName," +
+                "   V.AutomaticRenewal AS V_AutomaticRenewal," +
                 "   V.StartDate AS V_StartDate," +
                 "   V.EndDate AS V_EndDate," +
+                "   V.DeleteFlag AS V_DeleteFlag," +
 
                 // ▼ PDF の有無（NULL ではなく 0 バイトも考慮）
                 //   → DATALENGTH() = 0 なら PDF 無し
@@ -187,7 +190,7 @@ namespace Dao {
                 "   CASE WHEN DATALENGTH(V.Image4) IS NULL OR DATALENGTH(V.Image4) = 0 THEN 0 ELSE 1 END AS HasImage4 " +
 
                 "FROM H_StaffMaster S " +
-                "LEFT JOIN H_VoluntaryAutomobileInsurance V ON S.StaffCode = V.StaffCode " +
+                "LEFT JOIN H_VoluntaryAutomobileInsurance V ON S.StaffCode = V.StaffCode AND V.DeleteFlag = 'false' " +                 // 2026-08-27 V.DeleteFlag = 'false'
                 "LEFT JOIN H_BelongsMaster B ON S.Belongs = B.Code " +
                 "LEFT JOIN H_OccupationMaster O ON S.Occupation = O.Code " +
                 "LEFT JOIN H_JobFormMaster J ON S.JobForm = J.Code " +
@@ -201,8 +204,8 @@ namespace Dao {
             /*
              * ▼ SQL 実行
              */
-            using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                while (reader.Read()) {
+            using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
+                while(reader.Read()) {
 
                     /*
                      * ▼ StaffMasterVo の生成
@@ -230,6 +233,7 @@ namespace Dao {
                     insurance.StaffCode = staff.StaffCode; // StaffCode は StaffMaster と同じ
                     insurance.VehicleType = _defaultValue.GetDefaultValue<string>(reader["V_VehicleType"]);
                     insurance.CompanyName = _defaultValue.GetDefaultValue<string>(reader["V_CompanyName"]);
+                    insurance.AutomaticRenewal = _defaultValue.GetDefaultValue<bool>(reader["V_AutomaticRenewal"]);
                     insurance.StartDate = _defaultValue.GetDefaultValue<string>(reader["V_StartDate"]);
                     insurance.EndDate = _defaultValue.GetDefaultValue<string>(reader["V_EndDate"]);
 
@@ -259,7 +263,7 @@ namespace Dao {
         // ============================================================
         //  INSERT
         // ============================================================
-        public void InsertOneVoluntaryAutomobileInsuranceVo(VoluntaryAutomobileInsuranceVo vo) {
+        public void InsertOneVoluntaryAutomobileInsuranceVo(VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
 
             sqlCommand.CommandText = "INSERT INTO H_VoluntaryAutomobileInsurance (" +
@@ -267,6 +271,7 @@ namespace Dao {
                                      "       StaffCode," +
                                      "       VehicleType," +
                                      "       CompanyName," +
+                                     "       AutomaticRenewal," +
                                      "       StartDate," +
                                      "       EndDate," +
                                      "       Image1," +
@@ -285,6 +290,7 @@ namespace Dao {
                                      "       @StaffCode," +
                                      "       @VehicleType," +
                                      "       @CompanyName," +
+                                     "       @AutomaticRenewal," +
                                      "       @StartDate," +
                                      "       @EndDate," +
                                      "       @Image1," +
@@ -301,17 +307,18 @@ namespace Dao {
                                      ")";
 
 
-            sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = vo.Id;
-            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = vo.StaffCode;
-            sqlCommand.Parameters.Add("@VehicleType", SqlDbType.VarChar).Value = vo.VehicleType;
-            sqlCommand.Parameters.Add("@CompanyName", SqlDbType.VarChar).Value = vo.CompanyName;
-            sqlCommand.Parameters.Add("@StartDate", SqlDbType.Date).Value = vo.StartDate;
-            sqlCommand.Parameters.Add("@EndDate", SqlDbType.Date).Value = vo.EndDate;
+            sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.Id;
+            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = voluntaryAutomobileInsuranceVo.StaffCode;
+            sqlCommand.Parameters.Add("@VehicleType", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.VehicleType;
+            sqlCommand.Parameters.Add("@CompanyName", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.CompanyName;
+            sqlCommand.Parameters.Add("@AutomaticRenewal", SqlDbType.Bit).Value = voluntaryAutomobileInsuranceVo.AutomaticRenewal;
+            sqlCommand.Parameters.Add("@StartDate", SqlDbType.Date).Value = voluntaryAutomobileInsuranceVo.StartDate;
+            sqlCommand.Parameters.Add("@EndDate", SqlDbType.Date).Value = voluntaryAutomobileInsuranceVo.EndDate;
 
-            sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)vo.Image1 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image2", SqlDbType.VarBinary).Value = (object?)vo.Image2 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image3", SqlDbType.VarBinary).Value = (object?)vo.Image3 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image4", SqlDbType.VarBinary).Value = (object?)vo.Image4 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image1 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image2", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image2 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image3", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image3 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image4", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image4 ?? DBNull.Value;
 
             sqlCommand.Parameters.Add("@PcName", SqlDbType.VarChar).Value = Environment.MachineName;
 
@@ -322,15 +329,15 @@ namespace Dao {
         //  UPDATE
         //  Id と StaffCode は更新しない（WHERE 句の条件にする）
         // ============================================================
-        public void UpdateOneVoluntaryAutomobileInsuranceVo(VoluntaryAutomobileInsuranceVo vo) {
+        public void UpdateOneVoluntaryAutomobileInsuranceVo(VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
 
             sqlCommand.CommandText =
-                "UPDATE H_VoluntaryAutomobileInsurance SET " +
-                //"       Id             = @Id," +
-                //"       StaffCode      = @StaffCode," +
+                "UPDATE H_VoluntaryAutomobileInsurance " +
+                "SET    StaffCode      = @StaffCode," +
                 "       VehicleType    = @VehicleType," +
                 "       CompanyName    = @CompanyName," +
+                "       AutomaticRenewal = @AutomaticRenewal," +
                 "       StartDate      = @StartDate," +
                 "       EndDate        = @EndDate," +
                 "       Image1         = @Image1," +
@@ -339,19 +346,20 @@ namespace Dao {
                 "       Image4         = @Image4," +
                 "       UpdatePcName   = @PcName," +
                 "       UpdateYmdHms   = GETDATE() " +
-                "WHERE  StaffCode      = @StaffCode";
+                "WHERE  Id             = @Id";
 
-            //sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = vo.Id;
-            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = vo.StaffCode;
-            sqlCommand.Parameters.Add("@VehicleType", SqlDbType.VarChar).Value = vo.VehicleType;
-            sqlCommand.Parameters.Add("@CompanyName", SqlDbType.VarChar).Value = vo.CompanyName;
-            sqlCommand.Parameters.Add("@StartDate", SqlDbType.Date).Value = vo.StartDate;
-            sqlCommand.Parameters.Add("@EndDate", SqlDbType.Date).Value = vo.EndDate;
+            sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.Id;
+            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.Int).Value = voluntaryAutomobileInsuranceVo.StaffCode;
+            sqlCommand.Parameters.Add("@VehicleType", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.VehicleType;
+            sqlCommand.Parameters.Add("@CompanyName", SqlDbType.VarChar).Value = voluntaryAutomobileInsuranceVo.CompanyName;
+            sqlCommand.Parameters.Add("@AutomaticRenewal", SqlDbType.Bit).Value = voluntaryAutomobileInsuranceVo.AutomaticRenewal;
+            sqlCommand.Parameters.Add("@StartDate", SqlDbType.Date).Value = voluntaryAutomobileInsuranceVo.StartDate;
+            sqlCommand.Parameters.Add("@EndDate", SqlDbType.Date).Value = voluntaryAutomobileInsuranceVo.EndDate;
 
-            sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)vo.Image1 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image2", SqlDbType.VarBinary).Value = (object?)vo.Image2 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image3", SqlDbType.VarBinary).Value = (object?)vo.Image3 ?? DBNull.Value;
-            sqlCommand.Parameters.Add("@Image4", SqlDbType.VarBinary).Value = (object?)vo.Image4 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image1", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image1 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image2", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image2 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image3", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image3 ?? DBNull.Value;
+            sqlCommand.Parameters.Add("@Image4", SqlDbType.VarBinary).Value = (object?)voluntaryAutomobileInsuranceVo.Image4 ?? DBNull.Value;
 
             sqlCommand.Parameters.Add("@PcName", SqlDbType.VarChar).Value = Environment.MachineName;
 
@@ -361,18 +369,18 @@ namespace Dao {
         // ============================================================
         //  DELETE（論理削除）
         // ============================================================
-        public void DeleteOneVoluntaryAutomobileInsuranceVo(int staffCode) {
+        public void DeleteOneVoluntaryAutomobileInsuranceVo(string id) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
 
             sqlCommand.CommandText =
-                "UPDATE H_VoluntaryAutomobileInsurance SET " +
-                "    DeletePcName = @PcName, " +
-                "    DeleteYmdHms = GETDATE(), " +
-                "    DeleteFlag = 'true' " +
-                "WHERE StaffCode = @StaffCode";
+                "UPDATE H_VoluntaryAutomobileInsurance " +
+                "SET    DeletePcName = @PcName, " +
+                "       DeleteYmdHms = GETDATE(), " +
+                "       DeleteFlag = 'true' " +
+                "WHERE  Id = @Id";
 
             sqlCommand.Parameters.Add("@PcName", SqlDbType.VarChar).Value = Environment.MachineName;
-            sqlCommand.Parameters.Add("@StaffCode", SqlDbType.VarChar).Value = staffCode;
+            sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = id;
 
             sqlCommand.ExecuteNonQuery();
         }
@@ -384,10 +392,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlBelongs(List<int>? sqlBelongs) {
             string sql = string.Empty;
-            if (sqlBelongs is not null) {
+            if(sqlBelongs is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlBelongs) {
+                foreach(int code in sqlBelongs) {
                     codes += string.Concat(code.ToString(), i < sqlBelongs.Count - 1 ? "," : "");
                     i++;
                 }
@@ -405,10 +413,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlJobForm(List<int>? sqlJobForm) {
             string sql = string.Empty;
-            if (sqlJobForm is not null) {
+            if(sqlJobForm is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlJobForm) {
+                foreach(int code in sqlJobForm) {
                     codes += string.Concat(code.ToString(), i < sqlJobForm.Count - 1 ? "," : "");
                     i++;
                 }
@@ -426,10 +434,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlOccupation(List<int>? sqlOccupation) {
             string sql = string.Empty;
-            if (sqlOccupation is not null) {
+            if(sqlOccupation is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlOccupation) {
+                foreach(int code in sqlOccupation) {
                     codes += string.Concat(code.ToString(), i < sqlOccupation.Count - 1 ? "," : "");
                     i++;
                 }
@@ -447,8 +455,8 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlRetirementFlag(bool? sqlRetirementFlag) {
             string sql = string.Empty;
-            if (sqlRetirementFlag is not null) {
-                if (sqlRetirementFlag == false) {
+            if(sqlRetirementFlag is not null) {
+                if(sqlRetirementFlag == false) {
                     return " AND RetirementFlag = 'false'";
                 } else {
                     return sql;
@@ -462,7 +470,7 @@ namespace Dao {
         //  PDF 取得（Image1〜4）
         // ============================================================
         public byte[]? SelectPdf(string id, int imageNo) {
-            if (imageNo < 1 || imageNo > 4)
+            if(imageNo < 1 || imageNo > 4)
                 throw new ArgumentOutOfRangeException(nameof(imageNo));
 
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
@@ -473,9 +481,9 @@ namespace Dao {
 
             sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = id;
 
-            using (SqlDataReader reader = sqlCommand.ExecuteReader()) {
-                if (reader.Read()) {
-                    if (reader[0] == DBNull.Value)
+            using(SqlDataReader reader = sqlCommand.ExecuteReader()) {
+                if(reader.Read()) {
+                    if(reader[0] == DBNull.Value)
                         return null;
 
                     return (byte[])reader[0];
@@ -488,7 +496,7 @@ namespace Dao {
         //  PDF INSERT（Image1〜4）
         // ============================================================
         public void InsertPdf(string id, int imageNo, byte[]? pdfBytes) {
-            if (imageNo < 1 || imageNo > 4)
+            if(imageNo < 1 || imageNo > 4)
                 throw new ArgumentOutOfRangeException(nameof(imageNo));
 
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
@@ -510,7 +518,7 @@ namespace Dao {
         //  PDF 保存（Image1〜4）
         // ============================================================
         public void UpdatePdf(string id, int imageNo, byte[]? pdfBytes) {
-            if (imageNo < 1 || imageNo > 4)
+            if(imageNo < 1 || imageNo > 4)
                 throw new ArgumentOutOfRangeException(nameof(imageNo));
 
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
@@ -531,7 +539,7 @@ namespace Dao {
         //  PDF 削除（Image1〜4 を NULL にする）
         // ============================================================
         public void DeletePdf(string id, int imageNo) {
-            if (imageNo < 1 || imageNo > 4)
+            if(imageNo < 1 || imageNo > 4)
                 throw new ArgumentOutOfRangeException(nameof(imageNo));
 
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
@@ -554,8 +562,8 @@ namespace Dao {
                                      "FROM H_VoluntaryAutomobileInsurance " +
                                      "GROUP BY VehicleType " +
                                      "ORDER BY VehicleType ASC";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     string vehicleType = _defaultValue.GetDefaultValue<string>(sqlDataReader["VehicleType"]);
                     listGroupVehicleType.Add(vehicleType);
                 }
@@ -570,8 +578,8 @@ namespace Dao {
                                      "FROM H_VoluntaryAutomobileInsurance " +
                                      "GROUP BY CompanyName " +
                                      "ORDER BY CompanyName ASC";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     string vehicleType = _defaultValue.GetDefaultValue<string>(sqlDataReader["CompanyName"]);
                     listGroupCompanyName.Add(vehicleType);
                 }

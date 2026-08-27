@@ -46,6 +46,8 @@
             ToolStripMenuItemOpen = new ToolStripMenuItem();
             ToolStripMenuItemPaste = new ToolStripMenuItem();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
+            CcCheckBoxAutomaticRenewal = new CcControl.CcCheckBox();
+            ccLabel5 = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcTabControl1.SuspendLayout();
             CcPanelTop.SuspendLayout();
@@ -178,6 +180,8 @@
             // 
             // CcPanelMiddle
             // 
+            CcPanelMiddle.Controls.Add(ccLabel5);
+            CcPanelMiddle.Controls.Add(CcCheckBoxAutomaticRenewal);
             CcPanelMiddle.Controls.Add(CcDateTimePickerEndDate);
             CcPanelMiddle.Controls.Add(CcDateTimePickerStartDate);
             CcPanelMiddle.Controls.Add(ccLabel4);
@@ -197,7 +201,7 @@
             CcDateTimePickerEndDate.CultureFlag = false;
             CcDateTimePickerEndDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
-            CcDateTimePickerEndDate.Location = new Point(104, 116);
+            CcDateTimePickerEndDate.Location = new Point(104, 144);
             CcDateTimePickerEndDate.Name = "CcDateTimePickerEndDate";
             CcDateTimePickerEndDate.Size = new Size(180, 23);
             CcDateTimePickerEndDate.TabIndex = 7;
@@ -208,7 +212,7 @@
             CcDateTimePickerStartDate.CultureFlag = false;
             CcDateTimePickerStartDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
-            CcDateTimePickerStartDate.Location = new Point(104, 88);
+            CcDateTimePickerStartDate.Location = new Point(104, 116);
             CcDateTimePickerStartDate.Name = "CcDateTimePickerStartDate";
             CcDateTimePickerStartDate.Size = new Size(180, 23);
             CcDateTimePickerStartDate.TabIndex = 6;
@@ -216,7 +220,7 @@
             // 
             // ccLabel4
             // 
-            ccLabel4.Location = new Point(8, 120);
+            ccLabel4.Location = new Point(8, 148);
             ccLabel4.Name = "ccLabel4";
             ccLabel4.Size = new Size(92, 20);
             ccLabel4.TabIndex = 5;
@@ -225,7 +229,7 @@
             // 
             // ccLabel3
             // 
-            ccLabel3.Location = new Point(8, 92);
+            ccLabel3.Location = new Point(8, 120);
             ccLabel3.Name = "ccLabel3";
             ccLabel3.Size = new Size(92, 20);
             ccLabel3.TabIndex = 4;
@@ -292,6 +296,25 @@
             ToolStripMenuItemDelete.Size = new Size(161, 22);
             ToolStripMenuItemDelete.Text = "Delete";
             // 
+            // CcCheckBoxAutomaticRenewal
+            // 
+            CcCheckBoxAutomaticRenewal.AutoSize = true;
+            CcCheckBoxAutomaticRenewal.Location = new Point(104, 92);
+            CcCheckBoxAutomaticRenewal.Name = "CcCheckBoxAutomaticRenewal";
+            CcCheckBoxAutomaticRenewal.Size = new Size(168, 19);
+            CcCheckBoxAutomaticRenewal.TabIndex = 8;
+            CcCheckBoxAutomaticRenewal.Text = "ネット保険等書類が無い保険";
+            CcCheckBoxAutomaticRenewal.UseVisualStyleBackColor = true;
+            // 
+            // ccLabel5
+            // 
+            ccLabel5.Location = new Point(8, 92);
+            ccLabel5.Name = "ccLabel5";
+            ccLabel5.Size = new Size(92, 20);
+            ccLabel5.TabIndex = 9;
+            ccLabel5.Text = "自動更新対象";
+            ccLabel5.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // VoluntaryAutomobileInsuranceDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -310,6 +333,7 @@
             CcTabControl1.ResumeLayout(false);
             CcPanelTop.ResumeLayout(false);
             CcPanelMiddle.ResumeLayout(false);
+            CcPanelMiddle.PerformLayout();
             CcContextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -339,5 +363,7 @@
         private ToolStripMenuItem ToolStripMenuItemOpen;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private ToolStripMenuItem ToolStripMenuItemPaste;
+        private CcControl.CcLabel ccLabel5;
+        private CcControl.CcCheckBox CcCheckBoxAutomaticRenewal;
     }
 }

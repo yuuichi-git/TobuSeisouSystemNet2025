@@ -487,11 +487,7 @@ namespace TobuSeisouSystemNet2025 {
                 formInstance.Show(this);
             } else {
                 // 既に起動している場合は多重起動禁止メッセージを表示
-                MessageBox.Show(
-                    $"このプログラムは既に起動しています。多重起動は禁止されています。",
-                    "多重起動メッセージ",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show($"このプログラムは既に起動しています。多重起動は禁止されています。", "多重起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

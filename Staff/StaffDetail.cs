@@ -167,6 +167,7 @@ namespace Staff {
                                              "ToolStripMenuItemHelp"
             };
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             /*
              * 各Controlを初期化する
              * 新規と更新で共通のControlはInitializeControls()で初期化する
@@ -178,10 +179,6 @@ namespace Staff {
             } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -548,7 +545,7 @@ namespace Staff {
             CcDateTimeBirthDate.SetValueJp(staffMasterVo.BirthDate);
             ComboBoxExGender.Text = staffMasterVo.Gender;
             ComboBoxExBloodType.Text = staffMasterVo.BloodType;
-            CcDateTimeEmploymentDate.SetValueJp(staffMasterVo.EmploymentDate);
+            CcDateTimeEmploymentDate.SetValueJp(staffMasterVo.EmploymentDate);                                                          // 雇用年月日
             CheckBoxExContractFlag.Checked = staffMasterVo.ContractFlag;
             CcDateTimePickerContractDate.SetValue(staffMasterVo.ContractDate);
             /*
@@ -874,12 +871,24 @@ namespace Staff {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "生年月日を選択してください。";
                         break;
                     }
-                    if(CcDateTimeEmploymentDate.GetEmpty()) {
-                        _errorProvider.SetError(CcDateTimeEmploymentDate, "入社日を選択してください");
-                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "入社日を選択してください。";
-                        break;
-                    }
+                    foreach(CcRadioButton radioButtonExJobForm in CcGroupBoxJobForm.Controls) {                                                 // 雇用形態
+                        if(radioButtonExJobForm.Checked) {
+                            switch(_dictionaryJobFormSI[radioButtonExJobForm.Text]) {
+                                case 21 or 23:                                                                                                  // 労供短期を指定
+                                    /*
+                                     * 短期の場合は入社日を入力しなくても良い
+                                     */
 
+                                    break;
+                                default:
+                                    if(CcDateTimeEmploymentDate.GetEmpty()) {
+                                        _errorProvider.SetError(CcDateTimeEmploymentDate, "入社日を選択してください");
+                                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "入社日を選択してください。";
+                                    }
+                                    break;
+                            }
+                        }
+                    }
                     try {
                         int.TryParse(CCLabelStaffCode.Text, out int staffCode);
                         if(_staffMasterDao.ExistenceStaffMaster(staffCode)) {

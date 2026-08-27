@@ -11,7 +11,7 @@ using Vo;
 
 namespace VoluntaryAutomobileInsurance {
     public partial class VoluntaryAutomobileInsuranceDetail : Form {
-        private int _staffCode;
+        private VoluntaryAutomobileInsuranceVo _voluntaryAutomobileInsuranceVo;
         private PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
         /*
@@ -23,13 +23,13 @@ namespace VoluntaryAutomobileInsurance {
         /// コンストラクター
         /// </summary>
         /// <param name="connectionVo"></param>
-        /// <param name="staffCode"></param>
-        public VoluntaryAutomobileInsuranceDetail(ConnectionVo connectionVo, int staffCode) {
+        /// <param name="voluntaryAutomobileInsuranceVo"></param>
+        public VoluntaryAutomobileInsuranceDetail(ConnectionVo connectionVo, VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo) {
             /*
              * Dao
              */
             _voluntaryAutomobileInsuranceDao = new(connectionVo);
-            _staffCode = staffCode;
+            _voluntaryAutomobileInsuranceVo = voluntaryAutomobileInsuranceVo;
             /*
              * InitializeControl
              */
@@ -46,7 +46,7 @@ namespace VoluntaryAutomobileInsurance {
             this.InitializeControl();
 
             // 表示対象のデータを画面へ反映
-            this.SetControls(staffCode);
+            this.SetControls(_voluntaryAutomobileInsuranceVo.Id);
         }
 
         /// <summary>
@@ -61,36 +61,36 @@ namespace VoluntaryAutomobileInsurance {
                     /*
                      * 新規 or 更新用の VO を作成
                      */
-                    VoluntaryAutomobileInsuranceVo vo = new();
-                    vo.Id = Guid.NewGuid().ToString("N");                                                                                  // 一意な ID を生成
-                    vo.StaffCode = _staffCode;
-                    vo.VehicleType = this.CcComboBoxVehicleType.Text;
-                    vo.CompanyName = this.CcComboBoxCompanyName.Text;
-                    vo.StartDate = this.CcDateTimePickerStartDate.Value.ToString("yyyy-MM-dd");
-                    vo.EndDate = this.CcDateTimePickerEndDate.Value.ToString("yyyy-MM-dd");
-
+                    VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = new();
+                    voluntaryAutomobileInsuranceVo.Id = _voluntaryAutomobileInsuranceVo.Id is not null ? _voluntaryAutomobileInsuranceVo.Id : Guid.NewGuid().ToString("N");
+                    voluntaryAutomobileInsuranceVo.StaffCode = _voluntaryAutomobileInsuranceVo.StaffCode;
+                    voluntaryAutomobileInsuranceVo.VehicleType = this.CcComboBoxVehicleType.Text;
+                    voluntaryAutomobileInsuranceVo.CompanyName = this.CcComboBoxCompanyName.Text;
+                    voluntaryAutomobileInsuranceVo.AutomaticRenewal = this.CcCheckBoxAutomaticRenewal.Checked;
+                    voluntaryAutomobileInsuranceVo.StartDate = this.CcDateTimePickerStartDate.Value.ToString("yyyy-MM-dd");
+                    voluntaryAutomobileInsuranceVo.EndDate = this.CcDateTimePickerEndDate.Value.ToString("yyyy-MM-dd");
                     /*
                      * PDF（byte[]）をセット
                      */
-                    vo.Image1 = _ccPdfViews[0].MemoryStream?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image2 = _ccPdfViews[1].MemoryStream?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image3 = _ccPdfViews[2].MemoryStream?.ToArray() ?? Array.Empty<byte>();
-                    vo.Image4 = _ccPdfViews[3].MemoryStream?.ToArray() ?? Array.Empty<byte>();
-
+                    voluntaryAutomobileInsuranceVo.Image1 = _ccPdfViews[0].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    voluntaryAutomobileInsuranceVo.Image2 = _ccPdfViews[1].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    voluntaryAutomobileInsuranceVo.Image3 = _ccPdfViews[2].MemoryStream?.ToArray() ?? Array.Empty<byte>();
+                    voluntaryAutomobileInsuranceVo.Image4 = _ccPdfViews[3].MemoryStream?.ToArray() ?? Array.Empty<byte>();
                     /*
                      * INSERT or UPDATE の判定
                      */
-                    if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(vo.StaffCode)) {
-                        _voluntaryAutomobileInsuranceDao.UpdateOneVoluntaryAutomobileInsuranceVo(vo);
+                    if(_voluntaryAutomobileInsuranceDao.ExistsById(voluntaryAutomobileInsuranceVo.Id)) {
+                        _voluntaryAutomobileInsuranceDao.UpdateOneVoluntaryAutomobileInsuranceVo(voluntaryAutomobileInsuranceVo);
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "更新が完了しました。";
                     } else {
-                        _voluntaryAutomobileInsuranceDao.InsertOneVoluntaryAutomobileInsuranceVo(vo);
+                        _voluntaryAutomobileInsuranceDao.InsertOneVoluntaryAutomobileInsuranceVo(voluntaryAutomobileInsuranceVo);
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "新規登録が完了しました。";
                     }
                     // 二度押し防止/更新後は編集不可にする
                     ((CcButton)sender).Enabled = false;
                     this.CcComboBoxVehicleType.Enabled = false;
                     this.CcComboBoxCompanyName.Enabled = false;
+                    this.CcCheckBoxAutomaticRenewal.Enabled = false;
                     this.CcDateTimePickerStartDate.Enabled = false;
                     this.CcDateTimePickerEndDate.Enabled = false;
                     break;
@@ -102,10 +102,10 @@ namespace VoluntaryAutomobileInsurance {
         /// <summary>
         /// 画面へ PDF 等を表示する
         /// </summary>
-        private void SetControls(int staffCode) {
-            if(_voluntaryAutomobileInsuranceDao.ExistsByStaffCode(staffCode)) {
+        private void SetControls(string id) {
+            if(id is not null &&_voluntaryAutomobileInsuranceDao.ExistsById(id)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在します。";
-                VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = _voluntaryAutomobileInsuranceDao.SelectOneByStaffCode(staffCode);
+                VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = _voluntaryAutomobileInsuranceDao.SelectOneById(_voluntaryAutomobileInsuranceVo.Id);
 
                 if(voluntaryAutomobileInsuranceVo is null)
                     return;
@@ -115,10 +115,9 @@ namespace VoluntaryAutomobileInsurance {
                  */
                 this.CcComboBoxVehicleType.Text = voluntaryAutomobileInsuranceVo.VehicleType;
                 this.CcComboBoxCompanyName.Text = voluntaryAutomobileInsuranceVo.CompanyName;
-
+                this.CcCheckBoxAutomaticRenewal.Checked = voluntaryAutomobileInsuranceVo.AutomaticRenewal;
                 if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.StartDate, out DateTime start))
                     this.CcDateTimePickerStartDate.Value = start;
-
                 if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out DateTime end))
                     this.CcDateTimePickerEndDate.Value = end;
 
@@ -166,6 +165,8 @@ namespace VoluntaryAutomobileInsurance {
             this.InitializeCcComboBoxVehicleType();
             // 保険会社名
             this.InitializeCcComboBoxCompanyName();
+            // 自動更新
+            this.CcCheckBoxAutomaticRenewal.Checked = false;
             // 開始日・終了日
             this.CcDateTimePickerStartDate.Value = DateTime.Now.AddDays(1);
             this.CcDateTimePickerEndDate.Value = DateTime.Now.AddYears(1);
