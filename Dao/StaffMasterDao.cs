@@ -58,21 +58,6 @@ namespace Dao {
         /// <param name="staffCode"></param>
         /// <returns></returns>
         public bool ExistenceStaffMaster(int staffCode) {
-            /*
-             * 旧コード(SQLインジェクション対策なし)
-             */
-            //int count;
-            //SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            //sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
-            //                         "FROM H_StaffMaster " +
-            //                         "WHERE StaffCode = " + staffCode;
-            //try {
-            //    count = (int)sqlCommand.ExecuteScalar();
-            //} catch {
-            //    throw;
-            //}
-            //return count != 0 ? true : false;
-
             using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT COUNT(StaffCode) " +
                                      "FROM H_StaffMaster " +
@@ -151,6 +136,7 @@ namespace Dao {
                                             "LegalTwelveItemFlag," +
                                             "MedicalCheckupFlag," +
                                             "ToukanpoFlag," +
+                                            "RiskAssessmentFlag," +                             // 2026-08-31
                                             "UrgentTelephoneNumber," +
                                             "UrgentTelephoneMethod," +
                                             "HealthInsuranceDate," +
@@ -178,8 +164,8 @@ namespace Dao {
                                      CreateSqlJobForm(sqlJobForm) +
                                      CreateSqlOccupation(sqlOccupation) +
                                      CreateSqlRetirementFlag(sqlRetirementFlag);
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StaffMasterVo staffMasterVo = new();
                     staffMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffMasterVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
@@ -219,6 +205,7 @@ namespace Dao {
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
                     staffMasterVo.MedicalCheckupFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MedicalCheckupFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
+                    staffMasterVo.RiskAssessmentFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RiskAssessmentFlag"]);                                // 2026-08-31
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
                     staffMasterVo.UrgentTelephoneMethod = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneMethod"]);
                     staffMasterVo.HealthInsuranceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["HealthInsuranceDate"]);
@@ -292,6 +279,7 @@ namespace Dao {
                                             "LegalTwelveItemFlag," +
                                             "MedicalCheckupFlag," +
                                             "ToukanpoFlag," +
+                                            "RiskAssessmentFlag," +                             // 2026-08-31
                                             "UrgentTelephoneNumber," +
                                             "UrgentTelephoneMethod," +
                                             "HealthInsuranceDate," +
@@ -315,8 +303,8 @@ namespace Dao {
                                             "DeleteFlag " +
                                      "FROM H_StaffMaster " +
                                      "WHERE StaffCode = " + staffCode + "";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     staffMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffMasterVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
                     staffMasterVo.Belongs = _defaultValue.GetDefaultValue<int>(sqlDataReader["Belongs"]);
@@ -358,6 +346,7 @@ namespace Dao {
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
                     staffMasterVo.MedicalCheckupFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MedicalCheckupFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
+                    staffMasterVo.RiskAssessmentFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RiskAssessmentFlag"]);                                // 2026-08-31
                     staffMasterVo.ListHStaffFamilyVo = _staffFamilyDao.SelectOneStaffFamilyMaster(_defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]));
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
                     staffMasterVo.UrgentTelephoneMethod = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneMethod"]);
@@ -401,7 +390,7 @@ namespace Dao {
 
             // --- IN 句のパラメータを動的生成 ---
             List<string> paramNames = new();
-            for (int i = 0; i < staffCodes.Length; i++) {
+            for(int i = 0; i < staffCodes.Length; i++) {
                 string paramName = "@p" + i.ToString();
                 paramNames.Add(paramName);
                 sqlCommand.Parameters.AddWithValue(paramName, staffCodes[i]);
@@ -445,6 +434,7 @@ namespace Dao {
                                             "LegalTwelveItemFlag," +
                                             "MedicalCheckupFlag," +
                                             "ToukanpoFlag," +
+                                            "RiskAssessmentFlag," +                             // 2026-08-31
                                             "UrgentTelephoneNumber," +
                                             "UrgentTelephoneMethod," +
                                             "HealthInsuranceDate," +
@@ -469,8 +459,8 @@ namespace Dao {
                                      "FROM H_StaffMaster " +
                                      "WHERE StaffCode IN (" + string.Join(",", paramNames) + ")";
 
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StaffMasterVo staffMasterVo = new();
                     staffMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     staffMasterVo.UnionCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["UnionCode"]);
@@ -510,6 +500,7 @@ namespace Dao {
                     staffMasterVo.LegalTwelveItemFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["LegalTwelveItemFlag"]);
                     staffMasterVo.MedicalCheckupFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["MedicalCheckupFlag"]);
                     staffMasterVo.ToukanpoFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["ToukanpoFlag"]);
+                    staffMasterVo.RiskAssessmentFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["RiskAssessmentFlag"]);                                // 2026-08-31
                     staffMasterVo.UrgentTelephoneNumber = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneNumber"]);
                     staffMasterVo.UrgentTelephoneMethod = _defaultValue.GetDefaultValue<string>(sqlDataReader["UrgentTelephoneMethod"]);
                     staffMasterVo.HealthInsuranceDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["HealthInsuranceDate"]);
@@ -582,6 +573,7 @@ namespace Dao {
                                                                "LegalTwelveItemFlag," +
                                                                "MedicalCheckupFlag," +
                                                                "ToukanpoFlag," +
+                                                               "RiskAssessmentFlag," +                             // 2026-08-31
                                                                "UrgentTelephoneNumber," +
                                                                "UrgentTelephoneMethod," +
                                                                "HealthInsuranceDate," +
@@ -641,6 +633,7 @@ namespace Dao {
                                             "'" + staffMasterVo.LegalTwelveItemFlag + "'," +
                                             "'" + staffMasterVo.MedicalCheckupFlag + "'," +
                                             "'" + staffMasterVo.ToukanpoFlag + "'," +
+                                            "'" + staffMasterVo.RiskAssessmentFlag + "'," +                        // 2026-08-31
                                             "'" + staffMasterVo.UrgentTelephoneNumber + "'," +
                                             "'" + staffMasterVo.UrgentTelephoneMethod + "'," +
                                             "'" + staffMasterVo.HealthInsuranceDate + "'," +
@@ -717,6 +710,7 @@ namespace Dao {
                                          "LegalTwelveItemFlag = '" + staffMasterVo.LegalTwelveItemFlag + "'," +
                                          "MedicalCheckupFlag = '" + staffMasterVo.MedicalCheckupFlag + "'," +
                                          "ToukanpoFlag = '" + staffMasterVo.ToukanpoFlag + "'," +
+                                         "RiskAssessmentFlag = '" + staffMasterVo.RiskAssessmentFlag + "'," +
                                          "UrgentTelephoneNumber = '" + staffMasterVo.UrgentTelephoneNumber + "'," +
                                          "UrgentTelephoneMethod = '" + staffMasterVo.UrgentTelephoneMethod + "'," +
                                          "HealthInsuranceDate = '" + staffMasterVo.HealthInsuranceDate + "'," +
@@ -750,10 +744,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlBelongs(List<int>? sqlBelongs) {
             string sql = string.Empty;
-            if (sqlBelongs is not null) {
+            if(sqlBelongs is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlBelongs) {
+                foreach(int code in sqlBelongs) {
                     codes += string.Concat(code.ToString(), i < sqlBelongs.Count - 1 ? "," : "");
                     i++;
                 }
@@ -771,10 +765,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlJobForm(List<int>? sqlJobForm) {
             string sql = string.Empty;
-            if (sqlJobForm is not null) {
+            if(sqlJobForm is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlJobForm) {
+                foreach(int code in sqlJobForm) {
                     codes += string.Concat(code.ToString(), i < sqlJobForm.Count - 1 ? "," : "");
                     i++;
                 }
@@ -792,10 +786,10 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlOccupation(List<int>? sqlOccupation) {
             string sql = string.Empty;
-            if (sqlOccupation is not null) {
+            if(sqlOccupation is not null) {
                 string codes = string.Empty;
                 int i = 0;
-                foreach (int code in sqlOccupation) {
+                foreach(int code in sqlOccupation) {
                     codes += string.Concat(code.ToString(), i < sqlOccupation.Count - 1 ? "," : "");
                     i++;
                 }
@@ -813,8 +807,8 @@ namespace Dao {
         /// <returns></returns>
         private string CreateSqlRetirementFlag(bool? sqlRetirementFlag) {
             string sql = string.Empty;
-            if (sqlRetirementFlag is not null) {
-                if (sqlRetirementFlag == false) {
+            if(sqlRetirementFlag is not null) {
+                if(sqlRetirementFlag == false) {
                     return " AND RetirementFlag = 'false'";
                 } else {
                     return sql;

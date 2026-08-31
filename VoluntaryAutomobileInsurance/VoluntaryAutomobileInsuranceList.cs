@@ -74,6 +74,7 @@ namespace VoluntaryAutomobileInsurance {
         /*
          * インスタンス作成
          */
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly Screen _screen;
         private readonly ScreenForm _screenForm = new();
         private readonly DateUtility _dateUtility = new();
@@ -237,10 +238,22 @@ namespace VoluntaryAutomobileInsurance {
                 sheetView.Cells[row, _colCompanyName].Value = voluntaryAutomobileInsuranceVo.CompanyName;
 
                 // --- 12: 保険開始日 ---
-                sheetView.Cells[row, _colStartDate].Value = voluntaryAutomobileInsuranceVo.StartDate;
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.StartDate, out DateTime start)) {                       // 開始日
+                    if(start.Date == _defaultDateTime.Date) {
+                        sheetView.Cells[row, _colStartDate].Value = string.Empty;
+                    } else {
+                        sheetView.Cells[row, _colStartDate].Value = voluntaryAutomobileInsuranceVo.StartDate;
+                    }
+                }
 
                 // --- 13: 保険終了日 ---
-                sheetView.Cells[row, _colEndDate].Value = voluntaryAutomobileInsuranceVo.EndDate;
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out DateTime end)) {                           // 終了日
+                    if(end.Date == _defaultDateTime.Date) {
+                        sheetView.Cells[row, _colEndDate].Value = string.Empty;
+                    } else {
+                        sheetView.Cells[row, _colEndDate].Value = voluntaryAutomobileInsuranceVo.EndDate;
+                    }
+                }
 
                 // --- 14: 経路図PDF（HasImage1）---
                 sheetView.Cells[row, _colRoutePdf].Value = voluntaryAutomobileInsuranceVo.HasImage1 ? "✓" : string.Empty;
@@ -256,7 +269,7 @@ namespace VoluntaryAutomobileInsurance {
                 // --- 期限切れチェック ---
                 DateTime endDate;
                 if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out endDate)) {
-                    if(endDate.Date < DateTime.Today) {
+                    if(endDate.Date != _defaultDateTime.Date && endDate.Date < DateTime.Today) {
                         // 行全体を赤色にする
                         sheetView.Rows[row].BackColor = Color.LightCoral;                                                               // 目に優しい赤
                                                                                                                                         // sheetView.Rows[row].ForeColor = Color.White;     // 必要なら文字色も変更

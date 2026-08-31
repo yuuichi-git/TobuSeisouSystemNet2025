@@ -11,6 +11,7 @@ using Vo;
 
 namespace VoluntaryAutomobileInsurance {
     public partial class VoluntaryAutomobileInsuranceDetail : Form {
+        private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private VoluntaryAutomobileInsuranceVo _voluntaryAutomobileInsuranceVo;
         private PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（経路図 / 自賠責 / 任意保険 / 通勤許可証）
@@ -103,7 +104,7 @@ namespace VoluntaryAutomobileInsurance {
         /// 画面へ PDF 等を表示する
         /// </summary>
         private void SetControls(string id) {
-            if(id is not null &&_voluntaryAutomobileInsuranceDao.ExistsById(id)) {
+            if(id is not null && _voluntaryAutomobileInsuranceDao.ExistsById(id)) {
                 this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "指定のデータは存在します。";
                 VoluntaryAutomobileInsuranceVo voluntaryAutomobileInsuranceVo = _voluntaryAutomobileInsuranceDao.SelectOneById(_voluntaryAutomobileInsuranceVo.Id);
 
@@ -113,14 +114,23 @@ namespace VoluntaryAutomobileInsurance {
                 /*
                  * 画面項目へ反映
                  */
-                this.CcComboBoxVehicleType.Text = voluntaryAutomobileInsuranceVo.VehicleType;
-                this.CcComboBoxCompanyName.Text = voluntaryAutomobileInsuranceVo.CompanyName;
-                this.CcCheckBoxAutomaticRenewal.Checked = voluntaryAutomobileInsuranceVo.AutomaticRenewal;
-                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.StartDate, out DateTime start))
-                    this.CcDateTimePickerStartDate.Value = start;
-                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out DateTime end))
-                    this.CcDateTimePickerEndDate.Value = end;
-
+                this.CcComboBoxVehicleType.Text = voluntaryAutomobileInsuranceVo.VehicleType;                               // 対象車両種別
+                this.CcComboBoxCompanyName.Text = voluntaryAutomobileInsuranceVo.CompanyName;                               // 保険会社名
+                this.CcCheckBoxAutomaticRenewal.Checked = voluntaryAutomobileInsuranceVo.AutomaticRenewal;                  // 自動更新
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.StartDate, out DateTime start)) {                       // 開始日
+                    if(start.Date == _defaultDateTime.Date) {
+                        this.CcDateTimePickerStartDate.SetEmpty();
+                    } else {
+                        this.CcDateTimePickerStartDate.Value = start;
+                    }
+                }
+                if(DateTime.TryParse(voluntaryAutomobileInsuranceVo.EndDate, out DateTime end)) {                           // 終了日
+                    if(end.Date == _defaultDateTime.Date) {
+                        this.CcDateTimePickerEndDate.SetEmpty();
+                    } else {
+                        this.CcDateTimePickerEndDate.Value = end;
+                    }
+                }
                 /*
                  * PDF 表示（Image1〜4）
                  */

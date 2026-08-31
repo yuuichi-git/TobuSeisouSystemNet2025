@@ -33,6 +33,8 @@ using PaidLeave;
 
 using PeakSeason;
 
+using RiskAssessment;
+
 using RollCall;
 
 using Seisou;
@@ -93,6 +95,7 @@ namespace TobuSeisouSystemNet2025 {
                                              "ToolStripMenuItemDataBaseLocal",
                                              "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.IpAddress = NetworkUtility.GetIpAddress();
             this.DefaultGatewayAddress = NetworkUtility.GetDefaultGatewayAddress();
@@ -149,10 +152,6 @@ namespace TobuSeisouSystemNet2025 {
                     break;
             }
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Event
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -281,6 +280,7 @@ namespace TobuSeisouSystemNet2025 {
         private CertificationList certificationList = null;
         private AccidentList accidentList = null;
         private WasteList wasteList = null;
+        private RiskAssessmentList riskAssessmentList = null;
         private WastCollectionList wastCollectionList = null;                                                                                   // 廃棄物顧客リスト
         private SetList setList = null;                                                                                                         // 廃棄物スポット見積リスト
         private VoluntaryAutomobileInsuranceList voluntaryAutomobileInsuranceList = null;                                                       // 通勤用自動車任意保険加入状況一覧
@@ -369,12 +369,24 @@ namespace TobuSeisouSystemNet2025 {
                         case "AccidentList":                                                                                                    // 事故記録簿
                             this.ShowSingleInstanceForm(ref accidentList, () => new AccidentList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
+                        //--------------------------------------------------
+                        // 労働安全基準局
+                        //--------------------------------------------------
+                        case "RiskAssessmentList":                                                                                              // 作業員リスクアセスメント講習
+                            this.ShowSingleInstanceForm(ref riskAssessmentList, () => new RiskAssessmentList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
+                            break;
+                        //--------------------------------------------------
+                        // 廃棄物
+                        //--------------------------------------------------
                         case "WasteList":                                                                                                       // 廃棄物顧客リスト
                             this.ShowSingleInstanceForm(ref wasteList, () => new WasteList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
-                        case "WastCollectionList":                                                                                               // 廃棄物スポット見積リスト
+                        case "WastCollectionList":                                                                                              // 廃棄物スポット見積リスト
                             this.ShowSingleInstanceForm(ref wastCollectionList, () => new WastCollectionList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;
+                        //--------------------------------------------------
+                        // 
+                        //--------------------------------------------------
                         case "SetList":                                                                                                         // 配車先マスター
                             this.ShowSingleInstanceForm(ref setList, () => new SetList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
                             break;

@@ -140,14 +140,13 @@ namespace Set {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemEdit",
-                "ToolStripMenuItemInsertNewRecord",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemEdit",
+                                             "ToolStripMenuItemInsertNewRecord",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
             /*
              * Spread
              */
@@ -156,10 +155,6 @@ namespace Set {
              * StatusStrip
              */
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Event‚ð“o˜^‚·‚é
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>

@@ -50,6 +50,7 @@ namespace Vo {
         private bool _legalTwelveItemFlag;
         private bool _medicalCheckupFlag;
         private bool _toukanpoFlag;
+        private bool _riskAssessmentFlag;                                               // 2026-08-31
         private List<StaffFamilyVo> _listStaffFamilyVo;
         private string _urgentTelephoneNumber;
         private string _urgentTelephoneMethod;
@@ -123,6 +124,7 @@ namespace Vo {
             _legalTwelveItemFlag = false;
             _medicalCheckupFlag = false;
             _toukanpoFlag = false;
+            _riskAssessmentFlag = false; // 2026-08-31
             _listStaffFamilyVo = new List<StaffFamilyVo>();
             _urgentTelephoneNumber = string.Empty;
             _urgentTelephoneMethod = string.Empty;
@@ -426,7 +428,7 @@ namespace Vo {
             set => _deathNote = value;
         }
         /// <summary>
-        /// 法定１２項目の講習受講対象者
+        /// 法定１２項目の講習受講対象者　※運転手
         /// true:受講対象者 false:受講未対象者
         /// </summary>
         public bool LegalTwelveItemFlag {
@@ -448,6 +450,17 @@ namespace Vo {
         public bool ToukanpoFlag {
             get => _toukanpoFlag;
             set => _toukanpoFlag = value;
+        }
+        /// <summary>
+        /// リスクアセスメント受講対象者フラグ　※作業員
+        /// </summary>
+        public bool RiskAssessmentFlag {
+            get {
+                return _riskAssessmentFlag;
+            }
+            set {
+                _riskAssessmentFlag = value;
+            }
         }
         /// <summary>
         /// 家族構成

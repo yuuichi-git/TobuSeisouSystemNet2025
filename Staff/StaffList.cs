@@ -94,6 +94,7 @@ namespace Staff {
                                              "ToolStripMenuItemInsertNewRecord",
                                              "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             /*
              * FpSpread/Viewを初期化
              */
@@ -108,10 +109,6 @@ namespace Staff {
              * StatusStrip
              */
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -309,43 +306,45 @@ namespace Staff {
                     sheetView.Cells[rowCount, 14].Value = staffMasterVo.MedicalCheckupFlag;
                     // 東環保講習
                     sheetView.Cells[rowCount, 15].Value = staffMasterVo.ToukanpoFlag;
+                    // リスクアセスメント講習
+                    sheetView.Cells[rowCount, 16].Value = staffMasterVo.RiskAssessmentFlag;
                     // 免許証期限
-                    sheetView.Cells[rowCount, 16].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 17].Value = _licenseMasterDao.GetExpirationDate(staffMasterVo.StaffCode);
                    　// 初任診断
-                    sheetView.Cells[rowCount, 17].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode) != _defaultDateTime
+                    sheetView.Cells[rowCount, 18].Value = _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode) != _defaultDateTime
                         ? _staffProperDao.GetSyoninProperDate(staffMasterVo.StaffCode)
                         : string.Empty;
                     // 適齢診断の残日数
-                    sheetView.Cells[rowCount, 18].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 19].Value = _staffProperDao.GetTekireiProperDate(staffMasterVo.StaffCode);
                     // 年度内事故回数
-                    sheetView.Cells[rowCount, 19].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
+                    sheetView.Cells[rowCount, 20].Value = _carAccidentMasterDao.GetCarAccidentMasterCount(staffMasterVo.StaffCode);
                     /*
                      * 1年以内の健康診断
                      */
                     DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(staffMasterVo.StaffCode);
                     if(medicalExaminationDate != _defaultDateTime) {
                         if(medicalExaminationDate.AddYears(1) > DateTime.Now) {
-                            sheetView.Cells[rowCount, 20].ForeColor = Color.Black;
-                            sheetView.Cells[rowCount, 20].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                            sheetView.Cells[rowCount, 21].ForeColor = Color.Black;
+                            sheetView.Cells[rowCount, 21].Value = string.Concat("受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         } else {
-                            sheetView.Cells[rowCount, 20].ForeColor = Color.Red;
-                            sheetView.Cells[rowCount, 20].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
+                            sheetView.Cells[rowCount, 21].ForeColor = Color.Red;
+                            sheetView.Cells[rowCount, 21].Value = string.Concat("☆受診日(", medicalExaminationDate.ToString("yyyy年MM月dd日"), ")");
                         }
 
                     } else {
-                        sheetView.Cells[rowCount, 20].ForeColor = Color.DarkGray;
-                        sheetView.Cells[rowCount, 20].Value = "健康診断の記録無し";
+                        sheetView.Cells[rowCount, 21].ForeColor = Color.DarkGray;
+                        sheetView.Cells[rowCount, 21].Value = "健康診断の記録無し";
                     }
                     // 現住所
-                    sheetView.Cells[rowCount, 21].Value = staffMasterVo.CurrentAddress;
+                    sheetView.Cells[rowCount, 22].Value = staffMasterVo.CurrentAddress;
                     // 健康保険加入
-                    sheetView.Cells[rowCount, 22].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 23].Value = staffMasterVo.HealthInsuranceDate != _defaultDateTime ? true : false;
                     // 厚生年金加入
-                    sheetView.Cells[rowCount, 23].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 24].Value = staffMasterVo.WelfarePensionDate != _defaultDateTime ? true : false;
                     // 雇用保険加入
-                    sheetView.Cells[rowCount, 24].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 25].Value = staffMasterVo.EmploymentInsuranceDate != _defaultDateTime ? true : false;
                     // 労災保険
-                    sheetView.Cells[rowCount, 25].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
+                    sheetView.Cells[rowCount, 26].Value = staffMasterVo.WorkerAccidentInsuranceDate != _defaultDateTime ? true : false;
                     rowCount++;
                 }
             }
@@ -705,17 +704,17 @@ namespace Staff {
         /// <param name="sheetView"></param>
         /// <returns></returns>
         private SheetView InitializeSheetView(SheetView sheetView) {
-            SpreadList.AllowDragDrop = false; // DrugDropを禁止する
-            SpreadList.PaintSelectionHeader = false; // ヘッダの選択状態をしない
+            SpreadList.AllowDragDrop = false;                                                                   // DrugDropを禁止する
+            SpreadList.PaintSelectionHeader = false;                                                            // ヘッダの選択状態をしない
             SpreadList.TabStrip.DefaultSheetTab.Font = new Font("Yu Gothic UI", 9);
-            sheetView.AlternatingRows.Count = 2; // 行スタイルを２行単位とします
-            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke; // 1行目の背景色を設定します
-            sheetView.AlternatingRows[1].BackColor = Color.White; // 2行目の背景色を設定します
-            sheetView.ColumnHeader.Rows[0].Height = 26; // Columnヘッダの高さ
+            sheetView.AlternatingRows.Count = 2;                                                                // 行スタイルを２行単位とします
+            sheetView.AlternatingRows[0].BackColor = Color.WhiteSmoke;                                          // 1行目の背景色を設定します
+            sheetView.AlternatingRows[1].BackColor = Color.White;                                               // 2行目の背景色を設定します
+            sheetView.ColumnHeader.Rows[0].Height = 34;                                                         // Columnヘッダの高さ
             sheetView.GrayAreaBackColor = Color.White;
             sheetView.HorizontalGridLine = new GridLine(GridLineType.None);
-            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9); // 行ヘッダのFont
-            sheetView.RowHeader.Columns[0].Width = 48; // 行ヘッダの幅を変更します
+            sheetView.RowHeader.Columns[0].Font = new Font("Yu Gothic UI", 9);                                  // 行ヘッダのFont
+            sheetView.RowHeader.Columns[0].Width = 48;                                                          // 行ヘッダの幅を変更します
             sheetView.VerticalGridLine = new GridLine(GridLineType.Flat, Color.LightGray);
             sheetView.RemoveRows(0, sheetView.Rows.Count);
             return sheetView;

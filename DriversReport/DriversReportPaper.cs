@@ -255,7 +255,12 @@ namespace DriversReport {
                 case 1312172:                                                                                               // 足立３３
                 case 1312173:                                                                                               // 足立３４
                 case 1312169:                                                                                               // 足立８
-                    sheetView.Cells[10, 17].Text = "足立清掃工場 /"; // 休憩場所
+                    sheetView.Cells[10, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 休憩場所
+                    sheetView.Cells[12, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名①
+                    sheetView.Cells[13, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名②
+                    sheetView.Cells[14, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名③
+                    sheetView.Cells[15, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名④
+                    sheetView.Cells[12, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名⑤
                     break;
                 case 1312212:                                                                                               // 小岩６
                     sheetView.Cells[10, 17].Text = "小岩清掃事務所 駐車場 /"; // 休憩場所

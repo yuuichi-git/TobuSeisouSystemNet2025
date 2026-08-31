@@ -13,11 +13,11 @@ using Vo;
 
 namespace LegalTwelveItem {
     public partial class LegalTwelveItemList : Form {
-        private readonly DateTime _defaultDatetime = new(1900, 01, 01);
-        private readonly DateUtility _dateUtility = new();
-        private readonly Screen _screen;
-        private readonly ScreenForm _screenForm = new();
+        private DateTime _defaultDatetime = new(1900, 01, 01);
+        private DateUtility _dateUtility = new();
         private PrintDocument _printDocument = new();
+        private Screen _screen;
+        private ScreenForm _screenForm = new();
         /*
          * Dao
          */
@@ -32,20 +32,21 @@ namespace LegalTwelveItem {
         private const int _colBelongsName = 0;
         private const int _colJobFormName = 1;
         private const int _colOccupation = 2;
-        private const int _colName = 3;
-        private const int _colEmploymentDate = 4;
-        private const int _colStudentsFlag01 = 5;
-        private const int _colStudentsFlag02 = 6;
-        private const int _colStudentsFlag03 = 7;
-        private const int _colStudentsFlag04 = 8;
-        private const int _colStudentsFlag05 = 9;
-        private const int _colStudentsFlag06 = 10;
-        private const int _colStudentsFlag07 = 11;
-        private const int _colStudentsFlag08 = 12;
-        private const int _colStudentsFlag09 = 13;
-        private const int _colStudentsFlag10 = 14;
-        private const int _colStudentsFlag11 = 15;
-        private const int _colStudentsFlag12 = 16;
+        private const int _colUnionCode = 3;
+        private const int _colName = 4;
+        private const int _colEmploymentDate = 5;
+        private const int _colStudentsFlag01 = 6;
+        private const int _colStudentsFlag02 = 7;
+        private const int _colStudentsFlag03 = 8;
+        private const int _colStudentsFlag04 = 9;
+        private const int _colStudentsFlag05 = 10;
+        private const int _colStudentsFlag06 = 11;
+        private const int _colStudentsFlag07 = 12;
+        private const int _colStudentsFlag08 = 13;
+        private const int _colStudentsFlag09 = 14;
+        private const int _colStudentsFlag10 = 15;
+        private const int _colStudentsFlag11 = 16;
+        private const int _colStudentsFlag12 = 17;
 
         /// <summary>
         /// 
@@ -69,31 +70,27 @@ namespace LegalTwelveItem {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
             // 対象年度
             this.NumericUpDownExFiscalYear.Value = _dateUtility.GetFiscalYear();
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
-            foreach (string item in new PrintUtility().GetAllPrinterName()) {
-                this.ComboBoxExPrinterName.Items.Add(item);
-            }
-            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+            foreach(string item in new PrintUtility().GetAllPrinterName())
+                this.CcComboBoxPrinterName.Items.Add(item);
+
+            this.CcComboBoxPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
             /*
              * InitializeSpread
              */
             this.InitializeSheetViewList(this.SheetViewList);
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -114,22 +111,23 @@ namespace LegalTwelveItem {
             /*
              * SheetViewListの準備
              */
-            this.SpreadList.SuspendLayout();                                                                                                // Spread 非活性化
-            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                        // 先頭行（列）インデックスを取得
-            if (this.SheetViewList.Rows.Count > 0)                                                                                          // Rowを削除する
+            this.SpreadList.SuspendLayout();                                                                                            // Spread 非活性化
+            this.spreadListTopRow = SpreadList.GetViewportTopRow(0);                                                                    // 先頭行（列）インデックスを取得
+            if(this.SheetViewList.Rows.Count > 0)                                                                                       // Rowを削除する
                 this.SheetViewList.RemoveRows(0, this.SheetViewList.Rows.Count);
             /*
              * SheetViewListへ表示
              */
             int i = 0;
-            foreach (LegalTwelveItemListVo legalTwelveItemListVo in listLegalTwelveItemVo) {
+            foreach(LegalTwelveItemListVo legalTwelveItemListVo in listLegalTwelveItemVo.OrderBy(x => x.Belongs).ThenBy(x => x.UnionCode).ThenBy(x => x.StaffName)) {
                 this.SheetViewList.Rows.Add(i, 1);
-                this.SheetViewList.RowHeader.Columns[0].Label = (i + 1).ToString();                                                         // Rowヘッダ
-                this.SheetViewList.Rows[i].ForeColor = legalTwelveItemListVo.JobForm == 11 ? Color.Blue : Color.Black;                      // 手帳のレコードのForeColorをセット
-                this.SheetViewList.Rows[i].Tag = legalTwelveItemListVo;                                                                     // H_LegalTwelveItemVoを退避
+                this.SheetViewList.RowHeader.Columns[0].Label = (i + 1).ToString();                                                     // Rowヘッダ
+                this.SheetViewList.Rows[i].ForeColor = legalTwelveItemListVo.JobForm == 11 ? Color.Blue : Color.Black;                  // 手帳のレコードのForeColorをセット
+                this.SheetViewList.Rows[i].Tag = legalTwelveItemListVo;                                                                 // H_LegalTwelveItemVoを退避
                 this.SheetViewList.Cells[i, _colBelongsName].Text = legalTwelveItemListVo.BelongsName;
                 this.SheetViewList.Cells[i, _colJobFormName].Text = legalTwelveItemListVo.JobFormName;
                 this.SheetViewList.Cells[i, _colOccupation].Text = legalTwelveItemListVo.OccupationName;
+                this.SheetViewList.Cells[i, _colUnionCode].Text = legalTwelveItemListVo.UnionCode.ToString();
                 this.SheetViewList.Cells[i, _colName].Text = legalTwelveItemListVo.StaffName;
                 this.SheetViewList.Cells[i, _colEmploymentDate].Text = legalTwelveItemListVo.EmploymentDate != _defaultDatetime ? legalTwelveItemListVo.EmploymentDate.ToString("yyyy/MM/dd") : string.Empty;
                 this.SheetViewList.Cells[i, _colStudentsFlag01].Text = legalTwelveItemListVo.Students01Flag ? "〇" : string.Empty;
@@ -160,7 +158,7 @@ namespace LegalTwelveItem {
             /*
              * ヘッダーのDoubleClickを回避
              */
-            if (e.ColumnHeader)
+            if(e.ColumnHeader)
                 return;
             /*
              * Detailウインドウを表示
@@ -201,7 +199,7 @@ namespace LegalTwelveItem {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 /*
                  * A4で印刷する
                  */
@@ -209,15 +207,15 @@ namespace LegalTwelveItem {
                     // Eventを登録
                     _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
                     // 出力先プリンタを指定します。
-                    _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;
+                    _printDocument.PrinterSettings.PrinterName = this.CcComboBoxPrinterName.Text;
                     // 用紙の向きを設定(横：true、縦：false)
                     _printDocument.DefaultPageSettings.Landscape = false;
                     /*
                      * プリンタがサポートしている用紙サイズを調べる
                      */
-                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                    foreach(PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
                         // B5用紙に設定する
-                        if (paperSize.Kind == PaperKind.A4) {
+                        if(paperSize.Kind == PaperKind.A4) {
                             _printDocument.DefaultPageSettings.PaperSize = paperSize;
                             break;
                         }
@@ -261,7 +259,7 @@ namespace LegalTwelveItem {
         /// <param name="e"></param>
         private void EmploymentAgreementList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

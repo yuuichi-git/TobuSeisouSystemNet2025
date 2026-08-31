@@ -29,7 +29,7 @@
             StatusStripEx1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
             labelEx2 = new CcControl.CcLabel();
-            ComboBoxExPrinterName = new CcControl.CcComboBox();
+            CcComboBoxPrinterName = new CcControl.CcComboBox();
             labelEx1 = new CcControl.CcLabel();
             ButtonExUpdate = new CcControl.CcButton();
             NumericUpDownExFiscalYear = new CcControl.CcNumericUpDown();
@@ -44,9 +44,9 @@
             // TableLayoutPanelExBase
             // 
             TableLayoutPanelExBase.ColumnCount = 3;
-            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
             TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
@@ -86,7 +86,7 @@
             // 
             TableLayoutPanelExBase.SetColumnSpan(PanelExTop, 3);
             PanelExTop.Controls.Add(labelEx2);
-            PanelExTop.Controls.Add(ComboBoxExPrinterName);
+            PanelExTop.Controls.Add(CcComboBoxPrinterName);
             PanelExTop.Controls.Add(labelEx1);
             PanelExTop.Controls.Add(ButtonExUpdate);
             PanelExTop.Controls.Add(NumericUpDownExFiscalYear);
@@ -105,14 +105,14 @@
             labelEx2.TabIndex = 9;
             labelEx2.Text = "出力先";
             // 
-            // ComboBoxExPrinterName
+            // CcComboBoxPrinterName
             // 
-            ComboBoxExPrinterName.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboBoxExPrinterName.FormattingEnabled = true;
-            ComboBoxExPrinterName.Location = new Point(224, 16);
-            ComboBoxExPrinterName.Name = "ComboBoxExPrinterName";
-            ComboBoxExPrinterName.Size = new Size(212, 23);
-            ComboBoxExPrinterName.TabIndex = 8;
+            CcComboBoxPrinterName.DropDownStyle = ComboBoxStyle.DropDownList;
+            CcComboBoxPrinterName.FormattingEnabled = true;
+            CcComboBoxPrinterName.Location = new Point(224, 16);
+            CcComboBoxPrinterName.Name = "CcComboBoxPrinterName";
+            CcComboBoxPrinterName.Size = new Size(212, 23);
+            CcComboBoxPrinterName.TabIndex = 8;
             // 
             // labelEx1
             // 
@@ -153,9 +153,9 @@
             SpreadList.AccessibleDescription = "SpreadList, Sheet1, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
-            SpreadList.Location = new Point(333, 87);
+            SpreadList.Location = new Point(303, 87);
             SpreadList.Name = "SpreadList";
-            SpreadList.Size = new Size(1238, 927);
+            SpreadList.Size = new Size(1298, 927);
             SpreadList.TabIndex = 3;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
@@ -192,7 +192,7 @@
         private CcControl.CcLabel labelEx1;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcLabel labelEx2;
-        private CcControl.CcComboBox ComboBoxExPrinterName;
+        private CcControl.CcComboBox CcComboBoxPrinterName;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

@@ -1,12 +1,61 @@
 ﻿/*
- * 2024-04-27
+ * 2026-08-31
  */
-namespace Vo {
-    public class LegalTwelveItemListVo {
-        private readonly DateTime _defaultDatetime = new(1900, 01, 01);
+using System.Data.SqlClient;
+
+using Common;
+
+using Vo;
+
+namespace Dao {
+    public class RiskAssessmentSeminarDao {
+        private DateTime _defaultDatetime = new(1900, 01, 01);
+        private DefaultValue _defaultValue = new();
+        /*
+         * Vo
+         */
+        private ConnectionVo _connectionVo;
+
+        public RiskAssessmentSeminarDao(ConnectionVo connectionVo) {
+            /*
+             * Vo
+             */
+            _connectionVo = connectionVo;
+        }
+
+        /// <summary>
+        /// レコードが存在するか確認する
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true:存在する, false:存在しない</returns>
+        public bool ExistenceRiskAssessmentSeminar(string id) {
+            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT COUNT(Id) " +
+                                     "FROM H_RiskAssessmentSeminar " +
+                                     "WHERE Id = '" + id + "'";
+            try {
+                return (int)sqlCommand.ExecuteScalar() > 0 ? true : false;
+            } catch {
+                throw;
+            }
+        }
+
+
+
+
+
+
+    }
+
+    /// <summary>
+    /// リスクアセスメント研修受講情報Vo
+    /// </summary>
+    public class RiskAssessmentSeminarListVo {
+        private string _id;
         private int _belongs;
         private string _belongsName;
         private int _jobForm;
+        private int _unionCode;
         private string _jobFormName;
         private int _occupationCode;
         private string _occupationName;
@@ -16,23 +65,18 @@ namespace Vo {
         private bool _students01Flag;
         private bool _students02Flag;
         private bool _students03Flag;
-        private bool _students04Flag;
-        private bool _students05Flag;
-        private bool _students06Flag;
-        private bool _students07Flag;
-        private bool _students08Flag;
-        private bool _students09Flag;
-        private bool _students10Flag;
-        private bool _students11Flag;
-        private bool _students12Flag;
+
+        private readonly DateTime _defaultDatetime = new(1900, 01, 01);
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public LegalTwelveItemListVo() {
+        public RiskAssessmentSeminarListVo() {
+            _id = string.Empty;
             _belongs = 0;
             _belongsName = string.Empty;
             _jobForm = 0;
+            _unionCode = 0;
             _jobFormName = string.Empty;
             _occupationCode = 0;
             _occupationName = string.Empty;
@@ -42,17 +86,19 @@ namespace Vo {
             _students01Flag = false;
             _students02Flag = false;
             _students03Flag = false;
-            _students04Flag = false;
-            _students05Flag = false;
-            _students06Flag = false;
-            _students07Flag = false;
-            _students08Flag = false;
-            _students09Flag = false;
-            _students10Flag = false;
-            _students11Flag = false;
-            _students12Flag = false;
         }
 
+        /// <summary>
+        /// ID
+        /// </summary>
+        public string Id {
+            get {
+                return _id;
+            }
+            set {
+                _id = value;
+            }
+        }
         /// <summary>
         /// 所属
         /// 10:役員 11:社員 12:アルバイト 13:派遣 20:新運転 21:自運労 99:指定なし
@@ -101,6 +147,15 @@ namespace Vo {
             get => _occupationName;
             set => _occupationName = value;
         }
+        public int UnionCode {
+            get {
+                return _unionCode;
+            }
+
+            set {
+                _unionCode = value;
+            }
+        }
         public int StaffCode {
             get => _staffCode;
             set => _staffCode = value;
@@ -136,69 +191,6 @@ namespace Vo {
         public bool Students03Flag {
             get => _students03Flag;
             set => _students03Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students04Flag {
-            get => _students04Flag;
-            set => _students04Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students05Flag {
-            get => _students05Flag;
-            set => _students05Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students06Flag {
-            get => _students06Flag;
-            set => _students06Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students07Flag {
-            get => _students07Flag;
-            set => _students07Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students08Flag {
-            get => _students08Flag;
-            set => _students08Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students09Flag {
-            get => _students09Flag;
-            set => _students09Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students10Flag {
-            get => _students10Flag;
-            set => _students10Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students11Flag {
-            get => _students11Flag;
-            set => _students11Flag = value;
-        }
-        /// <summary>
-        /// 項目受講フラグ
-        /// </summary>
-        public bool Students12Flag {
-            get => _students12Flag;
-            set => _students12Flag = value;
         }
     }
 }
