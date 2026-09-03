@@ -68,7 +68,7 @@ namespace Car {
                 _dictionaryManagedSpaceMaster.Add(managedSpaceVo.Code, managedSpaceVo);
             foreach(ShapeMasterVo shapeMasterVo in _shapeMasterDao.SelectAllShapeMaster()) {                                                    // 車両形状 _dictionaryShapeMaster[carMasterVo.ShapeCode].Name
                 _dictionaryShapeMaster.Add(shapeMasterVo.Code, shapeMasterVo);
-            }                                                     
+            }
 
             /*
              * InitializeControl
@@ -77,20 +77,15 @@ namespace Car {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             InitializeControl();
             this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                                    // 新規での車両コード採番
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -127,21 +122,16 @@ namespace Car {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.SetControl(_carMasterDao.SelectOneCarMasterP(carCode));
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Select Success";
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -285,8 +275,8 @@ namespace Car {
             carMasterVo.VersionDesignateNumber = this.TextBoxExVersionDesignateNumber.Text;                                                                 // 型式指定番号
             carMasterVo.CategoryDistinguishNumber = this.TextBoxExCategoryDistinguishNumber.Text;                                                           // 類別区分番号
             carMasterVo.Remarks = this.TextBoxExRemarks.Text;                                                                                               // 備考
-            carMasterVo.MainPicture = (byte[])new ImageConverter().ConvertTo(this.PictureBoxExMainPicture.Image, typeof(byte[]));                           // 車検証
-            carMasterVo.SubPicture = (byte[])new ImageConverter().ConvertTo(this.PictureBoxExSubPicture.Image, typeof(byte[]));                             // 自動車検査証記録事項
+            carMasterVo.VehicleInspectionCertificatePicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBoxMainPicture.Image, typeof(byte[]));   // 車検証
+            carMasterVo.RecordDetailsPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBoxSubPicture.Image, typeof(byte[]));                   // 自動車検査証記録事項
             carMasterVo.EmergencyVehicleFlag = this.CheckBoxExEmergencyVehicleFlag.Checked;                                                                 // 緊急車両登録フラグ
             carMasterVo.EmergencyVehicleDate = this.DateTimePickerExEmergencyVehicleDate.GetValue();                                                        // 緊急車両登録期限
             carMasterVo.DigitalTachographFlag = this.CcCheckBoxDigitalTachographFlag.Checked;                                                               // デジタコ装着フラグ
@@ -371,8 +361,8 @@ namespace Car {
             this.TextBoxExVersionDesignateNumber.SetEmpty();                                                                                                // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.SetEmpty();                                                                                             // 類別区分番号
             this.TextBoxExRemarks.SetEmpty();                                                                                                               // 備考
-            this.PictureBoxExMainPicture.SetEmpty();                                                                                                        // 写真
-            this.PictureBoxExSubPicture.SetEmpty();                                                                                                         // 写真
+            this.CcPictureBoxMainPicture.SetEmpty();                                                                                                        // 写真
+            this.CcPictureBoxSubPicture.SetEmpty();                                                                                                         // 写真
 
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
         }
@@ -459,13 +449,13 @@ namespace Car {
             this.TextBoxExVersionDesignateNumber.Text = carMasterVo.VersionDesignateNumber;                                                                 // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.Text = carMasterVo.CategoryDistinguishNumber;                                                           // 類別区分番号
             this.TextBoxExRemarks.Text = carMasterVo.Remarks;                                                                                               // 備考
-            if(carMasterVo.MainPicture.Length != 0) {
+            if(carMasterVo.VehicleInspectionCertificatePicture.Length != 0) {
                 ImageConverter imageConverter = new();
-                this.PictureBoxExMainPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.MainPicture);                                            // 写真
+                this.CcPictureBoxMainPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.VehicleInspectionCertificatePicture);                    // 写真
             }
-            if(carMasterVo.SubPicture.Length != 0) {
+            if(carMasterVo.RecordDetailsPicture.Length != 0) {
                 ImageConverter imageConverter = new();
-                this.PictureBoxExSubPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.SubPicture);                                              // 写真
+                this.CcPictureBoxSubPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.RecordDetailsPicture);                                    // 写真
             }
         }
 
@@ -529,19 +519,19 @@ namespace Car {
                     /*
                      * 新型車検証
                      */
-                    if(this.PictureBoxExMainPicture.Image is not null) {
+                    if(this.CcPictureBoxMainPicture.Image is not null) {
                         // 新型車検証のサイズ(１０５＊１７７.８)
                         Rectangle rectangle = new(0, 0, 177 * 4, 105 * 4);
-                        e.Graphics.DrawImage(this.PictureBoxExMainPicture.Image, rectangle);
+                        e.Graphics.DrawImage(this.CcPictureBoxMainPicture.Image, rectangle);
                     }
                     e.HasMorePages = true;
                 } else {
                     /*
                      * 記録事項と旧型車検証
                      */
-                    if(this.PictureBoxExSubPicture.Image is not null) {
+                    if(this.CcPictureBoxSubPicture.Image is not null) {
                         Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-                        e.Graphics.DrawImage(this.PictureBoxExSubPicture.Image, rectangle);
+                        e.Graphics.DrawImage(this.CcPictureBoxSubPicture.Image, rectangle);
                     }
                     e.HasMorePages = false;
                 }

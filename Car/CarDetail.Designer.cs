@@ -129,12 +129,12 @@
             labelEx3 = new CcControl.CcLabel();
             labelEx2 = new CcControl.CcLabel();
             labelEx1 = new CcControl.CcLabel();
-            PictureBoxExMainPicture = new CcControl.CcPictureBox();
+            CcPictureBoxMainPicture = new CcControl.CcPictureBox();
             ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemOpen = new ToolStripMenuItem();
             ToolStripMenuItemPaste = new ToolStripMenuItem();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
-            PictureBoxExSubPicture = new CcControl.CcPictureBox();
+            CcPictureBoxSubPicture = new CcControl.CcPictureBox();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExUp.SuspendLayout();
             PanelExLeft.SuspendLayout();
@@ -155,9 +155,9 @@
             groupBoxEx2.SuspendLayout();
             groupBoxEx1.SuspendLayout();
             CcGroupBoxDigitalTachograph.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxExMainPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBoxMainPicture).BeginInit();
             ContextMenuStripEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxExSubPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBoxSubPicture).BeginInit();
             SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -169,8 +169,8 @@
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 4);
             TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
             TableLayoutPanelExBase.Controls.Add(PanelExLeft, 0, 2);
-            TableLayoutPanelExBase.Controls.Add(PictureBoxExMainPicture, 1, 2);
-            TableLayoutPanelExBase.Controls.Add(PictureBoxExSubPicture, 1, 3);
+            TableLayoutPanelExBase.Controls.Add(CcPictureBoxMainPicture, 1, 2);
+            TableLayoutPanelExBase.Controls.Add(CcPictureBoxSubPicture, 1, 3);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
@@ -1281,18 +1281,18 @@
             labelEx1.Text = "車両コード";
             labelEx1.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // PictureBoxExMainPicture
+            // CcPictureBoxMainPicture
             // 
-            PictureBoxExMainPicture.BorderStyle = BorderStyle.Fixed3D;
-            PictureBoxExMainPicture.ContextMenuStrip = ContextMenuStripEx1;
-            PictureBoxExMainPicture.Dock = DockStyle.Fill;
-            PictureBoxExMainPicture.Location = new Point(803, 87);
-            PictureBoxExMainPicture.Name = "PictureBoxExMainPicture";
-            PictureBoxExMainPicture.Size = new Size(1098, 367);
-            PictureBoxExMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBoxExMainPicture.TabIndex = 4;
-            PictureBoxExMainPicture.TabStop = false;
-            PictureBoxExMainPicture.DoubleClick += PictureBoxEx_DoubleClick;
+            CcPictureBoxMainPicture.BorderStyle = BorderStyle.Fixed3D;
+            CcPictureBoxMainPicture.ContextMenuStrip = ContextMenuStripEx1;
+            CcPictureBoxMainPicture.Dock = DockStyle.Fill;
+            CcPictureBoxMainPicture.Location = new Point(803, 87);
+            CcPictureBoxMainPicture.Name = "CcPictureBoxMainPicture";
+            CcPictureBoxMainPicture.Size = new Size(1098, 367);
+            CcPictureBoxMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            CcPictureBoxMainPicture.TabIndex = 4;
+            CcPictureBoxMainPicture.TabStop = false;
+            CcPictureBoxMainPicture.DoubleClick += PictureBoxEx_DoubleClick;
             // 
             // ContextMenuStripEx1
             // 
@@ -1319,18 +1319,18 @@
             ToolStripMenuItemDelete.Size = new Size(132, 22);
             ToolStripMenuItemDelete.Text = "Delete";
             // 
-            // PictureBoxExSubPicture
+            // CcPictureBoxSubPicture
             // 
-            PictureBoxExSubPicture.BorderStyle = BorderStyle.Fixed3D;
-            PictureBoxExSubPicture.ContextMenuStrip = ContextMenuStripEx1;
-            PictureBoxExSubPicture.Dock = DockStyle.Fill;
-            PictureBoxExSubPicture.Location = new Point(803, 460);
-            PictureBoxExSubPicture.Name = "PictureBoxExSubPicture";
-            PictureBoxExSubPicture.Size = new Size(1098, 553);
-            PictureBoxExSubPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBoxExSubPicture.TabIndex = 5;
-            PictureBoxExSubPicture.TabStop = false;
-            PictureBoxExSubPicture.DoubleClick += PictureBoxEx_DoubleClick;
+            CcPictureBoxSubPicture.BorderStyle = BorderStyle.Fixed3D;
+            CcPictureBoxSubPicture.ContextMenuStrip = ContextMenuStripEx1;
+            CcPictureBoxSubPicture.Dock = DockStyle.Fill;
+            CcPictureBoxSubPicture.Location = new Point(803, 460);
+            CcPictureBoxSubPicture.Name = "CcPictureBoxSubPicture";
+            CcPictureBoxSubPicture.Size = new Size(1098, 553);
+            CcPictureBoxSubPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            CcPictureBoxSubPicture.TabIndex = 5;
+            CcPictureBoxSubPicture.TabStop = false;
+            CcPictureBoxSubPicture.DoubleClick += PictureBoxEx_DoubleClick;
             // 
             // CarDetail
             // 
@@ -1367,9 +1367,9 @@
             groupBoxEx1.PerformLayout();
             CcGroupBoxDigitalTachograph.ResumeLayout(false);
             CcGroupBoxDigitalTachograph.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxExMainPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBoxMainPicture).EndInit();
             ContextMenuStripEx1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)PictureBoxExSubPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBoxSubPicture).EndInit();
             ResumeLayout(false);
         }
 
@@ -1380,8 +1380,8 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExLeft;
-        private CcControl.CcPictureBox PictureBoxExMainPicture;
-        private CcControl.CcPictureBox PictureBoxExSubPicture;
+        private CcControl.CcPictureBox CcPictureBoxMainPicture;
+        private CcControl.CcPictureBox CcPictureBoxSubPicture;
         private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;

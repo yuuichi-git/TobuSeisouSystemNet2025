@@ -106,8 +106,10 @@ namespace Dao {
                                             "BaseAddress," +
                                             "ExpirationDate," +
                                             "Remarks," +
-                                            //"MainPicture," +
-                                            //"SubPicture," +
+                                            //"CompulsoryAutomobileLiabilityInsuranceOld," +
+                                            //"CompulsoryAutomobileLiabilityInsuranceNew," +
+                                            //"VehicleInspectionCertificatePicture," +
+                                            //"RecordDetailsPicture," +
                                             "EmergencyVehicleFlag," +
                                             "EmergencyVehicleDate," +
                                             "DigitalTachographFlag," +
@@ -174,8 +176,10 @@ namespace Dao {
                     carMasterVo.BaseAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["BaseAddress"]);
                     carMasterVo.ExpirationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ExpirationDate"]);
                     carMasterVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
-                    //hCarMasterVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
-                    //hCarMasterVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    //hCarMasterVo.CompulsoryAutomobileLiabilityInsuranceOld = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["CompulsoryAutomobileLiabilityInsuranceOld"]);
+                    //hCarMasterVo.CompulsoryAutomobileLiabilityInsuranceNew = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["CompulsoryAutomobileLiabilityInsuranceNew"]);
+                    //hCarMasterVo.VehicleInspectionCertificatePicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["VehicleInspectionCertificatePicture"]);
+                    //hCarMasterVo.RecordDetailsPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["RecordDetailsPicture"]);
                     carMasterVo.EmergencyVehicleFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["EmergencyVehicleFlag"]);
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
                     carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
@@ -290,8 +294,10 @@ namespace Dao {
                                             "BaseAddress," +
                                             "ExpirationDate," +
                                             "Remarks," +
-                                            "MainPicture," +
-                                            "SubPicture," +
+                                            "CompulsoryAutomobileLiabilityInsuranceOld," +
+                                            "CompulsoryAutomobileLiabilityInsuranceNew," +
+                                            "VehicleInspectionCertificatePicture," +
+                                            "RecordDetailsPicture," +
                                             "EmergencyVehicleFlag," +
                                             "EmergencyVehicleDate," +
                                             "DigitalTachographFlag," +
@@ -358,8 +364,10 @@ namespace Dao {
                     carMasterVo.BaseAddress = _defaultValue.GetDefaultValue<string>(sqlDataReader["BaseAddress"]);
                     carMasterVo.ExpirationDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["ExpirationDate"]);
                     carMasterVo.Remarks = _defaultValue.GetDefaultValue<string>(sqlDataReader["Remarks"]);
-                    carMasterVo.MainPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
-                    carMasterVo.SubPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+                    carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["CompulsoryAutomobileLiabilityInsuranceOld"]);
+                    carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["CompulsoryAutomobileLiabilityInsuranceNew"]);
+                    carMasterVo.VehicleInspectionCertificatePicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["VehicleInspectionCertificatePicture"]);
+                    carMasterVo.RecordDetailsPicture = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["RecordDetailsPicture"]);
                     carMasterVo.EmergencyVehicleFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["EmergencyVehicleFlag"]);
                     carMasterVo.EmergencyVehicleDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["EmergencyVehicleDate"]);
                     carMasterVo.DigitalTachographFlag = _defaultValue.GetDefaultValue<bool>(sqlDataReader["DigitalTachographFlag"]);
@@ -432,8 +440,10 @@ namespace Dao {
                                                              "BaseAddress," +
                                                              "ExpirationDate," +
                                                              "Remarks," +
-                                                             "MainPicture," +
-                                                             "SubPicture," +
+                                                             "CompulsoryAutomobileLiabilityInsuranceOld," +
+                                                             "CompulsoryAutomobileLiabilityInsuranceNew," +
+                                                             "VehicleInspectionCertificatePicture," +
+                                                             "RecordDetailsPicture," +
                                                              "EmergencyVehicleFlag," +
                                                              "EmergencyVehicleDate," +
                                                              "DigitalTachographFlag," +
@@ -495,8 +505,10 @@ namespace Dao {
                                             "'" + carMasterVo.BaseAddress + "'," +
                                             "'" + carMasterVo.ExpirationDate + "'," +
                                             "'" + carMasterVo.Remarks + "'," +
-                                            "@member_MainPicture," +
-                                            "@member_SubPicture," +
+                                            "@member_CompulsoryAutomobileLiabilityInsuranceOld," +
+                                            "@member_CompulsoryAutomobileLiabilityInsuranceNew," +
+                                            "@member_VehicleInspectionCertificatePicture," +
+                                            "@member_RecordDetailsPicture," +
                                              "'false'," +
                                             "'" + _defaultDateTime + "'," +
                                             "'" + carMasterVo.DigitalTachographFlag + "'," +
@@ -516,8 +528,10 @@ namespace Dao {
                                              "'false'" +
                                              ");";
             try {
-                sqlCommand.Parameters.Add("@member_MainPicture", SqlDbType.Image, carMasterVo.MainPicture.Length).Value = carMasterVo.MainPicture;
-                sqlCommand.Parameters.Add("@member_SubPicture", SqlDbType.Image, carMasterVo.SubPicture.Length).Value = carMasterVo.SubPicture;
+                sqlCommand.Parameters.Add("@member_CompulsoryAutomobileLiabilityInsuranceOld", SqlDbType.Image, carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld.Length).Value = carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld;
+                sqlCommand.Parameters.Add("@member_CompulsoryAutomobileLiabilityInsuranceNew", SqlDbType.Image, carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew.Length).Value = carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew;
+                sqlCommand.Parameters.Add("@member_VehicleInspectionCertificatePicture", SqlDbType.Image, carMasterVo.VehicleInspectionCertificatePicture.Length).Value = carMasterVo.VehicleInspectionCertificatePicture;
+                sqlCommand.Parameters.Add("@member_RecordDetailsPicture", SqlDbType.Image, carMasterVo.RecordDetailsPicture.Length).Value = carMasterVo.RecordDetailsPicture;
                 sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -532,68 +546,72 @@ namespace Dao {
         public void UpdateOneCarMaster(CarMasterVo carMasterVo) {
             var sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_CarMaster " +
-                                     "SET CarCode = " + carMasterVo.CarCode + "," +
-                                         "ClassificationCode = " + carMasterVo.ClassificationCode + "," +
-                                         "RegistrationNumber = '" + carMasterVo.RegistrationNumber + "'," +
-                                         "RegistrationNumber1 = '" + carMasterVo.RegistrationNumber1 + "'," +
-                                         "RegistrationNumber2 = '" + carMasterVo.RegistrationNumber2 + "'," +
-                                         "RegistrationNumber3 = '" + carMasterVo.RegistrationNumber3 + "'," +
-                                         "RegistrationNumber4 = '" + carMasterVo.RegistrationNumber4 + "'," +
-                                         "GarageCode = " + carMasterVo.ManagedSpace + "," +
-                                         "DoorNumber = " + carMasterVo.DoorNumber + "," +
-                                         "RegistrationDate = '" + carMasterVo.RegistrationDate + "'," +
-                                         "FirstRegistrationDate = '" + carMasterVo.FirstRegistrationDate + "'," +
-                                         "CarKindCode = " + carMasterVo.CarKindCode + "," +
-                                         "DisguiseKind1 = '" + carMasterVo.DisguiseKind1 + "'," +
-                                         "DisguiseKind2 = '" + carMasterVo.DisguiseKind2 + "'," +
-                                         "DisguiseKind3 = '" + carMasterVo.DisguiseKind3 + "'," +
-                                         "CarUse = '" + carMasterVo.CarUse + "'," +
-                                         "OtherCode = " + carMasterVo.OtherCode + "," +
-                                         "ShapeCode = " + carMasterVo.ShapeCode + "," +
-                                         "ManufacturerCode = " + carMasterVo.ManufacturerCode + "," +
-                                         "Capacity = " + carMasterVo.Capacity + "," +
-                                         "MaximumLoadCapacity = " + carMasterVo.MaximumLoadCapacity + "," +
-                                         "VehicleWeight = " + carMasterVo.VehicleWeight + "," +
-                                         "TotalVehicleWeight = " + carMasterVo.TotalVehicleWeight + "," +
-                                         "VehicleNumber = '" + carMasterVo.VehicleNumber + "'," +
-                                         "Length = " + carMasterVo.Length + "," +
-                                         "Width = " + carMasterVo.Width + "," +
-                                         "Height = " + carMasterVo.Height + "," +
-                                         "FfAxisWeight = " + carMasterVo.FfAxisWeight + "," +
-                                         "FrAxisWeight = " + carMasterVo.FrAxisWeight + "," +
-                                         "RfAxisWeight = " + carMasterVo.RfAxisWeight + "," +
-                                         "RrAxisWeight = " + carMasterVo.RrAxisWeight + "," +
-                                         "Version = '" + carMasterVo.Version + "'," +
-                                         "MotorVersion = '" + carMasterVo.MotorVersion + "'," +
-                                         "TotalDisplacement = " + carMasterVo.TotalDisplacement + "," +
-                                         "TypesOfFuel = '" + carMasterVo.TypesOfFuel + "'," +
-                                         "VersionDesignateNumber = '" + carMasterVo.VersionDesignateNumber + "'," +
-                                         "CategoryDistinguishNumber = '" + carMasterVo.CategoryDistinguishNumber + "'," +
-                                         "OwnerName = '" + carMasterVo.OwnerName + "'," +
-                                         "OwnerAddress = '" + carMasterVo.OwnerAddress + "'," +
-                                         "UserName = '" + carMasterVo.UserName + "'," +
-                                         "UserAddress = '" + carMasterVo.UserAddress + "'," +
-                                         "BaseAddress = '" + carMasterVo.BaseAddress + "'," +
-                                         "ExpirationDate = '" + carMasterVo.ExpirationDate + "'," +
-                                         "Remarks = '" + carMasterVo.Remarks + "'," +
-                                         "MainPicture = @member_MainPicture," +
-                                         "SubPicture = @member_SubPicture," +
-                                         "EmergencyVehicleFlag = '" + carMasterVo.EmergencyVehicleFlag + "'," +
-                                         "EmergencyVehicleDate = '" + carMasterVo.EmergencyVehicleDate + "'," +
-                                         "DigitalTachographFlag = '" + carMasterVo.DigitalTachographFlag + "'," +
-                                         "DigitalTachographType = '" + carMasterVo.DigitalTachographType + "'," +
-                                         "CameraFront = '" + carMasterVo.CameraFront + "'," +
-                                         "CameraBack = '" + carMasterVo.CameraBack + "'," +
-                                         "CameraLeftBack = '" + carMasterVo.CameraLeftBack + "'," +
-                                         "CameraRightBack = '" + carMasterVo.CameraRightBack + "'," +
-                                         "CameraLeftUnder = '" + carMasterVo.CameraLeftUnder + "'," +
-                                         "CameraRoomMic = '" + carMasterVo.CameraRoomMic + "'," +
-                                         "UpdatePcName = '" + Environment.MachineName + "'," +
-                                         "UpdateYmdHms = '" + DateTime.Now + "' " +
+                                     "SET CarCode                                   = " + carMasterVo.CarCode + "," +
+                                         "ClassificationCode                        = " + carMasterVo.ClassificationCode + "," +
+                                         "RegistrationNumber                        = '" + carMasterVo.RegistrationNumber + "'," +
+                                         "RegistrationNumber1                       = '" + carMasterVo.RegistrationNumber1 + "'," +
+                                         "RegistrationNumber2                       = '" + carMasterVo.RegistrationNumber2 + "'," +
+                                         "RegistrationNumber3                       = '" + carMasterVo.RegistrationNumber3 + "'," +
+                                         "RegistrationNumber4                       = '" + carMasterVo.RegistrationNumber4 + "'," +
+                                         "GarageCode                                = " + carMasterVo.ManagedSpace + "," +
+                                         "DoorNumber                                = " + carMasterVo.DoorNumber + "," +
+                                         "RegistrationDate                          = '" + carMasterVo.RegistrationDate + "'," +
+                                         "FirstRegistrationDate                     = '" + carMasterVo.FirstRegistrationDate + "'," +
+                                         "CarKindCode                               = " + carMasterVo.CarKindCode + "," +
+                                         "DisguiseKind1                             = '" + carMasterVo.DisguiseKind1 + "'," +
+                                         "DisguiseKind2                             = '" + carMasterVo.DisguiseKind2 + "'," +
+                                         "DisguiseKind3                             = '" + carMasterVo.DisguiseKind3 + "'," +
+                                         "CarUse                                    = '" + carMasterVo.CarUse + "'," +
+                                         "OtherCode                                 = " + carMasterVo.OtherCode + "," +
+                                         "ShapeCode                                 = " + carMasterVo.ShapeCode + "," +
+                                         "ManufacturerCode                          = " + carMasterVo.ManufacturerCode + "," +
+                                         "Capacity                                  = " + carMasterVo.Capacity + "," +
+                                         "MaximumLoadCapacity                       = " + carMasterVo.MaximumLoadCapacity + "," +
+                                         "VehicleWeight                             = " + carMasterVo.VehicleWeight + "," +
+                                         "TotalVehicleWeight                        = " + carMasterVo.TotalVehicleWeight + "," +
+                                         "VehicleNumber                             = '" + carMasterVo.VehicleNumber + "'," +
+                                         "Length                                    = " + carMasterVo.Length + "," +
+                                         "Width                                     = " + carMasterVo.Width + "," +
+                                         "Height                                    = " + carMasterVo.Height + "," +
+                                         "FfAxisWeight                              = " + carMasterVo.FfAxisWeight + "," +
+                                         "FrAxisWeight                              = " + carMasterVo.FrAxisWeight + "," +
+                                         "RfAxisWeight                              = " + carMasterVo.RfAxisWeight + "," +
+                                         "RrAxisWeight                              = " + carMasterVo.RrAxisWeight + "," +
+                                         "Version                                   = '" + carMasterVo.Version + "'," +
+                                         "MotorVersion                              = '" + carMasterVo.MotorVersion + "'," +
+                                         "TotalDisplacement                         = " + carMasterVo.TotalDisplacement + "," +
+                                         "TypesOfFuel                               = '" + carMasterVo.TypesOfFuel + "'," +
+                                         "VersionDesignateNumber                    = '" + carMasterVo.VersionDesignateNumber + "'," +
+                                         "CategoryDistinguishNumber                 = '" + carMasterVo.CategoryDistinguishNumber + "'," +
+                                         "OwnerName                                 = '" + carMasterVo.OwnerName + "'," +
+                                         "OwnerAddress                              = '" + carMasterVo.OwnerAddress + "'," +
+                                         "UserName                                  = '" + carMasterVo.UserName + "'," +
+                                         "UserAddress                               = '" + carMasterVo.UserAddress + "'," +
+                                         "BaseAddress                               = '" + carMasterVo.BaseAddress + "'," +
+                                         "ExpirationDate                            = '" + carMasterVo.ExpirationDate + "'," +
+                                         "Remarks                                   = '" + carMasterVo.Remarks + "'," +
+                                         "CompulsoryAutomobileLiabilityInsuranceOld = @member_CompulsoryAutomobileLiabilityInsuranceOld," +
+                                         "CompulsoryAutomobileLiabilityInsuranceNew = @member_CompulsoryAutomobileLiabilityInsuranceNew," +
+                                         "VehicleInspectionCertificatePicture       = @member_VehicleInspectionCertificatePicture," +
+                                         "RecordDetailsPicture                      = @member_RecordDetailsPicture," +
+                                         "EmergencyVehicleFlag                      = '" + carMasterVo.EmergencyVehicleFlag + "'," +
+                                         "EmergencyVehicleDate                      = '" + carMasterVo.EmergencyVehicleDate + "'," +
+                                         "DigitalTachographFlag                     = '" + carMasterVo.DigitalTachographFlag + "'," +
+                                         "DigitalTachographType                     = '" + carMasterVo.DigitalTachographType + "'," +
+                                         "CameraFront                               = '" + carMasterVo.CameraFront + "'," +
+                                         "CameraBack                                = '" + carMasterVo.CameraBack + "'," +
+                                         "CameraLeftBack                            = '" + carMasterVo.CameraLeftBack + "'," +
+                                         "CameraRightBack                           = '" + carMasterVo.CameraRightBack + "'," +
+                                         "CameraLeftUnder                           = '" + carMasterVo.CameraLeftUnder + "'," +
+                                         "CameraRoomMic                             = '" + carMasterVo.CameraRoomMic + "'," +
+                                         "UpdatePcName                              = '" + Environment.MachineName + "'," +
+                                         "UpdateYmdHms                              = '" + DateTime.Now + "' " +
                                      "WHERE CarCode = " + carMasterVo.CarCode;
             try {
-                sqlCommand.Parameters.Add("@member_MainPicture", SqlDbType.Image, carMasterVo.MainPicture.Length).Value = carMasterVo.MainPicture;
-                sqlCommand.Parameters.Add("@member_SubPicture", SqlDbType.Image, carMasterVo.SubPicture.Length).Value = carMasterVo.SubPicture;
+                sqlCommand.Parameters.Add("@member_CompulsoryAutomobileLiabilityInsuranceOld", SqlDbType.Image, carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld.Length).Value = carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld;
+                sqlCommand.Parameters.Add("@member_CompulsoryAutomobileLiabilityInsuranceNew", SqlDbType.Image, carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew.Length).Value = carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew;
+                sqlCommand.Parameters.Add("@member_VehicleInspectionCertificatePicture", SqlDbType.Image, carMasterVo.VehicleInspectionCertificatePicture.Length).Value = carMasterVo.VehicleInspectionCertificatePicture;
+                sqlCommand.Parameters.Add("@member_RecordDetailsPicture", SqlDbType.Image, carMasterVo.RecordDetailsPicture.Length).Value = carMasterVo.RecordDetailsPicture;
                 sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;

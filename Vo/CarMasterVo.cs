@@ -49,8 +49,10 @@
         private string _baseAddress;
         private DateTime _expirationDate;
         private string _remarks;
-        private byte[] _mainPicture;                            // 2024-08-09 追加
-        private byte[] _subPicture;                             // 2024-08-09 名前変更
+        private byte[] _compulsoryAutomobileLiabilityInsuranceOld;
+        private byte[] _compulsoryAutomobileLiabilityInsuranceNew;
+        private byte[] _vehicleInspectionCertificatePicture;    // 2024-08-09 追加
+        private byte[] _recordDetailsPicture;                   // 2024-08-09 名前変更
         private bool _emergencyVehicleFlag;                     // 2024-08-13
         private DateTime _emergencyVehicleDate;                 // 2024-08-13
         private bool _digitalTachographFlag;                    // 2025-08-02
@@ -117,8 +119,10 @@
             _baseAddress = string.Empty;
             _expirationDate = _defaultDateTime;
             _remarks = string.Empty;
-            _mainPicture = Array.Empty<byte>();
-            _subPicture = Array.Empty<byte>();
+            _compulsoryAutomobileLiabilityInsuranceNew = Array.Empty<byte>();
+            _compulsoryAutomobileLiabilityInsuranceOld = Array.Empty<byte>();
+            _vehicleInspectionCertificatePicture = Array.Empty<byte>();
+            _recordDetailsPicture = Array.Empty<byte>();
             _emergencyVehicleFlag = false;
             _emergencyVehicleDate = _defaultDateTime;
             _digitalTachographFlag = false;
@@ -454,18 +458,40 @@
             set => _remarks = value;
         }
         /// <summary>
+        /// 自賠責保険証画像(旧)
+        /// </summary>
+        public byte[] CompulsoryAutomobileLiabilityInsuranceOld {
+            get {
+                return _compulsoryAutomobileLiabilityInsuranceOld;
+            }
+            set {
+                _compulsoryAutomobileLiabilityInsuranceOld = value;
+            }
+        }
+        /// <summary>
+        /// 自賠責保険証画像(新)
+        /// </summary>
+        public byte[] CompulsoryAutomobileLiabilityInsuranceNew {
+            get {
+                return _compulsoryAutomobileLiabilityInsuranceNew;
+            }
+            set {
+                _compulsoryAutomobileLiabilityInsuranceNew = value;
+            }
+        }
+        /// <summary>
         /// 車検証画像(車検証)
         /// </summary>
-        public byte[] MainPicture {
-            get => _mainPicture;
-            set => _mainPicture = value;
+        public byte[] VehicleInspectionCertificatePicture {
+            get => _vehicleInspectionCertificatePicture;
+            set => _vehicleInspectionCertificatePicture = value;
         }
         /// <summary>
         /// 車検証画像(自動車検査証記録事項)
         /// </summary>
-        public byte[] SubPicture {
-            get => _subPicture;
-            set => _subPicture = value;
+        public byte[] RecordDetailsPicture {
+            get => _recordDetailsPicture;
+            set => _recordDetailsPicture = value;
         }
         /// <summary>
         /// 緊急車両登録
