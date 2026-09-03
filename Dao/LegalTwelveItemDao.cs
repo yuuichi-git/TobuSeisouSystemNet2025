@@ -16,7 +16,6 @@ namespace Dao {
          * Vo
          */
         private readonly ConnectionVo _connectionVo;
-        private readonly LegalTwelveItemVo _legalTwelveItemVo;
 
         /// <summary>
         /// コンストラクター
@@ -27,7 +26,6 @@ namespace Dao {
              * Vo
              */
             _connectionVo = connectionVo;
-            _legalTwelveItemVo = new();
         }
 
         /// <summary>
@@ -121,8 +119,8 @@ namespace Dao {
                                      "LEFT OUTER JOIN H_BelongsMaster ON H_StaffMaster.Belongs = H_BelongsMaster.Code " +
                                      "WHERE H_StaffMaster.LegalTwelveItemFlag = 'true' AND H_StaffMaster.RetirementFlag = 'false' " +
                                      "ORDER BY H_StaffMaster.NameKana ASC";
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     LegalTwelveItemListVo legalTwelveItemVo = new();
                     legalTwelveItemVo.Belongs = _defaultValue.GetDefaultValue<int>(sqlDataReader["BelongsCode"]);
                     legalTwelveItemVo.BelongsName = _defaultValue.GetDefaultValue<string>(sqlDataReader["BelongsName"]);
@@ -178,8 +176,8 @@ namespace Dao {
                                      "FROM H_LegalTwelveItem " +
                                      "WHERE (StudentsDate BETWEEN '" + _dateUtility.GetFiscalYearStartDate(fiscalYear) + "' AND '" + _dateUtility.GetFiscalYearEndDate(fiscalYear) + "') " +
                                      "AND StaffCode = " + staffCode;
-            using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     LegalTwelveItemVo legalTwelveItemVo = new();
                     legalTwelveItemVo.StudentsDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["StudentsDate"]);
                     legalTwelveItemVo.StudentsCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StudentsCode"]);
@@ -237,7 +235,7 @@ namespace Dao {
                                              "'" + legalTwelveItemVo.DeleteYmdHms + "'," +
                                              "'" + legalTwelveItemVo.DeleteFlag + "'" +
                                              ");";
-            if (legalTwelveItemVo.StaffSign is not null)
+            if(legalTwelveItemVo.StaffSign is not null)
                 sqlCommand.Parameters.Add("@Picture", SqlDbType.Image, legalTwelveItemVo.StaffSign.Length).Value = legalTwelveItemVo.StaffSign;
             try {
                 return sqlCommand.ExecuteNonQuery();
@@ -272,7 +270,7 @@ namespace Dao {
                                      "WHERE (StudentsDate BETWEEN '" + oldLegalTwelveItemVo.StudentsDate + "' AND '" + oldLegalTwelveItemVo.StudentsDate + "') " +
                                      "AND StudentsCode = " + oldLegalTwelveItemVo.StudentsCode + " " +
                                      "AND StaffCode = " + oldLegalTwelveItemVo.StaffCode;
-            if (newLegalTwelveItemVo.StaffSign is not null)
+            if(newLegalTwelveItemVo.StaffSign is not null)
                 sqlCommand.Parameters.Add("@Picture", SqlDbType.Image, newLegalTwelveItemVo.StaffSign.Length).Value = newLegalTwelveItemVo.StaffSign;
             try {
                 return sqlCommand.ExecuteNonQuery();
@@ -298,9 +296,6 @@ namespace Dao {
                 throw;
             }
         }
-
-
-
     }
 
     /// <summary>

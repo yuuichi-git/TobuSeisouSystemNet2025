@@ -94,6 +94,8 @@ namespace VoluntaryAutomobileInsurance {
                     this.CcCheckBoxAutomaticRenewal.Enabled = false;
                     this.CcDateTimePickerStartDate.Enabled = false;
                     this.CcDateTimePickerEndDate.Enabled = false;
+
+                    this.Close();
                     break;
                 case DialogResult.Cancel:
                     break;
@@ -299,16 +301,7 @@ namespace VoluntaryAutomobileInsurance {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void VoluntaryAutomobileInsuranceDetail_FormClosing(object sender, FormClosingEventArgs e) {
-            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch(dialogResult) {
-                case DialogResult.OK:
-                    e.Cancel = false;
-                    Dispose();
-                    break;
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-            }
+            
         }
     }
 }

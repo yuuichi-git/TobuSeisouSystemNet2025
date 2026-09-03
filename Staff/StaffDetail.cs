@@ -101,17 +101,14 @@ namespace Staff {
                                              "ToolStripMenuItemExit",
                                              "ToolStripMenuItemHelp"
             };
-            CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             /*
              * 各Controlを初期化する
              * 新規と更新で共通のControlはInitializeControls()で初期化する
              */
             this.InitializeControls();
             this.CCLabelStaffCode.Text = (_staffMasterDao.GetStaffCode(24000) + 1).ToString("#####");        // 新規従事者コードを採番
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -189,11 +186,12 @@ namespace Staff {
             this.CheckBoxExLegalTwelveItemFlag.Checked = false;                         // 法定１２項目受講対象者
             this.CcCheckBoxMedicalCheckupFlag.Checked = false;                          // 健康診断受講対象者
             this.CheckBoxExToukanpoFlag.Checked = false;                                // 東環保研修受講対象者
-            foreach(CcRadioButton radioButtonEx in CcGroupBoxBelongs.Controls)         // 所属
+            this.CcCheckBoxRiskAssessmentFlag.Checked = false;                          // リスクアセスメント受講対象者
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxBelongs.Controls)          // 所属
                 radioButtonEx.Checked = false;
-            foreach(CcRadioButton radioButtonEx in CcGroupBoxJobForm.Controls)         // 雇用形態
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxJobForm.Controls)          // 雇用形態
                 radioButtonEx.Checked = false;
-            foreach(CcRadioButton radioButtonEx in CcGroupBoxOccupation.Controls)      // 職種
+            foreach(CcRadioButton radioButtonEx in CcGroupBoxOccupation.Controls)       // 職種
                 radioButtonEx.Checked = false;
             /*
              * 個人情報
@@ -397,10 +395,12 @@ namespace Staff {
         /// <returns></returns>
         private StaffMasterVo SetVo() {
             StaffMasterVo staffMasterVo = new();
-            staffMasterVo.VehicleDispatchTarget = CheckBoxExTargetFlag.Checked;                                                         // 配車する対象者
-            staffMasterVo.LegalTwelveItemFlag = CheckBoxExLegalTwelveItemFlag.Checked;                                                  // 法定１２項目受講対象者
-            staffMasterVo.MedicalCheckupFlag = CcCheckBoxMedicalCheckupFlag.Checked;                                                    // 健康診断受講対象者
-            staffMasterVo.ToukanpoFlag = CheckBoxExToukanpoFlag.Checked;                                                                // 東環保研修受講対象者
+            staffMasterVo.VehicleDispatchTarget = this.CheckBoxExTargetFlag.Checked;                                                    // 配車する対象者
+            staffMasterVo.LegalTwelveItemFlag = this.CheckBoxExLegalTwelveItemFlag.Checked;                                             // 法定１２項目受講対象者
+            staffMasterVo.MedicalCheckupFlag = this.CcCheckBoxMedicalCheckupFlag.Checked;                                               // 健康診断受講対象者
+            staffMasterVo.ToukanpoFlag = this.CheckBoxExToukanpoFlag.Checked;                                                           // 東環保研修受講対象者
+            staffMasterVo.RiskAssessmentFlag = this.CcCheckBoxRiskAssessmentFlag.Checked;                                               // リスクアセスメント受講対象者
+
             foreach(CcRadioButton radioButtonExBelongs in CcGroupBoxBelongs.Controls) {                                                 // 所属
                 if(radioButtonExBelongs.Checked)
                     staffMasterVo.Belongs = _dictionaryBelongsSI[radioButtonExBelongs.Text];
@@ -467,28 +467,28 @@ namespace Staff {
              * GroupBoxExInsurance
              * 保険関係
              */
-            if(DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                    // 健康保険加入日
+            if(DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                     // 健康保険加入日
                 staffMasterVo.HealthInsuranceDate = DateTimeExHealthInsuranceDate.GetValue();
             } else {
                 staffMasterVo.HealthInsuranceDate = _defaultDateTime;
             }
             staffMasterVo.HealthInsuranceNumber = ComboBoxExHealthInsuranceNumber.Text;                                                 // 健康保険番号
             staffMasterVo.HealthInsuranceNote = TextBoxExHealthInsuranceNote.Text;                                                      // 健康保険備考
-            if(DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                     // 年金保険加入日
+            if(DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                      // 年金保険加入日
                 staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();
             } else {
                 staffMasterVo.WelfarePensionDate = _defaultDateTime;
             }
             staffMasterVo.WelfarePensionNumber = ComboBoxExWelfarePensionNumber.Text;                                                   // 年金保険番号
             staffMasterVo.WelfarePensionNote = TextBoxExWelfarePensionNote.Text;                                                        // 年金保険備考
-            if(DateTimeExEmploymentInsuranceDate.CustomFormat != " ") {                                                                // 雇用保険加入日
+            if(DateTimeExEmploymentInsuranceDate.CustomFormat != " ") {                                                                 // 雇用保険加入日
                 staffMasterVo.EmploymentInsuranceDate = DateTimeExEmploymentInsuranceDate.GetValue();
             } else {
                 staffMasterVo.EmploymentInsuranceDate = _defaultDateTime;
             }
             staffMasterVo.EmploymentInsuranceNumber = ComboBoxExEmploymentInsuranceNumber.Text;                                         // 雇用保険番号
             staffMasterVo.EmploymentInsuranceNote = TextBoxExEmploymentInsuranceNote.Text;                                              // 雇用保険備考
-            if(DateTimeExWorkerAccidentInsuranceDate.CustomFormat != " ") {                                                            // 労災保険加入日
+            if(DateTimeExWorkerAccidentInsuranceDate.CustomFormat != " ") {                                                             // 労災保険加入日
                 staffMasterVo.WorkerAccidentInsuranceDate = DateTimeExWorkerAccidentInsuranceDate.GetValue();
             } else {
                 staffMasterVo.WorkerAccidentInsuranceDate = _defaultDateTime;
@@ -509,10 +509,11 @@ namespace Staff {
              */
             if(staffMasterVo is null)
                 return;
-            CheckBoxExTargetFlag.Checked = staffMasterVo.VehicleDispatchTarget;                                                         // 配車する対象者
-            CheckBoxExLegalTwelveItemFlag.Checked = staffMasterVo.LegalTwelveItemFlag;                                                  // 法定１２項目受講対象者
-            CcCheckBoxMedicalCheckupFlag.Checked = staffMasterVo.MedicalCheckupFlag;                                                    // 健康診断受講対象者
-            CheckBoxExToukanpoFlag.Checked = staffMasterVo.ToukanpoFlag;                                                                // 東環保研修受講対象者
+            this.CheckBoxExTargetFlag.Checked = staffMasterVo.VehicleDispatchTarget;                                                   // 配車する対象者
+            this.CheckBoxExLegalTwelveItemFlag.Checked = staffMasterVo.LegalTwelveItemFlag;                                            // 法定１２項目受講対象者
+            this.CcCheckBoxMedicalCheckupFlag.Checked = staffMasterVo.MedicalCheckupFlag;                                              // 健康診断受講対象者
+            this.CheckBoxExToukanpoFlag.Checked = staffMasterVo.ToukanpoFlag;                                                          // 東環保研修受講対象者
+            this.CcCheckBoxRiskAssessmentFlag.Checked = staffMasterVo.RiskAssessmentFlag;                                              // リスクアセスメント受講対象者
             /*
              * GroupBoxExBelongs
              */

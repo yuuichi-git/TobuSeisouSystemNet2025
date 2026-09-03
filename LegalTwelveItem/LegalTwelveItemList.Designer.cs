@@ -26,14 +26,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LegalTwelveItemList));
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
             MenuStripEx1 = new CcControl.CcMenuStrip();
-            StatusStripEx1 = new CcControl.CcStatusStrip();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
             labelEx2 = new CcControl.CcLabel();
             CcComboBoxPrinterName = new CcControl.CcComboBox();
             labelEx1 = new CcControl.CcLabel();
             ButtonExUpdate = new CcControl.CcButton();
             NumericUpDownExFiscalYear = new CcControl.CcNumericUpDown();
-            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
+            SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("resource1"));
             SheetViewList = SpreadList.GetSheet(0);
             TableLayoutPanelExBase.SuspendLayout();
             PanelExTop.SuspendLayout();
@@ -48,7 +48,7 @@
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
             TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
-            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
+            TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
             TableLayoutPanelExBase.Controls.Add(SpreadList, 1, 2);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
@@ -72,15 +72,15 @@
             MenuStripEx1.Text = "menuStripEx1";
             MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 3);
-            StatusStripEx1.Location = new Point(0, 1019);
-            StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1904, 22);
-            StatusStripEx1.SizingGrip = false;
-            StatusStripEx1.TabIndex = 1;
-            StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(CcStatusStrip1, 3);
+            CcStatusStrip1.Location = new Point(0, 1019);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1904, 22);
+            CcStatusStrip1.SizingGrip = false;
+            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // PanelExTop
             // 
@@ -185,7 +185,7 @@
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
         private CcControl.CcMenuStrip MenuStripEx1;
-        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
         private CcControl.CcNumericUpDown NumericUpDownExFiscalYear;

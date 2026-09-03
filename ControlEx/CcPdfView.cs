@@ -109,8 +109,9 @@ namespace CcControl {
         /// ※改良の余地あり　画面をクリアする方法を探して！
         /// </summary>
         public void Clear() {
-            this.PdfDocument = null;
             this.MemoryStream = null;
+            this.PdfDocument = null;
+            this.Document = null;
 
             // 再描画して確実に消す
             this.Invalidate();

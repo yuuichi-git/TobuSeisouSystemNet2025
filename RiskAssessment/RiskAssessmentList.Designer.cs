@@ -27,14 +27,14 @@
             CcTableLayoutPanelBase = new CcControl.CcTableLayoutPanel();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("CcTableLayoutPanelBase.Controls"));
+            SheetViewList = SpreadList.GetSheet(0);
             CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcPanelUp = new CcControl.CcPanel();
             labelEx2 = new CcControl.CcLabel();
             CcComboBoxPrinterName = new CcControl.CcComboBox();
             labelEx1 = new CcControl.CcLabel();
-            ButtonExUpdate = new CcControl.CcButton();
+            CcButtonUpdate = new CcControl.CcButton();
             NumericUpDownExFiscalYear = new CcControl.CcNumericUpDown();
-            SheetViewList = SpreadList.GetSheet(0);
             CcTableLayoutPanelBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
             CcPanelUp.SuspendLayout();
@@ -81,6 +81,7 @@
             SpreadList.Name = "SpreadList";
             SpreadList.Size = new Size(998, 927);
             SpreadList.TabIndex = 0;
+            SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
             // CcMenuStrip1
             // 
@@ -98,7 +99,7 @@
             CcPanelUp.Controls.Add(labelEx2);
             CcPanelUp.Controls.Add(CcComboBoxPrinterName);
             CcPanelUp.Controls.Add(labelEx1);
-            CcPanelUp.Controls.Add(ButtonExUpdate);
+            CcPanelUp.Controls.Add(CcButtonUpdate);
             CcPanelUp.Controls.Add(NumericUpDownExFiscalYear);
             CcPanelUp.Dock = DockStyle.Fill;
             CcPanelUp.Location = new Point(3, 27);
@@ -133,18 +134,19 @@
             labelEx1.TabIndex = 12;
             labelEx1.Text = "対象年度";
             // 
-            // ButtonExUpdate
+            // CcButtonUpdate
             // 
-            ButtonExUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ButtonExUpdate.Font = new Font("Yu Gothic UI", 9.75F);
-            ButtonExUpdate.ForeColor = SystemColors.ControlText;
-            ButtonExUpdate.Location = new Point(1699, 12);
-            ButtonExUpdate.Name = "ButtonExUpdate";
-            ButtonExUpdate.SetTextDirectionVertical = null;
-            ButtonExUpdate.Size = new Size(160, 32);
-            ButtonExUpdate.TabIndex = 11;
-            ButtonExUpdate.Text = "最　新　化";
-            ButtonExUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            CcButtonUpdate.Font = new Font("Yu Gothic UI", 9.75F);
+            CcButtonUpdate.ForeColor = SystemColors.ControlText;
+            CcButtonUpdate.Location = new Point(1699, 12);
+            CcButtonUpdate.Name = "CcButtonUpdate";
+            CcButtonUpdate.SetTextDirectionVertical = null;
+            CcButtonUpdate.Size = new Size(160, 32);
+            CcButtonUpdate.TabIndex = 11;
+            CcButtonUpdate.Text = "最　新　化";
+            CcButtonUpdate.UseVisualStyleBackColor = true;
+            CcButtonUpdate.Click += CcButtonUpdate_Click;
             // 
             // NumericUpDownExFiscalYear
             // 
@@ -169,6 +171,7 @@
             MinimizeBox = false;
             Name = "RiskAssessmentList";
             Text = "RiskAssessmentList";
+            FormClosing += RiskAssessmentList_FormClosing;
             CcTableLayoutPanelBase.ResumeLayout(false);
             CcTableLayoutPanelBase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).EndInit();
@@ -188,7 +191,7 @@
         private CcControl.CcLabel labelEx2;
         private CcControl.CcComboBox CcComboBoxPrinterName;
         private CcControl.CcLabel labelEx1;
-        private CcControl.CcButton ButtonExUpdate;
+        private CcControl.CcButton CcButtonUpdate;
         private CcControl.CcNumericUpDown NumericUpDownExFiscalYear;
         private FarPoint.Win.Spread.SheetView SheetViewList;
     }

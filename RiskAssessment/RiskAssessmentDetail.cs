@@ -1,5 +1,5 @@
 ﻿/*
- * 2025-05-17
+ * 2026-08-31
  */
 using CcControl;
 
@@ -9,18 +9,12 @@ using Dao;
 
 using Vo;
 
-namespace LegalTwelveItem {
-    public partial class LegalTwelveItemDetail : Form {
+namespace RiskAssessment {
+    public partial class RiskAssessmentDetail : Form {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private readonly int _fiscalYear;
         private readonly int _staffCode;
         private PdfUtility _pdfUtility = new();
-        private CcPdfView[] _ccPdfViews = new CcPdfView[3];             // 3つの PdfViewer（第一回目 / 第二回目 / 第三回目）
-        /*
-         * Dao
-         */
-        private readonly StaffMasterDao _staffMasterDao;
-        private readonly LegalTwelveItemDao _legalTwelveItemDao;
         /// <summary>
         /// 0→1回目　1→2回目　2→3回目
         /// </summary>
@@ -28,95 +22,62 @@ namespace LegalTwelveItem {
         /*
          * Control用の配列を確保
          */
-        private CcCheckBox[] _arrayCcCheckBox = new CcCheckBox[12];
-        private CcDateTime[] _arrayCcDateTimePicker = new CcDateTime[12];
-        private CcComboBox[] _arrayCcComboBox = new CcComboBox[12];
-        private CcTextBox[] _arrayCcTextBox = new CcTextBox[12];
-
+        private CcCheckBox[] _arrayCcCheckBox = new CcCheckBox[3];
+        private CcDateTime[] _arrayCcDateTimePicker = new CcDateTime[3];
+        private CcComboBox[] _arrayCcComboBox = new CcComboBox[3];
+        private CcTextBox[] _arrayCcTextBox = new CcTextBox[3];
+        private CcPdfView[] _ccPdfViews = new CcPdfView[3];             // 3つの PdfViewer（第一回目 / 第二回目 / 第三回目）
+        /*
+         * Dao
+         */
+        private StaffMasterDao _staffMasterDao;
+        private RiskAssessmentSeminarDao _riskAssessmentSeminarDao;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="connectionVo"></param>
         /// <param name="screen"></param>
-        /// <param name="fiscalYear"></param>
-        /// <param name="staffCode"></param>
-        public LegalTwelveItemDetail(ConnectionVo connectionVo, Screen screen, int fiscalYear, int staffCode) {
+        /// <param name="id"></param>
+        public RiskAssessmentDetail(ConnectionVo connectionVo, Screen screen, int fiscalYear, int staffCode) {
             _fiscalYear = fiscalYear;
             _staffCode = staffCode;
             /*
              * Dao
              */
             _staffMasterDao = new(connectionVo);
-            _legalTwelveItemDao = new(connectionVo);
+            _riskAssessmentSeminarDao = new(connectionVo);
             /*
-             * InitializeControl
+             * InitializeControls
              */
             InitializeComponent();
             /*
              * 配列にControlを割り当て
-             * １２項目名
              */
-            _arrayCcCheckBox[0] = this.CheckBoxEx1;
-            _arrayCcCheckBox[1] = this.CheckBoxEx2;
-            _arrayCcCheckBox[2] = this.CheckBoxEx3;
-            _arrayCcCheckBox[3] = this.CheckBoxEx4;
-            _arrayCcCheckBox[4] = this.CheckBoxEx5;
-            _arrayCcCheckBox[5] = this.CheckBoxEx6;
-            _arrayCcCheckBox[6] = this.CheckBoxEx7;
-            _arrayCcCheckBox[7] = this.CheckBoxEx8;
-            _arrayCcCheckBox[8] = this.CheckBoxEx9;
-            _arrayCcCheckBox[9] = this.CheckBoxEx10;
-            _arrayCcCheckBox[10] = this.CheckBoxEx11;
-            _arrayCcCheckBox[11] = this.CheckBoxEx12;
+            _arrayCcCheckBox[0] = this.CcCheckBox1;
+            _arrayCcCheckBox[1] = this.CcCheckBox2;
+            _arrayCcCheckBox[2] = this.CcCheckBox3;
             /*
              * 配列にControlを割り当て
              * 指導実施日
              */
-            _arrayCcDateTimePicker[0] = this.DateTimePickerEx1;
-            _arrayCcDateTimePicker[1] = this.DateTimePickerEx2;
-            _arrayCcDateTimePicker[2] = this.DateTimePickerEx3;
-            _arrayCcDateTimePicker[3] = this.DateTimePickerEx4;
-            _arrayCcDateTimePicker[4] = this.DateTimePickerEx5;
-            _arrayCcDateTimePicker[5] = this.DateTimePickerEx6;
-            _arrayCcDateTimePicker[6] = this.DateTimePickerEx7;
-            _arrayCcDateTimePicker[7] = this.DateTimePickerEx8;
-            _arrayCcDateTimePicker[8] = this.DateTimePickerEx9;
-            _arrayCcDateTimePicker[9] = this.DateTimePickerEx10;
-            _arrayCcDateTimePicker[10] = this.DateTimePickerEx11;
-            _arrayCcDateTimePicker[11] = this.DateTimePickerEx12;
+            _arrayCcDateTimePicker[0] = this.CcDateTimePicker1;
+            _arrayCcDateTimePicker[1] = this.CcDateTimePicker2;
+            _arrayCcDateTimePicker[2] = this.CcDateTimePicker3;
             /*
              * 配列にControlを割り当て
              * サイン№
              */
-            _arrayCcComboBox[0] = this.ComboBoxEx1;
-            _arrayCcComboBox[1] = this.ComboBoxEx2;
-            _arrayCcComboBox[2] = this.ComboBoxEx3;
-            _arrayCcComboBox[3] = this.ComboBoxEx4;
-            _arrayCcComboBox[4] = this.ComboBoxEx5;
-            _arrayCcComboBox[5] = this.ComboBoxEx6;
-            _arrayCcComboBox[6] = this.ComboBoxEx7;
-            _arrayCcComboBox[7] = this.ComboBoxEx8;
-            _arrayCcComboBox[8] = this.ComboBoxEx9;
-            _arrayCcComboBox[9] = this.ComboBoxEx10;
-            _arrayCcComboBox[10] = this.ComboBoxEx11;
-            _arrayCcComboBox[11] = this.ComboBoxEx12;
+            _arrayCcComboBox[0] = this.CcComboBox1;
+            _arrayCcComboBox[1] = this.CcComboBox2;
+            _arrayCcComboBox[2] = this.CcComboBox3;
             /*
              * 配列にControlを割り当て
              * メモ
              */
-            _arrayCcTextBox[0] = this.TextBoxEx1;
-            _arrayCcTextBox[1] = this.TextBoxEx2;
-            _arrayCcTextBox[2] = this.TextBoxEx3;
-            _arrayCcTextBox[3] = this.TextBoxEx4;
-            _arrayCcTextBox[4] = this.TextBoxEx5;
-            _arrayCcTextBox[5] = this.TextBoxEx6;
-            _arrayCcTextBox[6] = this.TextBoxEx7;
-            _arrayCcTextBox[7] = this.TextBoxEx8;
-            _arrayCcTextBox[8] = this.TextBoxEx9;
-            _arrayCcTextBox[9] = this.TextBoxEx10;
-            _arrayCcTextBox[10] = this.TextBoxEx11;
-            _arrayCcTextBox[11] = this.TextBoxEx12;
+            _arrayCcTextBox[0] = this.CcTextBox1;
+            _arrayCcTextBox[1] = this.CcTextBox2;
+            _arrayCcTextBox[2] = this.CcTextBox3;
             /*
              * MenuStrip
              */
@@ -128,7 +89,8 @@ namespace LegalTwelveItem {
 
             this.InitializeControl();
             this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
-            this.SetControls(_legalTwelveItemDao.SelectLegalTwelveItemVo(_fiscalYear, staffCode));
+
+            this.SetControls(_riskAssessmentSeminarDao.SelectRiskAssessmentSeminar(_fiscalYear, _staffCode));
         }
 
         /// <summary>
@@ -136,43 +98,48 @@ namespace LegalTwelveItem {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonExUpdate_Click(object sender, EventArgs e) {
+        private void CcButtonUpdate_Click(object sender, EventArgs e) {
             DialogResult dialogResult = MessageBox.Show("登録します。よろしいですか？", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             switch(dialogResult) {
                 case DialogResult.OK:
-                    for(int i = 0; i < 12; i++) {
+                    for(int i = 0; i < 3; i++) {
+                        /*
+                         * 変更前のVoを保持
+                         */
+                        RiskAssessmentSeminarVo beforeRiskAssessmentSeminarVo = (RiskAssessmentSeminarVo)_arrayCcTextBox[i].Tag;
                         if(_arrayCcCheckBox[i].Checked) {
                             /*
-                             * Controlの値をLegalTwelveItemVoに代入
+                             * Controlの値をRiskAssessmentSeminarVoに代入
                              */
-                            LegalTwelveItemVo legalTwelveItemVo = new();
-                            legalTwelveItemVo.StudentsDate = _arrayCcDateTimePicker[i].GetValue();
-                            legalTwelveItemVo.StudentsCode = Convert.ToInt32(_arrayCcCheckBox[i].Tag);
-                            legalTwelveItemVo.StudentsFlag = _arrayCcCheckBox[i].Checked;
-                            legalTwelveItemVo.StaffCode = _staffCode;
-                            legalTwelveItemVo.StaffSign = _ccPdfViews[_arrayCcComboBox[i].SelectedIndex].MemoryStream?.ToArray() ?? Array.Empty<byte>();               // StaffSign は MemoryStream から取得する
-                            legalTwelveItemVo.SignNumber = _arrayCcComboBox[i].SelectedIndex;
-                            legalTwelveItemVo.Memo = _arrayCcTextBox[i].Text;
-                            legalTwelveItemVo.InsertPcName = Environment.MachineName;
-                            legalTwelveItemVo.InsertYmdHms = DateTime.Now;
-                            legalTwelveItemVo.UpdatePcName = string.Empty;
-                            legalTwelveItemVo.UpdateYmdHms = _defaultDateTime;
-                            legalTwelveItemVo.DeletePcName = string.Empty;
-                            legalTwelveItemVo.DeleteYmdHms = _defaultDateTime;
-                            legalTwelveItemVo.DeleteFlag = false;
+                            RiskAssessmentSeminarVo afterRiskAssessmentSeminarVo = new();
+                            afterRiskAssessmentSeminarVo.Id = Guid.NewGuid().ToString();                                                                                        // 変更前のVoが存在すればそのIdを使用、存在しなければ新しいIdを生成
+                            afterRiskAssessmentSeminarVo.StudentsDate = _arrayCcDateTimePicker[i].GetValue();
+                            afterRiskAssessmentSeminarVo.StudentsCode = Convert.ToInt32(_arrayCcCheckBox[i].Tag);
+                            afterRiskAssessmentSeminarVo.StudentsFlag = _arrayCcCheckBox[i].Checked;
+                            afterRiskAssessmentSeminarVo.StaffCode = _staffCode;
+                            afterRiskAssessmentSeminarVo.StaffSign = _ccPdfViews[_arrayCcComboBox[i].SelectedIndex].MemoryStream?.ToArray() ?? Array.Empty<byte>();             // StaffSign は MemoryStream から取得する
+                            afterRiskAssessmentSeminarVo.SignNumber = _arrayCcComboBox[i].SelectedIndex;
+                            afterRiskAssessmentSeminarVo.Memo = _arrayCcTextBox[i].Text;
+                            afterRiskAssessmentSeminarVo.InsertPcName = Environment.MachineName;
+                            afterRiskAssessmentSeminarVo.InsertYmdHms = DateTime.Now;
+                            afterRiskAssessmentSeminarVo.UpdatePcName = string.Empty;
+                            afterRiskAssessmentSeminarVo.UpdateYmdHms = _defaultDateTime;
+                            afterRiskAssessmentSeminarVo.DeletePcName = string.Empty;
+                            afterRiskAssessmentSeminarVo.DeleteYmdHms = _defaultDateTime;
+                            afterRiskAssessmentSeminarVo.DeleteFlag = false;
                             /*
                              * レコードが存在すればUPDATEする。
                              * Tagに退避させてあるVoを渡す。変更前の値でSQLを発行しないとダメだよ！
                              */
-                            if((LegalTwelveItemVo)_arrayCcTextBox[i].Tag is not null && _legalTwelveItemDao.ExistenceLegalTwelveItem((LegalTwelveItemVo)_arrayCcTextBox[i].Tag)) {
+                            if(beforeRiskAssessmentSeminarVo is not null && _riskAssessmentSeminarDao.ExistenceRiskAssessmentSeminar(beforeRiskAssessmentSeminarVo.Id)) {
                                 try {
-                                    _legalTwelveItemDao.UpdateOneLegalTwelveItem((LegalTwelveItemVo)_arrayCcTextBox[i].Tag, legalTwelveItemVo);
+                                    _riskAssessmentSeminarDao.UpdateOneRiskAssessmentSeminar(beforeRiskAssessmentSeminarVo, afterRiskAssessmentSeminarVo);
                                 } catch(Exception exception) {
                                     MessageBox.Show(exception.Message);
                                 }
                             } else {
                                 try {
-                                    _legalTwelveItemDao.InsertOneLegalTwelveItem(legalTwelveItemVo);
+                                    _riskAssessmentSeminarDao.InsertOneRiskAssessmentSeminar(afterRiskAssessmentSeminarVo);
                                 } catch(Exception exception) {
                                     MessageBox.Show(exception.Message);
                                 }
@@ -180,11 +147,11 @@ namespace LegalTwelveItem {
                         } else {
                             /*
                              * 最初にセットされた値(Vo)はTagに代入してある
-                             * _arrayTextBox[i].Tag = legalTwelveItemVo;
+                             * _arrayTextBox[i].Tag = riskAssessmentSeminarVo;
                              */
-                            if((LegalTwelveItemVo)_arrayCcTextBox[i].Tag is not null) {
+                            if(beforeRiskAssessmentSeminarVo is not null) {
                                 try {
-                                    _legalTwelveItemDao.DeleteOneLegalTwelveItemVo((LegalTwelveItemVo)_arrayCcTextBox[i].Tag);
+                                    _riskAssessmentSeminarDao.DeleteOneRiskAssessmentSeminar(beforeRiskAssessmentSeminarVo.Id);
                                 } catch(Exception exception) {
                                     MessageBox.Show(exception.Message);
                                 }
@@ -201,68 +168,11 @@ namespace LegalTwelveItem {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="listLegalTwelveItemVo"></param>
-        private void SetControls(List<LegalTwelveItemVo> listLegalTwelveItemVo) {
-            this.LabelExStaffCode.Text = Convert.ToString(_staffCode);                                                          // StaffCode
-            this.LabelExName.Text = _staffMasterDao.SelectOneStaffMaster(_staffCode).Name;                                      // Name
-            this.CcDateTimePickerBase.SetToday();                                                                               // 基準日
-            this.CcComboBoxBase.DisplayClear();                                                                                 // 基準日ComboBoxを初期化
-
-            if(listLegalTwelveItemVo is null || listLegalTwelveItemVo.Count == 0) {
-                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "対象のレコードが存在しません。";
-                return;
-            }
-
-            /*
-             * CheckBox等の処理
-             */
-            for(int i = 0; i < 12; i++) {
-                LegalTwelveItemVo legalTwelveItemVo = listLegalTwelveItemVo.Find(x => x.StudentsCode == i);
-                /*
-                 * _arrayTextBoxのTagにLegalTwelveItemVoを格納
-                 * Recordを削除するさいに必要な情報になる
-                 */
-                _arrayCcTextBox[i].Tag = legalTwelveItemVo;                                                                     // LegalTwelveItemVoをTagに格納する
-
-                if(legalTwelveItemVo is not null) {                                                                             // LegalTwelveItemVoが存在する場合、Controlに値をセットする
-                    _arrayCcCheckBox[i].Checked = true;
-                    _arrayCcDateTimePicker[i].SetValue(legalTwelveItemVo.StudentsDate);
-                    _arrayCcComboBox[i].Text = _signNumber[legalTwelveItemVo.SignNumber];
-                    _arrayCcTextBox[i].Text = legalTwelveItemVo.Memo;
-                } else {                                                                                                        // LegalTwelveItemVoが存在しない場合、Controlを初期化する
-                    _arrayCcCheckBox[i].Checked = false;
-                    _arrayCcDateTimePicker[i].SetEmpty();
-                    _arrayCcComboBox[i].Text = string.Empty;
-                    _arrayCcTextBox[i].Text = string.Empty;
-                }
-            }
-
-            /*
-             * 1回目〜3回目のPDF表示処理
-             */
-            listLegalTwelveItemVo = listLegalTwelveItemVo.DistinctBy(c => c.SignNumber).ToList();                               // SignNumberで重複するVoを除外する
-            foreach(LegalTwelveItemVo legalTwelveItemVo in listLegalTwelveItemVo.OrderBy(x => x.SignNumber)) {                  // SignNumberで昇順にソートする
-                int index = legalTwelveItemVo.SignNumber;
-                /*
-                 * SignNumber が 0〜3 の範囲外ならスキップ
-                 */
-                if(index < 0 || index >= _ccPdfViews.Length)
-                    continue;
-                /*
-                 * PDF 表示（SignNumber が示すビューへ）
-                 */
-                _ccPdfViews[index].SetPdfBytes(legalTwelveItemVo.StaffSign);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch(((ToolStripMenuItem)sender).Name) {
-                case "ToolStripMenuItemExit":                                                                   // アプリケーションを終了する
+                case "ToolStripMenuItemExit":                                                                                                   // アプリケーションを終了する
                     this.Close();
                     break;
             }
@@ -334,11 +244,69 @@ namespace LegalTwelveItem {
         }
 
         /// <summary>
+        /// コントロールに値を設定
+        /// </summary>
+        /// <param name="listRiskAssessmentSeminarVo"></param>
+        private void SetControls(List<RiskAssessmentSeminarVo> listRiskAssessmentSeminarVo) {
+            this.CcLabelStaffCode.Text = Convert.ToString(_staffCode);                                                                          // StaffCode
+            this.CcLabelName.Text = _staffMasterDao.SelectOneStaffMaster(_staffCode).Name;                                                      // Name
+            this.CcDateTimePickerBase.SetToday();                                                                                               // 基準日
+            this.CcComboBoxBase.DisplayClear();                                                                                                 // 基準日ComboBoxを初期化
+
+            if(listRiskAssessmentSeminarVo is null || listRiskAssessmentSeminarVo.Count == 0) {
+                this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "対象のレコードが存在しません。";
+                return;
+            }
+
+            /*
+             * CheckBox等の処理
+             */
+            for(int i = 0; i < 3; i++) {
+                RiskAssessmentSeminarVo riskAssessmentSeminarVo = listRiskAssessmentSeminarVo.Find(x => x.StudentsCode == i);
+                /*
+                 * _arrayTextBoxのTagにRiskAssessmentSeminarVoを格納
+                 * Recordを削除するさいに必要な情報になる
+                 */
+                _arrayCcTextBox[i].Tag = riskAssessmentSeminarVo;                                                                               // RiskAssessmentSeminarVoをTagに格納する
+
+                if(riskAssessmentSeminarVo is not null) {                                                                                       // RiskAssessmentSeminarVoが存在する場合、Controlに値をセットする
+                    _arrayCcCheckBox[i].Checked = true;
+                    _arrayCcDateTimePicker[i].SetValue(riskAssessmentSeminarVo.StudentsDate);
+                    _arrayCcComboBox[i].Text = _signNumber[riskAssessmentSeminarVo.SignNumber];
+                    _arrayCcTextBox[i].Text = riskAssessmentSeminarVo.Memo;
+
+                } else {                                                                                                                        // RiskAssessmentSeminarVoが存在しない場合、Controlを初期化する
+                    _arrayCcCheckBox[i].Checked = false;
+                    _arrayCcDateTimePicker[i].SetEmpty();
+                    _arrayCcComboBox[i].Text = string.Empty;
+                    _arrayCcTextBox[i].Text = string.Empty;
+                }
+            }
+
+            /*
+             * 1回目〜3回目のPDF表示処理
+             */
+            listRiskAssessmentSeminarVo = listRiskAssessmentSeminarVo.DistinctBy(c => c.SignNumber).ToList();                                   // SignNumberで重複するVoを除外する
+            foreach(RiskAssessmentSeminarVo riskAssessmentSeminarVo in listRiskAssessmentSeminarVo.OrderBy(x => x.SignNumber)) {                // SignNumberで昇順にソートする
+                int index = riskAssessmentSeminarVo.SignNumber;
+                /*
+                 * SignNumber が 0〜3 の範囲外ならスキップ
+                 */
+                if(index < 0 || index >= _ccPdfViews.Length)
+                    continue;
+                /*
+                 * PDF 表示（SignNumber が示すビューへ）
+                 */
+                _ccPdfViews[index].SetPdfBytes(riskAssessmentSeminarVo.StaffSign);
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CheckBoxEx_CheckedChanged(object sender, EventArgs e) {
+        private void CcCheckBox_CheckedChanged(object sender, EventArgs e) {
             if(((CcCheckBox)sender).Checked) {
                 _arrayCcDateTimePicker[Convert.ToInt32(((CcCheckBox)sender).Tag)].Enabled = true;
                 /*
@@ -384,33 +352,15 @@ namespace LegalTwelveItem {
         }
 
         /// <summary>
-        /// 指定された PdfViewer に PDF（byte[]）を表示する
-        /// </summary>
-        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
-        /// <param name="pdfBytes">PDF のバイト配列</param>
-        private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
-            ccPdfView.SetPdfStream(new MemoryStream(pdfBytes));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LegalTwelveItemDetail_FormClosing(object sender, FormClosingEventArgs e) {
-
-        }
-
-        /// <summary>
         /// コントロールを初期化
         /// </summary>
         private void InitializeControl() {
-            this.LabelExStaffCode.Text = string.Empty;
-            this.LabelExName.Text = string.Empty;
+            this.CcLabelStaffCode.Text = string.Empty;
+            this.CcLabelName.Text = string.Empty;
 
             this.CcDateTimePickerBase.SetToday();
             this.CcComboBoxBase.SelectedIndex = 0;
-            for(int i = 0; i < 12; i++) {
+            for(int i = 0; i < 3; i++) {
                 _arrayCcCheckBox[i].Checked = false;
 
                 _arrayCcDateTimePicker[i].Enabled = false;
@@ -432,10 +382,18 @@ namespace LegalTwelveItem {
             for(int i = 0; i < 3; i++) {
                 _ccPdfViews[i] = new();
                 _ccPdfViews[i].Tag = i;
-
                 tabPages[i].Controls.Add(_ccPdfViews[i]);
                 _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                     // 共通の ContextMenuStrip を設定
             }
+        }
+
+        /// <summary>
+        /// 指定された PdfViewer に PDF（byte[]）を表示する
+        /// </summary>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <param name="pdfBytes">PDF のバイト配列</param>
+        private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
+            ccPdfView.SetPdfStream(new MemoryStream(pdfBytes));
         }
     }
 }

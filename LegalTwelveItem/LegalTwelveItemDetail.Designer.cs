@@ -28,8 +28,8 @@
             CcMenuStrip1 = new CcControl.CcMenuStrip();
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
-            ComboBoxExBase = new CcControl.CcComboBox();
-            DateTimePickerExBase = new CcControl.CcDateTime();
+            CcComboBoxBase = new CcControl.CcComboBox();
+            CcDateTimePickerBase = new CcControl.CcDateTime();
             ButtonExUpdate = new CcControl.CcButton();
             LabelExName = new CcControl.CcLabel();
             LabelExStaffCode = new CcControl.CcLabel();
@@ -147,8 +147,8 @@
             // PanelExTop
             // 
             TableLayoutPanelExBase.SetColumnSpan(PanelExTop, 3);
-            PanelExTop.Controls.Add(ComboBoxExBase);
-            PanelExTop.Controls.Add(DateTimePickerExBase);
+            PanelExTop.Controls.Add(CcComboBoxBase);
+            PanelExTop.Controls.Add(CcDateTimePickerBase);
             PanelExTop.Controls.Add(ButtonExUpdate);
             PanelExTop.Controls.Add(LabelExName);
             PanelExTop.Controls.Add(LabelExStaffCode);
@@ -158,26 +158,26 @@
             PanelExTop.Size = new Size(1898, 54);
             PanelExTop.TabIndex = 2;
             // 
-            // ComboBoxExBase
+            // CcComboBoxBase
             // 
-            ComboBoxExBase.FormattingEnabled = true;
-            ComboBoxExBase.Items.AddRange(new object[] { "１回目", "２回目", "３回目" });
-            ComboBoxExBase.Location = new Point(992, 16);
-            ComboBoxExBase.Name = "ComboBoxExBase";
-            ComboBoxExBase.Size = new Size(80, 23);
-            ComboBoxExBase.TabIndex = 62;
-            ComboBoxExBase.Text = "１回目";
+            CcComboBoxBase.FormattingEnabled = true;
+            CcComboBoxBase.Items.AddRange(new object[] { "１回目", "２回目", "３回目" });
+            CcComboBoxBase.Location = new Point(992, 16);
+            CcComboBoxBase.Name = "CcComboBoxBase";
+            CcComboBoxBase.Size = new Size(80, 23);
+            CcComboBoxBase.TabIndex = 62;
+            CcComboBoxBase.Text = "１回目";
             // 
-            // DateTimePickerExBase
+            // CcDateTimePickerBase
             // 
-            DateTimePickerExBase.CultureFlag = false;
-            DateTimePickerExBase.CustomFormat = " 明治33年01月01日(月曜日)";
-            DateTimePickerExBase.Format = DateTimePickerFormat.Custom;
-            DateTimePickerExBase.Location = new Point(788, 16);
-            DateTimePickerExBase.Name = "DateTimePickerExBase";
-            DateTimePickerExBase.Size = new Size(200, 23);
-            DateTimePickerExBase.TabIndex = 61;
-            DateTimePickerExBase.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            CcDateTimePickerBase.CultureFlag = false;
+            CcDateTimePickerBase.CustomFormat = " 明治33年01月01日(月曜日)";
+            CcDateTimePickerBase.Format = DateTimePickerFormat.Custom;
+            CcDateTimePickerBase.Location = new Point(788, 16);
+            CcDateTimePickerBase.Name = "CcDateTimePickerBase";
+            CcDateTimePickerBase.Size = new Size(200, 23);
+            CcDateTimePickerBase.TabIndex = 61;
+            CcDateTimePickerBase.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // ButtonExUpdate
             // 
@@ -962,8 +962,8 @@
         private ContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
-        private CcControl.CcComboBox ComboBoxExBase;
-        private CcControl.CcDateTime DateTimePickerExBase;
+        private CcControl.CcComboBox CcComboBoxBase;
+        private CcControl.CcDateTime CcDateTimePickerBase;
         private CcControl.CcPanel CcPanelCenter;
         private CcControl.CcTabControl CcTabControl1;
         private TabPage TabPage1;

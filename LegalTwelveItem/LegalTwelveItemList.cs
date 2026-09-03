@@ -85,12 +85,15 @@ namespace LegalTwelveItem {
              */
             foreach(string item in new PrintUtility().GetAllPrinterName())
                 this.CcComboBoxPrinterName.Items.Add(item);
-
             this.CcComboBoxPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
             /*
              * InitializeSpread
              */
             this.InitializeSheetViewList(this.SheetViewList);
+            /*
+             * StatusStrip
+             */
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
         }
 
         /// <summary>
@@ -146,7 +149,7 @@ namespace LegalTwelveItem {
             }
             this.SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                         // 先頭行（列）インデックスをセット
             this.SpreadList.ResumeLayout();                                                                                                 // Spread 活性化
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
         }
 
         /// <summary>
@@ -205,7 +208,7 @@ namespace LegalTwelveItem {
                  */
                 case "ToolStripMenuItemPrintA4":
                     // Eventを登録
-                    _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+                    _printDocument.PrintPage += new(PrintDocument_PrintPage);
                     // 出力先プリンタを指定します。
                     _printDocument.PrinterSettings.PrinterName = this.CcComboBoxPrinterName.Text;
                     // 用紙の向きを設定(横：true、縦：false)

@@ -78,6 +78,7 @@
             CcDateTimePickerContractDate = new CcControl.CcDateTime();
             CheckBoxExContractFlag = new CcControl.CcCheckBox();
             ccGroupBox1 = new CcControl.CcGroupBox();
+            CcCheckBoxRiskAssessmentFlag = new CcControl.CcCheckBox();
             CheckBoxExToukanpoFlag = new CcControl.CcCheckBox();
             CheckBoxExTargetFlag = new CcControl.CcCheckBox();
             CheckBoxExLegalTwelveItemFlag = new CcControl.CcCheckBox();
@@ -313,6 +314,7 @@
             labelEx43 = new CcControl.CcLabel();
             TextBoxExFamilyName = new CcControl.CcTextBox();
             labelEx44 = new CcControl.CcLabel();
+            CcToolTip1 = new CcControl.CcToolTip();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExUp.SuspendLayout();
             PanelExLeft.SuspendLayout();
@@ -906,6 +908,7 @@
             // 
             // ccGroupBox1
             // 
+            ccGroupBox1.Controls.Add(CcCheckBoxRiskAssessmentFlag);
             ccGroupBox1.Controls.Add(CheckBoxExToukanpoFlag);
             ccGroupBox1.Controls.Add(CheckBoxExTargetFlag);
             ccGroupBox1.Controls.Add(CheckBoxExLegalTwelveItemFlag);
@@ -915,6 +918,17 @@
             ccGroupBox1.Size = new Size(920, 44);
             ccGroupBox1.TabIndex = 0;
             ccGroupBox1.TabStop = false;
+            // 
+            // CcCheckBoxRiskAssessmentFlag
+            // 
+            CcCheckBoxRiskAssessmentFlag.AutoSize = true;
+            CcCheckBoxRiskAssessmentFlag.Location = new Point(604, 20);
+            CcCheckBoxRiskAssessmentFlag.Name = "CcCheckBoxRiskAssessmentFlag";
+            CcCheckBoxRiskAssessmentFlag.Size = new Size(165, 19);
+            CcCheckBoxRiskAssessmentFlag.TabIndex = 4;
+            CcCheckBoxRiskAssessmentFlag.Text = "リスクアセスメント講習対象者";
+            CcToolTip1.SetToolTip(CcCheckBoxRiskAssessmentFlag, "作業員を中心とした、リスクアセスメント講習。\r\n年間３回を実施予定。");
+            CcCheckBoxRiskAssessmentFlag.UseVisualStyleBackColor = true;
             // 
             // CheckBoxExToukanpoFlag
             // 
@@ -944,6 +958,7 @@
             CheckBoxExLegalTwelveItemFlag.Size = new Size(158, 19);
             CheckBoxExLegalTwelveItemFlag.TabIndex = 1;
             CheckBoxExLegalTwelveItemFlag.Text = "法定１２項目受講対象者";
+            CcToolTip1.SetToolTip(CheckBoxExLegalTwelveItemFlag, "運転手を中心とした、法定１２項目の講習。\r\n年間３回を実施予定。\r\n");
             CheckBoxExLegalTwelveItemFlag.UseVisualStyleBackColor = true;
             // 
             // CcCheckBoxMedicalCheckupFlag
@@ -3808,5 +3823,7 @@
         private CcControl.CcButton DeleteGroupBoxProperPDF1;
         private CcControl.CcButton DeleteGroupBoxProperPDF3;
         private CcControl.CcButton DeleteGroupBoxProperPDF2;
+        private CcControl.CcCheckBox CcCheckBoxRiskAssessmentFlag;
+        private CcControl.CcToolTip CcToolTip1;
     }
 }
