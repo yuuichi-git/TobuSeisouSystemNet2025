@@ -251,6 +251,7 @@ namespace VoluntaryAutomobileInsurance {
                     this.ShowPdfToViewer(ccPdfView, bytes);
                     this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
+
                 case "ToolStripMenuItemPaste": {
                     IDataObject data = Clipboard.GetDataObject();
                     if(data == null) {

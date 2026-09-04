@@ -216,9 +216,25 @@ namespace CcControl {
             /*
              * 車検日の処理
              */
-            if(CarMasterVo.ExpirationDate < DateTime.Now.Date) {
+            DateTime today = DateTime.Now.Date;
+            DateTime date = CarMasterVo.ExpirationDate.Date;
+
+            // 期限切れ一か月前（30日前以前）
+            if(date <= today.AddDays(-30)) {
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Red), rectangle, stringFormat);
-            } else {
+            }
+            // 期限切れ一週間前（7日前以前）
+            else if(date <= today.AddDays(-7)) {
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarOneWeekAgo), 0, 0, Width, Height);
+                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Green), rectangle, stringFormat);
+            }
+            // 期限切れ（今日以前）
+            else if(date <= today) {
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarOneDayAgo), 0, 0, Width, Height);
+                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
+            }
+            // 期限内
+            else {
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
             }
         }
@@ -228,10 +244,6 @@ namespace CcControl {
         /// </summary>
         /// <param name="arrayByte"></param>
         /// <returns></returns>
-        //private Image ByteArrayToImage(byte[] arrayByte) {
-        //    ImageConverter imageConverter = new();
-        //    return (Image)imageConverter.ConvertFrom(arrayByte);
-        //}
         private Image ByteArrayToImage(byte[] arrayByte) {
             using MemoryStream memoryStream = new (arrayByte);
             return Image.FromStream(memoryStream);

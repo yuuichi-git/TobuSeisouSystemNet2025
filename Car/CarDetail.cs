@@ -1,8 +1,6 @@
 ﻿/*
  * 2025-02-12
  */
-using System.Drawing.Printing;
-
 using CcControl;
 
 using Common;
@@ -19,6 +17,7 @@ namespace Car {
          */
         private readonly ScreenForm _screenForm = new();
         private readonly PdfUtility _pdfUtility = new();
+        private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（車検証 / 自動車検査証記録事項 / 自賠責(古い証明書) / 自賠責(新しい証明書)）
         /*
          * Dao
          */
@@ -80,12 +79,12 @@ namespace Car {
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
                                              "ToolStripMenuItemHelp"};
-            this.MenuStripEx1.ChangeEnable(listString);
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
-            InitializeControl();
+            this.InitializeControl();
             this.TextBoxExCarCode.Text = (_carMasterDao.GetCarCode() + 1).ToString("#####");                                                    // 新規での車両コード採番
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "車両CDの採番が完了しました";
         }
 
         /// <summary>
@@ -124,14 +123,13 @@ namespace Car {
              */
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
-                                             "ToolStripMenuItemPrint",
-                                             "ToolStripMenuItemPrintA4",
                                              "ToolStripMenuItemHelp"};
-            this.MenuStripEx1.ChangeEnable(listString);
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
+            this.InitializeControl();
             this.SetControl(_carMasterDao.SelectOneCarMasterP(carCode));
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Select Success";
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "Select Success";
         }
 
         /// <summary>
@@ -147,15 +145,15 @@ namespace Car {
                     case DialogResult.OK:
                         if(_carMasterDao.ExistsHCarMaster(carMasterVo.CarCode)) {
                             _carMasterDao.UpdateOneCarMaster(SetVo());
-                            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Update Success";
+                            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "Update Success";
                         } else {
                             _carMasterDao.InsertOneCarMaster(SetVo());
-                            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Insert Success";
+                            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "Insert Success";
                         }
                         Close();
                         break;
                     case DialogResult.Cancel:
-                        this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "処理を中止しました。";
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "処理を中止しました。";
                         break;
                 }
             } catch(Exception exception) {
@@ -168,30 +166,63 @@ namespace Car {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void ContextMenuStripEx_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+        private void CcContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
             if(sender is not ContextMenuStrip contextMenuStrip)
                 return;
 
-            if(contextMenuStrip.SourceControl is not CcPictureBox ccPictureBox)
+            if(contextMenuStrip.SourceControl is not CcPdfView ccPdfView)
                 return;
 
             switch(e.ClickedItem.Name) {
                 case "ToolStripMenuItemOpen":
-                    Bitmap bitmap = await _pdfUtility.ConvertPdfToImage(contextMenuStrip);
-                    if(bitmap is not null) {
-                        ccPictureBox.Image = bitmap;
-                    }
+                    byte[] bytes = _pdfUtility.ConvertPdfToBytes(contextMenuStrip);
+                    if(bytes is null)
+                        return;
+
+                    this.ShowPdfToViewer(ccPdfView, bytes);
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を表示しました。";
                     break;
 
-                case "ToolStripMenuItemPaste":
+                case "ToolStripMenuItemPaste": {
                     IDataObject data = Clipboard.GetDataObject();
-                    if(data?.GetDataPresent(DataFormats.Bitmap) == true) {
-                        ccPictureBox.Image = (Bitmap)data.GetData(DataFormats.Bitmap);
+                    if(data == null) {
+                        MessageBox.Show("クリップボードが空です。");
+                        break;
                     }
+
+                    // ★ クリップボードに画像があるか？
+                    if(data.GetDataPresent(DataFormats.Bitmap)) {
+                        Bitmap bmp = (Bitmap)data.GetData(DataFormats.Bitmap);
+                        if(bmp == null) {
+                            MessageBox.Show("画像の取得に失敗しました。");
+                            break;
+                        }
+
+                        // ★ Bitmap → PDF(byte[]) に変換
+                        byte[] pdfBytes = _pdfUtility.ConvertImageToPdfBytes(bmp);
+                        if(pdfBytes == null || pdfBytes.Length == 0) {
+                            MessageBox.Show("画像を PDF に変換できませんでした。");
+                            break;
+                        }
+
+                        // ★ PdfiumViewer に表示
+                        //ccPdfView.MemoryStream?.Dispose();
+                        ccPdfView.MemoryStream = new MemoryStream(pdfBytes);
+
+                        //ccPdfView.Clear();
+                        ccPdfView.SetPdfStream(ccPdfView.MemoryStream);
+
+                        this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "画像を PDF として貼り付けました。";
+                        break;
+                    }
+
+                    MessageBox.Show("クリップボードに画像がありません。");
                     break;
+                }
 
                 case "ToolStripMenuItemDelete":
-                    ccPictureBox.Image = null;
+                    ccPdfView.Clear();
+                    this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "PDF を削除しました。";
                     break;
             }
         }
@@ -206,10 +237,17 @@ namespace Car {
                 case "ToolStripMenuItemExit":                                                                                                               // アプロケーションを終了する
                     this.Close();
                     break;
-                case "ToolStripMenuItemPrintA4":                                                                                                            // アプロケーションを終了する
-                    this.ToolStripMenuItemPrintA4_Click();
-                    break;
             }
+        }
+
+        /// <summary>
+        /// 指定された PdfViewer に PDF（byte[]）を表示する
+        /// </summary>
+        /// <param name="ccPdfView">PdfViewer のインスタンス</param>
+        /// <param name="pdfBytes">PDF のバイト配列</param>
+        private void ShowPdfToViewer(CcPdfView ccPdfView, byte[] pdfBytes) {
+            ccPdfView.Clear();
+            ccPdfView.SetPdfStream(new MemoryStream(pdfBytes));
         }
 
         /// <summary>
@@ -275,8 +313,10 @@ namespace Car {
             carMasterVo.VersionDesignateNumber = this.TextBoxExVersionDesignateNumber.Text;                                                                 // 型式指定番号
             carMasterVo.CategoryDistinguishNumber = this.TextBoxExCategoryDistinguishNumber.Text;                                                           // 類別区分番号
             carMasterVo.Remarks = this.TextBoxExRemarks.Text;                                                                                               // 備考
-            carMasterVo.VehicleInspectionCertificatePicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBoxMainPicture.Image, typeof(byte[]));   // 車検証
-            carMasterVo.RecordDetailsPicture = (byte[])new ImageConverter().ConvertTo(this.CcPictureBoxSubPicture.Image, typeof(byte[]));                   // 自動車検査証記録事項
+            carMasterVo.VehicleInspectionCertificatePicture = _ccPdfViews[0].MemoryStream?.ToArray() ?? Array.Empty<byte>();                                // 車検証
+            carMasterVo.RecordDetailsPicture = _ccPdfViews[1].MemoryStream?.ToArray() ?? Array.Empty<byte>();                                               // 自動車検査証記録事項
+            carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld = _ccPdfViews[2].MemoryStream?.ToArray() ?? Array.Empty<byte>();                          // 自賠責(古い証明書)
+            carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew = _ccPdfViews[3].MemoryStream?.ToArray() ?? Array.Empty<byte>();                          // 自賠責(新しい証明書)
             carMasterVo.EmergencyVehicleFlag = this.CheckBoxExEmergencyVehicleFlag.Checked;                                                                 // 緊急車両登録フラグ
             carMasterVo.EmergencyVehicleDate = this.DateTimePickerExEmergencyVehicleDate.GetValue();                                                        // 緊急車両登録期限
             carMasterVo.DigitalTachographFlag = this.CcCheckBoxDigitalTachographFlag.Checked;                                                               // デジタコ装着フラグ
@@ -361,10 +401,18 @@ namespace Car {
             this.TextBoxExVersionDesignateNumber.SetEmpty();                                                                                                // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.SetEmpty();                                                                                             // 類別区分番号
             this.TextBoxExRemarks.SetEmpty();                                                                                                               // 備考
-            this.CcPictureBoxMainPicture.SetEmpty();                                                                                                        // 写真
-            this.CcPictureBoxSubPicture.SetEmpty();                                                                                                         // 写真
-
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            TabPage[] tabPages = new TabPage[4];                                                                                                            // PDF 表示エリア
+            tabPages[0] = this.TabPage1;
+            tabPages[1] = this.TabPage2;
+            tabPages[2] = this.TabPage3;
+            tabPages[3] = this.TabPage4;
+            for(int i = 0; i < 4; i++) {                                                                                                                    // 4つの CcPdfView を生成して TabPage に配置
+                _ccPdfViews[i] = new();
+                _ccPdfViews[i].Tag = i;
+                tabPages[i].Controls.Add(_ccPdfViews[i]);
+                _ccPdfViews[i].ContextMenuStrip = this.CcContextMenuStrip1;                                                                                 // 共通の ContextMenuStrip を設定
+            }
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
         }
 
         /// <summary>
@@ -449,14 +497,10 @@ namespace Car {
             this.TextBoxExVersionDesignateNumber.Text = carMasterVo.VersionDesignateNumber;                                                                 // 型式指定番号
             this.TextBoxExCategoryDistinguishNumber.Text = carMasterVo.CategoryDistinguishNumber;                                                           // 類別区分番号
             this.TextBoxExRemarks.Text = carMasterVo.Remarks;                                                                                               // 備考
-            if(carMasterVo.VehicleInspectionCertificatePicture.Length != 0) {
-                ImageConverter imageConverter = new();
-                this.CcPictureBoxMainPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.VehicleInspectionCertificatePicture);                    // 写真
-            }
-            if(carMasterVo.RecordDetailsPicture.Length != 0) {
-                ImageConverter imageConverter = new();
-                this.CcPictureBoxSubPicture.Image = (Image)imageConverter.ConvertFrom(carMasterVo.RecordDetailsPicture);                                    // 写真
-            }
+            _ccPdfViews[0].SetPdfBytes(carMasterVo.VehicleInspectionCertificatePicture);
+            _ccPdfViews[1].SetPdfBytes(carMasterVo.RecordDetailsPicture);
+            _ccPdfViews[2].SetPdfBytes(carMasterVo.CompulsoryAutomobileLiabilityInsuranceOld);
+            _ccPdfViews[3].SetPdfBytes(carMasterVo.CompulsoryAutomobileLiabilityInsuranceNew);
         }
 
         /// <summary>
@@ -493,55 +537,6 @@ namespace Car {
         }
 
         /// <summary>
-        /// ToolStripMenuItemPrintA4_Click
-        /// </summary>
-        private void ToolStripMenuItemPrintA4_Click() {
-            PrintDocument _printDocument = new();
-            _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
-            // 出力先プリンタを指定します。
-            //printDocument.PrinterSettings.PrinterName = "(PrinterName)";
-            // 印刷部数を指定します。
-            _printDocument.PrinterSettings.Copies = 1;
-            // 両面印刷に設定します。
-            _printDocument.PrinterSettings.Duplex = Duplex.Vertical;
-            // カラー印刷に設定します。
-            _printDocument.PrinterSettings.DefaultPageSettings.Color = true;
-            _printDocument.Print();
-        }
-
-        /// <summary>
-        /// printDocument_PrintPage
-        /// </summary>
-        private int _curPageNumber = 0; // 現在のページ番号
-        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
-            try {
-                if(_curPageNumber == 0) {
-                    /*
-                     * 新型車検証
-                     */
-                    if(this.CcPictureBoxMainPicture.Image is not null) {
-                        // 新型車検証のサイズ(１０５＊１７７.８)
-                        Rectangle rectangle = new(0, 0, 177 * 4, 105 * 4);
-                        e.Graphics.DrawImage(this.CcPictureBoxMainPicture.Image, rectangle);
-                    }
-                    e.HasMorePages = true;
-                } else {
-                    /*
-                     * 記録事項と旧型車検証
-                     */
-                    if(this.CcPictureBoxSubPicture.Image is not null) {
-                        Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-                        e.Graphics.DrawImage(this.CcPictureBoxSubPicture.Image, rectangle);
-                    }
-                    e.HasMorePages = false;
-                }
-                _curPageNumber++;
-            } catch(Exception exception) {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -549,7 +544,6 @@ namespace Car {
         private void CarDetail_FormClosing(object sender, FormClosingEventArgs e) {
 
         }
-
 
         /*
          * ComboBoxExClassificationCodeに値をセットする

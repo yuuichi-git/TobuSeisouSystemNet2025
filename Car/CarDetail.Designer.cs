@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            MenuStripEx1 = new CcControl.CcMenuStrip();
-            StatusStripEx1 = new CcControl.CcStatusStrip();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
+            CcStatusStrip1 = new CcControl.CcStatusStrip();
             PanelExUp = new CcControl.CcPanel();
             ButtonExUpdate = new CcControl.CcButton();
             PanelExLeft = new CcControl.CcPanel();
@@ -129,12 +129,15 @@
             labelEx3 = new CcControl.CcLabel();
             labelEx2 = new CcControl.CcLabel();
             labelEx1 = new CcControl.CcLabel();
-            CcPictureBoxMainPicture = new CcControl.CcPictureBox();
-            ContextMenuStripEx1 = new CcControl.CcContextMenuStrip();
+            CcTabControl1 = new CcControl.CcTabControl();
+            TabPage1 = new TabPage();
+            TabPage2 = new TabPage();
+            TabPage3 = new TabPage();
+            TabPage4 = new TabPage();
+            CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemOpen = new ToolStripMenuItem();
             ToolStripMenuItemPaste = new ToolStripMenuItem();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
-            CcPictureBoxSubPicture = new CcControl.CcPictureBox();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExUp.SuspendLayout();
             PanelExLeft.SuspendLayout();
@@ -155,9 +158,8 @@
             groupBoxEx2.SuspendLayout();
             groupBoxEx1.SuspendLayout();
             CcGroupBoxDigitalTachograph.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBoxMainPicture).BeginInit();
-            ContextMenuStripEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBoxSubPicture).BeginInit();
+            CcTabControl1.SuspendLayout();
+            CcContextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // TableLayoutPanelExBase
@@ -165,42 +167,42 @@
             TableLayoutPanelExBase.ColumnCount = 2;
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 800F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
-            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 4);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcStatusStrip1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExUp, 0, 1);
             TableLayoutPanelExBase.Controls.Add(PanelExLeft, 0, 2);
-            TableLayoutPanelExBase.Controls.Add(CcPictureBoxMainPicture, 1, 2);
-            TableLayoutPanelExBase.Controls.Add(CcPictureBoxSubPicture, 1, 3);
+            TableLayoutPanelExBase.Controls.Add(CcTabControl1, 1, 2);
             TableLayoutPanelExBase.Dock = DockStyle.Fill;
             TableLayoutPanelExBase.Location = new Point(0, 0);
             TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            TableLayoutPanelExBase.RowCount = 5;
+            TableLayoutPanelExBase.RowCount = 4;
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 2);
-            MenuStripEx1.Location = new Point(0, 0);
-            MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1904, 24);
-            MenuStripEx1.TabIndex = 0;
-            MenuStripEx1.Text = "menuStripEx1";
-            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(CcMenuStrip1, 2);
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
-            // StatusStripEx1
+            // CcStatusStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(StatusStripEx1, 2);
-            StatusStripEx1.Location = new Point(0, 1019);
-            StatusStripEx1.Name = "StatusStripEx1";
-            StatusStripEx1.Size = new Size(1904, 22);
-            StatusStripEx1.TabIndex = 1;
-            StatusStripEx1.Text = "statusStripEx1";
+            TableLayoutPanelExBase.SetColumnSpan(CcStatusStrip1, 2);
+            CcStatusStrip1.Location = new Point(0, 1019);
+            CcStatusStrip1.Name = "CcStatusStrip1";
+            CcStatusStrip1.Size = new Size(1904, 22);
+            CcStatusStrip1.SizingGrip = false;
+            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.Text = "statusStripEx1";
             // 
             // PanelExUp
             // 
@@ -235,8 +237,7 @@
             PanelExLeft.Dock = DockStyle.Fill;
             PanelExLeft.Location = new Point(3, 87);
             PanelExLeft.Name = "PanelExLeft";
-            TableLayoutPanelExBase.SetRowSpan(PanelExLeft, 2);
-            PanelExLeft.Size = new Size(794, 926);
+            PanelExLeft.Size = new Size(794, 927);
             PanelExLeft.TabIndex = 2;
             // 
             // groupBoxEx4
@@ -1281,25 +1282,68 @@
             labelEx1.Text = "車両コード";
             labelEx1.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // CcPictureBoxMainPicture
+            // CcTabControl1
             // 
-            CcPictureBoxMainPicture.BorderStyle = BorderStyle.Fixed3D;
-            CcPictureBoxMainPicture.ContextMenuStrip = ContextMenuStripEx1;
-            CcPictureBoxMainPicture.Dock = DockStyle.Fill;
-            CcPictureBoxMainPicture.Location = new Point(803, 87);
-            CcPictureBoxMainPicture.Name = "CcPictureBoxMainPicture";
-            CcPictureBoxMainPicture.Size = new Size(1098, 367);
-            CcPictureBoxMainPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            CcPictureBoxMainPicture.TabIndex = 4;
-            CcPictureBoxMainPicture.TabStop = false;
-            CcPictureBoxMainPicture.DoubleClick += PictureBoxEx_DoubleClick;
+            CcTabControl1.Controls.Add(TabPage1);
+            CcTabControl1.Controls.Add(TabPage2);
+            CcTabControl1.Controls.Add(TabPage3);
+            CcTabControl1.Controls.Add(TabPage4);
+            CcTabControl1.Dock = DockStyle.Fill;
+            CcTabControl1.ItemSize = new Size(150, 20);
+            CcTabControl1.Location = new Point(800, 84);
+            CcTabControl1.Margin = new Padding(0);
+            CcTabControl1.Name = "CcTabControl1";
+            CcTabControl1.SelectedIndex = 0;
+            CcTabControl1.Size = new Size(1104, 933);
+            CcTabControl1.SizeMode = TabSizeMode.Fixed;
+            CcTabControl1.TabIndex = 3;
             // 
-            // ContextMenuStripEx1
+            // TabPage1
             // 
-            ContextMenuStripEx1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
-            ContextMenuStripEx1.Name = "ContextMenuStripEx1";
-            ContextMenuStripEx1.Size = new Size(133, 70);
-            ContextMenuStripEx1.ItemClicked += ContextMenuStripEx_ItemClicked;
+            TabPage1.Location = new Point(4, 24);
+            TabPage1.Margin = new Padding(0);
+            TabPage1.Name = "TabPage1";
+            TabPage1.Size = new Size(1096, 905);
+            TabPage1.TabIndex = 0;
+            TabPage1.Text = "車検証";
+            TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // TabPage2
+            // 
+            TabPage2.Location = new Point(4, 24);
+            TabPage2.Margin = new Padding(0);
+            TabPage2.Name = "TabPage2";
+            TabPage2.Size = new Size(1096, 905);
+            TabPage2.TabIndex = 1;
+            TabPage2.Text = "自動車検査証記録事項";
+            TabPage2.UseVisualStyleBackColor = true;
+            // 
+            // TabPage3
+            // 
+            TabPage3.Location = new Point(4, 24);
+            TabPage3.Margin = new Padding(0);
+            TabPage3.Name = "TabPage3";
+            TabPage3.Size = new Size(1096, 905);
+            TabPage3.TabIndex = 2;
+            TabPage3.Text = "自賠責(古い証明書)";
+            TabPage3.UseVisualStyleBackColor = true;
+            // 
+            // TabPage4
+            // 
+            TabPage4.Location = new Point(4, 24);
+            TabPage4.Margin = new Padding(0);
+            TabPage4.Name = "TabPage4";
+            TabPage4.Size = new Size(1096, 905);
+            TabPage4.TabIndex = 3;
+            TabPage4.Text = "自賠責(新しい証明書)";
+            TabPage4.UseVisualStyleBackColor = true;
+            // 
+            // CcContextMenuStrip1
+            // 
+            CcContextMenuStrip1.Items.AddRange(new ToolStripItem[] { ToolStripMenuItemOpen, ToolStripMenuItemPaste, ToolStripMenuItemDelete });
+            CcContextMenuStrip1.Name = "ContextMenuStripEx1";
+            CcContextMenuStrip1.Size = new Size(133, 70);
+            CcContextMenuStrip1.ItemClicked += CcContextMenuStrip_ItemClicked;
             // 
             // ToolStripMenuItemOpen
             // 
@@ -1319,26 +1363,14 @@
             ToolStripMenuItemDelete.Size = new Size(132, 22);
             ToolStripMenuItemDelete.Text = "Delete";
             // 
-            // CcPictureBoxSubPicture
-            // 
-            CcPictureBoxSubPicture.BorderStyle = BorderStyle.Fixed3D;
-            CcPictureBoxSubPicture.ContextMenuStrip = ContextMenuStripEx1;
-            CcPictureBoxSubPicture.Dock = DockStyle.Fill;
-            CcPictureBoxSubPicture.Location = new Point(803, 460);
-            CcPictureBoxSubPicture.Name = "CcPictureBoxSubPicture";
-            CcPictureBoxSubPicture.Size = new Size(1098, 553);
-            CcPictureBoxSubPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            CcPictureBoxSubPicture.TabIndex = 5;
-            CcPictureBoxSubPicture.TabStop = false;
-            CcPictureBoxSubPicture.DoubleClick += PictureBoxEx_DoubleClick;
-            // 
             // CarDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
-            MainMenuStrip = MenuStripEx1;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = CcMenuStrip1;
             Name = "CarDetail";
             Text = "CarDetail";
             FormClosing += CarDetail_FormClosing;
@@ -1367,21 +1399,18 @@
             groupBoxEx1.PerformLayout();
             CcGroupBoxDigitalTachograph.ResumeLayout(false);
             CcGroupBoxDigitalTachograph.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)CcPictureBoxMainPicture).EndInit();
-            ContextMenuStripEx1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)CcPictureBoxSubPicture).EndInit();
+            CcTabControl1.ResumeLayout(false);
+            CcContextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
-        private CcControl.CcStatusStrip StatusStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
+        private CcControl.CcStatusStrip CcStatusStrip1;
         private CcControl.CcPanel PanelExUp;
         private CcControl.CcPanel PanelExLeft;
-        private CcControl.CcPictureBox CcPictureBoxMainPicture;
-        private CcControl.CcPictureBox CcPictureBoxSubPicture;
         private CcControl.CcGroupBox groupBoxEx1;
         private CcControl.CcLabel labelEx2;
         private CcControl.CcLabel labelEx1;
@@ -1473,7 +1502,7 @@
         private CcControl.CcTextBox TextBoxExVersionDesignateNumber;
         private CcControl.CcComboBox ComboBoxExTypesOfFuel;
         private CcControl.CcButton ButtonExUpdate;
-        private CcControl.CcContextMenuStrip ContextMenuStripEx1;
+        private CcControl.CcContextMenuStrip CcContextMenuStrip1;
         private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private CcControl.CcComboBox ComboBoxExDigitalTachographType;
@@ -1487,5 +1516,10 @@
         private CcControl.CcCheckBox CcCheckBoxCameraBack;
         private CcControl.CcCheckBox CcCheckBoxCameraFront;
         private CcControl.CcLabel ccLabel1;
+        private CcControl.CcTabControl CcTabControl1;
+        private TabPage TabPage1;
+        private TabPage TabPage2;
+        private TabPage TabPage3;
+        private TabPage TabPage4;
     }
 }

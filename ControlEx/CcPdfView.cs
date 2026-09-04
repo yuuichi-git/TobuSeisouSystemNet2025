@@ -84,10 +84,11 @@ namespace CcControl {
             }
 
             this.MemoryStream = new MemoryStream(bytes, false);
-            this.MemoryStream.Position = 0;                                                                     // 次に読み込むときのために、必ず Position を 0 に戻す
+            this.MemoryStream.Position = 0;                                                                                     // 次に読み込むときのために、必ず Position を 0 に戻す
 
             this.PdfDocument = PdfiumViewer.PdfDocument.Load(this.MemoryStream);
             this.Document = this.PdfDocument;
+            this.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;                                                            // 横幅に合わせる
         }
 
         /// <summary>

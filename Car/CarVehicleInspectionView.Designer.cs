@@ -24,82 +24,82 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarVehicleInspectionView));
-            this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            this.PictureBoxEx1 = new CcControl.CcPictureBox();
-            this.MenuStripEx1 = new CcControl.CcMenuStrip();
-            this.StatusStripEx1 = new CcControl.CcStatusStrip();
-            this.TableLayoutPanelExBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).BeginInit();
-            this.SuspendLayout();
+            TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
+            CcPictureBox1 = new CcControl.CcPictureBox();
+            MenuStripEx1 = new CcControl.CcMenuStrip();
+            StatusStripEx1 = new CcControl.CcStatusStrip();
+            TableLayoutPanelExBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // TableLayoutPanelExBase
             // 
-            this.TableLayoutPanelExBase.ColumnCount = 1;
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            this.TableLayoutPanelExBase.Controls.Add(this.PictureBoxEx1, 0, 1);
-            this.TableLayoutPanelExBase.Controls.Add(this.MenuStripEx1, 0, 0);
-            this.TableLayoutPanelExBase.Controls.Add(this.StatusStripEx1, 0, 2);
-            this.TableLayoutPanelExBase.Dock = DockStyle.Fill;
-            this.TableLayoutPanelExBase.Location = new Point(0, 0);
-            this.TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
-            this.TableLayoutPanelExBase.RowCount = 3;
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
-            this.TableLayoutPanelExBase.Size = new Size(984, 961);
-            this.TableLayoutPanelExBase.TabIndex = 0;
+            TableLayoutPanelExBase.ColumnCount = 1;
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            TableLayoutPanelExBase.Controls.Add(CcPictureBox1, 0, 1);
+            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 2);
+            TableLayoutPanelExBase.Dock = DockStyle.Fill;
+            TableLayoutPanelExBase.Location = new Point(0, 0);
+            TableLayoutPanelExBase.Name = "TableLayoutPanelExBase";
+            TableLayoutPanelExBase.RowCount = 3;
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            TableLayoutPanelExBase.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            TableLayoutPanelExBase.Size = new Size(984, 1041);
+            TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // PictureBoxEx1
+            // CcPictureBox1
             // 
-            this.PictureBoxEx1.Dock = DockStyle.Fill;
-            this.PictureBoxEx1.Image = (Image)resources.GetObject("PictureBoxEx1.Image");
-            this.PictureBoxEx1.Location = new Point(3, 27);
-            this.PictureBoxEx1.Name = "PictureBoxEx1";
-            this.PictureBoxEx1.Size = new Size(978, 907);
-            this.PictureBoxEx1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.PictureBoxEx1.TabIndex = 0;
-            this.PictureBoxEx1.TabStop = false;
+            CcPictureBox1.Dock = DockStyle.Fill;
+            CcPictureBox1.Image = (Image)resources.GetObject("CcPictureBox1.Image");
+            CcPictureBox1.Location = new Point(3, 27);
+            CcPictureBox1.Name = "CcPictureBox1";
+            CcPictureBox1.Size = new Size(978, 987);
+            CcPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            CcPictureBox1.TabIndex = 0;
+            CcPictureBox1.TabStop = false;
             // 
             // MenuStripEx1
             // 
-            this.MenuStripEx1.Location = new Point(0, 0);
-            this.MenuStripEx1.Name = "MenuStripEx1";
-            this.MenuStripEx1.Size = new Size(984, 24);
-            this.MenuStripEx1.TabIndex = 2;
-            this.MenuStripEx1.Text = "menuStripEx1";
-            this.MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            MenuStripEx1.Location = new Point(0, 0);
+            MenuStripEx1.Name = "MenuStripEx1";
+            MenuStripEx1.Size = new Size(984, 24);
+            MenuStripEx1.TabIndex = 2;
+            MenuStripEx1.Text = "menuStripEx1";
+            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
-            this.StatusStripEx1.Location = new Point(0, 939);
-            this.StatusStripEx1.Name = "StatusStripEx1";
-            this.StatusStripEx1.Size = new Size(984, 22);
-            this.StatusStripEx1.TabIndex = 1;
-            this.StatusStripEx1.Text = "statusStripEx1";
+            StatusStripEx1.Location = new Point(0, 1019);
+            StatusStripEx1.Name = "StatusStripEx1";
+            StatusStripEx1.Size = new Size(984, 22);
+            StatusStripEx1.TabIndex = 1;
+            StatusStripEx1.Text = "statusStripEx1";
             // 
             // CarVehicleInspectionView
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(984, 961);
-            this.Controls.Add(this.TableLayoutPanelExBase);
-            this.MainMenuStrip = this.MenuStripEx1;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "CarVehicleInspectionView";
-            this.Text = "CarVehicleInspectionView";
-            this.FormClosing += this.CarVehicleInspectionView_FormClosing;
-            this.TableLayoutPanelExBase.ResumeLayout(false);
-            this.TableLayoutPanelExBase.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.PictureBoxEx1).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(984, 1041);
+            Controls.Add(TableLayoutPanelExBase);
+            MainMenuStrip = MenuStripEx1;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CarVehicleInspectionView";
+            Text = "CarVehicleInspectionView";
+            FormClosing += CarVehicleInspectionView_FormClosing;
+            TableLayoutPanelExBase.ResumeLayout(false);
+            TableLayoutPanelExBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)CcPictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcPictureBox PictureBoxEx1;
+        private CcControl.CcPictureBox CcPictureBox1;
         private CcControl.CcMenuStrip MenuStripEx1;
         private CcControl.CcStatusStrip StatusStripEx1;
     }

@@ -210,36 +210,43 @@ namespace Dao {
         /// <returns></returns>
         public byte[] SelectOneMainPicture(int carCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT MainPicture " +
-                                     "FROM H_CarMaster " +
-                                     "WHERE CarCode = " + carCode + "";
-            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while(sqlDataReader.Read() == true) {
-                    byteImage = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["MainPicture"]);
+
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT MainPicture FROM H_CarMaster WHERE CarCode = @CarCode";
+            sqlCommand.Parameters.Add("@CarCode", SqlDbType.Int).Value = carCode;
+
+            using SqlDataReader reader = sqlCommand.ExecuteReader();
+            {
+                if(reader.Read()) {
+                    if(reader["MainPicture"] != DBNull.Value) {
+                        byteImage = (byte[])reader["MainPicture"];
+                    }
                 }
             }
             return byteImage;
         }
 
         /// <summary>
-        /// SelectOneSubPicture
+        /// SelectOneRecordDetailsPicture
         /// </summary>
         /// <param name="carCode"></param>
         /// <returns></returns>
-        public byte[] SelectOneSubPicture(int carCode) {
+        public byte[] SelectOneRecordDetailsPicture(int carCode) {
             byte[] byteImage = Array.Empty<byte>();
-            SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT SubPicture " +
-                                     "FROM H_CarMaster " +
-                                     "WHERE CarCode = " + carCode + "";
-            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while(sqlDataReader.Read() == true) {
-                    byteImage = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["SubPicture"]);
+
+            using SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT RecordDetailsPicture FROM H_CarMaster WHERE CarCode = @CarCode";
+            sqlCommand.Parameters.Add("@CarCode", SqlDbType.Int).Value = carCode;
+
+            using SqlDataReader reader = sqlCommand.ExecuteReader();
+            if(reader.Read()) {
+                if(reader["RecordDetailsPicture"] != DBNull.Value) {
+                    byteImage = (byte[])reader["RecordDetailsPicture"];
                 }
             }
             return byteImage;
         }
+
 
         /// <summary>
         /// SelectOneHCarMaster

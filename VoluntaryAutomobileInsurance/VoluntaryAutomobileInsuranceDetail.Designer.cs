@@ -34,6 +34,8 @@
             CcPanelTop = new CcControl.CcPanel();
             CcButtonUpdate = new CcControl.CcButton();
             CcPanelMiddle = new CcControl.CcPanel();
+            ccLabel5 = new CcControl.CcLabel();
+            CcCheckBoxAutomaticRenewal = new CcControl.CcCheckBox();
             CcDateTimePickerEndDate = new CcControl.CcDateTime();
             CcDateTimePickerStartDate = new CcControl.CcDateTime();
             ccLabel4 = new CcControl.CcLabel();
@@ -46,8 +48,6 @@
             ToolStripMenuItemOpen = new ToolStripMenuItem();
             ToolStripMenuItemPaste = new ToolStripMenuItem();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
-            CcCheckBoxAutomaticRenewal = new CcControl.CcCheckBox();
-            ccLabel5 = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcTabControl1.SuspendLayout();
             CcPanelTop.SuspendLayout();
@@ -151,6 +151,7 @@
             CcStatusStrip1.Location = new Point(0, 1019);
             CcStatusStrip1.Name = "CcStatusStrip1";
             CcStatusStrip1.Size = new Size(1904, 22);
+            CcStatusStrip1.SizingGrip = false;
             CcStatusStrip1.TabIndex = 1;
             CcStatusStrip1.Text = "ccStatusStrip1";
             // 
@@ -195,6 +196,25 @@
             CcPanelMiddle.Name = "CcPanelMiddle";
             CcPanelMiddle.Size = new Size(404, 927);
             CcPanelMiddle.TabIndex = 3;
+            // 
+            // ccLabel5
+            // 
+            ccLabel5.Location = new Point(8, 92);
+            ccLabel5.Name = "ccLabel5";
+            ccLabel5.Size = new Size(92, 20);
+            ccLabel5.TabIndex = 9;
+            ccLabel5.Text = "自動更新対象";
+            ccLabel5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CcCheckBoxAutomaticRenewal
+            // 
+            CcCheckBoxAutomaticRenewal.AutoSize = true;
+            CcCheckBoxAutomaticRenewal.Location = new Point(104, 92);
+            CcCheckBoxAutomaticRenewal.Name = "CcCheckBoxAutomaticRenewal";
+            CcCheckBoxAutomaticRenewal.Size = new Size(168, 19);
+            CcCheckBoxAutomaticRenewal.TabIndex = 8;
+            CcCheckBoxAutomaticRenewal.Text = "ネット保険等書類が無い保険";
+            CcCheckBoxAutomaticRenewal.UseVisualStyleBackColor = true;
             // 
             // CcDateTimePickerEndDate
             // 
@@ -295,25 +315,6 @@
             ToolStripMenuItemDelete.Name = "ToolStripMenuItemDelete";
             ToolStripMenuItemDelete.Size = new Size(161, 22);
             ToolStripMenuItemDelete.Text = "Delete";
-            // 
-            // CcCheckBoxAutomaticRenewal
-            // 
-            CcCheckBoxAutomaticRenewal.AutoSize = true;
-            CcCheckBoxAutomaticRenewal.Location = new Point(104, 92);
-            CcCheckBoxAutomaticRenewal.Name = "CcCheckBoxAutomaticRenewal";
-            CcCheckBoxAutomaticRenewal.Size = new Size(168, 19);
-            CcCheckBoxAutomaticRenewal.TabIndex = 8;
-            CcCheckBoxAutomaticRenewal.Text = "ネット保険等書類が無い保険";
-            CcCheckBoxAutomaticRenewal.UseVisualStyleBackColor = true;
-            // 
-            // ccLabel5
-            // 
-            ccLabel5.Location = new Point(8, 92);
-            ccLabel5.Name = "ccLabel5";
-            ccLabel5.Size = new Size(92, 20);
-            ccLabel5.TabIndex = 9;
-            ccLabel5.Text = "自動更新対象";
-            ccLabel5.TextAlign = ContentAlignment.MiddleRight;
             // 
             // VoluntaryAutomobileInsuranceDetail
             // 

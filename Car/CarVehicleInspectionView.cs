@@ -1,6 +1,7 @@
 ﻿/*
  * 2025-02-18
  */
+using System.Diagnostics;
 using System.Drawing.Printing;
 
 using Dao;
@@ -45,7 +46,7 @@ namespace Car {
              * Eventを登録する
              */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
-            this.PictureBoxEx1.Image = image;
+            this.CcPictureBox1.Image = image;
         }
 
         /// <summary>
@@ -65,25 +66,30 @@ namespace Car {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
-            /*
-             * Eventを登録する
-             */
             this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
-            byte[] subPicture = _carMasterDao.SelectOneSubPicture(carCode);
-            if (subPicture != null && subPicture.Length > 0) {
-                ImageConverter imageConverter = new();
-                this.PictureBoxEx1.Image = (Image)imageConverter.ConvertFrom(subPicture);
+            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+
+            byte[] recordDetailsPicture = _carMasterDao.SelectOneRecordDetailsPicture(carCode);
+
+            if(recordDetailsPicture is { Length: > 0 }) {
+                try {
+                    using MemoryStream ms = new(recordDetailsPicture);
+                    ms.Position = 0; // 念のため先頭に戻す
+                    this.CcPictureBox1.Image = Image.FromStream(ms, useEmbeddedColorManagement: false, validateImageData: true);
+                } catch(ArgumentException) {
+                    // 壊れた画像データの場合
+                    this.CcPictureBox1.Image = null;
+                    Debug.WriteLine("画像データが不正です。");
+                }
             } else {
-                this.PictureBoxEx1.Image = null;   // 画像なしの場合の処理
+                this.CcPictureBox1.Image = null;
             }
+
         }
 
         /// <summary>
@@ -125,17 +131,17 @@ namespace Car {
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
             switch (_name) {
                 case "PictureBoxExMainPicture":
-                    if (this.PictureBoxEx1.Image is not null) {
+                    if (this.CcPictureBox1.Image is not null) {
                         // 新型車検証のサイズ(１０５＊１７７.８)
                         Rectangle rectangle = new(0, 0, 177 * 4, 105 * 4);
-                        e.Graphics.DrawImage(this.PictureBoxEx1.Image, rectangle);
+                        e.Graphics.DrawImage(this.CcPictureBox1.Image, rectangle);
                     }
                     e.HasMorePages = false;
                     break;
                 case "PictureBoxExSubPicture":
-                    if (this.PictureBoxEx1.Image is not null) {
+                    if (this.CcPictureBox1.Image is not null) {
                         Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
-                        e.Graphics.DrawImage(this.PictureBoxEx1.Image, rectangle);
+                        e.Graphics.DrawImage(this.CcPictureBox1.Image, rectangle);
                     }
                     e.HasMorePages = false;
                     break;

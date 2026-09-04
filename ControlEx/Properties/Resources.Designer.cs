@@ -103,6 +103,26 @@ namespace CcControl.Properties {
         /// <summary>
         ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
+        public static byte[] CarOneDayAgo {
+            get {
+                object obj = ResourceManager.GetObject("CarOneDayAgo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
+        public static byte[] CarOneWeekAgo {
+            get {
+                object obj = ResourceManager.GetObject("CarOneWeekAgo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
+        /// </summary>
         public static byte[] Fax {
             get {
                 object obj = ResourceManager.GetObject("Fax", resourceCulture);
