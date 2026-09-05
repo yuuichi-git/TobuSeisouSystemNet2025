@@ -163,26 +163,33 @@ namespace TobuSeisouSystemNet2025 {
             switch(((CcButton)sender).Name) {
                 case "ButtonExConnectSqlServer":
                     try {
-                        _connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag);
-                        _connectionVo.ConnectionLocation = this.ConnectionLocation;                         // 接続場所をVoにセット
-                        this.ButtonExConnectSqlServer.Enabled = false;
-                        this.ButtonExDisConnectSqlServer.Enabled = true;
-                        this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
-                        this.LabelExDataBaseNameSqlServer.Text = string.Concat("接続先データベース：" + _connectionVo.SqlServerConnection.Database);
-                        this.LabelExStatusSqlServer.Text = string.Concat("状態：" + _connectionVo.SqlServerConnection.State);
-                        switch(this.ConnectionLocation) {
-                            case "三郷車庫":
-                                this.TreeViewEx1.Enabled = false;
-                                break;
-                            default:
-                                this.TreeViewEx1.Enabled = true;
-                                break;
+                        if(_connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag)) {
+                            _connectionVo.ConnectionLocation = this.ConnectionLocation;                         // 接続場所をVoにセット
+                            this.ButtonExConnectSqlServer.Enabled = false;
+                            this.ButtonExDisConnectSqlServer.Enabled = true;
+                            this.LabelExServerNameSqlServer.Text = string.Concat("接続先サーバー：" + _connectionVo.SqlServerConnection.DataSource);
+                            this.LabelExDataBaseNameSqlServer.Text = string.Concat("接続先データベース：" + _connectionVo.SqlServerConnection.Database);
+                            this.LabelExStatusSqlServer.Text = string.Concat("状態：" + _connectionVo.SqlServerConnection.State);
+                            switch(this.ConnectionLocation) {
+                                case "三郷車庫":
+                                    this.TreeViewEx1.Enabled = false;
+                                    break;
+                                default:
+                                    this.TreeViewEx1.Enabled = true;
+                                    break;
+                            }
+                            this.GroupBoxEx1.Enabled = true;
+
+                        } else {
+                            MessageBox.Show("SQL Serverへの接続に失敗しました。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-                        this.GroupBoxEx1.Enabled = true;
+
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+
                 case "ButtonExDisConnectSqlServer":
                     if(_connectionVo.OracleConnection.State == ConnectionState.Open) {
                         MessageBox.Show("OracleをCloseして下さい", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -204,6 +211,7 @@ namespace TobuSeisouSystemNet2025 {
                         }
                     }
                     break;
+
                 case "ButtonExConnectOracle":
                     try {
                         _connectionVo.ConnectOracle();
@@ -217,6 +225,7 @@ namespace TobuSeisouSystemNet2025 {
                         MessageBox.Show(exception.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+
                 case "ButtonExDisConnectOracle":
                     try {
                         _connectionVo.DisConnectOracle();
@@ -257,9 +266,10 @@ namespace TobuSeisouSystemNet2025 {
         /*
          * 多重起動をコントロールするためのフィールド(is null || IsDisposed)
          */
-        private VehicleDispatchBoard vehicleDispatchBoard = null;
+        private VehicleDispatchBoard vehicleDispatchBoardMisato = null;
         private CarList carList = null;
         private StaffList staffList = null;
+        private FirstRollColl firstRollColl = null;
         private CarWorkingDays carWorkingDays = null;
         private EmploymentAgreementList employmentAgreementList = null;
         private StaffDestination staffDestination = null;
@@ -290,6 +300,7 @@ namespace TobuSeisouSystemNet2025 {
         private PaidLeaveForm paidLeaveForm = null;                                                                                             // 有給休暇取得詳細
         private PaidLeavePrint paidLeavePrint = null;                                                                                           // 有給休暇取得集計表
         private WorkPerformanceSurveyForm workPerformanceSurveyForm = null;                                                                     // 東環保作業実績調査表
+
         /// <summary>
         /// 接続先がSQLServerの場合
         /// </summary>
@@ -301,16 +312,16 @@ namespace TobuSeisouSystemNet2025 {
                     switch((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
                             _connectionVo.ConnectionLocation = "本社";
-                            this.ShowSingleInstanceForm(ref vehicleDispatchBoard, () => new VehicleDispatchBoard(_connectionVo));
+                            VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
+                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
+                            vehicleDispatchBoard.Show();
                             break;
                         case "VehicleDispatchBoardMisato":                                                                                      // 配車パネル（三郷車庫専用）
                             _connectionVo.ConnectionLocation = "三郷車庫";
-                            this.ShowSingleInstanceForm(ref vehicleDispatchBoard, () => new VehicleDispatchBoard(_connectionVo));
+                            this.ShowSingleInstanceForm(ref vehicleDispatchBoardMisato, () => new VehicleDispatchBoard(_connectionVo));
                             break;
                         case "FirstRollColl":                                                                                                   // 配車表
-                            FirstRollColl firstRollColl = new(_connectionVo);
-                            _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
-                            firstRollColl.Show();
+                            this.ShowSingleInstanceForm(ref firstRollColl, () => new FirstRollColl(_connectionVo));
                             break;
                         case "StaffList":                                                                                                       // 従業員台帳
                             this.ShowSingleInstanceForm(ref staffList, () => new StaffList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));

@@ -512,17 +512,6 @@ namespace Car {
             this.CcGroupBoxDigitalTachograph.Enabled = ((CcCheckBox)sender).Checked ? true : false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PictureBoxEx_DoubleClick(object sender, EventArgs e) {
-            CarVehicleInspectionView carVehicleInspectionView = new(_connectionVo, ((CcPictureBox)sender).Image, ((CcPictureBox)sender).Name);
-            _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), carVehicleInspectionView);
-            carVehicleInspectionView.ShowDialog(this);
-        }
-
         /*
          * TextBoxExRegistrationNumberの変更
          */

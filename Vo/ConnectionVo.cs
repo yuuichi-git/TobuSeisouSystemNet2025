@@ -28,33 +28,32 @@ namespace Vo {
             _pingReply = null;
         }
 
-        /// <summary> 
-        /// ConnectSqlServer
+        /// <summary>
+        /// 
         /// </summary>
-        /// <param name="localDbConnectionFlag">true:Localに接続 false:Networkに接続</param>
-        /// <returns>true:成功 false:失敗</returns>
+        /// <param name="localDbConnectionFlag"></param>
+        /// <returns></returns>
         public bool ConnectSqlServer(bool localDbConnectionFlag) {
             try {
-                switch (Environment.MachineName) {
-                    case "TSUJINOTE":                                                                           // 自分のPCの場合
+                switch(Environment.MachineName) {
+                    case "TSUJINOTE":
                     case "YUUICHIZBOOK":
-                        if (!localDbConnectionFlag) {
-                            _pingReply = _ping.Send("192.168.1.20");
-                            if (_pingReply.Status == IPStatus.Success) {
-                                _serverName = @"192.168.1.20";
-                            } else {
-                                _serverName = @"(Local)";
-                            }
+                        if(localDbConnectionFlag) {
+                            _serverName = @"localhost";     // ローカル接続
                         } else {
-                            _serverName = @"(Local)";
+                            _pingReply = _ping.Send("192.168.1.20");
+                            _serverName = (_pingReply.Status == IPStatus.Success)
+                                            ? @"192.168.1.20"
+                                            : @"localhost"; // フォールバック
                         }
                         break;
-                    default:                                                                                    // TSUJINOTE以外のPCは強制的にNetwork接続
-                        _serverName = @"192.168.1.20";
+
+                    default:
+                        _serverName = @"192.168.1.20";       // 他PCは強制ネットワーク
                         break;
                 }
-            } catch (Exception exception) {
-                MessageBox.Show(exception.Message);                                                             // Pingでエラーが発生した場合
+            } catch(Exception exception) {
+                MessageBox.Show(exception.Message);
             }
 
             string connectionString = "Data Source = " + _serverName + ";"
@@ -62,7 +61,9 @@ namespace Vo {
                                     + "User ID = " + Resources.UserName + ";"
                                     + "Password = " + Resources.UserPassword + ";"
                                     + "MultipleActiveResultSets = True";
+
             this.SqlServerConnection = new(connectionString);
+
             try {
                 this.SqlServerConnection.Open();
                 return true;
@@ -71,6 +72,7 @@ namespace Vo {
                 throw;
             }
         }
+
 
         /// <summary>
         /// DisConnectSqlServer

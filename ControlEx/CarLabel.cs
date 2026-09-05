@@ -180,24 +180,6 @@ namespace CcControl {
                     pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImage), 0, 0, Width, Height);
                     break;
             }
-            // 三郷車庫
-            if(ManagedSpaceCode == 2)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
-            // メモ
-            if(MemoFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
-            // 代車
-            if(ProxyFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
-            /*
-             * 2025-07-31追加
-             * 緊急車両登録
-             */
-            if(!EmergencyVehicleFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageEmergency), 0, 0, Width, Height);
-            // カーソル関係
-            if(CursorEnterFlag)
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
             /*
              * 文字(車両)を描画
              */
@@ -218,25 +200,45 @@ namespace CcControl {
              */
             DateTime today = DateTime.Now.Date;
             DateTime date = CarMasterVo.ExpirationDate.Date;
-
-            // 期限切れ一か月前（30日前以前）
-            if(date <= today.AddDays(-30)) {
-                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Red), rectangle, stringFormat);
-            }
-            // 期限切れ一週間前（7日前以前）
-            else if(date <= today.AddDays(-7)) {
-                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarOneWeekAgo), 0, 0, Width, Height);
-                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Green), rectangle, stringFormat);
-            }
             // 期限切れ（今日以前）
-            else if(date <= today) {
+            if(date <= today) {
                 pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarOneDayAgo), 0, 0, Width, Height);
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
             }
+            // 期限切れ一週間前（7日前以前）
+            else if(date <= today.AddDays(7)) {
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarOneWeekAgo), 0, 0, Width, Height);
+                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Green), rectangle, stringFormat);
+            }
+            // 期限切れ一か月前（30日前以前）
+            else if(date <= today.AddDays(30)) {
+                if(ManagedSpaceCode == 2)                                                                                           // 三郷車庫
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
+                pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Red), rectangle, stringFormat);
+            }
             // 期限内
             else {
+                if(ManagedSpaceCode == 2)                                                                                           // 三郷車庫
+                    pe.Graphics.DrawImage(ByteArrayToImage(Resources.Misato), 0, 0, Width, Height);
                 pe.Graphics.DrawString(number, fontCarLabel, new SolidBrush(Color.Black), rectangle, stringFormat);
             }
+
+            // メモ
+            if(MemoFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Memo), 0, 0, Width, Height);
+            // 代車
+            if(ProxyFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Proxy), 0, 0, Width, Height);
+            /*
+             * 2025-07-31追加
+             * 緊急車両登録
+             */
+            if(!EmergencyVehicleFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.CarLabelImageEmergency), 0, 0, Width, Height);
+            // カーソル関係
+            if(CursorEnterFlag)
+                pe.Graphics.DrawImage(ByteArrayToImage(Resources.Filter), 0, 0, Width, Height);
+
         }
 
         /// <summary>
