@@ -1,13 +1,24 @@
 ﻿/*
  * 2024-10-09
  */
+using System.ComponentModel;
 using System.Globalization;
 
 namespace CcControl {
     public partial class CcDateTime : DateTimePicker {
+        /// <summary>
+        /// デフォルトの日付
+        /// </summary>
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
+        /// <summary>
+        /// 日付形式情報
+        /// </summary>
         private readonly CultureInfo _cultureInfo = new("ja-JP");
-        private bool _cultureFlag = false;
+        /// <summary>
+        /// CultureFlag
+        /// true:和暦 false:西暦
+        /// </summary>
+        private bool _cultureFlag = true;
 
         /// <summary>
         /// コンストラクター
@@ -25,14 +36,49 @@ namespace CcControl {
             this.CustomFormat = _defaultDateTime.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
             this.Value = _defaultDateTime;
             this.Refresh();
-            /*
-             * Event
-             */
-            this.ValueChanged += DateTimePickerEx_ValueChanged;
         }
 
         /// <summary>
-        /// OnPaint
+        /// キーが押されたときの処理
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnKeyDown(KeyEventArgs e) {
+            /*
+             * EnterキーでTABキーを送信するbase.KeyDown(e);
+             */
+            if(e.KeyCode == Keys.Enter) {
+                SendKeys.Send("{TAB}");
+            }
+            /*
+             * Escapeキーでデフォルト日付に戻す
+             */
+            if(e.KeyCode == Keys.Escape) {
+                this.Value = _defaultDateTime;
+                this.CustomFormat = " ";
+                this.Refresh();
+            }
+            /*
+             * Ctrl+Aで西暦表示に切り替える
+             */
+            if(e.KeyCode == Keys.A && ModifierKeys == Keys.Control) {
+                this.CultureFlag = false;
+                this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
+                this.Value = DateTime.Now.Date;
+                this.Refresh();
+            }
+            /*
+             * Ctrl+Jで和暦表示に切り替える
+             */
+            if(e.KeyCode == Keys.J && ModifierKeys == Keys.Control) {
+                this.CultureFlag = true;
+                this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
+                this.Value = DateTime.Now.Date;
+                this.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// 描画処理
         /// </summary>
         /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe) {
@@ -40,12 +86,11 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// DateTimePickerEx_ValueChanged
+        /// 値が変更されたときの処理
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DateTimePickerEx_ValueChanged(object sender, EventArgs e) {
-            switch (_cultureFlag) {
+        protected override void OnValueChanged(EventArgs e) {
+            switch(_cultureFlag) {
                 case true:
                     this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
                     break;
@@ -56,47 +101,28 @@ namespace CcControl {
             this.Refresh();
         }
 
-        protected override void OnKeyDown(KeyEventArgs e) {
-            /*
-             * 
-             */
-            if (e.KeyCode == Keys.Enter) {
-                SendKeys.Send("{TAB}");
-            }
-            /*
-             * 
-             */
-            if (e.KeyCode == Keys.Escape) {
-                this.Value = _defaultDateTime;
-                this.CustomFormat = " ";
-                this.Refresh();
-            }
-            /*
-             * 
-             */
-            if (e.KeyCode == Keys.A && ModifierKeys == Keys.Control) {
-                CultureFlag = false;
-                this.CustomFormat = this.Value.ToString(" yyyy年MM月dd日(dddd)");
-                this.Value = DateTime.Now.Date;
-                this.Refresh();
-            }
-            /*
-             * 
-             */
-            if (e.KeyCode == Keys.J && ModifierKeys == Keys.Control) {
-                CultureFlag = true;
-                this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
-                this.Value = DateTime.Now.Date;
-                this.Refresh();
-            }
+        /// <summary>
+        /// 日付を取得
+        /// </summary>
+        /// <returns>日付＋0:00:00時</returns>
+        public DateTime GetDate() {
+            return this.Value.Date;
         }
 
         /// <summary>
-        /// 今日の日付をセット
+        /// Valueを取得
         /// </summary>
-        public void SetToday() {
-            this.Value = DateTime.Today;
-            this.Refresh();
+        /// <returns></returns>
+        public DateTime GetValue() {
+            return this.Value;
+        }
+
+        /// <summary>
+        /// GetValueJp
+        /// </summary>
+        /// <returns>和暦を返す</returns>
+        public string GetValueJp() {
+            return this.Value.ToString(" ggy年M月d日(dddd)", _cultureInfo);
         }
 
         /// <summary>
@@ -108,7 +134,7 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// 
+        /// 空にする
         /// </summary>
         public void SetEmpty() {
             this.Value = _defaultDateTime;
@@ -117,11 +143,11 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// Emptyかどうか
+        /// 今日の日付をセット
         /// </summary>
-        /// <returns></returns>
-        public bool GetEmpty() {
-            return this.Value == _defaultDateTime;
+        public void SetToday() {
+            this.Value = DateTime.Today;
+            this.Refresh();
         }
 
         /// <summary>
@@ -146,7 +172,7 @@ namespace CcControl {
         /// </summary>
         /// <param name="dateTime"></param>
         public void SetValueJp(DateTime dateTime) {
-            if (dateTime.Date != _defaultDateTime.Date) {
+            if(dateTime.Date != _defaultDateTime.Date) {
                 this.CustomFormat = dateTime.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);
                 this.Value = dateTime;
                 this.Refresh();
@@ -158,36 +184,28 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// 日付を取得
-        /// </summary>
-        /// <returns>日付＋0:00:00時</returns>
-        public DateTime GetDate() {
-            return this.Value.Date;
-        }
-
-        /// <summary>
-        /// Valueを取得
+        /// Emptyかどうか
         /// </summary>
         /// <returns></returns>
-        public DateTime GetValue() {
-            return this.Value;
+        public bool TestEmpty() {
+            if(this.CustomFormat == " " && this.Value == _defaultDateTime) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         /// <summary>
         /// CultureFlag
         /// true:和暦 false:西暦
         /// </summary>
+        [Category("RisSoft")]
+        [Browsable(false)]
+        [Description("和暦(true)／西暦(false) を切り替えます")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CultureFlag {
             get => this._cultureFlag;
             set => this._cultureFlag = value;
-        }
-
-        /// <summary>
-        /// GetValueJp
-        /// </summary>
-        /// <returns>和暦を返す</returns>
-        public string GetValueJp() {
-            return this.Value.ToString(" ggy年M月d日(dddd)", _cultureInfo);
         }
     }
 }

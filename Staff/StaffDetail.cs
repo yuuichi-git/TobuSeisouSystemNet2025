@@ -867,7 +867,7 @@ namespace Staff {
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "職種を選択してください。";
                         break;
                     }
-                    if(CcDateTimeBirthDate.GetEmpty()) {
+                    if(CcDateTimeBirthDate.TestEmpty()) {
                         _errorProvider.SetError(CcDateTimeBirthDate, "生年月日を選択してください");
                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "生年月日を選択してください。";
                         break;
@@ -882,7 +882,7 @@ namespace Staff {
 
                                     break;
                                 default:
-                                    if(CcDateTimeEmploymentDate.GetEmpty()) {
+                                    if(CcDateTimeEmploymentDate.TestEmpty()) {
                                         _errorProvider.SetError(CcDateTimeEmploymentDate, "入社日を選択してください");
                                         this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "入社日を選択してください。";
                                     }
