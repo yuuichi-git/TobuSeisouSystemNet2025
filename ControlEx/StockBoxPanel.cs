@@ -13,7 +13,7 @@ namespace CcControl {
             /*
              * InitializeControl
              */
-            InitializeComponent();
+            //InitializeComponent();
             this.AllowDrop = true;
             this.AutoScroll = true;
             this.Dock = DockStyle.Fill;

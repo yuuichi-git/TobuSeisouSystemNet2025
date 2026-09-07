@@ -1,5 +1,6 @@
 ﻿/*
  * 2024-10-10
+ * InitializeComponent();の無いバージョンを作成　2026-09-07
  */
 using System.Diagnostics;
 
@@ -143,10 +144,6 @@ namespace CcControl {
              * プロパティに値をセットする
              */
             this.SetAllProperty(vehicleDispatchDetailVo);
-            /*
-             * InitializeControl
-             */
-            InitializeComponent();
             /*
              * SetControlのプロパティをセットする
              */

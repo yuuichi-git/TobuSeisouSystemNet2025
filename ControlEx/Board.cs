@@ -1,10 +1,11 @@
 ﻿/*
- * 2024-10-09
+ * 2024-10-14
+ * InitializeComponent();の無いバージョンを作成　2026-09-07
  */
 using Vo;
 
 namespace CcControl {
-    public partial class Board : TableLayoutPanel {
+    public class Board : TableLayoutPanel {
         /*
          * デリゲート
          */
@@ -49,13 +50,13 @@ namespace CcControl {
         private Point _oldAutoScrollPosition;
 
         /// <summary>
-        /// Constructor
+        /// コンストラクター
+        /// InitializeComponent();の無いバージョンを作成　2026-09-07
         /// </summary>
         public Board() {
             /*
              * InitializeControl
              */
-            InitializeComponent();
             this.AllowDrop = true;
             this.AutoScroll = true;
             this.Dock = DockStyle.Fill;
@@ -66,14 +67,14 @@ namespace CcControl {
              * Column追加
              */
             this.ColumnCount = _columnNumber;
-            for (int i = 0; i < _columnNumber; i++)
+            for(int i = 0; i < _columnNumber; i++)
                 this.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, _columnWidth));
             /*
              * Row追加
              */
             this.RowCount = _rowAllNumber;
-            for (int i = 0; i < _rowAllNumber; i++) {
-                switch (i) {
+            for(int i = 0; i < _rowAllNumber; i++) {
+                switch(i) {
                     case 0 or 2 or 4 or 6: // 空のCell
                         this.RowStyles.Add(new RowStyle(SizeType.Absolute, _rowDummyHeight));
                         break;
@@ -136,7 +137,7 @@ namespace CcControl {
             SendMessage(this.Handle, WM_SETREDRAW, false, 0);
 
             try {
-                for (int i = this.Controls.Count - 1; 0 <= i; i--)
+                for(int i = this.Controls.Count - 1; 0 <= i; i--)
                     this.Controls[i].Dispose();
             } finally {
                 // 描画再開
@@ -152,7 +153,7 @@ namespace CcControl {
         /// <param name="cellNumber"></param>
         /// <returns></returns>
         private Point GetCellPoint(int cellNumber) {
-            return new Point(cellNumber % _columnNumber, cellNumber / _columnNumber * 2 + 1);
+            return new Point(cellNumber % _columnNumber, (cellNumber / _columnNumber * 2) + 1);
         }
 
         /// <summary>
@@ -161,9 +162,9 @@ namespace CcControl {
         /// <returns></returns>
         public List<SetMasterVo> GetAllSetLabel() {
             List<SetMasterVo> listSetMasterVo = new();
-            foreach (Control control in this.Controls) {
-                if (control is SetControl setControl) {
-                    if (setControl.DeployedSetLabel is SetLabel setLabel)
+            foreach(Control control in this.Controls) {
+                if(control is SetControl setControl) {
+                    if(setControl.DeployedSetLabel is SetLabel setLabel)
                         listSetMasterVo.Add(setLabel.SetMasterVo);
                 }
             }
@@ -176,9 +177,9 @@ namespace CcControl {
         /// <returns></returns>
         public List<CarMasterVo> GetAllCarLabel() {
             List<CarMasterVo> listCarMasterVo = new();
-            foreach (Control control in this.Controls) {
-                if (control is SetControl setControl) {
-                    if (setControl.DeployedCarLabel is CarLabel carLabel)
+            foreach(Control control in this.Controls) {
+                if(control is SetControl setControl) {
+                    if(setControl.DeployedCarLabel is CarLabel carLabel)
                         listCarMasterVo.Add(carLabel.CarMasterVo);
                 }
             }
@@ -192,12 +193,12 @@ namespace CcControl {
         /// <returns></returns>
         public List<StaffMasterVo> GetAllStaffLabel() {
             List<StaffMasterVo> listStaffMasterVo = new();
-            foreach (Control control in this.Controls) {
-                if (control is SetControl setControl) {
+            foreach(Control control in this.Controls) {
+                if(control is SetControl setControl) {
                     // DeployedStaffLabel1〜4 をまとめて処理
                     Control[] controls = new[] { setControl.DeployedStaffLabel1, setControl.DeployedStaffLabel2, setControl.DeployedStaffLabel3, setControl.DeployedStaffLabel4 };
-                    foreach (Control label in controls) {
-                        if (label is StaffLabel staffLabel)
+                    foreach(Control label in controls) {
+                        if(label is StaffLabel staffLabel)
                             listStaffMasterVo.Add(staffLabel.StaffMasterVo);
                     }
                 }
@@ -211,7 +212,7 @@ namespace CcControl {
         /// <returns></returns>
         public List<VehicleDispatchDetailVo> GetListVehicleDispatchDetailVo() {
             List<VehicleDispatchDetailVo> listVehicleDispatchDetailVo = new();
-            foreach (SetControl setControl in this.Controls)
+            foreach(SetControl setControl in this.Controls)
                 listVehicleDispatchDetailVo.Add(setControl.GetVehicleDispatchDetailVo());
             return listVehicleDispatchDetailVo;
         }
@@ -301,10 +302,10 @@ namespace CcControl {
              * CarLabel
              * StaffLabel
              */
-            switch (sender) {
+            switch(sender) {
                 // 画面スクロールの準備
                 case SetControl:
-                    if (e.Button == MouseButtons.Left) {
+                    if(e.Button == MouseButtons.Left) {
                         this._oldMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
                         this.Cursor = Cursors.Hand;
                     }
@@ -348,9 +349,9 @@ namespace CcControl {
              * CarLabel
              * StaffLabel
              */
-            switch (sender) {
+            switch(sender) {
                 case SetControl:
-                    if (e.Button == MouseButtons.Left) {
+                    if(e.Button == MouseButtons.Left) {
                         Point _newMousePoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
                         int x = this._oldAutoScrollPosition.X + (_newMousePoint.X - this._oldMousePoint.X);
                         int y = this._oldAutoScrollPosition.Y + (_newMousePoint.Y - this._oldMousePoint.Y);
@@ -408,7 +409,7 @@ namespace CcControl {
             int col = point.X;
             int markRow = point.Y - 1; // 更新マークはSetControlの上のダミー行に表示
 
-            if (markRow < 0 || col < 0 || col >= this.ColumnCount || markRow >= this.RowCount)
+            if(markRow < 0 || col < 0 || col >= this.ColumnCount || markRow >= this.RowCount)
                 return;
 
             // ★ 既存の更新マークを削除（Timer も停止）
@@ -418,8 +419,8 @@ namespace CcControl {
                        c.Tag is UpdateMarkTag;
             });
 
-            if (control is not null) {
-                if (control.Tag is UpdateMarkTag tag) {
+            if(control is not null) {
+                if(control.Tag is UpdateMarkTag tag) {
                     tag.Timer.Stop();
                     tag.Timer.Dispose();
                 }
@@ -462,7 +463,7 @@ namespace CcControl {
                 alpha += delta;
 
                 // 透明度の上下限で反転
-                if (alpha <= 50 || alpha >= 255)
+                if(alpha <= 50 || alpha >= 255)
                     delta = -delta;
 
                 panel.BackColor = Color.FromArgb(alpha, Color.OrangeRed);
@@ -487,7 +488,9 @@ namespace CcControl {
         /// UpdateMark の Tag 用クラス（Timer を保持）
         /// </summary>
         private sealed class UpdateMarkTag {
-            public System.Windows.Forms.Timer Timer { get; }
+            public System.Windows.Forms.Timer Timer {
+                get;
+            }
 
             public UpdateMarkTag(System.Windows.Forms.Timer timer) {
                 Timer = timer;

@@ -2,7 +2,8 @@
  * 2026-01-26
  */
 using System.Data;
-using System.Data.SqlClient;
+
+using Microsoft.Data.SqlClient;                                         // 2026-09-07 SYstem.Data.SqlClient から Microsoft.Data.SqlClient に変更
 
 using Common;
 

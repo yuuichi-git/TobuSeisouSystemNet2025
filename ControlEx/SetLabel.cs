@@ -1,5 +1,6 @@
 ﻿/*
  * 2024-10-12
+ * InitializeComponent();の無いバージョンを作成　2026-09-07
  */
 using CcControl.Properties;
 
@@ -77,7 +78,6 @@ namespace CcControl {
             /*
              * InitializeControl
              */
-            InitializeComponent();
             this.AllowDrop = false;
             this.BackColor = Color.Transparent;
             this.BorderStyle = BorderStyle.None;

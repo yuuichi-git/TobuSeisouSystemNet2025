@@ -1,7 +1,8 @@
 ﻿/*
  * 2024-09-24
  */
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;                                         // 2026-09-07 System.Data.SqlClient から Microsoft.Data.SqlClient に変更
+
 using System.Net.NetworkInformation;
 
 using Oracle.ManagedDataAccess.Client;
@@ -56,11 +57,23 @@ namespace Vo {
                 MessageBox.Show(exception.Message);
             }
 
+            /*
+             * Microsoft.Data.SqlClientで接続する場合
+             */
             string connectionString = "Data Source = " + _serverName + ";"
                                     + "Initial Catalog = " + Resources.DataBaseName + ";"
                                     + "User ID = " + Resources.UserName + ";"
                                     + "Password = " + Resources.UserPassword + ";"
-                                    + "MultipleActiveResultSets = True";
+                                    + "MultipleActiveResultSets = True;"
+                                    + "Encrypt=False;";
+            /*
+             * SYstem.Data.SqlClientで接続する場合
+             */
+            //string connectionString = "Data Source = " + _serverName + ";"
+            //                        + "Initial Catalog = " + Resources.DataBaseName + ";"
+            //                        + "User ID = " + Resources.UserName + ";"
+            //                        + "Password = " + Resources.UserPassword + ";"
+            //                        + "MultipleActiveResultSets = True";
 
             this.SqlServerConnection = new(connectionString);
 

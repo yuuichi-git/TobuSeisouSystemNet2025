@@ -2,7 +2,8 @@
  * 2023-12-31 
  */
 using System.Data;
-using System.Data.SqlClient;
+
+using Microsoft.Data.SqlClient;                                         // 2026-09-07 SYstem.Data.SqlClient から Microsoft.Data.SqlClient に変更
 
 using Common;
 
@@ -127,7 +128,8 @@ namespace Dao {
                                             "H_VehicleDispatchDetail.DeleteYmdHms," +
                                             "H_VehicleDispatchDetail.DeleteFlag " +
                                      "FROM H_VehicleDispatchDetail " +
-                                     "WHERE H_VehicleDispatchDetail.OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "'";
+                                     "WHERE H_VehicleDispatchDetail.OperationDate = '" + operationDate.ToString("yyyy-MM-dd") + "' " +
+                                     "ORDER BY H_VehicleDispatchDetail.CellNumber";
             using(SqlDataReader sqlDataReader = sqlCommand.ExecuteReader()) {
                 while(sqlDataReader.Read() == true) {
                     VehicleDispatchDetailVo vehicleDispatchDetailVo = new();
