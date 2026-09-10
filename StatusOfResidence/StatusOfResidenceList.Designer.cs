@@ -28,10 +28,10 @@
             MenuStripEx1 = new CcControl.CcMenuStrip();
             StatusStripEx1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
+            CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             ButtonExUpdate = new CcControl.CcButton();
             SpreadList = new FarPoint.Win.Spread.FpSpread(FarPoint.Win.Spread.LegacyBehaviors.None, resources.GetObject("TableLayoutPanelExBase.Controls"));
             SheetViewList = SpreadList.GetSheet(0);
-            CheckBoxExRetirementFlag = new CcControl.CcCheckBox();
             TableLayoutPanelExBase.SuspendLayout();
             PanelExTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
@@ -71,6 +71,7 @@
             StatusStripEx1.Location = new Point(0, 1019);
             StatusStripEx1.Name = "StatusStripEx1";
             StatusStripEx1.Size = new Size(1904, 22);
+            StatusStripEx1.SizingGrip = false;
             StatusStripEx1.TabIndex = 1;
             StatusStripEx1.Text = "statusStripEx1";
             // 
@@ -83,6 +84,16 @@
             PanelExTop.Name = "PanelExTop";
             PanelExTop.Size = new Size(1898, 54);
             PanelExTop.TabIndex = 2;
+            // 
+            // CheckBoxExRetirementFlag
+            // 
+            CheckBoxExRetirementFlag.AutoSize = true;
+            CheckBoxExRetirementFlag.Location = new Point(1596, 20);
+            CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
+            CheckBoxExRetirementFlag.Size = new Size(95, 19);
+            CheckBoxExRetirementFlag.TabIndex = 7;
+            CheckBoxExRetirementFlag.Text = "退職者も表示";
+            CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
             // 
             // ButtonExUpdate
             // 
@@ -109,16 +120,6 @@
             SpreadList.TabIndex = 3;
             SpreadList.CellDoubleClick += SpreadList_CellDoubleClick;
             // 
-            // CheckBoxExRetirementFlag
-            // 
-            CheckBoxExRetirementFlag.AutoSize = true;
-            CheckBoxExRetirementFlag.Location = new Point(1596, 20);
-            CheckBoxExRetirementFlag.Name = "CheckBoxExRetirementFlag";
-            CheckBoxExRetirementFlag.Size = new Size(95, 19);
-            CheckBoxExRetirementFlag.TabIndex = 7;
-            CheckBoxExRetirementFlag.Text = "退職者も表示";
-            CheckBoxExRetirementFlag.UseVisualStyleBackColor = true;
-            // 
             // StatusOfResidenceList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -126,6 +127,8 @@
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
             MainMenuStrip = MenuStripEx1;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "StatusOfResidenceList";
             Text = "StatusOfResidenceList";
             FormClosing += StatusOfResidenceList_FormClosing;

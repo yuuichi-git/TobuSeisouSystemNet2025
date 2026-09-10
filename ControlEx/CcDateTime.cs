@@ -90,6 +90,8 @@ namespace CcControl {
         /// </summary>
         /// <param name="e"></param>
         protected override void OnValueChanged(EventArgs e) {
+            base.OnValueChanged(e);
+
             switch(_cultureFlag) {
                 case true:
                     this.CustomFormat = this.Value.ToString(" ggyy年MM月dd日(dddd)", _cultureInfo);

@@ -14,16 +14,18 @@ namespace RollCall {
 
         // 印刷用ドキュメント
         private readonly PrintDocument _printDocument = new();
-
-        // Dao
+        /*
+         * Dao
+         */
         private readonly SetMasterDao _setMasterDao;
         private readonly CarMasterDao _carMasterDao;
         private readonly StaffMasterDao _staffMasterDao;
         private readonly VehicleDispatchDetailDao _vehicleDispatchDetailDao;
         private readonly FirstRollCallDao _firstRollCallDao;
         private readonly LastRollCallDao _lastRollCallDao;
-
-        // Vo
+        /*
+         * Vo
+         */
         private List<SetMasterVo> _listSetMasterVo = new();
         private List<CarMasterVo> _listCarMasterVo = new();
         private List<StaffMasterVo> _listStaffMasterVo = new();
@@ -89,35 +91,32 @@ namespace RollCall {
             /*
              * MenuStripEx の有効化
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemExport",
-                "ToolStripMenuItemExportExcel",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintB4",
-                "ToolStripMenuItemHelp"
-            };
-            this.MenuStripEx1.ChangeEnable(listString);
-
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemExport",
+                                             "ToolStripMenuItemExportExcel",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintB4",
+                                             "ToolStripMenuItemHelp"};
+            this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             // 初期値設定
-            this.DateTimePickerExOperationDate.SetValueJp(DateTime.Now.Date);
-            this.ComboBoxExManagedSpace.Text = "本社営業所";
+            this.CcDateTimePickerOperationDate.SetValueJp(DateTime.Now.Date);
+            this.CcComboBoxManagedSpace.Text = "本社営業所";
 
             // プリンタ一覧
             foreach(string item in new PrintUtility().GetAllPrinterName()) {
-                this.ComboBoxExPrinterName.Items.Add(item);
+                this.CcComboBoxPrinterName.Items.Add(item);
             }
-            this.ComboBoxExPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
+            this.CcComboBoxPrinterName.Text = _printDocument.PrinterSettings.PrinterName;
 
             // Spread 初期化
             InitializeSheetView(this.SheetViewList);
 
             // StatusStrip
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Empty;
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Empty;
 
             // イベント登録
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
             this._printDocument.PrintPage += PrintDocument_PrintPage;
         }
 
@@ -143,20 +142,20 @@ namespace RollCall {
             // Spread のクリア
             this.SheetViewList.ClearRange(START_ROW, 1, 70, 22, true);
 
-            int managedSpaceCode = this.ComboBoxExManagedSpace.SelectedIndex + 1;
+            int managedSpaceCode = this.CcComboBoxManagedSpace.SelectedIndex + 1;
 
             // 点呼実施者（始業点呼）を取得
-            _firstRollCallVo = _firstRollCallDao.SelectOneFirstRollCallVo(this.DateTimePickerExOperationDate.GetValue());
+            _firstRollCallVo = _firstRollCallDao.SelectOneFirstRollCallVo(this.CcDateTimePickerOperationDate.GetValue());
             if(_firstRollCallVo is null) {
                 MessageBox.Show("選択日付の点呼実施者記録が存在しません。処理を終了します。", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // 見出し行
-            this.SheetViewList.Cells[1, 1].Text = $"{this.DateTimePickerExOperationDate.GetValueJp()}  天候：{_firstRollCallVo.Weather}  {this.ComboBoxExManagedSpace.Text}";
+            this.SheetViewList.Cells[1, 1].Text = $"{this.CcDateTimePickerOperationDate.GetValueJp()}  天候：{_firstRollCallVo.Weather}  {this.CcComboBoxManagedSpace.Text}";
 
             // 配車データ取得
-            _listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.DateTimePickerExOperationDate.GetValue());
+            _listVehicleDispatchDetailVo = _vehicleDispatchDetailDao.SelectAllVehicleDispatchDetail(this.CcDateTimePickerOperationDate.GetValue());
 
             int row = 0;
             foreach(VehicleDispatchDetailVo vehicleDispatchDetailVo in _listVehicleDispatchDetailVo.Where(x => x.OperationFlag && x.ManagedSpaceCode == managedSpaceCode).OrderBy(x => x.StaffRollCallYmdHms1)) {
@@ -287,7 +286,7 @@ namespace RollCall {
         /// Excel エクスポート
         /// </summary>
         private void ExportExcel() {
-            string fileName = $"点呼記録簿{DateTimePickerExOperationDate.GetDate():MM月dd日}{ComboBoxExManagedSpace.Text}分";
+            string fileName = $"点呼記録簿{CcDateTimePickerOperationDate.GetDate():MM月dd日}{CcComboBoxManagedSpace.Text}分";
             this.SpreadList.SaveExcel(new DirectryUtility().GetExcelDesktopPassXlsx(fileName), ExcelSaveFlags.UseOOXMLFormat);
             MessageBox.Show("デスクトップへエクスポートしました", "メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -298,7 +297,7 @@ namespace RollCall {
         private void PrintB4() {
             try {
                 // 出力先プリンタ
-                _printDocument.PrinterSettings.PrinterName = this.ComboBoxExPrinterName.Text;
+                _printDocument.PrinterSettings.PrinterName = this.CcComboBoxPrinterName.Text;
 
                 // 縦向き
                 _printDocument.DefaultPageSettings.Landscape = false;
@@ -338,17 +337,16 @@ namespace RollCall {
         /// <summary>
         /// 日付変更時：車庫地を初期化
         /// </summary>
-        private void DateTimePickerExOperationDate_ValueChanged(object sender, EventArgs e) {
-            ComboBoxExManagedSpace.SelectedIndex = 0;
+        private void CcComboBoxManagedSpace_ValueChanged(object sender, EventArgs e) {
+            this.CcComboBoxManagedSpace.SelectedIndex = 0;
         }
 
         /// <summary>
         /// フォーム終了時の確認
         /// </summary>
         private void RollCallRecordSheet_FormClosing(object sender, FormClosingEventArgs e) {
-            DialogResult dr = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if(dr == DialogResult.OK) {
+            DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if(dialogResult == DialogResult.OK) {
                 e.Cancel = false;
                 Dispose();
             } else {

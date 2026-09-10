@@ -1,8 +1,6 @@
 ﻿/*
  * 2024-09-24
  */
-using System.Runtime.CompilerServices;
-
 namespace CcControl {
     public partial class CcButton : Button {
         /*
@@ -23,7 +21,7 @@ namespace CcControl {
             /*
              * コンストラクターで共通の初期化処理を呼び出す
              */
-            Constructor();
+            this.Constructor();
         }
 
         private void Constructor() {
@@ -53,6 +51,7 @@ namespace CcControl {
         /// <param name="e"></param>
         protected override void OnEnabledChanged(EventArgs e) {
             base.OnEnabledChanged(e);
+
             UpdateForeColor();
             this.Invalidate(); // 再描画
         }
@@ -75,13 +74,13 @@ namespace CcControl {
             /*
              * 文字(氏名)を描画
              */
-            using (var stringFormat = new StringFormat()) {
+            using(var stringFormat = new StringFormat()) {
                 stringFormat.Alignment = StringAlignment.Center;
                 stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
                 stringFormat.LineAlignment = StringAlignment.Center;
 
                 // ForeColor を使って描画する（Brush を破棄する）
-                using (var brush = new SolidBrush(this.ForeColor)) {
+                using(var brush = new SolidBrush(this.ForeColor)) {
                     pe.Graphics.DrawString(_textDirectionVertical, _drawFontStaffLabel, brush, new Rectangle(0, 0, this.Width, this.Height), stringFormat);
                 }
             }

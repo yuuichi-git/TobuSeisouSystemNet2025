@@ -63,6 +63,7 @@ namespace Dao {
                                             "DeadlineDate," +
                                             "PictureHead," +
                                             "PictureTail," +
+                                            "PictureVerify," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -72,8 +73,8 @@ namespace Dao {
                                             "DeleteFlag " +
                                      "FROM H_StatusOfResidenceMaster " +
                                      "WHERE StaffCode = " + staffCode;
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
                     statusOfResidenceMasterVo.StaffName = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffName"]);
@@ -87,6 +88,7 @@ namespace Dao {
                     statusOfResidenceMasterVo.DeadlineDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeadlineDate"]);
                     statusOfResidenceMasterVo.PictureHead = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureHead"]);
                     statusOfResidenceMasterVo.PictureTail = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureTail"]);
+                    statusOfResidenceMasterVo.PictureVerify = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureVerify"]);
                     statusOfResidenceMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     statusOfResidenceMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     statusOfResidenceMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -120,6 +122,7 @@ namespace Dao {
                                             "H_StatusOfResidenceMaster.DeadlineDate," +
                                             //"H_StatusOfResidenceMaster.PictureHead," +
                                             //"H_StatusOfResidenceMaster.PictureTail," +
+                                            //"H_StatusOfResidenceMaster.PictureVerify," +
                                             "H_StatusOfResidenceMaster.InsertPcName," +
                                             "H_StatusOfResidenceMaster.InsertYmdHms," +
                                             "H_StatusOfResidenceMaster.UpdatePcName," +
@@ -130,8 +133,8 @@ namespace Dao {
                                             "H_StaffMaster.RetirementFlag " +                                                       // StaffMasterの退職フラグを取得(StatusOfResidenceListで使ってる)
                                      "FROM H_StatusOfResidenceMaster " +
                                      "LEFT OUTER JOIN H_StaffMaster ON H_StatusOfResidenceMaster.StaffCode = H_StaffMaster.StaffCode";
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
@@ -146,6 +149,7 @@ namespace Dao {
                     statusOfResidenceMasterVo.DeadlineDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeadlineDate"]);
                     //hStatusOfResidenceMasterVo.PictureHead = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureHead"]);
                     //hStatusOfResidenceMasterVo.PictureTail = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureTail"]);
+                    //hStatusOfResidenceMasterVo.PictureVerify = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureVerify"]);
                     statusOfResidenceMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     statusOfResidenceMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     statusOfResidenceMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -181,6 +185,7 @@ namespace Dao {
                                             "DeadlineDate," +
                                             "PictureHead," +
                                             "PictureTail," +
+                                            "PictureVerify," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -189,8 +194,8 @@ namespace Dao {
                                             "DeleteYmdHms," +
                                             "DeleteFlag " +
                                      "FROM H_StatusOfResidenceMaster";
-            using (var sqlDataReader = sqlCommand.ExecuteReader()) {
-                while (sqlDataReader.Read() == true) {
+            using(var sqlDataReader = sqlCommand.ExecuteReader()) {
+                while(sqlDataReader.Read() == true) {
                     StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
@@ -205,6 +210,7 @@ namespace Dao {
                     statusOfResidenceMasterVo.DeadlineDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["DeadlineDate"]);
                     statusOfResidenceMasterVo.PictureHead = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureHead"]);
                     statusOfResidenceMasterVo.PictureTail = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureTail"]);
+                    statusOfResidenceMasterVo.PictureVerify = _defaultValue.GetDefaultValue<byte[]>(sqlDataReader["PictureVerify"]);
                     statusOfResidenceMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     statusOfResidenceMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     statusOfResidenceMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -238,6 +244,7 @@ namespace Dao {
                                                                            "DeadlineDate," +
                                                                            "PictureHead," +
                                                                            "PictureTail," +
+                                                                           "PictureVerify," +
                                                                            "InsertPcName," +
                                                                            "InsertYmdHms," +
                                                                            "UpdatePcName," +
@@ -258,6 +265,7 @@ namespace Dao {
                                             "'" + statusOfResidenceMasterVo.DeadlineDate + "'," +
                                             "@memberPictureHead," +
                                             "@memberPictureTail," +
+                                            "@memberPictureVerify," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -269,6 +277,7 @@ namespace Dao {
             try {
                 sqlCommand.Parameters.Add("@memberPictureHead", SqlDbType.Image, statusOfResidenceMasterVo.PictureHead.Length).Value = statusOfResidenceMasterVo.PictureHead;
                 sqlCommand.Parameters.Add("@memberPictureTail", SqlDbType.Image, statusOfResidenceMasterVo.PictureTail.Length).Value = statusOfResidenceMasterVo.PictureTail;
+                sqlCommand.Parameters.Add("@memberPictureVerify", SqlDbType.Image, statusOfResidenceMasterVo.PictureVerify.Length).Value = statusOfResidenceMasterVo.PictureVerify;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -296,12 +305,14 @@ namespace Dao {
                                          "DeadlineDate = '" + statusOfResidenceMasterVo.DeadlineDate + "'," +
                                          "PictureHead = @memberPictureHead," +
                                          "PictureTail = @memberPictureTail," +
+                                         "PictureVerify = @memberPictureVerify," +
                                          "UpdatePcName = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms = '" + DateTime.Now + "' " +
                                      "WHERE StaffCode = " + statusOfResidenceMasterVo.StaffCode;
             try {
                 sqlCommand.Parameters.Add("@memberPictureHead", SqlDbType.Image, statusOfResidenceMasterVo.PictureHead.Length).Value = statusOfResidenceMasterVo.PictureHead;
                 sqlCommand.Parameters.Add("@memberPictureTail", SqlDbType.Image, statusOfResidenceMasterVo.PictureTail.Length).Value = statusOfResidenceMasterVo.PictureTail;
+                sqlCommand.Parameters.Add("@memberPictureVerify", SqlDbType.Image, statusOfResidenceMasterVo.PictureVerify.Length).Value = statusOfResidenceMasterVo.PictureVerify;
                 return sqlCommand.ExecuteNonQuery();
             } catch {
                 throw;
@@ -325,7 +336,5 @@ namespace Dao {
                 throw;
             }
         }
-
-
     }
 }

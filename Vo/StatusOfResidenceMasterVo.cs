@@ -18,6 +18,7 @@ namespace Vo {
         private DateTime _deadlineDate;
         private byte[] _pictureHead;
         private byte[] _pictureTail;
+        private byte[] _pictureVerify;
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -45,6 +46,7 @@ namespace Vo {
             _deadlineDate = _defaultDateTime;
             _pictureHead = Array.Empty<byte>();
             _pictureTail = Array.Empty<byte>();
+            _pictureVerify = Array.Empty<byte>();
             _insertPcName = string.Empty;
             _insertYmdHms = _defaultDateTime;
             _updatePcName = string.Empty;
@@ -140,6 +142,13 @@ namespace Vo {
         public byte[] PictureTail {
             get => _pictureTail;
             set => _pictureTail = value;
+        }
+        /// <summary>
+        /// 在留カード等番号失効情報照会　確認画像
+        /// </summary>
+        public byte[] PictureVerify {
+            get => _pictureVerify;
+            set => _pictureVerify = value;
         }
         public string InsertPcName {
             get => _insertPcName;
