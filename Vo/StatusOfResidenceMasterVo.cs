@@ -6,6 +6,7 @@ namespace Vo {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
 
         private int _staffCode;
+        private string _number;
         private string _staffNameKana;
         private string _staffName;
         private DateTime _birthDate;
@@ -34,6 +35,7 @@ namespace Vo {
         /// </summary>
         public StatusOfResidenceMasterVo() {
             _staffCode = 0;
+            _number = string.Empty;
             _staffNameKana = string.Empty;
             _staffName = string.Empty;
             _birthDate = _defaultDateTime;
@@ -64,6 +66,17 @@ namespace Vo {
         public int StaffCode {
             get => _staffCode;
             set => _staffCode = value;
+        }
+        /// <summary>
+        /// 在留カード等番号
+        /// </summary>
+        public string Number {
+            get {
+                return _number;
+            }
+            set {
+                _number = value;
+            }
         }
         /// <summary>
         /// カナ

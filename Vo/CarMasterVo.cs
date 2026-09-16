@@ -63,6 +63,7 @@
         private bool _cameraRightBack;                          // 2026-07-03
         private bool _cameraLeftUnder;                          // 2026-07-03
         private bool _cameraRoomMic;                            // 2026-07-03
+        private bool _cameraCanopy;                             // 2026-09-14
         private string _insertPcName;
         private DateTime _insertYmdHms;
         private string _updatePcName;
@@ -587,6 +588,17 @@
             }
             set {
                 _cameraRoomMic = value;
+            }
+        }
+        /// <summary>
+        /// カメラ天蓋装着フラグ
+        /// </summary>
+        public bool CameraCanopy {
+            get {
+                return _cameraCanopy;
+            }
+            set {
+                _cameraCanopy = value;
             }
         }
         public string InsertPcName {

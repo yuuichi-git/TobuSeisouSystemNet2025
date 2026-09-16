@@ -75,6 +75,7 @@ namespace CcControl {
              */
             ToolStripMenuItem toolStripMenuItemPrint =CreateMenuItem("ToolStripMenuItemPrint","Print",null,this.Items);
             CreateMenuItem("ToolStripMenuItemPrintA4", "A4で印刷する", ToolStripMenuItem_Click, toolStripMenuItemPrint.DropDownItems);
+            CreateMenuItem("ToolStripMenuItemPrintA4CarDetail", "A4で印刷する(車検証＋記録事項)", ToolStripMenuItem_Click, toolStripMenuItemPrint.DropDownItems);
             CreateMenuItem("ToolStripMenuItemPrintB4", "B4で印刷する", ToolStripMenuItem_Click, toolStripMenuItemPrint.DropDownItems);
             CreateMenuItem("ToolStripMenuItemPrintB5", "B5で印刷する", ToolStripMenuItem_Click, toolStripMenuItemPrint.DropDownItems);
             CreateMenuItem("ToolStripMenuItemPrintB5Dialog", "B5で印刷する(Dialog)", ToolStripMenuItem_Click, toolStripMenuItemPrint.DropDownItems);

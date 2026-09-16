@@ -25,45 +25,49 @@ namespace StatusOfResidence {
         private readonly ConnectionVo _connectionVo;
 
         /// <summary>
+        /// カード番号
+        /// </summary>
+        private const int _colNumber = 0;
+        /// <summary>
         /// 従事者名
         /// </summary>
-        private const int _colStaffName = 0;
+        private const int _colStaffName = 1;
         /// <summary>
         /// 従事者名カナ
         /// </summary>
-        private const int _colStaffNameKana = 1;
+        private const int _colStaffNameKana = 2;
         /// <summary>
         /// 生年月日
         /// </summary>
-        private const int _colBirthDate = 2;
+        private const int _colBirthDate = 3;
         /// <summary>
         /// 性別
         /// </summary>
-        private const int _colGender = 3;
+        private const int _colGender = 4;
         /// <summary>
         /// 国籍・地域
         /// </summary>
-        private const int _colNationality = 4;
+        private const int _colNationality = 5;
         /// <summary>
         /// 住居地
         /// </summary>
-        private const int _colAddress = 5;
+        private const int _colAddress = 6;
         /// <summary>
         /// 在留資格
         /// </summary>
-        private const int _colStatusOfResidence = 6;
+        private const int _colStatusOfResidence = 7;
         /// <summary>
         /// 就労制限の有無
         /// </summary>
-        private const int _colWorkLimit = 7;
+        private const int _colWorkLimit = 8;
         /// <summary>
         /// 在留期間
         /// </summary>
-        private const int _colPeriodDate = 8;
+        private const int _colPeriodDate = 9;
         /// <summary>
         /// 有効期限
         /// </summary>
-        private const int _colDeadlineDate = 9;
+        private const int _colDeadlineDate = 10;
 
         /// <summary>
         /// コンストラクター
@@ -150,6 +154,7 @@ namespace StatusOfResidence {
                 this.SheetViewList.RowHeader.Columns[0].Label = (rowCount + 1).ToString();                                          // Rowヘッダ
                 this.SheetViewList.Rows[rowCount].ForeColor = statusOfResidenceMasterVo.RetirementFlag ? Color.Red : Color.Black;   // 退職済のレコードのForeColorをセット
                 this.SheetViewList.Rows[rowCount].Tag = statusOfResidenceMasterVo;
+                this.SheetViewList.Cells[rowCount, _colNumber].Text = statusOfResidenceMasterVo.Number;                             // カード番号
                 this.SheetViewList.Cells[rowCount, _colStaffName].Text = statusOfResidenceMasterVo.StaffName;                       // 従事者名
                 this.SheetViewList.Cells[rowCount, _colStaffNameKana].Text = statusOfResidenceMasterVo.StaffNameKana;               // 従事者名カナ
                 this.SheetViewList.Cells[rowCount, _colBirthDate].Value = statusOfResidenceMasterVo.BirthDate;                      // 生年月日
@@ -158,12 +163,24 @@ namespace StatusOfResidence {
                 this.SheetViewList.Cells[rowCount, _colAddress].Text = statusOfResidenceMasterVo.Address;                           // 住居地
                 this.SheetViewList.Cells[rowCount, _colStatusOfResidence].Text = statusOfResidenceMasterVo.StatusOfResidence;       // 在留資格
                 this.SheetViewList.Cells[rowCount, _colWorkLimit].Text = statusOfResidenceMasterVo.WorkLimit;                       // 就労制限の有無
+                /*
+                 * 在留期間
+                 */
                 if(statusOfResidenceMasterVo.PeriodDate.Date == _defaultDateTime) {
-                    this.SheetViewList.Cells[rowCount, _colPeriodDate].Text = string.Empty;                                         // 在留期間
+                    this.SheetViewList.Cells[rowCount, _colPeriodDate].Text = string.Empty;
                 } else {
                     this.SheetViewList.Cells[rowCount, _colPeriodDate].Value = statusOfResidenceMasterVo.PeriodDate;
                 }
-                this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;                // 有効期限
+                /*
+                 * 有効期限の色分け
+                 */
+                if(statusOfResidenceMasterVo.DeadlineDate.Date <= DateTime.Today) {
+                    this.SheetViewList.Rows[rowCount].ForeColor = Color.Red;
+                    this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;
+                } else {
+                    this.SheetViewList.Rows[rowCount].ForeColor = Color.Black;
+                    this.SheetViewList.Cells[rowCount, _colDeadlineDate].Value = statusOfResidenceMasterVo.DeadlineDate;
+                }
                 rowCount++;
             }
 

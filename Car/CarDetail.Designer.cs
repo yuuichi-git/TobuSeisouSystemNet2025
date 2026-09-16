@@ -98,6 +98,7 @@
             labelEx14 = new CcControl.CcLabel();
             groupBoxEx1 = new CcControl.CcGroupBox();
             CcGroupBoxDigitalTachograph = new CcControl.CcGroupBox();
+            CcCheckBoxCameraCanopy = new CcControl.CcCheckBox();
             CcCheckBoxCameraRoomMic = new CcControl.CcCheckBox();
             CcCheckBoxCameraLeftUnder = new CcControl.CcCheckBox();
             CcCheckBoxCameraRightBack = new CcControl.CcCheckBox();
@@ -853,7 +854,6 @@
             // 
             // DateTimePickerExExpirationDate
             // 
-            DateTimePickerExExpirationDate.CultureFlag = false;
             DateTimePickerExExpirationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExExpirationDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExExpirationDate.Location = new Point(188, 104);
@@ -864,7 +864,6 @@
             // 
             // DateTimePickerExFirstRegistrationDate
             // 
-            DateTimePickerExFirstRegistrationDate.CultureFlag = false;
             DateTimePickerExFirstRegistrationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExFirstRegistrationDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExFirstRegistrationDate.Location = new Point(188, 76);
@@ -875,7 +874,6 @@
             // 
             // DateTimePickerExRegistrationDate
             // 
-            DateTimePickerExRegistrationDate.CultureFlag = false;
             DateTimePickerExRegistrationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExRegistrationDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExRegistrationDate.Location = new Point(188, 48);
@@ -963,6 +961,7 @@
             // 
             // CcGroupBoxDigitalTachograph
             // 
+            CcGroupBoxDigitalTachograph.Controls.Add(CcCheckBoxCameraCanopy);
             CcGroupBoxDigitalTachograph.Controls.Add(CcCheckBoxCameraRoomMic);
             CcGroupBoxDigitalTachograph.Controls.Add(CcCheckBoxCameraLeftUnder);
             CcGroupBoxDigitalTachograph.Controls.Add(CcCheckBoxCameraRightBack);
@@ -974,14 +973,25 @@
             CcGroupBoxDigitalTachograph.Location = new Point(376, 72);
             CcGroupBoxDigitalTachograph.Name = "CcGroupBoxDigitalTachograph";
             CcGroupBoxDigitalTachograph.Size = new Size(320, 156);
-            CcGroupBoxDigitalTachograph.TabIndex = 14;
+            CcGroupBoxDigitalTachograph.TabIndex = 0;
             CcGroupBoxDigitalTachograph.TabStop = false;
+            // 
+            // CcCheckBoxCameraCanopy
+            // 
+            CcCheckBoxCameraCanopy.AutoSize = true;
+            CcCheckBoxCameraCanopy.ForeColor = Color.Black;
+            CcCheckBoxCameraCanopy.Location = new Point(100, 120);
+            CcCheckBoxCameraCanopy.Name = "CcCheckBoxCameraCanopy";
+            CcCheckBoxCameraCanopy.Size = new Size(75, 19);
+            CcCheckBoxCameraCanopy.TabIndex = 7;
+            CcCheckBoxCameraCanopy.Text = "天蓋カメラ";
+            CcCheckBoxCameraCanopy.UseVisualStyleBackColor = true;
             // 
             // CcCheckBoxCameraRoomMic
             // 
             CcCheckBoxCameraRoomMic.AutoSize = true;
             CcCheckBoxCameraRoomMic.ForeColor = Color.Black;
-            CcCheckBoxCameraRoomMic.Location = new Point(100, 120);
+            CcCheckBoxCameraRoomMic.Location = new Point(208, 96);
             CcCheckBoxCameraRoomMic.Name = "CcCheckBoxCameraRoomMic";
             CcCheckBoxCameraRoomMic.Size = new Size(108, 19);
             CcCheckBoxCameraRoomMic.TabIndex = 6;
@@ -1162,7 +1172,6 @@
             // 
             // DateTimePickerExEmergencyVehicleDate
             // 
-            DateTimePickerExEmergencyVehicleDate.CultureFlag = false;
             DateTimePickerExEmergencyVehicleDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExEmergencyVehicleDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExEmergencyVehicleDate.Location = new Point(520, 20);
@@ -1521,5 +1530,6 @@
         private TabPage TabPage2;
         private TabPage TabPage3;
         private TabPage TabPage4;
+        private CcControl.CcCheckBox CcCheckBoxCameraCanopy;
     }
 }

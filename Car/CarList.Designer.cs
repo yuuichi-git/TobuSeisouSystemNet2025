@@ -31,12 +31,13 @@
             CcContextMenuStrip1 = new CcControl.CcContextMenuStrip();
             ToolStripMenuItemDelete = new ToolStripMenuItem();
             ToolStripMenuItemRemove = new ToolStripMenuItem();
-            SheetViewList = SpreadList.GetSheet(0);
-            SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = SpreadList.GetSheet(1);
-            SheetViewList緊急通行車両 = SpreadList.GetSheet(2);
             CcPanelTop = new CcControl.CcPanel();
             ButtonExUpdate = new CcControl.CcButton();
             CheckBoxExDeleteFlag = new CcControl.CcCheckBox();
+            SheetViewList = SpreadList.GetSheet(0);
+            SheetViewListYAZAKI = SpreadList.GetSheet(1);
+            SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金 = SpreadList.GetSheet(2);
+            SheetViewList緊急通行車両 = SpreadList.GetSheet(3);
             TableLayoutPanelExBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpreadList).BeginInit();
             CcContextMenuStrip1.SuspendLayout();
@@ -82,7 +83,7 @@
             // 
             // SpreadList
             // 
-            SpreadList.AccessibleDescription = "SpreadList, 緊急通行車両, Row 0, Column 0";
+            SpreadList.AccessibleDescription = "SpreadList, YAZAKI対応表, Row 0, Column 0";
             SpreadList.ContextMenuStrip = CcContextMenuStrip1;
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
@@ -179,6 +180,7 @@
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private ToolStripMenuItem ToolStripMenuItemRemove;
         private FarPoint.Win.Spread.SheetView SheetViewList;
+        private FarPoint.Win.Spread.SheetView SheetViewListYAZAKI;
         private FarPoint.Win.Spread.SheetView SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金;
         private FarPoint.Win.Spread.SheetView SheetViewList緊急通行車両;
     }

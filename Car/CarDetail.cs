@@ -1,6 +1,8 @@
 ﻿/*
  * 2025-02-12
  */
+using System.Drawing.Printing;
+
 using CcControl;
 
 using Common;
@@ -15,7 +17,6 @@ namespace Car {
         /*
          * インスタンス作成
          */
-        private readonly ScreenForm _screenForm = new();
         private readonly PdfUtility _pdfUtility = new();
         private CcPdfView[] _ccPdfViews = new CcPdfView[4];             // 4つの PdfViewer（車検証 / 自動車検査証記録事項 / 自賠責(古い証明書) / 自賠責(新しい証明書)）
         /*
@@ -123,6 +124,8 @@ namespace Car {
              */
             List<string> listString = new() {"ToolStripMenuItemFile",
                                              "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4CarDetail",
                                              "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
             this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
@@ -234,6 +237,13 @@ namespace Car {
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
             switch(((ToolStripMenuItem)sender).Name) {
+                case "ToolStripMenuItemPrintA4CarDetail":
+                    PrintDocument printDocument = new PrintDocument();
+                    printDocument.PrinterSettings.Duplex = Duplex.Vertical;                                                                                 // ★ 両面印刷
+                    printDocument.PrintPage += PrintDocument_PrintPage;                                                                                     // ★ イベント登録
+                    _curPageNumber = 0;                                                                                                                     // ★ ページ番号初期化
+                    printDocument.Print();                                                                                                                  // ★ 印刷開始
+                    break;
                 case "ToolStripMenuItemExit":                                                                                                               // アプロケーションを終了する
                     this.Close();
                     break;
@@ -327,6 +337,7 @@ namespace Car {
             carMasterVo.CameraRightBack = this.CcCheckBoxCameraRightBack.Checked;                                                                           // 右後方カメラ
             carMasterVo.CameraLeftUnder = this.CcCheckBoxCameraLeftUnder.Checked;                                                                           // 左下方向カメラ
             carMasterVo.CameraRoomMic = this.CcCheckBoxCameraRoomMic.Checked;                                                                               // 車内マイク
+            carMasterVo.CameraCanopy = this.CcCheckBoxCameraCanopy.Checked;                                                                                 // カメラ天蓋
 
             return carMasterVo;
         }
@@ -360,6 +371,7 @@ namespace Car {
             this.CcCheckBoxCameraRightBack.Checked = false;                                                                                                 // 右後方カメラ
             this.CcCheckBoxCameraLeftUnder.Checked = false;                                                                                                 // 左下方位カメラ
             this.CcCheckBoxCameraRoomMic.Checked = false;                                                                                                   // 室内マイクカメラ
+            this.CcCheckBoxCameraCanopy.Checked = false;                                                                                                    // カメラ天蓋
             /*
              * １．基本情報
              */
@@ -441,6 +453,7 @@ namespace Car {
             this.CcCheckBoxCameraRightBack.Checked = carMasterVo.CameraRightBack;                                                                           // 右後方カメラ
             this.CcCheckBoxCameraLeftUnder.Checked = carMasterVo.CameraLeftUnder;                                                                           // 左下方位カメラ
             this.CcCheckBoxCameraRoomMic.Checked = carMasterVo.CameraRoomMic;                                                                               // 室内マイクカメラ
+            this.CcCheckBoxCameraCanopy.Checked = carMasterVo.CameraCanopy;                                                                                 // カメラ天蓋
 
             this.ComboBoxExRegistrationNumber1.Text = carMasterVo.RegistrationNumber1;                                                                      // 車両ナンバー１
             this.TextBoxExRegistrationNumber2.Text = carMasterVo.RegistrationNumber2;                                                                       // 車両ナンバー２
@@ -523,6 +536,51 @@ namespace Car {
         }
         private string SetTextBoxExRegistrationNumber() {
             return string.Concat(ComboBoxExRegistrationNumber1.Text, TextBoxExRegistrationNumber2.Text, TextBoxExRegistrationNumber3.Text, TextBoxExRegistrationNumber4.Text);
+        }
+
+        /// <summary>
+        /// 印刷対象のページ番号（0:車検証 1:記録事項）を保持する
+        /// </summary>
+        int _curPageNumber = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
+            try {
+                Image image = (_curPageNumber == 0)?_ccPdfViews[0].GetPageImage(0, 200):_ccPdfViews[1].GetPageImage(0, 200);
+
+                if(image != null) {
+                    // ★ A4サイズ（1/100 inch）
+                    const float A4Width = 827f;   // 210mm
+                    const float A4Height = 1169f; // 297mm
+
+                    RectangleF printable = e.PageSettings.PrintableArea;
+
+                    float x = printable.X + ((printable.Width - A4Width) / 2);
+                    float y = printable.Y;   // ★ 上配置
+
+                    if(_curPageNumber == 0) {
+                        // ★ 裏面は縦伸長しない（横だけ A4 に合わせる）
+                        float scale = A4Width / image.Width;   // 横幅に合わせる倍率
+                        float newHeight = image.Height * scale; // 縦は比率維持
+                        // ★ 上配置（中央ではない）
+                        RectangleF rectKeepAspect = new RectangleF(x, y, A4Width, newHeight);
+                        e.Graphics.DrawImage(image, rectKeepAspect);
+
+                    } else {
+                        // ★ 表面は A4 に完全フィット
+                        RectangleF rectA4 = new RectangleF(x, y, A4Width, A4Height);
+                        e.Graphics.DrawImage(image, rectA4);
+                    }
+                }
+
+                _curPageNumber++;
+                e.HasMorePages = _curPageNumber < 2;
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>

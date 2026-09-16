@@ -166,6 +166,7 @@ namespace Car {
             this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeSheetViewList(this.SheetViewList);
+            this.InitializeSheetViewList(this.SheetViewListYAZAKI);
             this.InitializeSheetViewList(this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金);
             this.InitializeSheetViewList(this.SheetViewList緊急通行車両);
             /*
@@ -183,6 +184,9 @@ namespace Car {
             switch(this.SpreadList.ActiveSheet.SheetName) {
                 case "車両台帳":
                     this.SetSheetViewList1(this.SheetViewList);
+                    break;
+                case "YAZAKI対応表":
+                    this.SetSheetViewListYAZAKI(this.SheetViewListYAZAKI);
                     break;
                 case "東京都運輸事業者向け燃料費高騰緊急対策事業支援金":
                     this.SetSheetViewList2(this.SheetViewList東京都運輸事業者向け燃料費高騰緊急対策事業支援金);
@@ -250,6 +254,65 @@ namespace Car {
                 i++;
             }
             SpreadList.SetViewportTopRow(0, spreadListTopRow1);                                                                                                                         // 先頭行（列）インデックスをセット
+
+            SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");
+        }
+
+        int spreadListYAZAKITopRow1 = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sheetView"></param>
+        private void SetSheetViewListYAZAKI(SheetView sheetView) {
+            List<CarMasterVo> _listCarMasterVo = new();
+            if(CheckBoxExDeleteFlag.Checked) {                                                                                                                                         // 削除済のレコードも表示
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster();
+            } else {
+                _listCarMasterVo = _carMasterDao.SelectAllCarMaster().FindAll(x => x.DeleteFlag == false);
+            }
+            SpreadList.SuspendLayout();                                                                                                                                                // 非活性化
+            spreadListYAZAKITopRow1 = SpreadList.GetViewportTopRow(0);                                                                                                                 // 先頭行（列）インデックスを取得
+            if(sheetView.Rows.Count > 0)                                                                                                                                               // Rowを削除する
+                sheetView.RemoveRows(0, sheetView.Rows.Count);
+
+            int i = 0;
+            foreach(CarMasterVo carMasterVo in _listCarMasterVo.OrderBy(x => x.RegistrationNumber4)) {
+                sheetView.Rows.Add(i, 1);
+                sheetView.RowHeader.Columns[0].Label = (i + 1).ToString();                                                                                                              // Rowヘッダ
+                sheetView.Rows[i].Height = 22;                                                                                                                                          // Rowの高さ
+                sheetView.Rows[i].Resizable = false;                                                                                                                                    // RowのResizableを禁止
+                sheetView.Rows[i].ForeColor = !carMasterVo.DeleteFlag ? Color.Black : Color.Red;                                                                                        // 削除済レコードは赤色で表示する
+                /*
+                 * 表示項目
+                 */
+                sheetView.Cells[i, 0].Value = carMasterVo.CarCode;
+                sheetView.Cells[i, 1].Text = string.Concat(carMasterVo.RegistrationNumber1, carMasterVo.RegistrationNumber2, carMasterVo.RegistrationNumber3);
+                sheetView.Cells[i, 2].Text = carMasterVo.RegistrationNumber4.ToString();
+                sheetView.Cells[i, 3].Text = carMasterVo.DoorNumber.ToString("###");
+                sheetView.Cells[i, 4].Text = _dictionaryClassification[carMasterVo.ClassificationCode];
+                sheetView.Cells[i, 5].Text = _dictionaryGarageName[carMasterVo.ManagedSpace];
+                sheetView.Cells[i, 6].Text = carMasterVo.DisguiseKind1;
+                sheetView.Cells[i, 7].Text = _dictionaryShapeName[carMasterVo.ShapeCode];
+                sheetView.Cells[i, 8].ForeColor = carMasterVo.ExpirationDate.Date < DateTime.Now.Date ? Color.Red : Color.Black;
+                sheetView.Cells[i, 8].Value = carMasterVo.ExpirationDate.Date;
+                if(carMasterVo.DigitalTachographFlag) {                                                                                                                                // デジタコ機種
+                    sheetView.Cells[i, 9].Text = carMasterVo.DigitalTachographType;
+                } else {
+                    sheetView.Cells[i, 9].Text = string.Empty;
+                }
+                sheetView.Cells[i, 10].Value = carMasterVo.CameraFront;                                                                                                                 // 前方カメラ
+                sheetView.Cells[i, 11].Value = carMasterVo.CameraBack;                                                                                                                  // 後方カメラ
+                sheetView.Cells[i, 12].Value = carMasterVo.CameraLeftBack;
+                sheetView.Cells[i, 13].Value = carMasterVo.CameraRightBack;
+                sheetView.Cells[i, 14].Value = carMasterVo.CameraLeftUnder;
+                sheetView.Cells[i, 15].Value = carMasterVo.CameraRoomMic;
+                sheetView.Cells[i, 16].Value = carMasterVo.CameraCanopy;
+                sheetView.Cells[i, 17].Text = carMasterVo.Remarks;                                                                                                                      // 備考
+                sheetView.Rows[i].Tag = carMasterVo;
+                i++;
+            }
+            SpreadList.SetViewportTopRow(0, spreadListYAZAKITopRow1);                                                                                                                   // 先頭行（列）インデックスをセット
 
             SpreadList.ResumeLayout();                                                                                                                                                  // 活性化
             this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", i, " 件");

@@ -2,12 +2,15 @@
  * 2026-05-18
  * PdfiumViewer.Core                                // PDF を表示するためのライブラリ PdfiumViewer のコアライブラリー .NET 6.0 以降で動作
  * HiraokaHyperTools.PdfiumViewer.Native.Windows    // PdfiumViewer のネイティブライブラリー Windows 用
- * 
  * PdfSharpCore                                     // PDF を作る／編集するためのライブラリ
  */
+using System.ComponentModel;
+
+using PdfiumViewer;
+
 namespace CcControl {
-    public partial class CcPdfView : PdfiumViewer.PdfViewer {
-        private PdfiumViewer.PdfDocument  _pdfDocument;
+    public partial class CcPdfView : PdfViewer {
+        private PdfDocument? _pdfDocument = null;
         private MemoryStream _memoryStream;
 
         /// <summary>
@@ -47,6 +50,37 @@ namespace CcControl {
         }
 
         /// <summary>
+        /// 表示中の PDF を Image(Bitmap) として返す
+        /// </summary>
+        /// <param name="page">ページ番号（0から）</param>
+        /// <param name="dpi">出力 DPI（印刷用途なら 200～300）</param>
+        /// <returns>Bitmap (Image)</returns>
+        public Bitmap? GetPageImage(int page = 0, int dpi = 200) {
+            if(this.PdfDocument == null)
+                return null;
+
+            if(page < 0 || page >= this.PdfDocument.PageCount)
+                return null;
+
+            try {
+                // ★ ページサイズを取得
+                var size = this.PdfDocument.PageSizes[page];
+
+                // ★ 実寸に合わせたピクセル数を計算
+                int width = (int)(size.Width * dpi / 72.0f);
+                int height = (int)(size.Height * dpi / 72.0f);
+
+                // ★ PdfiumViewer の Render を使用して Bitmap を生成
+                Bitmap bitmap = (Bitmap)this.PdfDocument.Render(page, width, height, dpi, dpi, PdfRenderFlags.Annotations);
+
+                return bitmap;
+            } catch(Exception ex) {
+                MessageBox.Show($"PDFページの描画に失敗しました: {ex.Message}");
+                return null;
+            }
+        }
+
+        /// <summary>
         /// ※PDFの表示
         /// PDF を MemoryStream から読み込む
         /// </summary>
@@ -57,7 +91,7 @@ namespace CcControl {
             this.MemoryStream = stream;
             this.MemoryStream.Position = 0;
 
-            this.PdfDocument = PdfiumViewer.PdfDocument.Load(this.MemoryStream);
+            this.PdfDocument = PdfDocument.Load(this.MemoryStream);
             this.Document = this.PdfDocument;
         }
 
@@ -86,9 +120,9 @@ namespace CcControl {
             this.MemoryStream = new MemoryStream(bytes, false);
             this.MemoryStream.Position = 0;                                                                                     // 次に読み込むときのために、必ず Position を 0 に戻す
 
-            this.PdfDocument = PdfiumViewer.PdfDocument.Load(this.MemoryStream);
+            this.PdfDocument = PdfDocument.Load(this.MemoryStream);
             this.Document = this.PdfDocument;
-            this.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;                                                            // 横幅に合わせる
+            this.ZoomMode = PdfViewerZoomMode.FitWidth;                                                                         // 横幅に合わせる
         }
 
         /// <summary>
@@ -124,28 +158,29 @@ namespace CcControl {
          * Getter / Setter
          * ----------------------------------------------------------------
          */
-        /// <summary>
-        /// Getter / Setter
-        /// PdfDocument
-        /// </summary>
-        public PdfiumViewer.PdfDocument PdfDocument {
+        [Category("RisSoft")]
+        [Browsable(false)]
+        [Description("")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PdfDocument? PdfDocument {
             get {
-                return this._pdfDocument;
+                return _pdfDocument;
             }
             set {
-                this._pdfDocument = value;
+                _pdfDocument = value;
             }
         }
-        /// <summary>
-        /// Getter / Setter
-        /// MemoryStream
-        /// </summary>
-        public MemoryStream MemoryStream {
+
+        [Category("RisSoft")]
+        [Browsable(false)]
+        [Description("")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public MemoryStream? MemoryStream {
             get {
-                return this._memoryStream;
+                return _memoryStream;
             }
             set {
-                this._memoryStream = value;
+                _memoryStream = value;
             }
         }
     }

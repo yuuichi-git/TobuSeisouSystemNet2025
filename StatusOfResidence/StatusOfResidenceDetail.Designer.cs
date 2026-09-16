@@ -33,6 +33,8 @@
             PanelExTop = new CcControl.CcPanel();
             ButtonExUpdate = new CcControl.CcButton();
             CcPanel1 = new CcControl.CcPanel();
+            CcTextBoxCardNumber = new CcControl.CcTextBox();
+            ccLabel1 = new CcControl.CcLabel();
             LinkLabel1 = new LinkLabel();
             CcComboBoxSelectName = new CcControl.CcComboBox();
             labelEx14 = new CcControl.CcLabel();
@@ -106,7 +108,7 @@
             CcTabControl1.SelectedIndex = 0;
             CcTabControl1.Size = new Size(648, 927);
             CcTabControl1.SizeMode = TabSizeMode.FillToRight;
-            CcTabControl1.TabIndex = 25;
+            CcTabControl1.TabIndex = 3;
             // 
             // TabPage1
             // 
@@ -155,7 +157,7 @@
             CcStatusStrip1.Name = "CcStatusStrip1";
             CcStatusStrip1.Size = new Size(1904, 22);
             CcStatusStrip1.SizingGrip = false;
-            CcStatusStrip1.TabIndex = 1;
+            CcStatusStrip1.TabIndex = 4;
             CcStatusStrip1.Text = "statusStripEx1";
             // 
             // PanelExTop
@@ -166,7 +168,7 @@
             PanelExTop.Location = new Point(3, 27);
             PanelExTop.Name = "PanelExTop";
             PanelExTop.Size = new Size(1898, 54);
-            PanelExTop.TabIndex = 2;
+            PanelExTop.TabIndex = 1;
             // 
             // ButtonExUpdate
             // 
@@ -185,6 +187,8 @@
             // CcPanel1
             // 
             CcPanel1.BorderStyle = BorderStyle.FixedSingle;
+            CcPanel1.Controls.Add(CcTextBoxCardNumber);
+            CcPanel1.Controls.Add(ccLabel1);
             CcPanel1.Controls.Add(LinkLabel1);
             CcPanel1.Controls.Add(CcComboBoxSelectName);
             CcPanel1.Controls.Add(labelEx14);
@@ -215,15 +219,34 @@
             CcPanel1.Location = new Point(403, 87);
             CcPanel1.Name = "CcPanel1";
             CcPanel1.Size = new Size(444, 927);
-            CcPanel1.TabIndex = 3;
+            CcPanel1.TabIndex = 2;
+            // 
+            // CcTextBoxCardNumber
+            // 
+            CcTextBoxCardNumber.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            CcTextBoxCardNumber.ImeMode = ImeMode.Off;
+            CcTextBoxCardNumber.Location = new Point(132, 288);
+            CcTextBoxCardNumber.Name = "CcTextBoxCardNumber";
+            CcTextBoxCardNumber.Size = new Size(224, 25);
+            CcTextBoxCardNumber.TabIndex = 9;
+            CcTextBoxCardNumber.Text = "ABC0123456789";
+            // 
+            // ccLabel1
+            // 
+            ccLabel1.Location = new Point(20, 288);
+            ccLabel1.Name = "ccLabel1";
+            ccLabel1.Size = new Size(108, 22);
+            ccLabel1.TabIndex = 27;
+            ccLabel1.Text = "カード番号";
+            ccLabel1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // LinkLabel1
             // 
             LinkLabel1.AutoSize = true;
-            LinkLabel1.Location = new Point(124, 448);
+            LinkLabel1.Location = new Point(124, 476);
             LinkLabel1.Name = "LinkLabel1";
             LinkLabel1.Size = new Size(164, 15);
-            LinkLabel1.TabIndex = 25;
+            LinkLabel1.TabIndex = 14;
             LinkLabel1.TabStop = true;
             LinkLabel1.Text = "在留カード等番号失効情報照会";
             LinkLabel1.LinkClicked += LinkLabel1_LinkClicked;
@@ -239,7 +262,7 @@
             // 
             // labelEx14
             // 
-            labelEx14.Location = new Point(20, 372);
+            labelEx14.Location = new Point(20, 400);
             labelEx14.Name = "labelEx14";
             labelEx14.Size = new Size(108, 22);
             labelEx14.TabIndex = 24;
@@ -258,7 +281,7 @@
             // 
             // labelEx13
             // 
-            labelEx13.Location = new Point(20, 344);
+            labelEx13.Location = new Point(20, 372);
             labelEx13.Name = "labelEx13";
             labelEx13.Size = new Size(108, 22);
             labelEx13.TabIndex = 23;
@@ -277,7 +300,7 @@
             // 
             // labelEx12
             // 
-            labelEx12.Location = new Point(20, 316);
+            labelEx12.Location = new Point(20, 344);
             labelEx12.Name = "labelEx12";
             labelEx12.Size = new Size(108, 22);
             labelEx12.TabIndex = 22;
@@ -295,7 +318,7 @@
             // 
             // labelEx11
             // 
-            labelEx11.Location = new Point(20, 288);
+            labelEx11.Location = new Point(20, 316);
             labelEx11.Name = "labelEx11";
             labelEx11.Size = new Size(108, 22);
             labelEx11.TabIndex = 21;
@@ -401,10 +424,10 @@
             // 
             ComboBoxExStatusOfResidence.FormattingEnabled = true;
             ComboBoxExStatusOfResidence.ImeMode = ImeMode.Hiragana;
-            ComboBoxExStatusOfResidence.Location = new Point(132, 288);
+            ComboBoxExStatusOfResidence.Location = new Point(132, 316);
             ComboBoxExStatusOfResidence.Name = "ComboBoxExStatusOfResidence";
             ComboBoxExStatusOfResidence.Size = new Size(224, 23);
-            ComboBoxExStatusOfResidence.TabIndex = 9;
+            ComboBoxExStatusOfResidence.TabIndex = 10;
             // 
             // labelEx5
             // 
@@ -419,10 +442,10 @@
             // 
             ComboBoxExWorkLimit.FormattingEnabled = true;
             ComboBoxExWorkLimit.ImeMode = ImeMode.Hiragana;
-            ComboBoxExWorkLimit.Location = new Point(132, 316);
+            ComboBoxExWorkLimit.Location = new Point(132, 344);
             ComboBoxExWorkLimit.Name = "ComboBoxExWorkLimit";
             ComboBoxExWorkLimit.Size = new Size(224, 23);
-            ComboBoxExWorkLimit.TabIndex = 10;
+            ComboBoxExWorkLimit.TabIndex = 11;
             // 
             // labelEx4
             // 
@@ -438,10 +461,10 @@
             DateTimePickerExPeriodDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExPeriodDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExPeriodDate.ImeMode = ImeMode.Off;
-            DateTimePickerExPeriodDate.Location = new Point(132, 344);
+            DateTimePickerExPeriodDate.Location = new Point(132, 372);
             DateTimePickerExPeriodDate.Name = "DateTimePickerExPeriodDate";
             DateTimePickerExPeriodDate.Size = new Size(180, 23);
-            DateTimePickerExPeriodDate.TabIndex = 11;
+            DateTimePickerExPeriodDate.TabIndex = 12;
             DateTimePickerExPeriodDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelEx3
@@ -458,10 +481,10 @@
             DateTimePickerExDeadlineDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExDeadlineDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExDeadlineDate.ImeMode = ImeMode.Off;
-            DateTimePickerExDeadlineDate.Location = new Point(132, 372);
+            DateTimePickerExDeadlineDate.Location = new Point(132, 400);
             DateTimePickerExDeadlineDate.Name = "DateTimePickerExDeadlineDate";
             DateTimePickerExDeadlineDate.Size = new Size(180, 23);
-            DateTimePickerExDeadlineDate.TabIndex = 12;
+            DateTimePickerExDeadlineDate.TabIndex = 13;
             DateTimePickerExDeadlineDate.Value = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // CcContextMenuStrip1
@@ -554,5 +577,7 @@
         private ToolStripMenuItem ToolStripMenuItemPaste;
         private ToolStripMenuItem ToolStripMenuItemDelete;
         private LinkLabel LinkLabel1;
+        private CcControl.CcTextBox CcTextBoxCardNumber;
+        private CcControl.CcLabel ccLabel1;
     }
 }

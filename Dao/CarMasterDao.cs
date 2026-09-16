@@ -121,6 +121,7 @@ namespace Dao {
                                             "CameraRightBack," +
                                             "CameraLeftUnder," +
                                             "CameraRoomMic," +
+                                            "CameraCanopy," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -191,6 +192,7 @@ namespace Dao {
                     carMasterVo.CameraRightBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRightBack"]);
                     carMasterVo.CameraLeftUnder = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftUnder"]);
                     carMasterVo.CameraRoomMic = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRoomMic"]);
+                    carMasterVo.CameraCanopy = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraCanopy"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -316,6 +318,7 @@ namespace Dao {
                                             "CameraRightBack," +
                                             "CameraLeftUnder," +
                                             "CameraRoomMic," +
+                                            "CameraCanopy," +
                                             "InsertPcName," +
                                             "InsertYmdHms," +
                                             "UpdatePcName," +
@@ -386,6 +389,7 @@ namespace Dao {
                     carMasterVo.CameraRightBack = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRightBack"]);
                     carMasterVo.CameraLeftUnder = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraLeftUnder"]);
                     carMasterVo.CameraRoomMic = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraRoomMic"]);
+                    carMasterVo.CameraCanopy = _defaultValue.GetDefaultValue<bool>(sqlDataReader["CameraCanopy"]);
                     carMasterVo.InsertPcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["InsertPcName"]);
                     carMasterVo.InsertYmdHms = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["InsertYmdHms"]);
                     carMasterVo.UpdatePcName = _defaultValue.GetDefaultValue<string>(sqlDataReader["UpdatePcName"]);
@@ -462,6 +466,7 @@ namespace Dao {
                                                              "CameraRightBack," +
                                                              "CameraLeftUnder," +
                                                              "CameraRoomMic," +
+                                                             "CameraCanopy," +
                                                              "InsertPcName," +
                                                              "InsertYmdHms," +
                                                              "UpdatePcName," +
@@ -527,6 +532,7 @@ namespace Dao {
                                             "'" + carMasterVo.CameraRightBack + "'," +
                                             "'" + carMasterVo.CameraLeftUnder + "'," +
                                             "'" + carMasterVo.CameraRoomMic + "'," +
+                                            "'" + carMasterVo.CameraCanopy + "'," +
                                             "'" + Environment.MachineName + "'," +
                                             "'" + DateTime.Now + "'," +
                                             "'" + string.Empty + "'," +
@@ -612,6 +618,7 @@ namespace Dao {
                                          "CameraRightBack                           = '" + carMasterVo.CameraRightBack + "'," +
                                          "CameraLeftUnder                           = '" + carMasterVo.CameraLeftUnder + "'," +
                                          "CameraRoomMic                             = '" + carMasterVo.CameraRoomMic + "'," +
+                                         "CameraCanopy                              = '" + carMasterVo.CameraCanopy + "'," +
                                          "UpdatePcName                              = '" + Environment.MachineName + "'," +
                                          "UpdateYmdHms                              = '" + DateTime.Now + "' " +
                                      "WHERE CarCode = " + carMasterVo.CarCode;

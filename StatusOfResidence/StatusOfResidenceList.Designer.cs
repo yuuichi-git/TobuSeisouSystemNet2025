@@ -111,7 +111,7 @@
             // 
             // SpreadList
             // 
-            SpreadList.AccessibleDescription = "Book1, StatusOfResidenceList, Row 0, Column 0";
+            SpreadList.AccessibleDescription = "SpreadList, StatusOfResidenceList, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             SpreadList.Location = new Point(3, 87);
@@ -147,8 +147,8 @@
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
         private FarPoint.Win.Spread.FpSpread SpreadList;
-        private FarPoint.Win.Spread.SheetView SheetViewList;
         private CcControl.CcButton ButtonExUpdate;
         private CcControl.CcCheckBox CheckBoxExRetirementFlag;
+        private FarPoint.Win.Spread.SheetView SheetViewList;
     }
 }

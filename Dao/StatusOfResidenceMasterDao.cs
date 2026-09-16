@@ -51,6 +51,7 @@ namespace Dao {
             StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
+                                            "Number," +
                                             "StaffNameKana," +
                                             "StaffName," +
                                             "BirthDate," +
@@ -76,6 +77,7 @@ namespace Dao {
             using(var sqlDataReader = sqlCommand.ExecuteReader()) {
                 while(sqlDataReader.Read() == true) {
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    statusOfResidenceMasterVo.Number = _defaultValue.GetDefaultValue<string>(sqlDataReader["Number"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
                     statusOfResidenceMasterVo.StaffName = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffName"]);
                     statusOfResidenceMasterVo.BirthDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["BirthDate"]);
@@ -110,6 +112,7 @@ namespace Dao {
             List<StatusOfResidenceMasterVo> listStatusOfResidenceMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT H_StatusOfResidenceMaster.StaffCode," +
+                                            "H_StatusOfResidenceMaster.Number," +
                                             "H_StatusOfResidenceMaster.StaffNameKana," +
                                             "H_StatusOfResidenceMaster.StaffName," +
                                             "H_StatusOfResidenceMaster.BirthDate," +
@@ -137,6 +140,7 @@ namespace Dao {
                 while(sqlDataReader.Read() == true) {
                     StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    statusOfResidenceMasterVo.Number = _defaultValue.GetDefaultValue<string>(sqlDataReader["Number"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
                     statusOfResidenceMasterVo.StaffName = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffName"]);
                     statusOfResidenceMasterVo.BirthDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["BirthDate"]);
@@ -173,6 +177,7 @@ namespace Dao {
             List<StatusOfResidenceMasterVo> listStatusOfResidenceMasterVo = new();
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "SELECT StaffCode," +
+                                            "Number," +
                                             "StaffNameKana," +
                                             "StaffName," +
                                             "BirthDate," +
@@ -198,6 +203,7 @@ namespace Dao {
                 while(sqlDataReader.Read() == true) {
                     StatusOfResidenceMasterVo statusOfResidenceMasterVo = new();
                     statusOfResidenceMasterVo.StaffCode = _defaultValue.GetDefaultValue<int>(sqlDataReader["StaffCode"]);
+                    statusOfResidenceMasterVo.Number = _defaultValue.GetDefaultValue<string>(sqlDataReader["Number"]);
                     statusOfResidenceMasterVo.StaffNameKana = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffNameKana"]);
                     statusOfResidenceMasterVo.StaffName = _defaultValue.GetDefaultValue<string>(sqlDataReader["StaffName"]);
                     statusOfResidenceMasterVo.BirthDate = _defaultValue.GetDefaultValue<DateTime>(sqlDataReader["BirthDate"]);
@@ -232,6 +238,7 @@ namespace Dao {
         public int InsertOneStatusOfResidenceMaster(StatusOfResidenceMasterVo statusOfResidenceMasterVo) {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "INSERT INTO H_StatusOfResidenceMaster(StaffCode," +
+                                                                           "Number," +
                                                                            "StaffNameKana," +
                                                                            "StaffName," +
                                                                            "BirthDate," +
@@ -253,6 +260,7 @@ namespace Dao {
                                                                            "DeleteYmdHms," +
                                                                            "DeleteFlag) " +
                                      "VALUES (" + statusOfResidenceMasterVo.StaffCode + "," +
+                                            "'" + statusOfResidenceMasterVo.Number + "'," +
                                             "'" + statusOfResidenceMasterVo.StaffNameKana + "'," +
                                             "'" + statusOfResidenceMasterVo.StaffName + "'," +
                                             "'" + statusOfResidenceMasterVo.BirthDate + "'," +
@@ -293,6 +301,7 @@ namespace Dao {
             SqlCommand sqlCommand = _connectionVo.SqlServerConnection.CreateCommand();
             sqlCommand.CommandText = "UPDATE H_StatusOfResidenceMaster " +
                                      "SET StaffCode = " + statusOfResidenceMasterVo.StaffCode + "," +
+                                         "Number = '" + statusOfResidenceMasterVo.Number + "'," +
                                          "StaffNameKana = '" + statusOfResidenceMasterVo.StaffNameKana + "'," +
                                          "StaffName = '" + statusOfResidenceMasterVo.StaffName + "'," +
                                          "BirthDate = '" + statusOfResidenceMasterVo.BirthDate + "'," +

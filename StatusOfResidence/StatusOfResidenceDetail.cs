@@ -151,6 +151,7 @@ namespace StatusOfResidence {
             this.CcComboBoxGender.SelectedIndex = -1;
             this.CcComboBoxCompany.SelectedIndex = -1;
             this.CcTextBoxAddress.Text = string.Empty;
+            this.CcTextBoxCardNumber.SetEmpty();
             this.ComboBoxExStatusOfResidence.Text = string.Empty;
             this.ComboBoxExWorkLimit.Text = string.Empty;
             this.DateTimePickerExPeriodDate.SetEmpty();
@@ -189,6 +190,7 @@ namespace StatusOfResidence {
                 CcComboBoxGender.Text = statusOfResidenceMasterVo.Gender;
                 CcComboBoxCompany.Text = statusOfResidenceMasterVo.Nationality;
                 CcTextBoxAddress.Text = statusOfResidenceMasterVo.Address;
+                this.CcTextBoxCardNumber.Text = statusOfResidenceMasterVo.Number;
                 ComboBoxExStatusOfResidence.Text = statusOfResidenceMasterVo.StatusOfResidence;
                 ComboBoxExWorkLimit.Text = statusOfResidenceMasterVo.WorkLimit;
                 DateTimePickerExPeriodDate.SetValue(statusOfResidenceMasterVo.PeriodDate);
@@ -223,6 +225,7 @@ namespace StatusOfResidence {
             statusOfResidenceMasterVo.Gender = CcComboBoxGender.Text;
             statusOfResidenceMasterVo.Nationality = CcComboBoxCompany.Text;
             statusOfResidenceMasterVo.Address = CcTextBoxAddress.Text;
+            statusOfResidenceMasterVo.Number = CcTextBoxCardNumber.Text;
             statusOfResidenceMasterVo.StatusOfResidence = ComboBoxExStatusOfResidence.Text;
             statusOfResidenceMasterVo.WorkLimit = ComboBoxExWorkLimit.Text;
             statusOfResidenceMasterVo.PeriodDate = DateTimePickerExPeriodDate.GetValue();
