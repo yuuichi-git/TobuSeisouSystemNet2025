@@ -54,6 +54,13 @@ namespace CcControl {
         /// InitializeComponent();の無いバージョンを作成　2026-09-07
         /// </summary>
         public Board() {
+            /* 
+             * ダブルバッファリングを有効にする
+             */
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             /*
              * InitializeControl
              */

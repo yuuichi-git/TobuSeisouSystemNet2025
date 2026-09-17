@@ -10,7 +10,7 @@ using PdfiumViewer;
 
 namespace CcControl {
     public partial class CcPdfView : PdfViewer {
-        private PdfDocument? _pdfDocument = null;
+        private PdfDocument _pdfDocument = null;
         private MemoryStream _memoryStream;
 
         /// <summary>
@@ -22,29 +22,47 @@ namespace CcControl {
         }
 
         /// <summary>
-        /// ※PDFの作成
-        /// PdfSharpCoreを使用
-        /// Bitmap を PDF に埋め込み、PDF の byte[] を返す
+        /// Bitmap を 1 ページの PDF に埋め込み、PDF の byte[] を返す
+        /// （画像をそのまま PDF ページとして保存する）
         /// </summary>
         public byte[] ConvertImageToPdfBytes(Bitmap bitmap) {
+            // PDF 出力用のメモリストリーム
             using(MemoryStream pdfStream = new()) {
-
+                // PdfSharpCore の PDF ドキュメントを作成
                 PdfSharpCore.Pdf.PdfDocument pdfDocument = new();
-                PdfSharpCore.Pdf.PdfPage     pdfPage     = pdfDocument.AddPage();
 
+                // 新しい PDF ページを追加
+                PdfSharpCore.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
+
+                // ページサイズを Bitmap のピクセルサイズに合わせる
+                // （画像をそのままの大きさで PDF に貼り付けたい場合）
                 pdfPage.Width = bitmap.Width;
                 pdfPage.Height = bitmap.Height;
 
+                // PDF 描画用の XGraphics を取得
                 PdfSharpCore.Drawing.XGraphics xGraphics = PdfSharpCore.Drawing.XGraphics.FromPdfPage(pdfPage);
 
+                // Bitmap を PNG として一度 MemoryStream に保存し、
+                // その PNG データを XImage として読み込む
+                // （PdfSharpCore は Bitmap を直接扱えないため）
                 using(MemoryStream imgStream = new MemoryStream()) {
+                    // Bitmap → PNG 形式で MemoryStream に保存
                     bitmap.Save(imgStream, System.Drawing.Imaging.ImageFormat.Png);
-                    imgStream.Position = 0;
+                    imgStream.Position = 0; // 読み込み位置を先頭に戻す
 
+                    // PdfSharpCore の仕様により、ストリームはクローズされる可能性があるため
+                    // imgStream の内容を新しい MemoryStream にコピーして渡す
                     PdfSharpCore.Drawing.XImage xImage = PdfSharpCore.Drawing.XImage.FromStream(() => new MemoryStream(imgStream.ToArray()));
+
+                    // PDF ページに画像を描画（左上 0,0 に原寸で貼り付け）
                     xGraphics.DrawImage(xImage, 0, 0, bitmap.Width, bitmap.Height);
                 }
+
+                // PDF を MemoryStream に保存
+                // 第二引数 false は「pdfStream を閉じない」設定
                 pdfDocument.Save(pdfStream, false);
+
+                // PDF の byte[] を返す
                 return pdfStream.ToArray();
             }
         }
@@ -55,7 +73,7 @@ namespace CcControl {
         /// <param name="page">ページ番号（0から）</param>
         /// <param name="dpi">出力 DPI（印刷用途なら 200～300）</param>
         /// <returns>Bitmap (Image)</returns>
-        public Bitmap? GetPageImage(int page = 0, int dpi = 200) {
+        public Bitmap GetPageImage(int page = 0, int dpi = 200) {
             if(this.PdfDocument == null)
                 return null;
 
@@ -65,15 +83,13 @@ namespace CcControl {
             try {
                 // ★ ページサイズを取得
                 var size = this.PdfDocument.PageSizes[page];
-
                 // ★ 実寸に合わせたピクセル数を計算
                 int width = (int)(size.Width * dpi / 72.0f);
                 int height = (int)(size.Height * dpi / 72.0f);
-
                 // ★ PdfiumViewer の Render を使用して Bitmap を生成
                 Bitmap bitmap = (Bitmap)this.PdfDocument.Render(page, width, height, dpi, dpi, PdfRenderFlags.Annotations);
-
                 return bitmap;
+
             } catch(Exception ex) {
                 MessageBox.Show($"PDFページの描画に失敗しました: {ex.Message}");
                 return null;
@@ -162,7 +178,7 @@ namespace CcControl {
         [Browsable(false)]
         [Description("")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PdfDocument? PdfDocument {
+        public PdfDocument PdfDocument {
             get {
                 return _pdfDocument;
             }
@@ -175,7 +191,7 @@ namespace CcControl {
         [Browsable(false)]
         [Description("")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public MemoryStream? MemoryStream {
+        public MemoryStream MemoryStream {
             get {
                 return _memoryStream;
             }

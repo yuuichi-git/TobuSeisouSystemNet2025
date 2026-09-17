@@ -139,6 +139,14 @@ namespace CcControl {
         /// </summary>
         /// <param name="vehicleDispatchDetailVo"></param>
         public SetControl(VehicleDispatchDetailVo vehicleDispatchDetailVo) {
+            /* 
+             * ダブルバッファリングを有効にする
+             */
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
             _vehicleDispatchDetailVo = vehicleDispatchDetailVo;
             /*
              * プロパティに値をセットする

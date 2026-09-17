@@ -71,6 +71,13 @@ namespace CcControl {
         /// </summary>
         /// <param name="setMasterVo"></param>
         public SetLabel(SetMasterVo setMasterVo) {
+            /* 
+             * ダブルバッファリングを有効にする
+             */
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             /*
              * Vo
              */
@@ -665,7 +672,7 @@ namespace CcControl {
         /// 引数の文字列とToolStripMenuItemのNameプロパティが一致するものを有効にする
         /// </summary>
         /// <param name="toolStripMenuItemNames">Nullの場合は全て無効にする</param>
-        public void SetToolStripMenuItemEnables(string[]? toolStripMenuItemNames) {
+        public void SetToolStripMenuItemEnables(string[] toolStripMenuItemNames) {
             // null の場合は全て false にする
             if (toolStripMenuItemNames == null) {
                 SetEnableRecursive(contextMenuStrip.Items, Array.Empty<string>());
@@ -680,7 +687,7 @@ namespace CcControl {
 
             for (int i = 0; i < length; i++) {
                 ToolStripItem item = items[i];
-                ToolStripMenuItem? menuItem = item as ToolStripMenuItem;
+                ToolStripMenuItem menuItem = item as ToolStripMenuItem;
 
                 if (menuItem == null) {
                     continue;
