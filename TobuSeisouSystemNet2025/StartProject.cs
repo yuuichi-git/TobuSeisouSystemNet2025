@@ -99,7 +99,7 @@ namespace TobuSeisouSystemNet2025 {
 
             this.IpAddress = NetworkUtility.GetIpAddress();
             this.DefaultGatewayAddress = NetworkUtility.GetDefaultGatewayAddress();
-            this.ConnectionLocation = NetworkUtility.GetConnectLocation();
+            this.ConnectionLocation = NetworkUtility.GetConnectLocation(this.DefaultGatewayAddress);
             //this.ConnectionLocation = "三郷車庫";
 
             this.LabelExPcName.Text = string.Concat("〇 PC-Name：", Environment.MachineName);
@@ -163,7 +163,7 @@ namespace TobuSeisouSystemNet2025 {
             switch(((CcButton)sender).Name) {
                 case "ButtonExConnectSqlServer":
                     try {
-                        if(_connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag)) {
+                        if(_connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag) == ConnectionState.Open) {
                             _connectionVo.ConnectionLocation = this.ConnectionLocation;                         // 接続場所をVoにセット
                             this.ButtonExConnectSqlServer.Enabled = false;
                             this.ButtonExDisConnectSqlServer.Enabled = true;
@@ -269,7 +269,7 @@ namespace TobuSeisouSystemNet2025 {
         private VehicleDispatchBoard vehicleDispatchBoardMisato = null;
         private CarList carList = null;
         private StaffList staffList = null;
-        private FirstRollColl firstRollColl = null;
+        private FirstRollCall firstRollColl = null;
         private CarWorkingDays carWorkingDays = null;
         private EmploymentAgreementList employmentAgreementList = null;
         private StaffDestination staffDestination = null;
@@ -321,7 +321,7 @@ namespace TobuSeisouSystemNet2025 {
                             this.ShowSingleInstanceForm(ref vehicleDispatchBoardMisato, () => new VehicleDispatchBoard(_connectionVo));
                             break;
                         case "FirstRollColl":                                                                                                   // 配車表
-                            this.ShowSingleInstanceForm(ref firstRollColl, () => new FirstRollColl(_connectionVo));
+                            this.ShowSingleInstanceForm(ref firstRollColl, () => new FirstRollCall(_connectionVo));
                             break;
                         case "StaffList":                                                                                                       // 従業員台帳
                             this.ShowSingleInstanceForm(ref staffList, () => new StaffList(_connectionVo, (Screen)ComboBoxExMonitor.SelectedValue));
@@ -596,7 +596,7 @@ namespace TobuSeisouSystemNet2025 {
                         /*
                          * Formを表示する
                          */
-                        FirstRollColl firstRollColl = new(_connectionVo);
+                        FirstRollCall firstRollColl = new(_connectionVo);
                         _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, firstRollColl);
                         firstRollColl.Show();
                         break;

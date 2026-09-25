@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeakSeason", "PeakSeason\Pe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskAssessment", "RiskAssessment\RiskAssessment.csproj", "{FF2B9004-A6B9-40B3-B0D9-9A13522B86C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TobuSeisouSystem2027", "TobuSeisouSystem2027\TobuSeisouSystem2027.csproj", "{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -341,6 +343,14 @@ Global
 		{FF2B9004-A6B9-40B3-B0D9-9A13522B86C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF2B9004-A6B9-40B3-B0D9-9A13522B86C8}.Release|x64.ActiveCfg = Release|x64
 		{FF2B9004-A6B9-40B3-B0D9-9A13522B86C8}.Release|x64.Build.0 = Release|x64
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Debug|x64.Build.0 = Debug|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Release|x64.ActiveCfg = Release|Any CPU
+		{E1B88AF3-34E4-47FB-9884-59EDFFD6875D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

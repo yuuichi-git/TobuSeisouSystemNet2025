@@ -34,6 +34,8 @@ namespace DriversReport {
                                        "ToolStripMenuItemPrintB5Dialog",
                                        "ToolStripMenuItemHelp"];
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
@@ -44,10 +46,6 @@ namespace DriversReport {
             this.ComboBoxExPrinterName.Text = this._printDocument.PrinterSettings.PrinterName;
 
             this.InitializeSheetView(this.SheetViewDriversReport);
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -63,15 +61,15 @@ namespace DriversReport {
             /*
              * MenuStrip
              */
-            List<string> listString = [
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintB5",
-                "ToolStripMenuItemPrintB5Dialog",
-                "ToolStripMenuItemHelp"
-            ];
+            List<string> listString = ["ToolStripMenuItemFile",
+                                       "ToolStripMenuItemExit",
+                                       "ToolStripMenuItemPrint",
+                                       "ToolStripMenuItemPrintB5",
+                                       "ToolStripMenuItemPrintB5Dialog",
+                                       "ToolStripMenuItemHelp"];
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+
             /*
              * プリンターの一覧を取得後、通常使うプリンター名をセットする
              */
@@ -82,10 +80,6 @@ namespace DriversReport {
 
             this.InitializeSheetView(this.SheetViewDriversReport);
             this.SetSheetView(this.SheetViewDriversReport, setControl);
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -234,7 +228,7 @@ namespace DriversReport {
                     sheetView.Cells[12, 17].Text = "🔲　新江東清掃工場"; // 運搬先名⑤
                     break;
                 case 1311902:                                                                                               // 板橋西軽１
-                //case 1311903:                                                                                               // 板橋西軽３
+                //case 1311903:                                                                                             // 板橋西軽３
                 case 1311904:                                                                                               // 板橋西軽７
                     sheetView.Cells[10, 17].Text = "西台中継所/板橋清掃工場 /"; // 休憩場所
                     sheetView.Cells[12, 3].Text = "🔲　板橋清掃工場"; // 運搬先名①
@@ -255,12 +249,14 @@ namespace DriversReport {
                 case 1312172:                                                                                               // 足立３３
                 case 1312173:                                                                                               // 足立３４
                 case 1312169:                                                                                               // 足立８
-                    sheetView.Cells[10, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 休憩場所
-                    sheetView.Cells[12, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名①
-                    sheetView.Cells[13, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名②
-                    sheetView.Cells[14, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名③
-                    sheetView.Cells[15, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名④
-                    sheetView.Cells[12, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場"; // 運搬先名⑤
+                    sheetView.Cells[10, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                         // 休憩場所
+                    sheetView.Cells[12, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                          // 運搬先名①
+                    sheetView.Cells[13, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                          // 運搬先名②
+                    sheetView.Cells[14, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                          // 運搬先名③
+                    sheetView.Cells[15, 3].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                          // 運搬先名④
+                    sheetView.Cells[12, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                         // 運搬先名⑤
+                    sheetView.Cells[13, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                         // 運搬先名⑥
+                    sheetView.Cells[14, 17].Text = "🔲足立清掃工場 / 🔲葛飾清掃工場";                                         // 運搬先名⑦
                     break;
                 case 1312212:                                                                                               // 小岩６
                     sheetView.Cells[10, 17].Text = "小岩清掃事務所 駐車場 /"; // 休憩場所

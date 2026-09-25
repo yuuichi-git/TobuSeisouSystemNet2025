@@ -42,14 +42,13 @@ namespace PdfView {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPDF",
-                "ToolStripMenuItemPDFOpen",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPDF",
+                                             "ToolStripMenuItemPDFOpen",
+                                             "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             if(_id is not null && _pdfFileDao.ExistsById(_id)) {
                 // 画面に表示するデータを取得する
@@ -59,12 +58,7 @@ namespace PdfView {
             } else {
                 // 新規登録画面用に初期化
                 ClearPdfViewer(this.CcPdfView1);
-
             }
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -209,7 +203,6 @@ namespace PdfView {
             get {
                 return _returnValue;
             }
-
             set {
                 _returnValue = value;
             }

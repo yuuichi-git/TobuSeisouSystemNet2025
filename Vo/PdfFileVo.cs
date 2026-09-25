@@ -14,6 +14,9 @@ namespace Vo {
         private DateTime _deleteYmdHms;
         private bool _deleteFlag;
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public PdfFileVo() {
             _id = string.Empty;
             _pdfImage = Array.Empty<byte>();
@@ -33,7 +36,6 @@ namespace Vo {
             get {
                 return _id;
             }
-
             set {
                 _id = value;
             }
@@ -45,80 +47,38 @@ namespace Vo {
             get {
                 return _pdfImage;
             }
-
             set {
                 _pdfImage = value;
             }
         }
 
         public string InsertPcName {
-            get {
-                return _insertPcName;
-            }
-
-            set {
-                _insertPcName = value;
-            }
+            get => _insertPcName;
+            set => _insertPcName = value;
         }
-
         public DateTime InsertYmdHms {
-            get {
-                return _insertYmdHms;
-            }
-
-            set {
-                _insertYmdHms = value;
-            }
+            get => _insertYmdHms;
+            set => _insertYmdHms = value;
         }
-
         public string UpdatePcName {
-            get {
-                return _updatePcName;
-            }
-
-            set {
-                _updatePcName = value;
-            }
+            get => _updatePcName;
+            set => _updatePcName = value;
         }
-
         public DateTime UpdateYmdHms {
-            get {
-                return _updateYmdHms;
-            }
-
-            set {
-                _updateYmdHms = value;
-            }
+            get => _updateYmdHms;
+            set => _updateYmdHms = value;
         }
-
         public string DeletePcName {
-            get {
-                return _deletePcName;
-            }
-
-            set {
-                _deletePcName = value;
-            }
+            get => _deletePcName;
+            set => _deletePcName = value;
         }
-
         public DateTime DeleteYmdHms {
-            get {
-                return _deleteYmdHms;
-            }
-
-            set {
-                _deleteYmdHms = value;
-            }
+            get => _deleteYmdHms;
+            set => _deleteYmdHms = value;
         }
-
         public bool DeleteFlag {
-            get {
-                return _deleteFlag;
-            }
-
-            set {
-                _deleteFlag = value;
-            }
+            get => _deleteFlag;
+            set => _deleteFlag = value;
         }
     }
 }

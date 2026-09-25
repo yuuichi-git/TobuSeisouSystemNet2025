@@ -15,7 +15,7 @@ using GrapeCity.Spreadsheet;
 using Vo;
 
 namespace RollCall {
-    public partial class FirstRollColl : Form {
+    public partial class FirstRollCall : Form {
         /// <summary>
         /// Rowのスタート位置
         /// </summary>
@@ -98,7 +98,7 @@ namespace RollCall {
         /// コンストラクター
         /// </summary>
         /// <param name="connectionVo"></param>
-        public FirstRollColl(ConnectionVo connectionVo) {
+        public FirstRollCall(ConnectionVo connectionVo) {
             /*
              * Dao
              */

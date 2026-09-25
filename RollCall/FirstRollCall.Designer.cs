@@ -1,5 +1,5 @@
 ﻿namespace RollCall {
-    partial class FirstRollColl {
+    partial class FirstRollCall {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstRollColl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstRollCall));
             this.TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
             this.MenuStripEx1 = new CcControl.CcMenuStrip();
             this.StatusStripEx1 = new CcControl.CcStatusStrip();

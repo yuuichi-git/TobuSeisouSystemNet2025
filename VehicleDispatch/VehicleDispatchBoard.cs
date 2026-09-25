@@ -97,7 +97,7 @@ namespace VehicleDispatch {
 
             List<string> listString;
             switch(_connectionVo.ConnectionLocation) {
-                case "本社":
+                case "本社営業所":
                     /*
                      * MenuStrip
                      */
@@ -110,6 +110,8 @@ namespace VehicleDispatch {
                                         "ToolStripMenuItemHelp"};
                     this.MenuStripEx1.ChangeEnable(listString);
                     this.MenuStripEx1.BackColor = Color.Empty;
+                    this.ButtonExUpdate.Enabled = true;
+                    this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "本社内からの接続";                           // StatusStripEx1を初期化
                     break;
                 case "三郷車庫":
                     /*
@@ -120,17 +122,26 @@ namespace VehicleDispatch {
                                         "ToolStripMenuItemHelp"};
                     this.MenuStripEx1.ChangeEnable(listString);
                     this.MenuStripEx1.BackColor = Color.LightSteelBlue;
-                    this.ButtonExStockBoxOpen.Enabled = false; // 三郷車庫はStock-Boxsを使用しないため、ButtonExStockBoxOpenを無効化する
+                        this.ButtonExUpdate.Enabled = true;
+                    this.ButtonExStockBoxOpen.Enabled = false;                                                          // 三郷車庫はStock-Boxsを使用しないため、ButtonExStockBoxOpenを無効化する
+                    this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "三郷内からの接続";                              // StatusStripEx1を初期化
                     break;
                 default:
-                    this.MenuStripEx1.BackColor = Color.Empty;
+                    /*
+                     * MenuStrip
+                     */
+                    listString = new() {"ToolStripMenuItemFile",
+                                        "ToolStripMenuItemExit",
+                                        "ToolStripMenuItemHelp"};
+                    this.MenuStripEx1.ChangeEnable(listString);
+                    this.ButtonExUpdate.Enabled = false;
+                    this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "_connectionVo.ConnectionLocationがNULLです。処理を中断します。";
                     break;
             }
 
             this.DateTimePickerExOperationDate.SetToday();                                                          // DateTimePickerExOperationDateを初期化
             this.ButtonExStockBoxOpen.SetTextDirectionVertical = "Stock-Boxs";                                      // ButtonExStockBoxOpenを初期化
             this.AddBoard();
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "InitializeSuccess";                              // StatusStripEx1を初期化
             /*
              * Eventを登録する
              */

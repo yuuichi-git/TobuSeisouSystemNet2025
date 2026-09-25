@@ -39,32 +39,32 @@ namespace CcControl {
             /*
              * File
              */
-            ToolStripMenuItem toolStripMenuItemFile = CreateMenuItem("ToolStripMenuItemFile","File",null,this.Items);
-            CreateMenuItem("ToolStripMenuItemExit", "Exit", ToolStripMenuItem_Click, toolStripMenuItemFile.DropDownItems);
+            ToolStripMenuItem toolStripMenuItemFile = CreateMenuItem("ToolStripMenuItemFile","ファイル",null,this.Items);
+            CreateMenuItem("ToolStripMenuItemExit", "終了", ToolStripMenuItem_Click, toolStripMenuItemFile.DropDownItems);
             /*
              * Edit
              */
-            ToolStripMenuItem toolStripMenuItemEdit =CreateMenuItem("ToolStripMenuItemEdit","Edit",null,this.Items);
+            ToolStripMenuItem toolStripMenuItemEdit =CreateMenuItem("ToolStripMenuItemEdit","編集",null,this.Items);
             CreateMenuItem("ToolStripMenuItemInsertNewRecord", "新規レコード作成", ToolStripMenuItem_Click, toolStripMenuItemEdit.DropDownItems);
             CreateMenuItem("ToolStripMenuItemUpdateTaitou", "台東資源収集量入力", ToolStripMenuItem_Click, toolStripMenuItemEdit.DropDownItems);
             /*
              * Initialize
              */
-            ToolStripMenuItem toolStripMenuItemInitialize =CreateMenuItem("ToolStripMenuItemInitialize","Initialize",null,this.Items);
+            ToolStripMenuItem toolStripMenuItemInitialize =CreateMenuItem("ToolStripMenuItemInitialize","初期化",null,this.Items);
             CreateMenuItem("ToolStripMenuItemInitializeBord", "配車ボードを初期化する", ToolStripMenuItem_Click, toolStripMenuItemInitialize.DropDownItems);
             /*
              * DataBase
              */
-            ToolStripMenuItem toolStripMenuItemDataBase =CreateMenuItem("ToolStripMenuItemDataBase","DataBase",null,this.Items);
-            ToolStripMenuItem toolStripMenuItemDataBaseLocal =CreateMenuItem("ToolStripMenuItemDataBaseLocal","Connection LocalBataBase",ToolStripMenuItem_Click,toolStripMenuItemDataBase.DropDownItems);
+            ToolStripMenuItem toolStripMenuItemDataBase =CreateMenuItem("ToolStripMenuItemDataBase","データベース",null,this.Items);
+            ToolStripMenuItem toolStripMenuItemDataBaseLocal =CreateMenuItem("ToolStripMenuItemDataBaseLocal","ローカルデータベースへ接続",ToolStripMenuItem_Click,toolStripMenuItemDataBase.DropDownItems);
             toolStripMenuItemDataBaseLocal.Checked = ToolStripMenuItemDataBaseLocalFlag;
             toolStripMenuItemDataBaseLocal.CheckOnClick = true;
             /*
              * Export
              */
-            ToolStripMenuItem toolStripMenuItemExport =CreateMenuItem("ToolStripMenuItemExport","Export",null,this.Items);
-            CreateMenuItem("ToolStripMenuItemExportExcel", "xls形式ファイルをエクスポートします", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
-            CreateMenuItem("ToolStripMenuItemExportCSV", "csv形式ファイルをエクスポートします", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
+            ToolStripMenuItem toolStripMenuItemExport =CreateMenuItem("ToolStripMenuItemExport","エクスポート",null,this.Items);
+            CreateMenuItem("ToolStripMenuItemExportExcel", "xls形式ファイルをエクスポート", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
+            CreateMenuItem("ToolStripMenuItemExportCSV", "csv形式ファイルをエクスポート", ToolStripMenuItem_Click, toolStripMenuItemExport.DropDownItems);
             /*
              * PDF
              */
@@ -82,7 +82,7 @@ namespace CcControl {
             /*
              * Help
              */
-            CreateMenuItem("ToolStripMenuItemHelp", "Help", null, this.Items);
+            CreateMenuItem("ToolStripMenuItemHelp", "ヘルプ", null, this.Items);
         }
 
         private ToolStripMenuItem CreateMenuItem(string name, string text, EventHandler handler, ToolStripItemCollection parent) {
