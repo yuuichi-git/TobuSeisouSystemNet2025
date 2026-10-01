@@ -106,12 +106,9 @@ namespace PaidLeave {
                                        "ToolStripMenuItemExit",
                                        "ToolStripMenuItemHelp"];
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
 
             this.InitializeSheetView(this.SheetViewList);
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -272,6 +269,9 @@ namespace PaidLeave {
                                                                        .Where(x => x.BaseDate.Date == _dictionaryStartDate[number].Date && x.Code == 1) // 1:有給休暇
                                                                        .OrderBy(x => x.Date).ToList()) {
                 int colIndex = (int)Col.TimeOffStart + colOffset;
+                if(colIndex > 27) {
+                    MessageBox.Show(string.Concat(staffMasterVo.Name, "の有給消化日数が表示限度(20日)を超えています。超えている日数を削除して下さい。"), "有給日数の不整合", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
                 /*
                  * 直近起算日以降の休暇日はForeColor = Color.Red
                  */

@@ -16,15 +16,9 @@ namespace Vo {
         private OracleConnection _oracleConnection = new();
         private readonly Ping _ping = new();
         private string _serverName = string.Empty;
-
         private string _connectionLocation = string.Empty;
 
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public ConnectionVo() {
-
-        }
+        private LoginVo _loginVo = new();
 
         /// <summary>
         /// SQL Server 接続
@@ -152,6 +146,61 @@ namespace Vo {
         public string ServerName {
             get => _serverName;
             set => _serverName = value;
+        }
+        /// <summary>
+        /// ログイン情報を保持
+        /// </summary>
+        public LoginVo LoginVo {
+            get => _loginVo;
+            set => _loginVo = value;
+        }
+    }
+
+    /// <summary>
+    /// ログイン管理クラス
+    /// </summary>
+    public class LoginVo {
+        private string _id = string.Empty;
+        private string _status = string.Empty;
+        private string _loginPcName = string.Empty;
+        private string _loginIpAddress = string.Empty;
+        private DateTime _loginDateTime = new DateTime(1900,01,01);
+
+        /// <summary>
+        /// 一意のId
+        /// </summary>
+        public string Id {
+            get => _id;
+            set => _id = value;
+        }
+        /// <summary>
+        /// ログインステータス
+        /// Connect　DisConnect
+        /// </summary>
+        public string Status {
+            get => _status;
+            set => _status = value;
+        }
+        /// <summary>
+        /// ログインPC名
+        /// </summary>
+        public string LoginPcName {
+            get => _loginPcName;
+            set => _loginPcName = value;
+        }
+        /// <summary>
+        /// ログインIPアドレス
+        /// </summary>
+        public string LoginIpAddress {
+            get => _loginIpAddress;
+            set => _loginIpAddress = value;
+        }
+        /// <summary>
+        /// ログイン日時
+        /// </summary>
+        public DateTime LoginDateTime {
+            get => _loginDateTime;
+            set => _loginDateTime = value;
         }
     }
 }

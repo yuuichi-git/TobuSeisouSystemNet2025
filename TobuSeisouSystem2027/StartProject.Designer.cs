@@ -55,9 +55,14 @@
             CcTableLayoutPanel1 = new CcControl.CcTableLayoutPanel();
             CcLabelVehicleDispatchBoardAdachi = new CcControl.CcLabel();
             CcLabelFirstRollCall = new CcControl.CcLabel();
+            CcLabelCarList = new CcControl.CcLabel();
+            CcLabelStaffList = new CcControl.CcLabel();
+            CcLabelLicenseList = new CcControl.CcLabel();
+            CcLabelStaffDestination = new CcControl.CcLabel();
             TabPage2 = new TabPage();
             CcTableLayoutPanel2 = new CcControl.CcTableLayoutPanel();
             CcLabelVehicleDispatchBoardMisato = new CcControl.CcLabel();
+            CcLabelCarWorkingDays = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelUp.SuspendLayout();
             ccGroupBox2.SuspendLayout();
@@ -128,12 +133,14 @@
             // 
             // CcComboBoxPrinters1
             // 
+            CcComboBoxPrinters1.DisplayMember = "DisplayName";
             CcComboBoxPrinters1.DropDownStyle = ComboBoxStyle.DropDownList;
             CcComboBoxPrinters1.FormattingEnabled = true;
             CcComboBoxPrinters1.Location = new Point(396, 132);
             CcComboBoxPrinters1.Name = "CcComboBoxPrinters1";
             CcComboBoxPrinters1.Size = new Size(256, 23);
             CcComboBoxPrinters1.TabIndex = 9;
+            CcComboBoxPrinters1.ValueMember = "Key";
             // 
             // ccLabel9
             // 
@@ -313,10 +320,10 @@
             CcButtonDisConnect.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             CcButtonDisConnect.Enabled = false;
             CcButtonDisConnect.ForeColor = SystemColors.ControlText;
-            CcButtonDisConnect.Location = new Point(776, 68);
+            CcButtonDisConnect.Location = new Point(744, 52);
             CcButtonDisConnect.Name = "CcButtonDisConnect";
             CcButtonDisConnect.SetTextDirectionVertical = "";
-            CcButtonDisConnect.Size = new Size(180, 36);
+            CcButtonDisConnect.Size = new Size(180, 28);
             CcButtonDisConnect.TabIndex = 1;
             CcButtonDisConnect.Text = "DisConnect";
             CcButtonDisConnect.UseVisualStyleBackColor = true;
@@ -326,7 +333,7 @@
             // 
             CcButtonConnect.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             CcButtonConnect.ForeColor = SystemColors.ControlText;
-            CcButtonConnect.Location = new Point(776, 20);
+            CcButtonConnect.Location = new Point(744, 12);
             CcButtonConnect.Name = "CcButtonConnect";
             CcButtonConnect.SetTextDirectionVertical = "";
             CcButtonConnect.Size = new Size(180, 36);
@@ -361,11 +368,18 @@
             // 
             // CcTableLayoutPanel1
             // 
-            CcTableLayoutPanel1.ColumnCount = 2;
+            CcTableLayoutPanel1.ColumnCount = 4;
+            CcTableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             CcTableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            CcTableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             CcTableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            CcTableLayoutPanel1.Controls.Add(CcLabelVehicleDispatchBoardAdachi, 0, 0);
-            CcTableLayoutPanel1.Controls.Add(CcLabelFirstRollCall, 0, 1);
+            CcTableLayoutPanel1.Controls.Add(CcLabelVehicleDispatchBoardAdachi, 1, 0);
+            CcTableLayoutPanel1.Controls.Add(CcLabelFirstRollCall, 1, 1);
+            CcTableLayoutPanel1.Controls.Add(CcLabelCarList, 1, 2);
+            CcTableLayoutPanel1.Controls.Add(CcLabelStaffList, 1, 3);
+            CcTableLayoutPanel1.Controls.Add(CcLabelLicenseList, 1, 4);
+            CcTableLayoutPanel1.Controls.Add(CcLabelStaffDestination, 3, 0);
+            CcTableLayoutPanel1.Controls.Add(CcLabelCarWorkingDays, 3, 1);
             CcTableLayoutPanel1.Dock = DockStyle.Fill;
             CcTableLayoutPanel1.Location = new Point(3, 3);
             CcTableLayoutPanel1.Name = "CcTableLayoutPanel1";
@@ -385,10 +399,10 @@
             CcLabelVehicleDispatchBoardAdachi.AutoSize = true;
             CcLabelVehicleDispatchBoardAdachi.Dock = DockStyle.Fill;
             CcLabelVehicleDispatchBoardAdachi.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CcLabelVehicleDispatchBoardAdachi.Location = new Point(5, 5);
+            CcLabelVehicleDispatchBoardAdachi.Location = new Point(65, 5);
             CcLabelVehicleDispatchBoardAdachi.Margin = new Padding(5);
             CcLabelVehicleDispatchBoardAdachi.Name = "CcLabelVehicleDispatchBoardAdachi";
-            CcLabelVehicleDispatchBoardAdachi.Size = new Size(472, 45);
+            CcLabelVehicleDispatchBoardAdachi.Size = new Size(412, 45);
             CcLabelVehicleDispatchBoardAdachi.TabIndex = 0;
             CcLabelVehicleDispatchBoardAdachi.Text = "　配車システム\r\n　　ドラッグ＆ドロップによるUI配車システム";
             CcLabelVehicleDispatchBoardAdachi.Click += CcLabel_Click;
@@ -400,15 +414,75 @@
             CcLabelFirstRollCall.AutoSize = true;
             CcLabelFirstRollCall.Dock = DockStyle.Fill;
             CcLabelFirstRollCall.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CcLabelFirstRollCall.Location = new Point(5, 60);
+            CcLabelFirstRollCall.Location = new Point(65, 60);
             CcLabelFirstRollCall.Margin = new Padding(5);
             CcLabelFirstRollCall.Name = "CcLabelFirstRollCall";
-            CcLabelFirstRollCall.Size = new Size(472, 45);
+            CcLabelFirstRollCall.Size = new Size(412, 45);
             CcLabelFirstRollCall.TabIndex = 1;
             CcLabelFirstRollCall.Text = "　配車表\r\n　　清掃システムに対応した配車表を作成";
             CcLabelFirstRollCall.Click += CcLabel_Click;
             CcLabelFirstRollCall.MouseEnter += CcLabel_MouseEnter;
             CcLabelFirstRollCall.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelCarList
+            // 
+            CcLabelCarList.AutoSize = true;
+            CcLabelCarList.Dock = DockStyle.Fill;
+            CcLabelCarList.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelCarList.Location = new Point(65, 115);
+            CcLabelCarList.Margin = new Padding(5);
+            CcLabelCarList.Name = "CcLabelCarList";
+            CcLabelCarList.Size = new Size(412, 45);
+            CcLabelCarList.TabIndex = 2;
+            CcLabelCarList.Text = "　車両台帳\r\n　　車両の管理";
+            CcLabelCarList.Click += CcLabel_Click;
+            CcLabelCarList.MouseEnter += CcLabel_MouseEnter;
+            CcLabelCarList.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelStaffList
+            // 
+            CcLabelStaffList.AutoSize = true;
+            CcLabelStaffList.Dock = DockStyle.Fill;
+            CcLabelStaffList.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelStaffList.Location = new Point(65, 170);
+            CcLabelStaffList.Margin = new Padding(5);
+            CcLabelStaffList.Name = "CcLabelStaffList";
+            CcLabelStaffList.Size = new Size(412, 45);
+            CcLabelStaffList.TabIndex = 3;
+            CcLabelStaffList.Text = "　従事者台帳\r\n　　従事者の管理";
+            CcLabelStaffList.Click += CcLabel_Click;
+            CcLabelStaffList.MouseEnter += CcLabel_MouseEnter;
+            CcLabelStaffList.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelLicenseList
+            // 
+            CcLabelLicenseList.AutoSize = true;
+            CcLabelLicenseList.Dock = DockStyle.Fill;
+            CcLabelLicenseList.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelLicenseList.Location = new Point(65, 225);
+            CcLabelLicenseList.Margin = new Padding(5);
+            CcLabelLicenseList.Name = "CcLabelLicenseList";
+            CcLabelLicenseList.Size = new Size(412, 45);
+            CcLabelLicenseList.TabIndex = 4;
+            CcLabelLicenseList.Text = "　免許証台帳\r\n　　免許証の管理";
+            CcLabelLicenseList.Click += CcLabel_Click;
+            CcLabelLicenseList.MouseEnter += CcLabel_MouseEnter;
+            CcLabelLicenseList.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelStaffDestination
+            // 
+            CcLabelStaffDestination.AutoSize = true;
+            CcLabelStaffDestination.Dock = DockStyle.Fill;
+            CcLabelStaffDestination.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelStaffDestination.Location = new Point(547, 5);
+            CcLabelStaffDestination.Margin = new Padding(5);
+            CcLabelStaffDestination.Name = "CcLabelStaffDestination";
+            CcLabelStaffDestination.Size = new Size(412, 45);
+            CcLabelStaffDestination.TabIndex = 5;
+            CcLabelStaffDestination.Text = "　従事者勤務詳細\r\n　　配車先や朝電・無断等の情報を表示";
+            CcLabelStaffDestination.Click += CcLabel_Click;
+            CcLabelStaffDestination.MouseEnter += CcLabel_MouseEnter;
+            CcLabelStaffDestination.MouseLeave += CcLabel_MouseLeave;
             // 
             // TabPage2
             // 
@@ -423,21 +497,23 @@
             // 
             // CcTableLayoutPanel2
             // 
-            CcTableLayoutPanel2.ColumnCount = 2;
+            CcTableLayoutPanel2.ColumnCount = 4;
+            CcTableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             CcTableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            CcTableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             CcTableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            CcTableLayoutPanel2.Controls.Add(CcLabelVehicleDispatchBoardMisato, 0, 0);
+            CcTableLayoutPanel2.Controls.Add(CcLabelVehicleDispatchBoardMisato, 1, 0);
             CcTableLayoutPanel2.Dock = DockStyle.Fill;
             CcTableLayoutPanel2.Location = new Point(3, 3);
             CcTableLayoutPanel2.Name = "CcTableLayoutPanel2";
             CcTableLayoutPanel2.RowCount = 7;
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857132F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            CcTableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
             CcTableLayoutPanel2.Size = new Size(964, 386);
             CcTableLayoutPanel2.TabIndex = 4;
             // 
@@ -446,15 +522,30 @@
             CcLabelVehicleDispatchBoardMisato.AutoSize = true;
             CcLabelVehicleDispatchBoardMisato.Dock = DockStyle.Fill;
             CcLabelVehicleDispatchBoardMisato.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CcLabelVehicleDispatchBoardMisato.Location = new Point(5, 5);
+            CcLabelVehicleDispatchBoardMisato.Location = new Point(65, 5);
             CcLabelVehicleDispatchBoardMisato.Margin = new Padding(5);
             CcLabelVehicleDispatchBoardMisato.Name = "CcLabelVehicleDispatchBoardMisato";
-            CcLabelVehicleDispatchBoardMisato.Size = new Size(472, 45);
+            CcLabelVehicleDispatchBoardMisato.Size = new Size(412, 45);
             CcLabelVehicleDispatchBoardMisato.TabIndex = 2;
             CcLabelVehicleDispatchBoardMisato.Text = "　配車システム\r\n　　ドラッグ＆ドロップによるUI配車システム";
             CcLabelVehicleDispatchBoardMisato.Click += CcLabel_Click;
             CcLabelVehicleDispatchBoardMisato.MouseEnter += CcLabel_MouseEnter;
             CcLabelVehicleDispatchBoardMisato.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelCarWorkingDays
+            // 
+            CcLabelCarWorkingDays.AutoSize = true;
+            CcLabelCarWorkingDays.Dock = DockStyle.Fill;
+            CcLabelCarWorkingDays.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelCarWorkingDays.Location = new Point(547, 60);
+            CcLabelCarWorkingDays.Margin = new Padding(5);
+            CcLabelCarWorkingDays.Name = "CcLabelCarWorkingDays";
+            CcLabelCarWorkingDays.Size = new Size(412, 45);
+            CcLabelCarWorkingDays.TabIndex = 6;
+            CcLabelCarWorkingDays.Text = "　車両稼働表\r\n　　車両の稼働明細一覧を表示";
+            CcLabelCarWorkingDays.Click += CcLabel_Click;
+            CcLabelCarWorkingDays.MouseEnter += CcLabel_MouseEnter;
+            CcLabelCarWorkingDays.MouseLeave += CcLabel_MouseLeave;
             // 
             // StartProject
             // 
@@ -468,7 +559,7 @@
             MinimizeBox = false;
             Name = "StartProject";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "東武清掃システム";
+            Text = "東武清掃システム(運行管理)";
             FormClosing += StartProject_FormClosing;
             Load += StartProject_Load;
             CcTableLayoutPanelBase.ResumeLayout(false);
@@ -523,5 +614,10 @@
         private CcControl.CcComboBoxMonitors CcComboBoxMonitors1;
         private CcControl.CcLabel ccLabel9;
         private CcControl.CcComboBoxPrinters CcComboBoxPrinters1;
+        private CcControl.CcLabel CcLabelCarList;
+        private CcControl.CcLabel CcLabelStaffList;
+        private CcControl.CcLabel CcLabelLicenseList;
+        private CcControl.CcLabel CcLabelStaffDestination;
+        private CcControl.CcLabel CcLabelCarWorkingDays;
     }
 }

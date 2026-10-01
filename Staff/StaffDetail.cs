@@ -1,6 +1,9 @@
 ﻿/*
  * 2025-1-17
  */
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+
 using CcControl;
 
 using Common;
@@ -302,7 +305,7 @@ namespace Staff {
              * 保険関係
              */
             DateTimeExHealthInsuranceDate.SetClear();
-            ComboBoxExHealthInsuranceNumber.SelectedIndex = -1;
+            CcComboBoxHealthInsuranceNumber.SelectedIndex = -1;
             TextBoxExHealthInsuranceNote.Text = string.Empty;
             DateTimeExWelfarePensionDate.SetClear();
             ComboBoxExWelfarePensionNumber.SelectedIndex = -1;
@@ -472,7 +475,7 @@ namespace Staff {
             } else {
                 staffMasterVo.HealthInsuranceDate = _defaultDateTime;
             }
-            staffMasterVo.HealthInsuranceNumber = ComboBoxExHealthInsuranceNumber.Text;                                                 // 健康保険番号
+            staffMasterVo.HealthInsuranceNumber = CcComboBoxHealthInsuranceNumber.Text;                                                 // 健康保険番号
             staffMasterVo.HealthInsuranceNote = TextBoxExHealthInsuranceNote.Text;                                                      // 健康保険備考
             if(DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                      // 年金保険加入日
                 staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();
@@ -626,7 +629,7 @@ namespace Staff {
              * 保険関係
              */
             DateTimeExHealthInsuranceDate.SetValueJp(staffMasterVo.HealthInsuranceDate);
-            ComboBoxExHealthInsuranceNumber.Text = staffMasterVo.HealthInsuranceNumber;
+            CcComboBoxHealthInsuranceNumber.Text = staffMasterVo.HealthInsuranceNumber;
             TextBoxExHealthInsuranceNote.Text = staffMasterVo.HealthInsuranceNote;
             DateTimeExWelfarePensionDate.SetValueJp(staffMasterVo.WelfarePensionDate);
             ComboBoxExWelfarePensionNumber.Text = staffMasterVo.WelfarePensionNumber;

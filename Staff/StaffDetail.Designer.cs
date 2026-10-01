@@ -271,7 +271,7 @@
             DateTimeExMedicalExaminationDate1 = new CcControl.CcDateTime();
             TextBoxExMedicalExaminationNote1 = new CcControl.CcTextBox();
             GroupBoxExInsurance = new CcControl.CcGroupBox();
-            ComboBoxExHealthInsuranceNumber = new CcControl.CcComboBox();
+            CcComboBoxHealthInsuranceNumber = new CcControl.CcComboBox();
             DateTimeExHealthInsuranceDate = new CcControl.CcDateTime();
             TextBoxExHealthInsuranceNote = new CcControl.CcTextBox();
             ComboBoxExWorkerAccidentInsuranceNumber = new CcControl.CcComboBox();
@@ -539,7 +539,6 @@
             // 
             // CcDateTimePaidLeaveCommencementDate
             // 
-            CcDateTimePaidLeaveCommencementDate.CultureFlag = false;
             CcDateTimePaidLeaveCommencementDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimePaidLeaveCommencementDate.Format = DateTimePickerFormat.Custom;
             CcDateTimePaidLeaveCommencementDate.Location = new Point(472, 164);
@@ -578,7 +577,6 @@
             // 
             // CcDateTimePaidLeaveReferenceDate
             // 
-            CcDateTimePaidLeaveReferenceDate.CultureFlag = false;
             CcDateTimePaidLeaveReferenceDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimePaidLeaveReferenceDate.Format = DateTimePickerFormat.Custom;
             CcDateTimePaidLeaveReferenceDate.Location = new Point(204, 164);
@@ -764,7 +762,6 @@
             // 
             // CcDateTimeBirthDate
             // 
-            CcDateTimeBirthDate.CultureFlag = false;
             CcDateTimeBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimeBirthDate.Format = DateTimePickerFormat.Custom;
             CcDateTimeBirthDate.Location = new Point(72, 104);
@@ -875,7 +872,6 @@
             // 
             // CcDateTimeEmploymentDate
             // 
-            CcDateTimeEmploymentDate.CultureFlag = false;
             CcDateTimeEmploymentDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimeEmploymentDate.Format = DateTimePickerFormat.Custom;
             CcDateTimeEmploymentDate.Location = new Point(72, 132);
@@ -886,7 +882,6 @@
             // 
             // CcDateTimePickerContractDate
             // 
-            CcDateTimePickerContractDate.CultureFlag = false;
             CcDateTimePickerContractDate.CustomFormat = " 明治33年01月01日(月曜日)";
             CcDateTimePickerContractDate.Format = DateTimePickerFormat.Custom;
             CcDateTimePickerContractDate.Location = new Point(368, 132);
@@ -1008,7 +1003,6 @@
             // 
             // DateTimeExDeathDate
             // 
-            DateTimeExDeathDate.CultureFlag = false;
             DateTimeExDeathDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExDeathDate.Format = DateTimePickerFormat.Custom;
             DateTimeExDeathDate.Location = new Point(188, 80);
@@ -1045,7 +1039,6 @@
             // 
             // DateTimeExRetirementDate
             // 
-            DateTimeExRetirementDate.CultureFlag = false;
             DateTimeExRetirementDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExRetirementDate.Format = DateTimePickerFormat.Custom;
             DateTimeExRetirementDate.Location = new Point(168, 24);
@@ -1364,7 +1357,6 @@
             // 
             // DateTimeExHistoryDate3
             // 
-            DateTimeExHistoryDate3.CultureFlag = false;
             DateTimeExHistoryDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExHistoryDate3.Enabled = false;
             DateTimeExHistoryDate3.Format = DateTimePickerFormat.Custom;
@@ -1395,7 +1387,6 @@
             // 
             // DateTimeExHistoryDate2
             // 
-            DateTimeExHistoryDate2.CultureFlag = false;
             DateTimeExHistoryDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExHistoryDate2.Enabled = false;
             DateTimeExHistoryDate2.Format = DateTimePickerFormat.Custom;
@@ -1426,7 +1417,6 @@
             // 
             // DateTimeExHistoryDate1
             // 
-            DateTimeExHistoryDate1.CultureFlag = false;
             DateTimeExHistoryDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExHistoryDate1.Enabled = false;
             DateTimeExHistoryDate1.Format = DateTimePickerFormat.Custom;
@@ -1477,7 +1467,6 @@
             // 
             // DateTimeExHistoryDate
             // 
-            DateTimeExHistoryDate.CultureFlag = false;
             DateTimeExHistoryDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExHistoryDate.Format = DateTimePickerFormat.Custom;
             DateTimeExHistoryDate.Location = new Point(36, 44);
@@ -1520,7 +1509,6 @@
             // 
             // DateTimeExLicenseTypeExpirationDate
             // 
-            DateTimeExLicenseTypeExpirationDate.CultureFlag = false;
             DateTimeExLicenseTypeExpirationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExLicenseTypeExpirationDate.Format = DateTimePickerFormat.Custom;
             DateTimeExLicenseTypeExpirationDate.Location = new Point(436, 108);
@@ -1602,7 +1590,6 @@
             // 
             // DateTimeExNotSelectionDate
             // 
-            DateTimeExNotSelectionDate.CultureFlag = false;
             DateTimeExNotSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExNotSelectionDate.Format = DateTimePickerFormat.Custom;
             DateTimeExNotSelectionDate.Location = new Point(132, 52);
@@ -1622,7 +1609,6 @@
             // 
             // DateTimeExSelectionDate
             // 
-            DateTimeExSelectionDate.CultureFlag = false;
             DateTimeExSelectionDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExSelectionDate.Format = DateTimePickerFormat.Custom;
             DateTimeExSelectionDate.Location = new Point(132, 24);
@@ -2040,7 +2026,6 @@
             // 
             // DateTimeExPunishmentDate
             // 
-            DateTimeExPunishmentDate.CultureFlag = false;
             DateTimeExPunishmentDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExPunishmentDate.Format = DateTimePickerFormat.Custom;
             DateTimeExPunishmentDate.Location = new Point(36, 44);
@@ -2060,7 +2045,6 @@
             // 
             // DateTimeExPunishmentDate3
             // 
-            DateTimeExPunishmentDate3.CultureFlag = false;
             DateTimeExPunishmentDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExPunishmentDate3.Enabled = false;
             DateTimeExPunishmentDate3.Format = DateTimePickerFormat.Custom;
@@ -2081,7 +2065,6 @@
             // 
             // DateTimeExPunishmentDate2
             // 
-            DateTimeExPunishmentDate2.CultureFlag = false;
             DateTimeExPunishmentDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExPunishmentDate2.Enabled = false;
             DateTimeExPunishmentDate2.Format = DateTimePickerFormat.Custom;
@@ -2102,7 +2085,6 @@
             // 
             // DateTimeExPunishmentDate1
             // 
-            DateTimeExPunishmentDate1.CultureFlag = false;
             DateTimeExPunishmentDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExPunishmentDate1.Enabled = false;
             DateTimeExPunishmentDate1.Format = DateTimePickerFormat.Custom;
@@ -2309,7 +2291,6 @@
             // 
             // DateTimeExProperDate
             // 
-            DateTimeExProperDate.CultureFlag = false;
             DateTimeExProperDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExProperDate.Format = DateTimePickerFormat.Custom;
             DateTimeExProperDate.Location = new Point(36, 44);
@@ -2337,7 +2318,6 @@
             // 
             // DateTimeExProperDate3
             // 
-            DateTimeExProperDate3.CultureFlag = false;
             DateTimeExProperDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExProperDate3.Enabled = false;
             DateTimeExProperDate3.Format = DateTimePickerFormat.Custom;
@@ -2367,7 +2347,6 @@
             // 
             // DateTimeExProperDate2
             // 
-            DateTimeExProperDate2.CultureFlag = false;
             DateTimeExProperDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExProperDate2.Enabled = false;
             DateTimeExProperDate2.Format = DateTimePickerFormat.Custom;
@@ -2397,7 +2376,6 @@
             // 
             // DateTimeExProperDate1
             // 
-            DateTimeExProperDate1.CultureFlag = false;
             DateTimeExProperDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExProperDate1.Enabled = false;
             DateTimeExProperDate1.Format = DateTimePickerFormat.Custom;
@@ -2506,7 +2484,6 @@
             // 
             // DateTimeExEducateDate
             // 
-            DateTimeExEducateDate.CultureFlag = false;
             DateTimeExEducateDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExEducateDate.Format = DateTimePickerFormat.Custom;
             DateTimeExEducateDate.Location = new Point(36, 44);
@@ -2526,7 +2503,6 @@
             // 
             // DateTimeExEducateDate3
             // 
-            DateTimeExEducateDate3.CultureFlag = false;
             DateTimeExEducateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExEducateDate3.Enabled = false;
             DateTimeExEducateDate3.Format = DateTimePickerFormat.Custom;
@@ -2547,7 +2523,6 @@
             // 
             // DateTimeExEducateDate2
             // 
-            DateTimeExEducateDate2.CultureFlag = false;
             DateTimeExEducateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExEducateDate2.Enabled = false;
             DateTimeExEducateDate2.Format = DateTimePickerFormat.Custom;
@@ -2568,7 +2543,6 @@
             // 
             // DateTimeExEducateDate1
             // 
-            DateTimeExEducateDate1.CultureFlag = false;
             DateTimeExEducateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExEducateDate1.Enabled = false;
             DateTimeExEducateDate1.Format = DateTimePickerFormat.Custom;
@@ -2682,7 +2656,6 @@
             // 
             // DateTimeExCarViolateDate
             // 
-            DateTimeExCarViolateDate.CultureFlag = false;
             DateTimeExCarViolateDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExCarViolateDate.Format = DateTimePickerFormat.Custom;
             DateTimeExCarViolateDate.Location = new Point(36, 44);
@@ -2710,7 +2683,6 @@
             // 
             // DateTimeExCarViolateDate3
             // 
-            DateTimeExCarViolateDate3.CultureFlag = false;
             DateTimeExCarViolateDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExCarViolateDate3.Enabled = false;
             DateTimeExCarViolateDate3.Format = DateTimePickerFormat.Custom;
@@ -2740,7 +2712,6 @@
             // 
             // DateTimeExCarViolateDate2
             // 
-            DateTimeExCarViolateDate2.CultureFlag = false;
             DateTimeExCarViolateDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExCarViolateDate2.Enabled = false;
             DateTimeExCarViolateDate2.Format = DateTimePickerFormat.Custom;
@@ -2770,7 +2741,6 @@
             // 
             // DateTimeExCarViolateDate1
             // 
-            DateTimeExCarViolateDate1.CultureFlag = false;
             DateTimeExCarViolateDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExCarViolateDate1.Enabled = false;
             DateTimeExCarViolateDate1.Format = DateTimePickerFormat.Custom;
@@ -2916,7 +2886,6 @@
             // 
             // DateTimeExMedicalExaminationDate
             // 
-            DateTimeExMedicalExaminationDate.CultureFlag = false;
             DateTimeExMedicalExaminationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExMedicalExaminationDate.Format = DateTimePickerFormat.Custom;
             DateTimeExMedicalExaminationDate.ImeMode = ImeMode.Disable;
@@ -2945,7 +2914,6 @@
             // 
             // DateTimeExMedicalExaminationDate3
             // 
-            DateTimeExMedicalExaminationDate3.CultureFlag = false;
             DateTimeExMedicalExaminationDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExMedicalExaminationDate3.Enabled = false;
             DateTimeExMedicalExaminationDate3.Format = DateTimePickerFormat.Custom;
@@ -2975,7 +2943,6 @@
             // 
             // DateTimeExMedicalExaminationDate2
             // 
-            DateTimeExMedicalExaminationDate2.CultureFlag = false;
             DateTimeExMedicalExaminationDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExMedicalExaminationDate2.Enabled = false;
             DateTimeExMedicalExaminationDate2.Format = DateTimePickerFormat.Custom;
@@ -3005,7 +2972,6 @@
             // 
             // DateTimeExMedicalExaminationDate1
             // 
-            DateTimeExMedicalExaminationDate1.CultureFlag = false;
             DateTimeExMedicalExaminationDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExMedicalExaminationDate1.Enabled = false;
             DateTimeExMedicalExaminationDate1.Format = DateTimePickerFormat.Custom;
@@ -3026,7 +2992,7 @@
             // 
             // GroupBoxExInsurance
             // 
-            GroupBoxExInsurance.Controls.Add(ComboBoxExHealthInsuranceNumber);
+            GroupBoxExInsurance.Controls.Add(CcComboBoxHealthInsuranceNumber);
             GroupBoxExInsurance.Controls.Add(DateTimeExHealthInsuranceDate);
             GroupBoxExInsurance.Controls.Add(TextBoxExHealthInsuranceNote);
             GroupBoxExInsurance.Controls.Add(ComboBoxExWorkerAccidentInsuranceNumber);
@@ -3049,18 +3015,17 @@
             GroupBoxExInsurance.TabStop = false;
             GroupBoxExInsurance.Text = "保険関係";
             // 
-            // ComboBoxExHealthInsuranceNumber
+            // CcComboBoxHealthInsuranceNumber
             // 
-            ComboBoxExHealthInsuranceNumber.FormattingEnabled = true;
-            ComboBoxExHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
-            ComboBoxExHealthInsuranceNumber.Location = new Point(264, 28);
-            ComboBoxExHealthInsuranceNumber.Name = "ComboBoxExHealthInsuranceNumber";
-            ComboBoxExHealthInsuranceNumber.Size = new Size(292, 23);
-            ComboBoxExHealthInsuranceNumber.TabIndex = 74;
+            CcComboBoxHealthInsuranceNumber.FormattingEnabled = true;
+            CcComboBoxHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
+            CcComboBoxHealthInsuranceNumber.Location = new Point(264, 28);
+            CcComboBoxHealthInsuranceNumber.Name = "CcComboBoxHealthInsuranceNumber";
+            CcComboBoxHealthInsuranceNumber.Size = new Size(292, 23);
+            CcComboBoxHealthInsuranceNumber.TabIndex = 74;
             // 
             // DateTimeExHealthInsuranceDate
             // 
-            DateTimeExHealthInsuranceDate.CultureFlag = false;
             DateTimeExHealthInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExHealthInsuranceDate.Format = DateTimePickerFormat.Custom;
             DateTimeExHealthInsuranceDate.Location = new Point(72, 28);
@@ -3087,7 +3052,6 @@
             // 
             // DateTimeExWorkerAccidentInsuranceDate
             // 
-            DateTimeExWorkerAccidentInsuranceDate.CultureFlag = false;
             DateTimeExWorkerAccidentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExWorkerAccidentInsuranceDate.Format = DateTimePickerFormat.Custom;
             DateTimeExWorkerAccidentInsuranceDate.Location = new Point(72, 112);
@@ -3114,7 +3078,6 @@
             // 
             // DateTimeExEmploymentInsuranceDate
             // 
-            DateTimeExEmploymentInsuranceDate.CultureFlag = false;
             DateTimeExEmploymentInsuranceDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExEmploymentInsuranceDate.Format = DateTimePickerFormat.Custom;
             DateTimeExEmploymentInsuranceDate.Location = new Point(72, 84);
@@ -3141,7 +3104,6 @@
             // 
             // DateTimeExWelfarePensionDate
             // 
-            DateTimeExWelfarePensionDate.CultureFlag = false;
             DateTimeExWelfarePensionDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExWelfarePensionDate.Format = DateTimePickerFormat.Custom;
             DateTimeExWelfarePensionDate.Location = new Point(72, 56);
@@ -3292,7 +3254,6 @@
             // 
             // DateTimeExFamilyBirthDate1
             // 
-            DateTimeExFamilyBirthDate1.CultureFlag = false;
             DateTimeExFamilyBirthDate1.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExFamilyBirthDate1.Enabled = false;
             DateTimeExFamilyBirthDate1.Format = DateTimePickerFormat.Custom;
@@ -3322,7 +3283,6 @@
             // 
             // DateTimeExFamilyBirthDate4
             // 
-            DateTimeExFamilyBirthDate4.CultureFlag = false;
             DateTimeExFamilyBirthDate4.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExFamilyBirthDate4.Enabled = false;
             DateTimeExFamilyBirthDate4.Format = DateTimePickerFormat.Custom;
@@ -3352,7 +3312,6 @@
             // 
             // DateTimeExFamilyBirthDate3
             // 
-            DateTimeExFamilyBirthDate3.CultureFlag = false;
             DateTimeExFamilyBirthDate3.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExFamilyBirthDate3.Enabled = false;
             DateTimeExFamilyBirthDate3.Format = DateTimePickerFormat.Custom;
@@ -3382,7 +3341,6 @@
             // 
             // DateTimeExFamilyBirthDate2
             // 
-            DateTimeExFamilyBirthDate2.CultureFlag = false;
             DateTimeExFamilyBirthDate2.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExFamilyBirthDate2.Enabled = false;
             DateTimeExFamilyBirthDate2.Format = DateTimePickerFormat.Custom;
@@ -3432,7 +3390,6 @@
             // 
             // DateTimeExFamilyBirthDate
             // 
-            DateTimeExFamilyBirthDate.CultureFlag = false;
             DateTimeExFamilyBirthDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimeExFamilyBirthDate.Format = DateTimePickerFormat.Custom;
             DateTimeExFamilyBirthDate.Location = new Point(552, 48);
@@ -3692,7 +3649,7 @@
         private CcControl.CcTextBox TextBoxExUrgentTelephoneNumber;
         private CcControl.CcLabel labelEx49;
         private CcControl.CcGroupBox GroupBoxExInsurance;
-        private CcControl.CcComboBox ComboBoxExHealthInsuranceNumber;
+        private CcControl.CcComboBox CcComboBoxHealthInsuranceNumber;
         private CcControl.CcDateTime DateTimeExHealthInsuranceDate;
         private CcControl.CcTextBox TextBoxExHealthInsuranceNote;
         private CcControl.CcComboBox ComboBoxExWorkerAccidentInsuranceNumber;

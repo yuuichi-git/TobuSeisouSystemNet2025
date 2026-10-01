@@ -3,9 +3,19 @@
  */
 using System.Data;
 
+using Car;
+
 using CcControl;
 
 using Common;
+
+using Dao;
+
+using License;
+
+using RollCall;
+
+using Staff;
 
 using VehicleDispatch;
 
@@ -17,6 +27,10 @@ namespace TobuSeisouSystem2027 {
          * インスタンス
          */
         private readonly ScreenForm _screenForm = new();
+        /*
+         * Dao
+         */
+        private LoginDao _loginDao = new();
         /*
          * Vo
          */
@@ -51,8 +65,19 @@ namespace TobuSeisouSystem2027 {
             switch(((CcButton)sender).Name) {
                 case "CcButtonConnect":
                     try {
-                        switch(_connectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag)) {
+                        switch(ConnectionVo.ConnectSqlServer(this.CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag)) {
                             case ConnectionState.Open:
+                                /*
+                                 * ログイン情報をVoへセット
+                                 * ※接続確立後に処理
+                                 */
+                                ConnectionVo.LoginVo.Id = Guid.NewGuid().ToString("N"); // "N"ハイフンなし（32桁）
+                                ConnectionVo.LoginVo.Status = "Connect";
+                                ConnectionVo.LoginVo.LoginPcName = NetworkUtility.GetPcName();
+                                ConnectionVo.LoginVo.LoginIpAddress = NetworkUtility.GetIpAddress();
+                                ConnectionVo.LoginVo.LoginDateTime = DateTime.Now;
+                                _loginDao.ConnectionVo = this.ConnectionVo;
+                                _loginDao.InsertLogin(ConnectionVo.LoginVo);
                                 /*
                                  * Client
                                  */
@@ -62,10 +87,10 @@ namespace TobuSeisouSystem2027 {
                                 /*
                                  * Server
                                  */
-                                this.CcLabelServerName.Text = NetworkUtility.GetPcNameFromIp(_connectionVo.ServerName);
-                                this.CcLabelServerIpAddress.Text = _connectionVo.ServerName;
-                                this.CcLabelDbName.Text = _connectionVo.SqlServerConnection?.Database;
-                                this.CcLabelDbStatus.Text = _connectionVo.SqlServerConnection?.State.ToString();
+                                this.CcLabelServerName.Text = NetworkUtility.GetPcNameFromIp(ConnectionVo.ServerName);
+                                this.CcLabelServerIpAddress.Text = ConnectionVo.ServerName;
+                                this.CcLabelDbName.Text = ConnectionVo.SqlServerConnection?.Database;
+                                this.CcLabelDbStatus.Text = ConnectionVo.SqlServerConnection?.State.ToString();
 
                                 this.CcButtonConnect.Enabled = false;
                                 this.CcButtonDisConnect.Enabled = true;
@@ -83,8 +108,20 @@ namespace TobuSeisouSystem2027 {
                     break;
 
                 case "CcButtonDisConnect":
+                    /*
+                     * ログオフ情報をVoへセット
+                     * ※接続切断後に処理
+                     */
+                    ConnectionVo.LoginVo.Id = Guid.NewGuid().ToString("N"); // "N"ハイフンなし（32桁）
+                    ConnectionVo.LoginVo.Status = "DisConnect";
+                    ConnectionVo.LoginVo.LoginPcName = NetworkUtility.GetPcName();
+                    ConnectionVo.LoginVo.LoginIpAddress = NetworkUtility.GetIpAddress();
+                    ConnectionVo.LoginVo.LoginDateTime = DateTime.Now;
+                    _loginDao.ConnectionVo = this.ConnectionVo;
+                    _loginDao.InsertLogin(ConnectionVo.LoginVo);
+
                     try {
-                        switch(_connectionVo.DisConnectSqlServer()) {
+                        switch(ConnectionVo.DisConnectSqlServer()) {
                             case ConnectionState.Closed:
                                 /*
                                  * Client
@@ -109,7 +146,6 @@ namespace TobuSeisouSystem2027 {
                             default:
                                 MessageBox.Show("SQL Serverへの切断に失敗しました。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
-
                         }
 
                     } catch(Exception exception) {
@@ -119,49 +155,114 @@ namespace TobuSeisouSystem2027 {
             }
         }
 
+        private VehicleDispatchBoard? _vehicleDispatchBoardAdachi;
+        private FirstRollCall? _firstRollCall;
+        private CarList? _carList;
+        private StaffList? _staffList;
+        private LicenseList? _licenseList;
+        private StaffDestination? _staffDestination;
+        private CarWorkingDays? _carWorkingDays;
+        private VehicleDispatchBoard? _vehicleDispatchBoardMisato;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CcLabel_Click(object sender, EventArgs e) {
-            switch(_connectionVo.SqlServerConnection?.State) {
-                case ConnectionState.Open:                                                                                                      //接続が開いています。
+            switch(ConnectionVo.SqlServerConnection?.State) {
+                case ConnectionState.Open:
                     switch(((CcLabel)sender).Name) {
                         /*
                          * 本社営業所
                          */
                         case "CcLabelVehicleDispatchBoardAdachi":
-                            _connectionVo.ConnectionLocation = "本社営業所";
-                            VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
-                            _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, vehicleDispatchBoard);
-                            vehicleDispatchBoard.Show();
+                            if(_vehicleDispatchBoardAdachi == null || _vehicleDispatchBoardAdachi.IsDisposed) {
+                                ConnectionVo.ConnectionLocation = "本社営業所";
+                                _vehicleDispatchBoardAdachi = new VehicleDispatchBoard(ConnectionVo);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _vehicleDispatchBoardAdachi);
+                                _vehicleDispatchBoardAdachi.Show();
+                            }
                             break;
+                        /*
+                         * 点呼
+                         */
                         case "CcLabelFirstRollCall":
-
+                            if(_firstRollCall == null || _firstRollCall.IsDisposed) {
+                                _firstRollCall = new FirstRollCall(ConnectionVo);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _firstRollCall);
+                                _firstRollCall.Show();
+                            }
+                            break;
+                        /*
+                         * 車両台帳
+                         */
+                        case "CcLabelCarList":
+                            if(_carList == null || _carList.IsDisposed) {
+                                _carList = new CarList(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _carList);
+                                _carList.Show();
+                            }
+                            break;
+                        /*
+                         * 従事者台帳
+                         */
+                        case "CcLabelStaffList":
+                            if(_staffList == null || _staffList.IsDisposed) {
+                                _staffList = new StaffList(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _staffList);
+                                _staffList.Show();
+                            }
+                            break;
+                        /*
+                         * 免許証台帳
+                         */
+                        case "CcLabelLicenseList":
+                            if(_licenseList == null || _licenseList.IsDisposed) {
+                                _licenseList = new LicenseList(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _licenseList);
+                                _licenseList.Show();
+                            }
+                            break;
+                        /*
+                         * 従事者勤務詳細
+                         */
+                        case "CcLabelStaffDestination":
+                            if(_staffDestination == null || _staffDestination.IsDisposed) {
+                                _staffDestination = new StaffDestination(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _staffDestination);
+                                _staffDestination.Show();
+                            }
+                            break;
+                        /*
+                         * 車両稼働表
+                         */
+                        case "CcLabelCarWorkingDays":
+                            if(_carWorkingDays == null || _carWorkingDays.IsDisposed) {
+                                _carWorkingDays = new CarWorkingDays(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _carWorkingDays);
+                                _carWorkingDays.Show();
+                            }
                             break;
                         /*
                          * 三郷車庫
                          */
                         case "CcLabelVehicleDispatchBoardMisato":
-                            _connectionVo.ConnectionLocation = "三郷車庫";
-
+                            if(_vehicleDispatchBoardMisato == null || _vehicleDispatchBoardMisato.IsDisposed) {
+                                ConnectionVo.ConnectionLocation = "三郷車庫";
+                                _vehicleDispatchBoardMisato = new VehicleDispatchBoard(ConnectionVo);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _vehicleDispatchBoardMisato);
+                                _vehicleDispatchBoardMisato.Show();
+                            }
                             break;
-                        default:
 
+                        default:
                             break;
                     }
                     break;
-                case ConnectionState.Connecting:                                                                                                //接続オブジェクトがデータ ソースに接続しています。
-                    break;
-                case ConnectionState.Closed:                                                                                                    //接続が閉じています。
+
+                case ConnectionState.Closed:
                     MessageBox.Show("データベースに接続して下さい。", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case ConnectionState.Executing:                                                                                                 //接続オブジェクトがコマンドを実行しています。
-                    break;
-                case ConnectionState.Fetching:                                                                                                  //接続オブジェクトがデータを検索しています。
-                    break;
-                case ConnectionState.Broken:                                                                                                    //データ ソースへの接続が断絶しています。
                     break;
             }
         }
@@ -227,7 +328,7 @@ namespace TobuSeisouSystem2027 {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void StartProject_FormClosing(object sender, FormClosingEventArgs e) {
-            if(_connectionVo.SqlServerConnection?.State == ConnectionState.Open) {
+            if(ConnectionVo.SqlServerConnection?.State == ConnectionState.Open) {
                 MessageBox.Show("アプリケーションを終了する前に、データベースを切断して下さい。", "ACID特性の確保", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
             } else {
@@ -242,6 +343,16 @@ namespace TobuSeisouSystem2027 {
                         break;
                 }
             }
+        }
+
+        /*
+         * 
+         * プロパティ
+         * 
+         */
+        public ConnectionVo ConnectionVo {
+            get => _connectionVo;
+            set => _connectionVo = value;
         }
     }
 }
