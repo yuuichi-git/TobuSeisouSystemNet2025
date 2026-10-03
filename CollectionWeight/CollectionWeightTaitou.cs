@@ -41,19 +41,15 @@ namespace Collection {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemHelp"};
             MenuStripEx1.ChangeEnable(listString);
+            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeControl();
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Initialize Success";
-            /*
-             * Eventを登録する
-             */
-            MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
             // ここで値をセットして発火させる
             this.DateTimePickerExOperationDate.SetValue(operationDate);
         }
@@ -105,7 +101,6 @@ namespace Collection {
                 case "ToolStripMenuItemExit":
                     Close();
                     break;
-
             }
         }
 

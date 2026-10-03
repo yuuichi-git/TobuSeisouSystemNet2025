@@ -271,7 +271,12 @@
             DateTimeExMedicalExaminationDate1 = new CcControl.CcDateTime();
             TextBoxExMedicalExaminationNote1 = new CcControl.CcTextBox();
             GroupBoxExInsurance = new CcControl.CcGroupBox();
-            CcComboBoxHealthInsuranceNumber = new CcControl.CcComboBox();
+            CcTextBoxHealthInsuranceNumber3 = new CcControl.CcTextBox();
+            CcTextBoxHealthInsuranceNumber2 = new CcControl.CcTextBox();
+            CcTextBoxHealthInsuranceNumber1 = new CcControl.CcTextBox();
+            ccLabel5 = new CcControl.CcLabel();
+            ccLabel4 = new CcControl.CcLabel();
+            ccLabel3 = new CcControl.CcLabel();
             DateTimeExHealthInsuranceDate = new CcControl.CcDateTime();
             TextBoxExHealthInsuranceNote = new CcControl.CcTextBox();
             ComboBoxExWorkerAccidentInsuranceNumber = new CcControl.CcComboBox();
@@ -2992,7 +2997,12 @@
             // 
             // GroupBoxExInsurance
             // 
-            GroupBoxExInsurance.Controls.Add(CcComboBoxHealthInsuranceNumber);
+            GroupBoxExInsurance.Controls.Add(CcTextBoxHealthInsuranceNumber3);
+            GroupBoxExInsurance.Controls.Add(CcTextBoxHealthInsuranceNumber2);
+            GroupBoxExInsurance.Controls.Add(CcTextBoxHealthInsuranceNumber1);
+            GroupBoxExInsurance.Controls.Add(ccLabel5);
+            GroupBoxExInsurance.Controls.Add(ccLabel4);
+            GroupBoxExInsurance.Controls.Add(ccLabel3);
             GroupBoxExInsurance.Controls.Add(DateTimeExHealthInsuranceDate);
             GroupBoxExInsurance.Controls.Add(TextBoxExHealthInsuranceNote);
             GroupBoxExInsurance.Controls.Add(ComboBoxExWorkerAccidentInsuranceNumber);
@@ -3015,14 +3025,65 @@
             GroupBoxExInsurance.TabStop = false;
             GroupBoxExInsurance.Text = "保険関係";
             // 
-            // CcComboBoxHealthInsuranceNumber
+            // CcTextBoxHealthInsuranceNumber3
             // 
-            CcComboBoxHealthInsuranceNumber.FormattingEnabled = true;
-            CcComboBoxHealthInsuranceNumber.Items.AddRange(new object[] { "記号0307 番号000 枝番00" });
-            CcComboBoxHealthInsuranceNumber.Location = new Point(264, 28);
-            CcComboBoxHealthInsuranceNumber.Name = "CcComboBoxHealthInsuranceNumber";
-            CcComboBoxHealthInsuranceNumber.Size = new Size(292, 23);
-            CcComboBoxHealthInsuranceNumber.TabIndex = 74;
+            CcTextBoxHealthInsuranceNumber3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            CcTextBoxHealthInsuranceNumber3.Location = new Point(492, 28);
+            CcTextBoxHealthInsuranceNumber3.MaxLength = 2;
+            CcTextBoxHealthInsuranceNumber3.Name = "CcTextBoxHealthInsuranceNumber3";
+            CcTextBoxHealthInsuranceNumber3.Size = new Size(40, 25);
+            CcTextBoxHealthInsuranceNumber3.TabIndex = 78;
+            CcTextBoxHealthInsuranceNumber3.Text = "00";
+            CcTextBoxHealthInsuranceNumber3.TextAlign = HorizontalAlignment.Right;
+            // 
+            // CcTextBoxHealthInsuranceNumber2
+            // 
+            CcTextBoxHealthInsuranceNumber2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            CcTextBoxHealthInsuranceNumber2.Location = new Point(392, 28);
+            CcTextBoxHealthInsuranceNumber2.MaxLength = 3;
+            CcTextBoxHealthInsuranceNumber2.Name = "CcTextBoxHealthInsuranceNumber2";
+            CcTextBoxHealthInsuranceNumber2.Size = new Size(40, 25);
+            CcTextBoxHealthInsuranceNumber2.TabIndex = 77;
+            CcTextBoxHealthInsuranceNumber2.Text = "000";
+            CcTextBoxHealthInsuranceNumber2.TextAlign = HorizontalAlignment.Right;
+            // 
+            // CcTextBoxHealthInsuranceNumber1
+            // 
+            CcTextBoxHealthInsuranceNumber1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            CcTextBoxHealthInsuranceNumber1.Location = new Point(300, 28);
+            CcTextBoxHealthInsuranceNumber1.MaxLength = 4;
+            CcTextBoxHealthInsuranceNumber1.Name = "CcTextBoxHealthInsuranceNumber1";
+            CcTextBoxHealthInsuranceNumber1.Size = new Size(40, 25);
+            CcTextBoxHealthInsuranceNumber1.TabIndex = 76;
+            CcTextBoxHealthInsuranceNumber1.Text = "0000";
+            CcTextBoxHealthInsuranceNumber1.TextAlign = HorizontalAlignment.Right;
+            // 
+            // ccLabel5
+            // 
+            ccLabel5.AutoSize = true;
+            ccLabel5.Location = new Point(456, 32);
+            ccLabel5.Name = "ccLabel5";
+            ccLabel5.Size = new Size(31, 15);
+            ccLabel5.TabIndex = 75;
+            ccLabel5.Text = "枝番";
+            // 
+            // ccLabel4
+            // 
+            ccLabel4.AutoSize = true;
+            ccLabel4.Location = new Point(356, 32);
+            ccLabel4.Name = "ccLabel4";
+            ccLabel4.Size = new Size(31, 15);
+            ccLabel4.TabIndex = 74;
+            ccLabel4.Text = "番号";
+            // 
+            // ccLabel3
+            // 
+            ccLabel3.AutoSize = true;
+            ccLabel3.Location = new Point(264, 32);
+            ccLabel3.Name = "ccLabel3";
+            ccLabel3.Size = new Size(31, 15);
+            ccLabel3.TabIndex = 59;
+            ccLabel3.Text = "記号";
             // 
             // DateTimeExHealthInsuranceDate
             // 
@@ -3649,7 +3710,6 @@
         private CcControl.CcTextBox TextBoxExUrgentTelephoneNumber;
         private CcControl.CcLabel labelEx49;
         private CcControl.CcGroupBox GroupBoxExInsurance;
-        private CcControl.CcComboBox CcComboBoxHealthInsuranceNumber;
         private CcControl.CcDateTime DateTimeExHealthInsuranceDate;
         private CcControl.CcTextBox TextBoxExHealthInsuranceNote;
         private CcControl.CcComboBox ComboBoxExWorkerAccidentInsuranceNumber;
@@ -3782,5 +3842,11 @@
         private CcControl.CcButton DeleteGroupBoxProperPDF2;
         private CcControl.CcCheckBox CcCheckBoxRiskAssessmentFlag;
         private CcControl.CcToolTip CcToolTip1;
+        private CcControl.CcLabel ccLabel3;
+        private CcControl.CcTextBox CcTextBoxHealthInsuranceNumber3;
+        private CcControl.CcTextBox CcTextBoxHealthInsuranceNumber2;
+        private CcControl.CcTextBox CcTextBoxHealthInsuranceNumber1;
+        private CcControl.CcLabel ccLabel5;
+        private CcControl.CcLabel ccLabel4;
     }
 }

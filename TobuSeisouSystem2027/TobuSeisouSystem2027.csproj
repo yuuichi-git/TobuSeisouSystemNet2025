@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ControlEx\CcControl.csproj" />
+    <ProjectReference Include="..\Toukanpo\Toukanpo.csproj" />
     <ProjectReference Include="..\VehicleDispatch\VehicleDispatch.csproj" />
   </ItemGroup>
 

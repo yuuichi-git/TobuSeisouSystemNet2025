@@ -7,6 +7,8 @@ using Car;
 
 using CcControl;
 
+using Collection;
+
 using Common;
 
 using Dao;
@@ -16,6 +18,8 @@ using License;
 using RollCall;
 
 using Staff;
+
+using Toukanpo;
 
 using VehicleDispatch;
 
@@ -162,7 +166,9 @@ namespace TobuSeisouSystem2027 {
         private LicenseList? _licenseList;
         private StaffDestination? _staffDestination;
         private CarWorkingDays? _carWorkingDays;
+        private CollectionWeightTaitouList? _collectionWeightTaitouList;
         private VehicleDispatchBoard? _vehicleDispatchBoardMisato;
+        private ToukanpoList? _toukanpoList;
 
         /// <summary>
         /// 
@@ -245,6 +251,16 @@ namespace TobuSeisouSystem2027 {
                             }
                             break;
                         /*
+                         * 台東古紙収集量集計表
+                         */
+                        case "CcLabelCollectionWeightTaitouList":
+                            if(_collectionWeightTaitouList == null || _collectionWeightTaitouList.IsDisposed) {
+                                _collectionWeightTaitouList = new CollectionWeightTaitouList(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _collectionWeightTaitouList);
+                                _collectionWeightTaitouList.Show();
+                            }
+                            break;
+                        /*
                          * 三郷車庫
                          */
                         case "CcLabelVehicleDispatchBoardMisato":
@@ -255,7 +271,16 @@ namespace TobuSeisouSystem2027 {
                                 _vehicleDispatchBoardMisato.Show();
                             }
                             break;
-
+                        /*
+                         * 東環保リスト
+                         */
+                        case "CcLabelToukanpoList":
+                            if(_toukanpoList == null || _toukanpoList.IsDisposed) {
+                                _toukanpoList = new ToukanpoList(ConnectionVo, (Screen?)CcComboBoxMonitors1.SelectedValue);
+                                _screenForm.SetPosition((Screen?)CcComboBoxMonitors1.SelectedValue, _toukanpoList);
+                                _toukanpoList.Show();
+                            }
+                            break;
                         default:
                             break;
                     }

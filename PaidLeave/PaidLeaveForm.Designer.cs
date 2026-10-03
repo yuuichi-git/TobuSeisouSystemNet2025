@@ -40,7 +40,6 @@
             CcStatusStrip1 = new CcControl.CcStatusStrip();
             CcMonthCalendar1 = new CcControl.CcMonthCalendar();
             CcLabelDate = new CcControl.CcLabel();
-            CcFlowLayoutPanel1 = new CcControl.CcFlowLayoutPanel();
             CcFlowLayoutPanelStock = new CcControl.CcFlowLayoutPanel();
             ccPanel2 = new CcControl.CcPanel();
             CcButtonTemporaryWorker = new CcControl.CcButton();
@@ -53,6 +52,7 @@
             CcFlowLayoutPanel4 = new CcControl.CcFlowLayoutPanel();
             CcFlowLayoutPanel5 = new CcControl.CcFlowLayoutPanel();
             CcLabelRecordCount = new CcControl.CcLabel();
+            CcFlowLayoutPanel1 = new CcControl.CcFlowLayoutPanel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcTabControl1.SuspendLayout();
             ccPanel2.SuspendLayout();
@@ -71,7 +71,6 @@
             CcTableLayoutPanelBase.Controls.Add(CcStatusStrip1, 0, 10);
             CcTableLayoutPanelBase.Controls.Add(CcMonthCalendar1, 3, 2);
             CcTableLayoutPanelBase.Controls.Add(CcLabelDate, 3, 1);
-            CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanel1, 3, 4);
             CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanelStock, 1, 4);
             CcTableLayoutPanelBase.Controls.Add(ccPanel2, 1, 2);
             CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanel2, 3, 5);
@@ -79,6 +78,7 @@
             CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanel4, 3, 7);
             CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanel5, 3, 8);
             CcTableLayoutPanelBase.Controls.Add(CcLabelRecordCount, 1, 9);
+            CcTableLayoutPanelBase.Controls.Add(CcFlowLayoutPanel1, 3, 3);
             CcTableLayoutPanelBase.Dock = DockStyle.Fill;
             CcTableLayoutPanelBase.Location = new Point(0, 0);
             CcTableLayoutPanelBase.Name = "CcTableLayoutPanelBase";
@@ -243,7 +243,6 @@
             // CcMonthCalendar1
             // 
             CcMonthCalendar1.CalendarDimensions = new Size(3, 1);
-            CcMonthCalendar1.Dock = DockStyle.Fill;
             CcMonthCalendar1.Location = new Point(1273, 83);
             CcMonthCalendar1.Name = "CcMonthCalendar1";
             CcMonthCalendar1.TabIndex = 6;
@@ -262,24 +261,6 @@
             CcLabelDate.TabIndex = 7;
             CcLabelDate.Text = "ccLabel1";
             CcLabelDate.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // CcFlowLayoutPanel1
-            // 
-            CcFlowLayoutPanel1.AllowDrop = true;
-            CcFlowLayoutPanel1.AutoScroll = true;
-            CcFlowLayoutPanel1.BackColor = Color.White;
-            CcFlowLayoutPanel1.BorderStyle = BorderStyle.Fixed3D;
-            CcFlowLayoutPanel1.DisplayText = "";
-            CcFlowLayoutPanel1.Dock = DockStyle.Fill;
-            CcFlowLayoutPanel1.Location = new Point(1267, 287);
-            CcFlowLayoutPanel1.Name = "CcFlowLayoutPanel1";
-            CcFlowLayoutPanel1.Size = new Size(614, 132);
-            CcFlowLayoutPanel1.TabIndex = 8;
-            CcFlowLayoutPanel1.Tag = "1";
-            CcFlowLayoutPanel1.DragDrop += CcFlowLayoutPanel_DragDrop;
-            CcFlowLayoutPanel1.DragEnter += CcFlowLayoutPanel_DragEnter;
-            CcFlowLayoutPanel1.DragOver += CcFlowLayoutPanel_DragOver;
-            CcFlowLayoutPanel1.DragLeave += CcFlowLayoutPanel_DragLeave;
             // 
             // CcFlowLayoutPanelStock
             // 
@@ -314,11 +295,12 @@
             // 
             // CcButtonTemporaryWorker
             // 
+            CcButtonTemporaryWorker.Font = new Font("Yu Gothic UI", 11.25F);
             CcButtonTemporaryWorker.ForeColor = SystemColors.ControlText;
-            CcButtonTemporaryWorker.Location = new Point(904, 64);
+            CcButtonTemporaryWorker.Location = new Point(976, 60);
             CcButtonTemporaryWorker.Name = "CcButtonTemporaryWorker";
             CcButtonTemporaryWorker.SetTextDirectionVertical = "";
-            CcButtonTemporaryWorker.Size = new Size(172, 36);
+            CcButtonTemporaryWorker.Size = new Size(224, 44);
             CcButtonTemporaryWorker.TabIndex = 11;
             CcButtonTemporaryWorker.Text = "派遣";
             CcButtonTemporaryWorker.UseVisualStyleBackColor = true;
@@ -326,11 +308,12 @@
             // 
             // CcButtonShortTime
             // 
+            CcButtonShortTime.Font = new Font("Yu Gothic UI", 11.25F);
             CcButtonShortTime.ForeColor = SystemColors.ControlText;
-            CcButtonShortTime.Location = new Point(712, 64);
+            CcButtonShortTime.Location = new Point(736, 60);
             CcButtonShortTime.Name = "CcButtonShortTime";
             CcButtonShortTime.SetTextDirectionVertical = "";
-            CcButtonShortTime.Size = new Size(172, 36);
+            CcButtonShortTime.Size = new Size(224, 44);
             CcButtonShortTime.TabIndex = 10;
             CcButtonShortTime.Text = "労供（短期）";
             CcButtonShortTime.UseVisualStyleBackColor = true;
@@ -338,11 +321,12 @@
             // 
             // CcButtonLongTime
             // 
+            CcButtonLongTime.Font = new Font("Yu Gothic UI", 11.25F);
             CcButtonLongTime.ForeColor = SystemColors.ControlText;
-            CcButtonLongTime.Location = new Point(520, 64);
+            CcButtonLongTime.Location = new Point(496, 60);
             CcButtonLongTime.Name = "CcButtonLongTime";
             CcButtonLongTime.SetTextDirectionVertical = "";
-            CcButtonLongTime.Size = new Size(172, 36);
+            CcButtonLongTime.Size = new Size(224, 44);
             CcButtonLongTime.TabIndex = 9;
             CcButtonLongTime.Text = "労供（長期）";
             CcButtonLongTime.UseVisualStyleBackColor = true;
@@ -350,11 +334,12 @@
             // 
             // CcButtonPartTime
             // 
+            CcButtonPartTime.Font = new Font("Yu Gothic UI", 11.25F);
             CcButtonPartTime.ForeColor = SystemColors.ControlText;
-            CcButtonPartTime.Location = new Point(328, 64);
+            CcButtonPartTime.Location = new Point(256, 60);
             CcButtonPartTime.Name = "CcButtonPartTime";
             CcButtonPartTime.SetTextDirectionVertical = "";
-            CcButtonPartTime.Size = new Size(172, 36);
+            CcButtonPartTime.Size = new Size(224, 44);
             CcButtonPartTime.TabIndex = 8;
             CcButtonPartTime.Text = "アルバイト";
             CcButtonPartTime.UseVisualStyleBackColor = true;
@@ -362,11 +347,12 @@
             // 
             // CcButtonFullTime
             // 
+            CcButtonFullTime.Font = new Font("Yu Gothic UI", 11.25F);
             CcButtonFullTime.ForeColor = SystemColors.ControlText;
-            CcButtonFullTime.Location = new Point(136, 64);
+            CcButtonFullTime.Location = new Point(16, 60);
             CcButtonFullTime.Name = "CcButtonFullTime";
             CcButtonFullTime.SetTextDirectionVertical = "";
-            CcButtonFullTime.Size = new Size(172, 36);
+            CcButtonFullTime.Size = new Size(224, 44);
             CcButtonFullTime.TabIndex = 7;
             CcButtonFullTime.Text = "社員等";
             CcButtonFullTime.UseVisualStyleBackColor = true;
@@ -454,6 +440,25 @@
             CcLabelRecordCount.TabIndex = 15;
             CcLabelRecordCount.Text = "レコード数：";
             CcLabelRecordCount.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CcFlowLayoutPanel1
+            // 
+            CcFlowLayoutPanel1.AllowDrop = true;
+            CcFlowLayoutPanel1.AutoScroll = true;
+            CcFlowLayoutPanel1.BackColor = Color.White;
+            CcFlowLayoutPanel1.BorderStyle = BorderStyle.Fixed3D;
+            CcFlowLayoutPanel1.DisplayText = "";
+            CcFlowLayoutPanel1.Dock = DockStyle.Fill;
+            CcFlowLayoutPanel1.Location = new Point(1267, 257);
+            CcFlowLayoutPanel1.Name = "CcFlowLayoutPanel1";
+            CcTableLayoutPanelBase.SetRowSpan(CcFlowLayoutPanel1, 2);
+            CcFlowLayoutPanel1.Size = new Size(614, 162);
+            CcFlowLayoutPanel1.TabIndex = 8;
+            CcFlowLayoutPanel1.Tag = "1";
+            CcFlowLayoutPanel1.DragDrop += CcFlowLayoutPanel_DragDrop;
+            CcFlowLayoutPanel1.DragEnter += CcFlowLayoutPanel_DragEnter;
+            CcFlowLayoutPanel1.DragOver += CcFlowLayoutPanel_DragOver;
+            CcFlowLayoutPanel1.DragLeave += CcFlowLayoutPanel_DragLeave;
             // 
             // PaidLeaveForm
             // 

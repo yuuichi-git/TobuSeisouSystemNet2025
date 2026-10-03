@@ -75,11 +75,11 @@ namespace Staff {
             /*
              * Dictionary
              */
-            foreach (BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
+            foreach(BelongsMasterVo belongsMasterVo in _belongsMasterDao.SelectAllBelongsMaster())
                 _dictionaryBelongs.Add(belongsMasterVo.Code, belongsMasterVo.Name);
-            foreach (OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
+            foreach(OccupationMasterVo occupationMasterVo in _occupationMasterDao.SelectAllOccupationMaster())
                 _dictionaryOccupation.Add(occupationMasterVo.Code, occupationMasterVo.Name);
-            foreach (JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
+            foreach(JobFormMasterVo jobFormMasterVo in _jobFormMasterDao.SelectAllJobFormMaster())
                 _dictionaryJobForm.Add(jobFormMasterVo.Code, jobFormMasterVo.Name);
             /*
              * InitializeControl
@@ -88,14 +88,13 @@ namespace Staff {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"};
             this.CcMenuStrip1.ChangeEnable(listString);
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
 
             this.InitializeSpreadStaffRegisterHead(this.SheetViewHead);
             this.InitializeSpreadStaffRegisterTail(this.SheetViewTail);
@@ -103,10 +102,6 @@ namespace Staff {
 
             this.SheetViewHeadOutPut(this.SheetViewHead);
             this.SheetViewTailOutPut(this.SheetViewTail);
-            /*
-             * Eventを登録する
-             */
-            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -122,7 +117,7 @@ namespace Staff {
              * 初任診断
              */
             DateTime syoninProperDate = _staffProperDao.GetSyoninProperDate(_staffMasterVo.StaffCode);
-            if (syoninProperDate != _defaultDateTime) {
+            if(syoninProperDate != _defaultDateTime) {
                 sheetView.Cells[2, 10].ForeColor = Color.Black;
                 sheetView.Cells[2, 10].Text = syoninProperDate.ToString("yyyy/MM/dd");
             } else {
@@ -134,9 +129,9 @@ namespace Staff {
              */
             int age = new Common.DateUtility().GetAge(_staffMasterVo.BirthDate);
             // ”65歳以上”及び”運転手”ならForeColorを変える
-            if (age >= 65 && _staffMasterVo.Occupation == 10) {
+            if(age >= 65 && _staffMasterVo.Occupation == 10) {
                 string tekireiProperDate = _staffProperDao.GetTekireiProperDate(_staffMasterVo.StaffCode);
-                if (tekireiProperDate != string.Empty) {
+                if(tekireiProperDate != string.Empty) {
                     sheetView.Cells[3, 10].ForeColor = Color.Black;
                     sheetView.Cells[3, 10].Text = tekireiProperDate;
                 } else {
@@ -151,8 +146,8 @@ namespace Staff {
              * 健康診断
              */
             DateTime medicalExaminationDate = _staffMedicalExaminationDao.GetMedicalExaminationDate(_staffMasterVo.StaffCode);
-            if (medicalExaminationDate != _defaultDateTime) {
-                if (medicalExaminationDate.AddYears(1) > DateTime.Now) {
+            if(medicalExaminationDate != _defaultDateTime) {
+                if(medicalExaminationDate.AddYears(1) > DateTime.Now) {
                     sheetView.Cells[4, 10].ForeColor = Color.Black;
                     sheetView.Cells[4, 10].Text = medicalExaminationDate.ToString("yyyy/MM/dd");
                 } else {
@@ -166,49 +161,49 @@ namespace Staff {
             /*
              * 社員
              */
-            if (_staffMasterVo.Belongs == 10 || _staffMasterVo.Belongs == 11) {
+            if(_staffMasterVo.Belongs == 10 || _staffMasterVo.Belongs == 11) {
                 sheetView.Cells[2, 1].ForeColor = Color.Red;
                 sheetView.Cells[2, 2].ForeColor = Color.Red;
             }
             /*
              * アルバイト
              */
-            if (_staffMasterVo.Belongs == 12) {
+            if(_staffMasterVo.Belongs == 12) {
                 sheetView.Cells[3, 1].ForeColor = Color.Red;
                 sheetView.Cells[3, 2].ForeColor = Color.Red;
             }
             /*
              * 派遣
              */
-            if (_staffMasterVo.Belongs == 13) {
+            if(_staffMasterVo.Belongs == 13) {
                 sheetView.Cells[4, 1].ForeColor = Color.Red;
                 sheetView.Cells[4, 2].ForeColor = Color.Red;
             }
             /*
              * 労共(長期)
              */
-            if (_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 20 || _staffMasterVo.JobForm == 22)) {
+            if(_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 20 || _staffMasterVo.JobForm == 22)) {
                 sheetView.Cells[5, 1].ForeColor = Color.Red;
                 sheetView.Cells[5, 2].ForeColor = Color.Red;
             }
             /*
              * 労共(短期)
              */
-            if (_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 21 || _staffMasterVo.JobForm == 23)) {
+            if(_staffMasterVo.Belongs == 22 && (_staffMasterVo.JobForm == 21 || _staffMasterVo.JobForm == 23)) {
                 sheetView.Cells[6, 1].ForeColor = Color.Red;
                 sheetView.Cells[6, 2].ForeColor = Color.Red;
             }
             /*
              * 運転手
              */
-            if (_staffMasterVo.Occupation == 10) {
+            if(_staffMasterVo.Occupation == 10) {
                 sheetView.Cells[7, 1].ForeColor = Color.Red;
                 sheetView.Cells[7, 2].ForeColor = Color.Red;
             }
             /*
              * 作業員
              */
-            if (_staffMasterVo.Occupation == 11) {
+            if(_staffMasterVo.Occupation == 11) {
                 sheetView.Cells[8, 1].ForeColor = Color.Red;
                 sheetView.Cells[8, 2].ForeColor = Color.Red;
             }
@@ -231,21 +226,21 @@ namespace Staff {
              */
             try {
                 _licenseMasterVo = _licenseMasterDao.SelectOneLicenseMaster(_staffMasterVo.StaffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             sheetView.Cells[27, 7].Text = _licenseMasterVo.LicenseNumber;//免許証番号
             sheetView.Cells[27, 17].Text = _licenseMasterVo.LicenseCondition;//条件等
             string kind = null;
-            if (_licenseMasterVo.Large)
+            if(_licenseMasterVo.Large)
                 kind += "(大型)";
-            if (_licenseMasterVo.Medium)
+            if(_licenseMasterVo.Medium)
                 kind += "(中型)";
-            if (_licenseMasterVo.QuasiMedium)
+            if(_licenseMasterVo.QuasiMedium)
                 kind += "(準中型)";
-            if (_licenseMasterVo.Ordinary)
+            if(_licenseMasterVo.Ordinary)
                 kind += "(普通)";
-            if (kind != null) {
+            if(kind != null) {
                 sheetView.Cells[31, 3].Text = string.Concat(kind, ":", _licenseMasterVo.DeliveryDate.ToString("yyyy年MM月dd日"));//免許証の種類/取得日1
                 sheetView.Cells[31, 27].Value = _licenseMasterVo.ExpirationDate.Date;//有効期限1
             }
@@ -257,15 +252,15 @@ namespace Staff {
             List<StaffHistoryVo> listStaffHistoryVo = new();
             try {
                 listStaffHistoryVo = _staffHistoryDao.SelectOneStaffHistoryMaster(_staffMasterVo.StaffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countHStaffHistoryVo = 0;
-            foreach (StaffHistoryVo staffHistoryVo in listStaffHistoryVo.OrderBy(x => x.HistoryDate)) {
+            foreach(StaffHistoryVo staffHistoryVo in listStaffHistoryVo.OrderBy(x => x.HistoryDate)) {
                 sheetView.Cells[_pointHistoryDate[countHStaffHistoryVo].X, _pointHistoryDate[countHStaffHistoryVo].Y].Value = staffHistoryVo.HistoryDate.Date != _defaultDateTime.Date ? staffHistoryVo.HistoryDate.Date : null;
                 sheetView.Cells[_pointHistoryNote[countHStaffHistoryVo].X, _pointHistoryNote[countHStaffHistoryVo].Y].Text = staffHistoryVo.CompanyName;
                 countHStaffHistoryVo++;
-                if (countHStaffHistoryVo > 5)
+                if(countHStaffHistoryVo > 5)
                     break;
             }
             /*
@@ -278,17 +273,17 @@ namespace Staff {
             List<StaffExperienceVo> listStaffExperienceVo = new();
             try {
                 listStaffExperienceVo = _staffExperienceDao.SelectOneStaffExperienceMaster(_staffMasterVo.StaffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countStaffExperienceVo = 0;
-            foreach (StaffExperienceVo staffExperienceVo in listStaffExperienceVo) {
+            foreach(StaffExperienceVo staffExperienceVo in listStaffExperienceVo) {
                 sheetView.Cells[_pointExperienceKind[countStaffExperienceVo].X, _pointExperienceKind[countStaffExperienceVo].Y].Text = staffExperienceVo.ExperienceKind;//種類
                 sheetView.Cells[_pointExperienceLoad[countStaffExperienceVo].X, _pointExperienceLoad[countStaffExperienceVo].Y].Text = staffExperienceVo.ExperienceLoad;//積載量又は定員
                 sheetView.Cells[_pointExperienceDuration[countStaffExperienceVo].X, _pointExperienceDuration[countStaffExperienceVo].Y].Text = staffExperienceVo.ExperienceDuration;//経験期間
                 sheetView.Cells[_pointExperienceNote[countStaffExperienceVo].X, _pointExperienceNote[countStaffExperienceVo].Y].Text = staffExperienceVo.ExperienceNote;//備考
                 countStaffExperienceVo++;
-                if (countStaffExperienceVo > 3)
+                if(countStaffExperienceVo > 3)
                     break;
             }
             /*
@@ -314,16 +309,16 @@ namespace Staff {
             List<StaffFamilyVo> listStaffFamilyVo = new();
             try {
                 listStaffFamilyVo = _staffFamilyDao.SelectOneStaffFamilyMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countStaffFamilyVo = 0;
-            foreach (StaffFamilyVo staffFamilyVo in listStaffFamilyVo.OrderBy(x => x.FamilyBirthDay)) {
+            foreach(StaffFamilyVo staffFamilyVo in listStaffFamilyVo.OrderBy(x => x.FamilyBirthDay)) {
                 sheetView.Cells[_pointFamilyName[countStaffFamilyVo].X, _pointFamilyName[countStaffFamilyVo].Y].Text = staffFamilyVo.FamilyName;
                 sheetView.Cells[_pointFamilyBirthDay[countStaffFamilyVo].X, _pointFamilyBirthDay[countStaffFamilyVo].Y].Value = staffFamilyVo.FamilyBirthDay.Date != _defaultDateTime.Date ? staffFamilyVo.FamilyBirthDay.Date : null;
                 sheetView.Cells[_pointFamilyRelationship[countStaffFamilyVo].X, _pointFamilyRelationship[countStaffFamilyVo].Y].Text = staffFamilyVo.FamilyRelationship;
                 countStaffFamilyVo++;
-                if (countStaffFamilyVo > 5)
+                if(countStaffFamilyVo > 5)
                     break;
             }
             sheetView.Cells[9, 9].Value = _staffMasterVo.UrgentTelephoneNumber;                                                                                                 // 緊急時連絡方法　電話
@@ -332,7 +327,7 @@ namespace Staff {
              * 保険関係
              */
             sheetView.Cells[14, 10].Value = _staffMasterVo.HealthInsuranceDate.Date != _defaultDateTime.Date ? _staffMasterVo.HealthInsuranceDate.Date : null;                  // 健康保険加入年月日
-            sheetView.Cells[14, 17].Value = _staffMasterVo.HealthInsuranceNumber;                                                                                               // 健康保険の記号・番号
+            sheetView.Cells[14, 17].Value = _staffMasterVo.HealthInsuranceDate.Date != _defaultDateTime.Date ? _staffMasterVo.HealthInsuranceNumber : null;                     // 健康保険の記号・番号
             sheetView.Cells[14, 28].Value = _staffMasterVo.HealthInsuranceNote;                                                                                                 // 健康保険の備考
             sheetView.Cells[16, 10].Value = _staffMasterVo.WelfarePensionDate.Date != _defaultDateTime.Date ? _staffMasterVo.WelfarePensionDate.Date : null;                    // 厚生年金保険加入年月日
             sheetView.Cells[16, 17].Value = _staffMasterVo.WelfarePensionNumber;                                                                                                // 厚生年金保険の記号・番号
@@ -351,15 +346,15 @@ namespace Staff {
             List<StaffMedicalExaminationVo> listStaffMedicalExaminationVo = new();
             try {
                 listStaffMedicalExaminationVo = _staffMedicalExaminationDao.SelectOneStaffMedicalExaminationMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countHStaffMedicalExaminationVo = 0;
-            foreach (StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo.OrderByDescending(x => x.MedicalExaminationDate)) {
+            foreach(StaffMedicalExaminationVo staffMedicalExaminationVo in listStaffMedicalExaminationVo.OrderByDescending(x => x.MedicalExaminationDate)) {
                 sheetView.Cells[_pointMedicalExaminationDate[countHStaffMedicalExaminationVo].X, _pointMedicalExaminationDate[countHStaffMedicalExaminationVo].Y].Value = staffMedicalExaminationVo.MedicalExaminationDate.Date != _defaultDateTime.Date ? staffMedicalExaminationVo.MedicalExaminationDate.Date : null;
                 sheetView.Cells[_pointMedicalInstitutionName[countHStaffMedicalExaminationVo].X, _pointMedicalInstitutionName[countHStaffMedicalExaminationVo].Y].Text = staffMedicalExaminationVo.MedicalInstitutionName;
                 countHStaffMedicalExaminationVo++;
-                if (countHStaffMedicalExaminationVo > 3)
+                if(countHStaffMedicalExaminationVo > 3)
                     break;
             }
             sheetView.Cells[33, 10].Value = countHStaffMedicalExaminationVo != 0 ? "診断結果を参照" : ""; // 診断以外で気づいた点
@@ -371,15 +366,15 @@ namespace Staff {
             List<CarAccidentMasterVo> listCarAccidentMasterVo = new();
             try {
                 listCarAccidentMasterVo = _carAccidentMasterDao.SelectGroupCarAccidentMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countHCarAccidentMasterVo = 0;
-            foreach (CarAccidentMasterVo hCarAccidentMasterVo in listCarAccidentMasterVo.OrderByDescending(x => x.OccurrenceYmdHms)) {
+            foreach(CarAccidentMasterVo hCarAccidentMasterVo in listCarAccidentMasterVo.OrderByDescending(x => x.OccurrenceYmdHms)) {
                 sheetView.Cells[_pointOccurrenceYmdHms[countHCarAccidentMasterVo].X, _pointOccurrenceYmdHms[countHCarAccidentMasterVo].Y].Value = hCarAccidentMasterVo.OccurrenceYmdHms.Date != _defaultDateTime.Date ? hCarAccidentMasterVo.OccurrenceYmdHms.Date : null;
                 sheetView.Cells[_pointAccidentSummary[countHCarAccidentMasterVo].X, _pointAccidentSummary[countHCarAccidentMasterVo].Y].Text = hCarAccidentMasterVo.AccidentSummary;
                 countHCarAccidentMasterVo++;
-                if (countHCarAccidentMasterVo > 5)
+                if(countHCarAccidentMasterVo > 5)
                     break;
             }
             /*
@@ -391,16 +386,16 @@ namespace Staff {
             List<StaffCarViolateVo> listStaffCarViolateVo = new();
             try {
                 listStaffCarViolateVo = _staffCarViolateDao.SelectOneStaffCarViolateMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countStaffCarViolateVo = 0;
-            foreach (StaffCarViolateVo staffCarViolateVo in listStaffCarViolateVo.OrderByDescending(x => x.CarViolateDate)) {
+            foreach(StaffCarViolateVo staffCarViolateVo in listStaffCarViolateVo.OrderByDescending(x => x.CarViolateDate)) {
                 sheetView.Cells[_pointCarViolateDate[countStaffCarViolateVo].X, _pointCarViolateDate[countStaffCarViolateVo].Y].Value = staffCarViolateVo.CarViolateDate.Date != _defaultDateTime.Date ? staffCarViolateVo.CarViolateDate.Date : null;
                 sheetView.Cells[_pointCarViolateContent[countStaffCarViolateVo].X, _pointCarViolateContent[countStaffCarViolateVo].Y].Text = staffCarViolateVo.CarViolateContent;
                 sheetView.Cells[_pointCarViolatePlace[countStaffCarViolateVo].X, _pointCarViolatePlace[countStaffCarViolateVo].Y].Text = staffCarViolateVo.CarViolatePlace;
                 countStaffCarViolateVo++;
-                if (countStaffCarViolateVo > 5)
+                if(countStaffCarViolateVo > 5)
                     break;
             }
             /*
@@ -411,15 +406,15 @@ namespace Staff {
             List<StaffEducateVo> listStaffEducateVo = new();
             try {
                 listStaffEducateVo = _staffEducateDao.SelectOneStaffEducateMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countHStaffEducateVo = 0;
-            foreach (StaffEducateVo staffEducateVo in listStaffEducateVo.OrderByDescending(x => x.EducateDate)) {
+            foreach(StaffEducateVo staffEducateVo in listStaffEducateVo.OrderByDescending(x => x.EducateDate)) {
                 sheetView.Cells[_pointEducateDate[countHStaffEducateVo].X, _pointEducateDate[countHStaffEducateVo].Y].Value = staffEducateVo.EducateDate.Date != _defaultDateTime.Date ? staffEducateVo.EducateDate.Date : null;
                 sheetView.Cells[_pointEducateName[countHStaffEducateVo].X, _pointEducateName[countHStaffEducateVo].Y].Text = staffEducateVo.EducateName;
                 countHStaffEducateVo++;
-                if (countHStaffEducateVo > 5)
+                if(countHStaffEducateVo > 5)
                     break;
             }
             /*
@@ -431,16 +426,16 @@ namespace Staff {
             List<StaffProperVo> listStaffProperVo = new();
             try {
                 listStaffProperVo = _staffProperDao.SelectOneStaffProperMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countHStaffProperVo = 0;
-            foreach (StaffProperVo staffProperVo in listStaffProperVo.OrderByDescending(x => x.ProperDate)) {
+            foreach(StaffProperVo staffProperVo in listStaffProperVo.OrderByDescending(x => x.ProperDate)) {
                 sheetView.Cells[_pointProperKind[countHStaffProperVo].X, _pointProperKind[countHStaffProperVo].Y].Text = staffProperVo.ProperKind;
                 sheetView.Cells[_pointProperDate[countHStaffProperVo].X, _pointProperDate[countHStaffProperVo].Y].Value = staffProperVo.ProperDate.Date != _defaultDateTime.Date ? staffProperVo.ProperDate.Date : null;
                 sheetView.Cells[_pointProperNote[countHStaffProperVo].X, _pointProperNote[countHStaffProperVo].Y].Text = staffProperVo.ProperNote;
                 countHStaffProperVo++;
-                if (countHStaffProperVo > 2)
+                if(countHStaffProperVo > 2)
                     break;
             }
             /*
@@ -451,15 +446,15 @@ namespace Staff {
             List<StaffPunishmentVo> listStaffPunishmentVo = new();
             try {
                 listStaffPunishmentVo = _staffPunishmentDao.SelectOneStaffPunishmentMaster(_staffCode);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
             int countStaffPunishmentVo = 0;
-            foreach (StaffPunishmentVo staffPunishmentVo in listStaffPunishmentVo.OrderByDescending(x => x.PunishmentDate)) {
+            foreach(StaffPunishmentVo staffPunishmentVo in listStaffPunishmentVo.OrderByDescending(x => x.PunishmentDate)) {
                 sheetView.Cells[_pointPunishmentDate[countStaffPunishmentVo].X, _pointPunishmentDate[countStaffPunishmentVo].Y].Value = staffPunishmentVo.PunishmentDate.Date != _defaultDateTime.Date ? staffPunishmentVo.PunishmentDate.Date : null;
                 sheetView.Cells[_pointPunishmentNote[countStaffPunishmentVo].X, _pointPunishmentNote[countStaffPunishmentVo].Y].Text = staffPunishmentVo.PunishmentNote;
                 countStaffPunishmentVo++;
-                if (countStaffPunishmentVo > 3)
+                if(countStaffPunishmentVo > 3)
                     break;
             }
         }
@@ -652,7 +647,7 @@ namespace Staff {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 case "ToolStripMenuItemPrintA4":
                     PrintDocument _printDocument = new();
                     _printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
@@ -675,7 +670,7 @@ namespace Staff {
         private int curPageNumber = 0; // 現在のページ番号
 
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e) {
-            if (curPageNumber == 0) {
+            if(curPageNumber == 0) {
                 // 印刷ページ（1ページ目）の描画を行う
                 Rectangle rectangle = new(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, e.PageBounds.Height);
                 // 使用するページ数を計算

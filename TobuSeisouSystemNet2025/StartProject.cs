@@ -311,7 +311,7 @@ namespace TobuSeisouSystemNet2025 {
                 case ConnectionState.Open:                                                                                                      //接続が開いています。
                     switch((string)((Label)sender).Tag) {
                         case "VehicleDispatchBoard":                                                                                            // 配車パネル
-                            _connectionVo.ConnectionLocation = "本社";
+                            _connectionVo.ConnectionLocation = "本社営業所";
                             VehicleDispatchBoard vehicleDispatchBoard = new(_connectionVo);
                             _screenForm.SetPosition((Screen)ComboBoxExMonitor.SelectedValue, vehicleDispatchBoard);
                             vehicleDispatchBoard.Show();

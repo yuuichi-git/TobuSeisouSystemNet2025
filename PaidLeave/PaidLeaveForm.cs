@@ -32,7 +32,6 @@ namespace PaidLeave {
         private readonly DateTime _defaultDateTime = new(1900, 01, 01);
         private StaffLabel _parentStaffLabel;
         private int _timeOffCode;
-        private StaffLabel[] _arrayStaffLabel;
         /*
          * Dao
          */
@@ -42,7 +41,18 @@ namespace PaidLeave {
          * Vo
          */
         private ConnectionVo _connectionVo;
-        private List<StaffMasterVo> _listStaffMasterVo;
+        /// <summary>
+        /// StaffMasterVo
+        /// </summary>
+        private List<StaffMasterVo> _listStaffMasterVo = null;
+        /// <summary>
+        /// Belongs
+        /// </summary>
+        private List<StaffMasterVo> _listStaffMasterVoForBelongs = null;
+        /// <summary>
+        /// NameKana
+        /// </summary>
+        private List<StaffMasterVo> _listStaffMasterVoNameKana = null;
 
         /// <summary>
         /// Constructor
@@ -58,7 +68,7 @@ namespace PaidLeave {
             /*
              * Vo
              */
-            _listStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
+            ListStaffMasterVo = _staffMasterDao.SelectAllStaffMaster(null, null, null, false);
             _timeOffMasterDao = new(connectionVo);
             /*
              * InitializeControl
@@ -137,8 +147,9 @@ namespace PaidLeave {
             switch(((CcButton)sender).Name) {
                 case "CcButtonFullTime":
                     try {
-                        _arrayStaffLabel = GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonFullTime");
-                        SetCcFlowLayoutPanelStock(_arrayStaffLabel);
+                        ListStaffMasterVoForBelongs = GetListStaffMasterVo(ListStaffMasterVo, this.GetAllStaffLabel(), "CcButtonFullTime");
+                        SetCcFlowLayoutPanelStock(ListStaffMasterVoForBelongs);
+                        CcTabControl1.SelectedIndex = 0; // CcTabControl1のタブを「全て」に切り替える
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "社員等で初期化しました";
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -146,8 +157,9 @@ namespace PaidLeave {
                     break;
                 case "CcButtonPartTime":
                     try {
-                        _arrayStaffLabel = GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonPartTime");
-                        SetCcFlowLayoutPanelStock(_arrayStaffLabel);
+                        ListStaffMasterVoForBelongs = GetListStaffMasterVo(ListStaffMasterVo, this.GetAllStaffLabel(), "CcButtonPartTime");
+                        SetCcFlowLayoutPanelStock(ListStaffMasterVoForBelongs);
+                        CcTabControl1.SelectedIndex = 0; // CcTabControl1のタブを「全て」に切り替える
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "アルバイトで初期化しました";
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -155,8 +167,9 @@ namespace PaidLeave {
                     break;
                 case "CcButtonLongTime":
                     try {
-                        _arrayStaffLabel = GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonLongTime");
-                        SetCcFlowLayoutPanelStock(_arrayStaffLabel);
+                        ListStaffMasterVoForBelongs = GetListStaffMasterVo(ListStaffMasterVo, this.GetAllStaffLabel(), "CcButtonLongTime");
+                        SetCcFlowLayoutPanelStock(ListStaffMasterVoForBelongs);
+                        CcTabControl1.SelectedIndex = 0; // CcTabControl1のタブを「全て」に切り替える
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "労供長期で初期化しました";
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -164,8 +177,9 @@ namespace PaidLeave {
                     break;
                 case "CcButtonShortTime":
                     try {
-                        _arrayStaffLabel = GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonShortTime");
-                        SetCcFlowLayoutPanelStock(_arrayStaffLabel);
+                        ListStaffMasterVoForBelongs = GetListStaffMasterVo(ListStaffMasterVo, this.GetAllStaffLabel(), "CcButtonShortTime");
+                        SetCcFlowLayoutPanelStock(ListStaffMasterVoForBelongs);
+                        CcTabControl1.SelectedIndex = 0; // CcTabControl1のタブを「全て」に切り替える
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "労供短期で初期化しました";
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -173,8 +187,9 @@ namespace PaidLeave {
                     break;
                 case "CcButtonTemporaryWorker":
                     try {
-                        _arrayStaffLabel = GetArrayStaffLabel(_listStaffMasterVo, this.GetAllStaffLabel(), "CcButtonTemporaryWorker");
-                        SetCcFlowLayoutPanelStock(_arrayStaffLabel);
+                        ListStaffMasterVoForBelongs = GetListStaffMasterVo(ListStaffMasterVo, this.GetAllStaffLabel(), "CcButtonTemporaryWorker");
+                        SetCcFlowLayoutPanelStock(ListStaffMasterVoForBelongs);
+                        CcTabControl1.SelectedIndex = 0; // CcTabControl1のタブを「全て」に切り替える
                         this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = "派遣で初期化しました";
                     } catch(Exception exception) {
                         MessageBox.Show(exception.Message);
@@ -183,41 +198,54 @@ namespace PaidLeave {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CcTabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+            if(ListStaffMasterVoForBelongs is null)
+                return;
+
+            _listStaffMasterVoNameKana = ListStaffMasterVoForBelongs;
 
             switch(((CcTabControl)sender).SelectedTab.Text) {
                 case "あ行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ"));
                     break;
                 case "か行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ"));
                     break;
                 case "さ行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ"));
                     break;
                 case "た行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド"));
                     break;
                 case "な行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ"));
                     break;
                 case "は行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("ピ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("プ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ペ") || x.NameKana.StartsWith("ホ") || x.NameKana.StartsWith("ボ") || x.NameKana.StartsWith("ポ"));
                     break;
                 case "ま行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ"));
                     break;
                 case "や行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ"));
                     break;
                 case "ら行":
-
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ"));
                     break;
                 case "わ行":
-                    
+                    _listStaffMasterVoNameKana = _listStaffMasterVoNameKana.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヰ") || x.NameKana.StartsWith(" Wu") || x.NameKana.StartsWith("ヱ") || x.NameKana.StartsWith("ヲ"));
                     break;
-
+                    default:
+                    _listStaffMasterVoNameKana = ListStaffMasterVoForBelongs;
+                    break;
             }
+
+            SetCcFlowLayoutPanelStock(_listStaffMasterVoNameKana, GetAllStaffLabel());
         }
 
         /// <summary>
@@ -227,9 +255,8 @@ namespace PaidLeave {
         /// <param name="excludeListStaffMasterVo">CcFlowLayoutPanel2に配置されているStaffLabel</param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public StaffLabel[] GetArrayStaffLabel(List<StaffMasterVo> listStaffMasterVo, List<StaffMasterVo> excludeListStaffMasterVo, string key) {
+        public List<StaffMasterVo> GetListStaffMasterVo(List<StaffMasterVo> listStaffMasterVo, List<StaffMasterVo> excludeListStaffMasterVo, string key) {
             List<StaffMasterVo> newListStaffMasterVo = listStaffMasterVo.Where(x => !CreateStaffCodeList(excludeListStaffMasterVo).Contains(x.StaffCode)).ToList();
-
             switch(key) {
                 case "CcButtonFullTime":                // 社員
                     newListStaffMasterVo = newListStaffMasterVo.FindAll(x => (x.Belongs == 10 || x.Belongs == 11 || x.Belongs == 14 || x.Belongs == 15) && x.RetirementFlag == false);
@@ -247,39 +274,53 @@ namespace PaidLeave {
                     newListStaffMasterVo = newListStaffMasterVo.FindAll(x => x.Belongs == 13 && x.RetirementFlag == false);
                     break;
             }
-            this.CcLabelRecordCount.Text = $"レコード数：{newListStaffMasterVo.Count}件";
 
-            StaffLabel[] _arrayControl = new StaffLabel[newListStaffMasterVo.Count];
-            int i = 0;
-            foreach(StaffMasterVo staffMasterVo in newListStaffMasterVo.OrderBy(x => x.NameKana)) {
-                _arrayControl[i] = GetOneStaffLabel(staffMasterVo);
-                i++;
-            }
-            return _arrayControl;
+            return newListStaffMasterVo;
         }
 
         /// <summary>
         /// CcFlowLayoutPanelStockにStaffLabelをセットする
         /// </summary>
-        private void SetCcFlowLayoutPanelStock(StaffLabel[] arrayStaffLabel) {
-            this.RemoveControls(CcFlowLayoutPanelStock);
-            this.CcFlowLayoutPanelStock.Controls.AddRange(arrayStaffLabel);
+        private void SetCcFlowLayoutPanelStock(List<StaffMasterVo> listStaffMasterVo) {
+            // StaffLabelを削除する
+            RemoveControls(CcFlowLayoutPanelStock);
+
+            // 
+            StaffLabel[] _arrayStaffLabel = new StaffLabel[listStaffMasterVo.Count];
+
+            int i = 0;
+            foreach(StaffMasterVo staffMasterVo in listStaffMasterVo.OrderBy(x => x.NameKana)) {
+                _arrayStaffLabel[i] = GetOneStaffLabel(staffMasterVo);
+                i++;
+            }
+            // パネルに StaffLabel を追加
+            CcFlowLayoutPanelStock.Controls.AddRange(_arrayStaffLabel);
         }
 
-        private List<StaffMasterVo> GetFindListStaffMasterVo(List<StaffMasterVo> listStaffMasterVo) {
-            return this.CcTabControl1.SelectedTab.Text switch {
-                "あ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ア") || x.NameKana.StartsWith("イ") || x.NameKana.StartsWith("ウ") || x.NameKana.StartsWith("エ") || x.NameKana.StartsWith("オ")),
-                "か行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("カ") || x.NameKana.StartsWith("ガ") || x.NameKana.StartsWith("キ") || x.NameKana.StartsWith("ギ") || x.NameKana.StartsWith("ク") || x.NameKana.StartsWith("グ") || x.NameKana.StartsWith("ケ") || x.NameKana.StartsWith("ゲ") || x.NameKana.StartsWith("コ") || x.NameKana.StartsWith("ゴ")),
-                "さ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("サ") || x.NameKana.StartsWith("シ") || x.NameKana.StartsWith("ス") || x.NameKana.StartsWith("セ") || x.NameKana.StartsWith("ソ")),
-                "た行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("タ") || x.NameKana.StartsWith("ダ") || x.NameKana.StartsWith("チ") || x.NameKana.StartsWith("ツ") || x.NameKana.StartsWith("テ") || x.NameKana.StartsWith("デ") || x.NameKana.StartsWith("ト") || x.NameKana.StartsWith("ド")),
-                "な行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ナ") || x.NameKana.StartsWith("ニ") || x.NameKana.StartsWith("ヌ") || x.NameKana.StartsWith("ネ") || x.NameKana.StartsWith("ノ")),
-                "は行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ハ") || x.NameKana.StartsWith("パ") || x.NameKana.StartsWith("バ") || x.NameKana.StartsWith("ヒ") || x.NameKana.StartsWith("ビ") || x.NameKana.StartsWith("フ") || x.NameKana.StartsWith("ブ") || x.NameKana.StartsWith("ヘ") || x.NameKana.StartsWith("ベ") || x.NameKana.StartsWith("ホ")),
-                "ま行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("マ") || x.NameKana.StartsWith("ミ") || x.NameKana.StartsWith("ム") || x.NameKana.StartsWith("メ") || x.NameKana.StartsWith("モ")),
-                "や行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ヤ") || x.NameKana.StartsWith("ユ") || x.NameKana.StartsWith("ヨ")),
-                "ら行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ラ") || x.NameKana.StartsWith("リ") || x.NameKana.StartsWith("ル") || x.NameKana.StartsWith("レ") || x.NameKana.StartsWith("ロ")),
-                "わ行" => listStaffMasterVo?.FindAll(x => x.NameKana.StartsWith("ワ") || x.NameKana.StartsWith("ヲ") || x.NameKana.StartsWith("ン")),
-                _ => listStaffMasterVo,
-            };
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="listStaffMasterVo">BelongsでフィルタリングされたStaffMasterVoリスト</param>
+        /// <param name="configuredListStaffMasterVo">配置済みのStaffMasterVoリスト</param>
+        private void SetCcFlowLayoutPanelStock(List<StaffMasterVo> listStaffMasterVo, List<StaffMasterVo> configuredListStaffMasterVo) {
+            // configuredListStaffMasterVo を除外したリストを作成
+            List<StaffMasterVo> filteredListStaffMasterVo = listStaffMasterVo.Where(x => !configuredListStaffMasterVo
+                                                                             .Select(c => c.StaffCode)
+                                                                             .Contains(x.StaffCode))
+                                                                             .ToList();
+            // StaffLabelを削除する
+            RemoveControls(CcFlowLayoutPanelStock);
+
+            // StaffLabel 配置
+            StaffLabel[] _arrayStaffLabel = new StaffLabel[filteredListStaffMasterVo.Count];
+
+            int i = 0;
+            foreach(StaffMasterVo staffMasterVo in filteredListStaffMasterVo.OrderBy(x => x.NameKana)) {
+                _arrayStaffLabel[i] = GetOneStaffLabel(staffMasterVo);
+                i++;
+            }
+            // パネルに StaffLabel を追加
+            CcFlowLayoutPanelStock.Controls.AddRange(_arrayStaffLabel);
         }
 
         /// <summary>
@@ -540,6 +581,22 @@ namespace PaidLeave {
                     e.Cancel = true;
                     break;
             }
+        }
+
+        /*
+         * Setter Getter
+         */
+        public List<StaffMasterVo> ListStaffMasterVo {
+            get => _listStaffMasterVo;
+            set => _listStaffMasterVo = value;
+        }
+        public List<StaffMasterVo> ListStaffMasterVoForBelongs {
+            get => _listStaffMasterVoForBelongs;
+            set => _listStaffMasterVoForBelongs = value;
+        }
+        public List<StaffMasterVo> ListStaffMasterVoNameKana {
+            get => _listStaffMasterVoNameKana;
+            set => _listStaffMasterVoNameKana = value;
         }
     }
 }

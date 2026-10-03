@@ -48,24 +48,20 @@ namespace Collection {
             /*
              * MenuStrip
              */
-            List<string> listString = new() {
-                "ToolStripMenuItemFile",
-                "ToolStripMenuItemExit",
-                "ToolStripMenuItemExport",
-                "ToolStripMenuItemExportExcel",
-                "ToolStripMenuItemPrint",
-                "ToolStripMenuItemPrintA4",
-                "ToolStripMenuItemHelp"
-            };
+            List<string> listString = new() {"ToolStripMenuItemFile",
+                                             "ToolStripMenuItemExit",
+                                             "ToolStripMenuItemExport",
+                                             "ToolStripMenuItemExportExcel",
+                                             "ToolStripMenuItemPrint",
+                                             "ToolStripMenuItemPrintA4",
+                                             "ToolStripMenuItemHelp"};
             this.MenuStripEx1.ChangeEnable(listString);
+            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+
             this.DateTimePickerEx1.Value = _dateUtility.GetBeginOfMonth(DateTime.Now);
             this.DateTimePickerEx2.Value = _dateUtility.GetEndOfMonth(DateTime.Now);
             this.InitializeSheetView(this.SheetViewList);
             this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "Initialize Success";
-            /*
-             * Eventを登録する
-             */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -77,7 +73,7 @@ namespace Collection {
             try {
                 _listCollectionWeightTaitouVo = _collectionTaitouDao.SelectCollectionWeightTaitou(this.DateTimePickerEx1.GetValue(), this.DateTimePickerEx2.GetValue());
                 this.PutSheetViewList(_listCollectionWeightTaitouVo);
-            } catch (Exception exception) {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
         }
@@ -93,7 +89,7 @@ namespace Collection {
             this.SheetViewList.ClearRange(1, 0, 31, 13, true);
 
             int rowNumber = 1;
-            for (int day = 1; day <= new DateUtility().GetDaysInMonth(DateTimePickerEx2.Value); day++) {
+            for(int day = 1; day <= new DateUtility().GetDaysInMonth(DateTimePickerEx2.Value); day++) {
                 /*
                  * レコードを抽出する
                  */
@@ -104,7 +100,7 @@ namespace Collection {
                 DateTime date = new(this.DateTimePickerEx1.Value.Year, this.DateTimePickerEx1.Value.Month, day);
                 this.SheetViewList.Cells[rowNumber, 0].Value = date;
                 this.SheetViewList.Cells[rowNumber, 1].Text = date.ToString("ddd");
-                switch (date.ToString("ddd")) {
+                switch(date.ToString("ddd")) {
                     case "月":
                     case "火":
                     case "水":
@@ -119,7 +115,7 @@ namespace Collection {
                         this.SheetViewList.Cells[rowNumber, 1].ForeColor = Color.Red;
                         break;
                 }
-                if (collectionWeightTaitouVo is not null) {
+                if(collectionWeightTaitouVo is not null) {
                     // 東武１
                     this.SheetViewList.Cells[rowNumber, 2].Value = collectionWeightTaitouVo.Weight1Total;
                     this.SheetViewList.Cells[rowNumber, 3].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310602).ToString("HH:mm");
@@ -132,12 +128,13 @@ namespace Collection {
                     // 東武臨時２
                     this.SheetViewList.Cells[rowNumber, 8].Value = collectionWeightTaitouVo.Weight5Total;
                     this.SheetViewList.Cells[rowNumber, 9].Text = _vehicleDispatchDetailDao.GetLastRollCallYmdHms(date, 1310610).ToString("HH:mm");
-                    // 三東
+                    // 昭和
                     this.SheetViewList.Cells[rowNumber, 10].Value = collectionWeightTaitouVo.Weight6Total;
-                    this.SheetViewList.Cells[rowNumber, 11].Value = collectionWeightTaitouVo.Weight7Total;
                     this.SheetViewList.Cells[rowNumber, 12].Value = collectionWeightTaitouVo.Weight8Total;
+                    // 都北
+                    this.SheetViewList.Cells[rowNumber, 11].Value = collectionWeightTaitouVo.Weight7Total;
                     this.SheetViewList.Cells[rowNumber, 13].Value = collectionWeightTaitouVo.Weight9Total;
-                    //　高嶺
+                    // 高嶺
                     this.SheetViewList.Cells[rowNumber, 14].Value = collectionWeightTaitouVo.Weight10Total;
                     this.SheetViewList.Cells[rowNumber, 15].Value = collectionWeightTaitouVo.Weight11Total;
                 }
@@ -153,7 +150,7 @@ namespace Collection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ToolStripMenuItem_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).Name) {
+            switch(((ToolStripMenuItem)sender).Name) {
                 /*
                  * Excel(xlsx)形式でエクスポートする
                  */
@@ -176,9 +173,9 @@ namespace Collection {
                     /*
                      * プリンタがサポートしている用紙サイズを調べる
                      */
-                    foreach (PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
+                    foreach(PaperSize paperSize in _printDocument.PrinterSettings.PaperSizes) {
                         // A4用紙に設定する
-                        if (paperSize.Kind == PaperKind.A4) {
+                        if(paperSize.Kind == PaperKind.A4) {
                             _printDocument.DefaultPageSettings.PaperSize = paperSize;
                             break;
                         }
@@ -241,12 +238,12 @@ namespace Collection {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DateTimePickerEx1_ValueChanged(object sender, EventArgs e) {
-            if (((CcDateTime)sender).Value > this.DateTimePickerEx2.GetValue()) {
+            if(((CcDateTime)sender).Value > this.DateTimePickerEx2.GetValue()) {
                 this.DateTimePickerEx2.SetValueJp(_dateUtility.GetEndOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
         private void DateTimePickerEx2_ValueChanged(object sender, EventArgs e) {
-            if (((CcDateTime)sender).Value < this.DateTimePickerEx1.GetValue()) {
+            if(((CcDateTime)sender).Value < this.DateTimePickerEx1.GetValue()) {
                 this.DateTimePickerEx1.SetValueJp(_dateUtility.GetBeginOfMonth(((CcDateTime)sender).GetValue()));
             }
         }
@@ -258,7 +255,7 @@ namespace Collection {
         /// <param name="e"></param>
         private void CollectionWeightTaitouList_FormClosing(object sender, FormClosingEventArgs e) {
             DialogResult dialogResult = MessageBox.Show("アプリケーションを終了します。よろしいですか？", "メッセージ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            switch (dialogResult) {
+            switch(dialogResult) {
                 case DialogResult.OK:
                     e.Cancel = false;
                     Dispose();

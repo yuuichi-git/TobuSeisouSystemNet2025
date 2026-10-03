@@ -77,13 +77,13 @@ namespace Toukanpo {
                 "ToolStripMenuItemInsertNewRecord",
                 "ToolStripMenuItemHelp"
             };
-            this.MenuStripEx1.ChangeEnable(listString);
+            this.CcMenuStrip1.ChangeEnable(listString);
 
             this.InitializeSheetView(this.SheetViewList);
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Toukanpo {
             }
             this.SpreadList.SetViewportTopRow(0, spreadListTopRow);                                                                          // 先頭行（列）インデックスをセット
             this.SpreadList.ResumeLayout();                                                                                                  // Spread 活性化
-            this.StatusStripEx1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
+            this.CcStatusStrip1.ToolStripStatusLabelDetail.Text = string.Concat(" ", row, " 件");
 
         }
 

@@ -59,10 +59,14 @@
             CcLabelStaffList = new CcControl.CcLabel();
             CcLabelLicenseList = new CcControl.CcLabel();
             CcLabelStaffDestination = new CcControl.CcLabel();
+            CcLabelCarWorkingDays = new CcControl.CcLabel();
+            CcLabelCollectionWeightTaitouList = new CcControl.CcLabel();
             TabPage2 = new TabPage();
             CcTableLayoutPanel2 = new CcControl.CcTableLayoutPanel();
             CcLabelVehicleDispatchBoardMisato = new CcControl.CcLabel();
-            CcLabelCarWorkingDays = new CcControl.CcLabel();
+            TabPage3 = new TabPage();
+            ccTableLayoutPanel3 = new CcControl.CcTableLayoutPanel();
+            CcLabelToukanpoList = new CcControl.CcLabel();
             CcTableLayoutPanelBase.SuspendLayout();
             CcPanelUp.SuspendLayout();
             ccGroupBox2.SuspendLayout();
@@ -72,6 +76,8 @@
             CcTableLayoutPanel1.SuspendLayout();
             TabPage2.SuspendLayout();
             CcTableLayoutPanel2.SuspendLayout();
+            TabPage3.SuspendLayout();
+            ccTableLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // CcTableLayoutPanelBase
@@ -347,6 +353,7 @@
             CcTableLayoutPanelBase.SetColumnSpan(CcTabControl1, 2);
             CcTabControl1.Controls.Add(TabPage1);
             CcTabControl1.Controls.Add(TabPage2);
+            CcTabControl1.Controls.Add(TabPage3);
             CcTabControl1.Dock = DockStyle.Fill;
             CcTabControl1.Location = new Point(3, 197);
             CcTabControl1.Name = "CcTabControl1";
@@ -380,6 +387,7 @@
             CcTableLayoutPanel1.Controls.Add(CcLabelLicenseList, 1, 4);
             CcTableLayoutPanel1.Controls.Add(CcLabelStaffDestination, 3, 0);
             CcTableLayoutPanel1.Controls.Add(CcLabelCarWorkingDays, 3, 1);
+            CcTableLayoutPanel1.Controls.Add(CcLabelCollectionWeightTaitouList, 3, 2);
             CcTableLayoutPanel1.Dock = DockStyle.Fill;
             CcTableLayoutPanel1.Location = new Point(3, 3);
             CcTableLayoutPanel1.Name = "CcTableLayoutPanel1";
@@ -484,6 +492,36 @@
             CcLabelStaffDestination.MouseEnter += CcLabel_MouseEnter;
             CcLabelStaffDestination.MouseLeave += CcLabel_MouseLeave;
             // 
+            // CcLabelCarWorkingDays
+            // 
+            CcLabelCarWorkingDays.AutoSize = true;
+            CcLabelCarWorkingDays.Dock = DockStyle.Fill;
+            CcLabelCarWorkingDays.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelCarWorkingDays.Location = new Point(547, 60);
+            CcLabelCarWorkingDays.Margin = new Padding(5);
+            CcLabelCarWorkingDays.Name = "CcLabelCarWorkingDays";
+            CcLabelCarWorkingDays.Size = new Size(412, 45);
+            CcLabelCarWorkingDays.TabIndex = 6;
+            CcLabelCarWorkingDays.Text = "　車両稼働表\r\n　　車両の稼働明細一覧を表示";
+            CcLabelCarWorkingDays.Click += CcLabel_Click;
+            CcLabelCarWorkingDays.MouseEnter += CcLabel_MouseEnter;
+            CcLabelCarWorkingDays.MouseLeave += CcLabel_MouseLeave;
+            // 
+            // CcLabelCollectionWeightTaitouList
+            // 
+            CcLabelCollectionWeightTaitouList.AutoSize = true;
+            CcLabelCollectionWeightTaitouList.Dock = DockStyle.Fill;
+            CcLabelCollectionWeightTaitouList.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelCollectionWeightTaitouList.Location = new Point(547, 115);
+            CcLabelCollectionWeightTaitouList.Margin = new Padding(5);
+            CcLabelCollectionWeightTaitouList.Name = "CcLabelCollectionWeightTaitouList";
+            CcLabelCollectionWeightTaitouList.Size = new Size(412, 45);
+            CcLabelCollectionWeightTaitouList.TabIndex = 7;
+            CcLabelCollectionWeightTaitouList.Text = "　台東古紙収集量集計表\r\n　　集計表を作成";
+            CcLabelCollectionWeightTaitouList.Click += CcLabel_Click;
+            CcLabelCollectionWeightTaitouList.MouseEnter += CcLabel_MouseEnter;
+            CcLabelCollectionWeightTaitouList.MouseLeave += CcLabel_MouseLeave;
+            // 
             // TabPage2
             // 
             TabPage2.Controls.Add(CcTableLayoutPanel2);
@@ -532,20 +570,53 @@
             CcLabelVehicleDispatchBoardMisato.MouseEnter += CcLabel_MouseEnter;
             CcLabelVehicleDispatchBoardMisato.MouseLeave += CcLabel_MouseLeave;
             // 
-            // CcLabelCarWorkingDays
+            // TabPage3
             // 
-            CcLabelCarWorkingDays.AutoSize = true;
-            CcLabelCarWorkingDays.Dock = DockStyle.Fill;
-            CcLabelCarWorkingDays.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CcLabelCarWorkingDays.Location = new Point(547, 60);
-            CcLabelCarWorkingDays.Margin = new Padding(5);
-            CcLabelCarWorkingDays.Name = "CcLabelCarWorkingDays";
-            CcLabelCarWorkingDays.Size = new Size(412, 45);
-            CcLabelCarWorkingDays.TabIndex = 6;
-            CcLabelCarWorkingDays.Text = "　車両稼働表\r\n　　車両の稼働明細一覧を表示";
-            CcLabelCarWorkingDays.Click += CcLabel_Click;
-            CcLabelCarWorkingDays.MouseEnter += CcLabel_MouseEnter;
-            CcLabelCarWorkingDays.MouseLeave += CcLabel_MouseLeave;
+            TabPage3.Controls.Add(ccTableLayoutPanel3);
+            TabPage3.Location = new Point(4, 24);
+            TabPage3.Name = "TabPage3";
+            TabPage3.Padding = new Padding(3);
+            TabPage3.Size = new Size(970, 392);
+            TabPage3.TabIndex = 2;
+            TabPage3.Text = "東環保";
+            TabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ccTableLayoutPanel3
+            // 
+            ccTableLayoutPanel3.ColumnCount = 4;
+            ccTableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            ccTableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            ccTableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            ccTableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            ccTableLayoutPanel3.Controls.Add(CcLabelToukanpoList, 1, 0);
+            ccTableLayoutPanel3.Dock = DockStyle.Fill;
+            ccTableLayoutPanel3.Location = new Point(3, 3);
+            ccTableLayoutPanel3.Name = "ccTableLayoutPanel3";
+            ccTableLayoutPanel3.RowCount = 7;
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857132F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857161F));
+            ccTableLayoutPanel3.Size = new Size(964, 386);
+            ccTableLayoutPanel3.TabIndex = 5;
+            // 
+            // CcLabelToukanpoList
+            // 
+            CcLabelToukanpoList.AutoSize = true;
+            CcLabelToukanpoList.Dock = DockStyle.Fill;
+            CcLabelToukanpoList.Font = new Font("メイリオ", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CcLabelToukanpoList.Location = new Point(65, 5);
+            CcLabelToukanpoList.Margin = new Padding(5);
+            CcLabelToukanpoList.Name = "CcLabelToukanpoList";
+            CcLabelToukanpoList.Size = new Size(412, 45);
+            CcLabelToukanpoList.TabIndex = 2;
+            CcLabelToukanpoList.Text = "　東環保カード\r\n　　発行されたカードの登録・修正";
+            CcLabelToukanpoList.Click += CcLabel_Click;
+            CcLabelToukanpoList.MouseEnter += CcLabel_MouseEnter;
+            CcLabelToukanpoList.MouseLeave += CcLabel_MouseLeave;
             // 
             // StartProject
             // 
@@ -575,6 +646,9 @@
             TabPage2.ResumeLayout(false);
             CcTableLayoutPanel2.ResumeLayout(false);
             CcTableLayoutPanel2.PerformLayout();
+            TabPage3.ResumeLayout(false);
+            ccTableLayoutPanel3.ResumeLayout(false);
+            ccTableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -619,5 +693,9 @@
         private CcControl.CcLabel CcLabelLicenseList;
         private CcControl.CcLabel CcLabelStaffDestination;
         private CcControl.CcLabel CcLabelCarWorkingDays;
+        private CcControl.CcLabel CcLabelCollectionWeightTaitouList;
+        private TabPage TabPage3;
+        private CcControl.CcTableLayoutPanel ccTableLayoutPanel3;
+        private CcControl.CcLabel CcLabelToukanpoList;
     }
 }
