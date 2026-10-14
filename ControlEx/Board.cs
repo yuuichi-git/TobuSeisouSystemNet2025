@@ -191,7 +191,6 @@ namespace CcControl {
                 }
             }
             return listCarMasterVo;
-
         }
 
         /// <summary>

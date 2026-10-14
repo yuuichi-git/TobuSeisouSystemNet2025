@@ -476,11 +476,15 @@ namespace Staff {
                 staffMasterVo.HealthInsuranceDate = _defaultDateTime;
             }
             //staffMasterVo.HealthInsuranceNumber = CcComboBoxHealthInsuranceNumber.Text;                                               // 2026/10/02に廃止　入力を校正するためにTextBoxへ変更
-            string healthInsuranceNumber = string.Concat("記号",string.Format("{0:D4}",CcTextBoxHealthInsuranceNumber1.Text)," ",       // 健康保険番号(4桁)
-                                                         "番号",string.Format("{0:D3}",CcTextBoxHealthInsuranceNumber2.Text)," ",       // 健康保険番号(3桁)
-                                                         "枝番",string.Format("{0:D2}",CcTextBoxHealthInsuranceNumber3.Text));          // 健康保険番号(2桁)
-            staffMasterVo.HealthInsuranceNumber = healthInsuranceNumber;
+            if(DateTimeExHealthInsuranceDate.CustomFormat != " ") {                                                                     // 
+                string healthInsuranceNumber = string.Concat("記号",string.Format("{0:D4}",CcTextBoxHealthInsuranceNumber1.Text)," ",    // 健康保険番号(4桁)
+                                                             "番号",string.Format("{0:D3}",CcTextBoxHealthInsuranceNumber2.Text)," ",    // 健康保険番号(3桁)
+                                                             "枝番",string.Format("{0:D2}",CcTextBoxHealthInsuranceNumber3.Text));       // 健康保険番号(2桁)
+                staffMasterVo.HealthInsuranceNumber = healthInsuranceNumber;
+            } else {
 
+                staffMasterVo.HealthInsuranceNumber = string.Empty;
+            }
             staffMasterVo.HealthInsuranceNote = TextBoxExHealthInsuranceNote.Text;                                                      // 健康保険備考
             if(DateTimeExWelfarePensionDate.CustomFormat != " ") {                                                                      // 年金保険加入日
                 staffMasterVo.WelfarePensionDate = DateTimeExWelfarePensionDate.GetValue();
