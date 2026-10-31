@@ -508,17 +508,19 @@ namespace Staff {
                     sheetView.Rows[rowCount].Resizable = false; // RowのResizableを禁止
                     sheetView.Rows[rowCount].Tag = staffMasterVo;
                     // 通しナンバー
-                    sheetView.Cells[rowCount, 0].Value = rowCount + 1;
+                    sheetView.Cells[rowCount, 0].Value = staffMasterVo.StaffCode; //rowCount + 1;
                     // 雇用形態１
                     sheetView.Cells[rowCount, 1].Text = _dictionaryBelongs[staffMasterVo.Belongs];
                     // 雇用形態２
                     sheetView.Cells[rowCount, 2].Text = _dictionaryJobForm[staffMasterVo.JobForm];
-                    // カナ
-                    sheetView.Cells[rowCount, 3].Text = staffMasterVo.Name;
+                    // 組合コード
+                    sheetView.Cells[rowCount, 3].Text = staffMasterVo.UnionCode.ToString();
                     // 氏名
-                    sheetView.Cells[rowCount, 4].Text = staffMasterVo.NameKana;
+                    sheetView.Cells[rowCount, 4].Text = staffMasterVo.Name;
+                    // カナ
+                    sheetView.Cells[rowCount, 5].Text = staffMasterVo.NameKana;
                     // 年齢
-                    sheetView.Cells[rowCount, 5].Text = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate.Date), "歳");
+                    sheetView.Cells[rowCount, 6].Text = string.Concat(_dateUtility.GetAge(staffMasterVo.BirthDate.Date), "歳");
                     rowCount++;
                 }
             }

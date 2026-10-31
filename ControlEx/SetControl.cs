@@ -163,7 +163,7 @@ namespace CcControl {
             /*
              * Column作成
              */
-            switch (this.PurposeFlag) {
+            switch(this.PurposeFlag) {
                 case true: // ２列
                     this.Size = new Size((int)CellWidth * _columnCount * 2, (int)CellHeight * _rowCount);
                     this.ColumnCount = _columnCount + 1;
@@ -245,7 +245,7 @@ namespace CcControl {
         /// </summary>
         /// <param name="setMasterVo"></param>
         public void AddSetLabel(SetMasterVo setMasterVo) {
-            if (setMasterVo is null)
+            if(setMasterVo is null)
                 return;
             SetLabel setLabel = new(setMasterVo);
             setLabel.ParentControl = this;
@@ -283,7 +283,7 @@ namespace CcControl {
         /// </summary>
         /// <param name="carMasterVo"></param>
         public void AddCarLabel(CarMasterVo carMasterVo) {
-            if (carMasterVo is null)
+            if(carMasterVo is null)
                 return;
             CarLabel carLabel = new(carMasterVo);
             carLabel.ParentControl = this;
@@ -319,19 +319,19 @@ namespace CcControl {
         /// </summary>
         /// <param name="listStaffMasterVo"></param>
         /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
-        public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo, List<StaffProperVo> listStaffProperVo) {
-            if (listStaffMasterVo is null)
+        public void AddStaffLabels(List<StaffMasterVo> listStaffMasterVo, bool viewProperFlag, List<StaffProperVo> listStaffProperVo) {
+            if(listStaffMasterVo is null)
                 return;
-            switch (this.PurposeFlag) {
+            switch(this.PurposeFlag) {
                 case true: // ２列
-                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], listStaffProperVo);
-                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], listStaffProperVo);
-                    this.DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2], listStaffProperVo);
-                    this.DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3], listStaffProperVo);
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], viewProperFlag, listStaffProperVo);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], viewProperFlag, listStaffProperVo);
+                    this.DeployedStaffLabel3 = this.AddStaffLabel(2, listStaffMasterVo[2], viewProperFlag, listStaffProperVo);
+                    this.DeployedStaffLabel4 = this.AddStaffLabel(3, listStaffMasterVo[3], viewProperFlag, listStaffProperVo);
                     break;
                 case false: // １列
-                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], listStaffProperVo);
-                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], listStaffProperVo);
+                    this.DeployedStaffLabel1 = this.AddStaffLabel(0, listStaffMasterVo[0], viewProperFlag, listStaffProperVo);
+                    this.DeployedStaffLabel2 = this.AddStaffLabel(1, listStaffMasterVo[1], viewProperFlag, listStaffProperVo);
                     this.DeployedStaffLabel3 = null;
                     this.DeployedStaffLabel4 = null;
                     break;
@@ -345,19 +345,21 @@ namespace CcControl {
         /// <param name="staffMasterVo"></param>
         /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
         /// <returns></returns>
-        private StaffLabel AddStaffLabel(int number, StaffMasterVo staffMasterVo, List<StaffProperVo> listStaffProperVo) {
-            if (staffMasterVo is not null) {
+        private StaffLabel AddStaffLabel(int number, StaffMasterVo staffMasterVo, bool viewProperFlag, List<StaffProperVo> listStaffProperVo) {
+            if(staffMasterVo is not null) {
                 StaffLabel staffLabel = new(staffMasterVo);
                 staffLabel.ParentControl = this;
-
-                if (staffMasterVo.Occupation == 10) {                                                                                                       // Occupation == 10(運転手)
+                if(staffMasterVo.Occupation == 10) {                                                                                                       // Occupation == 10(運転手)
                     DateTime birthday = new(staffMasterVo.BirthDate.Year, staffMasterVo.BirthDate.Month, staffMasterVo.BirthDate.Day);                      // 誕生日を設定（例：1960年5月10日）
-                    if (DateTime.Today < birthday.AddYears(65)) {                                                                                           // 65歳未満
+                    if(DateTime.Today < birthday.AddYears(65)) {                                                                                           // 65歳未満
                         /*
                          * 初任診断の判定と処理
                          */
-                        if (listStaffProperVo.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.ProperKind == "初任診断").Any() == false)
+                        if(listStaffProperVo.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.ProperKind == "初任診断").Any() == false) {
+                            staffLabel.ViewProperFlag = (staffMasterVo.JobForm == 21 || staffMasterVo.JobForm == 23) ? viewProperFlag : true;
                             staffLabel.SyoninFlag = true;
+                        }
+
                     } else {                                                                                                                                // 65歳以上
                         /*
                          * 適齢診断の判定と処理
@@ -365,13 +367,14 @@ namespace CcControl {
                         StaffProperVo staffProperVo = listStaffProperVo.Where(x => x.StaffCode == staffMasterVo.StaffCode && x.ProperKind == "適齢診断")
                                                                        .OrderByDescending(x => x.ProperDate)
                                                                        .FirstOrDefault();                                                                   // 条件に合う要素が 存在しない場合 は、その型の 既定値 (default) を返します。
-                        if (staffProperVo is null || (staffProperVo.ProperDate.AddYears(3) - DateTime.Now.Date).Days < 0) {                                 // 65歳以上で記録が存在しないか、最終診断日から3年を超過している場合
+                        if(staffProperVo is null || (staffProperVo.ProperDate.AddYears(3) - DateTime.Now.Date).Days < 0) {                                 // 65歳以上で記録が存在しないか、最終診断日から3年を超過している場合
+                            staffLabel.ViewProperFlag = (staffMasterVo.JobForm == 21 || staffMasterVo.JobForm == 23) ? viewProperFlag : true;
                             staffLabel.TekireiFlag = true;
                         }
                     }
                 }
 
-                switch (number) {
+                switch(number) {
                     case 0:
                         staffLabel.Memo = this.StaffMemo1;
                         staffLabel.MemoFlag = this.StaffMemoFlag1;
@@ -429,7 +432,7 @@ namespace CcControl {
         /// <returns>CellNumber</returns>
         public int GetStaffNumber(StaffLabel staffLabel) {
             TableLayoutPanelCellPosition tableLayoutPanelCellPosition = ((SetControl)staffLabel.ParentControl).GetCellPosition(staffLabel);
-            return tableLayoutPanelCellPosition.Column * 2 + (tableLayoutPanelCellPosition.Row - 2);
+            return (tableLayoutPanelCellPosition.Column * 2) + (tableLayoutPanelCellPosition.Row - 2);
         }
 
         /// <summary>
@@ -438,9 +441,9 @@ namespace CcControl {
         /// <param name="number">0～3</param>
         /// <returns></returns>
         private int GetOccupationCode(int number) {
-            switch (this.ClassificationCode) {
+            switch(this.ClassificationCode) {
                 case 10 or 11 or 12:
-                    if (number == 0) {
+                    if(number == 0) {
                         return 10;
                     } else {
                         return this.ClassificationCode;
@@ -462,7 +465,7 @@ namespace CcControl {
             /*
              * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
              */
-            switch (this.PurposeFlag) {
+            switch(this.PurposeFlag) {
                 case true:
                     this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
                     this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
@@ -503,7 +506,7 @@ namespace CcControl {
             /*
              * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
              */
-            switch (this.PurposeFlag) {
+            switch(this.PurposeFlag) {
                 case true:
                     this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
                     this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
@@ -544,7 +547,7 @@ namespace CcControl {
             /*
              * SetLabel/CarLabel/StaffLabelの各プロパティをセットする
              */
-            switch (setControl.PurposeFlag) {
+            switch(setControl.PurposeFlag) {
                 case true:
                     this.DeployedSetLabel = this.GetTableLayoutChildControl(0, 0);
                     this.DeployedCarLabel = this.GetTableLayoutChildControl(0, 1);
@@ -579,7 +582,7 @@ namespace CcControl {
         /// <returns></returns>
         private Control GetTableLayoutChildControl(int row, int column) {
             Control control = this.GetControlFromPosition(row, column);
-            if (control is not null) {
+            if(control is not null) {
                 Debug.WriteLine(string.Concat(row, ",", column, "→", control.Name));
             } else {
                 Debug.WriteLine(string.Concat(row, ",", column, "→", "null"));
@@ -592,12 +595,12 @@ namespace CcControl {
         /// </summary>
         /// <param name="control"></param>
         public void EventAdd(Control control) {
-            if (control is null)
+            if(control is null)
                 return;
             /*
              * Eventの付け替え
              */
-            switch (control) {
+            switch(control) {
                 case SetLabel setLabel:
                     setLabel.SetLabel_ContextMenuStrip_Opened += ContextMenuStrip_Opened;
                     setLabel.SetLabel_ToolStripMenuItem_Click += ToolStripMenuItem_Click;
@@ -639,12 +642,12 @@ namespace CcControl {
         /// </summary>
         /// <param name="control"></param>
         public void EventDel(Control control) {
-            if (control is null)
+            if(control is null)
                 return;
             /*
              * Eventの付け替え
              */
-            switch (control) {
+            switch(control) {
                 case SetLabel setLabel:
                     setLabel.SetLabel_ContextMenuStrip_Opened -= ContextMenuStrip_Opened;
                     setLabel.SetLabel_ToolStripMenuItem_Click -= ToolStripMenuItem_Click;
@@ -821,9 +824,9 @@ namespace CcControl {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ContextMenuStrip_Opened(object sender, EventArgs e) {
-            switch (((ContextMenuStrip)sender).SourceControl) {
+            switch(((ContextMenuStrip)sender).SourceControl) {
                 case SetControl setControl:
-                    if ((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
+                    if((this.CellNumber >= 0 && this.CellNumber <= 43) || (this.CellNumber >= 50 && this.CellNumber <= 93) || (this.CellNumber >= 100 && this.CellNumber <= 143) || (this.CellNumber >= 150 && this.CellNumber <= 193)) {
                         // Single-SetControlに変更する場合、自分自身が"Double-SetControl"でなくてはならない
                         toolStripMenuItem00_0.Enabled = this.PurposeFlag && this.StaffCode3 == 0 && this.StaffCode4 == 0 ? true : false;
                         // Double-SetControlに変更する場合、自分自身が"Single-SetControl"でなくてはならない
@@ -870,28 +873,28 @@ namespace CcControl {
             /*
              * Boderを描画する
              */
-            if (_vehicleDispatchDetailVo.VehicleDispatchFlag) {
-                switch (e.Column) {
+            if(_vehicleDispatchDetailVo.VehicleDispatchFlag) {
+                switch(e.Column) {
                     case 0: // １列目
-                        switch (e.Row) {
+                        switch(e.Row) {
                             case 2: // StaffLabel(1人目)
-                                if (this.NumberOfPeople >= 1)
+                                if(this.NumberOfPeople >= 1)
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Black, ButtonBorderStyle.Dotted);          // StaffLabel1の枠線
                                 break;
                             case 3: // StaffLabel(2人目)
-                                if (this.NumberOfPeople >= 2)
+                                if(this.NumberOfPeople >= 2)
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted);           // StaffLabel2の枠線
                                 break;
                         }
                         break;
                     case 1: // ２列目
-                        switch (e.Row) {
+                        switch(e.Row) {
                             case 2: // StaffLabel(3人目)
-                                if (this.NumberOfPeople >= 3)
+                                if(this.NumberOfPeople >= 3)
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted);           // StaffLabel3の枠線
                                 break;
                             case 3: // StaffLabel(4人目)
-                                if (this.NumberOfPeople >= 4)
+                                if(this.NumberOfPeople >= 4)
                                     ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Gray, ButtonBorderStyle.Dotted);           // StaffLabel4の枠線
                                 break;
                         }
@@ -903,8 +906,8 @@ namespace CcControl {
             /*
              * H_SetControlの外枠を描画する
              */
-            if (_oldOnCursorFlag) {
-                if (this.PurposeFlag) {
+            if(_oldOnCursorFlag) {
+                if(this.PurposeFlag) {
                     e.Graphics.DrawRectangle(new Pen(Color.Gray, 2), new Rectangle(1, 1, 146, 477));
                 } else {
                     e.Graphics.DrawRectangle(new Pen(Color.Gray, 2), new Rectangle(1, 1, 71, 477));
@@ -921,11 +924,11 @@ namespace CcControl {
         /// </summary>
         /// <param name="dragEventArgs"></param>
         protected override void OnDragEnter(DragEventArgs e) {
-            if (e.Data.GetDataPresent(typeof(SetLabel))) {
+            if(e.Data.GetDataPresent(typeof(SetLabel))) {
                 _dragEnterObject = (SetLabel)e.Data.GetData(typeof(SetLabel));
-            } else if (e.Data.GetDataPresent(typeof(CarLabel))) {
+            } else if(e.Data.GetDataPresent(typeof(CarLabel))) {
                 _dragEnterObject = (CarLabel)e.Data.GetData(typeof(CarLabel));
-            } else if (e.Data.GetDataPresent(typeof(StaffLabel))) {
+            } else if(e.Data.GetDataPresent(typeof(StaffLabel))) {
                 _dragEnterObject = (StaffLabel)e.Data.GetData(typeof(StaffLabel));
             }
             // 処理を渡す
@@ -945,7 +948,7 @@ namespace CcControl {
         protected override void OnDragOver(DragEventArgs e) {
             Point clientPoint = this.PointToClient(new Point(e.X, e.Y));
             Point cellPoint = new(clientPoint.X / (int)CellWidth, clientPoint.Y / (int)CellHeight);
-            switch (_dragEnterObject) {
+            switch(_dragEnterObject) {
                 case SetLabel setLabel:
                     e.Effect = (cellPoint.X == 0 && cellPoint.Y == 0 && this.GetControlFromPosition(cellPoint.X, cellPoint.Y) is null) ? DragDropEffects.Move : DragDropEffects.None;
                     break;
@@ -969,7 +972,7 @@ namespace CcControl {
         /// <param name="dragEventArgs"></param>
         protected override void OnDragDrop(DragEventArgs e) {
             this.DragControl = _dragEnterObject;
-            switch (_dragEnterObject) {
+            switch(_dragEnterObject) {
                 case SetLabel setLabel:
                     this.DragParentControl = setLabel.Parent;
                     setLabel.ParentControl = this;
@@ -1026,7 +1029,7 @@ namespace CcControl {
              * Control上にカーソルがある
              */
             _newOnCursorFlag = true;
-            if (_oldOnCursorFlag != _newOnCursorFlag) {
+            if(_oldOnCursorFlag != _newOnCursorFlag) {
                 _oldOnCursorFlag = _newOnCursorFlag;
                 this.Refresh();
             }
@@ -1043,7 +1046,7 @@ namespace CcControl {
              * Control上にカーソルがない
              */
             _newOnCursorFlag = false;
-            if (_oldOnCursorFlag != _newOnCursorFlag) {
+            if(_oldOnCursorFlag != _newOnCursorFlag) {
                 _oldOnCursorFlag = _newOnCursorFlag;
                 this.Refresh();
             }
@@ -1093,7 +1096,7 @@ namespace CcControl {
             get => this._deployedSetLabel;
             set {
                 this._deployedSetLabel = value;
-                if (this.DeployedSetLabel is not null) {
+                if(this.DeployedSetLabel is not null) {
                     this.SetCode = ((SetLabel)this.DeployedSetLabel).SetMasterVo.SetCode;
                     this.ManagedSpaceCode = ((SetLabel)this.DeployedSetLabel).ManagedSpaceCode;
                     this.ClassificationCode = ((SetLabel)this.DeployedSetLabel).ClassificationCode;
@@ -1129,7 +1132,7 @@ namespace CcControl {
             get => this._deployedCarLabel;
             set {
                 this._deployedCarLabel = value;
-                if (this.DeployedCarLabel is not null) {
+                if(this.DeployedCarLabel is not null) {
                     this.CarCode = ((CarLabel)this.DeployedCarLabel).CarMasterVo.CarCode;
                     this.CarGarageCode = ((CarLabel)this.DeployedCarLabel).ManagedSpaceCode;
                     this.CarProxyFlag = ((CarLabel)this.DeployedCarLabel).ProxyFlag;
@@ -1152,7 +1155,7 @@ namespace CcControl {
             get => this._deployedStaffLabel1;
             set {
                 this._deployedStaffLabel1 = value;
-                if (this.DeployedStaffLabel1 is not null) {
+                if(this.DeployedStaffLabel1 is not null) {
                     this.StaffCode1 = ((StaffLabel)this.DeployedStaffLabel1).StaffMasterVo.StaffCode;
                     this.StaffOccupation1 = ((StaffLabel)this.DeployedStaffLabel1).OccupationCode;
                     this.StaffProxyFlag1 = ((StaffLabel)this.DeployedStaffLabel1).ProxyFlag;
@@ -1178,7 +1181,7 @@ namespace CcControl {
             get => this._deployedStaffLabel2;
             set {
                 this._deployedStaffLabel2 = value;
-                if (this.DeployedStaffLabel2 is not null) {
+                if(this.DeployedStaffLabel2 is not null) {
                     this.StaffCode2 = ((StaffLabel)this.DeployedStaffLabel2).StaffMasterVo.StaffCode;
                     this.StaffOccupation2 = ((StaffLabel)this.DeployedStaffLabel2).OccupationCode;
                     this.StaffProxyFlag2 = ((StaffLabel)this.DeployedStaffLabel2).ProxyFlag;
@@ -1204,7 +1207,7 @@ namespace CcControl {
             get => this._deployedStaffLabel3;
             set {
                 this._deployedStaffLabel3 = value;
-                if (this.DeployedStaffLabel3 is not null) {
+                if(this.DeployedStaffLabel3 is not null) {
                     this.StaffCode3 = ((StaffLabel)this.DeployedStaffLabel3).StaffMasterVo.StaffCode;
                     this.StaffOccupation3 = ((StaffLabel)this.DeployedStaffLabel3).OccupationCode;
                     this.StaffProxyFlag3 = ((StaffLabel)this.DeployedStaffLabel3).ProxyFlag;
@@ -1230,7 +1233,7 @@ namespace CcControl {
             get => this._deployedStaffLabel4;
             set {
                 this._deployedStaffLabel4 = value;
-                if (this.DeployedStaffLabel4 is not null) {
+                if(this.DeployedStaffLabel4 is not null) {
                     this.StaffCode4 = ((StaffLabel)this.DeployedStaffLabel4).StaffMasterVo.StaffCode;
                     this.StaffOccupation4 = ((StaffLabel)this.DeployedStaffLabel4).OccupationCode;
                     this.StaffProxyFlag4 = ((StaffLabel)this.DeployedStaffLabel4).ProxyFlag;
@@ -1703,7 +1706,9 @@ namespace CcControl {
         /// SetControlのUpdateMark用フラグ
         /// True:更新あり False:更新なし
         /// </summary>
-        public bool UpdateMarkFlag { get => this._updateMarkFlag; set => this._updateMarkFlag = value; }
+        public bool UpdateMarkFlag {
+            get => this._updateMarkFlag; set => this._updateMarkFlag = value;
+        }
     }
 }
 

@@ -100,14 +100,15 @@ namespace CcControl {
         /// <param name="setMasterVo"></param>
         /// <param name="carMasterVo"></param>
         /// <param name="listStaffMasterVo"></param>
+        /// <param name="viewProperFlag">初任・適齢を表示するかどうか true:表示する false:表示しない</param>
         /// <param name="listStaffProperVo">初任・適齢の判断をするために使用する</param>
-        public void AddOneSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo, List<StaffProperVo> listStaffProperVo) {
+        public void AddOneSetControl(int cellNumber, VehicleDispatchDetailVo vehicleDispatchDetailVo, SetMasterVo setMasterVo, CarMasterVo carMasterVo, List<StaffMasterVo> listStaffMasterVo, bool viewProperFlag, List<StaffProperVo> listStaffProperVo) {
             SetControl setControl = new(vehicleDispatchDetailVo);
             setControl.CellNumber = cellNumber;
             setControl.NumberOfPeople = setMasterVo is not null ? setMasterVo.NumberOfPeople : 0;
             setControl.AddSetLabel(setMasterVo);
             setControl.AddCarLabel(carMasterVo);
-            setControl.AddStaffLabels(listStaffMasterVo, listStaffProperVo);
+            setControl.AddStaffLabels(listStaffMasterVo, viewProperFlag, listStaffProperVo);
             /*
              * Event
              */

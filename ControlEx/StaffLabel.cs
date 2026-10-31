@@ -39,6 +39,7 @@ namespace CcControl {
         private DateTime _rollCallYmdHms = new(1900, 01, 01);
         private bool _memoFlag = false;
         private string _memo = string.Empty;
+        private bool _viewProperFlag = false;
         private bool _syoninFlag = false;
         private bool _tekireiFlag = false;
         private int _managedSpaceCode = 0;
@@ -122,9 +123,9 @@ namespace CcControl {
         public ToolStripMenuItem toolStripMenuItem00 = new("従事者台帳を表示");
         public ToolStripMenuItem toolStripMenuItem01 = new("免許証を表示");
         public ToolStripMenuItem toolStripMenuItem02 = new("代番処理");                                                              // 親アイテム
-        public ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");                                                    // 子アイテム１
+        public ToolStripMenuItem toolStripMenuItem02_0 = new("代番として記録する");                                                   // 子アイテム１
         public ToolStripMenuItem toolStripMenuItem02_1 = new("代番を解除する");                                                       // 子アイテム２
-        public ToolStripMenuItem toolStripMenuItem03 = new("職種設定");                                                             // 親アイテム
+        public ToolStripMenuItem toolStripMenuItem03 = new("職種設定");                                                              // 親アイテム
         public ToolStripMenuItem toolStripMenuItem03_0 = new("運転手の料金設定にする(運賃コードに依存)");// 子アイテム１
         public ToolStripMenuItem toolStripMenuItem03_1 = new("作業員の料金設定にする");// 子アイテム２
         public ToolStripMenuItem toolStripMenuItem04 = new("出勤確認(電話確認)");// 親アイテム
@@ -275,10 +276,10 @@ namespace CcControl {
             if(!RollCallFlag)
                 pe.Graphics.DrawImage(Cache.Tenko, 0, 0, Width, Height);
 
-            if(SyoninFlag)
+            if(SyoninFlag && ViewProperFlag)
                 pe.Graphics.DrawImage(Cache.Syonin, 0, 0, Width, Height);
 
-            if(TekireiFlag)
+            if(TekireiFlag && ViewProperFlag)
                 pe.Graphics.DrawImage(Cache.Tekirei, 0, 0, Width, Height);
 
             if(CursorEnterFlag)
@@ -519,6 +520,13 @@ namespace CcControl {
         public string Memo {
             get => this._memo;
             set => this._memo = value;
+        }
+        /// <summary>
+        /// VehicleDispatchBoardのMenuでのFlag状態を保持
+        /// </summary>
+        public bool ViewProperFlag {
+            get => _viewProperFlag;
+            set => _viewProperFlag = value;
         }
         /// <summary>
         /// 初任診断

@@ -2,7 +2,7 @@
  * 2024-09-23
  */
 namespace CcControl {
-    public partial class CcMenuStrip: MenuStrip {
+    public partial class CcMenuStrip : MenuStrip {
         /*
          * デリゲート
          */
@@ -11,6 +11,7 @@ namespace CcControl {
          * 変数
          */
         private bool _ToolStripMenuItemDataBaseLocalFlag = false;
+        private bool _ToolStripMenuItemViewProperFlag = false;
 
         /// <summary>
         /// コンストラクター
@@ -47,6 +48,13 @@ namespace CcControl {
             ToolStripMenuItem toolStripMenuItemEdit =CreateMenuItem("ToolStripMenuItemEdit","編集",null,this.Items);
             CreateMenuItem("ToolStripMenuItemInsertNewRecord", "新規レコード作成", ToolStripMenuItem_Click, toolStripMenuItemEdit.DropDownItems);
             CreateMenuItem("ToolStripMenuItemUpdateTaitou", "台東資源収集量入力", ToolStripMenuItem_Click, toolStripMenuItemEdit.DropDownItems);
+            /*
+             * 表示
+             */
+            ToolStripMenuItem toolStripMenuItemView = CreateMenuItem("ToolStripMenuItemView","表示",null,this.Items);
+            ToolStripMenuItem toolStripMenuItemViewProper = CreateMenuItem("ToolStripMenuItemViewProper", "運転者(手帳)に対しての講習履歴を表示する", ToolStripMenuItem_Click, toolStripMenuItemView.DropDownItems);
+            toolStripMenuItemViewProper.Checked = ToolStripMenuItemViewProperFlag;
+            toolStripMenuItemViewProper.CheckOnClick = true;
             /*
              * Initialize
              */
@@ -136,8 +144,15 @@ namespace CcControl {
         /// True:Localに接続 False:Networkに接続
         /// </summary>
         public bool ToolStripMenuItemDataBaseLocalFlag {
-            get => this._ToolStripMenuItemDataBaseLocalFlag;
-            set => this._ToolStripMenuItemDataBaseLocalFlag = value;
+            get => _ToolStripMenuItemDataBaseLocalFlag;
+            set => _ToolStripMenuItemDataBaseLocalFlag = value;
+        }
+        /// <summary>
+        /// True:手帳のNASVA講習状態を表示する False:表示しない
+        /// </summary>
+        public bool ToolStripMenuItemViewProperFlag {
+            get => _ToolStripMenuItemViewProperFlag;
+            set => _ToolStripMenuItemViewProperFlag = value;
         }
     }
 }

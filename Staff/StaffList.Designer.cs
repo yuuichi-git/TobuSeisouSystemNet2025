@@ -574,7 +574,7 @@
             // 
             // SpreadList
             // 
-            SpreadList.AccessibleDescription = "SpreadList, 従事者リスト, Row 0, Column 0";
+            SpreadList.AccessibleDescription = "SpreadList, 運転者リスト, Row 0, Column 0";
             SpreadList.Dock = DockStyle.Fill;
             SpreadList.Font = new Font("ＭＳ Ｐゴシック", 11F);
             SpreadList.Location = new Point(3, 119);

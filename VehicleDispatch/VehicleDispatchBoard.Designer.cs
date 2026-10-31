@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             TableLayoutPanelExBase = new CcControl.CcTableLayoutPanel();
-            MenuStripEx1 = new CcControl.CcMenuStrip();
+            CcMenuStrip1 = new CcControl.CcMenuStrip();
             StatusStripEx1 = new CcControl.CcStatusStrip();
             PanelExTop = new CcControl.CcPanel();
             ButtonExUpdate = new CcControl.CcButton();
@@ -43,7 +43,7 @@
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             TableLayoutPanelExBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            TableLayoutPanelExBase.Controls.Add(MenuStripEx1, 0, 0);
+            TableLayoutPanelExBase.Controls.Add(CcMenuStrip1, 0, 0);
             TableLayoutPanelExBase.Controls.Add(StatusStripEx1, 0, 3);
             TableLayoutPanelExBase.Controls.Add(PanelExTop, 0, 1);
             TableLayoutPanelExBase.Controls.Add(PanelExLeft, 0, 2);
@@ -58,15 +58,15 @@
             TableLayoutPanelExBase.Size = new Size(1904, 1041);
             TableLayoutPanelExBase.TabIndex = 0;
             // 
-            // MenuStripEx1
+            // CcMenuStrip1
             // 
-            TableLayoutPanelExBase.SetColumnSpan(MenuStripEx1, 2);
-            MenuStripEx1.Location = new Point(0, 0);
-            MenuStripEx1.Name = "MenuStripEx1";
-            MenuStripEx1.Size = new Size(1904, 24);
-            MenuStripEx1.TabIndex = 0;
-            MenuStripEx1.Text = "menuStripEx1";
-            MenuStripEx1.ToolStripMenuItemDataBaseLocalFlag = false;
+            TableLayoutPanelExBase.SetColumnSpan(CcMenuStrip1, 2);
+            CcMenuStrip1.Location = new Point(0, 0);
+            CcMenuStrip1.Name = "CcMenuStrip1";
+            CcMenuStrip1.Size = new Size(1904, 24);
+            CcMenuStrip1.TabIndex = 0;
+            CcMenuStrip1.Text = "menuStripEx1";
+            CcMenuStrip1.ToolStripMenuItemDataBaseLocalFlag = false;
             // 
             // StatusStripEx1
             // 
@@ -115,7 +115,6 @@
             // 
             // DateTimePickerExOperationDate
             // 
-            DateTimePickerExOperationDate.CultureFlag = false;
             DateTimePickerExOperationDate.CustomFormat = " 明治33年01月01日(月曜日)";
             DateTimePickerExOperationDate.Format = DateTimePickerFormat.Custom;
             DateTimePickerExOperationDate.Location = new Point(96, 4);
@@ -151,7 +150,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
             Controls.Add(TableLayoutPanelExBase);
-            MainMenuStrip = MenuStripEx1;
+            MainMenuStrip = CcMenuStrip1;
             Name = "VehicleDispatchBoard";
             Text = "VehicleDispatchBoard";
             FormClosing += VehicleDispatchBoard_FormClosing;
@@ -166,7 +165,7 @@
         #endregion
 
         private CcControl.CcTableLayoutPanel TableLayoutPanelExBase;
-        private CcControl.CcMenuStrip MenuStripEx1;
+        private CcControl.CcMenuStrip CcMenuStrip1;
         private CcControl.CcStatusStrip StatusStripEx1;
         private CcControl.CcPanel PanelExTop;
         private CcControl.CcDateTime DateTimePickerExOperationDate;

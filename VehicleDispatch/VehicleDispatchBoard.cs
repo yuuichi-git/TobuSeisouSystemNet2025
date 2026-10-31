@@ -104,12 +104,14 @@ namespace VehicleDispatch {
                     listString = new() {"ToolStripMenuItemFile",
                                         "ToolStripMenuItemExit",
                                         "ToolStripMenuItemEdit",
+                                        "ToolStripMenuItemView",
+                                        "ToolStripMenuItemViewProper",
                                         "ToolStripMenuItemUpdateTaitou",
                                         "ToolStripMenuItemInitialize",
                                         "ToolStripMenuItemInitializeBord",
                                         "ToolStripMenuItemHelp"};
-                    this.MenuStripEx1.ChangeEnable(listString);
-                    this.MenuStripEx1.BackColor = Color.Empty;
+                    this.CcMenuStrip1.ChangeEnable(listString);
+                    this.CcMenuStrip1.BackColor = Color.Empty;
                     this.ButtonExUpdate.Enabled = true;
                     this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "本社内からの接続";                           // StatusStripEx1を初期化
                     break;
@@ -120,8 +122,8 @@ namespace VehicleDispatch {
                     listString = new() {"ToolStripMenuItemFile",
                                         "ToolStripMenuItemExit",
                                         "ToolStripMenuItemHelp"};
-                    this.MenuStripEx1.ChangeEnable(listString);
-                    this.MenuStripEx1.BackColor = Color.LightSteelBlue;
+                    this.CcMenuStrip1.ChangeEnable(listString);
+                    this.CcMenuStrip1.BackColor = Color.LightSteelBlue;
                         this.ButtonExUpdate.Enabled = true;
                     this.ButtonExStockBoxOpen.Enabled = false;                                                          // 三郷車庫はStock-Boxsを使用しないため、ButtonExStockBoxOpenを無効化する
                     this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "三郷内からの接続";                              // StatusStripEx1を初期化
@@ -133,7 +135,7 @@ namespace VehicleDispatch {
                     listString = new() {"ToolStripMenuItemFile",
                                         "ToolStripMenuItemExit",
                                         "ToolStripMenuItemHelp"};
-                    this.MenuStripEx1.ChangeEnable(listString);
+                    this.CcMenuStrip1.ChangeEnable(listString);
                     this.ButtonExUpdate.Enabled = false;
                     this.StatusStripEx1.ToolStripStatusLabelDetail.Text = "_connectionVo.ConnectionLocationがNULLです。処理を中断します。";
                     break;
@@ -145,7 +147,7 @@ namespace VehicleDispatch {
             /*
              * Eventを登録する
              */
-            this.MenuStripEx1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
+            this.CcMenuStrip1.Event_MenuStripEx_ToolStripMenuItem_Click += this.ToolStripMenuItem_Click;
             /*
              * Timerを初期化する(更新監視用)
              */
@@ -250,7 +252,8 @@ namespace VehicleDispatch {
                                                         vehicleDispatchDetailVo,
                                                         _listSetMasterVo.Find(x => x.SetCode == vehicleDispatchDetailVo.SetCode),
                                                         _listCarMasterVo.Find(x => x.CarCode == vehicleDispatchDetailVo.CarCode),
-                                                        this.ConvertStaffMasterVo(vehicleDispatchDetailVo),
+                                                        ConvertStaffMasterVo(vehicleDispatchDetailVo),
+                                                        CcMenuStrip1.ToolStripMenuItemViewProperFlag,
                                                         _listStaffProperVo);
                             }
                             cellNumber++;
@@ -382,6 +385,7 @@ namespace VehicleDispatch {
                                                         _listSetMasterVo.Find(x => x.SetCode == trueVehicleDispatchDetailVo.SetCode),
                                                         _listCarMasterVo.Find(x => x.CarCode == trueVehicleDispatchDetailVo.CarCode),
                                                         ConvertStaffMasterVo(trueVehicleDispatchDetailVo),
+                                                        CcMenuStrip1.ToolStripMenuItemViewProperFlag,
                                                         _listStaffProperVo);
                                 /*
                                  * PurposeFlag = true なら columnNumber++
@@ -460,6 +464,7 @@ namespace VehicleDispatch {
                                                         _listSetMasterVo.Find(x => x.SetCode == falseVehicleDispatchDetailVo.SetCode),
                                                         _listCarMasterVo.Find(x => x.CarCode == falseVehicleDispatchDetailVo.CarCode),
                                                         ConvertStaffMasterVo(falseVehicleDispatchDetailVo),
+                                                        CcMenuStrip1.ToolStripMenuItemViewProperFlag,
                                                         _listStaffProperVo);
                             }
                             cellNumber++;
@@ -588,6 +593,10 @@ namespace VehicleDispatch {
                     CollectionWeightTaitou collectionWeightTaitou = new(_connectionVo, this.DateTimePickerExOperationDate.GetDate());
                     _screenForm.SetPosition(Screen.FromPoint(Cursor.Position), collectionWeightTaitou);
                     collectionWeightTaitou.ShowDialog(this);
+                    break;
+                // 表示
+                case "ToolStripMenuItemViewProper":
+                    this.CcMenuStrip1.ToolStripMenuItemViewProperFlag = ((ToolStripMenuItem)sender).Checked;
                     break;
                 // 初期化
                 case "ToolStripMenuItemInitializeBord":
